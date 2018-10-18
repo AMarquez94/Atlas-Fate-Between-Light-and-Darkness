@@ -1,43 +1,44 @@
 {
 	"system": {
-		"duration": 2.0,
+		"duration": 1.0,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 2.0,
-		"start_speed": 0.5,
+		"start_speed": 0.0,
 		"start_size": "0.75 0.75 0.75",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 1 1 1",
 		"gravity": 0,
-		"simulation_speed": 0.6,
-		"max_particles": 300
+		"simulation_speed": 1,
+		"max_particles": 200,
+		"offset": "0 0.125 0"
 	},
 	"emission": {
 		"rate_time": 40.0,
 		"rate_distance": 0.0,
-		"variation" : 0.0,
-		"interval" : 0.5
+		"variation" : 0.0
 	},
 	"shape": {
-		"type": "cone",
-		"size": "0.3 0.3 0.3",
-		"angle": 89.0
+		"type": "box",
+		"size": "0.1 0.1 0.1",
+		"angle": 0.0
 		
 	},
 	"velocity": {
 		"constant_velocity": "0.0 0.0 0.0",
 		"velocity" : [
       [0.0, "0.0 0.0 0.0"],
-			[0.5, "0.5 0.5 0.5"],
-			[1.0, "1.0 1.0 1.0"]
+			[0.5, "0.0 0.0 0.0"],
+			[1.0, "0.0 0.0 0.0"]
     ],
 		"rotation" : [
-		  [0.0, "0.0 0.0 1.0"],
-      [1.0, "0.0 0.0 4.0"]
+		  [0.0, "0.0 0.0 0.0"],
+      [1.0, "0.0 0.0 0.0"]
     ],
 		"acceleration": 0.0,
-		"wind": 0.0
+		"wind": 0.0,
+		"inherit" : false
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
@@ -52,28 +53,29 @@
 	},
 	"renderer": {
 			"mode": "billboard",
-			"texture": "data/textures/particles/WispySmoke01_8x8.dds",
-      "frame_size" : "8 8",
+			"texture": "data/textures/particles/sm_smokeball.dds",
+      "frame_size" : "8 4",
       "initial_frame" : 0,
-      "num_frames" : 64,
-      "frame_speed" : 64.0
+      "num_frames" : 32,
+      "frame_speed" : 1.0,
+			"soft" : 0
 	},
   "size" : {
     "scale" : 1.0,
-    "scale_variation" : 0.2,
+    "scale_variation" : 0.1,
     "sizes" : [
-		  [0.0, "0.75 0.75 0.75"],
-			[0.8, "0.75 0.75 0.75"],
-      [1.0, "0.75 0.75 0.25"]
+		  [0.0, "0.4 0.4 0.4"],
+			[0.6, "0.7 0.7 0.7"],
+      [1.0, "0.1 0.1 0.1"]
     ]
   },
   "color" : {
-    "opacity" : 0.2,
+    "opacity" : 0.75,
     "colors" : [
-      [0.0, "1 1 1 0"],
-      [0.01, "0 0 0 0.24"],
-      [0.99, "0 0 0 0.26"],
-			[1.0, "0 0 0 0.14"]
+      [0.0, "0 0 0 1"],
+      [0.1, "0 0 0 1"],
+      [0.6, "0 0 0 1"],
+			[1.0, "0 0 0 0.1"]
     ] 
   }
 }

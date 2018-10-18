@@ -9,6 +9,7 @@ class CModuleEntities : public IModule
 	std::vector< CHandleManager* > om_to_render_debug;
 	void loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers);
 	void renderDebugOfComponents();
+	CHandle player_handle;
 
 public:
 	float time_scale_factor = 1.f;
@@ -19,7 +20,10 @@ public:
 	void update(float delta) override;
 	void render() override;
 	void destroyAllEntities();
+	const VHandles getAllEntities();
 	float getTimeScale() { return time_scale_factor; }
+
+	CHandle getPlayerHandle();
 
 	template< class TMsg >
 	void broadcastMsg(const TMsg& msg) {

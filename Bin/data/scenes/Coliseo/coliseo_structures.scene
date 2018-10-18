@@ -1,0 +1,931 @@
+[{
+		"entity": {
+			"name": "coliseo_structures",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"xentity": {
+			"name": "COL_Circle001",
+			"transform": {
+				"pos": "-0.0941859 4.29138 0.922904",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_Circle001.mesh",
+				"materials": [
+					"data/materials/mtl_cable.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_arcomuralla01",
+			"transform": {
+				"pos": "0.371784 0.973033 2.52432",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_arcomuralla01.mesh",
+				"materials": [
+					"data/materials/mtl_arcomuralla.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_arcomuralla01.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_arcomuralla02",
+			"transform": {
+				"pos": "0.372852 8.91053 1.71394",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_arcomuralla02.mesh",
+				"materials": [
+					"data/materials/mtl_arcomuralla.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_arcomuralla02.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_arcoroto",
+			"transform": {
+				"pos": "0.0 9.49762 0.0",
+				"rotation": "2.98756e-07 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_arcoroto.mesh",
+				"materials": [
+					"data/materials/mtl_arcoroto.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_arcoroto.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_arcoroto_cover",
+			"transform": {
+				"pos": "-0.154758 12.1994 -0.52",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_arcoroto_cover.mesh",
+				"materials": [
+					"data/materials/mtl_bordillos.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_bordillo",
+			"transform": {
+				"pos": "0.0 1.08962 1.05377",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_bordillo.mesh",
+				"materials": [
+					"data/materials/mtl_bordillos.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_grancartel01",
+			"transform": {
+				"pos": "-22.4205 9.8406 0.999988",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_grancartel01.mesh",
+				"materials": [
+					"data/materials/mtl_grancartel.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_grancartel01.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_grancartel02",
+			"transform": {
+				"pos": "23.849 8.40233 0.999998",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_grancartel02.mesh",
+				"materials": [
+					"data/materials/mtl_grancartel.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_grancartel02.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_grancartel03",
+			"transform": {
+				"pos": "-0.144213 8.27261 21.7474",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_grancartel03.mesh",
+				"materials": [
+					"data/materials/mtl_grancartel.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_grancartel03.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_grancupula",
+			"transform": {
+				"pos": "0.0 0.901 -27.0",
+				"rotation": "2.09766e-07 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_grancupula.mesh",
+				"materials": [
+					"data/materials/mtl_grancupula.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_grancupula.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"xentity": {
+			"name": "COL_mesh_suelopared",
+			"transform": {
+				"pos": "0.0 -0.00610352 0.0",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_suelopared.mesh",
+				"materials": [
+					"data/materials/mtl_suelo_plaza.material",
+					"data/materials/mtl_mezquita.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_suelopared.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_andamio",
+			"transform": {
+				"pos": "15.8578 0.989014 6.87363",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_andamio.mesh",
+				"materials": [
+					"data/materials/mtl_andamio.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_andamio.collider",
+				"group": "fence",
+				"mask": "player",
+				"is_trigger": false,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_baselargalectrica",
+			"transform": {
+				"pos": "18.3498 8.34103 -9.72552",
+				"rotation": "0.0 -0.258819 0.0 -0.965926"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_baselargalectrica.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_baselargalectrica.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_baselargalectrica001",
+			"transform": {
+				"pos": "13.1066 8.47952 -15.8008",
+				"rotation": "0.0 -0.422618 0.0 -0.906308"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_baselargalectrica001.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_baselargalectrica002",
+			"transform": {
+				"pos": "17.4923 16.3229 -11.0803",
+				"rotation": "0.0 -0.258819 0.0 -0.965926"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_baselargalectrica002.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_baselargalectrica003",
+			"transform": {
+				"pos": "14.3659 16.4614 -14.7238",
+				"rotation": "0.0 -0.422618 0.0 -0.906308"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_baselargalectrica003.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_baselargalectrica004",
+			"transform": {
+				"pos": "19.2027 16.3229 9.19681",
+				"rotation": "0.0 0.258819 0.0 -0.965926"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_baselargalectrica004.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_baselargalectrica005",
+			"transform": {
+				"pos": "13.7726 16.3229 16.3798",
+				"rotation": "0.0 0.422618 0.0 -0.906308"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_baselargalectrica005.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_baselargalectrica006",
+			"transform": {
+				"pos": "-18.4484 16.3229 9.30071",
+				"rotation": "0.0 -0.984808 0.0 0.173648"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_baselargalectrica006.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_enchufebase",
+			"transform": {
+				"pos": "7.95942 3.40675 26.165",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_enchufebase.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_enchufebase.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_enchufebase001",
+			"transform": {
+				"pos": "-13.8643 3.15031 -22.226",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_enchufebase001.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_enchufebase001.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_enchufebase002",
+			"transform": {
+				"pos": "-23.7042 3.38892 -10.6844",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_enchufebase002.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_enchufebase002.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_enchufebase003",
+			"transform": {
+				"pos": "-24.5031 4.95635 10.4227",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_enchufebase003.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_enchufebase003.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_enchufebase004",
+			"transform": {
+				"pos": "24.0294 3.39369 11.8043",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_enchufebase004.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_enchufebase004.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_fuente",
+			"transform": {
+				"pos": "0.0 0.528829 1.05376",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_fuente.mesh",
+				"materials": [
+					"data/materials/mtl_fuentecoliseo.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_fuente.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_generador",
+			"transform": {
+				"pos": "0.0 1.69533 1.05376",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_generador.mesh",
+				"materials": [
+					"data/materials/mtl_generador.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_generador.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"xentity": {
+			"name": "COL_mesh_maquina01",
+			"transform": {
+				"pos": "0.0 2.11655 1.05377",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_maquina01.mesh",
+				"materials": [
+					"data/materials/mtl_maquina.material",
+					"data/materials/mtl_props_plaza.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_maquina01.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_maquina02",
+			"transform": {
+				"pos": "0.0 2.11655 1.05377",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_maquina02.mesh",
+				"materials": [
+					"data/materials/mtl_maquina.material",
+					"data/materials/mtl_props_plaza.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_maquina02.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_maquina03",
+			"transform": {
+				"pos": "0.0 2.11655 1.05377",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_maquina03.mesh",
+				"materials": [
+					"data/materials/mtl_maquina.material",
+					"data/materials/mtl_props_plaza.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_maquina03.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"xentity": {
+			"name": "COL_mesh_maquina04",
+			"transform": {
+				"pos": "0.0 2.11655 1.05377",
+				"rotation": "1.50494e-07 -1.50996e-07 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_maquina04.mesh",
+				"materials": [
+					"data/materials/mtl_maquina.material",
+					"data/materials/mtl_props_plaza.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_maquina04.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_mastilelectrico001",
+			"transform": {
+				"pos": "5.54204 16.6103 20.5741",
+				"rotation": "0.704416 -0.0616284 -0.0616284 -0.704416"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_mastilelectrico001.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_mastilelectrico002",
+			"transform": {
+				"pos": "2.72484 16.6103 21.1053",
+				"rotation": "0.704416 -0.0616284 -0.0616284 -0.704416"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_mastilelectrico002.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_mastilelectrico003",
+			"transform": {
+				"pos": "-2.00508 16.6103 21.1091",
+				"rotation": "0.704416 0.0616284 0.0616284 -0.704416"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_mastilelectrico003.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_mastilelectrico004",
+			"transform": {
+				"pos": "-6.11371 16.6103 20.1987",
+				"rotation": "0.704416 0.0616284 0.0616284 -0.704416"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_mastilelectrico004.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_mastilelectrico005",
+			"transform": {
+				"pos": "-17.5284 8.6113 10.9192",
+				"rotation": "0.612372 0.353553 0.353553 -0.612372"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_mastilelectrico005.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_mastilelectrico006",
+			"transform": {
+				"pos": "-14.86 8.6113 14.5513",
+				"rotation": "0.640856 0.298836 0.298836 -0.640856"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_mastilelectrico006.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_mastilelectrico007",
+			"transform": {
+				"pos": "-11.596 8.6113 17.4382",
+				"rotation": "0.664463 0.241845 0.241845 -0.664463"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_mastilelectrico007.mesh",
+				"materials": [
+					"data/materials/mtl_spotlightbrian.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"xentity": {
+			"name": "COL_mesh_palanca",
+			"transform": {
+				"pos": "6.03994 2.01133 -23.2836",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_palanca.mesh",
+				"materials": [
+					"data/materials/mtl_terminal.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"xentity": {
+			"name": "COL_mesh_palanca001",
+			"transform": {
+				"pos": "-24.3129 2.01133 -5.19886",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_palanca001.mesh",
+				"materials": [
+					"data/materials/mtl_terminal.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"xentity": {
+			"name": "COL_mesh_palanca002",
+			"transform": {
+				"pos": "24.5552 2.01133 5.9993",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_palanca002.mesh",
+				"materials": [
+					"data/materials/mtl_terminal.material"
+				]
+			}],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_tubolargo01",
+			"transform": {
+				"pos": "-17.2524 7.44773 8.49525",
+				"rotation": "1.43898e-07 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_tubolargo01.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_tubolargo01.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_tubolargo02",
+			"transform": {
+				"pos": "-13.2261 8.31576 -11.5543",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_tubolargo02.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_tubolargo02.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_tubolargo007",
+			"transform": {
+				"pos": "14.6317 8.44444 13.2414",
+				"rotation": "1.50494e-07 -1.50996e-07 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_tubolargo007.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_tubolargo03.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_tubolargo009",
+			"transform": {
+				"pos": "0.0177277 7.4929 -24.127",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_tubolargo009.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_tubolargo06.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_tubolargo010",
+			"transform": {
+				"pos": "0.0177277 8.80321 -24.127",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_tubolargo010.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_tubolargo05.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_tubolargo011",
+			"transform": {
+				"pos": "0.0177277 10.1135 -24.127",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_tubolargo011.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_tubolargo04.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_mesh_verjafuente",
+			"transform": {
+				"pos": "-0.0379448 1.48486 0.976923",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render": [{
+				"mesh": "data/meshes/COL_mesh_verjafuente.mesh",
+				"materials": [
+					"data/materials/mtl_conexiones.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/COL_collider_verjafuente.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]

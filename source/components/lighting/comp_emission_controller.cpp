@@ -12,7 +12,8 @@
 DECL_OBJ_MANAGER("emission_controller", TCompEmissionController);
 
 void TCompEmissionController::debugInMenu() {
-
+    ImGui::ColorEdit4("Current color: ", &_current_color.x);
+    ImGui::ColorEdit4("Desired color: ", &_desired_color.x);
 }
 
 void TCompEmissionController::load(const json& j, TEntityParseContext& ctx) {
@@ -22,13 +23,16 @@ void TCompEmissionController::load(const json& j, TEntityParseContext& ctx) {
 	if (j.count("initial"))
 		_current_color = loadVEC4(j["initial"]);
 
-    _intensity = j.value("intensity", 10.0f);
+    _intensity = j.value("intensity", 1.0f);
 	_desired_color = _current_color;
 	_original_color = _current_color;
 }
 
 /* Update the values during the given time */
 void TCompEmissionController::update(float dt) {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
 
 	if (_elapsed_time < 1) {
 
@@ -68,10 +72,10 @@ void TCompEmissionController::onSceneCreated(const TMsgSceneCreated& msg) {
 	//		_temp_lights.push_back(spotlight);
 	//}
 
-  TCompRender * self_render = get<TCompRender>();
-  assert(self_render);
-  self_render->self_color = _current_color;
-  self_render->self_intensity = _intensity;
+    TCompRender * self_render = get<TCompRender>();
+    assert(self_render);
+    self_render->self_color = _current_color;
+    self_render->self_intensity = _intensity;
 	//for (auto p : self_render->meshes)
 	//	for (auto m : p.materials)
 	//		_temp_materials.push_back(const_cast<CMaterial*>(m));

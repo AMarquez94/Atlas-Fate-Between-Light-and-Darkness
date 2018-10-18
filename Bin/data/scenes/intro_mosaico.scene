@@ -1,0 +1,73 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_mosaico"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_mosaico"
+      ,
+      "transform":
+      {
+        "pos": "-3.07106 0.010001 22.1511"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_mosaico.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mosaico.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "piedras"
+      ,
+      "transform":
+      {
+        "pos": "32.7768 0.0 32.5482"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/piedras.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_piedras_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

@@ -25,6 +25,27 @@ const VHandles& CTagsManager::getAllEntitiesByTag(uint32_t tag) {
 	return it->second;
 }
 
+const VHandles CTagsManager::getAllEntitiesWithoutTags(const std::vector<uint32_t>& tags) {
+    VHandles entitiesWithoutTags;
+    auto om = getObjectManager<CEntity>();
+    om->forEach([&](CEntity* e) {
+        TCompTags* c_tags = e->get<TCompTags>();
+        if (!c_tags) {
+            entitiesWithoutTags.push_back(CHandle(e));
+        }
+        else {
+            bool found = false;
+            for (int i = 0; i < tags.size() && !found; i++) {
+                found = c_tags->hasTag(tags[i]);
+            }
+            if (!found) {
+                entitiesWithoutTags.push_back(CHandle(e));
+            }
+        }
+    });
+    return entitiesWithoutTags;
+}
+
 void CTagsManager::registerEntityHasTag(CHandle h, uint32_t tag) {
 	entities_by_tag[tag].push_back(h);
 }
@@ -145,4 +166,9 @@ void TCompTags::load(const json& j, TEntityParseContext& ctx) {
 
 		addTag(tag_id);
 	}
+
+    if (ctx.persistent) {
+        tags_manager.registerTagName(getID("persistent"), "persistent");
+        addTag(getID("persistent"));
+    }
 }

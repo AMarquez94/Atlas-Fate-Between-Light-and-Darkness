@@ -21,9 +21,9 @@
 				}
 			],
 			"fade_controller": {
-				"fade_color": "0.0 0.0 0.0 1.0",
-				"fade_time": 4.0,
-				"material": "data/materials/characters/mtl_enemy_patrol_shade.material"
+				"fade_color": "0.0 1.0 1.0 1.0",
+				"fade_time": 4.5,
+				"fall_speed": 0.5
 			},
 			"skeleton": {
 				"skeleton": "data/skeletons/patrol/patrol.skeleton",
@@ -47,7 +47,8 @@
 			"tags": ["enemy", "patrol"],
 			"ai_patrol": {
 				"bt": "data/bt/patrol.bt"
-			}
+			},
+			"audio":true
 		}
 	}, {
 		"entity": {
@@ -64,7 +65,7 @@
 		"entity": {
 			"name": "FlashLight",
 			"transform": {
-				"pos": "0 1.5 0",
+				"pos": "0 0 0",
 				"rotation": "0 0 0 0"
 			},
 			"light_spot": {
@@ -82,20 +83,61 @@
 				"shadows_resolution": 256,
 				"shadows_fmt": "R32_TYPELESS"
 			},
+			"xbone_tracker": {
+				"bone": "Bip001 Laser",
+				"parent": "The Enemy"
+			},
 			"hierarchy": {
 				"parent": "The Enemy",
 				"pos": "0 1.75 0.85",
 				"lookat": "0 0 3"
 			},
 			"cone_of_light": {
-				"hor_fov": 70,
-				"ver_fov": 70,
+				"hor_fov": 68,
+				"ver_fov": 68,
 				"dist": 15,
 				"target": "The Player"
+			},
+			"particles": {
+				"on_start": false,
+				"cores":
+				[
+					"data/particles/def_amb_flare_spotlight.particles"
+				]
 			},
 			"abs_aabb": true
 			  ,
 			  "local_aabb": true
+		}
+	},  {
+		"entity": {
+			"name": "right_foot",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 0 0"
+			},
+			"bone_tracker": {
+				"bone": "Bip001 R Foot",
+				"parent": "The Enemy",
+				"rotation_update" : false
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},  {
+		"entity": {
+			"name": "left_foot",
+			"transform": {
+				"pos": "0 0 0",
+				"lookat": "0 0 0"
+			},
+			"bone_tracker": {
+				"bone": "Bip001 L Foot",
+				"parent": "The Enemy",
+				"rotation_update" : false
+			},
+			"abs_aabb": true,
+			"local_aabb": true
 		}
 	}
 ]

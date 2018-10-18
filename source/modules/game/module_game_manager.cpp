@@ -7,9 +7,13 @@
 #include "modules/module_entities.h"
 #include "windows/app.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "components/camera_controller/comp_camera_flyover.h"
+#include "render/render_objects.h"
+#include "components/postfx/comp_render_blur.h"
+#include "components/postfx/comp_render_focus.h"
 
-bool CModuleGameManager::start()
-{
+bool CModuleGameManager::start() {
+
     window_flags = 0;
     window_flags |= ImGuiWindowFlags_NoMove;
     window_flags |= ImGuiWindowFlags_NoResize;
@@ -18,111 +22,418 @@ bool CModuleGameManager::start()
     window_width = 250;
     window_height = 150;
 
-    isPaused = false;
-    victoryMenuVisible = false;
-    playerDiedMenuVisible = false;
-    menuVisible = false;
+    _player = EngineEntities.getPlayerHandle();
+    _fly_camera = getEntityByName("test_camera_flyover");
+    //ambient = EngineSound.playEvent("event:/Ambiance/Intro_Ambiance");
 
-    player = getEntityByName("The Player");
-
-    Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-    mouse->setLockMouse(true);
-
-    isStarted = true;
     lastCheckpoint = new CCheckpoint();
-    //lastCheckpoint.init();
+    _currentstate = PauseState::none;
+    EngineRender.setDebugMode(false);
+    EngineLogic.setPause(false);
+    main_theme = EngineSound.playEvent("event:/Ambiance/InGame");
+    transmission = EngineSound.playEvent("event:/Ambiance/Transmission");
+    transmission.setVolume(0.f);
+    _musicstate = MusicState::normal;
 
     return true;
 }
 
-void CModuleGameManager::update(float delta)
-{
-    auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("victory_trigger"));
+void CModuleGameManager::setPauseState(PauseState pause) {
 
-    for (unsigned int i = 0; i < handles.size() && !victoryMenuVisible; i++) {
+    // We are exiting the current state, disabling pause
+	if (_currentstate == PauseState::main && pause == PauseState::main && CApp::get().hasFocus()) {
+		if (EngineGUI.getButtonsState()) {
+			EngineGUI.closePauseMenu();
+			pause = PauseState::void_state;
+		}	
+	}
 
-        CEntity* eCollider = handles[i];
-        TCompCollider * e = eCollider->get<TCompCollider>();
-        if (e && e->player_inside) {
+    {
+        _player = EngineEntities.getPlayerHandle();
+        _fly_camera = getEntityByName("test_camera_flyover");
 
-            TMsgScenePaused msg;
-            msg.isPaused = true;
-            EngineEntities.broadcastMsg(msg);
-            victoryMenuVisible = true;
-        }
-    }
-
-    CEntity* e = getEntityByName("The Player");
-    if (e) {
-
-        /* Player Dead */
-        TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
-        if (playerCont->isDead()) {
-            Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-            mouse->setLockMouse(false);
-            playerDiedMenuVisible = true;
-            TMsgScenePaused msg;
-            msg.isPaused = true;
-            EngineCameras.getCurrentCamera().sendMsg(msg);
-        }
-    }
-
-    if (EngineInput["btDebugParticles"].getsPressed()) {
-
-        Engine.get().getParticles().particles_enabled = !Engine.get().getParticles().particles_enabled;
-        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-        mouse->setLockMouse(!Engine.get().getParticles().particles_enabled);
-
+        // Determine if whole scene is paused
         TMsgScenePaused msg;
-        msg.isPaused = Engine.get().getParticles().particles_enabled;
+        msg.isPaused = pause != PauseState::none && pause != PauseState::editor1unpaused ? true : false;
         EngineEntities.broadcastMsg(msg);
+        EngineCameras.getCurrentCamera().sendMsg(msg);
+        pauseEnemyEntities(msg.isPaused && pause != PauseState::defeat);
+        EngineLogic.setPause(msg.isPaused);
+
+        // Determine if player is paused
+        CEntity * e_player = _player;
+        CEntity * e_camera = _fly_camera;
+        TCompCameraFlyover * flyover = e_camera->get<TCompCameraFlyover>();
+        TMsgScenePaused msg2;
+        msg2.isPaused = (!msg.isPaused && flyover->paused) ? false : true && pause != PauseState::defeat;
+        e_player->sendMsg(msg2);
+        //dbg("current state %d and message %d\n", _currentstate, msg.isPaused);
     }
-    else if (!isPaused && EngineInput["btPause"].getsPressed() || (!menuVisible && CApp::get().lostFocus)) {
+    switchState(pause);
+}
 
-        /* Player not dead but game paused */
+void CModuleGameManager::switchState(PauseState pause) {
 
-        isPaused = true;
-        CApp::get().lostFocus = false;
+    // We set the new values for the given pause state
+    // Send all the necessary messages too
+    // Use this switch in case new logic is needed
 
-        // Send pause message
-        TMsgScenePaused msg;
-        msg.isPaused = isPaused;
-        EngineEntities.broadcastMsg(msg);
+    resetState();
+    Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 
-        // Lock/Unlock the cursor
-        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+    switch (pause) {
+    case PauseState::none: {
+        mouse->setLockMouse(true);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION);
+
+    }break;
+    case PauseState::main: {
         mouse->setLockMouse(false);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE)->makeChildsFadeIn(0.08, 0);
+		GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
+		if (w) {
+			float *aux_x = &w->getChild("line_pause")->getBarParams()->_ratio;
+			*aux_x = 0.0f;
+			EngineLerp.lerpElement(aux_x, 1.0f, 0.25f, 0);
+		}
+		//Blur to the screen
+		CEntity * e_current_cam = EngineCameras.getCurrentCamera();
+		TCompRenderBlur *comp_blur = e_current_cam->get<TCompRenderBlur>();
+		TCompRenderFocus *comp_focus = e_current_cam->get<TCompRenderFocus>();
+		comp_focus->enabled = true;
+		comp_blur->enabled = true;
+		comp_blur->global_distance = 10.0f;
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION)->makeChildsFadeIn(0.08, 0, false);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS)->makeChildsFadeIn(0.08, 0, true);
+    }break;
+    case PauseState::win: {
+        mouse->setLockMouse(false);
+    }break;
+    case PauseState::defeat: {
+        mouse->setLockMouse(false);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(2,3);
 
-        menuVisible = true;
+		GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
+		if (w) {
+			float *aux_x = &w->getChild("line_dead_left")->getBarParams()->_ratio;
+			*aux_x = 0.0f;
+			EngineLerp.lerpElement(aux_x, 1.0f, 2.0f, 5.0f);
+
+			float *aux_x_r = &w->getChild("line_dead_right")->getBarParams()->_ratio;
+			*aux_x_r = 0.0f;
+			EngineLerp.lerpElement(aux_x_r, 1.0f, 2.0f, 5.0f);
+
+		}
+
+		EngineLogic.execSystemScriptDelayed("unlockDeadButton();",5.0f);
+		EngineLerp.lerpElement(&cb_player.player_health, 0, 2, 2);
+    }break;
+    case PauseState::editor1: {
+        mouse->setLockMouse(false);
+        EngineRender.setDebugMode(true);
+    }break;
+    case PauseState::editor1unpaused: {
+        mouse->setLockMouse(false);
+        EngineRender.setDebugMode(true);
+    }break;
+    case PauseState::editor2: {
+        mouse->setLockMouse(false);
+        Engine.get().getParticles().particles_enabled = true;
+    }break;
     }
-    else if (isPaused && EngineInput["btPause"].getsPressed()) {
 
-        /* Player not dead and game unpaused */
-        unpauseGame();
+    _currentstate = pause;
+}
+
+void CModuleGameManager::update(float delta) {
+
+    updateGameCondition();
+
+    updateMusicState(delta);
+
+    {
+        // Escape button
+        if (EngineInput["btPause"].getsPressed() && _currentstate != PauseState::defeat && !isCinematicMode) {
+            setPauseState(PauseState::main);
+        }
+
+        // Lost focus
+        if (CApp::get().lostFocus && !isCinematicMode) {
+            CApp::get().lostFocus = false;  
+            if (_currentstate != PauseState::defeat) {
+                setPauseState(PauseState::main);
+            }
+        }
+
+        // F1 button, flyover, special case
+        if (EngineInput["btDebugPause"].getsPressed()) {
+
+            CEntity * e_camera = _fly_camera;
+            TCompCameraFlyover * flyover = e_camera->get<TCompCameraFlyover>();
+            flyover->setStatus(!flyover->paused);
+
+            CEntity * e_player = _player;
+            TMsgScenePaused msg;
+            msg.isPaused = (_currentstate == PauseState::none && flyover->paused) ? false : true;
+            e_player->sendMsg(msg);
+        }
+
+        // F3 button, inspector
+        if (EngineInput["btDebugMode"].getsPressed()) {
+            setPauseState(PauseState::editor1);
+        }
+
+        // F4 button, particles
+        if (EngineInput["btDebugParticles"].getsPressed()) {
+            setPauseState(PauseState::editor2);
+        }
+
+        // F5 button, inspector unpaused
+        if (EngineInput["btDebugModeUnpaused"].getsPressed()) {
+            setPauseState(PauseState::editor1unpaused);
+        }
     }
 
-    if (EngineInput["btUpAux"].getsPressed()) {
-        menuPosition = (menuPosition - 1) % menuSize;
-    }
+    {
+        if (EngineInput["btUpAux"].getsPressed()) {
+            menuPosition = (menuPosition - 1) % menuSize;
+        }
 
-    if (EngineInput["btDownAux"].getsPressed()) {
-        menuPosition = (menuPosition + 1) % menuSize;
-    }
-
-    if (EngineInput["btDebugMode"].getsPressed()) {
-        EngineRender.setDebugMode(!EngineRender.getDebugMode());
+        if (EngineInput["btDownAux"].getsPressed()) {
+            menuPosition = (menuPosition + 1) % menuSize;
+        }
     }
 }
 
-void CModuleGameManager::render()
+bool CModuleGameManager::stop()
 {
+    stopAllSoundEvents();
+    return true;
+}
+
+void CModuleGameManager::updateGameCondition() {
+
+    _player = EngineEntities.getPlayerHandle();
+    _fly_camera = getEntityByName("test_camera_flyover");
+    auto& handles = CTagsManager::get().getAllEntitiesByTag(getID("victory_trigger"));
+
+    for (unsigned int i = 0; i < handles.size() && _currentstate != PauseState::win; i++) {
+
+        CEntity* eCollider = handles[i];
+        TCompCollider * e = eCollider->get<TCompCollider>();
+        if (e && e->player_inside  && _currentstate != PauseState::win) {
+            setPauseState(PauseState::win);
+        }
+    }
+
+    if (_player.isValid() && _currentstate != PauseState::defeat) {
+
+        CEntity* e = _player;
+        TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
+        if (playerCont->isDead()) {
+            Engine.getGUI().getVariables().setVariant("lifeBarFactor", 0);
+            setPauseState(PauseState::defeat);
+        }
+    }
+}
+
+void CModuleGameManager::updateMusicState(float dt)
+{
+    if (_player.isValid()) {
+        CEntity* e = _player;
+        TCompTempPlayerController *playerCont = e->get<TCompTempPlayerController>();
+
+        switch (_musicstate) {
+        case MusicState::normal:
+
+            if (playerCont->isDead()) {
+                return changeMusicState(MusicState::player_died);
+            }
+            else {
+                if (main_theme.getVolume() < 1.f) {
+                    main_theme_lerp += dt;
+                    float volume = lerp(0.f, 1.f, main_theme_lerp / 3.f);
+                    if (volume >= 1.f) {
+                        main_theme.setVolume(1.f);
+                        main_theme_lerp = 0.f;
+                    }
+                    else {
+                        main_theme.setVolume(volume);
+                    }
+                }
+
+                if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() > 0) {
+                    persecution_theme = EngineSound.playEvent("event:/Ambiance/Persecution");
+                    return changeMusicState(MusicState::persecution);
+                }
+            }
+            break;
+
+        case MusicState::persecution:
+
+            if (playerCont->isDead()) {
+                return changeMusicState(MusicState::player_died);
+            }
+            else {
+                if (main_theme.getVolume() > 0) {
+                    main_theme_lerp += dt;
+                    float volume = lerp(1.f, 0.f, main_theme_lerp);
+                    if (volume <= 0) {
+                        main_theme.setVolume(0.f);
+                        main_theme_lerp = 0.f;
+                    }
+                    else {
+                        main_theme.setVolume(volume);
+                    }
+                }
+
+                if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() == 0) {
+                    return changeMusicState(MusicState::ending_persecution);
+                }
+            }
+            break;
+
+        case MusicState::ending_persecution:
+
+            if (playerCont->isDead()) {
+                return changeMusicState(MusicState::player_died);
+            }
+            else {
+                if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() > 0) {
+                    if (persecution_theme.isValid() && persecution_theme.isPlaying()) {
+                        persecution_theme.setVolume(1.f);
+                    }
+                    else {
+                        persecution_theme = EngineSound.playEvent("event:/Ambiance/Persecution");
+                    }
+                    return changeMusicState(MusicState::persecution);
+                }
+                else {
+                    persecution_lerp += dt;
+                    float volume = lerp(1.f, 0.f, persecution_lerp / 3.f);
+                    if (volume <= 0) {
+                        persecution_theme.stop();
+                        main_theme.setVolume(1.f);
+                        return changeMusicState(MusicState::normal);
+                    }
+                    else {
+                        persecution_theme.setVolume(volume);
+                        main_theme.setVolume(1 - volume);
+                    }
+                }
+            }
+            break;
+        case MusicState::player_died:
+
+            if (!playerCont->isDead()) {
+                return changeMusicState(MusicState::normal);
+            }
+            else {
+                if (persecution_theme.isValid() && persecution_theme.getVolume() > 0.f) {
+                    persecution_lerp += dt;
+                    float volume = lerp(1.f, 0.f, persecution_lerp / 3.f);
+                    if (volume = 0.f) {
+                        persecution_theme.stop();
+                    }
+                    else {
+                        persecution_theme.setVolume(volume);
+                    }
+                }
+
+                if (main_theme.getVolume() > 0.f) {
+                    main_theme_lerp += dt;
+                    float volume = lerp(1.f, 0.f, main_theme_lerp / 3.f);
+                    main_theme.setVolume(volume);
+                }
+            }
+            break;
+
+        case MusicState::end_scene:
+            if (!finalScene.isValid()) {
+                persecution_theme.stop();
+                main_theme.stop();
+                finalScene = EngineSound.playEvent("event:/Ambiance/EndMusic");
+                finalScene.setVolume(0.f);
+            }
+            else if(finalScene.getVolume() < 1.f){
+                final_scene_lerp += dt;
+                float volume = lerp(0.f, 1.f, final_scene_lerp / 2.f);
+                finalScene.setVolume(volume);
+            }
+            break;
+        case MusicState::no_music:
+
+            break;
+        }
+
+
+        if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() > 0 && _musicstate != MusicState::persecution) {
+            _musicstate = MusicState::persecution;
+            if (persecution_theme.isValid() && persecution_theme.isPlaying()) {
+                persecution_theme.setVolume(1.f);
+            }
+            else {
+                persecution_theme = EngineSound.playEvent("event:/Ambiance/Persecution");
+            }
+        }
+        else if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() == 0 && _musicstate == MusicState::persecution) {
+            _musicstate = MusicState::ending_persecution;
+            persecution_lerp = 0.f;
+        }
+        else if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() == 0 && _musicstate == MusicState::ending_persecution) {
+            persecution_lerp += dt;
+            float volume = lerp(1.f, 0.f, persecution_lerp / 3.f);
+            if (volume <= 0) {
+                persecution_theme.stop();
+                _musicstate = MusicState::normal;
+                persecution_lerp = 0.f;
+                main_theme.setVolume(1.f);
+            }
+            else {
+                persecution_theme.setVolume(volume);
+                main_theme.setVolume(1 - volume);
+            }
+        }
+        else if (_musicstate == MusicState::persecution && main_theme.getVolume() > 0.f) {
+            main_theme_lerp += dt;
+            float volume = lerp(1.f, 0.f, main_theme_lerp);
+            if (volume <= 0) {
+                main_theme.setVolume(0.f);
+                main_theme_lerp = 0.f;
+            }
+            else {
+                main_theme.setVolume(volume);
+            }
+        }
+    }
+    else {
+        stopAllSoundEvents();
+    }
+}
+
+void CModuleGameManager::changeMusicState(MusicState new_state)
+{
+    main_theme_lerp = 0.f;
+    persecution_lerp = 0.f;
+    final_scene_lerp = 0.f;
+    _musicstate = new_state;
+}
+
+void CModuleGameManager::renderMain() {
+
     VEC2 menu_position = VEC2(CApp::get().xres * .5f - (window_width * .5f),
-        CApp::get().yres * .5f - (window_height * .5f));
+         CApp::get().yres * .5f - (window_height * .5f));
 
     // Replace this with separated menus
-    if (menuVisible) {
+    if (_currentstate == PauseState::main) {
 
-        ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
+        /*ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
         ImGui::Begin("MENU", false, window_flags);
         ImGui::CaptureMouseFromApp(false);
         ImGui::SetWindowPos("MENU", ImVec2(menu_position.x, menu_position.y));
@@ -130,40 +441,36 @@ void CModuleGameManager::render()
         ImGui::Selectable("Resume game", menuPosition == 0);
         if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            unpauseGame();
+            setPauseState(PauseState::none);
         }
 
         ImGui::Selectable("Restart from last checkpoint", menuPosition == 1);
         if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            unpauseGame();
-            CEntity* e = getEntityByName("The Player");
+            resetState();
+            CEntity* e = EngineEntities.getPlayerHandle();
             if (!e) {
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead()) {
-                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-                mouse->setLockMouse(true);
-                playerDiedMenuVisible = false;
-            }
+            //if (playerCont->isDead())
+            setPauseState(PauseState::none);
+
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
 
         ImGui::Selectable("Restart level", menuPosition == 2);
         if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            unpauseGame();
-            CEntity* e = getEntityByName("The Player");
+            resetState();
+            CEntity* e = EngineEntities.getPlayerHandle();
             if (!e) {
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead()) {
-                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-                mouse->setLockMouse(true);
-                playerDiedMenuVisible = false;
-            }
+            //if (playerCont->isDead())
+            setPauseState(PauseState::none);
+
             lastCheckpoint->deleteCheckPoint();
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
@@ -174,9 +481,9 @@ void CModuleGameManager::render()
             exit(0);
         }
 
-        ImGui::End();
+        ImGui::End();*/
     }
-    else if (victoryMenuVisible) {
+    else if (_currentstate == PauseState::win) {
 
         ImGui::SetNextWindowSize(ImVec2((float)window_width, (float)window_height));
         ImGui::Begin("VICTORY!", false, window_flags);
@@ -186,9 +493,9 @@ void CModuleGameManager::render()
         ImGui::End();
 
     }
-    else if (playerDiedMenuVisible) {
+    else if (_currentstate == PauseState::defeat) {
 
-        ImGui::SetNextWindowSize(ImVec2((float)window_width * 1.2f, (float)window_height));
+        /*ImGui::SetNextWindowSize(ImVec2((float)window_width * 1.2f, (float)window_height));
         ImGui::Begin("YOU DIED! WHAT WOULD YOU DO?", false, window_flags);
         ImGui::CaptureMouseFromApp(false);
         ImGui::SetWindowPos("YOU DIED! WHAT WOULD YOU DO?", ImVec2(menu_position.x, menu_position.y));
@@ -196,32 +503,28 @@ void CModuleGameManager::render()
         ImGui::Selectable("Restart from last checkpoint", menuPosition == 1);
         if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            CEntity* e = getEntityByName("The Player");
+            CEntity* e = EngineEntities.getPlayerHandle();
             if (!e) {
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead()) {
-                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-                mouse->setLockMouse(true);
-                playerDiedMenuVisible = false;
-            }
+            //if (playerCont->isDead())
+            setPauseState(PauseState::none);
+
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
 
         ImGui::Selectable("Restart level", menuPosition == 2);
         if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
         {
-            CEntity* e = getEntityByName("The Player");
+            CEntity* e = EngineEntities.getPlayerHandle();
             if (!e) {
                 return;
             }
             TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
-            if (playerCont->isDead()) {
-                Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
-                mouse->setLockMouse(true);
-                playerDiedMenuVisible = false;
-            }
+            //if (playerCont->isDead())
+            setPauseState(PauseState::none);
+
             lastCheckpoint->deleteCheckPoint();
             EngineScene.loadScene(EngineScene.getActiveScene()->name);
         }
@@ -229,23 +532,24 @@ void CModuleGameManager::render()
         ImGui::Selectable("Exit game", menuPosition == 3);
         if (ImGui::IsItemClicked() || (menuPosition == 3 && EngineInput["btMenuConfirm"].getsPressed()))
         {
+            ambient.stop();
             exit(0);
         }
 
-        ImGui::End();
+        ImGui::End();*/
 
     }
 
     debugRender();
 }
 
-bool CModuleGameManager::saveCheckpoint(VEC3 playerPos, QUAT playerRot)
-{
+bool CModuleGameManager::saveCheckpoint(VEC3 playerPos, QUAT playerRot) {
+
     return lastCheckpoint->saveCheckPoint(playerPos, playerRot);
 }
 
-bool CModuleGameManager::loadCheckpoint()
-{
+bool CModuleGameManager::loadCheckpoint() {
+
     if (lastCheckpoint) {
         return lastCheckpoint->loadCheckPoint();
     }
@@ -254,8 +558,8 @@ bool CModuleGameManager::loadCheckpoint()
     }
 }
 
-bool CModuleGameManager::deleteCheckpoint()
-{
+bool CModuleGameManager::deleteCheckpoint() {
+
     if (lastCheckpoint) {
         return lastCheckpoint->deleteCheckPoint();
     }
@@ -264,29 +568,83 @@ bool CModuleGameManager::deleteCheckpoint()
     }
 }
 
-void CModuleGameManager::unpauseGame()
-{
-    /* Player not dead and game unpaused */
-    isPaused = false;
-    CApp::get().lostFocus = false;
+bool CModuleGameManager::isPaused() const {
 
-    // Send pause message
-    TMsgScenePaused msg;
-    msg.isPaused = false;
-    EngineEntities.broadcastMsg(msg);
+    return _currentstate == PauseState::none ? false : true;
+}
+
+void CModuleGameManager::resetLevel() {
+
+	resetState();
+	CEntity* e = EngineEntities.getPlayerHandle();
+	if (!e) {
+		return;
+	}
+	TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
+	setPauseState(PauseState::none);
+
+	lastCheckpoint->deleteCheckPoint();
+	EngineScene.loadScene(EngineScene.getActiveScene()->name);
+}
+
+void CModuleGameManager::resetToCheckpoint() {
+
+	resetState();
+	CEntity* e = EngineEntities.getPlayerHandle();
+	if (!e) {
+		return;
+	}
+	TCompTempPlayerController* playerCont = e->get<TCompTempPlayerController>();
+	setPauseState(PauseState::none);
+
+	EngineScene.loadScene(EngineScene.getActiveScene()->name);
+}
+
+CModuleGameManager::PauseState CModuleGameManager::getCurrentState() {
+
+    return _currentstate;
+}
+
+void CModuleGameManager::stopAllSoundEvents()
+{
+    persecution_theme.stop();
+    main_theme.stop();
+    transmission.stop();
+    finalScene.stop();
+}
+
+void CModuleGameManager::playTransmissionSound(bool play)
+{
+    if (play) {
+        transmission.setVolume(.25f);
+    }
+    else {
+        transmission.setVolume(0.f);
+    }
+}
+
+void CModuleGameManager::changeToEndScene()
+{
+    changeMusicState(MusicState::end_scene);
+}
+
+void CModuleGameManager::resetState() {
+
+    /* Player not dead and game unpaused */
+    CApp::get().lostFocus = false;
+    EngineRender.setDebugMode(false);
+    EngineParticles.particles_enabled = false;
 
     // Lock/Unlock the cursor
     Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
     mouse->setLockMouse(true);
-
-    menuVisible = false;
 }
 
 void CModuleGameManager::debugRender() {
 
-    if (lastCheckpoint) {
-        lastCheckpoint->debugInMenu();
-    }
+    //if (lastCheckpoint)
+    //    lastCheckpoint->debugInMenu();
+
     // Extra windows
     {
         //UI Window's Size
@@ -305,7 +663,7 @@ void CModuleGameManager::debugRender() {
         {
             ImGui::SetCursorPos(ImVec2(CApp::get().xres - CApp::get().xres * 0.05f, CApp::get().yres * 0.01f));
 
-            if (config.drawfps) ImGui::Text("FPS %d", (int)CApp::get().fps);
+            if (CApp::get().drawfps) ImGui::Text("FPS %d", (int)CApp::get().fps);
         }
 
         ImGui::End();

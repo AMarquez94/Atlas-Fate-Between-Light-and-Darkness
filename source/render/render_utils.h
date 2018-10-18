@@ -8,13 +8,14 @@ enum ZConfig {
 	ZCFG_DEFAULT
 	, ZCFG_DISABLE_ALL
 	, ZCFG_TEST_BUT_NO_WRITE
+    , ZCFG_TEST_RAYMARCH
 	, ZCFG_TEST_EQUAL
 	, ZCFG_INVERSE_TEST_NO_WRITE
     , ZCFG_TEST_NO_WRITES_MARK_STENCIL
     , ZCFG_ON_NON_ZERO_STENCIL
 	, ZCFG_COUNT
 };
-void activateZConfig(ZConfig cfg);
+void activateZConfig(ZConfig cfg, UINT color_mask = 255);
 
 // ---------------------------------------
 enum RSConfig {
@@ -23,6 +24,7 @@ enum RSConfig {
 	, RSCFG_CULL_NONE
 	, RSCFG_SHADOWS
 	, RSCFG_WIREFRAME
+    , RSCFG_DEPTH_BIAS
 	, RSCFG_COUNT
 };
 void activateRSConfig(RSConfig cfg);
@@ -34,6 +36,8 @@ enum BlendConfig {
 	, BLEND_CFG_ADDITIVE_BY_SRC_ALPHA
 	, BLEND_CFG_COMBINATIVE
     , BLEND_CFG_COMBINATIVE_GBUFFER
+    , BLEND_CFG_MULTIPLICATIVE_GBUFFER
+    , BLEND_CFG_ALPHA_GBUFFER
 	, BLEND_CFG_COUNT
 };
 void activateBlendConfig(BlendConfig cfg);

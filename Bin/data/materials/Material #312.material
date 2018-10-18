@@ -1,0 +1,12 @@
+{
+  "technique": "pbr_decals.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/grieta_alb.dds"
+    ,
+    "normal": "data/textures/grieta_nml.dds"
+  }
+}

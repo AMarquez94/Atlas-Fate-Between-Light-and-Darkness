@@ -8,6 +8,76 @@
 		},
 	"children": [{
 			"parent": "patrol",
+			"name": "isCinematic",
+			"type": "priority",
+			"condition": "conditionIsCinematic",
+			"action": "",
+			"assert": ""
+		},{
+			"parent": "isCinematic",
+			"name": "deadCinematic",
+			"type": "sequence",
+			"condition": "conditionDeadCinematic",
+			"action": "",
+			"assert": ""
+		},{
+			"parent": "deadCinematic",
+			"name": "dieDeadCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionDieAnimation",
+			"assert": ""
+		},{
+			"parent": "deadCinematic",
+			"name": "deadDeadCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionDeadAnimation",
+			"assert": ""
+		}, {
+			"parent": "isCinematic",
+			"name": "inhibitorCinematic",
+			"type": "sequence",
+			"condition": "conditionInhibitorCinematic",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "resetInhibitorCinematicTimers",
+			"type": "action",
+			"condition": "",
+			"action": "actionResetInhibitorCinematicTimers",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "waitInhibitorCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionWait",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "shootInhibitorInhibitorCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionAnimationShootInhibitor",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "waitInhibitorCinematic_2",
+			"type": "action",
+			"condition": "",
+			"action": "actionWait",
+			"assert": ""
+		}, {
+			"parent": "inhibitorCinematic",
+			"name": "resetBTInhibitorCinematic",
+			"type": "action",
+			"condition": "",
+			"action": "actionResetBT",
+			"assert": ""
+		},{
+			"parent": "patrol",
 			"name": "manageStun",
 			"type": "priority",
 			"condition": "conditionManageStun",
@@ -99,7 +169,7 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 3.5,
+					"variable_value": 3.8,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",
@@ -114,7 +184,7 @@
 				}, {
 					"variable_name": "autoChaseDistance",
 					"variable_type": "float",
-					"variable_value": 15.0,
+					"variable_value": 10.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "fov",
@@ -138,7 +208,7 @@
 				}, {
 					"variable_name": "autoChaseDistance",
 					"variable_type": "float",
-					"variable_value": 15.0,
+					"variable_value": 10.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "fov",
@@ -166,7 +236,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}
 			],
@@ -208,7 +278,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 19.0,
+					"variable_value": 24.0,
 					"variable_op": ""
 				}
 			]
@@ -232,7 +302,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}
 			],
@@ -261,12 +331,17 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 3.5,
+					"variable_value": 1.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",
 					"variable_type": "float",
 					"variable_value": 90.0,
+					"variable_op": ""
+				}, {
+					"variable_name": "walkingFast",
+					"variable_type": "bool",
+					"variable_value": false,
 					"variable_op": ""
 				}
 			],
@@ -318,12 +393,12 @@
 				}, {
 					"variable_name": "autoChaseDistance",
 					"variable_type": "float",
-					"variable_value": 15.0,
+					"variable_value": 10.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "dcrSuspectO_Meter",
@@ -333,7 +408,7 @@
 				}, {
 					"variable_name": "incrBaseSuspectO_Meter",
 					"variable_type": "float",
-					"variable_value": 0.5,
+					"variable_value": 0.4,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -400,7 +475,7 @@
 			"conditionArg": [{
 					"variable_name": "distToAttack",
 					"variable_type": "float",
-					"variable_value": 1.5,
+					"variable_value": 3.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -413,6 +488,20 @@
 			"assert": ""
 		}, {
 			"parent": "manageGoingToAttack",
+			"name": "manageChasePlayer",
+			"type": "priority",
+			"condition": "",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageChasePlayer",
+			"name": "manageUnreachableChase",
+			"type": "sequence",
+			"condition": "conditionIsDestUnreachable",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageChasePlayer",
 			"name": "ChasePlayer",
 			"type": "action",
 			"condition": "",
@@ -420,7 +509,7 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 3.5,
+					"variable_value": 3.8,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",
@@ -435,12 +524,12 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 20.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "distToAttack",
 					"variable_type": "float",
-					"variable_value": 1.5,
+					"variable_value": 3.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -449,7 +538,50 @@
 					"variable_op": ""
 				}
 			],
+			"assert": "canReachDest"
+		}, {
+			"parent": "manageUnreachableChase",
+			"name": "warnClosestDrone",
+			"type": "action",
+			"condition": "",
+			"action": "actionWarnClosestDrone",
+			"actionArg": [{
+					"variable_name": "entityToChase",
+					"variable_type": "string",
+					"variable_value": "The Player",
+					"variable_op": ""
+				}
+			],
 			"assert": ""
+		}, {
+			"parent": "manageUnreachableChase",
+			"name": "rotateTowardsUnreachablePlayer",
+			"type": "action",
+			"condition": "",
+			"action": "actionRotateTowardsUnreachablePlayer",
+			"actionArg": [{
+					"variable_name": "fov",
+					"variable_type": "float",
+					"variable_value": 120.0,
+					"variable_op": ""
+				}, {
+					"variable_name": "maxChaseDistance",
+					"variable_type": "float",
+					"variable_value": 25.0,
+					"variable_op": ""
+				}, {
+					"variable_name": "rotationSpeed",
+					"variable_type": "float",
+					"variable_value": 300.0,
+					"variable_op": ""
+				}, {
+					"variable_name": "entityToChase",
+					"variable_type": "string",
+					"variable_value": "The Player",
+					"variable_op": ""
+				}
+			],
+			"assert": "assertCantReachDest"
 		}, {
 			"parent": "managePlayerAttacked",
 			"name": "attack",
@@ -494,7 +626,7 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 3.5,
+					"variable_value": 3.8,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",
@@ -509,7 +641,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -543,7 +675,7 @@
 				}, {
 					"variable_name": "maxChaseDistance",
 					"variable_type": "float",
-					"variable_value": 35.0,
+					"variable_value": 25.0,
 					"variable_op": ""
 				}, {
 					"variable_name": "entityToChase",
@@ -569,6 +701,34 @@
 			"assert": ""
 		}, {
 			"parent": "managePatrolSeen",
+			"name": "manageGoToPatrol",
+			"type": "priority",
+			"condition": "",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageGoToPatrol",
+			"name": "manageUnreachableGoToPatrol",
+			"type": "sequence",
+			"condition": "conditionIsDestUnreachable",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageUnreachableGoToPatrol",
+			"name": "closestWptUnreachableGoToPatrol",
+			"type": "action",
+			"condition": "",
+			"action": "actionClosestWpt",
+			"assert": ""
+		}, {
+			"parent": "manageGoToPatrol",
+			"name": "manageReachableGoToPatrol",
+			"type": "sequence",
+			"condition": "",
+			"action": "",
+			"assert": ""
+		}, {
+			"parent": "manageReachableGoToPatrol",
 			"name": "goToPatrol",
 			"type": "action",
 			"condition": "",
@@ -576,7 +736,7 @@
 			"actionArg": [{
 					"variable_name": "speed",
 					"variable_type": "float",
-					"variable_value": 3.5,
+					"variable_value": 0.9,
 					"variable_op": ""
 				}, {
 					"variable_name": "rotationSpeed",
@@ -586,13 +746,13 @@
 				}, {
 					"variable_name": "distToAttack",
 					"variable_type": "float",
-					"variable_value": 1.5,
+					"variable_value": 3.0,
 					"variable_op": ""
 				}
 			],
 			"assert": "assertPlayerNotInFov"
 		}, {
-			"parent": "managePatrolSeen",
+			"parent": "manageReachableGoToPatrol",
 			"name": "manageInPatrolPos",
 			"type": "priority",
 			"condition": "",

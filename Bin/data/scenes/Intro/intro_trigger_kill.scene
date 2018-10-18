@@ -1,0 +1,46 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_trigger_kill"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "TriggerKill"
+      ,
+      "transform":
+      {
+        "pos": "-4.35126 -24.4089 -18.2358"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "67.6862 2.28167 86.3427"
+        ,
+        "group": "All"
+        ,
+        "mask": ""
+        ,
+        "is_trigger": true
+        ,
+        "is_dynamic": false
+        ,
+        "is_controller": false
+        ,
+        "is_gravity": false
+      }
+    }
+  }
+]

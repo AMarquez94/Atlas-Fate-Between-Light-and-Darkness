@@ -21,7 +21,7 @@ void TCompShooter::shoot()
 
 void TCompShooter::onScenePaused(const TMsgScenePaused & msg)
 {
-    paused = !paused;
+    paused = msg.isPaused;
 }
 
 void TCompShooter::debugInMenu() {
@@ -36,7 +36,7 @@ void TCompShooter::load(const json& j, TEntityParseContext& ctx) {
     state = EShooterState::STOPPED;
 
     physx::PxFilterData filterdata;
-    filterdata.word0 = FilterGroup::All;
+    filterdata.word0 = FilterGroup::NonLight;
     pxQueryFilterData.data = filterdata;
 }
 
@@ -54,6 +54,10 @@ void TCompShooter::setIsFiring(bool isFiring, CHandle h_entityToFire)
 }
 
 void TCompShooter::update(float dt) {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!paused) {
         if (state == EShooterState::FIRING) {
             firing_timer += dt;
@@ -71,7 +75,7 @@ void TCompShooter::update(float dt) {
                 shootingDir.y += urand(-precission, precission);
                 shootingDir.z += urand(-precission, precission);
                 shootingDir.Normalize();
-                EngineSound.playSound2D("drone_shot");
+                //EngineSound.playSound2D("drone_shot");    //TODO: shoot
                 Engine.get().getParticles().launchSystem("data/particles/muzzleflash.particles", CHandle(this).getOwner());
                 Engine.get().getParticles().launchSystem("data/particles/muzzleflash_glow.particles", CHandle(this).getOwner());
                 physx::PxRaycastHit hit;

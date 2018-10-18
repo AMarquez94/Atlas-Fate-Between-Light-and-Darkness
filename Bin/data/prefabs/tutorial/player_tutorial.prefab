@@ -1,0 +1,189 @@
+[{
+	"entity": {
+		"name": "Tutorial Player",
+		"transform": {
+			"pos": "0 0 0"
+		},
+		"render": [{
+			"mesh": "data/skeletons/player/body.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/bolsa_cinturon.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/buff_exterior.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/capsula_energia.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/cinturon_capsula1.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/cinturon_capsula2.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/cinturon_capsula3.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/cinturon_capsula4.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/cruzado_capsula1.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/cruzado_capsula2.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/cruzado_capsula3.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/hood.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/tira_L.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}, {
+			"mesh": "data/skeletons/player/tira_R.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram.material"
+			]
+		}],
+		"fade_controller": {
+			"fade_color": "0.0 1.0 1.0 1.0",
+			"fade_time": 0.6,
+			"destroy": false
+		},
+		"skeleton": {
+			"skeleton": "data/skeletons/player/player_tutorial.skeleton",
+			"scale": 0.7
+		},
+		"ai_player": {
+			"enabled": false,
+			"speed": 4.0,
+			"rotationSpeed": 4.0
+		},
+		"player_animator": true,
+		"tags": ["player_tutorial"]
+	}
+}, {
+	"entity": {
+		"name": "PropPlayer",
+		"hierarchy": {
+			"parent": "Tutorial Player",
+			"pos": "0 0 0"
+		},
+		"transform": {},
+		"render": {
+			"mesh": "axis.mesh"
+		}
+	}
+}, {
+	"entity": {
+		"name": "tuto_weap_disc_left",
+		"transform": {
+			"pos": "0 0 0",
+			"lookat": "0 0 0",
+			"scale": "0.7 0.7 0.7"
+		},
+		"bone_tracker": {
+			"bone": "Bip001 L Hand",
+			"parent": "Tutorial Player"
+		},
+		"fade_controller": {
+			"fade_color": "0.0 1.0 1.0 1.0",
+			"fade_time": 0.6,
+			"destroy": false
+		},
+		"render": [{
+			"self_intensity": 0.65,
+			"self_color": "0 1 1 1",
+			"mesh": "data/meshes/weapon_disc.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram_solid.material"
+			]
+		}],
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}, {
+	"entity": {
+		"name": "tuto_weap_disc_right",
+		"transform": {
+			"pos": "0 0 0",
+			"lookat": "0 0 0",
+			"scale": "0.7 0.7 0.7"
+		},
+		"bone_tracker": {
+			"bone": "Bip001 R Hand",
+			"parent": "Tutorial Player"
+		},
+		"fade_controller": {
+			"fade_color": "0.0 1.0 1.0 1.0",
+			"fade_time": 0.6,
+			"destroy": false
+		},
+		"render": [{
+			"self_intensity": 0.65,
+			"self_color": "0 1 1 1",
+			"mesh": "data/meshes/weapon_disc.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram_solid.material"
+			]
+		}],
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}, {
+	"entity": {
+		"name": "Tutorial SM",
+		"transform": {
+			"pos": "0 0 0",
+			"lookat": "0 0 0"
+		},
+		"fade_controller": {
+			"fade_color": "0.0 1.0 1.0 1.0",
+			"fade_time": 0.2,
+			"destroy": false
+		},
+		"render": [{
+			"self_intensity": 0.65,
+			"self_color": "0 1 1 1",
+			"mesh": "data/meshes/pj_shadowmerge.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram_solid.material"
+			]
+		}],
+		"hierarchy": {
+			"parent": "Tutorial Player"
+		},
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}]

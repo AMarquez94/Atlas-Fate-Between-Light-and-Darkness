@@ -1,0 +1,30 @@
+[
+	{
+		"name" : "main_menu_credits_buttons",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "buttons_back_credits_mm",
+				"type" : "widget",
+				"position" : "25 580",
+				"children" : [
+					{
+						"name" : "controls_credits_back_mm",
+						"type" : "button",
+						"position" : "0 0",
+						"size" : "340 29",
+						"texture" : "data/textures/gui/back_button.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/back_button_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/back_button_pressed.dds"
+						}
+					}
+					
+				]
+			}
+		]
+	}
+]

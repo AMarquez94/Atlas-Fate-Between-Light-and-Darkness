@@ -4,6 +4,7 @@
 #include <experimental/filesystem>
 #include "modules/game/module_game_manager.h"
 #include "modules/system/module_particles.h"
+#include "sound/soundEvent.h"
 #include <iostream>
 #include "components/lighting/comp_light_dir.h"
 #include "components/lighting/comp_light_spot.h"
@@ -11,6 +12,23 @@
 #include "components/postfx/comp_render_ao.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
 #include "components/object_controller/comp_button.h"
+#include "components/ia/comp_bt_patrol.h"
+#include "components/comp_audio.h"
+#include "components/ia/comp_bt_player.h"
+#include "components/physics/comp_rigidbody.h"
+#include "entity/entity_parser.h"
+#include "components/camera_controller/comp_camera_thirdperson.h"
+#include "components/comp_render.h"
+#include "components/comp_particles.h"
+#include "windows/app.h"
+#include "components/object_controller/comp_noise_emitter.h"
+#include "modules/game/module_game_manager.h"
+#include "components/postfx/comp_render_blur.h"
+#include "components/postfx/comp_render_focus.h"
+#include "gui/gui_widget.h"
+#include "components/comp_animated_object_controller.h"
+#include "components/object_controller/comp_door.h"
+#include "components/postfx/comp_render_bloom.h"
 
 bool CModuleLogic::start() {
 
@@ -23,24 +41,37 @@ bool CModuleLogic::stop() {
 
     delete(s);
     delete(m);
+    started = false;
     return true;
 }
 
 void CModuleLogic::update(float delta) {
-    for (unsigned int i = 0; i < delayedScripts.size(); i++) {
-        delayedScripts[i].remainingTime -= delta;
-        if (delayedScripts[i].remainingTime <= 0) {
-            execScript(delayedScripts[i].script);
-            delayedScripts.erase(delayedScripts.begin() + i);
+    for (int i = delayedSystemScripts.size() - 1; i >= 0 ; i--) {
+        delayedSystemScripts[i].remainingTime -= delta;
+        if (delayedSystemScripts[i].remainingTime <= 0) {
+			std::string aux_call = delayedSystemScripts[i].script; 
+            delayedSystemScripts.erase(delayedSystemScripts.begin() + i);
+			execScript(aux_call);
         }
     }
 
-    for (auto k : _bindings) {
-        Input::TButton button = EngineInput.keyboard().key(k.first);
-        if (button.getsPressed()) {
-            std::string current_value = k.second;
-            execCvar(current_value);
-            execScript(current_value);
+    if (!paused) {
+		for (int i = delayedScripts.size() - 1; i >= 0; i--) {
+            delayedScripts[i].remainingTime -= delta;
+            if (delayedScripts[i].remainingTime <= 0) {
+				std::string aux_call_delayed = delayedScripts[i].script;      
+                delayedScripts.erase(delayedScripts.begin() + i);
+				execScript(aux_call_delayed);
+            }
+        }
+
+        for (auto k : _bindings) {
+            Input::TButton button = EngineInput.keyboard().key(k.first);
+            if (button.getsPressed()) {
+                std::string current_value = k.second;
+                execCvar(current_value);
+                execScript(current_value);
+            }
         }
     }
 }
@@ -52,6 +83,8 @@ void CModuleLogic::BootLuaSLB() {
     publishClasses();
     //Load all the scripts
     loadScriptsInFolder("data/scripts");
+    //Mark LUA as started
+    started = true;
 }
 
 /* Load all scripts.lua in given path and its subfolders */
@@ -97,7 +130,15 @@ void CModuleLogic::publishClasses() {
 
     SLB::Class< CModuleParticles >("Particles", m)
         .comment("This is our wrapper of the particles class")
-        .set("killAll", &CModuleParticles::killAll);
+        .set("killAll", &CModuleParticles::killAll)
+        .set("launchDynamicSystem", &CModuleParticles::launchDynamicSystem);
+
+	SLB::Class< CModuleGameManager >("GameManager", m)
+		.comment("This is our wrapper of the gamemanager class")
+        .property("isCinematicMode", &CModuleGameManager::isCinematicMode)
+		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint)
+        .set("changeToEndScene", &CModuleGameManager::changeToEndScene) //TODO: Delete
+        ;
 
     SLB::Class< VEC3 >("VEC3", m)
         .constructor<float, float, float>()
@@ -106,10 +147,32 @@ void CModuleLogic::publishClasses() {
         .property("y", &VEC3::y)
         .property("z", &VEC3::z);
 
+    SLB::Class< QUAT >("QUAT", m)
+        .constructor<float, float, float, float>()
+        .comment("This is our wrapper of the QUAT class")
+        .property("x", &QUAT::x)
+        .property("y", &QUAT::y)
+        .property("z", &QUAT::z)
+        .property("w", &QUAT::w);
+
     SLB::Class< TCompTempPlayerController >("PlayerController", m)
         .comment("This is our wrapper of the player controller component")
         .property("inhibited", &TCompTempPlayerController::isInhibited)
-        .set("die", &TCompTempPlayerController::die);
+        .set("die", &TCompTempPlayerController::die)
+        .set("pauseEnemy", &TCompTempPlayerController::pauseEnemy)
+        .set("stunEnemy", &TCompTempPlayerController::stunEnemy)
+        .set("die", &TCompTempPlayerController::die)
+        .set("getLeftWeapon", &TCompTempPlayerController::getLeftWeapon)
+        .set("getRightWeapon", &TCompTempPlayerController::getRightWeapon)
+        .set("playPlayerStep", &TCompTempPlayerController::playPlayerStep)
+        .set("playLandParticles", &TCompTempPlayerController::playLandParticles)
+        .set("playSMSpirals", &TCompTempPlayerController::playSMSpirals)
+        ;
+
+    SLB::Class< TCompNoiseEmitter >("NoiseEmitter", m)
+        .comment("This is our wrapper of the noise emitter component")
+        .set("makeNoise", &TCompNoiseEmitter::makeNoise)
+        ;
 
     SLB::Class<TCompLightSpot>("SpotLight", m)
         .comment("This is our wrapper of the spotlight controller")
@@ -117,28 +180,119 @@ void CModuleLogic::publishClasses() {
 
     SLB::Class<TCompButton>("Button", m)
         .comment("This is our wrapper of the button controller")
-        .property("canBePressed", &TCompButton::canBePressed);
+        .property("canBePressed", &TCompButton::canBePressed)
+        .set("setCanBePressed", &TCompButton::setCanBePressed)
+        ;
 
-    //SLB::Class < CHandle >("CHandle", m)
-    //    .comment("CHandle wrapper")
-    //    .set("getLight", &CHandle::sendMsg);
+    SLB::Class < std::vector < CHandle> >("VHandle", m)
+        .comment("Testing this")
+        .set("size", &std::vector<CHandle>::size)
+        //.set("at", &std::vector<CHandle>::at)
+        ;
+
+    SLB::Class<TCompAIPatrol>("AIPatrol", m)
+        .comment("This is our wrapper of the patrol controller")
+        .set("launchInhibitor", &TCompAIPatrol::launchInhibitor)
+		.set("stunPlayer", &TCompAIPatrol::stunPlayer)
+		.set("attackPlayer", &TCompAIPatrol::attackPlayer)
+        .set("playStepParticle", &TCompAIPatrol::playStepParticle)
+        .set("shakeCamera", &TCompAIPatrol::shakeCamera)
+        .set("playSlamParticle", &TCompAIPatrol::playSlamParticle)
+        ;
+
+    SLB::Class<TCompTransform>("Transform", m)
+        .comment("This is our wrapper of the transform controller")
+        .set("setPosition", &TCompTransform::setPosition)
+        .set("getPosition", &TCompTransform::getPosition)
+        .set("setRotation", &TCompTransform::setRotation)
+        .set("getRotation", &TCompTransform::getRotation)
+        .set("lookAt", &TCompTransform::lookAt)
+        .set("getDeltaYawToAimTo", &TCompTransform::getDeltaYawToAimTo)
+        ;
+
+    SLB::Class<TCompCameraThirdPerson>("TPCamera", m)
+        .comment("This is our wrapper of the Third Person Camera")
+        .set("resetCamera", &TCompCameraThirdPerson::resetCamera)
+        .set("resetCameraTargetPos", &TCompCameraThirdPerson::resetCameraTargetPos);
+
+    SLB::Class <CHandle>("CHandle", m)
+        .comment("CHandle wrapper")
+        .constructor()
+        .set("fromUnsigned", &CHandle::fromUnsigned)
+        .set("destroy", &CHandle::destroy)
+        .set("isValid", &CHandle::isValid);
+
+    SLB::Class <CEntity>("CEntity", m)
+        .comment("CEntity wrapper")
+        .set("getCompByName", &CEntity::getCompByName);
+
+    SLB::Class <SoundEvent>("SoundEvent", m)
+        .comment("SoundEvent wrapper")
+        .set("isValid", &SoundEvent::isValid)
+        .set("restart", &SoundEvent::restart)
+        .set("stop", &SoundEvent::stop)
+        .set("setPaused", &SoundEvent::setPaused)
+        .set("setVolume", &SoundEvent::setVolume)
+        .set("setPitch", &SoundEvent::setPitch)
+        .set("setParameter", &SoundEvent::setParameter)
+        .set("getPaused", &SoundEvent::getPaused)
+        .set("getVolume", &SoundEvent::getVolume)
+        .set("getPitch", &SoundEvent::getPitch)
+        .set("getParameter", &SoundEvent::getParameter)
+        .set("is3D", &SoundEvent::is3D)
+        .set("isRelativeToCameraOnly", &SoundEvent::isRelativeToCameraOnly)
+        .set("setIsRelativeToCameraOnly", &SoundEvent::setIsRelativeToCameraOnly)
+        .set("isPlaying", &SoundEvent::isPlaying)
+        ;
+
+    SLB::Class<TCompAudio>("Audio", m)
+        .comment("This is our wrapper of the audio controller")
+        .set("playEvent", &TCompAudio::playEvent);
+
+    SLB::Class<TCompRender>("Render", m)
+        .comment("This is our wrapper of the render controller")
+        .property("visible", &TCompRender::visible);
+
+    SLB::Class<TCompParticles>("Particles", m)
+        .comment("This is our wrapper of the particle controller")
+        .set("setSystemState", &TCompParticles::setSystemState);
+
+    SLB::Class<TCompAnimatedObjController>("AnimatedObject", m)
+        .comment("This is our wrapper of the animated object controller")
+        .set("playAnimation", &TCompAnimatedObjController::playAnimation)
+        ;
+
+    SLB::Class<TCompDoor>("Door", m)
+        .comment("This is our wrapper of the door controller")
+        .set("open", &TCompDoor::open)
+        .set("close", &TCompDoor::close)
+        .set("setOpenedScript", &TCompDoor::setOpenedScript)
+        .set("setClosedScript", &TCompDoor::setClosedScript)
+        ;
 
     /* Global functions */
 
     // Utilities
     m->set("getConsole", SLB::FuncCall::create(&getConsole));
     m->set("getLogic", SLB::FuncCall::create(&getLogic));
+	m->set("getGameManager", SLB::FuncCall::create(&getGameManager));
     m->set("getParticles", SLB::FuncCall::create(&getParticles));
     m->set("getPlayerController", SLB::FuncCall::create(&getPlayerController));
+    m->set("getPlayerNoiseEmitter", SLB::FuncCall::create(&getPlayerNoiseEmitter));
     m->set("execScriptDelayed", SLB::FuncCall::create(&execDelayedScript));
+    m->set("execSystemScriptDelayed", SLB::FuncCall::create(&execDelayedSystemScript));
     m->set("pauseGame", SLB::FuncCall::create(&pauseGame));
     m->set("pauseEnemies", SLB::FuncCall::create(&pauseEnemies));
+    m->set("pauseEnemyEntities", SLB::FuncCall::create(&pauseEnemyEntities));
     m->set("deleteEnemies", SLB::FuncCall::create(&deleteEnemies));
+    m->set("isDebug", SLB::FuncCall::create(&isDebug));
+    m->set("changeGamestate", SLB::FuncCall::create(&changeGamestate));
 
     // Camera
     m->set("blendInCamera", SLB::FuncCall::create(&blendInCamera));
     m->set("blendOutCamera", SLB::FuncCall::create(&blendOutCamera));
     m->set("blendOutActiveCamera", SLB::FuncCall::create(&blendOutActiveCamera));
+    m->set("resetMainCameras", SLB::FuncCall::create(&resetMainCameras));
 
     // Player hacks
     m->set("pausePlayerToggle", SLB::FuncCall::create(&pausePlayerToggle));
@@ -151,28 +305,91 @@ void CModuleLogic::publishClasses() {
 
     // postfx hacks
     m->set("postFXToggle", SLB::FuncCall::create(&postFXToggle));
+    // sounds
+    m->set("playEvent", SLB::FuncCall::create(&playEvent));
+    m->set("stopAllAudioComponents", SLB::FuncCall::create(&stopAllAudioComponents));
 
+    // tutorial
+    m->set("setTutorialPlayerState", SLB::FuncCall::create(&setTutorialPlayerState));
+
+    // cinematic
+    m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
+    m->set("setAIState", SLB::FuncCall::create(&setAIState));
+
+	//GUI
+	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
+	m->set("backFromControls", SLB::FuncCall::create(&backFromControls));
+	m->set("unlockDeadButton", SLB::FuncCall::create(&unlockDeadButton));
+	m->set("execDeadButton", SLB::FuncCall::create(&execDeadButton));
+	m->set("takeOutBlackScreen", SLB::FuncCall::create(&takeOutBlackScreen));
+	m->set("goToMainMenu", SLB::FuncCall::create(&goToMainMenu));
+	m->set("takeOutCredits", SLB::FuncCall::create(&takeOutCredits));
+	m->set("takeOutControlsOnMainMenu", SLB::FuncCall::create(&takeOutControlsOnMainMenu));
+	m->set("takeOutCreditsOnMainMenu", SLB::FuncCall::create(&takeOutCreditsOnMainMenu));
+	m->set("activateSubtitles", SLB::FuncCall::create(&activateSubtitles));
+	m->set("deactivateSubtitles", SLB::FuncCall::create(&deactivateSubtitles));
+	m->set("activateMission", SLB::FuncCall::create(&activateMission));
+	m->set("setEnemyHudState", SLB::FuncCall::create(&setEnemyHudState));
+	m->set("activateCinematicVideoIntro", SLB::FuncCall::create(&activateCinematicVideoIntro));
+	m->set("deactivateCinematicVideoIntro", SLB::FuncCall::create(&deactivateCinematicVideoIntro));
+	m->set("setInBlackScreen", SLB::FuncCall::create(&setInBlackScreen));
+	m->set("setOutBlackScreen", SLB::FuncCall::create(&setOutBlackScreen));
+	m->set("subClear", SLB::FuncCall::create(&subClear));
+	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
+	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
+	m->set("execLastAtlasScreen", SLB::FuncCall::create(&execLastAtlasScreen));
+	m->set("removeAtlasSplash", SLB::FuncCall::create(&removeAtlasSplash));
+	m->set("removeTempCredits", SLB::FuncCall::create(&removeTempCredits));
+	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
     m->set("shadowsToggle", SLB::FuncCall::create(&shadowsToggle));
     m->set("debugToggle", SLB::FuncCall::create(&debugToggle));
     m->set("spawn", SLB::FuncCall::create(&spawn));
+    m->set("move", SLB::FuncCall::create(&move));
     m->set("bind", SLB::FuncCall::create(&bind));
     m->set("loadCheckpoint", SLB::FuncCall::create(&loadCheckpoint));
-    m->set("loadScene", SLB::FuncCall::create(&loadScene));
-    m->set("unloadScene", SLB::FuncCall::create(&unloadScene));
+    m->set("loadScene", SLB::FuncCall::create(&loadscene));
+    m->set("unloadScene", SLB::FuncCall::create(&unloadscene));
+    m->set("preloadScene", SLB::FuncCall::create(&preloadScene));
     m->set("cg_drawfps", SLB::FuncCall::create(&cg_drawfps));
     m->set("cg_drawlights", SLB::FuncCall::create(&cg_drawlights));
     m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
-    m->set("playSound2D", SLB::FuncCall::create(&playSound2D));
-    m->set("exeShootImpactSound", SLB::FuncCall::create(&exeShootImpactSound));
     m->set("sleep", SLB::FuncCall::create(&sleep));
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
+    m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
+    m->set("destroyHandle", SLB::FuncCall::create(&destroyHandle));
+    m->set("resetPatrolLights", SLB::FuncCall::create(&resetPatrolLights));
+    m->set("animateSoundGraph", SLB::FuncCall::create(&animateSoundGraph));
+    m->set("makeVisibleByTag", SLB::FuncCall::create(&makeVisibleByTag));
+    m->set("getPlayerLocalCoordinatesInReferenceTo", SLB::FuncCall::create(&getPlayerLocalCoordinatesInReferenceTo));
+    m->set("movePlayerToRefPos", SLB::FuncCall::create(&movePlayerToRefPos));
+    m->set("invalidatePlayerPhysxCache", SLB::FuncCall::create(&invalidatePlayerPhysxCache));
+    m->set("GUI_EnableRemoveInhibitor", SLB::FuncCall::create(&GUI_EnableRemoveInhibitor));
+    m->set("sendPlayerIlluminatedMsg", SLB::FuncCall::create(&sendPlayerIlluminatedMsg));
+    m->set("isInCinematicMode", SLB::FuncCall::create(&isInCinematicMode));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
     m->set("toggle_spotlight", SLB::FuncCall::create(&toggle_spotlight));
     m->set("toggleButtonCanBePressed", SLB::FuncCall::create(&toggleButtonCanBePressed));
+    m->set("getEntityByName", SLB::FuncCall::create(&getEntityByName));
+    m->set("removeSceneResources", SLB::FuncCall::create(&removeSceneResources));
+    m->set("destroyPartialScene", SLB::FuncCall::create(&destroyPartialScene));
+    m->set("testingLoadPartialScene", SLB::FuncCall::create(&testingLoadPartialScene));
+    m->set("testLoco", SLB::FuncCall::create(&testLoco));
+
+    /* Handle converters */
+    m->set("toEntity", SLB::FuncCall::create(&toEntity));
+    m->set("toTransform", SLB::FuncCall::create(&toTransform));
+    m->set("toAIPatrol", SLB::FuncCall::create(&toAIPatrol));
+    m->set("toAudio", SLB::FuncCall::create(&toAudio));
+    m->set("toTPCamera", SLB::FuncCall::create(&toTPCamera));
+    m->set("toRender", SLB::FuncCall::create(&toRender));
+    m->set("toParticles", SLB::FuncCall::create(&toParticles));
+    m->set("toAnimatedObject", SLB::FuncCall::create(&toAnimatedObject));
+    m->set("toDoor", SLB::FuncCall::create(&toDoor));
+    m->set("toButton", SLB::FuncCall::create(&toButton));
 }
 
 /* Check if it is a fast format command */
@@ -192,6 +409,8 @@ void CModuleLogic::execCvar(std::string& script) {
 }
 
 CModuleLogic::ConsoleResult CModuleLogic::execScript(const std::string& script) {
+    if (!started)
+        return ConsoleResult{ false, "" };
 
     std::string scriptLogged = script;
     std::string errMsg = "";
@@ -219,6 +438,12 @@ bool CModuleLogic::execScriptDelayed(const std::string & script, float delay)
     return true;
 }
 
+bool CModuleLogic::execSystemScriptDelayed(const std::string & script, float delay)
+{
+    delayedSystemScripts.push_back(DelayedScript{ script, delay });
+    return true;
+}
+
 bool CModuleLogic::execEvent(Events event, const std::string & params, float delay)
 {
     /* TODO: meter eventos */
@@ -232,7 +457,12 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         }
         break;
     case Events::GAME_END:
-
+        if (delay > 0) {
+            return execScriptDelayed("onGameEnd()", delay);
+        }
+        else {
+            return execScript("onGameEnd()").success;
+        }
         break;
     case Events::SCENE_START:
         if (delay > 0) {
@@ -248,6 +478,22 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         }
         else {
             return execScript("onSceneEnd()").success && execScript("onSceneEnd_" + params + "()").success;
+        }
+        break;
+    case Events::SCENE_PARTIAL_START:
+        if (delay > 0) {
+            return execScriptDelayed("onSceneStart()", delay) && execScriptDelayed("onScenePartialStart_" + params + "()", delay);
+        }
+        else {
+            return execScript("onSceneStart()").success && execScript("onScenePartialStart_" + params + "()").success;
+        }
+        break;
+    case Events::SCENE_PARTIAL_END:
+        if (delay > 0) {
+            return execScriptDelayed("onScenePartialEnd()", delay) && execScriptDelayed("onScenePartialEnd_" + params + "()", delay);
+        }
+        else {
+            return execScript("onScenePartialEnd()").success && execScript("onScenePartialEnd_" + params + "()").success;
         }
         break;
 
@@ -267,6 +513,22 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
             return execScript("onTriggerExit_" + params).success;
         }
         break;
+    case Events::PATROL_STUNNED:
+        if (delay > 0) {
+            return execScriptDelayed("onPatrolStunned_" + params, delay);
+        }
+        else {
+            return execScript("onPatrolStunned_" + params).success;
+        }
+        break;
+    case Events::PATROL_KILLED:
+        if (delay > 0) {
+            return execScriptDelayed("onPatrolKilled_" + params, delay);
+        }
+        else {
+            return execScript("onPatrolKilled_" + params).success;
+        }
+        break;
     default:
 
         break;
@@ -283,20 +545,61 @@ void CModuleLogic::printLog()
     dbg("End printing log\n");
 }
 
+void CModuleLogic::clearDelayedScripts()
+{
+    delayedScripts.clear();
+    //delayedSystemScripts.clear();
+}
+
+void CModuleLogic::eraseDelayedScripts(std::string keyWord) {
+	
+	for (int i = delayedScripts.size() - 1; i >= 0 ; i--) {
+		CModuleLogic::DelayedScript _curr_del = delayedScripts[i];
+		std::string::size_type e = _curr_del.script.find(keyWord);
+		if ((int)e >-1) {
+			delayedScripts.erase(delayedScripts.begin() + i);
+		}	
+	}
+}
+
+void CModuleLogic::eraseSystemDelayedScripts(std::string keyWord) {
+
+	for (int i = delayedSystemScripts.size() - 1; i >= 0; i--) {
+		CModuleLogic::DelayedScript _curr_del = delayedSystemScripts[i];
+		std::string::size_type e = _curr_del.script.find(keyWord);
+		if ((int)e >-1) {
+			delayedSystemScripts.erase(delayedSystemScripts.begin() + i);
+		}
+	}
+}
+
 /* Auxiliar functions */
 CModuleLogic * getLogic() { return EngineLogic.getPointer(); }
+
+CModuleGameManager * getGameManager() { return CEngine::get().getGameManager().getPointer(); }
 
 CModuleParticles * getParticles() { return EngineParticles.getPointer(); }
 
 TCompTempPlayerController * getPlayerController()
 {
     TCompTempPlayerController * playerController = nullptr;
-    CEntity* e = getEntityByName("The Player");
+    CEntity* e = EngineEntities.getPlayerHandle();
     if (e) {
         playerController = e->get<TCompTempPlayerController>();
     }
     return playerController;
 }
+
+TCompNoiseEmitter * getPlayerNoiseEmitter()
+{
+    TCompNoiseEmitter * playerNoiseEmitter = nullptr;
+    CEntity* e = EngineEntities.getPlayerHandle();
+    if (e) {
+        playerNoiseEmitter = e->get<TCompNoiseEmitter>();
+    }
+    return playerNoiseEmitter;
+}
+
 CModuleGameConsole * getConsole() { return EngineConsole.getPointer(); }
 
 void execDelayedScript(const std::string& script, float delay)
@@ -304,10 +607,24 @@ void execDelayedScript(const std::string& script, float delay)
     EngineLogic.execScriptDelayed(script, delay);
 }
 
+void execDelayedSystemScript(const std::string & script, float delay)
+{
+    EngineLogic.execSystemScriptDelayed(script, delay);
+}
+
 void pauseEnemies(bool pause) {
 
     std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
     TMsgAIPaused msg;
+    msg.isPaused = pause;
+    for (int i = 0; i < enemies.size(); i++) {
+        enemies[i].sendMsg(msg);
+    }
+}
+
+void pauseEnemyEntities(bool pause) {
+    std::vector<CHandle> enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+    TMsgScenePaused msg;
     msg.isPaused = pause;
     for (int i = 0; i < enemies.size(); i++) {
         enemies[i].sendMsg(msg);
@@ -322,6 +639,19 @@ void deleteEnemies()
     }
 }
 
+bool isDebug()
+{
+    #ifdef NDEBUG
+        return false;
+    #else
+        return true;
+    #endif
+}
+
+void changeGamestate(const std::string& gamestate) {
+    EngineScene.changeGameState(gamestate);
+}
+
 void pauseGame(bool pause) {
 
     TMsgScenePaused msg;
@@ -331,38 +661,39 @@ void pauseGame(bool pause) {
 
 void infiniteStamineToggle() {
     TMsgInfiniteStamina msg;
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     h.sendMsg(msg);
 }
 
-void immortal() {
-    CHandle h = getEntityByName("The Player");
+void immortal(bool state) {
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerImmortal msg;
+	msg.state = state;
     h.sendMsg(msg);
 }
 
 void inShadows() {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerInShadows msg;
     h.sendMsg(msg);
 }
 
 void speedBoost(const float speed) {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgSpeedBoost msg;
     msg.speedBoost = speed;
     h.sendMsg(msg);
 }
 
 void playerInvisible() {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgPlayerInvisible msg;
     h.sendMsg(msg);
 }
 
 void noClipToggle()
 {
-    CHandle h = getEntityByName("The Player");
+    CHandle h = EngineEntities.getPlayerHandle();
     TMsgSystemNoClipToggle msg;
     h.sendMsg(msg);
 }
@@ -375,11 +706,11 @@ void lanternsDisable(bool disable) {
     }
 }
 
-void blendInCamera(const std::string & cameraName, float blendInTime) {
+void blendInCamera(const std::string & cameraName, float blendInTime, const std::string& mode, const std::string& interpolator) {
 
     CHandle camera = getEntityByName(cameraName);
     if (camera.isValid()) {
-        EngineCameras.blendInCamera(camera, blendInTime, CModuleCameras::EPriority::TEMPORARY);
+        EngineCameras.blendInCamera(camera, blendInTime, EngineCameras.getPriorityFromString(mode), EngineCameras.getInterpolatorFromString(interpolator));
     }
     //TODO: implement
 }
@@ -396,18 +727,55 @@ void blendOutActiveCamera(float blendOutTime) {
     EngineCameras.blendOutCamera(EngineCameras.getCurrentCamera(), blendOutTime);
 }
 
-/* Spawn item on given position */
-void spawn(const std::string & name, const VEC3 & pos) {
-
-
+void resetMainCameras()
+{
+    std::vector<CHandle> v_cameras = CTagsManager::get().getAllEntitiesByTag(getID("main_camera"));
+    for (int i = 0; i < v_cameras.size(); i++) {
+        TMsgCameraResetTargetPos msg;
+        v_cameras[i].sendMsg(msg);
+    }
 }
 
-void loadScene(const std::string &level) {
+/* Spawn item on given position */
+CHandle spawn(const std::string & name, const VEC3 & pos, const VEC3& lookat) {
+    TEntityParseContext ctxSpawn;
+    parseScene("data/prefabs/" + name + ".prefab", ctxSpawn);
+    CHandle h = ctxSpawn.entities_loaded[0];
+    CEntity* e = h;
+    TCompTransform* e_pos = e->get<TCompTransform>();
+    e_pos->lookAt(pos, lookat);
+    return h;
+}
+
+void move(const std::string & name, const VEC3 & pos, const VEC3 & lookat)
+{
+    CHandle h_to_move = getEntityByName(name);
+    if (h_to_move.isValid()) {
+        CEntity* e_to_move = h_to_move;
+        TCompTransform* e_pos = e_to_move->get<TCompTransform>();
+        e_pos->lookAt(pos, lookat);
+        TCompCollider* e_collider = e_to_move->get<TCompCollider>();
+        TCompRigidbody* e_rigidbody = e_to_move->get<TCompRigidbody>();
+        if (e_rigidbody) {
+            e_rigidbody->setGlobalPose(pos, e_pos->getRotation());
+        }
+        else if (e_collider) {
+            e_collider->setGlobalPose(pos, e_pos->getRotation());
+        }
+    }
+}
+
+void loadscene(const std::string &level) {
     EngineScene.loadScene(level);
 }
 
-void unloadScene() {
+void unloadscene() {
     EngineScene.unLoadActiveScene();
+}
+
+void preloadScene(const std::string & scene)
+{
+    EngineScene.preloadScene(scene);
 }
 
 void sleep(float time) {
@@ -416,8 +784,153 @@ void sleep(float time) {
 
 void cinematicModeToggle() {
     TMsgPlayerAIEnabled msg;
-    CHandle h = getEntityByName("The Player");
+    msg.state = "cinematic";
+    msg.enableAI = true;
+    CHandle h = EngineEntities.getPlayerHandle();
     h.sendMsg(msg);
+}
+
+bool isCheckpointSaved()
+{
+    CModuleGameManager gameManager = CEngine::get().getGameManager();
+    return gameManager.isCheckpointSaved();
+}
+
+void destroyHandle(unsigned int h)
+{
+    CHandle handle;
+    handle.fromUnsigned(h);
+    handle.destroy();
+}
+
+void resetPatrolLights()
+{
+    VHandles patrols = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
+    TMsgResetPatrolLights msg;
+    for (int i = 0; i < patrols.size(); i++) {
+        patrols[i].sendMsg(msg);
+    }
+}
+
+void animateSoundGraph(int value) {
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getChild("sound_sprite")->getSpriteParams()->_playing_sprite = value;
+}
+
+void makeVisibleByTag(const std::string & tag, bool visible)
+{
+    TMsgSetVisible msg;
+    msg.visible = visible;
+    VHandles v_handles = CTagsManager::get().getAllEntitiesByTag(getID(tag.c_str()));
+    for (int i = 0; i < v_handles.size(); i++) {
+        v_handles[i].sendMsg(msg);
+    }
+}
+
+VEC3 getPlayerLocalCoordinatesInReferenceTo(const std::string & ref_entity)
+{
+    CEntity* player = EngineEntities.getPlayerHandle();
+    CEntity* e_ref_entity = getEntityByName(ref_entity);
+    TCompTransform* ppos = player->get<TCompTransform>();
+    TCompTransform* ref_pos = e_ref_entity->get<TCompTransform>();
+
+    MAT44 ref_trans = ref_pos->asMatrix().Invert();
+    return VEC3::Transform(ppos->getPosition(), ref_trans);
+}
+
+void movePlayerToRefPos(const std::string & ref_entity, VEC3 p_rel_pos)
+{
+    CEntity* player = EngineEntities.getPlayerHandle();
+    TCompTransform* tplayer = player->get<TCompTransform>();
+    CEntity* final_reference = getEntityByName(ref_entity);
+    TCompTransform* t_final_reference = final_reference->get<TCompTransform>();
+
+    /* Rotate the vector */
+    QUAT rot_final = t_final_reference->getRotation();
+    VEC3 u = VEC3(rot_final.x, rot_final.y, rot_final.z);
+    float s = rot_final.w;
+    p_rel_pos = 2.0f * u.Dot(p_rel_pos) * u
+        + (s*s - u.Dot(u)) * p_rel_pos
+        + 2.0f * s * u.Cross(p_rel_pos);
+
+    VEC3 final_pos = p_rel_pos + t_final_reference->getPosition();
+    tplayer->setPosition(final_pos);
+    TCompRigidbody* my_rigidbody = player->get<TCompRigidbody>();
+    my_rigidbody->setGlobalPose(tplayer->getPosition(), tplayer->getRotation());
+}
+
+void invalidatePlayerPhysxCache() {
+    CEntity* ePlayer = EngineEntities.getPlayerHandle();
+    TCompRigidbody* tRigidbody = ePlayer->get <TCompRigidbody>();
+    tRigidbody->invalidateCache();
+}
+
+void GUI_EnableRemoveInhibitor() {
+
+    CEntity* ePlayer = EngineEntities.getPlayerHandle();
+    TCompTempPlayerController* pController = ePlayer->get<TCompTempPlayerController>();
+    if (!EngineInput.pad().connected) {
+        EngineGUI.enableWidget("inhibited_space", pController->isInhibited);
+    }
+    else {
+        EngineGUI.enableWidget("inhibited_y", pController->isInhibited);
+    }
+}
+
+void sendPlayerIlluminatedMsg(CHandle h, bool illuminated) {
+    if (h.isValid()) {
+        CHandle player = EngineEntities.getPlayerHandle();
+        TMsgPlayerIlluminated msg;
+        msg.h_sender = h;
+        msg.isIlluminated = illuminated;
+        player.sendMsg(msg);
+    }
+}
+
+void isInCinematicMode(bool isCinematic)
+{
+    dbg("SETEAMOS A %s\n", isCinematic ? "TRUE" : "FALSE");
+    CEngine::get().getGameManager().isCinematicMode = isCinematic;
+}
+
+
+SoundEvent playEvent(const std::string & name)
+{
+    return EngineSound.playEvent(name);
+}
+
+void stopAllAudioComponents()
+{
+    TMsgStopAudioComponent msg;
+    EngineEntities.broadcastMsg(msg);
+}
+
+void setTutorialPlayerState(bool active, const std::string & stateName)
+{
+    CHandle h_tutorial = getEntityByName("Tutorial Player");    
+    TMsgPlayerAIEnabled msg;
+    msg.state = stateName;
+    msg.enableAI = active;
+    h_tutorial.sendMsg(msg);
+}
+
+void setCinematicPlayerState(bool active, const std::string & stateName)
+{
+    CHandle h_tutorial = EngineEntities.getPlayerHandle();
+    TMsgPlayerAIEnabled msg;
+    msg.state = stateName;
+    msg.enableAI = active;
+    h_tutorial.sendMsg(msg);
+}
+
+void setAIState(const std::string & name, bool active, const std::string & stateName)
+{
+    CHandle h = getEntityByName(name);
+    if (h.isValid()) {
+        TMsgCinematicState msg;
+        msg.enableCinematic = active;
+        msg.state = stateName;
+        h.sendMsg(msg);
+    }
 }
 
 void activateScene(const std::string& scene) {
@@ -446,7 +959,7 @@ void postFXToggle() {
 }
 
 void pausePlayerToggle() {
-    CEntity* p = getEntityByName("The Player");
+    CEntity* p = EngineEntities.getPlayerHandle();
     TCompTempPlayerController* player = p->get<TCompTempPlayerController>();
 
     TMsgScenePaused stopPlayer;
@@ -457,11 +970,6 @@ void pausePlayerToggle() {
 void debugToggle()
 {
     EngineRender.setDebugMode(!EngineRender.getDebugMode());
-}
-
-void destroy() {
-
-
 }
 
 void bind(const std::string& key, const std::string& script) {
@@ -487,7 +995,7 @@ void renderNavmeshToggle() {
 
 // Toggle CVARS.
 void cg_drawfps(bool value) {
-    CEngine::get().getGameManager().config.drawfps = value;
+    CApp::get().drawfps = value;
 }
 
 void cg_drawlights(int type) {
@@ -515,12 +1023,64 @@ void cg_drawlights(int type) {
     });
 }
 
-void playSound2D(const std::string& soundName) {
-    EngineSound.playSound2D(soundName);
+CEntity* toEntity(CHandle h)
+{
+    CEntity* e = h;
+    return e;
 }
 
-void exeShootImpactSound() {
-    EngineSound.exeShootImpactSound();
+TCompTransform* toTransform(CHandle h)
+{
+    TCompTransform* t = h;
+    return t;
+}
+
+TCompAIPatrol* toAIPatrol(CHandle h)
+{
+    TCompAIPatrol* t = h;
+    return t;
+}
+
+TCompAudio* toAudio(CHandle h)
+{
+    TCompAudio* t = h;
+    return t;
+}
+
+TCompParticles* toParticles(CHandle h)
+{
+    TCompParticles* t = h;
+    return t;
+}
+
+TCompAnimatedObjController* toAnimatedObject(CHandle h)
+{
+    TCompAnimatedObjController* t = h;
+    return t;
+}
+
+TCompDoor* toDoor(CHandle h)
+{
+    TCompDoor* t = h;
+    return t;
+}
+
+TCompButton* toButton(CHandle h)
+{
+    TCompButton* t = h;
+    return t;
+}
+
+TCompCameraThirdPerson * toTPCamera(CHandle h)
+{
+    TCompCameraThirdPerson* t = h;
+    return t;
+}
+
+TCompRender * toRender(CHandle h)
+{
+    TCompRender* t = h;
+    return t;
 }
 
 void sendOrderToDrone(const std::string & droneName, VEC3 position)
@@ -528,7 +1088,7 @@ void sendOrderToDrone(const std::string & droneName, VEC3 position)
     CEntity* drone = getEntityByName(droneName);
     TMsgOrderReceived msg;
     msg.position = position;
-    msg.hOrderSource = getEntityByName("The Player");
+    msg.hOrderSource = EngineEntities.getPlayerHandle();
     drone->sendMsg(msg);
 }
 
@@ -551,5 +1111,207 @@ void toggleButtonCanBePressed(const std::string & buttonName, bool canBePressed)
     }
     CEntity* button = hButton;
     TCompButton* comp_button = button->get<TCompButton>();
-    comp_button->canBePressed = canBePressed;
+	if (comp_button) {
+		comp_button->canBePressed = canBePressed;
+	}
+}
+
+void removeSceneResources(const std::string & scene)
+{
+    EngineScene.removeSceneResources(scene);
+}
+
+void destroyPartialScene()
+{
+    std::vector<uint32_t> tags;
+    tags.push_back(getID("corridor"));
+    tags.push_back(getID("persistent"));
+    VHandles entities_to_destroy = CTagsManager::get().getAllEntitiesWithoutTags(tags);
+    for (int i = 0; i < entities_to_destroy.size(); i++) {
+        entities_to_destroy[i].destroy();
+    }
+}
+
+void testingLoadPartialScene() {
+    EngineScene.loadPartialScene("scene_coliseo");
+}
+
+void testLoco() {
+
+    CEntity* player = EngineEntities.getPlayerHandle();
+    TCompTransform* tplayer = player->get<TCompTransform>();
+    CEntity* suelo_intro = getEntityByName("intro_suelo001");
+    CEntity* suelo_col = getEntityByName("col_intro_suelo001");
+    TCompTransform* t_suelo_intro = suelo_intro->get<TCompTransform>();
+    TCompTransform* t_suelo_col = suelo_col->get<TCompTransform>();
+
+    MAT44 ref_trans = t_suelo_intro->asMatrix().Invert();
+    VEC3 rel_pos = VEC3::Transform(tplayer->getPosition(), ref_trans);
+
+    /* Rotate the vector */
+    QUAT rot_final = t_suelo_col->getRotation();
+    VEC3 u = VEC3(rot_final.x, rot_final.y, rot_final.z);
+    float s = rot_final.w;
+    rel_pos = 2.0f * u.Dot(rel_pos) * u
+        + (s*s - u.Dot(u)) * rel_pos
+        + 2.0f * s * u.Cross(rel_pos);
+
+    VEC3 final_pos = rel_pos + t_suelo_col->getPosition();
+    tplayer->setPosition(final_pos);
+    TCompRigidbody* my_rigidbody = player->get<TCompRigidbody>();
+    my_rigidbody->setGlobalPose(tplayer->getPosition(), tplayer->getRotation());
+
+    /* TODO: rotation */
+}
+
+void unPauseGame() {
+
+	CEngine::get().getGameManager().setPauseState(CModuleGameManager::PauseState::none);
+	EngineGUI.setButtonsState(true);
+}
+
+void backFromControls() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CONTROLS);
+	EngineGUI.activateController(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+
+}
+
+void unlockDeadButton() {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS)->makeChildsFadeIn(1, 0, true);
+}
+
+void execDeadButton() {
+	EngineGUI.setButtonsState(true);
+	Engine.get().getGameManager().resetToCheckpoint();
+}
+
+void takeOutBlackScreen() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
+}
+
+void goToMainMenu() {
+    EngineScene.changeGameState("main_menu");
+}
+
+void takeOutCredits() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND);
+}
+
+void takeOutControlsOnMainMenu() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CONTROLS_BACK);
+	EngineGUI.activateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+}
+
+void takeOutCreditsOnMainMenu() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACK);
+	EngineGUI.activateController(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+}
+
+void activateSubtitles(int sub_num) {
+
+	EngineGUI.setSubtitles(sub_num);
+}
+
+void subClear() {
+	EngineGUI.clearSubtitles();
+}
+
+void deactivateSubtitles() {
+	EngineGUI.setSubtitlesToNone();
+}
+
+void activateMission(int mission_num) {
+	EngineGUI.setMission(mission_num);
+}
+
+void startCinematicMode(bool start) {
+
+}
+
+void setEnemyHudState(bool state) {
+    CModuleGameManager gameManager = CEngine::get().getGameManager();
+	if (state) {
+		EngineGUI.activateEnemyHUD();  
+        gameManager.playTransmissionSound(true);
+	}
+	else {
+		EngineGUI.deactivateEnemyHUD();
+        gameManager.playTransmissionSound(false);
+    }
+}
+
+void activateCinematicVideoIntro(float time_to_lerp, float time_to_start) {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CINEMATIC_INTRO)->makeChildsFadeOut(time_to_lerp, time_to_start, false);
+}
+
+void deactivateCinematicVideoIntro() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CINEMATIC_INTRO);
+}
+
+void setInBlackScreen(float time_to_lerp) {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(time_to_lerp,0,false);
+}
+
+void setOutBlackScreen(float time_to_lerp) {
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(time_to_lerp, 0, false);
+	EngineLogic.execScriptDelayed("takeOutBlackScreen();", time_to_lerp + 0.1f);
+}
+
+void lightUpForFinalScene(float time) {
+
+	/*EngineLerp.lerpElement(&cb_globals.global_exposure_adjustment,1.02, time,0);
+	EngineLerp.lerpElement(&cb_globals.global_fog_density, 0.185, time, 0);
+	CHandle h_cam = EngineCameras.getCurrentCamera();
+	CEntity *e_cam = h_cam;
+	TCompRenderBloom* comp_bloom = e_cam->get<TCompRenderBloom>();
+	EngineLerp.lerpElement(&comp_bloom->threshold_min, 0.170, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->threshold_max, 0.490, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->multiplier, 1.780, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->add_weights.x, 1.480, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->add_weights.y, 1.7, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->add_weights.z, 0.360, time, 0);
+	EngineLerp.lerpElement(&comp_bloom->add_weights.w, 1.2, time, 0);*/
+	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{false});
+	/*ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
+	ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
+	//ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
+	ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
+	ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
+	ImGui::DragFloat("Global shadow intensity", &cb_globals.global_shadow_intensity, 0.001f, 0.0f, 1.f);
+	// Fog settings edition
+	ImGui::DragFloat("Fog Ground density", &cb_globals.global_fog_ground_density, 0.001f, 0.0f, 1.f);
+	ImGui::DragFloat("Fog Environment density", &cb_globals.global_fog_density, 0.001f, 0.0f, 1.f);
+	ImGui::ColorEdit4("Shadow Color", &cb_globals.global_shadow_color.x, 0.0001f);
+	ImGui::ColorEdit4("Fog Ground Color", &cb_globals.global_fog_color.x, 0.0001f);
+	ImGui::ColorEdit4("Fog Environment Color", &cb_globals.global_fog_env_color.x, 0.0001f);*/
+}
+
+void lightDownForFinalScene() {
+
+}
+
+void execLastAtlasScreen() {
+
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH)->makeChildsFadeIn(0.25, 0, false);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,25,false);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
+	EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);
+	EngineLogic.execScriptDelayed("removeTempCredits()", 25.25);
+	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")",25.5);
+}
+
+void removeAtlasSplash() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH);
+}
+
+void tempCredits() {
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2,0,true);
+}
+
+void removeTempCredits() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND);
 }

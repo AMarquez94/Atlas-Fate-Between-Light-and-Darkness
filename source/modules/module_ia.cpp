@@ -15,4 +15,5 @@ void CModuleIA::render()
 void CModuleIA::clearSharedBoards()
 {
 	patrolSB.stunnedPatrols.clear();
+    patrolSB.patrolsWithLight.clear();
 }

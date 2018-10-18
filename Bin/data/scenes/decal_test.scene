@@ -1,0 +1,29 @@
+[
+  {
+    "instance_container":
+    {
+      "name": "decal_test"
+      ,
+      "instance_data":
+      {
+        "mesh": "data/meshes/decal_test.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/decal_test.material"
+        ]
+      }
+      ,
+      "instances":
+      [
+        {
+          "pos": "1.02264 1.74689 12.0096"
+          ,
+          "rotation": "-0.707107 0.0 0.0 -0.707107"
+          ,
+          "scale": "2.83952 0.1 1.95152"
+        }
+      ]
+    }
+  }
+]

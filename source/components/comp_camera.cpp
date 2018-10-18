@@ -20,7 +20,7 @@ void TCompCamera::debugInMenu() {
 			setPerspective(deg2rad(fov_deg), new_znear, new_zfar);
 	}
 	else {
-		bool changed = ImGui::DragFloat("ORTOSIZE", &orto_size, 1.f, 1.f, 200.f);
+		bool changed = ImGui::DragFloat("Ortosize", &orto_size, 1.f, 1.f, 200.f);
 		changed |= ImGui::DragFloat("Z Near", &new_znear, 0.001f, 0.01f, 1.0f);
 		changed |= ImGui::DragFloat("Z Far", &new_zfar, 1.0f, 2.0f, 3000.0f);
 		if (changed)
@@ -45,9 +45,7 @@ void TCompCamera::renderDebug() {
 		setWorldTransform(world, VEC4(1, 1, 1, 1));
 		mesh->render();
 	}
-
 }
-
 
 void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 
@@ -69,6 +67,9 @@ void TCompCamera::load(const json& j, TEntityParseContext& ctx) {
 }
 
 void TCompCamera::update(float dt) {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
 
 	TCompTransform* c = get<TCompTransform>();
 	if (!c)

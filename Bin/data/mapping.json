@@ -1,20 +1,5 @@
 [
   {
-    "name": "red",
-    "all": false,
-    "buttons": [ "pad_a", "mouse_right", "r" ]
-  },
-  {
-    "name": "green",
-    "all": true,
-    "buttons": [ "pad_x", "pad_y" ]
-  },
-  {
-    "name": "blue",
-    "all": false,
-    "buttons": [ "pad_lanalogx" ]
-  },
-  {
     "name": "btUp",
     "all": false,
     "buttons": [ "w", "pad_lanalogy" , "pad_up"]
@@ -37,7 +22,7 @@
   {
     "name": "btShadowMerging",
     "all": false,
-    "buttons": [ "mouse_right", "pad_r1" ]
+    "buttons": [ "mouse_right", "pad_r2" ]
   },
   {
     "name": "btAttack",
@@ -48,11 +33,6 @@
     "name": "btRun",
     "all": false,
     "buttons": [ "shift", "pad_l2" ]
-  },
-  {
-    "name": "btSlow",
-    "all": false,
-    "buttons": [ "control" ]
   },
   {
     "name": "MouseX",
@@ -77,7 +57,7 @@
   {
     "name": "btAction",
     "all": false,
-    "buttons": [ "e", "pad_y" ]
+    "buttons": [ "e", "pad_a" ]
   },
   {
     "name": "btCrouch",
@@ -87,27 +67,42 @@
   {
     "name": "btSecAction",
     "all": false,
-    "buttons":  ["space", "pad_a"]
+    "buttons":  ["space", "pad_y"]
   },
   {
-    "name": "btDebugPause",
+	"name": "btSonar",
+	"all": false,
+	"buttons": ["q", "pad_r3"]
+  },
+  {
+    "name": "xbtDebugPause",
     "all": false,
     "buttons":  ["f1"]
   },
   {
-    "name": "btDebugShadows",
+    "name": "btControl",
+    "all": false,
+    "buttons":  ["control"]
+  },
+  {
+    "name": "xbtDebugShadows",
     "all": false,
     "buttons":  ["f2"]
   },
 	{
-    "name": "btDebugMode",
+    "name": "xbtDebugMode",
     "all": false,
     "buttons":  ["f3"]
   },
 	{
-    "name": "btDebugParticles",
+    "name": "xbtDebugParticles",
     "all": false,
     "buttons":  ["f4"]
+  },
+	{
+    "name": "xbtDebugModeUnpaused",
+    "all": false,
+    "buttons":  ["f5"]
   },
   {
     "name": "btPause",
@@ -135,7 +130,7 @@
     "buttons":  ["pad_b"]
   },
   {
-	"name": "btConsole",
+	"name": "xbtConsole",
 	"all": false,
 	"buttons": ["oem_4"]
   },
@@ -148,5 +143,15 @@
     "name": "btMouseLClick",
     "all": false,
     "buttons": [ "mouse_left" ]
+  },
+  {
+    "name": "btR_btMouseRClick",
+    "all": true,
+    "buttons": [ "r", "mouse_right" ]
+  },
+  {
+    "name": "btR_btMouseLClick",
+    "all": true,
+    "buttons": [ "r", "mouse_left" ]
   }
 ]

@@ -39,7 +39,7 @@ public:
     void debugInMenu();
     void setNameAndClass(const std::string& new_name, const CResourceClass* new_class) override;
 
-    const VMeshSubGroups& getSubGroups() const {
+    virtual const VMeshSubGroups& getSubGroups() const {
         return subgroups;
     }
 

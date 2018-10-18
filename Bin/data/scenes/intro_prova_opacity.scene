@@ -1,0 +1,45 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_prova_opacity"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsula_humano_low"
+      ,
+      "transform":
+      {
+        "pos": "-3.224 0.0 -4.3089"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_capsula_humano_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_capsula_humano.material"
+            ,
+            "data/materials/mtl_humano_capsula.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

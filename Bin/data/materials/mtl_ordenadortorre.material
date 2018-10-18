@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_ordenadortorre_alb.dds"
+    ,
+    "metallic": "data/textures/tx_ordenadortorre_met.dds"
+    ,
+    "roughness": "data/textures/tx_ordenadortorre_rgh.dds"
+    ,
+    "normal": "data/textures/tx_ordenadortorre_nml.dds"
+    ,
+    "emissive": "data/textures/tx_ordenadortorre_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_ordenadortorre_ao.dds"
+  }
+}

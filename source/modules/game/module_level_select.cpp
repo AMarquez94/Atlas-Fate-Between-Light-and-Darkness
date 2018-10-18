@@ -46,19 +46,19 @@ void CModuleLevelSelect::render()
 	ImGui::Selectable("Map Intro", menuPosition == 0);
 	if (ImGui::IsItemClicked() || (menuPosition == 0 && EngineInput["btMenuConfirm"].getsPressed()))
 	{
-		CEngine::get().getModules().changeGameState("map_intro");
+        EngineScene.changeGameState("map_intro");
 	}
 
 	ImGui::Selectable("Map Lights", menuPosition == 1);
 	if (ImGui::IsItemClicked() || (menuPosition == 1 && EngineInput["btMenuConfirm"].getsPressed()))
 	{
-		CEngine::get().getModules().changeGameState("map_intro");
-	}
+        EngineScene.changeGameState("map_intro");
+    }
 	ImGui::Selectable("Return Main Menu", menuPosition == 2);
 	if (ImGui::IsItemClicked() || (menuPosition == 2 && EngineInput["btMenuConfirm"].getsPressed()))
 	{
-		CEngine::get().getModules().changeGameState("main_menu");
-	}
+        EngineScene.changeGameState("map_intro");
+    }
 
 
 	ImGui::End();

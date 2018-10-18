@@ -1,0 +1,19 @@
+[
+  {
+    "entity":
+    {
+      "name": "TriggerVictory"
+      ,
+      "transform":
+      {
+        "pos": "4.4 0 -391.6"
+      }
+	  ,
+	  "collider": {
+		"shape": "box",
+		"size": "10 2 3",
+		"is_trigger": true
+	  }
+    }
+  }
+]

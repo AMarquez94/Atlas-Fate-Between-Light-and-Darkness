@@ -17,11 +17,15 @@ public:
     void update(float dt);
 
     static void registerMsgs();
+    void setCanBePressed(bool canBePressed);
     bool canBePressed;
 
 private:
+
     std::string _script;
 
     void onMsgButtonActivated(const TMsgButtonActivated& msg);
+	void onMsgGroupCreated(const TMsgEntitiesGroupCreated& msg);
+	void onMsgEntityCreated(const TMsgEntityCreated& msg);
 };
 

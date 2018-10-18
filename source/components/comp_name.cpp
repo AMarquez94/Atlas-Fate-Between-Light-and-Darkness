@@ -8,6 +8,7 @@ std::unordered_map< std::string, CHandle > TCompName::all_names;
 
 void TCompName::debugInMenu() {
   ImGui::Text(name);
+  ImGui::Text("Handle: %d", CHandle(this).getOwner());
 }
 
 void TCompName::setName(const char* new_name) {

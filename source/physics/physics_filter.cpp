@@ -16,7 +16,7 @@ physx::PxFilterFlags CustomFilterShader(
             pairFlags = physx::PxPairFlag::eTRIGGER_DEFAULT;
         }
         else if (physx::PxFilterObjectIsKinematic(attributes0) || physx::PxFilterObjectIsKinematic(attributes1)) {
-            pairFlags = physx::PxPairFlag::eDETECT_DISCRETE_CONTACT | physx::PxPairFlag::eNOTIFY_TOUCH_FOUND | physx::PxPairFlag::eNOTIFY_TOUCH_PERSISTS;
+            pairFlags = physx::PxPairFlag::eDETECT_DISCRETE_CONTACT | physx::PxPairFlag::eNOTIFY_TOUCH_FOUND | physx::PxPairFlag::eNOTIFY_TOUCH_PERSISTS | physx::PxPairFlag::eNOTIFY_TOUCH_LOST;
         }
         else {
             pairFlags = physx::PxPairFlag::eCONTACT_DEFAULT | physx::PxPairFlag::eNOTIFY_TOUCH_FOUND;
@@ -36,6 +36,9 @@ FilterGroup getFilterByName(const std::string & name)
     }
     else if (strcmp("characters", name.c_str()) == 0) {
         return FilterGroup::Characters;
+    }
+    else if (strcmp("fence", name.c_str()) == 0) {
+        return FilterGroup::Fence;
     }
     else if (strcmp("wall", name.c_str()) == 0) {
         return FilterGroup::Wall;
@@ -57,6 +60,12 @@ FilterGroup getFilterByName(const std::string & name)
     }
     else if (strcmp("button", name.c_str()) == 0) {
         return FilterGroup::Button;
+    }
+    else if (strcmp("noncastshadow", name.c_str()) == 0) {
+        return FilterGroup::NonCastShadows;
+    }
+    else if (strcmp("light", name.c_str()) == 0) {
+        return FilterGroup::Light;
     }
     return FilterGroup::All;
 }

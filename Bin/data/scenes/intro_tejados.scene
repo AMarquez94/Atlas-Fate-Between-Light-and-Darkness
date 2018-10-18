@@ -1,0 +1,1069 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_tejados"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_intro003"
+      ,
+      "prefab": "data/prefabs/chimenea2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.88232 12.0 33.3406"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_intro004"
+      ,
+      "prefab": "data/prefabs/chimenea2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "10.4298 12.0 35.9902"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_intro005"
+      ,
+      "prefab": "data/prefabs/chimenea2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "10.7423 12.0 44.2026"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_intro006"
+      ,
+      "prefab": "data/prefabs/chimenea2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.3203 12.0 31.8264"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_intro007"
+      ,
+      "prefab": "data/prefabs/chimenea2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.7352 12.0 21.019"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_intro008"
+      ,
+      "prefab": "data/prefabs/chimenea2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.3134 12.0 -11.4338"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_intro009"
+      ,
+      "prefab": "data/prefabs/chimenea2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.7825 12.0 -23.166"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_intro010"
+      ,
+      "prefab": "data/prefabs/chimenea2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-32.2154 12.0 -58.0396"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_intro011"
+      ,
+      "prefab": "data/prefabs/chimenea2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-2.60373 12.0 -44.301"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea_intro012"
+      ,
+      "prefab": "data/prefabs/chimenea2.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.42551 12.0 -68.0797"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro001"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "3.47992 11.9129 36.2896"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro002"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.3871 12.0 22.7169"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro003"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.38635 12.0 50.4671"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro004"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.8909 12.0 44.1152"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro005"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.9826 12.0 -10.9899"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro006"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "17.5725 12.0 -0.680771"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro007"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "8.37451 12.0 -24.6269"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro008"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.53406 12.0 -56.4687"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro009"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-34.3154 12.0 -26.5825"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro010"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-30.4243 12.0 -68.7373"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_chimenea1_intro011"
+      ,
+      "prefab": "data/prefabs/chimenea1.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-1.76453 12.0 -65.6001"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cupula_abierta_intro001"
+      ,
+      "prefab": "data/prefabs/cupula_abierta.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.4893 12.0 16.042"
+        ,
+        "rotation": "0.0 4.76837e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cupula_abierta_intro002"
+      ,
+      "prefab": "data/prefabs/cupula_abierta.prefab"
+      ,
+      "transform":
+      {
+        "pos": "19.9141 12.0 35.046"
+        ,
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cupula_abierta_intro003"
+      ,
+      "prefab": "data/prefabs/cupula_abierta.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.1511 11.9146 41.4571"
+        ,
+        "rotation": "0.0 -0.843391 0.0 -0.5373"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cupula_abierta_intro004"
+      ,
+      "prefab": "data/prefabs/cupula_abierta.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-32.9593 12.0 -37.333"
+        ,
+        "rotation": "0.0 4.76837e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cupula_abierta_intro005"
+      ,
+      "prefab": "data/prefabs/cupula_abierta.prefab"
+      ,
+      "transform":
+      {
+        "pos": "2.83196 12.0 -47.5989"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707106"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cupula_abierta_intro006"
+      ,
+      "prefab": "data/prefabs/cupula_abierta.prefab"
+      ,
+      "transform":
+      {
+        "pos": "6.86959 12.0 -19.5804"
+        ,
+        "rotation": "0.0 -1.0 0.0 -5.20549e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cupula_abierta_intro007"
+      ,
+      "prefab": "data/prefabs/cupula_abierta.prefab"
+      ,
+      "transform":
+      {
+        "pos": "13.9648 10.0928 3.95198"
+        ,
+        "rotation": "0.0 -1.0 0.0 -5.20549e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cupula_abierta_intro008"
+      ,
+      "prefab": "data/prefabs/cupula_abierta.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-31.5701 12.0 -72.3981"
+        ,
+        "rotation": "0.0 4.76837e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro002"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.14285 12.0 47.8699"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro003"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.14285 12.0 45.6699"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro004"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "9.21512 12.0 39.8978"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro005"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "7.01512 12.0 39.8978"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro006"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "4.81512 12.0 39.8978"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro007"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "21.2556 12.0 25.8544"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro008"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "21.2556 12.0 28.0544"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro009"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.8542 12.0 36.026"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro011"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-24.0032 12.0 35.5708"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro012"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-26.2032 12.0 35.5708"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro013"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "6.16611 12.0 -35.5672"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro014"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "6.16611 12.0 -37.7672"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro015"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "17.0076 12.0 -9.97347"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro016"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "19.2076 12.0 -9.97347"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro017"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "16.1062 12.0 14.705"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro018"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-0.220317 12.0 -52.8875"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro019"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-2.42031 12.0 -52.8875"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro020"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-27.3314 12.0 3.75969"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro021"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-27.3314 12.0 -0.32808"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro022"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.8342 12.0 -16.9964"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro023"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-23.6342 12.0 -16.9964"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro024"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-33.5534 12.0 -30.432"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro025"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-38.1311 12.0 -35.9733"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro026"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-38.1311 12.0 -38.1733"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro027"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-31.3553 12.0 -51.8924"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro028"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-32.7578 12.0 -62.8719"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro029"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-32.7578 12.0 -65.0719"
+        ,
+        "rotation": "0.0 -1.0 0.0 -1.62921e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro030"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-2.5099 12.0 -59.0521"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pasarela_cupula_intro031"
+      ,
+      "prefab": "data/prefabs/pasarela_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-2.5099 12.0 -56.8521"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_porcho_cupula_intro001"
+      ,
+      "prefab": "data/prefabs/porcho_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-1.88216 12.0 41.7411"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_porcho_cupula_intro002"
+      ,
+      "prefab": "data/prefabs/porcho_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-27.6248 9.96509 30.9164"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_porcho_cupula_intro003"
+      ,
+      "prefab": "data/prefabs/porcho_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "19.9392 12.0 20.953"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_porcho_cupula_intro004"
+      ,
+      "prefab": "data/prefabs/porcho_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "12.5058 12.0 -29.6362"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_porcho_cupula_intro005"
+      ,
+      "prefab": "data/prefabs/porcho_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.9394 11.4113 -6.00584"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_porcho_cupula_intro006"
+      ,
+      "prefab": "data/prefabs/porcho_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-33.3218 11.8937 -45.2952"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_porcho_cupula_intro007"
+      ,
+      "prefab": "data/prefabs/porcho_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-27.8554 9.39648 -29.7484"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_porcho_cupula_intro008"
+      ,
+      "prefab": "data/prefabs/porcho_cupula.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-2.88358 11.8937 -70.1478"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]

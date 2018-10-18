@@ -38,6 +38,17 @@ namespace GUI
     EDirection _direction;
     float _processValue;
 	std::string _variable;
+	float _ratio = 1;
+  };
+
+  struct TSpriteParams 
+  {
+	  std::vector<VEC2> _frame_size;
+	  std::vector<VEC2> _original_image_size;
+	  std::vector<int> _frames_per_second;
+	  std::vector<int> _num_frames;
+	  int _playing_sprite = 0;
+	  std::vector<const CTexture*> _textures;
   };
 
   struct TButtonParams
@@ -45,6 +56,16 @@ namespace GUI
     TParams _params;
     TImageParams _imageParams;
     TTextParams _textParams;
+    float ratio = 0.0f;
+  };
+
+  struct TSubtitlesParams
+  {
+	  TParams _params;
+	  TImageParams _imageParams;
+	  int _current_subtitles = 0;
+	  const CTexture* _current_texture;
+	  std::vector<const CTexture*> _map_to_textures;
   };
 
   using GUICallback = std::function<void()>;

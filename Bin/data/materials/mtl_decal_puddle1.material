@@ -1,0 +1,16 @@
+{
+  "technique": "pbr_decals.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/decals/tx_decal_puddle1.dds"
+    ,
+    "metallic": "data/textures/tx_casa1_met.dds"
+    ,
+    "roughness": "data/textures/white.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

@@ -111,10 +111,7 @@ float4 PS_Projection(in float4 iPosition : SV_Position) : SV_Target
 	// From wPos to Light
 	float3 light_dir_full = light_pos.xyz - wPos;
 	float  distance_to_light = length(light_dir_full);
-	float light_dir = light_dir_full / distance_to_light;
-	
 	float  att = (1. - smoothstep(0.40, 0.98, distance_to_light / light_radius)); // Att, point light
-
 	
 	return float4(0,0,0,1) *projectWavedShadow(wPos);
 }

@@ -1,0 +1,32 @@
+[{
+		"instance_container": {
+			"name": "zone_a_decal",
+			"instance_data": {
+				"mesh": "data/meshes/grass2.instanced_mesh",
+				"materials":
+				[
+					"data/materials/grass_instanced2.material"
+				]
+			},
+			"instances":
+			[{
+					"pos": "-55.7 1 -88.7",
+					"rotation": "0.0 -0.252962 0.0 -0.967476",
+					"scale": "1 1 1"
+				}, {
+					"pos": "0 0 0",
+					"rotation": "0.0 -0.252962 0.0 -0.967476",
+					"scale": "1 1 1"
+				}, {
+					"pos": "-52.7 1 -88.7",
+					"rotation": "0.0 -0.252962 0.0 -0.967476",
+					"scale": "1 1 1"
+				}, {
+					"pos": "-55.7 1 -88.7",
+					"rotation": "0.0 -0.252962 0.0 -0.967476",
+					"scale": "1 1 1"
+				}
+			]
+		}
+	}
+]

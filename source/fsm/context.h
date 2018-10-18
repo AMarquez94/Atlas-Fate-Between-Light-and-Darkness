@@ -17,6 +17,7 @@ namespace FSM
     void start();
     void stop();
     void update(float delta);
+    void restart();
 
     void setCurrentState(const IState* state);
     void setOwner(CHandle handle);

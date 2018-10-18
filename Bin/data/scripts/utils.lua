@@ -33,8 +33,8 @@ function postFXToggle()
 	SLB.postFXToggle()
 end
 
-function blendInCamera(cameraName, blendInTime)
-	SLB.blendInCamera(cameraName, blendInTime)
+function blendInCamera(cameraName, blendInTime, mode, interpolator)
+	SLB.blendInCamera(cameraName, blendInTime, mode, interpolator)
 end
 
 function blendOutCamera(cameraName, blendOutTime)
@@ -43,6 +43,10 @@ end
 
 function blendOutActiveCamera(blendOutTime)
 	SLB.blendOutActiveCamera(blendOutTime)
+end
+
+function resetMainCameras()
+	SLB.resetMainCameras();
 end
 
 function setPlayerInhibited(inhibited)
@@ -57,8 +61,8 @@ function infiniteStamineToggle()
 	SLB.infiniteStamineToggle()
 end
 
-function immortal()
-	SLB.immortal()
+function immortal(state)
+	SLB.immortal(state)
 end
 
 function inShadows()
@@ -93,34 +97,70 @@ function debugToggle()
 	SLB.debugToggle()
 end
 
-function loadScene(level)
-	SLB.loadScene(level)
+function loadscene(level)
+	SLB.loadscene(level)
 end
 
-function unloadScene()
-	SLB.unloadScene()
+function unloadscene()
+	SLB.unloadscene()
 end
 
 function cg_drawlights(type)
 	SLB.cg_drawlights(type)
 end
 
-function spawn()
-	SLB.spawn()
+function spawn(name, pos, lookat)
+	return SLB.spawn(name, pos, lookat)
 end
 
 function renderNavmeshToggle()
 	SLB.renderNavmeshToggle()
 end
 
-function playSound2D(soundName)
-	SLB.playSound2D(soundName)
-end
-
-function exeShootImpactSound()
-	SLB.exeShootImpactSound()
-end
-
 function cinematicModeToggle()
 	SLB.cinematicModeToggle()
+end
+
+function playEvent(name)
+	return SLB.playEvent(name);
+end
+
+function stopAllAudioComponents()
+	SLB.stopAllAudioComponents();
+end
+
+function getEntityByName(entity_name)
+	return SLB.getEntityByName(entity_name);
+end
+
+function isDebug()
+	SLB.isDebug();
+end
+
+function setTutorialPlayerState(active, state)
+	SLB.setTutorialPlayerState(active, state);
+end
+
+function setCinematicPlayerState(active, state)
+	SLB.setCinematicPlayerState(active, state);
+end
+
+function setAIState(e_name, active, state)
+	SLB.setAIState(e_name, active, state);
+end
+
+function move(name, pos, lookat)
+	SLB.move(name, pos, lookat);
+end
+
+function isCheckpointSaved()
+	return SLB.isCheckpointSaved();
+end
+
+function destroyHandle(handle)
+	SLB.destroyHandle(handle);
+end
+
+function resetPatrolLights()
+	SLB.resetPatrolLights();
 end

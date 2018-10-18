@@ -56,11 +56,14 @@ void TCompNoClipController::onMsgNoClipToggle(const TMsgSystemNoClipToggle & msg
 
 void TCompNoClipController::onMsgScenePaused(const TMsgScenePaused & msg)
 {
-    paused = !paused;
+    paused = msg.isPaused;
 }
 
 void TCompNoClipController::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!paused && isInNoClipMode) {
 
         VEC2 movementValue = VEC2::Zero;
@@ -99,7 +102,7 @@ void TCompNoClipController::update(float dt)
             dir.Normalize();
             player_accel = speed * dt;
         }
-        else if (EngineInput["btSlow"].isPressed()) {
+        else if (EngineInput["btControl"].isPressed()) {
             
             /* CTRL to go down */
             dir += VEC3(0, -1, 0);

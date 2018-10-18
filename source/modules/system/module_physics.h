@@ -23,13 +23,14 @@ public:
     CModulePhysics(const std::string& aname) : IModule(aname) { }
     virtual bool start() override;
     virtual void update(float delta) override;
-    virtual void render() override;
+    virtual void renderMain();
 
     // Physx module getters
     physx::PxScene* getPhysxScene() { return gScene; }
     physx::PxPhysics* getPhysxFactory() { return gPhysics; }
     physx::PxControllerManager* getPhysxController() { return mControllerManager; }
     physx::PxCooking* getCooking() { return gCooking; }
+    physx::PxMaterial* CModulePhysics::CreateMaterial(const VEC3 & settings);
 
     /* Ray casting & related methods*/
     bool Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlags flag = physx::PxQueryFlag::eSTATIC, physx::PxQueryFilterData filterdata = defaultFilter);

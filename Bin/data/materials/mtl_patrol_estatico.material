@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/enemy/tx_patrol_alb.dds"
+    ,
+    "metallic": "data/textures/enemy/tx_patrol_met.dds"
+    ,
+    "roughness": "data/textures/enemy/tx_patrol_rgh.dds"
+    ,
+    "normal": "data/textures/enemy/tx_patrol_nml.dds"
+    ,
+    "height": "data/textures/enemy/tx_patrol_hgt.dds"
+  }
+}

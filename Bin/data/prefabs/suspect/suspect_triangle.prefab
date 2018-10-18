@@ -1,0 +1,19 @@
+[{
+	"entity": {
+		"name": "SuspectTriangle",
+		"transform": {
+			"pos": "0 0 0"
+		},
+		"render": [{
+			"mesh": "data/meshes/SuspectTriangle.mesh",
+			"materials": [
+				"data/materials/characters/mtl_player_main_hologram_solid.material"
+			]
+		}],
+		"suspect_ui_element": {
+			"offset_dist": 0.5
+		},
+		"abs_aabb": true,
+		"local_aabb": true
+	}
+}]

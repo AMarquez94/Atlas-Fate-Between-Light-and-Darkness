@@ -1,0 +1,162 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_Screens"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_Screen001"
+      ,
+      "transform":
+      {
+        "pos": "-9.26964 8.26668 -384.772"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_Screen001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video_atlas.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 3.44745 0.0914917"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_Screen001_Apagado"
+      ,
+      "transform":
+      {
+        "pos": "-9.26964 8.26668 -384.772"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_Screen001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_Screen002"
+      ,
+      "transform":
+      {
+        "pos": "18.5998 8.26671 -384.772"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_Screen002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/video_atlas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_Screen002_Apagado"
+      ,
+      "transform":
+      {
+        "pos": "18.5998 8.26671 -384.772"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_Screen001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+	"entity":
+	{
+		"name": "BC_Trigger_ScreenLight",
+		"transform":
+		  {
+			"pos": "-9.26964 8.26668 -384.772"
+			,
+			"rotation": "0.0 0.0 0.0 -1.0"
+		  },
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "4.0 3.44745 0.2"
+		,
+		"is_trigger": true
+      }
+			
+	}
+  }
+]

@@ -125,6 +125,7 @@ void TCompAIDrone::load(const json& j, TEntityParseContext& ctx) {
     enemyColor.colorAlert = j.count("colorAlert") ? loadVEC4(j["colorAlert"]) : VEC4(1, 0, 0, 1);
     enemyColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 0);
 
+    onCreate();
     btType = BTType::DRONE;
 }
 
@@ -400,7 +401,7 @@ bool TCompAIDrone::moveToDestDrone(VEC3 dest, float speed, float dt, bool alsoHe
             }
             amountToRoll = maxAmountToRotateInAFrame * 2 * ((myActualSpeed / speed) + diffSpeed / 0.35f) * localCurrentDirection.x;
                
-            rotateTowardsVec(dest, dt, rotationSpeedNoise);
+            rotateTowardsVec(dest, rotationSpeedNoise, dt);
             float yaw, pitch, roll;
             mypos->getYawPitchRoll(&yaw, &pitch, &roll);
             
@@ -458,7 +459,7 @@ void TCompAIDrone::waitInPosDrone(VEC3 dest, float dt, float speed, float rotSpe
         if (fabsf(deltayaw) > rotSpeed * dt)
         {
             /* 2º yaw a la rotacion del wpt */
-            rotateTowardsVec(dest + lookAt, dt, rotSpeed);
+            rotateTowardsVec(dest + lookAt, rotSpeed, dt);
         }
         else {
             /* 3º esperar */
@@ -521,7 +522,7 @@ bool TCompAIDrone::isEntityInFovDrone(const std::string& entityToChase)
     TCompTempPlayerController *pController = ePlayer->get<TCompTempPlayerController>();
 
     return cone_controller->playerIlluminated && !pController->isInvisible && !pController->isInNoClipMode &&
-        !pController->isMerged && !pController->isDead() && !isEntityHidden(hPlayer);
+        !pController->isMerged && !pController->isDead() && !CEngine::get().getGameManager().isCinematicMode && !isEntityHidden(hPlayer);
 }
 
 void TCompAIDrone::stabilizeRotations(float dt)
@@ -651,7 +652,7 @@ BTNode::ERes TCompAIDrone::actionChaseAndShoot(float dt)
 
         if (VEC3::Distance2D(ppos, myPosition->getPosition()) < 3.f) {
             stabilizeRotations(dt);
-            rotateTowardsVec(lastPlayerKnownPos, dt, rotationSpeedNoise);
+            rotateTowardsVec(lastPlayerKnownPos, rotationSpeedNoise, dt);
         }
         else {
             moveToDestDrone(ppos + upOffset, chaseSpeed, dt);
@@ -825,11 +826,11 @@ BTNode::ERes TCompAIDrone::actionSuspect(float dt)
 
     if (distanceToPlayer <= autoChaseDistance && isEntityInFovDrone(entityToChase)) {
         suspectO_Meter = 1.f;
-        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeedNoise);
+        rotateTowardsVec(ppos->getPosition(), rotationSpeedNoise, dt);
     }
     else if (distanceToPlayer <= maxChaseDistance && isEntityInFovDrone(entityToChase)) {
         suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
-        rotateTowardsVec(ppos->getPosition(), dt, rotationSpeedNoise);
+        rotateTowardsVec(ppos->getPosition(), rotationSpeedNoise, dt);
     }
     else {
         suspectO_Meter = Clamp(suspectO_Meter - dt * dcrSuspectO_Meter, 0.f, 1.f);
@@ -858,7 +859,7 @@ BTNode::ERes TCompAIDrone::actionSuspect(float dt)
 BTNode::ERes TCompAIDrone::actionRotateToNoiseSource(float dt)
 {
     stabilizeRotations(dt);
-    return rotateTowardsVec(noiseSource, dt, rotationSpeedNoise) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
+    return rotateTowardsVec(noiseSource, rotationSpeedNoise, dt) ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
 
 BTNode::ERes TCompAIDrone::actionGenerateNavmeshWpt(float dt)

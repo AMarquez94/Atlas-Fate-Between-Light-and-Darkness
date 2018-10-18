@@ -14,919 +14,1043 @@
   {
     "entity":
     {
-      "name": "cable002"
+      "name": "mesh_baselargalectrica067"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-48.0991 11.4588 -84.5837"
+        "pos": "-38.0443 11.4692 -86.6417"
         ,
-        "rotation": "0.701057 -0.092296 -0.092296 -0.701057"
+        "rotation": "-0.707167 0.00462179 -0.707017 -0.00442498"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable002.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable003"
+      "name": "mesh_baselargalectrica068"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-64.9143 11.3669 -83.3122"
+        "pos": "-46.3329 11.0715 -84.678"
         ,
-        "rotation": "0.683013 0.183013 0.183013 -0.683013"
+        "rotation": "-0.71132 0.000702356 -0.702868 -0.000513877"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable003.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable004"
+      "name": "mesh_baselargalectrica069"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-62.6013 4.51395 -89.7871"
+        "pos": "-45.5642 11.834 -72.7738"
         ,
-        "rotation": "0.683013 0.183013 0.183013 -0.683013"
+        "rotation": "-0.706696 -0.0262285 -0.706538 0.0264192"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable004.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable005"
+      "name": "mesh_baselargalectrica070"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-52.585 4.51395 -89.5684"
+        "pos": "-50.0206 11.9651 -78.9141"
         ,
-        "rotation": "0.653282 0.270598 0.270598 -0.653281"
+        "rotation": "0.518213 -0.518213 -0.480974 0.481222"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable005.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable006"
+      "name": "mesh_baselargalectrica071"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-52.8832 11.6308 -83.7904"
+        "pos": "-59.4012 11.9297 -76.0396"
         ,
-        "rotation": "0.430459 -0.560986 -0.560985 -0.430459"
+        "rotation": "-0.0262579 0.026258 0.706495 -0.706743"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable006.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable007"
+      "name": "mesh_baselargalectrica072"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-52.1917 4.29184 -77.0832"
+        "pos": "-65.0736 11.3503 -82.7144"
         ,
-        "rotation": "0.683013 0.183013 0.183013 -0.683013"
+        "rotation": "5.96419e-06 -0.0371316 -0.99931 0.000175387"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable007.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable008"
+      "name": "mesh_baselargalectrica073"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-51.2991 4.20153 -76.9692"
+        "pos": "-73.3335 11.8264 -79.4758"
         ,
-        "rotation": "-0.477714 -0.521334 -0.521334 0.477714"
+        "rotation": "-0.707082 0.00471504 -0.707102 -0.00446758"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable008.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable009"
+      "name": "mesh_baselargalectrica074"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-62.0002 10.3702 -101.009"
+        "pos": "-69.9204 11.9419 -83.12"
         ,
-        "rotation": "-0.379928 -0.596368 -0.596368 0.379928"
+        "rotation": "0.481547 -0.481547 0.517678 -0.517915"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable009.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable010"
+      "name": "mesh_baselargalectrica075"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-43.9595 6.47158 -79.4382"
+        "pos": "-80.4202 8.99609 -78.6355"
         ,
-        "rotation": "0.653282 -0.270598 -0.270598 -0.653281"
+        "rotation": "-0.707169 0.00466813 -0.707015 -0.0044754"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable010.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable011"
+      "name": "mesh_baselargalectrica076"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-83.1446 11.6308 -82.1448"
+        "pos": "-61.2263 6.91845 -86.6368"
         ,
-        "rotation": "-0.477714 -0.521334 -0.521334 0.477714"
+        "rotation": "-0.707169 0.00466847 -0.707015 -0.00447507"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable011.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable013"
+      "name": "mesh_baselargalectrica077"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-80.0348 9.12815 -88.2481"
+        "pos": "-47.7694 5.42602 -86.6368"
         ,
-        "rotation": "-0.0308437 -0.706434 -0.706434 0.0308437"
+        "rotation": "-0.70717 0.00466864 -0.707014 -0.0044749"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable013.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable014"
+      "name": "mesh_baselargalectrica078"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-88.9244 9.37591 -100.084"
+        "pos": "-85.0304 11.053 -85.778"
         ,
-        "rotation": "0.326505 -0.627212 -0.627211 -0.326505"
+        "rotation": "-0.382777 0.00602581 -0.923818 -0.00234743"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable014.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable015"
+      "name": "mesh_baselargalectrica079"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-87.9047 4.15718 -93.7084"
+        "pos": "-93.4242 10.884 -90.9338"
         ,
-        "rotation": "0.5 0.5 0.5 -0.5"
+        "rotation": "-0.382777 0.0060259 -0.923818 -0.00234721"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable015.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable016"
+      "name": "mesh_baselargalectrica080"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-70.3525 9.12815 -111.757"
+        "pos": "-95.2531 5.79931 -96.0472"
         ,
-        "rotation": "0.241845 -0.664463 -0.664463 -0.241845"
+        "rotation": "-0.382776 0.00602621 -0.923819 -0.00234707"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable016.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable017"
+      "name": "mesh_baselargalectrica081"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-50.6581 5.06922 -109.535"
+        "pos": "-102.811 5.77148 -108.999"
         ,
-        "rotation": "0.706434 0.0308436 0.0308436 -0.706434"
+        "rotation": "-0.000155156 -0.00426507 -0.999936 -0.010444"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable017.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable018"
+      "name": "mesh_baselargalectrica082"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-62.6041 4.10466 -113.0"
+        "pos": "-103.042 11.9246 -108.885"
         ,
-        "rotation": "0.704416 0.0616284 0.0616284 -0.704416"
+        "rotation": "-0.00290808 0.00324958 0.714446 -0.699677"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable018.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable019"
+      "name": "mesh_baselargalectrica083"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-66.8809 9.12815 -134.204"
+        "pos": "-113.121 11.3894 -117.582"
         ,
-        "rotation": "-0.0308437 -0.706434 -0.706434 0.0308437"
+        "rotation": "-0.706434 0.00543112 -0.707739 -0.00510426"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable019.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable020"
+      "name": "mesh_baselargalectrica084"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-47.0892 3.79803 -137.703"
+        "pos": "-111.809 11.3894 -113.52"
         ,
-        "rotation": "0.67559 0.0 0.0 -0.737277"
+        "rotation": "-0.000154198 -0.00426518 -0.999936 -0.0104428"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable020.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable021"
+      "name": "mesh_baselargalectrica085"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-49.2195 8.08866 -141.347"
+        "pos": "-121.75 8.01904 -126.062"
         ,
-        "rotation": "0.0721186 -0.732729 -0.674762 -0.0510204"
+        "rotation": "-0.000154196 -0.00426518 -0.999936 -0.0104423"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable021.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable022"
+      "name": "mesh_baselargalectrica086"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-51.7395 5.86077 -75.4302"
+        "pos": "-122.037 11.821 -131.13"
         ,
-        "rotation": "0.541675 -0.454519 -0.45452 -0.541675"
+        "rotation": "-0.00304217 0.00317097 0.683245 -0.730176"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable022.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable023"
+      "name": "mesh_baselargalectrica087"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-97.2819 9.12815 -111.472"
+        "pos": "-122.339 10.9924 -141.639"
         ,
-        "rotation": "0.379928 -0.596368 -0.596368 -0.379928"
+        "rotation": "-0.000154199 -0.00426578 -0.999936 -0.0104416"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable023.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable024"
+      "name": "mesh_baselargalectrica088"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-97.5911 4.15718 -108.868"
+        "pos": "-121.067 7.48022 -148.333"
         ,
-        "rotation": "-0.326506 -0.627211 -0.627211 0.326506"
+        "rotation": "-0.000154196 -0.00426578 -0.999936 -0.0104409"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable024.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable025"
+      "name": "mesh_baselargalectrica089"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-118.794 4.15718 -125.795"
+        "pos": "-113.027 11.517 -153.191"
         ,
-        "rotation": "-0.092296 -0.701057 -0.701057 0.092296"
+        "rotation": "0.706955 -0.0107942 -0.70713 -0.0080461"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable025.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable026"
+      "name": "mesh_baselargalectrica090"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-108.46 9.03894 -114.144"
+        "pos": "-99.1365 11.3292 -157.293"
         ,
-        "rotation": "-0.158762 -0.55845 -0.678057 0.450741"
+        "rotation": "0.706955 -0.0107947 -0.70713 -0.00804593"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable026.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable027"
+      "name": "mesh_baselargalectrica091"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-80.9779 3.57464 -134.232"
+        "pos": "-105.548 11.8348 -153.605"
         ,
-        "rotation": "0.0308437 -0.706434 -0.706434 -0.0308437"
+        "rotation": "0.494875 -0.507811 -0.503085 0.494098"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable027.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable028"
+      "name": "mesh_baselargalectrica092"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-101.095 9.12815 -114.956"
+        "pos": "-89.2482 11.1986 -157.965"
         ,
-        "rotation": "0.454519 -0.541675 -0.541675 -0.454519"
+        "rotation": "0.706955 -0.0107955 -0.70713 -0.00804644"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable028.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable029"
+      "name": "mesh_baselargalectrica093"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-89.6284 9.7611 -154.605"
+        "pos": "-72.5166 11.8314 -157.421"
         ,
-        "rotation": "0.653282 -0.270598 -0.270598 -0.653281"
+        "rotation": "0.494553 -0.507815 -0.503406 0.49409"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable029.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable030"
+      "name": "mesh_baselargalectrica094"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-50.2755 10.4226 -125.915"
+        "pos": "-64.6269 11.8314 -152.666"
         ,
-        "rotation": "-0.477714 -0.521334 -0.521334 0.477714"
+        "rotation": "0.699048 -0.715069 0.00270862 -0.000750038"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable030.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable031"
+      "name": "mesh_baselargalectrica095"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-57.5495 10.4094 -110.282"
+        "pos": "-75.0791 11.4243 -153.07"
         ,
-        "rotation": "0.704416 0.0616284 0.0616284 -0.704416"
+        "rotation": "0.000208851 -0.00371756 -0.999936 -0.0106995"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable031.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable032"
+      "name": "mesh_baselargalectrica096"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-115.557 9.12815 -142.352"
+        "pos": "-84.9053 11.3353 -149.848"
         ,
-        "rotation": "0.153046 -0.690346 -0.690346 -0.153046"
+        "rotation": "-0.999932 0.0116326 0.00010076 0.000406278"
       }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable032.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cables.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
     }
   }
   ,
   {
     "entity":
     {
-      "name": "cable033"
+      "name": "mesh_baselargalectrica097"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
       ,
       "transform":
       {
-        "pos": "-72.6159 10.4226 -118.378"
+        "pos": "-78.4967 11.2814 -148.124"
         ,
-        "rotation": "-0.40558 -0.579228 -0.579228 0.40558"
+        "rotation": "0.706957 -0.0106084 -0.707132 -0.00804412"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica098"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-69.0828 5.6339 -143.071"
+        ,
+        "rotation": "0.706957 -0.0106087 -0.707132 -0.00804404"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica099"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.594 11.1468 -143.071"
+        ,
+        "rotation": "0.706957 -0.0106087 -0.707131 -0.00804413"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica100"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-58.0508 12.6173 -148.073"
+        ,
+        "rotation": "0.706958 -0.0106088 -0.70713 -0.00804423"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica101"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-60.6714 11.4459 -157.062"
+        ,
+        "rotation": "0.706958 -0.0106094 -0.70713 -0.00804414"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica102"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-52.8834 11.0076 -154.347"
+        ,
+        "rotation": "-0.999917 0.0128574 0.000109703 -0.000773175"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica103"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-46.9872 11.6483 -147.219"
+        ,
+        "rotation": "-0.999917 0.0128574 0.000109703 -0.000773175"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica104"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-41.4352 10.6735 -142.375"
+        ,
+        "rotation": "0.706962 -0.0103022 -0.707131 -0.00804323"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica105"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-45.924 9.89465 -132.908"
+        ,
+        "rotation": "-0.707131 0.008077 -0.706975 -0.00933165"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica106"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-63.7887 11.6771 -124.968"
+        ,
+        "rotation": "-0.707131 0.00807751 -0.706975 -0.00933115"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica107"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-71.8702 5.3446 -124.968"
+        ,
+        "rotation": "-0.707131 0.00807768 -0.706975 -0.00933098"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica108"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-83.758 11.4579 -120.901"
+        ,
+        "rotation": "-0.707131 0.00807886 -0.706975 -0.0093298"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica109"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-88.1179 5.89208 -122.926"
+        ,
+        "rotation": "-0.70713 0.00807987 -0.706975 -0.00932878"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica110"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-92.0966 11.7579 -109.276"
+        ,
+        "rotation": "-0.999921 0.0125255 0.000116032 -0.00137497"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica111"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-90.1379 11.5316 -116.046"
+        ,
+        "rotation": "-0.999921 0.0125259 0.000116034 -0.00137509"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica112"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-89.5296 5.45471 -104.455"
+        ,
+        "rotation": "-0.923764 0.0118922 0.382764 0.00325253"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica113"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-82.4805 5.45471 -97.3422"
+        ,
+        "rotation": "-0.923764 0.0118922 0.382764 0.00325264"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica114"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-84.2541 11.7223 -99.1476"
+        ,
+        "rotation": "-0.923764 0.0118923 0.382764 0.00325275"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica115"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.1354 11.8264 -94.1921"
+        ,
+        "rotation": "-0.999979 0.000138201 0.000110218 -0.00646119"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica116"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-64.8963 11.8264 -93.056"
+        ,
+        "rotation": "0.707014 0.00447049 -0.70717 0.00466698"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica117"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-51.2397 11.8264 -95.0829"
+        ,
+        "rotation": "0.707014 0.00447016 -0.70717 0.00466731"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica118"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.2506 8.69653 -96.4432"
+        ,
+        "rotation": "-0.000109586 0.00646115 -0.999979 0.00014059"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica119"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-41.9271 11.4519 -99.2905"
+        ,
+        "rotation": "0.707015 0.00447049 -0.707169 0.00466698"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica120"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-42.96 11.5815 -106.395"
+        ,
+        "rotation": "-0.999979 0.000138684 0.000109268 -0.00646119"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica121"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-55.1446 5.34667 -104.966"
+        ,
+        "rotation": "-0.707168 0.00466646 -0.707016 -0.00447101"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica122"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-59.655 11.7942 -104.966"
+        ,
+        "rotation": "-0.707168 0.00466646 -0.707016 -0.00447101"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica123"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-45.9661 11.7285 -114.123"
+        ,
+        "rotation": "0.707015 0.00447099 -0.707169 0.00466648"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica124"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.0906 6.19995 -114.123"
+        ,
+        "rotation": "0.707016 0.00447115 -0.707168 0.00466632"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica125"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-70.3051 11.7942 -102.106"
+        ,
+        "rotation": "-0.000105754 0.00646115 -0.999979 0.000137992"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica126"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-76.2272 11.1116 -109.169"
+        ,
+        "rotation": "-0.000105751 0.00646114 -0.999979 0.000137515"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica127"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-65.0061 11.4595 -117.081"
+        ,
+        "rotation": "0.707017 0.00447115 -0.707167 0.00466632"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica128"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-68.8846 11.1936 -122.089"
+        ,
+        "rotation": "-0.999979 0.000137514 0.000105946 -0.00646119"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica129"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-39.0769 11.7285 -119.271"
+        ,
+        "rotation": "-0.999979 0.000138211 0.000108601 -0.00646119"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_baselargalectrica130"
+      ,
+      "prefab": "data/prefabs/baselargaelectrica.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-53.0387 11.6174 -122.449"
+        ,
+        "rotation": "-0.000108736 0.00646115 -0.999979 0.000138211"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_zone_a_cable133"
+      ,
+      "transform":
+      {
+        "pos": "-40.2426 15.761 -93.5916"
+        ,
+        "rotation": "-0.579228 -0.579228 -0.40558 -0.40558"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/cable033.mesh"
+          "mesh": "data/meshes/mesh_zone_a_cable133.mesh"
           ,
           "materials":
           [

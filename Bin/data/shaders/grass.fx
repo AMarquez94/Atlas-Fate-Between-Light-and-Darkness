@@ -6,11 +6,18 @@
 //--------------------------------------------------------------------------------------
 void VS(
   // From Stream 0 from unit_quad_pos_xy.mesh
-  in float4 iPos : POSITION0
+	in float4 iPos     : POSITION0
+	, in float3 iNormal : NORMAL0
+	, in float2 iTex0 : TEXCOORD0
+	, in float2 iTex1 : TEXCOORD1
+	, in float4 iTangent : NORMAL1
 , in uint   iInstancedID : SV_InstanceID
 
-  // From Stream 1 from grass_instanced.mesh
-, in float4 iCenter : POSITION1
+  // From stream 1 we read the instance information 
+, in float4 InstanceWorld0  : TEXCOORD2     // Stream 1
+, in float4 InstanceWorld1  : TEXCOORD3     // Stream 1
+, in float4 InstanceWorld2  : TEXCOORD4     // Stream 1
+, in float4 InstanceWorld3  : TEXCOORD5     // Stream 1
 
 , out float4 oPos : SV_POSITION
 , out float2 oUV : TEXCOORD0
@@ -19,10 +26,10 @@ void VS(
 
 )
 {
-  // iPos goes from 0...1
-  // local_pos goes from -1 ... 1
+  float4x4 World = float4x4(InstanceWorld0, InstanceWorld1, InstanceWorld2, InstanceWorld3 );  
+	float3 iCenter = float3( World[3][0], World[3][1], World[3][2] );
+	
   float3 local_pos = iPos.xyz * 2. - 1.;
-  local_pos.y += 1.0;
 
   // At this point local_pos goes from 0..2
   float unit_rand_val = ( 1 + sin( iInstancedID ) ) * 0.5f;
@@ -31,27 +38,19 @@ void VS(
   float z_start_fadeout = 150; 
   float alpha = 1.0 - smoothstep( z_start_fadeout, z_start_fadeout + 50, length ( iCenter.xyz - camera_pos.xyz ) );
 
-  float scale_factor = 2.0f + 2.0f * unit_rand_val;
-
-  local_pos *= scale_factor * alpha;
-
-  float2 uv = iPos.xy;
-
   // Add some wind effect
-  local_pos.x += sin( ( 3 + 1 * unit_rand_val ) * global_world_time ) * local_pos.y * 0.025;
+  local_pos.x += sin( ( 3 + 1 * unit_rand_val ) * global_world_time ) * (local_pos.y + 1) * 0.015;
 
   // Base position is the position of the instance
-  float4 world_pos = iCenter;
-  // Option1 : Align to the camera
-  // world_pos.xyz += ( local_pos.x * camera_left + local_pos.y * camera_up );
-  // Option2 : Add a random orientation around the vertical axis
-  world_pos.xyz += 2 * ( local_pos.x * float3(cos(3*iInstancedID),0, sin(3*iInstancedID)) + local_pos.y * float3(0,1,0));
+  float4 world_pos = mul(float4(local_pos.xyz * 0.5 + 0.5,1), World);
+  //world_pos.xyz += 2 * ( local_pos.x * float3(cos(3*iInstancedID),0, sin(3*iInstancedID)) + local_pos.y * float3(0,1,0));
 
   oPos = mul(world_pos, camera_view_proj);
-  oUV = 1-uv;
+  oUV = iTex0;
 
   // Remove the color for the fire sample
-  oColor = float4( 1,unit_rand_val,1,alpha); //float4( iColor.xyz, 1 );
+  oColor = float4( 1,0.85 -(sin(iInstancedID) * 0.01),1,alpha); //float4( iColor.xyz, 1 );
+
 
   // To compute the shadows in the PS
   oWorldPos = world_pos.xyz;
@@ -72,7 +71,7 @@ void PS(
 {
   float4 texture_color = txAlbedo.Sample(samLinear, iUV) * iColor;
 
-  if ( texture_color.a < 0.3 ) 
+  if ( texture_color.a < 0.2 ) 
     discard;
 
   o_albedo.xyz = texture_color.xyz;
@@ -107,7 +106,7 @@ float4 PS_Shadows(
 {
   float4 texture_color = txAlbedo.Sample(samLinear, iUV) * iColor;
 
-  if ( texture_color.a < 0.3 ) 
+  if ( texture_color.a < 0.1 ) 
     discard;
 
   return float4(1,1,1,1);

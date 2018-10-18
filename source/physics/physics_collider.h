@@ -8,12 +8,10 @@ class TCompTransform;
 
 class CPhysicsCollider {
 
-protected:
-    physx::PxMaterial* material;
+public:
     physx::PxGeometryType shape_type;
 
-public:
-
+    physx::PxMaterial* material;
     static physx::PxMaterial* default_material;
 
     bool is_trigger = false;
@@ -37,6 +35,7 @@ public:
     void setupFiltering(physx::PxShape* shape, physx::PxU32 filterGroup, physx::PxU32 filterMask);
     void setupFiltering(physx::PxRigidActor* actor, physx::PxU32 filterGroup, physx::PxU32 filterMask);
     void setAsTrigger(physx::PxShape * shape, bool state);
+    physx::PxGeometryHolder getGeometry();
 };
 
 struct CPhysicsBox : public CPhysicsCollider {

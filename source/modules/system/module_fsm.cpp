@@ -26,6 +26,7 @@ bool CModuleFSM::start()
     _factory.registerInstancer("CrouchState", new FSM::StateInstancer<FSM::CrouchState>());
     _factory.registerInstancer("CrouchWalkState", new FSM::StateInstancer<FSM::CrouchWalkState>());
     _factory.registerInstancer("CrouchWalkSlowState", new FSM::StateInstancer<FSM::CrouchWalkSlowState>());
+	_factory.registerInstancer("FallEnterMergeState", new FSM::StateInstancer<FSM::FallEnterMergeState>());
     _factory.registerInstancer("EnterMergeState", new FSM::StateInstancer<FSM::EnterMergeState>());
     _factory.registerInstancer("MergeState", new FSM::StateInstancer<FSM::MergeState>());
     _factory.registerInstancer("ExitMergeInterruptedState", new FSM::StateInstancer<FSM::ExitMergeInterruptedState>());
@@ -38,6 +39,7 @@ bool CModuleFSM::start()
     _factory.registerInstancer("InhibitorRemovedState", new FSM::StateInstancer<FSM::InhibitorRemovedState>());
     _factory.registerInstancer("InhibitorTryToRemoveState", new FSM::StateInstancer<FSM::InhibitorTryToRemoveState>());
     _factory.registerInstancer("DieState", new FSM::StateInstancer<FSM::DieState>());
+    _factory.registerInstancer("FallDieState", new FSM::StateInstancer<FSM::FallDieState>());
     _factory.registerInstancer("DeadState", new FSM::StateInstancer<FSM::DeadState>());
     _factory.registerInstancer("GrabEnemyState", new FSM::StateInstancer<FSM::GrabEnemyState>());
     _factory.registerInstancer("MovingObjectState", new FSM::StateInstancer<FSM::MovingObjectState>());
@@ -45,8 +47,10 @@ bool CModuleFSM::start()
     _factory.registerInstancer("TimeTransition", new FSM::TransitionInstancer<FSM::TimeTransition>());
     _factory.registerInstancer("MultipleVariableTransition", new FSM::TransitionInstancer<FSM::MultipleVariableTransition>());
     _factory.registerInstancer("AnimationTransition", new FSM::TransitionInstancer<FSM::AnimationTransition>());
-    _factory.registerInstancer("SonarState", new FSM::StateInstancer<FSM::SonarState>());
+    _factory.registerInstancer("SonarStateUp", new FSM::StateInstancer<FSM::SonarStateUp>());
+	_factory.registerInstancer("SonarStateCrouch", new FSM::StateInstancer<FSM::SonarStateCrouch>());
     _factory.registerInstancer("PressingButtonState", new FSM::StateInstancer<FSM::PressingButtonState>());
+    _factory.registerInstancer("StunnedState", new FSM::StateInstancer<FSM::StunnedState>());
 
 
     //const FSM::CMachine* myFsm = Resources.get("data/fsm/character.fsm")->as<FSM::CMachine>();

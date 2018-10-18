@@ -1,0 +1,50 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_maderas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_maderas_andamio015"
+      ,
+      "transform":
+      {
+        "pos": "-2.94667 -1.68162e-05 -384.71"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_maderas_andamio015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_suelomadera.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_BC_maderas_andamio015.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

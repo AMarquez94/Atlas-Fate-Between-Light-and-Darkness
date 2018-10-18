@@ -15,13 +15,19 @@ public:
 
   const std::vector<CHandle> getEnemiesInRange();
   const bool canAttackEnemiesInRange(CHandle& closestEnemyToAttack = CHandle());
-  CHandle closestEnemyToMerge();
+  CHandle closestEnemyToMerge(bool goingToMerge);
 
   const std::vector<CHandle> getMovableObjectsInRange();
   CHandle getClosestMovableObjectInRange();
 
   const std::vector<CHandle> getButtonsInRange();
   CHandle getClosestButtonInRange();
+
+  CHandle getClosestButton() { return closestButton; }
+  CHandle getClosestEnemyToAttack() { return closestEnemyToAttack; }
+  CHandle getClosestEnemyToGrab() { return closestEnemyToGrab; }
+  CHandle getClosestEnemyMergeable() { return closestEnemyMergeable; }
+  CHandle getClosestMergingEnemy() { return closestMergingEnemy; }
 
 private:
 
@@ -36,5 +42,11 @@ private:
   float button_fov;
 
   void onMsgScenePaused(const TMsgScenePaused & msg);
+
+  CHandle closestButton;
+  CHandle closestEnemyToAttack;
+  CHandle closestEnemyToGrab;
+  CHandle closestEnemyMergeable;
+  CHandle closestMergingEnemy;
 };
 

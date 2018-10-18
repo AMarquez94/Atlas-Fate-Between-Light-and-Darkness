@@ -89,7 +89,7 @@ void CRenderManager::addRenderKey(
             shadow_mat = Resources.get("data/materials/shadows_skin.material")->as<CMaterial>();
         }
         else if (material->tech->usesInstancing()) {
-            if (material->tech->vs->getVertexDecl()->name == "Pos_x_InstancedPos")
+            if (material->tech->vs->getVertexDecl()->name == "PosNUvUvT_x_InstancedPos")
                 shadow_mat = Resources.get("data/materials/shadows_grass_instanced.material")->as<CMaterial>();
             else
                 shadow_mat = Resources.get("data/materials/shadows_instanced.material")->as<CMaterial>();
@@ -193,7 +193,7 @@ void CRenderManager::renderCategory(const char* category_name) {
 
     // For each key in the range of keys
     while (it != last) {
-        PROFILE_FUNCTION("Key");
+        //PROFILE_FUNCTION("Key");
 
         TCompRender * c_render = it->h_render_owner;
 
@@ -221,6 +221,7 @@ void CRenderManager::renderCategory(const char* category_name) {
         cb_object.obj_color = c_render->color;
         cb_object.self_color = c_render->self_color;
         cb_object.self_intensity = c_render->self_intensity;
+        cb_object.self_opacity = c_render->self_opacity;
         cb_object.updateGPU();
 
         // Do we have to change the material wrt the prev draw call?
@@ -231,12 +232,15 @@ void CRenderManager::renderCategory(const char* category_name) {
 
         //Is our material using skinning data?
         if (using_skin) {
-            CEntity* e = it->h_render_owner.getOwner();
-            assert(e);
-            TCompSkeleton* cs = e->get<TCompSkeleton>();
-            assert(cs);
-            cs->updateCtesBones();
-            cs->cb_bones.activate();
+            CHandle h = it->h_render_owner.getOwner();
+            if (h.isValid()) {
+                CEntity* e = h;
+                assert(e);
+                TCompSkeleton* cs = e->get<TCompSkeleton>();
+                assert(cs);
+                cs->updateCtesBones();
+                cs->cb_bones.activate();
+            }
         }
 
         //if (uses_capa) {

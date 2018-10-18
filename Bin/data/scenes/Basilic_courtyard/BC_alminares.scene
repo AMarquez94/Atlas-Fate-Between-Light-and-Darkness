@@ -1,0 +1,200 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_alminares"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar1"
+      ,
+      "transform":
+      {
+        "pos": "41.5284 20.3416 -327.63"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_torre_sombra.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar2"
+      ,
+      "transform":
+      {
+        "pos": "44.3536 20.3416 -397.574"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar3"
+      ,
+      "transform":
+      {
+        "pos": "45.033 20.3416 -458.382"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar4"
+      ,
+      "transform":
+      {
+        "pos": "-33.8109 20.3416 -329.338"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar4.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar5"
+      ,
+      "transform":
+      {
+        "pos": "-33.8109 20.3416 -397.777"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar5.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar6"
+      ,
+      "transform":
+      {
+        "pos": "-37.0956 20.3416 -457.885"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar6.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

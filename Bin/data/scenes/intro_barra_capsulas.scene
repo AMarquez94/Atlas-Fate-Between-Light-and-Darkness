@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_barra_capsulas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "barra_capsulas_intro"
+      ,
+      "transform":
+      {
+        "pos": "-7.49654 33.9228 -56.7991"
+        ,
+        "rotation": "-0.0436194 0.0 0.0 -0.999048"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/barra_capsulas_intro.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

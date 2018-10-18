@@ -1,0 +1,12 @@
+{
+	"technique": "pbr_parallax.tech",
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/mix/blending_intro/green/tx_suelo_tutorial2_alb.dds",
+		"normal": "data/textures/mix/blending_intro/green/tx_suelo_tutorial2_nml.dds",
+		"metallic": "data/textures/mix/blending_intro/green/tx_suelo_tutorial2_met.dds",
+		"roughness": "data/textures/mix/blending_intro/green/tx_suelo_tutorial2_rgh.dds",
+		"height": "data/textures/mix/blending_intro/green/tx_suelo_tutorial2_hgt.dds",
+		"aocclusion": "data/textures/mix/blending_intro/green/tx_suelo_tutorial2_ao.dds"
+	}
+}

@@ -1,0 +1,91 @@
+[{
+    "entity": {
+      "name": "The Enemy",
+      "transform": {
+        "pos": "0 0 0"
+      },
+      "render": [
+        {
+          "mesh": "data/skeletons/patrol/Mech_low.mesh",
+          "materials":
+          [
+            "data/materials/characters/mtl_enemy_patrol.material"
+          ]
+        },
+        {
+          "mesh": "data/skeletons/patrol/Mech_low.mesh",
+          "materials":
+          [
+            "data/materials/characters/mtl_enemy_patrol_post.material"
+          ]
+        }
+      ],
+      "fade_controller": {
+        "fade_color": "0.0 1.0 1.0 1.0",
+        "fade_time": 0.6,
+        "fall_speed": 3.0,
+        "material": "data/materials/characters/mtl_enemy_patrol_shade.material"
+      },
+      "skeleton": {
+        "skeleton": "data/skeletons/patrol/patrol.skeleton",
+        "scale": 1.4
+      },
+      "emission_controller": {
+        "initial": "0.0 1.0 1.0 1.0"
+      },
+      "patrol_animator": true,
+      "ai_patrol": {
+        "bt": "data/bt/patrol.bt"
+      },
+      "audio": {}
+    }
+  }, {
+    "entity": {
+      "name": "Cone of Vision",
+      "transform": {},
+      "render": {
+        "mesh": "cone_of_vision_patrol.mesh"
+      },
+      "hierarchy": {
+        "parent": "The Enemy"
+      }
+    }
+  }, {
+    "entity": {
+      "name": "FlashLight",
+      "transform": {
+        "pos": "0 0 0",
+        "rotation": "0 0 0 0"
+      },
+      "light_spot": {
+        "type": "spotlight",
+        "proj_type": "perspective",
+        "range": 15,
+        "angle": 75,
+        "inner_cut": 70,
+        "outer_cut": 75,
+        "color": "0.3 1.0 1.0 1.0",
+        "intensity": 2.5,
+        "shadows": true,
+        "casts_shadows": true,
+        "shadows_step": 1.0,
+        "shadows_resolution": 256,
+        "shadows_fmt": "R32_TYPELESS"
+      },
+      "hierarchy": {
+        "parent": "The Enemy",
+        "pos": "0 1.75 0.85",
+        "lookat": "0 0 3"
+      },
+      "cone_of_light": {
+        "hor_fov": 70,
+        "ver_fov": 70,
+        "dist": 15,
+        "target": "The Player"
+      },
+      "abs_aabb": true
+        ,
+        "local_aabb": true
+    }
+  }
+]

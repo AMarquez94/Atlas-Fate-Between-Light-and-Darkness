@@ -43,7 +43,7 @@ void TCompLightPoint::load(const json& j, TEntityParseContext& ctx) {
     if (j.count("color"))
         color = loadVEC4(j["color"]);
     intensity = j.value("intensity", intensity);
-    inner_cut = j.value("inner_cut", inner_cut) + 0.01;
+    inner_cut = j.value("inner_cut", inner_cut) + 0.01f;
     outer_cut = j.value("outer_cut", outer_cut);
 
     if (j.count("projector")) {
@@ -69,7 +69,7 @@ void TCompLightPoint::onCreate(const TMsgEntityCreated& msg) {
     TCompAbsAABB * c_my_aabb = get<TCompAbsAABB>();
     TCompLocalAABB * c_my_aabb_local = get<TCompLocalAABB>();
 
-    float half_radius = outer_cut * .5f;
+    float half_radius = outer_cut;
     c_my_aabb->Extents = VEC3(half_radius, half_radius, half_radius);
     c_my_aabb_local->Extents = VEC3(half_radius, half_radius, half_radius);
 
@@ -89,7 +89,7 @@ void TCompLightPoint::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
 
     if (culling == nullptr) {
 
-        float half_radius = outer_cut * .5f;
+        float half_radius = outer_cut;
         c_my_aabb->Extents = VEC3(half_radius, half_radius, half_radius);
         c_my_aabb_local->Extents = VEC3(half_radius, half_radius, half_radius);
 
@@ -140,7 +140,7 @@ void TCompLightPoint::activate() {
     cb_light.light_color = color;
     cb_light.light_intensity = intensity;
     cb_light.light_pos = c->getPosition();
-    cb_light.light_radius = outer_cut *c->getScale();
+    cb_light.light_radius = outer_cut *c->getScale().x;
     cb_light.far_atten = 1.f;
     cb_light.inner_atten = inner_cut / outer_cut;
     cb_light.light_view_proj_offset = MAT44::Identity;
@@ -162,4 +162,24 @@ VEC4 TCompLightPoint::getColor() const {
 void TCompLightPoint::setColor(VEC4 new_color) {
 
     color = new_color;
+}
+
+void TCompLightPoint::setIntensity(float new_int)
+{
+    intensity = new_int;
+}
+
+float TCompLightPoint::getIntensity()
+{
+    return intensity;
+}
+
+void TCompLightPoint::setRadius(float new_radius)
+{
+    inner_cut = new_radius;
+}
+
+float TCompLightPoint::getRadius()
+{
+    return inner_cut;
 }

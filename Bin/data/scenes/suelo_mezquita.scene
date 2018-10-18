@@ -1,0 +1,110 @@
+[
+  {
+    "entity":
+    {
+      "name": "suelo_mezquita"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_suelo"
+      ,
+      "transform":
+      {
+        "pos": "5.10233 -1.00002 -355.59"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_suelo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mix_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "33.0655 0.5 39.4539"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_mosaico"
+      ,
+      "transform":
+      {
+        "pos": "5.70793 0.00571391 -360.658"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_mosaico.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mosaico.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_piedra_suelo"
+      ,
+      "transform":
+      {
+        "pos": "-2.49443 -0.0713711 -354.21"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_piedra_suelo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_piedras_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

@@ -254,20 +254,28 @@
 			}
 		}
 	}, {
-		"xentity": {
-			"name": "Cone of Light",
-			"transform": {},
-			"render": {
-				"mesh": "cone_of_light.mesh"
+		"entity": {
+			"name": "Laserus",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
 			},
-			"hierarchy": {
-				"parent": "Mimetic"
+			"render": [{
+				"mesh": "data/meshes/laser.mesh",
+				"materials":
+				[
+					"data/materials/mtl_laser.material"
+				]
+			}],
+			"laser":{
+				"parent" : "Mimetic"
 			},
-			"cone_of_light": {
-				"fov": 35,
-				"dist": 20.0,
-				"target": "The Player"
+			"bone_tracker":{
+				"parent": "Mimetic",
+				"bone": "Eye",
+				"rotation_offset_axis" : "0.0 0.0 1.0",
+				"angle" : 90
 			}
 		}
+
 	}
 ]

@@ -66,33 +66,33 @@ namespace SLB {
     std::ostringstream out; // Use lua pushfstring and so on...
     lua_Debug debug;
 
-    out << "SLB Exception: "
+    /*out << "SLB Exception: "
       << std::endl << "-------------------------------------------------------"
       << std::endl;
     out << "Lua Error:" << std::endl << "\t" 
       <<  lua_tostring(L, -1) << std::endl
-      << "Traceback:" << std::endl;
+      << "Traceback:" << std::endl;*/
     for ( int level = 0; lua_getstack(L, level, &debug ); level++)
     {
       if (lua_getinfo(L, "Sln", &debug) )
       {
         //TODO use debug.name and debug.namewhat
         //make this more friendly
-        out << "\t [ " << level << " (" << debug.what << ") ] ";
+        //out << "\t [ " << level << " (" << debug.what << ") ] ";
         if (debug.currentline > 0 )
         {
-          out << debug.short_src << ":" << debug.currentline; 
+          //out << debug.short_src << ":" << debug.currentline; 
         }
         if (debug.name)
         {
-          out << " @ " << debug.name;
-           if (debug.namewhat) out << "(" << debug.namewhat << ")";
+          //out << " @ " << debug.name;
+           //if (debug.namewhat) /*out << "(" << debug.namewhat << ")"*/;
         }
-        out << std::endl;
+        //out << std::endl;
       }
       else
       {
-        out << "[ERROR using Lua DEBUG INTERFACE]" << std::endl;
+        //out << "[ERROR using Lua DEBUG INTERFACE]" << std::endl;
       }
     }
 

@@ -1,0 +1,8 @@
+{
+	"xres": 1280,
+	"yres": 720,
+	"fullscreen": true,
+	"drawfps": false,
+	"fixed_fps": 60,
+	"fixed_step": false
+}

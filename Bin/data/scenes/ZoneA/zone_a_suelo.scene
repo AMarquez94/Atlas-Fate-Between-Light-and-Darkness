@@ -14,7 +14,7 @@
   {
     "entity":
     {
-      "name": "mesh_suelo"
+      "name": "mesh_suelo_zone_a"
       ,
       "transform":
       {
@@ -26,11 +26,11 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_suelo.mesh"
+          "mesh": "data/meshes/mesh_suelo_zone_a.mesh"
           ,
           "materials":
           [
-            "data/materials/mtl_suelo.material"
+            "data/materials/mix_zonea.material"
           ]
         }
       ]

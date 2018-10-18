@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_tejados_alb.dds"
+    ,
+    "metallic": "data/textures/tx_tejados_met.dds"
+    ,
+    "roughness": "data/textures/tx_tejados_rgh.dds"
+    ,
+    "normal": "data/textures/tx_tejados_nml.dds"
+    ,
+    "height": "data/textures/tx_tejados_hgt.dds"
+    ,
+    "aocclusion": "data/textures/tx_tejados_ao.dds"
+  }
+}

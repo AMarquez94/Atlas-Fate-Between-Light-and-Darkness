@@ -28,7 +28,7 @@ void TCompNoiseEmitter::registerMsgs()
 
 void TCompNoiseEmitter::onMsgScenePaused(const TMsgScenePaused & msg)
 {
-	paused = !paused;
+	paused = msg.isPaused;
 }
 
 void TCompNoiseEmitter::makeNoise(float noiseRadius, float timeToRepeat, bool isNoise, bool isOnlyOnce, bool isArtificial)
@@ -52,6 +52,10 @@ void TCompNoiseEmitter::changeNoiseRadius(float newRadius)
 
 void TCompNoiseEmitter::update(float dt)
 {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
 	if (!paused && emitter_sphere.isValid() && CHandle(this).getOwner().isValid()) {
 
 		_timer += dt;

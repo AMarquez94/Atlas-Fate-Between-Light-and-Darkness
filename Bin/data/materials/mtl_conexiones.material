@@ -1,0 +1,13 @@
+{
+	"technique": "pbr_no_cull.tech",
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/tx_conexiones_alb.dds",
+		"metallic": "data/textures/tx_conexiones_met.dds",
+		"roughness": "data/textures/tx_conexiones_rgh.dds",
+		"normal": "data/textures/tx_conexiones_nml.dds",
+		"height": "data/textures/tx_conexiones_hgt.dds",
+		"emissive": "data/textures/tx_conexiones_emi.dds",
+		"aocclusion": "data/textures/tx_conexiones_ao.dds"
+	}
+}

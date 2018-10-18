@@ -1,0 +1,20 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_monitorytubos_alb.dds"
+    ,
+    "metallic": "data/textures/tx_monitorytubos_met.dds"
+    ,
+    "roughness": "data/textures/tx_monitorytubos_rgh.dds"
+    ,
+    "normal": "data/textures/tx_monitorytubos_nml.dds"
+    ,
+    "height": "data/textures/tx_monitorytubos_hgt.dds"
+    ,
+    "emissive": "data/textures/tx_monitorytubos_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_monitorytubos_ao.dds"
+  }
+}

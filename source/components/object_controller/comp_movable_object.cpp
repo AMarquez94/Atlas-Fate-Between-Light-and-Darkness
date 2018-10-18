@@ -27,6 +27,10 @@ void TCompMovableObject::registerMsgs() {
 }
 
 void TCompMovableObject::update(float dt) {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (isBeingMoved) {
         CEntity* eMovingMe = hEntityMovingMe;
         TCompTransform * myPos = get<TCompTransform>();

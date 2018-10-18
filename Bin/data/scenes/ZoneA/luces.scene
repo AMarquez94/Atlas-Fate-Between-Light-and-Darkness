@@ -2897,6 +2897,8 @@
         ,
         "intensity": 15.0
         ,
+				"projector" : "textures/decals/square_cookie.dds"
+				,
         "casts_shadows": true
         ,
         "shadows_step": 1.0
@@ -2924,5 +2926,14 @@
         "light"
       ]
     }
-  }
+  }, {
+		"xentity": {
+			"prefab": "data/prefabs/hologram.prefab",
+			"name": "mesh_hologram",
+			"transform": {
+				"pos": "-43.769 0 -90.612",
+				"lookat": "0 0 0"
+			}
+		}
+	}
 ]

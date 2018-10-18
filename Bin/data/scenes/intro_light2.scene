@@ -1,0 +1,99 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_light2"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Direct001_intro"
+      ,
+      "transform":
+      {
+        "pos": "72 140.5 33"
+        ,
+        "lookat": "-69.8796 -73.9601 -81.2179"
+      }
+      ,
+      "light_dir":
+      {
+        "type": "directional"
+        ,
+        "color": "0.92 0.94 0.627 1.0"
+        ,
+        "intensity": 0.25
+        ,
+        "proj_type": "ortographic"
+        ,
+        "z_near": 0.01
+        ,
+        "z_far": 282.589
+        ,
+        "ortosize": 125.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.5
+        ,
+        "shadows_resolution": 4096
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "tags":
+      [
+        "light", "corridor", "dir_light"
+      ]
+    }
+  },
+  {
+    "entity":
+    {
+      "name": "Mosque_Light"
+      ,
+      "transform":
+      {
+        "pos": "3.5 71 -234"
+				,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+			"light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 110.0
+        ,
+        "outer_cut": 125.0
+        ,
+        "color": "0.92 0.94 0.627 1.0"
+        ,
+        "intensity": 15.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+			,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

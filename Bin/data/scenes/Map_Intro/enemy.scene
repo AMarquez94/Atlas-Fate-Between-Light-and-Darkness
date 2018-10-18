@@ -3,7 +3,7 @@
 			"name": "Enemies"
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/patrol.prefab",
 			"name": "The Enemy 1",
 			"transform": {
@@ -15,14 +15,15 @@
 			}
 		}
 	}, {
-		"xentity": {
-			"prefab": "data/prefabs/patrol.prefab",
-			"name": "The Enemy 2",
+		"entity": {
+			"prefab": "data/prefabs/mimetic.prefab",
+			"name": "Mimetic 2",
 			"transform": {
 				"pos": "-25 0 110",
 				"lookat": "-24 0 110"
 			},
-			"ai_patrol": {
+			"ai_mimetic": {
+				"type": "floor",
 				"waypoints": [{
 						"position": "-25 0 110",
 						"lookAt": "1 0 0",
@@ -84,7 +85,7 @@
 		}
 	},
 	{
-		"entity": {
+		"xentity": {
 			"prefab": "data/prefabs/drone.prefab",
 			"name": "Drone 1",
 			"transform": {

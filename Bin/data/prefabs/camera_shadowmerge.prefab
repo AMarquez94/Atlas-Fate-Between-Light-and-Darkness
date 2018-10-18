@@ -1,0 +1,51 @@
+[
+	{
+		"entity": {
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"camera": {
+				"fov": 90,
+				"z_near": 0.01,
+				"z_far": 1000
+			},
+			"render_ao": {
+				"enabled": true
+			},
+			"render_blur": {
+				"enabled": false
+			},
+			"render_blur_radial": {
+				"enabled": true,
+				"amount": 3,
+				"radius": 0.9	
+			},
+			"motion_blur": {
+				"enabled": true
+			},
+			"color_grading": {
+				"enabled": true,
+				"amount": 0.8,
+				"lut": "data/textures/lut/lut1.dds"
+			},
+			"vignette": {
+				"enabled": true,
+				"amount": 0.130
+			},			
+			"render_blur": {
+				"enabled": false,
+				"global_distance": 6,
+				"gauss_filter": true
+			},
+			"render_focus": {
+				"z_center_in_focus": 0,
+				"z_margin_in_focus": 0,
+				"transition_distance": 0,
+				"enabled": false
+			},
+			"antialiasing": {
+				"enabled": true
+			}
+		}
+	}
+]

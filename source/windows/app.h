@@ -26,10 +26,14 @@ class CApp {
 
 public:
 
-	int fps = 0;
+    bool drawfps = true;
+    bool fixed_step = true;
+    float fixed_fps = 60.f;
 
-	int  xres = 0;
-	int  yres = 0;
+	int fps = 0;
+	int  xres = 1280;
+	int  yres = 720;
+    bool fullscreen = false;
 	bool resetMouse = false;
 	bool lostFocus = false;
 	bool has_focus = false;

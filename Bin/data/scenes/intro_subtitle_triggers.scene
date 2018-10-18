@@ -1,0 +1,102 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_subtitle_triggers"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_trigger_muralla"
+      ,
+      "transform":
+      {
+        "pos": "-2.17196 0.0 15.3927"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "is_trigger" : true
+        ,
+        "size": "5.0 2.035 3.835"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_trigger_muralla_alto"
+      ,
+      "transform":
+      {
+        "pos": "-1.95185 15.7571 8.69859"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box",
+        "is_trigger" : true
+        ,
+        "size": "5.0 0.867828 1.60495"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_trigger_patrol_care"
+      ,
+      "transform":
+      {
+        "pos": "-9.17851 0.0 -42.4092"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box",
+        "is_trigger" : true
+        ,
+        "size": "4.81512 2.95181 4.09255"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_trigger_patrol_story"
+      ,
+      "transform":
+      {
+        "pos": "-18.0642 0.0 -58.7239"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box",
+        "is_trigger" : true
+        ,
+        "size": "14.1179 3.53555 2.51928"
+      }
+    }
+  }
+]

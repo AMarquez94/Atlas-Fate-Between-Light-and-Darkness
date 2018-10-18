@@ -1,98 +1,106 @@
 [{
-		"entity": {
-			"name": "Enemies"
+	"entity": {
+		"name": "Enemies"
+	}
+}, {
+	"entity": {
+		"prefab": "data/prefabs/patrol.prefab",
+		"name": "The Enemy 1",
+		"transform": {
+			"pos": "-5.5 0 -368",
+			"lookat": "-5.5 0 -367"
+		},
+		"ai_patrol": {
+			"startLightsOn": false,
+			"waypoints": [
+			{
+				"position": "-5.5 0 -368",
+				"lookAt":  "0 0 1",
+				"minTime": 6
+			}, {
+				"position": "-5.5 0 -352",
+				"lookAt": "-0 0 1",
+				"minTime": 3
+			}]
 		}
-	}, {
-		"entity": {
-			"prefab": "data/prefabs/patrol.prefab",
-			"name": "The Enemy 1",
-			"transform": {
-				"pos": "-4.7 0 -370",
-				"lookat": "100 0 74"
-			},
-			"ai_patrol": {
-				"startLightsOn": false,
-				"waypoints": [{
-						"position": "-4.7 0 -370",
-						"lookAt": "0 0 1",
-						"minTime": 3
-					}, {
-						"position": "-4.7 0 -357",
-						"lookAt": "0.78 0 0.62",
-						"minTime": 3
-					}, {
-						"position": "0 0 -352",
-						"lookAt": "1 0 0",
-						"minTime": 3
-					}, {
-						"position": "4.7 0 -352",
-						"lookAt": "1 0 0",
-						"minTime": 3
-					}, {
-						"position": "4.7 0 -352",
-						"lookAt": "-1 0 0",
-						"minTime": 3
-					}, {
-						"position": "0 0 -352",
-						"lookAt": "-1 0 0",
-						"minTime": 3
-					}, {
-						"position": "-4.7 0 -357",
-						"lookAt": "-0.78 0 -0.62",
-						"minTime": 3
-					},{
-						"position": "-4.7 0 -370",
-						"lookAt": "0 0 -1",
-						"minTime": 3
-					}
-				]
-			}
+	}
+}, {
+	"entity": {
+		"prefab": "data/prefabs/patrol.prefab",
+		"name": "The Enemy 2",
+		"transform": {
+			"pos": "15 0 -362",
+			"lookat": "15.4 0 -362"
+		},
+		"ai_patrol": {
+			"startLightsOn": false,
+			"waypoints": [
+			{
+				"position": "15 0 -362",
+				"lookAt":  "0 0 1",
+				"minTime": 6
+			}, {
+				"position": "15 0 -362",
+				"lookAt": "1 0 1",
+				"minTime": 2
+			}]
 		}
-	},{
-		"entity": {
-			"prefab": "data/prefabs/patrol.prefab",
-			"name": "The Enemy 1",
+	}
+}, {
+	"entity": {
+		"prefab": "data/prefabs/patrol.prefab",
+		"name": "The Enemy 3",
+		"transform": {
+			"pos": "4 0 -352",
+			"lookat": "0 0 -352"
+		},
+		"ai_patrol": {
+			"startLightsOn": false,
+			"waypoints": [
+			{
+				"position": "4 0 -352",
+				"lookAt":  "1 0 1",
+				"minTime": 5
+			}, {
+				"position": "4 0 -352",
+				"lookAt":  "-1 0 1",
+				"minTime": 5
+			}]
+		}
+	}
+}, {
+	"xentity": {
+		"prefab": "data/prefabs/patrol.prefab",
+		"name": "The Enemy 4",
+		"transform": {
+			"pos": "6 0 -352",
+			"lookat": "10 0 -352"
+		},
+		"ai_patrol": {
+			"startLightsOn": false,
+			"waypoints": [
+			{
+				"position": "6 0 -352",
+				"lookAt":  "1 0 1",
+				"minTime": 5
+			}, {
+				"position": "14.5 0 -352",
+				"lookAt":  "-0.2 0 0.8",
+				"minTime": 5
+			}]
+		}
+	}
+},{
+		"xentity": {
+			"prefab": "data/prefabs/mimetic.prefab",
+			"name": "The Mimetic",
 			"transform": {
 				"pos": "4.7 0 -352",
 				"lookat": "100 0 74"
 			},
-			"ai_patrol": {
-				"startLightsOn": false,
-				"waypoints": [{
-						"position": "4.7 0 -352",
-						"lookAt": "1 0 0",
-						"minTime": 3
-					}, {
-						"position": "9.4 0 -352",
-						"lookAt": "1 0 0",
-						"minTime": 3
-					}, {
-						"position": "14.1 0 -357",
-						"lookAt": "0.78 0 -0.62",
-						"minTime": 3
-					}, {
-						"position": "14.1 0 -370",
-						"lookAt": "-1 0 0",
-						"minTime": 3
-					}, {
-						"position": "14.1 0 -370",
-						"lookAt": "1 0 0",
-						"minTime": 3
-					}, {
-						"position": "14.1 0 -357",
-						"lookAt": "-0.78 0 0.62",
-						"minTime": 3
-					}, {
-						"position": "9.4 0 -352",
-						"lookAt": "-1 0 0",
-						"minTime": 3
-					}, {
-						"position": "4.7 0 -352",
-						"lookAt": "-1 0 0",
-						"minTime": 3
-					}
-				]
+			"ai_mimetic": {
+				"type": "floor"
+				
 			}
 		}
-	}
-]
+}]

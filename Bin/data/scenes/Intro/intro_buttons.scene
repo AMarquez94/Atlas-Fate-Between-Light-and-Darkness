@@ -1,0 +1,21 @@
+[
+  {
+    "entity": {
+      "name": "Buttons"
+    }
+  },
+	{
+		"entity": {
+			"name": "Intro_terminal_01",
+			"prefab": "data/prefabs/terminal.prefab",
+			"transform": {
+				"pos": "-22.2 0 -74.275",
+				"lookat": "-23.2 0 -74.275"
+			},
+			"button": {
+				"script": "transition_intro_to_coliseum",
+				"canBePressed": true
+			}
+		}
+	}
+]

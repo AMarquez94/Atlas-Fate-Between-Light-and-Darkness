@@ -7,6 +7,7 @@
 #include "modules/game/module_map_intro.h"
 #include "modules/game/module_level_select.h"
 #include "modules/game/module_game_manager.h"
+#include "modules/game/module_credits.h"
 
 //--------------------------------------------------------------------------------------
 CEngine& CEngine::get() {
@@ -16,9 +17,11 @@ CEngine& CEngine::get() {
 }
 
 CEngine::CEngine()
-	: _module_render("render")
+	: _module_file("files")
+    , _module_render("render")
 	, _module_entities("entities")
 	, _module_ia("ia")
+	, _module_animations("animations")
 	, _module_input("input")
 	, _module_physics("physics")
 	, _module_cameras("cameras")
@@ -31,6 +34,7 @@ CEngine::CEngine()
 	, _module_scene_manager("scene_manager")
 	, _module_instancing("instancing")
 	, _module_debug("debug")
+	, _module_lerp("lerp")
     , _module_particles("particles")
 {}
 
@@ -42,11 +46,15 @@ bool CEngine::start() {
 	static CModuleGameOver module_game_over("game_over");
 	static CModuleMapIntro module_map_intro("map_intro");
 	static CModuleLevelSelect module_level_select("level_select");
+	static CModuleCredits module_credits("credits");
+
     //static CModuleTestInstancing module_test_instancing("test_instancing");
 
+	_modules.registerSystemModule(&_module_file);
 	_modules.registerSystemModule(&_module_render);
 	_modules.registerSystemModule(&_module_entities);
 	_modules.registerSystemModule(&_module_ia);
+	_modules.registerSystemModule(&_module_animations);
 	_modules.registerSystemModule(&_module_input);
 	_modules.registerSystemModule(&_module_physics);
 	_modules.registerSystemModule(&_module_cameras);
@@ -55,17 +63,21 @@ bool CEngine::start() {
 	_modules.registerSystemModule(&_module_navmesh);
 	_modules.registerSystemModule(&_module_game_console);
 	_modules.registerSystemModule(&_module_gui);
-	_modules.registerSystemModule(&_module_logic);          //Always last to start the ongamestarted event from here
     _modules.registerSystemModule(&_module_scene_manager);
     _modules.registerSystemModule(&_module_instancing);
     _modules.registerSystemModule(&_module_debug);
     _modules.registerSystemModule(&_module_particles);
+	_modules.registerSystemModule(&_module_lerp);
+
+    //IMPORTANT: ALWAYS LAST to start the ongamestarted event from here
+	_modules.registerSystemModule(&_module_logic); 
 
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_game_manager);
 	_modules.registerGameModule(&module_main_menu);
 	_modules.registerGameModule(&module_game_over);
 	_modules.registerGameModule(&module_map_intro);
+	_modules.registerGameModule(&module_credits);
 	_modules.registerGameModule(&module_level_select);
     //_modules.registerGameModule(&module_test_instancing);
 
@@ -79,6 +91,7 @@ bool CEngine::stop() {
 
 	bool ok = true;
 	ok &= _modules.stop();
+    exit(0);
 	return ok;
 }
 

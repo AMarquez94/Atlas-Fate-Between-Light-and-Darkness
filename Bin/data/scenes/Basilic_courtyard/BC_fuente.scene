@@ -1,0 +1,168 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_fuente"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      },
+      "animated_object_controller":{
+      	"get_on_group" : true,
+        "reference_names":[
+          {
+            "name" : "BC_fuente_anillo_ext_low"
+          },
+          {
+            "name" : "BC_fuente_anillo_int_low"
+          }
+        ],
+        "animations":[
+          {
+            "name" : "parar",
+            "src" : "data/rigid_anims/Patio_basilica_final63.anims",
+            "loops" : true,
+            "on_start" : true
+          }
+        ]
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente"
+      ,
+      "transform":
+      {
+        "pos": "5.53932 3.9 -360.562",
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_fuente.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_BC_fuente.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_bola"
+      ,
+      "transform":
+      {
+        "pos": "5.52519 11.2 -360.484"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_bola.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/characters/mtl_player_main_hologram_solid.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.7
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_anillo_ext_low"
+      ,
+      "transform":
+      {
+        "pos": "5.52519 11.1 -360.521"
+        ,
+        "rotation": "0.339481 -0.255921 0.607764 -0.67073"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_anillo_ext_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ],
+      "rigid_anim" : true
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_fuente_anillo_int_low"
+      ,
+      "transform":
+      {
+        "pos": "5.52519 11.1 -360.521"
+        ,
+        "rotation": "0.13869 -0.195781 -0.168668 -0.956026"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_fuente_anillo_int_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
+      ,
+      "rigid_anim" : true
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

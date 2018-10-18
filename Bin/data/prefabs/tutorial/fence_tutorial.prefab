@@ -1,0 +1,17 @@
+[{
+		"entity": {
+			"name": "Tutorial Fence",
+			"transform": {
+				"pos": "0 0 0",
+				"scale": "0.7 0.7 0.7"
+			},
+			"render": [{
+				"mesh": "data/meshes/mesh_puerta_reja_puequena.mesh",
+				"materials": [
+					"data/materials/characters/mtl_player_main_hologram_solid.material"
+				]
+			}],
+			"tags": ["fence_tutorial"]
+		}
+	}
+]

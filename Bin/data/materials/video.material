@@ -1,0 +1,10 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/pantalla_atlas.h264"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

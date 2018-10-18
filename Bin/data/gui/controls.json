@@ -1,0 +1,21 @@
+[
+	{
+		"name" : "controls_menu_background",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "background_blackad",
+				"type" : "image",
+				"size" : "1080 640",
+				"texture" : "data/textures/gui/black_background.dds"
+			},
+			{
+				"name" : "controls_img",
+				"type" : "image",
+				"size" : "1080 640",
+				"texture" : "data/textures/gui/controls.dds"
+			}
+		]
+	}
+]

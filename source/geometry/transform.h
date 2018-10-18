@@ -6,7 +6,7 @@
 class CTransform {
     QUAT rot;
     VEC3 pos;
-    float scale = 1.0f;
+    VEC3 scale = VEC3(1, 1, 1);
 
 public:
 
@@ -20,14 +20,27 @@ public:
     QUAT getRotation() const { return rot; }
     void setRotation(QUAT new_rot) { rot = new_rot; }
 
-    float getScale() const { return scale; }
-    void  setScale(float new_scale) { scale = new_scale; }
+    VEC3 getScale() const { return scale; }
+    void  setScale(VEC3 new_scale) { scale = new_scale; }
     // -------------------------------------------
     MAT44 asMatrix() const {
         return MAT44::CreateScale(scale)
             * MAT44::CreateFromQuaternion(rot)
             * MAT44::CreateTranslation(pos)
             ;
+    }
+
+	void rotateAround(VEC3 target, float ammount) {
+		VEC3 dir = pos - target;
+		VEC3 rotated_dir;
+		rotated_dir.x = ( dir.x * cos(ammount) ) - ( dir.z * sin(ammount) );
+		rotated_dir.z = (dir.x * sin(ammount)) + (dir.z * sin(ammount));
+		VEC3 new_pos = target + rotated_dir;
+		pos = new_pos;
+	}
+
+    MAT44 asWorldMatrix() const {
+        return MAT44::CreateWorld(pos, getFront(), getUp());
     }
 
     // -------------------------------------------

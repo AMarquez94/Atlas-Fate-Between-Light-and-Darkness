@@ -168,12 +168,15 @@ void CRenderMesh::render() const {
     assert(CRenderTechnique::current);
     assert(CRenderTechnique::current->vs);
     assert(vtx_decl);
-    assert((CRenderTechnique::current->vs->getVertexDecl() == vtx_decl)
-        || fatal("Current tech %s expect vertex decl %s, but this mesh uses %s\n"
-            , CRenderTechnique::current->getName().c_str()
-            , CRenderTechnique::current->vs->getVertexDecl()->name.c_str()
-            , vtx_decl->name.c_str()
-        ));
+
+    //TODO: Delete comment when merged
+
+    //assert((CRenderTechnique::current->vs->getVertexDecl() == vtx_decl)
+    //    || fatal("Current tech %s expect vertex decl %s, but this mesh uses %s\n"
+    //        , CRenderTechnique::current->getName().c_str()
+    //        , CRenderTechnique::current->vs->getVertexDecl()->name.c_str()
+    //        , vtx_decl->name.c_str()
+    //    ));
 
     if (ib)
         Render.ctx->DrawIndexed(num_indices, 0, 0);

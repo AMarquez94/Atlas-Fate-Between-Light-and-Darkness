@@ -3,9 +3,9 @@
 			"name": "capsule_prefab",
 			"transform": {
 				"pos": "0 0 0",
-				        "rotation": "0.0 -0.707107 -0.707107 0.0"
+				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-      "instance" : 
+			"instance" : 
 			{
 				"mesh": "data/meshes/capsule.instanced_mesh",
 				"materials": [
@@ -18,7 +18,7 @@
 				"is_dynamic": true,
 				"is_gravity": false,
 				"group": "dynamic",
-				"name": "data/colliders/collider_capsula_low.collider"
+				"name": "data/colliders/collider_capsule.collider"
 			},
 			"rigidbody": {
 				"is_controller": false,
@@ -28,7 +28,8 @@
 				"speed": 0,
 				"start_point": "0 0 0",
 				"end_point": "1 1 1"
-			}
+			},
+			"audio":{}
 		}
 	}
 ]

@@ -5,8 +5,10 @@
 #include "components/comp_name.h"
 #include "components/comp_group.h"
 #include "components/comp_transform.h"
+#include "components/comp_render.h"
 #include "render/compute/compute_task.h"
-
+#include "render/render_manager.h"
+#include "render/texture/material.h"
 static CComputeTask compute_task;
 static CTexture*    compute_result;
 
@@ -38,24 +40,24 @@ bool CModuleInstancing::stop()
 bool CModuleInstancing::start() {
 
     // Load static meshes
-    {
-        auto rmesh = Resources.get("data/meshes/GeoSphere001.instanced_mesh")->as<CRenderMesh>();
-        // Remove cast and upcast to CRenderMeshInstanced
-        instances_mesh = (CRenderMeshInstanced*)rmesh;
-    }
-    {
-        auto rmesh = Resources.get("data/meshes/blood.instanced_mesh")->as<CRenderMesh>();
-        blood_instances_mesh = (CRenderMeshInstanced*)rmesh;
-    }
+    //{
+    //    auto rmesh = Resources.get("data/meshes/GeoSphere001.instanced_mesh")->as<CRenderMesh>();
+    //    // Remove cast and upcast to CRenderMeshInstanced
+    //    instances_mesh = (CRenderMeshInstanced*)rmesh;
+    //}
+    //{
+    //    auto rmesh = Resources.get("data/meshes/blood.instanced_mesh")->as<CRenderMesh>();
+    //    blood_instances_mesh = (CRenderMeshInstanced*)rmesh;
+    //}
     {
         auto rmesh = Resources.get("data/meshes/particles.instanced_mesh")->as<CRenderMesh>();
         particles_instances_mesh = (CRenderMeshInstanced*)rmesh;
     }
-    {
-        auto rmesh = Resources.get("data/meshes/grass.instanced_mesh")->as<CRenderMesh>();
-        grass_instances_mesh = (CRenderMeshInstanced*)rmesh;
-        grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
-    }
+    //{
+    //    auto rmesh = Resources.get("data/meshes/grass.instanced_mesh")->as<CRenderMesh>();
+    //    grass_instances_mesh = (CRenderMeshInstanced*)rmesh;
+    //    grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TInstance));
+    //}
 
     // Create a scene entity to hold all global instances.
     {
@@ -73,19 +75,6 @@ bool CModuleInstancing::start() {
 
         CHandle h_group = getObjectManager<TCompGroup>()->createHandle();
         e->set(h_group.getType(), h_group);
-    }
-
-    {
-        //compute_result = new CTexture();
-        //compute_result->setNameAndClass("output_bw.dds", getResourceClassOf<CTexture>());
-        //if (!compute_result->create(256, 256, DXGI_FORMAT_R8G8B8A8_UNORM, CTexture::CREATE_COMPUTE_OUTPUT))
-        //    return false;
-
-        //json j = loadJson("data/compute_task.json");
-        //if (!compute_task.create(j))
-        //    return false;
-        // Missing
-        // compute_task.destroy();
     }
 
     return true;
@@ -134,6 +123,38 @@ bool CModuleInstancing::parseInstance(const json& j, TEntityParseContext& ctx) {
     return true;
 }
 
+bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) {
+
+    // Create a new fresh entity
+    auto& j_instance_data = j["instance_data"];
+    auto& j_instances = j["instances"];
+    parseInstance(j_instance_data, ctx); // Add the mesh to the set if not created
+
+    for (auto& p : j_instances) {
+
+        QUAT rot;
+        VEC3 pos, scale;
+
+        if (p.count("pos"))
+            pos = loadVEC3(p["pos"]);
+
+        if (p.count("rotation"))
+            rot = loadQUAT(p["rotation"]);
+
+        if (p.count("scale"))
+            scale = loadVEC3(p["scale"]);
+
+        MAT44 tr = MAT44::CreateTranslation(pos);
+        MAT44 sc = MAT44::CreateScale(scale);
+        MAT44 rt = MAT44::CreateFromQuaternion(rot);
+        MAT44 mvp = sc * rt * tr;
+
+        EngineInstancing.addInstance(j_instance_data["mesh"], "default", mvp);
+    }
+
+    return true;
+}
+
 void CModuleInstancing::update(float delta) {
 
     // Rotate the particles
@@ -151,9 +172,86 @@ void CModuleInstancing::update(float delta) {
     //for (auto p : _dynamic_instances)
     //    for (auto q : p.second)
     //            q->world = q->world * _dynamic_transform[q]->asMatrix();
+
+    updateTimedInstances(delta);
 }
 
-int CModuleInstancing::addInstance(const std::string & name, MAT44 w_matrix) {
+void CModuleInstancing::updateTimedInstances(float dt)
+{
+    // Loop through and remove instance from vector.
+    for (auto& p : _dynamic_instances) {
+        for (auto it = p.second._instances.begin(); it != p.second._instances.end(); it++) {
+            (*it).time -= (dt / (*it).total_time);
+        }
+    }
+}
+
+int CModuleInstancing::addDynamicInstance(const std::string & name, const std::string & mat, MAT44 w_matrix, float time)
+{
+    /*if (_global_names.find(name) == _global_names.end()) {
+
+        CHandle h_e;
+        h_e.create< CEntity >();
+        CEntity* e = h_e;
+
+        TEntityParseContext ctx_temp;
+        ctx_temp.current_entity = e;
+        // Bind it to me
+        auto om = CHandleManager::getByName("render");
+        CHandle h_comp = om->createHandle();
+
+        e->set(h_comp.getType(), h_comp);
+
+        h_comp = getObjectManager<TCompTransform>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+
+        h_comp = getObjectManager<TCompName>()->createHandle();
+        e->set(h_comp.getType(), h_comp);
+
+        std::size_t pos = name.find("meshes/") + 7;
+        std::string sub_name = name.substr(pos);
+        TCompName * c_name = e->get<TCompName>();
+        c_name->setName(sub_name.c_str());
+
+        TCompRender * c_render = e->get<TCompRender>();
+        TCompRender::CMeshWithMaterials mwm;
+        mwm.mesh = Resources.get(name)->as<CRenderMesh>();
+        const CMaterial* material = (const CMaterial*)Resources.get(mat)->as<CMaterial>();
+        mwm.materials.push_back(material);
+        c_render->meshes.push_back(mwm);
+
+        if (scene_group.isValid()) {
+            CEntity * t_group = scene_group;
+            TCompGroup* c_group = t_group->get<TCompGroup>();
+            c_group->add(h_e);
+        }
+
+        _global_names.insert(std::pair<std::string, std::string>(name, name));
+    }*/
+
+
+    // Add the instance collector if it's not in our database
+    if (_dynamic_instances.find(name) == _dynamic_instances.end()) {
+
+        auto rmesh = (CRenderMeshInstanced*)Resources.get(name)->as<CRenderMesh>();
+        TDynInstanceCollector collector;
+        collector._instances_mesh = rmesh;
+        _dynamic_instances.insert(std::pair<std::string, TDynInstanceCollector>(name, collector));
+
+        // Add the generic group entity into the scene dynamically?
+    }
+
+    // Create the new instance and add it to the set
+    TDynInstance static_instance;
+    static_instance.world = w_matrix;
+    static_instance.time = time;
+    _dynamic_instances[name]._instances.push_back(static_instance);
+
+    return _dynamic_instances[name]._instances.size() - 1;
+}
+
+// Method used to add global instances
+int CModuleInstancing::addInstance(const std::string & name, const std::string & type, MAT44 w_matrix) {
 
     // Add the instance collector if it's not in our database
     if (_global_instances.find(name) == _global_instances.end()) {
@@ -177,9 +275,19 @@ int CModuleInstancing::addInstance(const std::string & name, MAT44 w_matrix) {
 void CModuleInstancing::removeInstance(TInstance* instance) {
 
     // Loop through and remove instance from vector.
+    for (auto& p : _global_instances) {
+        for (auto it = p.second._instances.begin(); it != p.second._instances.end(); it++) {
+            if (&(*it) == instance)
+                p.second._instances.erase(it--);
+        }
+    }
 }
 
 void CModuleInstancing::clearInstances() {
+
+    for (auto& p : _global_instances) {
+        p.second._instances.clear();
+    }
 
     _global_instances.clear();
 }
@@ -197,22 +305,22 @@ void CModuleInstancing::updateInstance(const std::string& name, int index, const
     _global_instances[name]._instances[index].world = w_matrix;
 }
 
-void CModuleInstancing::render() {
+void CModuleInstancing::renderMain() {
 
+    // Static global instances
     for (auto p : _global_instances)
         p.second._instances_mesh->setInstancesData(p.second._instances.data(), p.second._instances.size(), sizeof(TInstance));
 
-    instances_mesh->setInstancesData(instances.data(), instances.size(), sizeof(TInstance));
-    blood_instances_mesh->setInstancesData(blood_instances.data(), blood_instances.size(), sizeof(TInstanceBlood));
+    // Dynamic global instances
+    for (auto p : _dynamic_instances)
+        p.second._instances_mesh->setInstancesData(p.second._instances.data(), p.second._instances.size(), sizeof(TDynInstance));
+
+    // Static instances, particles and grass
+    //grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TInstance));
     particles_instances_mesh->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(TRenderParticle));
-
-    //compute_task.debugInMenu();
-    //compute_task.run();
-
-    debugMenu();
 }
 
-void CModuleInstancing::debugMenu() {
+void CModuleInstancing::render() {
 
     if (ImGui::TreeNode("Instance Manager")) {
 
@@ -265,72 +373,31 @@ void CModuleInstancing::debugMenu() {
         }
 
         // ----------------------------------------------
-        if (ImGui::TreeNode("Blood")) {
-            ImGui::Text("Num Instances: %ld / %ld. GPU:%d", blood_instances.size(), blood_instances.capacity(), blood_instances_mesh->getVertexsCount());
-            if (ImGui::Button("Add")) {
-                for (int i = 0; i < num; ++i) {
-                    TInstanceBlood new_instance;
-                    new_instance.world =
-                        MAT44::CreateRotationY(randomFloat((float)-M_PI, (float)M_PI))
-                        *
-                        MAT44::CreateScale(randomFloat(2.f, 10.f))
-                        *
-                        MAT44::CreateTranslation(VEC3(randomFloat(-sz, sz), 0, randomFloat(-sz, sz)));
-                    new_instance.color.x = unitRandom();
-                    new_instance.color.y = unitRandom();
-                    new_instance.color.z = 1 - new_instance.color.x - new_instance.color.y;
-                    new_instance.color.w = 1;
-                    blood_instances.push_back(new_instance);
-                }
-            }
-            ImGui::SameLine();
-            if (ImGui::Button("Del") && !blood_instances.empty())
-                blood_instances.pop_back();
-            if (ImGui::TreeNode("Instances")) {
-                for (auto& p : blood_instances) {
-                    ImGui::PushID(&p);
-                    VEC3 scale, trans;
-                    QUAT rot;
-                    p.world.Decompose(scale, rot, trans);
-                    CTransform tmx;
-                    tmx.setRotation(rot);
-                    tmx.setPosition(trans);
-                    tmx.setScale(scale.x);
-                    if (tmx.debugInMenu())
-                        p.world = tmx.asMatrix();
-                    ImGui::ColorEdit4("Color", &p.color.x);
-                    ImGui::PopID();
-                }
-                ImGui::TreePop();
-            }
-            ImGui::TreePop();
-        }
-
-        // ----------------------------------------------
         if (ImGui::TreeNode("Grass")) {
             bool changed = false;
-            ImGui::Text("Num Instances: %ld / %ld. GPU:%d", grass_instances.size(), grass_instances.capacity(), grass_instances_mesh->getVertexsCount());
+            TInstanceCollector grass_collector = _global_instances["grass.instanced_mesh"];
+            ImGui::Text("Num Instances: %ld / %ld. GPU:%d", grass_collector._instances.size(), grass_collector._instances.capacity(), grass_collector._instances_mesh->getVertexsCount());
             int num_changed = num * 100;
             if (ImGui::Button("Add 100")) {
                 for (int i = 0; i < num_changed; ++i) {
-                    TGrassParticle new_instance;
-                    new_instance.pos = VEC3(randomFloat(-sz, sz), 0, randomFloat(-sz, sz));
-                    grass_instances.push_back(new_instance);
+                    TInstance new_instance;
+                    new_instance.world = MAT44::CreateTranslation(VEC3(randomFloat(-sz, sz), 0, randomFloat(-sz, sz)));
+                    grass_collector._instances.push_back(new_instance);
                 }
                 changed = true;
             }
             ImGui::SameLine();
-            if (ImGui::Button("Del") && !instances.empty()) {
-                if (num_changed < instances.size())
-                    num_changed = instances.size();
-                instances.resize(instances.size() - num_changed);
+            if (ImGui::Button("Del") && !grass_collector._instances.empty()) {
+                if (num_changed < grass_collector._instances.size())
+                    num_changed = grass_collector._instances.size();
+                grass_collector._instances.resize(grass_instances.size() - num_changed);
                 changed = true;
             }
             ImGui::TreePop();
 
             // Update GPU with the new CPU
             if (changed)
-                grass_instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TGrassParticle));
+                grass_collector._instances_mesh->setInstancesData(grass_instances.data(), grass_instances.size(), sizeof(TInstance));
         }
 
         ImGui::TreePop();

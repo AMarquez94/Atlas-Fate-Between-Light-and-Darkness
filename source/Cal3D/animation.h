@@ -75,6 +75,7 @@ private:
 
   CalCoreAnimation *m_pCoreAnimation;
   std::vector<float> m_lastCallbackTimes;
+  std::vector<bool> m_lastCallbackDone;
   Type m_type;
   State m_state;
   float m_time;

@@ -28,14 +28,18 @@
           ,
           "materials":
           [
-            "data/materials/mtl_casa3.material"
+            "data/materials/mtl_casa3 #1.material"
+            ,
+            "data/materials/mtl_ornamentos_casa.material"
+            ,
+            "data/materials/mtl_suelomadera.material"
           ]
         }
       ]
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_casa1_6x10.collider"
       }

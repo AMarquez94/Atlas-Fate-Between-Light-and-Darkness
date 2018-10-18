@@ -1,0 +1,3053 @@
+[
+  {
+    "entity":
+    {
+      "name": "col_intro_corridor_lights"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      },
+	  "tags": [
+		"corridor"
+	  ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo"
+      ,
+      "transform":
+      {
+        "pos": "0.0952443 5.50284 66.2656"
+        ,
+        "lookat": "0.0614251 0.97613 67.71"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 4.75171
+        ,
+        "angle": 64.1
+        ,
+        "inner_cut": 62.1
+        ,
+        "z_far": 4.75171
+        ,
+        "volume": false
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/luz_pasillo.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo001"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 4.77985 65.4196"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.7082
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo003"
+      ,
+      "transform":
+      {
+        "pos": "-2.53744 2.5685 62.4707"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo004"
+      ,
+      "transform":
+      {
+        "pos": "2.17246 2.67364 62.4707"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo005"
+      ,
+      "transform":
+      {
+        "pos": "-2.53744 2.5685 57.2888"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo006"
+      ,
+      "transform":
+      {
+        "pos": "2.17246 2.67364 57.2888"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo007"
+      ,
+      "transform":
+      {
+        "pos": "-2.53744 2.5685 53.5331"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo008"
+      ,
+      "transform":
+      {
+        "pos": "2.17246 2.67364 53.5331"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo009"
+      ,
+      "transform":
+      {
+        "pos": "-2.53744 2.56849 50.2544"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo010"
+      ,
+      "transform":
+      {
+        "pos": "2.17246 2.67364 50.2544"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo011"
+      ,
+      "transform":
+      {
+        "pos": "-2.53744 2.56849 47.9023"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo012"
+      ,
+      "transform":
+      {
+        "pos": "2.17246 2.67364 47.5376"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo013"
+      ,
+      "transform":
+      {
+        "pos": "-2.53744 2.56849 44.5322"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo014"
+      ,
+      "transform":
+      {
+        "pos": "2.17246 2.67364 44.5322"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo015"
+      ,
+      "transform":
+      {
+        "pos": "-2.53744 2.56849 41.1423"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo016"
+      ,
+      "transform":
+      {
+        "pos": "2.17246 2.67364 41.1423"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo017"
+      ,
+      "transform":
+      {
+        "pos": "-2.53744 2.56849 38.9519"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo018"
+      ,
+      "transform":
+      {
+        "pos": "2.17246 2.67364 38.9519"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo019"
+      ,
+      "transform":
+      {
+        "pos": "-2.53744 2.56849 35.9386"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo020"
+      ,
+      "transform":
+      {
+        "pos": "2.17246 2.67364 35.9386"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.87924
+        ,
+        "outer_cut": 2.2363
+        ,
+        "color": "0.0352941 0.27451 0.760784 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.56604
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo022"
+      ,
+      "transform":
+      {
+        "pos": "1.60402 4.68163 65.5319"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo024"
+      ,
+      "transform":
+      {
+        "pos": "1.60402 4.68163 61.5241"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo026"
+      ,
+      "transform":
+      {
+        "pos": "1.60402 4.68163 57.5723"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo028"
+      ,
+      "transform":
+      {
+        "pos": "1.60402 4.68163 53.5548"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo030"
+      ,
+      "transform":
+      {
+        "pos": "1.60402 4.68163 49.5919"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo032"
+      ,
+      "transform":
+      {
+        "pos": "1.60402 4.68163 45.504"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo034"
+      ,
+      "transform":
+      {
+        "pos": "1.60402 4.68163 41.4914"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo036"
+      ,
+      "transform":
+      {
+        "pos": "1.60402 4.68163 37.5271"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo037"
+      ,
+      "transform":
+      {
+        "pos": "0.0952443 1.57866 67.093"
+        ,
+        "lookat": "0.0614251 0.976128 28.4148"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 38.6829
+        ,
+        "angle": 9.2
+        ,
+        "inner_cut": 6.6
+        ,
+        "z_far": 38.6829
+        ,
+        "volume": false
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/luz_pasillo037.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo038"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 1.51122 65.4196"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo039"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 1.51122 62.0157"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo040"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 1.51122 58.8362"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo041"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 1.51122 55.7512"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo042"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 1.51122 52.3713"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo043"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 1.51122 49.0516"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo044"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 1.51122 46.0625"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo045"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 1.51122 33.2825"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo046"
+      ,
+      "transform":
+      {
+        "pos": "-1.17721 4.68163 65.5319"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo047"
+      ,
+      "transform":
+      {
+        "pos": "-1.17721 4.68163 61.5241"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo048"
+      ,
+      "transform":
+      {
+        "pos": "-1.17721 4.68163 57.5723"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo049"
+      ,
+      "transform":
+      {
+        "pos": "-1.17721 4.68163 53.5548"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo050"
+      ,
+      "transform":
+      {
+        "pos": "-1.17722 4.68163 49.5919"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo051"
+      ,
+      "transform":
+      {
+        "pos": "-1.17721 4.68163 45.504"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo052"
+      ,
+      "transform":
+      {
+        "pos": "-1.17721 4.68163 41.4914"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo053"
+      ,
+      "transform":
+      {
+        "pos": "-1.17721 4.68163 37.5271"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo054"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 1.51122 42.8403"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo055"
+      ,
+      "transform":
+      {
+        "pos": "0.839891 1.45674 38.9013"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo056"
+      ,
+      "transform":
+      {
+        "pos": "-0.013671 1.51122 36.4827"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.79338
+        ,
+        "outer_cut": 3.73284
+        ,
+        "color": "1.0 1.0 0.486275 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.25482
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo057"
+      ,
+      "transform":
+      {
+        "pos": "-1.58275 1.94017 67.3855"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.152598
+        ,
+        "outer_cut": 0.182598
+        ,
+        "color": "1.0 0.0470588 0.0470588 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.132598
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo058"
+      ,
+      "transform":
+      {
+        "pos": "-1.56921 2.5656 67.3556"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.222598
+        ,
+        "outer_cut": 0.282598
+        ,
+        "color": "0.0470588 0.94902 0.988235 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.18705
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo059"
+      ,
+      "transform":
+      {
+        "pos": "-0.0340071 5.26435 65.5319"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo061"
+      ,
+      "transform":
+      {
+        "pos": "-0.0340071 5.26435 57.5723"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo063"
+      ,
+      "transform":
+      {
+        "pos": "-0.0340071 5.26435 49.5919"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo065"
+      ,
+      "transform":
+      {
+        "pos": "-0.0340071 5.26435 41.4914"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo066"
+      ,
+      "transform":
+      {
+        "pos": "-0.0340071 5.26435 37.5271"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.960784 0.113726 0.890196 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo067"
+      ,
+      "transform":
+      {
+        "pos": "-0.0340071 8.2917 31.0244"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.827451 0.956863 0.862745 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasillo068"
+      ,
+      "transform":
+      {
+        "pos": "0.356728 5.31681 30.4018"
+        ,
+        "rotation": "0.0 0.707107 -0.707107 0.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.96775
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "0.827451 0.956863 0.862745 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.57275
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+]

@@ -17,7 +17,7 @@ struct TCompFog : public TCompBase {
 
   void load(const json& j, TEntityParseContext& ctx);
   void debugInMenu();
-  CTexture* apply(CTexture* in_texture);
+  CTexture* apply(CTexture* in_texture, CTexture* in_texture_light);
 };
 
 #endif

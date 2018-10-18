@@ -1,0 +1,200 @@
+[{
+		"entity": {
+			"name": "intro_planets",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "luna",
+			"tied_hierarchy": {
+				"pos": "45 38 20",
+				"scale": "2 2 2"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/sphere_moon.mesh",
+					"self_intensity": 1.0,
+					"materials":
+					[
+						"data/materials/mtl_luna.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "luna_back",
+			"tied_hierarchy": {
+				"pos": "45 38 20",
+				"scale": "2.5 2.5 2.5"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/sphere_moon.mesh",
+					"color": "0.075 0.075 0.075 1",
+					"self_intensity": 0.0,
+					"materials":
+					[
+						"data/materials/mtl_luna_back.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"xentity": {
+			"name": "luna_back_atmosphere",
+			"tied_hierarchy": {
+				"pos": "45 38 20",
+				"scale": "2.1 2.1 2.1"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/sphere_moon.mesh",
+					"materials":
+					[
+						"data/materials/mtl_luna_back_atmosphere.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "planet1",
+			"tied_hierarchy": {
+				"pos": "20 150 -150",
+				"scale": "12 12 12"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/sphere_moon.mesh",
+					"self_intensity": 0.21,
+					"materials":
+					[
+						"data/materials/mtl_planet2.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "planet1_back",
+			"tied_hierarchy": {
+				"pos": "20 150 -150",
+				"scale": "13.2 13.2 13.2"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/sphere_moon.mesh",
+					"color": "0.4 0.405 0.298 1",
+					"self_intensity": 0.0,
+					"materials":
+					[
+						"data/materials/mtl_planet2_back.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "planet1_atmosphere",
+			"tied_hierarchy": {
+				"pos": "20 150 -150",
+				"scale": "12.2 12.2 12.2"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/sphere_moon.mesh",
+					"self_intensity": 0.25,
+					"materials":
+					[
+						"data/materials/mtl_luna_back_atmosphere.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "planet2",
+			"tied_hierarchy": {
+				"pos": "48 113 -148",
+				"scale": "5 5 5"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/sphere_moon.mesh",
+					"self_intensity": 0.21,
+					"materials":
+					[
+						"data/materials/mtl_planet1.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "planet2_back",
+			"tied_hierarchy": {
+				"pos": "48 113 -148",
+				"scale": "5.5 5.5 5.5"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/sphere_moon.mesh",
+					"color": "0.4 0.405 0.298 1",
+					"self_intensity": 0.0,
+					"materials":
+					[
+						"data/materials/mtl_planet1_back.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "planet2_atmosphere",
+			"tied_hierarchy": {
+				"pos": "48 113 -148",
+				"scale": "5.2 5.2 5.2"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/sphere_moon.mesh",
+					"self_intensity": 0.13,
+					"materials":
+					[
+						"data/materials/mtl_luna_back_atmosphere.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]

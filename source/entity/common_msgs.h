@@ -24,6 +24,11 @@ struct TMsgEntityDestroyed {
 	DECL_MSG_ID();
 };
 
+struct TMsgGlitchController {
+    bool revert;
+    DECL_MSG_ID();
+};
+
 struct TMsgAssignBulletOwner {
 	CHandle h_owner;
 	DECL_MSG_ID();
@@ -64,6 +69,11 @@ struct TMsgPlayerHit {
 	DECL_MSG_ID();
 };
 
+struct TMsgPlayerStunned {
+    CHandle h_sender;
+    DECL_MSG_ID();
+};
+
 struct TMsgBulletHit {
     CHandle h_sender;
     float damage;
@@ -100,7 +110,8 @@ struct TMsgSonarActive {
 
 struct TMsgFadeBody {
     bool is_exit;
-
+	float fade_time = -1.0f;
+	VEC4 fade_color = VEC4(-1,0,0,0);
     DECL_MSG_ID();
 };
 
@@ -117,6 +128,11 @@ struct TMsgTriggerExit {
 struct TMsgPhysxContact {
 	CHandle other_entity;
 	DECL_MSG_ID();
+};
+
+struct TMsgPhysxContactLost {
+    CHandle other_entity;
+    DECL_MSG_ID();
 };
 
 struct TMsgSetCameraActive {
@@ -149,6 +165,34 @@ struct TMsgCameraReset {
   DECL_MSG_ID();
 };
 
+struct TMsgCameraResetTargetPos {
+    DECL_MSG_ID();
+};
+
+struct TMsgAnimationCallback {
+	std::string function_to_call;
+	DECL_MSG_ID();
+};
+
+struct TMsgAnimationPlaced {
+	DECL_MSG_ID();
+};
+
+struct TMsgSkeletonPlaceAnimation {
+	DECL_MSG_ID();
+};
+
+struct TMsgAnimationCompleted {
+	std::string animation_name;
+	DECL_MSG_ID();
+};
+
+struct TMsgAnimationAudioCallback {
+    std::string audioName;
+    bool isRelativeToPlayer;
+    DECL_MSG_ID();
+};
+
 struct TMsgTimeOut {
 	DECL_MSG_ID();
 };
@@ -169,6 +213,13 @@ struct TMsgSpawnAt {
 
 struct TMsgScenePaused {
 	bool isPaused;
+	DECL_MSG_ID();
+};
+
+struct TMsgCameraShake {
+	float time_to_stop;
+	float amount;
+	float speed;
 	DECL_MSG_ID();
 };
 
@@ -240,6 +291,7 @@ struct TMsgPlayerInvisible {
 };
 
 struct TMsgPlayerImmortal {
+	bool state = true;
     DECL_MSG_ID();
 };
 
@@ -256,7 +308,66 @@ struct TMsgButtonActivated {
     DECL_MSG_ID();
 };
 
+struct TMsgWeaponsActivated {
+    bool activate;
+    DECL_MSG_ID();
+};
+
+struct TMsgStopAudioComponent {
+    DECL_MSG_ID();
+};
+
+struct TMsgEntityCanLandSM {
+    bool canSM;
+    DECL_MSG_ID();
+};
+
 struct TMsgPlayerAIEnabled {
+    std::string state;
+    bool enableAI;
+    DECL_MSG_ID();
+};
+
+struct TMsgEmisiveCapsuleState {
+	bool enable;
+	DECL_MSG_ID();
+};
+
+struct TMsgCinematicState {
+    std::string state;
+    bool enableCinematic;
+    DECL_MSG_ID();
+};
+
+struct TMsgWarnEnemy {
+    VEC3 playerPosition;
+    DECL_MSG_ID();
+};
+
+struct TMsgResetPatrolLights {
+    DECL_MSG_ID();
+};
+
+struct TMsgCameraFov {
+    float new_fov;
+    float blend_time;
+    DECL_MSG_ID();
+};
+
+struct TMsgCircularControllerTarget {
+    CHandle new_target;
+    DECL_MSG_ID();
+};
+
+struct TMsgEnemySuspecting {
+    CHandle enemy_suspecting;
+    bool is_suspecting;
+    DECL_MSG_ID();
+};
+
+struct TMsgEnemyNothingHere {
+    CHandle enemy;
+    VEC3 position;
     DECL_MSG_ID();
 };
 

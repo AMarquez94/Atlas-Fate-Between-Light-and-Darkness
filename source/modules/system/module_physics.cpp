@@ -118,9 +118,13 @@ void CModulePhysics::update(float delta)
     }
 }
 
-void CModulePhysics::render()
+void CModulePhysics::renderMain()
 {
-
+    //CTraceScoped gpu_scope("renderColliderLayer");
+    //PROFILE_FUNCTION("renderColliderLayer");
+    //getObjectManager<TCompCollider>()->forEach([](TCompCollider* c) {
+    //    c->renderDebug();
+    //});
 }
 
 void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pairs, PxU32 count)
@@ -139,6 +143,22 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
         }
 
         CEntity* e_trigger = h_trigger_comp_collider.getOwner();
+        //CEntity* e_other_trigger = h_other_comp_collider.getOwner();
+        //TCompCollider * c_collider = e_other_trigger->get<TCompCollider>();
+        //TCompTransform * c_transform = e_other_trigger->get<TCompTransform>();
+
+        //// Special trigger message for the player
+        //if (c_collider->config->group & FilterGroup::Player){
+
+        //    TCompTransform * e_transform = e_trigger->get<TCompTransform>();
+        //    VEC3 c_pos = c_transform->getPosition();
+        //    VEC3 c_dir = e_transform->getPosition() - c_pos;
+        //    float length = c_dir.Length();
+        //    c_dir.Normalize();
+        //    physx::PxRaycastHit hit;
+        //    if (EnginePhysics.Raycast(c_pos, c_dir, length, hit, physx::PxQueryFlag::eANY_HIT))
+        //        dbg("pos %f %f %f\n", c_transform->getPosition().x, c_transform->getPosition().y, c_transform->getPosition().z);
+        //}
 
         if (pairs[i].flags & (PxTriggerPairFlag::eREMOVED_SHAPE_TRIGGER | PxTriggerPairFlag::eREMOVED_SHAPE_OTHER))
         {
@@ -148,7 +168,6 @@ void CModulePhysics::CustomSimulationEventCallback::onTrigger(PxTriggerPair* pai
             continue;
         }
 
-        //dbg("trigger touch\n");
         if (pairs[i].status == PxPairFlag::eNOTIFY_TOUCH_FOUND)
         {
             e_trigger->sendMsg(TMsgTriggerEnter{ h_other_comp_collider.getOwner() });
@@ -196,8 +215,21 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
 							entity2->sendMsg(msg);
 						}
 					}
-					else {
+					else if (cp.events & (PxPairFlag::eNOTIFY_TOUCH_LOST)) {
 						/* TODO: To be implemented */
+
+                        /* Only manages contact between rigidbodies */
+                        TCompRigidbody * rigidbody1 = entity1->get<TCompRigidbody>();
+                        TCompRigidbody * rigidbody2 = entity2->get<TCompRigidbody>();
+
+                        if (rigidbody1 && rigidbody2) {
+                            TMsgPhysxContactLost msg;
+                            msg.other_entity = h_actor_2.getOwner();
+                            entity1->sendMsg(msg);
+
+                            msg.other_entity = h_actor_1.getOwner();
+                            entity2->sendMsg(msg);
+                        }
 					}
 				}
         //dbg("contact found\n");
@@ -205,6 +237,10 @@ void CModulePhysics::CustomSimulationEventCallback::onContact(const physx::PxCon
 }
 
 /* Auxiliar physics methods */
+physx::PxMaterial* CModulePhysics::CreateMaterial(const VEC3 & settings)
+{
+    return gPhysics->createMaterial(settings.x, settings.y, settings.z);
+}
 
 bool CModulePhysics::Raycast(const VEC3 & origin, const VEC3 & dir, float distance, physx::PxRaycastHit & hit, physx::PxQueryFlags flag, physx::PxQueryFilterData filterdata)
 {
@@ -263,18 +299,18 @@ bool CModulePhysics::Overlap(physx::PxGeometry& geometry, VEC3 pos, std::vector<
 
 PxFixedJoint* CModulePhysics::CreateFixedJoint(physx::PxRigidActor * dynamicActor, const physx::PxTransform & dynamicActorTransform, physx::PxRigidActor * otherActor, const physx::PxTransform & otherActorTransform)
 {
-  /* TODO: not tested */
-  physx::PxPhysics* physxFactory = getPhysxFactory();
-  physx::PxFixedJoint* joint = physx::PxFixedJointCreate(*physxFactory, dynamicActor, dynamicActorTransform, otherActor, otherActorTransform);
-  joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
-  return joint;
+    /* TODO: not tested */
+    physx::PxPhysics* physxFactory = getPhysxFactory();
+    physx::PxFixedJoint* joint = physx::PxFixedJointCreate(*physxFactory, dynamicActor, dynamicActorTransform, otherActor, otherActorTransform);
+    joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
+    return joint;
 }
 
 physx::PxDistanceJoint * CModulePhysics::CreateDistanceJoint(physx::PxRigidActor * dynamicActor, const physx::PxTransform & dynamicActorTransform, physx::PxRigidActor * otherActor, const physx::PxTransform & otherActorTransform)
 {
-  /* TODO: not tested */
-  physx::PxPhysics* physxFactory = getPhysxFactory();
-  physx::PxDistanceJoint* joint = physx::PxDistanceJointCreate(*physxFactory, dynamicActor, dynamicActorTransform, otherActor, otherActorTransform);
-  joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
-  return joint;
+    /* TODO: not tested */
+    physx::PxPhysics* physxFactory = getPhysxFactory();
+    physx::PxDistanceJoint* joint = physx::PxDistanceJointCreate(*physxFactory, dynamicActor, dynamicActorTransform, otherActor, otherActorTransform);
+    joint->setConstraintFlag(PxConstraintFlag::eVISUALIZATION, true);
+    return joint;
 }

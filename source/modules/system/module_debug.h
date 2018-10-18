@@ -10,14 +10,18 @@ class CModuleDebug : public IModule
 
 public:
 
-	CModuleDebug(const std::string& aname) : IModule(aname) { }
+    CModuleDebug(const std::string& aname) : IModule(aname) { }
 
-  bool start() override;
-  bool stop() override;
-  void update(float delta) override;
-  void render() override;
+    bool start() override;
+    bool stop() override;
+    void update(float delta) override;
+    void render() override;
 
 private:
+
+    VEC3 raycast_origin = VEC3::Zero;
+    VEC3 raycast_dest = VEC3::Zero;
+
     VEC3 p1 = VEC3::Zero;
     VEC3 p2 = VEC3::Zero;
     std::vector<VEC3> navmeshPath;

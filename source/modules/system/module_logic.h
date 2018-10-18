@@ -5,8 +5,21 @@
 #include <SLB/SLB.hpp>
 #include "modules/system/module_game_console.h"
 #include "modules/system/module_particles.h"
+#include "modules/game/module_game_manager.h"
 #include "input/button.h"
 #include "components/player_controller/comp_player_tempcontroller.h"
+#include "components/ia/comp_bt_patrol.h"
+#include "components/comp_transform.h"
+#include "components/comp_audio.h"
+//#include "components/camera_controller/comp_camera_thirdperson.h"
+
+class TCompCameraThirdPerson;
+class TCompRender;
+class TCompNoiseEmitter;
+class TCompParticles;
+class TCompAnimatedObjController;
+class TCompDoor;
+class TCompButton;
 
 class CModuleLogic : public IModule
 {
@@ -33,9 +46,12 @@ public:
         GAME_END,
         SCENE_START,
         SCENE_END,
+        SCENE_PARTIAL_START,
+        SCENE_PARTIAL_END,
         TRIGGER_ENTER,
         TRIGGER_EXIT,
-        ENEMY_KILLED,
+        PATROL_STUNNED,
+        PATROL_KILLED,
         PLAYER_ON_SHADOW_ENTER,
         NUM_EVENTS
     };
@@ -53,8 +69,14 @@ public:
     void execCvar(std::string& script);
     ConsoleResult execScript(const std::string& script);
     bool execScriptDelayed(const std::string& script, float delay);
+    bool execSystemScriptDelayed(const std::string& script, float delay);
     bool execEvent(Events event, const std::string& params = "", float delay = 0.f);
     void printLog();
+    void setPause(bool paused) { this->paused = paused; }
+    void clearDelayedScripts();
+
+	void eraseDelayedScripts(std::string keyWord);
+	void eraseSystemDelayedScripts(std::string keyWord);
 
 private:
 
@@ -62,51 +84,123 @@ private:
     SLB::Script* s = new SLB::Script(m);
 
     std::vector<DelayedScript> delayedScripts;
+    std::vector<DelayedScript> delayedSystemScripts;
 
     void BootLuaSLB();
     void publishClasses();
     void loadScriptsInFolder(char * path);
+
+    bool started = false;
+    bool paused = false;
 };
 
 /* Auxiliar functions */
 CModuleGameConsole* getConsole();
 CModuleLogic* getLogic();
+CModuleGameManager * getGameManager();
 CModuleParticles* getParticles();
 TCompTempPlayerController* getPlayerController();
+TCompNoiseEmitter* getPlayerNoiseEmitter();
 void execDelayedScript(const std::string& script, float delay);
+void execDelayedSystemScript(const std::string& script, float delay);
 void pauseEnemies(bool pause);
+void pauseEnemyEntities(bool pause);
 void deleteEnemies();
+bool isDebug();
+void changeGamestate(const std::string& gamestate);
 void pauseGame(bool pause);
 void pausePlayerToggle();
 void infiniteStamineToggle();
-void immortal();
+void immortal(bool state);
 void inShadows();
 void speedBoost(const float speed);
 void playerInvisible();
 void noClipToggle();
 void lanternsDisable(bool disable);
-void blendInCamera(const std::string& cameraName, float blendInTime);
+void blendInCamera(const std::string& cameraName, float blendInTime, const std::string& mode = "cinematic", const std::string& interpolator = "");
 void blendOutCamera(const std::string& cameraName, float blendOutTime);
 void blendOutActiveCamera(float blendOutTime);
-void spawn(const std::string & name, const VEC3 & pos);
+void resetMainCameras();
+CHandle spawn(const std::string & name, const VEC3 & pos, const VEC3& lookat);
+void move(const std::string & name, const VEC3 & pos, const VEC3& lookat);
 void bind(const std::string& key, const std::string& script);
-void loadScene(const std::string &level);
-void unloadScene();
+void loadscene(const std::string &level);
+void unloadscene();
+void preloadScene(const std::string& scene);
 void loadCheckpoint();
 void shadowsToggle();
 void debugToggle();
 void postFXToggle();
 void renderNavmeshToggle();
-void playSound2D(const std::string& soundName);
-void exeShootImpactSound();
 void sleep(float time);
 void cinematicModeToggle();
+bool isCheckpointSaved();
+void destroyHandle(unsigned int h);
+void resetPatrolLights();
+void animateSoundGraph(int value);
+void makeVisibleByTag(const std::string& tag, bool visible);
+VEC3 getPlayerLocalCoordinatesInReferenceTo(const std::string& ref_entity);
+void movePlayerToRefPos(const std::string& ref_entity, VEC3 p_rel_pos);
+void invalidatePlayerPhysxCache();
+void GUI_EnableRemoveInhibitor();
+void sendPlayerIlluminatedMsg(CHandle h, bool illuminated);
+void isInCinematicMode(bool isCinematic);
 
+/* Sounds */
+SoundEvent playEvent(const std::string& name);
+void stopAllAudioComponents();
+
+/* Tutorial */
+void setTutorialPlayerState(bool active, const std::string& stateName);
+
+/* Cinematic */
+void setCinematicPlayerState(bool active, const std::string & stateName);
+void setAIState(const std::string& name, bool active, const std::string & stateName);
+
+/* GUI */
+void unPauseGame();
+void backFromControls();
+void unlockDeadButton();
+void execDeadButton();
+void takeOutBlackScreen();
+void goToMainMenu();
+void takeOutCredits();
+void takeOutControlsOnMainMenu();
+void takeOutCreditsOnMainMenu();
+void activateSubtitles(int sub_num);
+void deactivateSubtitles();
+void subClear();
+void setEnemyHudState(bool state);
+void activateCinematicVideoIntro(float time_to_lerp, float time_to_start);
+void deactivateCinematicVideoIntro();
+void setInBlackScreen(float time_to_lerp);
+void setOutBlackScreen(float time_to_lerp);
+void activateMission(int mission_num);
+void lightUpForFinalScene(float time);
+void lightDownForFinalScene();
+void execLastAtlasScreen();
+void removeAtlasSplash();
+void removeTempCredits();
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
 void toggle_spotlight(const std::string& lightName);
 void toggleButtonCanBePressed(const std::string& buttonName, bool canBePressed);
+void removeSceneResources(const std::string& scene);
+void destroyPartialScene();
+void testingLoadPartialScene();
+void testLoco();
 
 // Extra cvar commands
 void cg_drawfps(bool value);
 void cg_drawlights(int type);
+
+CEntity* toEntity(CHandle h);
+TCompTransform* toTransform(CHandle h);
+TCompAIPatrol* toAIPatrol(CHandle h);
+TCompAudio* toAudio(CHandle h);
+TCompCameraThirdPerson* toTPCamera(CHandle h);
+TCompRender* toRender(CHandle h);
+TCompParticles* toParticles(CHandle h);
+TCompAnimatedObjController* toAnimatedObject(CHandle h);
+TCompDoor* toDoor(CHandle h);
+TCompButton* toButton(CHandle h);

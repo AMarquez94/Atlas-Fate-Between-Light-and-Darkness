@@ -6,6 +6,10 @@
 #include "components/comp_transform.h"
 #include <random>
 #include "render/render_manager.h"
+#include "noise/FastNoiseSIMD.h"
+#include "noise/Perlin.h"
+#include "components/lighting/comp_light_point.h"
+
 // ----------------------------------------------
 class CParticleResourceClass : public CResourceClass {
 public:
@@ -48,12 +52,19 @@ namespace Particles
     TParticleHandle CSystem::_lastHandle = 0;
 
     void Particles::TCoreSystem::onFileChanged(const std::string& filename) {
-        if (filename != getName())
+        std::string fname = getName();
+        if (filename != fname)
             return;
 
         destroy();
         Particles::CParser parser;
-        Particles::TCoreSystem* res = parser.parseParticlesFile(filename);
+        *this = *(parser.parseParticlesFile(filename));
+        this->setNameAndClass(filename, getResourceClassOf<Particles::TCoreSystem>());
+    }
+
+    void Particles::TCoreSystem::destroy()
+    {
+
     }
 
     CSystem::CSystem(const TCoreSystem* core, CHandle entity)
@@ -69,7 +80,40 @@ namespace Particles
         _enabled = true;
         _time = 0.f;
         _deploy_time = 0.f;
-        emit();
+
+        //if(!_core->n_system.looping)
+        emit(_core->n_emission.rate_time);
+
+        // Copy the bursts to our structure
+        for (auto it = _core->n_emission.bursts.begin(); it != _core->n_emission.bursts.end();)
+        {
+            // Do a deep copy instead of this...
+            Particles::TNBurst p = Particles::TNBurst();
+            p.count = it->count;
+            p.cycles = it->cycles;
+            p.interval = it->interval;
+            p.i_elapsed = it->i_elapsed;
+            p.time = it->time;
+
+            bursts.push_back(p);
+            ++it;
+        }
+
+        // Fast trick to determine additive type. Find an smarter way.
+        if (_core->n_renderer.tech.find("additive") != std::string::npos)
+            this->type = ADD;
+
+        if (_core->n_light.active) {
+
+            CEntity * owner = _entity;
+            CHandle h_comp = getObjectManager<TCompLightPoint>()->createHandle();
+            owner->set(h_comp.getType(), h_comp);  
+            TCompLightPoint * p_light = h_comp;
+            p_light->setIntensity(_core->n_system.looping ? _core->n_light.intensity : 0);
+            p_light->setColor(_core->n_light.color);
+            p_light->inner_cut = _core->n_light.radius.x;
+            p_light->inner_cut = _core->n_light.radius.y;
+        }
     }
 
     void CSystem::debugInMenu() {
@@ -78,7 +122,7 @@ namespace Particles
 
         ImGui::Checkbox("Enabled", &_enabled);
 
-        if (ImGui::CollapsingHeader("Life")) {
+        /*if (ImGui::CollapsingHeader("Life")) {
 
             ImGui::DragFloat("Duration", &system->life.duration, 0.01f, 0.f, 50.f);
             ImGui::DragFloat("Duration Variation", &system->life.durationVariation, 0.01f, 0.f, 100.f);
@@ -158,85 +202,120 @@ namespace Particles
             // Reset the resource to it's original values
         }
 
-        _core = system;
+        _core = system;*/
     }
 
     bool CSystem::update(float delta)
     {
-        if (!_enabled || !_entity.isValid()) return true;
-        
-        // Handle start delay
-        _deploy_time += delta;
-        if (_deploy_time < _core->n_system.start_delay) return true;
-
-        const VEC3& kWindVelocity = Engine.get().getParticles().getWindVelocity();
-
-        float fadeRatio = 1.f;
-        if (_fadeDuration != 0.f)
+        // Handle deployment
         {
-            _fadeTime += delta;
-            fadeRatio = 1.f - (_fadeTime / _fadeDuration);
+            if (!_entity.isValid() || !_enabled) return true;
+
+            // Handle start delay
+            _deploy_time += delta;
+            if (_deploy_time < _core->n_system.start_delay) return true;
         }
 
-        delta *= _core->n_system.simulation_speed;
-
-        auto it = _particles.begin();
-        while (it != _particles.end())
+        // Handle core update
         {
-            TParticle& p = *it;
+            updateFading(delta);
+            delta *= _core->n_system.simulation_speed;
 
-            p.lifetime += delta;
-           
-            if (p.max_lifetime > 0.f && p.lifetime >= p.max_lifetime)
-            {
-                it = _particles.erase(it);
-            }
-            else
-            {
-                CEntity * ent = _entity;
-                TCompTransform * c_ent_transform = ent->get<TCompTransform>();
-
-                float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
-
-                VEC3 dir = p.velocity;
-                dir.Normalize();
-                p.velocity += dir * _core->n_velocity.acceleration * delta * _core->n_velocity.velocity.get(life_ratio); //Velocity over lifetime
-                p.velocity += kGravity * _core->n_system.gravity * delta;
-                p.velocity += AddNoiseOnAngle(-180, 180) * _core->n_noise.strength;
-                p.position += p.velocity * delta;
-                p.position += kWindVelocity * _core->n_velocity.wind * delta;
-                p.rotation += delta * _core->n_velocity.rotation.get(life_ratio);
-
-                if (_core->n_collision.collision)
-                    p.position.y = std::max(0.f, p.position.y);
-
-                p.color = _core->n_color.colors.get(life_ratio) * fadeRatio;
-                p.color.w *= _core->n_color.opacity;
-                p.size = _core->n_size.sizes.get(life_ratio);
-
-                int frame_idx = (int)(p.lifetime * _core->n_renderer.frameSpeed);
-                p.frame = p.init_frame + _core->n_renderer.initialFrame + (frame_idx % _core->n_renderer.numFrames);
-
-                ++it;
-            }
+            updateSystem(delta);
+            updateEmission(delta);
+            updateLight(delta);
         }
 
-        // Rate over time
-        if (_core->n_system.looping && _core->n_emission.interval > 0.f) {
+        return _fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping);
+    }
+
+    void CSystem::updateSystem(float delta) {
+
+        MAT44 world = MAT44::Identity;
+        MAT44 world_rot = MAT44::Identity;
+        const siv::PerlinNoise perlin(12345);
+
+        if (_entity.isValid())
+        {
+            CEntity* e = _entity;
+            TCompTransform* e_transform = e->get<TCompTransform>();
+            world = e_transform->asMatrix();
+            VEC3 proj_vector = e_transform->getFront();
+
+            if(_core->n_velocity.type == 0) // Local coordinates...
+                world_rot = MAT44::CreateFromQuaternion(e_transform->getRotation());
+
+            const VEC3& kWindVelocity = EngineParticles.getWindVelocity();
+
+            int amount = 0;
+            for (auto it = _particles.begin(); it != _particles.end();)
+            {
+                TParticle& p = *it;
+                p.lifetime += delta;
+
+                if (p.max_lifetime > 0.f && p.lifetime >= p.max_lifetime)
+                {
+                    it = _particles.erase(it);
+                }
+                else
+                {
+                    float life_ratio = p.max_lifetime > 0.f ? clamp(p.lifetime / p.max_lifetime, 0.f, 1.f) : 1.f;
+                    p.velocity = _core->n_system.start_speed * p.origin_velocity;
+                    // Compute the noise, disable if it gives bad fps
+                    p.velocity += VEC3::Transform(_core->n_velocity.velocity.get(life_ratio), world_rot) * _core->n_velocity.acceleration * delta;
+                    p.downforce += kGravity * _core->n_system.gravity * delta;
+                    p.velocity += p.downforce;
+
+                    if (_core->n_noise.strength > 0)
+                    {
+                        p.random_direction = VEC3(p.random_direction.x + random(-0.1, 0.1), p.random_direction.y + random(-0.1, 0.1), p.random_direction.z + random(-0.1, 0.1));
+                        p.velocity += p.random_direction * _core->n_noise.strength * delta;
+                    }
+
+                    // Inherit velocity if needed
+                    p.position = _core->n_velocity.inherit_velocity ? VEC3::Transform(p.origin_position, world) : p.position;
+                    p.position += p.velocity * delta;
+                    p.position += kWindVelocity * _core->n_velocity.wind * delta;
+                    p.rotation += _core->n_velocity.rotation.get(life_ratio) * delta;
+
+                    p.color = _core->n_color.colors.get(life_ratio) * _fadeRatio;
+                    p.color.w *= _core->n_color.opacity;
+                    p.size = _core->n_size.sizes.get(life_ratio);
+
+                    int frame_idx = (int)(p.lifetime * _core->n_renderer.frameSpeed);
+                    p.frame = p.init_frame + _core->n_renderer.initialFrame + (frame_idx % _core->n_renderer.numFrames);
+
+                    ++it;
+                }
+
+                amount = amount + 3;
+            }
+
+        }
+    }
+
+    void CSystem::updateEmission(float delta) {
+
+        // Rate over time (time elpased)
+        if (_core->n_system.looping && _core->n_emission.rate_time > 0.f) {
             _time += delta;
-            if (_time > _core->n_emission.interval) {
-                emit();
-                _time -= _core->n_emission.interval;
+
+            if (_time > _core->n_emission.time_ratio) {
+
+                int total = (int)(_time / _core->n_emission.time_ratio);
+                _time = 0;
+                emit(total);
             }
         }
 
-        // Rate over distance
+        // Rate over distance (unit elapsed)
         if (_core->n_emission.rate_distance > 0) {
 
             CEntity * ent = _entity;
             TCompTransform * c_ent_transform = ent->get<TCompTransform>();
             _deploy_distance += (_lastSystemPosition - c_ent_transform->getPosition()).Length();
-            if (_deploy_distance > 0.05)
+
+            if (_deploy_distance > EngineParticles.rate_min_dist)
             {
                 _deploy_distance = 0;
                 emit(_core->n_emission.rate_distance);
@@ -245,91 +324,61 @@ namespace Particles
             _lastSystemPosition = c_ent_transform->getPosition();
         }
 
-        return fadeRatio > 0.f && (!_particles.empty() || _core->n_system.looping);
+        // Bursts (concrete deploy)
+        for (auto it = _core->n_emission.bursts.begin(); it != _core->n_emission.bursts.end();)
+        {
+            Particles::TNBurst p = *it;
+            Particles::TNBurst & c = bursts[it - _core->n_emission.bursts.begin()];
+
+            if (_deploy_time > p.time) {
+                c.i_elapsed += delta; // Update the burst
+
+                // New burst to be deployed
+                if (c.i_elapsed > p.interval && c.cycles > 0) {
+
+                    _light_time = 0;
+                    emit(p.count);
+                    c.cycles--;
+                    c.i_elapsed = 0;
+                }
+            }
+
+            ++it;
+        }
     }
 
-    // To update this with the compute shader.
-    void CSystem::render()
-    {
-        if (!_enabled || !_entity.isValid()) return;
-        if (_deploy_time < _core->n_system.start_delay) return;
+    void CSystem::updateFading(float delta) {
 
-        CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
-        assert(eCurrentCamera);
-        TCompCamera* camera = eCurrentCamera->get<TCompCamera>();
-        assert(camera);
-
-        VEC3 cameraPos = camera->getPosition();
-        VEC3 cameraUp = camera->getUp();
-
-        //Hardcoded, move it from here.
-        CEntity * ent = _entity;
-        TCompTransform * c_ent_transform = ent->get<TCompTransform>();
-        if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::HORIZONTAL) {
-            cameraPos = c_ent_transform->getPosition() + c_ent_transform->getUp();
-            cameraUp = c_ent_transform->getFront();
-        }
-
-        const int frameCols = static_cast<int>(_core->n_renderer.frameSize.x);
-
-        auto rmesh = Resources.get("data/meshes/quad_volume_particles.instanced_mesh")->as<CRenderMesh>();
-        CRenderMeshInstanced* instanced_particle = (CRenderMeshInstanced*)rmesh;
-        instanced_particle->vtx_decl = CVertexDeclManager::get().getByName("CpuParticleInstance");
-
-        std::vector<Particles::TIParticle> particles_instances;
-        particles_instances.reserve(_particles.size());
-
-        for (auto& p : _particles)
+        if (_fadeDuration != 0.f)
         {
-            VEC3 pos = p.is_update ? c_ent_transform->getPosition() + p.position : p.position;
-            MAT44 bb = MAT44::CreateBillboard(pos, cameraPos, cameraUp);
-            MAT44 sc = MAT44::CreateScale(p.size * p.scale);
-            MAT44 rt = MAT44::CreateFromYawPitchRoll(p.rotation.x, p.rotation.y, p.rotation.z);
-
-            int row = p.frame / frameCols;
-            int col = p.frame % frameCols;
-            VEC2 minUV = VEC2(col * (1/_core->n_renderer.frameSize.x), row * (1 / _core->n_renderer.frameSize.y));
-            VEC2 maxUV = minUV + VEC2(1/_core->n_renderer.frameSize.x, 1/ _core->n_renderer.frameSize.y);
-
-            Particles::TIParticle t_struct = { rt * sc * bb, minUV, maxUV, p.color };
-            particles_instances.push_back(t_struct);
+            _fadeTime += delta;
+            _fadeRatio = (1.f - (_fadeTime / _fadeDuration));
         }
 
-        instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
-        
-        auto technique2 = Resources.get("Instanced_particles.tech")->as<CRenderTechnique>();
-        technique2->activate();
-
-        _core->n_renderer.texture->activate(TS_ALBEDO1);
-        CRenderManager::get().renderCategory("particles_volume");
+        _fadeRatio = 1.0f;
     }
 
-    void CSystem::emit()
-    {
-        MAT44 world = MAT44::Identity;
-        QUAT rotation = QUAT::Identity;
-        if (_entity.isValid())
-        {
-            CEntity* e = _entity;
-            TCompTransform* e_transform = e->get<TCompTransform>();
-            world = e_transform->asMatrix();
-            rotation = e_transform->getRotation();
-        }
+    void CSystem::updateCollision(float delta) {
 
-        for (int i = 0; i < _core->n_emission.rate_time && _particles.size() < _core->n_system.max_particles; ++i)
-        {
-            TParticle particle;
-            particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, rotation);
-            particle.velocity = generateVelocity();
-            particle.color = _core->n_color.colors.get(0.f);
-            particle.size = _core->n_system.start_size;
-            particle.scale = _core->n_size.scale + random(-_core->n_size.scale_variation, _core->n_size.scale_variation);
-            particle.frame = _core->n_renderer.initialFrame;
-            particle.rotation = (1 - _core->n_system.random_rotation) * M_PI * VEC3(deg2rad(_core->n_system.start_rotation.x), deg2rad(_core->n_system.start_rotation.y), deg2rad(_core->n_system.start_rotation.z));
-            particle.lifetime = 0.f;
-            particle.max_lifetime = _core->n_system.duration + random(-_core->n_emission.variation, _core->n_emission.variation);
-            particle.init_frame = random(0, _core->n_renderer.numFrames);
-            _particles.push_back(particle);
+
+    }
+
+    void CSystem::updateLight(float delta)
+    {
+        if (_core->n_light.active) {
+
+            _light_time += delta;
+            CEntity * ent = _entity;
+            TCompLightPoint * point = ent->get<TCompLightPoint>();
+            float intensity = point->getIntensity();
+
+            if (_light_time < _core->n_light.fadeTime.x) {
+                point->setIntensity(intensity + (_light_time/ _core->n_light.fadeTime.x));
+            }
+            else if (_light_time > _core->n_light.time) {
+                float t_time = _light_time - _core->n_light.time;
+                point->setIntensity(intensity - (t_time / _core->n_light.fadeTime.y));
+            }
         }
     }
 
@@ -337,25 +386,32 @@ namespace Particles
     void CSystem::emit(int amount)
     {
         MAT44 world = MAT44::Identity;
-        QUAT rotation = QUAT::Identity;
+        MAT44 world_rot = MAT44::Identity;
+
         if (_entity.isValid())
         {
             CEntity* e = _entity;
             TCompTransform* e_transform = e->get<TCompTransform>();
             world = e_transform->asMatrix();
-            rotation = e_transform->getRotation();
+            world_rot = MAT44::CreateFromQuaternion(e_transform->getRotation());
         }
 
+        // Emit given an amount with the default initial values.
         for (int i = 0; i < amount && _particles.size() < _core->n_system.max_particles; ++i)
         {
             TParticle particle;
-            particle.position = VEC3::Transform(generatePosition() + _core->n_system.offset, world);
-            particle.velocity = generateVelocity();
+            particle.origin_position = generatePosition() + _core->n_system.offset;
+            particle.position = VEC3::Transform(particle.origin_position, world);
+            particle.velocity = VEC3::Transform(generateVelocity(), world_rot);
+            particle.random_direction = AddNoiseOnAngle(-180, 180);
+            particle.origin_velocity = particle.velocity;
             particle.color = _core->n_color.colors.get(0.f);
-            particle.size = _core->n_size.sizes.get(0.f);
+            particle.size = _core->n_system.start_size * _core->n_size.sizes.get(0.f);
             particle.scale = _core->n_size.scale + random(-_core->n_size.scale_variation, _core->n_size.scale_variation);
             particle.frame = _core->n_renderer.initialFrame;
-            particle.rotation = _core->n_system.random_rotation * M_PI * _core->n_system.start_rotation;
+            particle.init_frame = random(0, _core->n_renderer.numFrames);
+            //particle.rotation = (1 - _core->n_system.random_rotation) * M_PI * VEC3(deg2rad(_core->n_system.start_rotation.x), deg2rad(_core->n_system.start_rotation.y), deg2rad(_core->n_system.start_rotation.z));
+            particle.rotation = _core->n_system.start_rotation + _core->n_system.random_rotation * M_PI * _core->n_system.start_rotation;
             particle.lifetime = 0.f;
             particle.max_lifetime = _core->n_system.duration + random(-_core->n_emission.variation, _core->n_emission.variation);
             particle.is_update = false;
@@ -386,21 +442,21 @@ namespace Particles
             {
                 VEC3 dir(random(-1, 1), random(-1, 1), random(-1, 1));
                 dir.Normalize();
-                return dir * random(0, size.x);
+                return _core->n_shape.shell_emit ? dir  * size.x : dir * random(0, size.x);
             }
 
             case TCoreSystem::TNShape::Circle:
             {
                 VEC3 dir(random(-1, 1), 0, random(-1, 1));
                 dir.Normalize();
-                return dir * random(0, size.x);
+                return _core->n_shape.shell_emit ? dir * size.x : dir * random(0, size.x);
             }
 
             case TCoreSystem::TNShape::Cone:
             {
                 VEC3 dir(random(-1, 1), 0, random(-1, 1));
                 dir.Normalize();
-                return dir * random(0, size.x);
+                return _core->n_shape.shell_emit ? dir * size.x : dir * random(0, size.x);
             }
         }
 
@@ -415,13 +471,13 @@ namespace Particles
                 return VEC3::Up;
 
             case TCoreSystem::TNShape::Line:
-                return VEC3::Right;
+                return VEC3::Up;
 
             case TCoreSystem::TNShape::Square:
                 return VEC3::Up;
 
             case TCoreSystem::TNShape::Box:
-                return VEC3::Up;
+                return VEC3::Forward;
 
             case TCoreSystem::TNShape::Sphere:
             {
@@ -439,9 +495,8 @@ namespace Particles
 
             case TCoreSystem::TNShape::Cone:
             {                
-                //return VEC3::Up;
-                float angle = 1 - (rad2deg(_core->n_shape.angle) / 90);
-                VEC3 dir(random(angle, 1), 1, random(angle, 1));
+                float angle = _core->n_shape.angle / M_PI_2;
+                VEC3 dir(random(-angle, angle), 1, random(-angle, angle));
                 dir.Normalize();
                 return dir;
             }
@@ -455,7 +510,7 @@ namespace Particles
         const float& angle = _core->n_shape.angle;
         const VEC3 velocity = _core->n_velocity.constant_velocity; // TO-REFACTOR
 
-        if (angle != 0.f)
+        /*if (angle != 0.f)
         {
             float radius = tan(angle);
             float x = sqrtf(radius) * cosf(angle) * random(-1, 1);
@@ -463,9 +518,99 @@ namespace Particles
             VEC3 pos(x, 1.f, z);
             pos.Normalize();
             return pos * velocity;
+        }*/
+
+        return generateDirection();// *velocity;
+    }
+
+    // To update this with the compute shader.
+    void CSystem::render()
+    {
+        if (!_enabled || !_entity.isValid()) return;
+        if (_deploy_time < _core->n_system.start_delay) return;
+
+        //Hardcoded, move it from here.
+        CEntity * ent = _entity;
+        TCompTransform * c_ent_transform = ent->get<TCompTransform>();
+        VEC3 proj_vector = c_ent_transform->getFront();
+
+        std::vector<Particles::TIParticle> particles_instances;
+        particles_instances.reserve(_particles.size());
+
+        float frameX = 1 / _core->n_renderer.frameSize.x;
+        float frameY = 1 / _core->n_renderer.frameSize.y;
+        const int frameCols = static_cast<int>(_core->n_renderer.frameSize.x);
+
+        float length = 1;
+        VEC3 camera_pos, camera_up;
+        getRenderMode(camera_pos, camera_up, length);
+
+        for (auto& p : _particles)
+        {
+            // We need to update the strecthed billboard with the given info for each particle.
+            VEC3 pos = p.is_update ? c_ent_transform->getPosition() + p.position : p.position;
+            VEC3 def_position = pos + camera_pos;
+
+            if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::STRETCHED)
+            {
+                camera_up = p.velocity;
+                camera_up.Normalize();
+                def_position = p.velocity.Cross(camera_pos);
+                def_position.Normalize();
+                def_position = p.position + def_position;
+            }
+
+            MAT44 bb = MAT44::CreateBillboard(pos, def_position, camera_up);
+            MAT44 sc = MAT44::CreateScale(p.size * p.scale * VEC3(1, length, 1));
+            MAT44 rt = MAT44::CreateFromYawPitchRoll(p.rotation.x, p.rotation.y, p.rotation.z);
+
+            int row = p.frame / frameCols;
+            int col = p.frame % frameCols;
+            VEC3 minUV = VEC3(col * frameX, row * frameY, 0);
+            VEC3 maxUV = minUV + VEC3(frameX, frameY, _core->n_renderer.softness);
+
+            Particles::TIParticle t_struct = { sc * rt * bb, minUV, maxUV, p.color };
+            particles_instances.push_back(t_struct);
         }
 
-        return generateDirection() * velocity;
+        // Replace this when needed.
+        {
+            _core->n_renderer.texture->activate(TS_ALBEDO1);
+            EngineParticles.instanced_particle->setInstancesData(particles_instances.data(), particles_instances.size(), sizeof(Particles::TIParticle));
+            EngineParticles.instanced_particle->renderSubMesh(EngineParticles.instanced_particle->subgroups[0].first_idx);
+        }
+    }
+
+
+    void CSystem::getRenderMode(VEC3 & camera_pos, VEC3 & camera_up, float & length)
+    {
+        CEntity * ent = _entity;
+        TCompTransform * c_ent_transform = ent->get<TCompTransform>();
+        assert(c_ent_transform);
+
+        CEntity* eCurrentCamera = Engine.getCameras().getOutputCamera();
+        assert(eCurrentCamera);
+        TCompCamera* camera = eCurrentCamera->get<TCompCamera>();
+        assert(camera);
+
+        if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::HORIZONTAL) {
+            camera_pos = VEC3(0, 1, 0);
+            camera_up = VEC3(1,0,0);
+        }
+        else if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::VERTICAL) {
+            camera_pos = VEC3(-camera->getFront().x, 0, -camera->getFront().z);
+            camera_up = VEC3(0, 1, 0);
+        }
+        else if (_core->n_renderer.mode == TCoreSystem::TNRenderer::EMODE::STRETCHED) {
+            camera_pos = camera->getLeft();
+            camera_up = camera->getUp();
+            length = _core->n_renderer.length;
+        }
+        else {
+            camera_pos = -camera->getFront();
+            camera_up = camera->getUp();
+        }
+
     }
 
     TParticleHandle CSystem::getHandle() const
@@ -473,7 +618,13 @@ namespace Particles
         return _handle;
     }
 
-    void CSystem::setActive(bool active) {
+    CHandle CSystem::getHandleEntity() const
+    {
+        return _entity;
+    }
+
+    void CSystem::setActive(bool active)
+    {
 
         _enabled = active;
     }
@@ -484,11 +635,14 @@ namespace Particles
         _fadeTime = 0.f;
     }
 
-    VEC3 CSystem::AddNoiseOnAngle(float min, float max) {
-
+    VEC3 CSystem::AddNoiseOnAngle(float min, float max) 
+    {
         float xNoise = random(min, max);
         float yNoise = random(min, max);
         float zNoise = random(min, max);
+        //VEC3 noize = VEC3(xNoise, yNoise, zNoise);
+        //noize.Normalize();
+        //return noize;
 
         // Convert Angle to Vector3
         VEC3 noise = VEC3(

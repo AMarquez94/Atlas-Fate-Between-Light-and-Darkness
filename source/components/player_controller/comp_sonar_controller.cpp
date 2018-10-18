@@ -20,15 +20,21 @@ void TCompSonarController::debugInMenu() {
 void TCompSonarController::load(const json& j, TEntityParseContext& ctx) {
 
     target_tag = j.value("tags", "");
-    total_time = j.value("alive_time", 0);
-    cooldown_time = j.value("cooldown_time", 0);
+    total_time = j.value("alive_time", 0.f);
+    cooldown_time = j.value("cooldown_time", 0.f);
 
     alpha_value = 0;
     cb_outline.outline_alpha = 0; // Move this from here
+    cb_outline.alive_time = total_time;
     cb_outline.updateGPU();
+    cb_outline.linear_time = cooldown_time;
 }
 
 void TCompSonarController::update(float dt) {
+
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
 
     // Move this from here on refactor
     cb_outline.linear_time += dt;
@@ -47,6 +53,9 @@ void TCompSonarController::onSonarActive(const TMsgSonarActive & msg) {
     sonar.variant.setName("sonar");
     sonar.variant.setBool(false);
     e->sendMsg(sonar);
+
+    TCompAudio* my_audio = get<TCompAudio>();
+    my_audio->playEvent("event:/Sounds/Player/Sonar/SonarTest");
 
     /* Enable this in case we want to hold the alpha value by material
     for (auto p : target_handles) {
@@ -67,7 +76,7 @@ const bool TCompSonarController::canDeploySonar() {
 
     if (!c_my_player->isDead() && !c_my_player->isMerged 
         && c_my_player->isGrounded && !c_my_player->isInhibited 
-        && cb_outline.linear_time > cooldown_time && !Engine.getGameManager().menuVisible)
+        && cb_outline.linear_time > cooldown_time && !Engine.getGameManager().isPaused())
         return true;
 
     return false;

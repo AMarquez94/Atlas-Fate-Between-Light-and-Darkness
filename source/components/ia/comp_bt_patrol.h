@@ -8,6 +8,18 @@ class TCompAIPatrol : public TCompAIEnemy {
 
 private:
 
+    enum EState {
+        CINEMATIC_DEAD = 0,
+        CINEMATIC_INHIBITOR,
+        NUM_STATES
+    };
+
+    /* Cinematic states */
+    EState _currentCinematicState;
+    bool _enabledCinematicAI = false;
+    float _cinematicTimer = 0.f;
+    float _cinematicMaxTime = 0.f;
+
     /* Atributes */
     float amountRotated = 0.f;
     VEC3 lastStunnedPatrolKnownPos = VEC3::Zero;
@@ -15,6 +27,15 @@ private:
     bool hasBeenShadowMerged = false;
     bool hasBeenFixed = false;
     bool disabledLanterns = false;
+    std::vector<CHandle> ignoredPatrols;
+
+    bool goingAfterPlayer = false;
+    float timeGoingAfterPlayerWithoutSeeingHim = 0.f;
+
+    //bool is_tutorial = false;
+    //std::string tutorial_name = "";
+    //float timer = 0.f;
+    //float maxTimer = 0.f;
 
     DECL_SIBLING_ACCESS();
 
@@ -25,6 +46,13 @@ private:
     void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
     void onMsgNoiseListened(const TMsgNoiseMade& msg);
     void onMsgLanternsDisable(const TMsgLanternsDisable& msg);
+    void onMsgCinematicState(const TMsgCinematicState& msg);
+	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
+	void onMsgWarned(const TMsgWarnEnemy& msg);
+	void onMsgResetPatrolLights(const TMsgResetPatrolLights& msg);
+	void onMsgEnemyNothingHere(const TMsgEnemyNothingHere& msg);
+	void onMsgPhysxContact(const TMsgPhysxContact& msg);
+	void onMsgPhysxContactLost(const TMsgPhysxContactLost& msg);
 
     /* Aux functions */
     void turnOnLight();
@@ -32,6 +60,16 @@ private:
     bool isStunnedPatrolInFov(float fov, float maxChaseDistance);
     bool isStunnedPatrolInPos(VEC3 lastPos);
     CHandle getPatrolInPos(VEC3 lastPos);
+    float getMaxChaseDistance();
+    TCompAIPatrol::EState getStateEnumFromString(const std::string& stateName);
+    void warnClosestPatrols();
+    void markPatrolAsGoingAfterPlayer(bool isChasing);
+
+	/* Completed Animations Checkers */
+
+	bool inhibitorAnimationCompleted = false;
+	bool attackAnimationCompleted = false;
+	bool repairedAnimationCompleted = false;
 
     //load
     void loadActions() override;
@@ -62,6 +100,8 @@ public:
     BTNode::ERes actionMarkPlayerAsSeen(float dt);
     BTNode::ERes actionShootInhibitor(float dt);
     BTNode::ERes actionGenerateNavmeshChase(float dt);
+    BTNode::ERes actionWarnClosestDrone(float dt);
+    BTNode::ERes actionRotateTowardsUnreachablePlayer(float dt);
     BTNode::ERes actionChasePlayer(float dt);
     BTNode::ERes actionAttack(float dt);
     BTNode::ERes actionRotateToNoiseSource(float dt);
@@ -72,6 +112,13 @@ public:
     BTNode::ERes actionGoToPatrol(float dt);
     BTNode::ERes actionFixPatrol(float dt);
     BTNode::ERes actionMarkPatrolAsLost(float dt);
+
+    BTNode::ERes actionDieAnimation(float dt);
+    BTNode::ERes actionDeadAnimation(float dt);
+    BTNode::ERes actionResetBT(float dt);
+    BTNode::ERes actionResetInhibitorCinematicTimers(float dt);
+    BTNode::ERes actionWait(float dt);
+    BTNode::ERes actionAnimationShootInhibitor(float dt);
 
     bool conditionManageStun(float dt);
     bool conditionEndAlert(float dt);
@@ -87,6 +134,11 @@ public:
     bool conditionWaitInWpt(float dt);
     bool conditionChase(float dt);
     bool conditionPlayerAttacked(float dt);
+    bool conditionIsDestUnreachable(float dt);
+
+    bool conditionIsCinematic(float dt);
+    bool conditionDeadCinematic(float dt);
+    bool conditionInhibitorCinematic(float dt);
 
     bool assertPlayerInFov(float dt);
     bool assertPlayerNotInFov(float dt);
@@ -95,10 +147,23 @@ public:
     bool assertNotPlayerInFovNorArtificialNoise(float dt);
     bool assertPlayerNotInFovNorNoise(float dt);
     bool assertPlayerAndPatrolNotInFovNotNoise(float dt);
+    bool assertCantReachDest(float dt);
+    bool assertCanReachDest(float dt);
 
     const std::string getStateForCheckpoint();
 
 	static void registerMsgs();
 
+    /* LUA functions */
+    void launchInhibitor();
+
+    void stunPlayer();
+    void attackPlayer();
+    void playStepParticle(bool left);
+    void shakeCamera(float max_amount, float max_distance, float duration);
+    void playSlamParticle();
+
 	void playAnimationByName(const std::string & animationName) override;
+
+	void resetAnimationCompletedBooleans();
 };

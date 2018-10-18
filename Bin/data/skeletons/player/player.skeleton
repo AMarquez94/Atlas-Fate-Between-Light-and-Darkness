@@ -2,22 +2,165 @@
 	"name":"player",
 	"anims" : [
 		{ "name" : "idle"},
-		{ "name" : "walk"},
-		{ "name" : "run"},
-		{ "name" : "attack"},
+		{ "name" : "walk", 
+			"animation_completed_callback": true,
+			"callbacks":[
+			{
+				"time_to_call" : 0.18,
+				"function_to_call" : "animation_step_left"
+			},
+			{
+				"time_to_call" : 0.48,
+				"function_to_call" : "animation_step_right"
+			}]
+		},
+		{ "name" : "run", 
+			"callbacks":[
+			{
+				"time_to_call" : 0.2,
+				"function_to_call": "animation_run_step_left"
+			},
+			{
+				"time_to_call" : 0.5,
+				"function_to_call": "animation_run_step_right"
+			}]
+		},
+		{ "name" : "attack",
+			"callbacks":[
+			  {
+				"time_to_call" : 0.0,
+				"function_to_call" : "animation_attack_start"
+			  },
+			  {
+				"time_to_call" : 0.1,
+				"function_to_call" : "animation_attack_swingLeft"
+			  },
+			  {
+				"time_to_call" : 0.3,
+				"function_to_call" : "animation_attack_swingRight"
+			  },
+			  {
+				"time_to_call" : 0.7,
+				"function_to_call" : "animation_attack_strikeLeft"
+			  },
+			  {
+				"time_to_call" : 0.55,
+				"function_to_call" : "animation_attack_attack"
+			  },
+			  {
+				"time_to_call" : 0.9,
+				"function_to_call" : "animation_attack_strikeRight"
+			  },
+				{
+				"time_to_call" : 0.55,
+				"function_to_call" : "animation_attack_strikeParticleLeft"
+			  },
+				{
+				"time_to_call" : 0.65,
+				"function_to_call" : "animation_attack_strikeParticleRight"
+			  }
+			]},
 		{ "name" : "crouch"},
-		{ "name" : "crouch_walk"},
+		{ "name" : "crouch_walk", 
+			"callbacks":[
+			{
+				"time_to_call" : 0.1666,
+				"function_to_call" : "animation_crouch_step_left"
+			},
+			{
+				"time_to_call" : 0.716,
+				"function_to_call" : "animation_crouch_step_right"
+			}]
+		},
 		{ "name" : "crouch_walk_slow"},
 		{ "name" : "fall"},
 		{ "name" : "hit_back"},
+		{ "name" : "hack",
+			"audio_callbacks":[
+			{
+				"time_to_call": 0.1,
+				"audio_name": "event:/Sounds/Objects/Terminal/Terminal",
+				"relative_to_player": true
+			}
+			]
+		
+		},
+		{ "name" : "sm_enter_fall"},
 		{ "name" : "hit_front"},
 		{ "name" : "metralla_start"},
+		{ "name" : "attack_mimetic"},
+		{ "name" : "cinematic_hard_land_pose"},
+		{ "name" : "cinematic_hard_land_pose_looking"},
 		{ "name" : "metralla_middle"},
 		{ "name" : "metralla_finish"},
+		{ "name" : "cinematic_walk"},
+		{ "name" : "cinematic_idle"},
+		{ "name" : "cinematic_listen_crouch"},
+		{ "name" : "cinematic_look_capsules", 
+			"animation_completed_callback": true},
+		{ "name" : "cinematic_looking_capsules_pose"},
+		{ "name" : "cinematic_keyboard"},
+		{ "name" : "cinematic_listen_idle"},
 		{ "name" : "sm_enter"},
+		{ "name" : "open_weapons"},
+		{ "name" : "touch_enemy",
+			"callbacks":[
+			  {
+				"time_to_call" : 0.35,
+				"function_to_call" : "animation_grab_enemy"
+			  }
+			  ]
+		},
+		{ "name" : "sonda_normal",
+			"callbacks":[
+			  {
+				"time_to_call" : 0,
+				"function_to_call" : "animation_sonda_normal"
+			  }
+			  ]
+		},
+		{ "name" : "sonda_crouch",
+			"callbacks":[
+			  {
+				"time_to_call" : 0,
+				"function_to_call" : "animation_sonda_crouch"
+			  }
+			  ]
+		},
+		{ "name" : "touching_enemy"},
 		{ "name" : "sm_pose"},
 		{ "name" : "land_soft"},
-		{ "name" : "die"},
-		{ "name" : "dead"}
+		{ "name" : "die",
+			"audio_callbacks":[
+				{
+					"time_to_call" : 0,
+					"audio_name" : "event:/Sounds/Player/Hurt/Dead",
+					"relative_to_player" : true
+				}]
+		},
+		{ "name" : "dead"},
+		{ "name" : "land_hard"}
+	],
+	"lookat_corrections" : [
+		{
+			"bone" : "Bip001 Spine1",
+			"local_axis_to_correct" : "0 1 0", 
+			"amount" : 0.2
+		},
+		{
+			"bone" : "Bip001 Spine2",
+			"local_axis_to_correct" : "0.3 1 0", 
+			"amount" : 0.2
+		},
+		{
+			"bone" : "Bip001 Neck",
+			"local_axis_to_correct" : "0.5 0.5 0", 
+			"amount" : 0.3
+		},
+		{
+			"bone" : "Bip001 Head",
+			"local_axis_to_correct" : "0 1 0", 
+			"amount" : 1.0
+		}
 	]
 }

@@ -21,8 +21,10 @@ void TCompPlayerInput::load(const json& j, TEntityParseContext& ctx) {
 
 void TCompPlayerInput::update(float dt)
 {
-    TCompAIPlayer* playerAI = get<TCompAIPlayer>();
-    if (!paused && !isConsoleOn && !isInNoClipMode && !playerAI->enabledPlayerAI) {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
+    if (!paused && !isConsoleOn && !isInNoClipMode && !_playerAIEnabled) {
         CEntity* e = CHandle(this).getOwner();
         _time += dt;
 
@@ -92,15 +94,6 @@ void TCompPlayerInput::update(float dt)
                     e->sendMsg(attack);
                     attackButtonJustPressed = true;
                 }
-                else if (c_my_player->canSonarPunch()) {
-
-                    TMsgSetFSMVariable sonar;
-                    sonar.variant.setName("sonar");
-                    sonar.variant.setBool(true);
-                    e->sendMsg(sonar);
-                    attackButtonJustPressed = true;
-                }
-
             }
             else if (attackButtonJustPressed) {
                 TMsgSetFSMVariable attack;
@@ -108,12 +101,26 @@ void TCompPlayerInput::update(float dt)
                 attack.variant.setBool(false);
                 e->sendMsg(attack);
 
+                attackButtonJustPressed = false;
+            }
+
+            if (EngineInput["btSonar"].getsPressed()) {
+                TCompTempPlayerController* c_my_player = get<TCompTempPlayerController>();
+                if (c_my_player->canSonarPunch()) {
+                    TMsgSetFSMVariable sonar;
+                    sonar.variant.setName("sonar");
+                    sonar.variant.setBool(true);
+                    e->sendMsg(sonar);
+                    sonarButtonJustPressed = true;
+                }
+            }
+            else if (sonarButtonJustPressed) {
                 TMsgSetFSMVariable sonar;
                 sonar.variant.setName("sonar");
                 sonar.variant.setBool(false);
                 e->sendMsg(sonar);
 
-                attackButtonJustPressed = false;
+                sonarButtonJustPressed = false;
             }
 
             if (EngineInput["btCrouch"].getsPressed() && !EngineInput["btRun"].isPressed())
@@ -127,16 +134,10 @@ void TCompPlayerInput::update(float dt)
 
             if (EngineInput["btAction"].hasChanged())
             {
-                TMsgSetFSMVariable action;
-                action.variant.setName("action");
-                action.variant.setBool(true);
-                e->sendMsg(action);
-            }
-            {
                 TCompPlayerAttackCast* playerCast = e->get<TCompPlayerAttackCast>();
-                CHandle button = playerCast->getClosestButtonInRange();
+                CHandle button = playerCast->getClosestButton();
                 //GrabEnemy messages
-                if (EngineInput["btAction"].getsPressed() && playerCast->closestEnemyToMerge().isValid()) {
+                if (EngineInput["btAction"].getsPressed() && playerCast->getClosestEnemyToGrab().isValid()) {
                     _enemyStunned = true;
                     TMsgSetFSMVariable grabEnemy;
                     grabEnemy.variant.setName("grabEnemy");
@@ -159,7 +160,6 @@ void TCompPlayerInput::update(float dt)
                     e->sendMsg(activatingButton);
 
                     TMsgButtonActivated msg;
-                    CEntity * b = button.getOwner();
                     button.sendMsg(msg);
                 }
 
@@ -183,7 +183,7 @@ void TCompPlayerInput::update(float dt)
                     }
                 }
 
-                if (_enemyStunned && !playerCast->closestEnemyToMerge().isValid()) {
+                if (_enemyStunned && !playerCast->getClosestEnemyToGrab().isValid()) {
                     _enemyStunned = false;
                     TMsgSetFSMVariable grabEnemy;
                     grabEnemy.variant.setName("grabEnemy");
@@ -230,10 +230,27 @@ void TCompPlayerInput::update(float dt)
 
 void TCompPlayerInput::registerMsgs()
 {
-    DECL_MSG(TCompFSM, TMsgNoClipToggle, onMsgNoClipToggle);
+    DECL_MSG(TCompPlayerInput, TMsgNoClipToggle, onMsgNoClipToggle);
+    DECL_MSG(TCompPlayerInput, TMsgPlayerAIEnabled, onMsgPlayerAIEnabled);
 }
 
 void TCompPlayerInput::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
 {
     isInNoClipMode = !isInNoClipMode;
+}
+
+void TCompPlayerInput::onMsgPlayerAIEnabled(const TMsgPlayerAIEnabled & msg)
+{
+    _playerAIEnabled = msg.enableAI;
+
+    if (_playerAIEnabled) {
+        CEntity* e = CHandle(this).getOwner();
+        TMsgSetFSMVariable walkMsg;
+        walkMsg.variant.setName("speed");
+        walkMsg.variant.setFloat(0);
+        e->sendMsg(walkMsg);
+
+        TCompTempPlayerController * c_my_player = get<TCompTempPlayerController>();
+        c_my_player->upButtonReselased();
+    }
 }

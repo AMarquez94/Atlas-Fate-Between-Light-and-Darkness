@@ -1,0 +1,26 @@
+[
+	{
+		"name" : "loading",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "loading_sprite",
+				"type" : "sprite",
+				"position" : "950 550",
+				"size" : "55 55",
+				"minUV" : "0 0",	
+				"texture" : "data/textures/gui/soundgraph_idle.dds",
+				"sprite_textures" : [
+					{
+						"texture_name" : "data/textures/gui/loading_sprite.dds",
+						"frame_size" : "512 512",
+						"fps" : 5,
+						"num_frames" : 8,
+						"original_size" : "2048 1024"
+					}
+				]
+			}
+		]
+	}
+]

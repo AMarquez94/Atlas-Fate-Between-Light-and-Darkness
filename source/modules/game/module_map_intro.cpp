@@ -21,25 +21,23 @@
 
 bool CModuleMapIntro::start() {
 
-#ifdef _DEBUG
-    EngineScene.loadScene("scene_map_intro");
-#else
-    EngineScene.loadScene("scene_zone_a");
-#endif
+    dbg("MODULE MAP START\n");
+    EngineScene.loadScene(EngineScene.getDefaultSceneName());
 
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(true);
-	dbg("MODULE MAP START\n");
+
+    Engine.getGUI().enableWidget("ingame", true);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::INGAME_STAMINA_BAR);
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH);
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::SUBTITLES);
 
-	//Engine.getGUI().activateWidget("ingame");
-	Engine.getSound().setAmbientSound("../bin/data/sounds/music/ambient.ogg");
-
+    EngineLogic.execScript("restartCinematics()");
 	return true;
 }
 
 bool CModuleMapIntro::stop() {
-
+    Engine.getGUI().enableWidget("ingame", false);
 	return true;
 }
 

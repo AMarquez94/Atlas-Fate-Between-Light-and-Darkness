@@ -10,6 +10,7 @@
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
 #include "render/render_manager.h"
+#include "resources/json_resource.h"
 
 void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleManager* > &managers) {
     managers.clear();
@@ -24,7 +25,7 @@ void CModuleEntities::loadListOfManagers(const json& j, std::vector< CHandleMana
 
 bool CModuleEntities::start()
 {
-    json j = loadJson("data/components.json");
+    json j = Resources.get("data/components.json")->as<CJsonResource>()->getJson();
 
     // Initialize the ObjManager preregistered in their constructors
     // with the amount of components defined in the data/components.json
@@ -121,6 +122,17 @@ void CModuleEntities::render()
     ImGui::Separator();
 }
 
+CHandle CModuleEntities::getPlayerHandle() {
+
+	if (player_handle.isValid()) {
+		return player_handle;
+	}
+	else {
+		player_handle = getEntityByName("The Player");
+		return player_handle;
+	}
+}
+
 void CModuleEntities::renderDebugOfComponents() {
     PROFILE_FUNCTION("renderDebugOfComponents");
     // Change the technique to some debug solid
@@ -140,4 +152,16 @@ void CModuleEntities::destroyAllEntities() {
         h_e.destroy();
     });
     CHandleManager::destroyAllPendingObjects();
+}
+
+const VHandles CModuleEntities::getAllEntities()
+{
+    VHandles v;
+    auto om = getObjectManager<CEntity>();
+    om->forEach([&v](CEntity* e) {
+        CHandle h_e(e);
+        v.push_back(h_e);
+    });
+
+    return v;
 }

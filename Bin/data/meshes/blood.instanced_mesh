@@ -1,5 +1,5 @@
 {
   "instanced_mesh" : "data/meshes/UnitBox.mesh",
-  "instances_type" : "InstanceColored",
+  "instances_type" : "Instance",
   "num_instances_reserved" : 8
 }

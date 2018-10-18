@@ -1,0 +1,515 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_basilica"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_pared_entrada"
+      ,
+      "transform":
+      {
+        "pos": "-2.48166 8.08257 -238.55"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_pared_entrada.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_aux_pared_3"
+      ,
+      "transform":
+      {
+        "pos": "-33.9897 0.0 -208.855"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bc_aux_pared_3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_aux_pared_2"
+      ,
+      "transform":
+      {
+        "pos": "-1.82569 0.0 -174.249"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bc_aux_pared_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_ventana_cupulas_lat"
+      ,
+      "transform":
+      {
+        "pos": "-29.6883 23.2025 -249.07"
+        ,
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_ventana_cupulas_lat.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_arco_central.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar5"
+      ,
+      "transform":
+      {
+        "pos": "-40.899 20.3416 -249.235"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar5.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_aux_pared_1"
+      ,
+      "transform":
+      {
+        "pos": "29.0393 0.0 -208.855"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bc_aux_pared_1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar4"
+      ,
+      "transform":
+      {
+        "pos": "-40.899 20.3416 -180.797"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar4.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar2"
+      ,
+      "transform":
+      {
+        "pos": "36.8863 20.3416 -249.484"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar6"
+      ,
+      "transform":
+      {
+        "pos": "-44.1837 20.3416 -309.343"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar6.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_pared_capsulas"
+      ,
+      "transform":
+      {
+        "pos": "14.9503 22.0 -253.527"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_pared_capsulas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar1"
+      ,
+      "transform":
+      {
+        "pos": "34.4403 20.3416 -179.089"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_tejados"
+      ,
+      "transform":
+      {
+        "pos": "-19.5959 22.0 -272.075"
+        ,
+        "rotation": "0.0 -0.193621 0.0 -0.981076"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_tejados.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tejados.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_cupulayventanas"
+      ,
+      "transform":
+      {
+        "pos": "-28.3045 20.5326 -254.464"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_cupulayventanas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_ventanasycupulas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_alminar3"
+      ,
+      "transform":
+      {
+        "pos": "37.9449 20.3416 -309.841"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/BC_alminar3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_alminar_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  },
+  {
+		"entity": {
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"name": "Alminar 1",
+			"transform": {
+				"pos": "34.4403 80 -179.089",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.7
+			}
+		}
+
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"name": "Alminar 2",
+			"transform": {
+				"pos": "36.8863 80 -249.484",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.4
+			}
+		}
+
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"name": "Alminar 3",
+			"transform": {
+				"pos": "37.9449 80 -309.841",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.6
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"name": "Alminar 4",
+			"transform": {
+				"pos": "-40.899 80 -180.797",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.8
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"name": "Alminar 5",
+			"transform": {
+				"pos": "-40.899 80 -249.235",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.3
+			}
+		}
+
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"name": "Alminar 6",
+			"transform": {
+				"pos": "-44.1837 80 -309.343",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"rotator": {
+				"speed": 0.5
+			}
+		}
+
+	}
+]

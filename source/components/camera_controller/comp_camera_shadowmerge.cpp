@@ -5,6 +5,7 @@
 #include "components/comp_transform.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
+#include "components/ia/comp_bt_player.h"
 
 DECL_OBJ_MANAGER("camera_shadowmerge", TCompCameraShadowMerge);
 
@@ -29,7 +30,7 @@ void TCompCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
     _starting_pitch = deg2rad(j.value("starting_pitch", 0.f));
 
     // Load the target and set his axis as our axis.
-    _h_target = ctx.findEntityByName(_target_name);
+    _h_target = getEntityByName(_target_name);
     TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
 
     float yaw, pitch, roll;
@@ -53,6 +54,7 @@ void TCompCameraShadowMerge::registerMsgs()
     DECL_MSG(TCompCameraShadowMerge, TMsgSetCameraActive, onMsgActivateMyself);
     DECL_MSG(TCompCameraShadowMerge, TMsgScenePaused, onMsgScenePaused);
     DECL_MSG(TCompCameraShadowMerge, TMsgCameraReset, onMsgCameraReset);
+    DECL_MSG(TCompCameraShadowMerge, TMsgCameraResetTargetPos, onMsgCameraResetTargetPos);
 }
 
 void TCompCameraShadowMerge::onMsgCameraActive(const TMsgCameraActivated &msg)
@@ -118,8 +120,16 @@ void TCompCameraShadowMerge::onMsgCameraReset(const TMsgCameraReset & msg)
     }
 }
 
+void TCompCameraShadowMerge::onMsgCameraResetTargetPos(const TMsgCameraResetTargetPos & msg)
+{
+    resetCameraTargetPos();
+}
+
 void TCompCameraShadowMerge::update(float dt)
 {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     if (!paused) {
         if (!_h_target.isValid())
             return;
@@ -140,12 +150,16 @@ void TCompCameraShadowMerge::update(float dt)
         if (btRVertical.isPressed()) vertical_delta = btRVertical.value;
 
         // Verbose code
-        _current_euler.x -= horizontal_delta * _speed * dt;
+        CEntity* e_target = _h_target;
+        TCompAIPlayer* ai_player = e_target->get<TCompAIPlayer>();
+        if (!(ai_player && ai_player->enabledPlayerAI)) {
+            _current_euler.x -= horizontal_delta * _speed * dt;
 
-        //if (active) {
+            //if (active) {
             _current_euler.y += vertical_delta * _speed * dt;
             _current_euler.y = Clamp(_current_euler.y, -_clamp_angle.y, -_clamp_angle.x);
-        //}
+            //}
+        }
 
         // EulerAngles method based on mcv class
         VEC3 vertical_offset = 0.1f * target_transform->getUp() * _clipping_offset.y; // Change VEC3::up, for the players vertical angle, (TARGET VERTICAL)
@@ -168,10 +182,21 @@ void TCompCameraShadowMerge::update(float dt)
 float TCompCameraShadowMerge::CameraClipping(const VEC3 & origin, const VEC3 & dir)
 {
     physx::PxRaycastHit hit;
-    if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC, cameraFilter))
-        return Clamp(hit.distance - 0.3f, 0.f, _clipping_offset.z);
+    if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC))
+        return Clamp(hit.distance - 0.1f, 0.2f, _clipping_offset.z);
 
     return _clipping_offset.z;
+}
+
+void TCompCameraShadowMerge::resetCameraTargetPos()
+{
+    _h_target = getEntityByName(_target_name);
+    TCompTransform* target_transform = ((CEntity*)_h_target)->get<TCompTransform>();
+
+    float yaw, pitch;
+    target_transform->getYawPitchRoll(&yaw, &pitch);
+    _current_euler.x = yaw;
+    _current_euler.y = _original_euler.y;
 }
 
 void TCompCameraShadowMerge::setCurrentEuler(float x, float y)

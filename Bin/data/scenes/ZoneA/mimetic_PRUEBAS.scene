@@ -1,0 +1,62 @@
+[{
+		"entity": {
+			"name": "Mimetics"
+		}
+	},
+	{
+		"xentity": {
+			"name": "Mimeticus",
+			"transform": {
+				"pos": "-100 1.65 -126.361",
+				"lookat": "-100 1.65 0"
+			},
+			"prefab": "data/prefabs/mimetic.prefab",
+			"ai_mimetic": {
+				"startLightsOn": false,
+				"type": "wall",
+				"isSlept": false
+			},
+			"skel_lookat": {
+				"target_entity_name": "Target Laser 1",
+				"amount": 1
+			}
+		}
+	},
+	{
+		"xentity": {
+			"name": "Mimeticus 2",
+			"transform": {
+				"pos": "-106 1.65 -126.361",
+				"lookat": "-106 1.65 0"
+			},
+			"prefab": "data/prefabs/mimetic.prefab",
+			"ai_mimetic": {
+				"startLightsOn": false,
+				"type": "wall",
+				"isSlept": false
+			},
+			"skel_lookat": {
+				"target_entity_name": "Target Laser 2",
+				"amount": 1
+			}
+		}
+	},
+	{
+		"xentity": {
+			"name": "Target Laser 1",
+			"transform": {
+				"pos": "-104 0 -125"
+			}
+		}
+
+	},
+	{
+		"xentity": {
+			"name": "Target Laser 2",
+			"transform": {
+				"pos": "-102 0 -125"
+			}
+		}
+
+	}
+]

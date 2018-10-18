@@ -13,7 +13,7 @@ class TCompAnimator : public TCompBase
 public:
 
 	enum EAnimation { DEFAULT = 0 };
-	enum EAnimationType { ACTION = 0, CYCLIC };
+	enum EAnimationType { ACTION = 0, CYCLIC, CYCLIC_PARTIAL };
 	enum EAnimationSize { SINGLE = 0, DOUBLE };
 
 	struct AnimationSet {
@@ -27,6 +27,8 @@ public:
 		int secondAnimationId = -1;
 		float weight = 1.0f;
 		float speed = 1.0f;
+		bool rootMovement = false;
+		bool rootRotationMovement = false;
 	};
 
 	CHandle ownHandle;
@@ -42,12 +44,24 @@ public:
 	void update(float dt);
 	void initializeAnimations();
 
-	bool initializeAnimation(EAnimation animation, EAnimationType animationType, EAnimationSize animationSize, std::string animationName, std::string secondAnimationName, float weight, float speed);
+	bool initializeAnimation(
+		EAnimation animation,
+		EAnimationType animationType,
+		EAnimationSize animationSize,
+		std::string animationName,
+		std::string secondAnimationName,
+		float weight,
+		float speed,
+		bool rootMovement,
+		bool rootRotationMovement = false);
+
 	bool playAnimationConverted(EAnimation animation, float speed = 1.0f);
 	bool isCyclic(EAnimation animation);
 	bool isComposed(EAnimation animation);
 	EAnimation actualAnimation();
 	bool isPlayingAnimation(EAnimation animation);
+
+	void removeAction(EAnimation animation);
 
 	EAnimation getAnimationByName(std::string animation_name);
 	float getAnimationDuration(EAnimation animation);

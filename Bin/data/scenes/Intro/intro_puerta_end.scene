@@ -1,0 +1,28 @@
+[
+  {
+    "entity":
+    {
+      "name": "Final_Door"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Final_Door_01",
+	  "prefab": "data/prefabs/puerta_tech.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.85 -0.4 -73.5"
+        ,
+        "rotation": "0 0 0 1"
+      }
+    }
+  }
+]

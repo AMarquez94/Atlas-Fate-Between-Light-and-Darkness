@@ -6,6 +6,9 @@
 #include "components/player_controller/comp_player_animator.h"
 #include "gui/gui_widget.h"
 
+#define SM_THRESHOLD_MIN 0.025f
+#define SM_THRESHOLD_MAX 0.2f
+ 
 class TCompTempPlayerController;
 
 typedef void (TCompTempPlayerController::*actionfinish)();
@@ -16,6 +19,7 @@ struct TargetCamera {
     std::string name;
     float blendIn;
     float blendOut;
+    float fov;
 };
 
 struct Noise {
@@ -106,13 +110,20 @@ class TCompTempPlayerController : public TCompBase
     float timeToPressAgain = 0.7f;
     float timeInhib = 0.0f;
 
-    float attackTimer = 0.f;    //HARD FIX: TODO: Remove
+
+    CHandle weaponLeft;
+    CHandle weaponRight;
+    bool weaponsActive = false;
+    float attackTimer = 0.f;
+    float timeToDeployWeapons = 0.5f;
 
     void onCreate(const TMsgEntityCreated& msg);
+    void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
     void onStateStart(const TMsgStateStart& msg);
     void onStateFinish(const TMsgStateFinish& msg);
 
     void onPlayerHit(const TMsgPlayerHit& msg);
+    void onPlayerStunned(const TMsgPlayerStunned& msg);
     void onPlayerKilled(const TMsgPlayerDead& msg);
     void onPlayerInhibited(const TMsgInhibitorShot& msg);
     void onPlayerExposed(const TMsgPlayerIlluminated& msg);
@@ -121,7 +132,6 @@ class TCompTempPlayerController : public TCompBase
     void onShadowChange(const TMsgShadowChange& msg);
     void onInfiniteStamina(const TMsgInfiniteStamina& msg);
     void onPlayerImmortal(const TMsgPlayerImmortal& msg);
-    void onPlayerInShadows(const TMsgPlayerInShadows& msg);
     void onSpeedBoost(const TMsgSpeedBoost& msg);
     void onPlayerInvisible(const TMsgPlayerInvisible& msg);
     void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
@@ -135,7 +145,6 @@ public:
     bool infiniteStamina;
     bool isImmortal;
     bool isInvisible;
-    bool hackShadows;
     bool isInNoClipMode = false;
     float speedBoost = 1.0f;
     std::string dbCameraState;
@@ -145,6 +154,9 @@ public:
 
     bool isMerged;
     bool isGrounded;
+    bool canMergeFall;
+    bool isMergeFalling;
+    bool pressedMergeFallInTime;
     bool isInhibited;
     bool canAttack;
     bool canRemoveInhibitor;
@@ -159,22 +171,25 @@ public:
 
     /* State functions */
     void walkState(float dt);
+    void fallState(float dt);
+    void mergeFallState(float dt);
     void idleState(float dt);
-    void deadState(float dt);
     void mergeState(float dt);
-    void attackState(float dt);
     void resetState(float dt);
     void exitMergeState(float dt);
     void removingInhibitorState(float dt);
     void movingObjectState(float dt);
+    void stunnedState(float dt);
     void resetRemoveInhibitor();
     void markObjectAsMoving(bool isBeingMoved, VEC3 newDirection = VEC3::Zero, float speed = 0);
+    void resetMergeFall();
 
     /* Player condition tests */
     const bool concaveTest(void);
     const bool convexTest(void);
     const bool onMergeTest(float dt);
     const bool groundTest(float dt);
+    const bool canMergeFallTest(float dt);
     const bool canAttackTest(float dt);
     const bool canSonarPunch();
 
@@ -182,6 +197,7 @@ public:
     void updateStamina(float dt);
     void updateShader(float dt);
     void updateLife(float dt);
+    void updateWeapons(float dt);
     void mergeEnemy();
     void resetMerge();
     bool isDead();
@@ -189,8 +205,20 @@ public:
     void invertAxis(VEC3 old_up, bool type);
     void getDamage(float dmg);
     void die();
+    void activateCanLandSM(bool activate);
+    void pauseEnemy();
+    void stunEnemy();
+    const bool isStaminaFull() { return stamina / maxStamina != 1.f; };
+    CHandle getLeftWeapon() { return weaponLeft; };
+    CHandle getRightWeapon() { return weaponRight; };
+    bool isMergedInMergeableZone();
 
-    VEC3 getMotionDir(const VEC3 & front, const VEC3 & left);
+    VEC3 getMotionDir(const VEC3 & front, const VEC3 & left, bool default = true);
+
+    /* Lua functions */
+    void playPlayerStep(bool left);
+    void playLandParticles(bool left); 
+    void playSMSpirals();
 
     static void registerMsgs();
 };

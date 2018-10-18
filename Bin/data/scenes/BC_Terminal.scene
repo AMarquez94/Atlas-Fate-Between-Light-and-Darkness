@@ -1,0 +1,37 @@
+[{
+		"entity": {
+			"name": "BC_Terminal",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_terminal",
+			"prefab": "data/prefabs/terminal.prefab",
+			"transform": {
+				"pos": "5.54 0.075 -358.8",
+				"lookat": "6.54 0.075 -358.8"
+			},
+			"button": {
+				"script": "bc_button_shutdown_screens_pressed",
+				"canBePressed": true
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "BC_Terminal_Mosque",
+			"prefab": "data/prefabs/terminal.prefab",
+			"transform": {
+				"pos": "8.5 -0.025 -391.375",
+				"lookat": "6.5 -0.025 -391.375"
+			},
+			"emission_controller": {
+				"initial": "1.0 1.0 1.0 1.0",
+				"intensity": 0
+			}
+		}
+	}
+]

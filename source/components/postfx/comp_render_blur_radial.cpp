@@ -18,7 +18,7 @@ void TCompRenderBlurRadial::debugInMenu() {
 void TCompRenderBlurRadial::load(const json& j, TEntityParseContext& ctx) {
 
 	enabled = j.value("enabled", enabled);
-	amount = j.value("amount", 1.5f);
+	amount = j.value("amount", 2.7f);
 	radius = j.value("radius", 1.0f);
 	xres = Render.width;
 	yres = Render.height;

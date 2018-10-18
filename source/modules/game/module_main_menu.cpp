@@ -20,10 +20,14 @@ bool CModuleMainMenu::start()
 	Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
 	mouse->setLockMouse(false);
 
+	//EngineScene.loadScene("default");
+
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_SCENE);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BACKGROUND);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.25,0,false);
 
-	CHandle h_camera = getEntityByName("TPCamera");
+	CHandle h_camera = getEntityByName("test_camera_flyover");
 	if (h_camera.isValid())
 		Engine.getCameras().setDefaultCamera(h_camera);
 
@@ -31,10 +35,14 @@ bool CModuleMainMenu::start()
 	if (h_camera.isValid())
 		Engine.getCameras().setOutputCamera(h_camera);
 
+    menu_theme = EngineSound.playEvent("event:/Ambiance/Menu_Atlas");
+
 	//cb_light.activate();
 	//cb_object.activate();
 	//cb_camera.activate();
 	//Engine.getSound().setAmbientSound("../sounds/test.ogg");
+
+    //EngineLogic.execScriptDelayed("preloadScene(\"scene_zone_a\")", 60);
 
 	return true;
 }
@@ -42,8 +50,11 @@ bool CModuleMainMenu::start()
 bool CModuleMainMenu::stop() {
 
 	dbg("MODULE STOP\n");
+	CEngine::get().getGUI().deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_SCENE);
 	CEngine::get().getGUI().deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BACKGROUND);
 	CEngine::get().getGUI().deactivateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
+    menu_theme.stop();
 	return true;
 }
 

@@ -27,8 +27,8 @@ void VS_SKIN_GBuffer(
 	float4 skinned_Pos = mul(float4(iPos.xyz * BonesScale, 1), skin_mtx);
 
 	oPos = mul(skinned_Pos, camera_view_proj); // Transform to viewproj, w_m inside skin_m
-	oNormal = mul(iN, (float3x3)obj_world); // Rotate the normal
-	oTangent.xyz = mul(iTangent.xyz, (float3x3)obj_world);
+	oNormal = mul(iN, (float3x3)skin_mtx); // Rotate the normal
+	oTangent.xyz = mul(iTangent.xyz, (float3x3)skin_mtx);
 	oTangent.w = iTangent.w;
 
 	oTex0 = iUV;
@@ -84,21 +84,105 @@ void PS_GBuffer(
 	, out float4 o_selfIllum : SV_Target3
 )
 {
-  o_albedo = txAlbedo.Sample(samLinear, iTex0);
+	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
-	o_selfIllum.xyz *= self_color;
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
+	o_selfIllum.xyz *= self_color.xyz * self_intensity;
 	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
 	
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
-
+	
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
 	float3 camera2wpos = iWorldPos - camera_pos;
 	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+}
+
+void PS_GBuffer_Opacity(
+	float4 Pos       : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+	, out float4 o_albedo : SV_Target0
+	, out float4 o_normal : SV_Target1
+	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum : SV_Target3
+)
+{
+	o_albedo = txAlbedo.Sample(samLinear, iTex0);
+	
+	if(o_albedo.a < 0.85) discard;
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
+	o_selfIllum.xyz *= self_color.xyz * self_intensity;
+	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
+	
+	// Save roughness in the alpha coord of the N render target
+	float roughness = txRoughness.Sample(samLinear, iTex0).r;
+	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
+	o_normal = encodeNormal(N, roughness);
+	
+	// Compute the Z in linear space, and normalize it in the range 0...1
+	// In the range z=0 to z=zFar of the camera (not zNear)
+	float3 camera2wpos = iWorldPos - camera_pos;
+	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+}
+
+void PS_GBuffer_Player(
+	float4 Pos       : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+	, out float4 o_albedo : SV_Target0
+	, out float4 o_normal : SV_Target1
+	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum : SV_Target3
+)
+{
+  // Obtain a random value associated to each pos in the surface
+  float4 noise0 = txNoiseMap.Sample( samLinear, iTex0 * 1.0 + 0.4 * global_world_time * float2(.5,0)) * 2 - 1;      // -1..1
+  float4 noise1 = txNoiseMap.Sample( samLinear, iTex0 * 2.0 + 0.5 * global_world_time * float2(.5,0.1)) * 2 - 1;      // -1..1
+  float4 noise2 = txNoiseMap.Sample( samLinear, iTex0 * 4 + 0.5 * global_world_time * float2(.55,-0.123)) * 2 - 1;      // -1..1
+  float2 noiseF = noise0.xy * 0.15 + noise1.xy * 0.25 + noise2.xy * .125;
+	iTex0 =iTex0 + noiseF * 0.05;
+	
+	o_albedo = txAlbedo.Sample(samLinear, iTex0);
+	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
+	o_selfIllum.xyz *= self_color.xyz * self_intensity;
+	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
+	
+	// Save roughness in the alpha coord of the N render target
+	float roughness = txRoughness.Sample(samLinear, iTex0).r;
+	float3 N = computeNormalDistortion(iNormal, iTangent, noiseF);
+	o_normal = encodeNormal(N, roughness);
+	
+	// Compute the Z in linear space, and normalize it in the range 0...1
+	// In the range z=0 to z=zFar of the camera (not zNear)
+	float3 camera2wpos = iWorldPos - camera_pos;
+	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+}
+
+void PS_Outline_GBuffer(
+	float4 Pos       : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+	, out float4 o_outlines : SV_Target4
+)
+{
+	float3 camera2wpos = iWorldPos - camera_pos;
+	float depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+	o_outlines = txAlbedo.Sample(samLinear, iTex0);
+	o_outlines.a = depth;
 }
 
 void PS_Shade_GBuffer(
@@ -108,34 +192,69 @@ void PS_Shade_GBuffer(
 	, float2 iTex0 : TEXCOORD0
 	, float2 iTex1 : TEXCOORD1
 	, float3 iWorldPos : TEXCOORD2
-		, out float4 o_albedo : SV_Target0
+	, out float4 o_albedo : SV_Target0
 	, out float4 o_normal : SV_Target1
 	, out float1 o_depth : SV_Target2
 	, out float4 o_selfIllum : SV_Target3
+	, out float4 o_outlines : SV_Target4
 )
 {
 	float4 noise0 = txNoiseMap.Sample(samLinear, iTex0);
-  o_albedo = txAlbedo.Sample(samLinear, iTex0)* (1 - self_fade_value * 2);
+	o_albedo = txAlbedo.Sample(samLinear, iTex0)* (1 - self_opacity * 2);
 	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
-	o_selfIllum.xyz *= self_color* (1 - self_fade_value * 4);
+	o_selfIllum.xyz *= self_color.xyz * (1 - self_opacity * 4);
 	o_selfIllum.a = 1;
-	if((noise0.x - self_fade_value) < 0.01f){
-			o_albedo = float4(0,1,1,1);
-			o_selfIllum.xyz = float3(0,1,1);
+	if((noise0.x - self_opacity) < 0.02f){
+		o_albedo = obj_color * 1.5;
+		o_selfIllum.xyz = obj_color.xyz; //tune this given the bloom amount
 	}
 	
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
 	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
 	o_normal = encodeNormal(N, roughness);
-
+	o_outlines = float4(1,1,1,1);
+	
 	// Compute the Z in linear space, and normalize it in the range 0...1
 	// In the range z=0 to z=zFar of the camera (not zNear)
 	float3 camera2wpos = iWorldPos - camera_pos;
 	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
 	
-	clip(noise0.x - self_fade_value);
+	clip(noise0.x - self_opacity);
+}
+
+void PS_WeaponPlate_GBuffer(
+	float4 Pos       : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+	, out float4 o_albedo : SV_Target0
+	, out float4 o_normal : SV_Target1
+	, out float1 o_depth : SV_Target2
+	, out float4 o_selfIllum : SV_Target3
+)
+{
+	float4 noise0 = txNoiseMap.Sample(samLinear, -iTex0);
+	o_albedo = txAlbedo.Sample(samLinear, 0.5 * (-iTex0 + player_disk_radius));
+	o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
+	o_selfIllum =  txEmissive.Sample(samLinear, iTex0) * self_intensity;
+	o_selfIllum.xyz *= self_color.xyz;
+
+	// Save roughness in the alpha coord of the N render target
+	float roughness = txRoughness.Sample(samLinear, iTex0).r;
+	float3 N = computeNormalMap(iNormal, iTangent, iTex0);
+	o_normal = encodeNormal(N, roughness);
+	
+	// Compute the Z in linear space, and normalize it in the range 0...1
+	// In the range z=0 to z=zFar of the camera (not zNear)
+	float3 camera2wpos = iWorldPos - camera_pos;
+	o_depth = dot(camera_front.xyz, camera2wpos) / camera_zfar;
+	float t = 40 + global_world_time;
+	
+	clip(o_albedo.r * 2 - 1);
 }
 
 //--------------------------------------------------------------------------------------
@@ -144,35 +263,61 @@ void PS_GBufferMix(
 , float3 iNormal : NORMAL0
 , float4 iTangent : NORMAL1
 , float2 iTex0 : TEXCOORD0
-, float3 iWorldPos : TEXCOORD1
+, float2 iTex1 : TEXCOORD1
+, float3 iWorldPos : TEXCOORD2
 , out float4 o_albedo : SV_Target0
 , out float4 o_normal : SV_Target1
 , out float1 o_depth : SV_Target2
+, out float4 o_selfIllum : SV_Target3
 )
 {
 
   // This is different -----------------------------------------
-  // iTex0 *= 4;
+	float4 weight_texture_boost = txMixBlendWeights.Sample(samLinear, iTex1);
   float4 albedoR = txAlbedo.Sample(samLinear, iTex0);
   float4 albedoG = txAlbedo1.Sample(samLinear, iTex0);
   float4 albedoB = txAlbedo2.Sample(samLinear, iTex0);
-
+		
   float w1, w2, w3;
-  computeBlendWeights( albedoR.a + mix_boost_r
-                     , albedoG.a + mix_boost_g
-                     , albedoB.a + mix_boost_b
+  computeBlendWeights( albedoR.a + mix_boost_r + weight_texture_boost.r
+                     , albedoG.a + mix_boost_g + weight_texture_boost.g
+                     , albedoB.a + mix_boost_b + weight_texture_boost.b
                      , w1, w2, w3 );
   
+	// Use the weight to 'blend' the albedo colors
   float4 albedo = albedoR * w1 + albedoG * w2 + albedoB * w3;
   o_albedo.xyz = albedo.xyz;
+	o_selfIllum.xyz *= self_color.xyz;
+	//float aoR = txAOcclusion.Sample(samLinear, iTex0).r;
+	//float aoG = txAOcclusion1.Sample(samLinear, iTex0).r;
+	//float aoB = txAOcclusion2.Sample(samLinear, iTex0).r;
+	//float ao_color = aoR * w1 + aoG * w2 + aoB * w3; 
+  o_selfIllum = float4(0,0,0,1);//ao_color;
+	
+  // This isMix the normal
+  float3 normalR = txNormal.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;
+  float3 normalG = txNormal1.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;
+  float3 normalB = txNormal2.Sample(samLinear, iTex0).xyz * 2.0 - 1.0;
+  float3 normal_color = normalR * w1 + normalG * w2 + normalB * w3; 
+  float3x3 TBN = computeTBN( iNormal, iTangent );
 
-  // This is the same -----------------------------------------
-  o_albedo.a = txMetallic.Sample(samLinear, iTex0).r;
-  float3 N = computeNormalMap( iNormal, iTangent, iTex0 );
+  // Normal map comes in the range 0..1. Recover it in the range -1..1
+  float3 wN = mul( normal_color, TBN );
+  float3 N = normalize( wN );
+
+  float metallicR = txMetallic.Sample(samLinear, iTex0).r;
+	float metallicG = txMetallic1.Sample(samLinear, iTex0).r;
+	float metallicB = txMetallic2.Sample(samLinear, iTex0).r;
+  float metallic_color = metallicR * w1 + metallicG * w2 + metallicB * w3; 
+  o_albedo.a = metallic_color;
 
   // Save roughness in the alpha coord of the N render target
-  float roughness = txRoughness.Sample(samLinear, iTex0).r;
-  o_normal = encodeNormal( N, roughness );
+  float roughnessR = txRoughness.Sample(samLinear, iTex0).r;
+	float roughnessG = txRoughness1.Sample(samLinear, iTex0).r;
+	float roughnessB = txRoughness2.Sample(samLinear, iTex0).r;
+  float roughness_color = roughnessR * w1 + roughnessG * w2 + roughnessB * w3; 
+	
+  o_normal = encodeNormal( N, roughness_color );
 
   // Compute the Z in linear space, and normalize it in the range 0...1
   // In the range z=0 to z=zFar of the camera (not zNear)
@@ -297,12 +442,11 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 
 	// if roughness = 0 -> I want to use the miplevel 0, the all-detailed image
 	// if roughness = 1 -> I will use the most blurred image, the 8-th mipmap, If image was 256x256 => 1x1
-	float mipIndex = roughness * roughness * 32.0f;
+	float mipIndex = roughness * roughness * 8.0f;
 	float3 env = txEnvironmentMap.SampleLevel(samLinear, reflected_dir, mipIndex).xyz;
 	env = pow(abs(env), 2.2f);	// Convert the color to linear also.
 
 	float3 irradiance_mipmaps = txEnvironmentMap.SampleLevel(samLinear, N, 8).xyz;
-	float3 irradiance_texture = txIrradianceMap.Sample(samLinear, N).xyz;
 	float3 irradiance = irradiance_mipmaps;//irradiance_texture * scalar_irradiance_vs_mipmaps + irradiance_mipmaps * (1. - scalar_irradiance_vs_mipmaps);
 
 	// How much the environment we see
@@ -311,22 +455,12 @@ float4 PS_ambient(in float4 iPosition : SV_Position, in float2 iUV : TEXCOORD0) 
 	float g_ReflectionIntensity = 1.0;
 	float g_AmbientLightIntensity = 1.0;
 
-	int3 ss_load_coords = uint3(iPosition.xy, 0);
-	float ao = txAO.Load( ss_load_coords );
+	float ao = txAO.Sample( samLinear, iUV).x;
 	float4 self_illum = txSelfIllum.Load(uint3(iPosition.xy,0)); // temp 
-
-	// Compute global fog on ambient.
-	float3 pixel_depth = camera_pos.xyz - wPos;
-	float distancet = length(pixel_depth);
-	float visibility = exp(distancet * distancet * -global_fog_density * global_fog_density * 1.442695);
-	visibility = saturate(visibility);
-
-	//float4 final_color2 = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-	//return ((final_color2 * ao) + (float4(self_illum.xyz, 1) * global_self_intensity)) * global_ambient_adjustment;
-
+	
 	float4 final_color = float4(env_fresnel * env * g_ReflectionIntensity + albedo.xyz * irradiance * g_AmbientLightIntensity, 1.0f);
-	final_color = final_color * global_ambient_adjustment * ao * self_illum.a;
-	final_color = lerp(float4(env, 1), final_color, visibility) + float4(self_illum.xyz, 1) * global_ambient_adjustment * global_self_intensity;
+	final_color *= global_ambient_adjustment;// * ao * self_illum.a;
+	final_color += float4(self_illum.xyz, 1);
 	return float4(final_color.xyz, 1);
 }
 
@@ -376,12 +510,13 @@ float4 shade(float4 iPosition, out float3 light_dir, bool use_shadows)
 	float3 cSpec = Specular(specular_color, h, view_dir, light_dir, a, NdL, NdV, NdH, VdH, LdV);
 
 	float  att = (1. - smoothstep(inner_atten, far_atten, distance_to_light / light_radius)); // Att, point light
-	//att *= 1 / distance_to_light;
 	
 	// Spotlight attenuation
 	float shadow_factor = use_shadows ? computeShadowFactor(wPos) : 1.; // shadow factor
-
-	float3 final_color = light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att * shadow_factor;
+	shadow_factor = lerp(shadow_factor, 1, global_shadow_intensity);
+	float3 final_light_color = lerp(global_shadow_color, light_color.xyz, shadow_factor);
+	float3 final_color = final_light_color.xyz * NdL * (cDiff * (1.0f - cSpec) + cSpec) * light_intensity * att;
+	
 	return float4(final_color, 1);
 }
 
@@ -484,7 +619,7 @@ float4 PS_VLight(
     float shadow_factor = computeShadowFactor(iWorldPos);
     float camera_dist = length(iWorldPos - light_pos.xyz);
     float val = 1 / (1 + (camera_dist * camera_dist));
-
+ 
     // From wPos to Light
     float3 light_dir_full = light_pos.xyz - iWorldPos;
     float  distance_to_light = length(light_dir_full);
@@ -532,6 +667,6 @@ float4 PS_skybox(in float4 iPosition : SV_Position) : SV_Target
 {
 	float3 view_dir = mul(float4(iPosition.xy, 1, 1), camera_screen_to_world).xyz;
 	float4 skybox_color = txEnvironmentMap.Sample(samLinear, view_dir);
-    skybox_color = pow(skybox_color, float4(2.2,2.2,2.2, 2.2));
-    return float4(skybox_color.xyz, 1);// *global_ambient_adjustment;
+	//skybox_color = pow(skybox_color, float4(2.2,2.2,2.2, 1));
+   return float4(skybox_color.xyz, 1) *global_ambient_adjustment;
 }

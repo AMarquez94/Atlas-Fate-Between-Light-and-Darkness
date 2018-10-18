@@ -1,0 +1,2083 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_prova_tubo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder010"
+      ,
+      "transform":
+      {
+        "pos": "-7.95672 25.0868 14.2357"
+        ,
+        "rotation": "0.477715 -0.521334 0.477714 -0.521334"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder012"
+      ,
+      "transform":
+      {
+        "pos": "-12.0937 24.3774 22.3444"
+        ,
+        "rotation": "-0.706434 -0.706434 -0.0308435 0.0308434"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Cylinder013"
+      ,
+      "transform":
+      {
+        "pos": "-37.6279 24.3774 22.3444"
+        ,
+        "rotation": "0.706434 -0.706434 -0.0308436 -0.0308436"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/Cylinder013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low001"
+      ,
+      "transform":
+      {
+        "pos": "-24.1791 22.621 25.6961"
+        ,
+        "rotation": "-0.866025 0.0 0.0 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low002"
+      ,
+      "transform":
+      {
+        "pos": "-21.8965 22.621 25.6961"
+        ,
+        "rotation": "-0.866025 0.0 0.0 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low003"
+      ,
+      "transform":
+      {
+        "pos": "-19.6139 22.621 25.6961"
+        ,
+        "rotation": "-0.866025 0.0 0.0 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low004"
+      ,
+      "transform":
+      {
+        "pos": "-17.3313 22.621 25.6961"
+        ,
+        "rotation": "-0.866025 0.0 0.0 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_low001"
+      ,
+      "transform":
+      {
+        "pos": "-36.2079 25.2956 26.3263"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_low002"
+      ,
+      "transform":
+      {
+        "pos": "-36.2079 25.9867 26.1837"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_grande_low001"
+      ,
+      "transform":
+      {
+        "pos": "-35.4189 24.1363 26.748"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_grande_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_low003"
+      ,
+      "transform":
+      {
+        "pos": "-11.5299 24.2044 26.6876"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low005"
+      ,
+      "transform":
+      {
+        "pos": "-35.8001 22.621 25.6961"
+        ,
+        "rotation": "-0.866025 0.0 0.0 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low006"
+      ,
+      "transform":
+      {
+        "pos": "-33.5175 22.621 25.6961"
+        ,
+        "rotation": "-0.866025 0.0 0.0 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low007"
+      ,
+      "transform":
+      {
+        "pos": "-31.2349 22.621 25.6961"
+        ,
+        "rotation": "-0.866025 0.0 0.0 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low008"
+      ,
+      "transform":
+      {
+        "pos": "-28.2704 22.621 18.9794"
+        ,
+        "rotation": "0.0 0.5 -0.866025 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low009"
+      ,
+      "transform":
+      {
+        "pos": "-30.553 22.621 18.9794"
+        ,
+        "rotation": "0.0 0.5 -0.866025 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low009.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low010"
+      ,
+      "transform":
+      {
+        "pos": "-32.8356 22.621 18.9794"
+        ,
+        "rotation": "0.0 0.5 -0.866025 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low010.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low011"
+      ,
+      "transform":
+      {
+        "pos": "-35.1182 22.621 18.9794"
+        ,
+        "rotation": "0.0 0.5 -0.866025 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low011.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low012"
+      ,
+      "transform":
+      {
+        "pos": "-16.6494 22.621 18.9794"
+        ,
+        "rotation": "0.0 0.5 -0.866025 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low012.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low013"
+      ,
+      "transform":
+      {
+        "pos": "-18.932 22.621 18.9794"
+        ,
+        "rotation": "0.0 0.5 -0.866025 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low013.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low014"
+      ,
+      "transform":
+      {
+        "pos": "-21.2146 22.621 18.9794"
+        ,
+        "rotation": "0.0 0.5 -0.866025 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low014.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_grande_low002"
+      ,
+      "transform":
+      {
+        "pos": "-14.4229 27.1365 25.9311"
+        ,
+        "rotation": "0.183013 -0.183013 -0.683013 -0.683013"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_grande_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low015"
+      ,
+      "transform":
+      {
+        "pos": "-4.57425 23.5239 13.6901"
+        ,
+        "rotation": "-0.627211 -0.379928 0.596368 -0.326505"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low015.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low016"
+      ,
+      "transform":
+      {
+        "pos": "-4.57425 23.7228 11.4161"
+        ,
+        "rotation": "-0.627211 -0.379928 0.596368 -0.326505"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low016.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low017"
+      ,
+      "transform":
+      {
+        "pos": "-4.57425 23.9218 9.14224"
+        ,
+        "rotation": "-0.627211 -0.379928 0.596368 -0.326505"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low017.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low018"
+      ,
+      "transform":
+      {
+        "pos": "-11.2909 23.9812 8.46295"
+        ,
+        "rotation": "-0.627211 0.379928 -0.596368 -0.326506"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low018.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low019"
+      ,
+      "transform":
+      {
+        "pos": "-11.2909 23.7823 10.7369"
+        ,
+        "rotation": "-0.627211 0.379928 -0.596368 -0.326506"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low019.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "respiradero_low020"
+      ,
+      "transform":
+      {
+        "pos": "-11.2909 23.5833 13.0108"
+        ,
+        "rotation": "-0.627211 0.379928 -0.596368 -0.326506"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/respiradero_low020.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_low004"
+      ,
+      "transform":
+      {
+        "pos": "-11.5299 23.0241 26.6876"
+        ,
+        "rotation": "0.0 0.0 0.707107 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "sortidor_low_3"
+      ,
+      "transform":
+      {
+        "pos": "-14.7471 27.2339 24.5786"
+        ,
+        "rotation": "-0.258819 0.0 0.0 -0.965926"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sortidor_low_3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "sortidor_low_1"
+      ,
+      "transform":
+      {
+        "pos": "-36.0132 27.2339 24.5786"
+        ,
+        "rotation": "-0.258819 0.0 0.0 -0.965926"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sortidor_low_1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "sortidor_low_2"
+      ,
+      "transform":
+      {
+        "pos": "-29.3164 27.2339 24.5786"
+        ,
+        "rotation": "-0.258819 0.0 0.0 -0.965926"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sortidor_low_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "sortidor2_low001"
+      ,
+      "transform":
+      {
+        "pos": "-26.0253 22.7242 25.4135"
+        ,
+        "rotation": "-0.866025 0.0 0.0 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sortidor2_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_grande_low003"
+      ,
+      "transform":
+      {
+        "pos": "-30.0876 20.6586 24.9252"
+        ,
+        "rotation": "-0.40558 -0.40558 0.579228 -0.579228"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_grande_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_low005"
+      ,
+      "transform":
+      {
+        "pos": "-34.7841 20.4405 22.8385"
+        ,
+        "rotation": "-0.5 -0.5 0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_low006"
+      ,
+      "transform":
+      {
+        "pos": "-34.7841 20.583 23.5296"
+        ,
+        "rotation": "-0.5 -0.5 0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "sortidor2_low002"
+      ,
+      "transform":
+      {
+        "pos": "-10.3394 25.413 25.4559"
+        ,
+        "rotation": "-0.603553 -0.110085 0.0701316 -0.786566"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sortidor2_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_grande_low004"
+      ,
+      "transform":
+      {
+        "pos": "-9.14999 28.5563 22.0899"
+        ,
+        "rotation": "0.477714 -0.477714 -0.521334 -0.521334"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_grande_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_low001"
+      ,
+      "transform":
+      {
+        "pos": "-15.8279 23.9986 25.6977"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_low002"
+      ,
+      "transform":
+      {
+        "pos": "-14.5757 23.9986 25.6977"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_low007"
+      ,
+      "transform":
+      {
+        "pos": "-31.2299 28.2509 22.9686"
+        ,
+        "rotation": "-0.5 -0.5 -0.5 0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_low007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_low008"
+      ,
+      "transform":
+      {
+        "pos": "-34.4423 28.2509 21.0931"
+        ,
+        "rotation": "-0.5 -0.5 -0.5 0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_low008.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "sortidor_low_004"
+      ,
+      "transform":
+      {
+        "pos": "-5.19257 25.3717 21.505"
+        ,
+        "rotation": "-0.465315 -0.26865 0.421696 -0.730398"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sortidor_low_004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "sortidor_low001"
+      ,
+      "transform":
+      {
+        "pos": "-10.3656 21.3424 23.9266"
+        ,
+        "rotation": "0.0 -0.300706 -0.953717 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sortidor_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "sortidor2_low003"
+      ,
+      "transform":
+      {
+        "pos": "-38.1179 24.7742 25.9719"
+        ,
+        "rotation": "-0.67559 0.0 0.0 -0.737277"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sortidor2_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "capsula_low001"
+      ,
+      "transform":
+      {
+        "pos": "-25.1671 28.1594 24.8321"
+        ,
+        "rotation": "-0.153046 0.153046 -0.690346 -0.690345"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/capsula_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "capsula_low002"
+      ,
+      "transform":
+      {
+        "pos": "-10.7387 28.1594 24.8321"
+        ,
+        "rotation": "-0.153046 0.153046 -0.690346 -0.690345"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/capsula_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "capsula_low003"
+      ,
+      "transform":
+      {
+        "pos": "-21.8622 28.1594 24.8321"
+        ,
+        "rotation": "-0.153046 0.153046 -0.690346 -0.690345"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/capsula_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_corto_low001"
+      ,
+      "transform":
+      {
+        "pos": "-6.94001 28.8063 19.4967"
+        ,
+        "rotation": "0.67559 0.0 0.0 -0.737277"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_corto_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_corto_low002"
+      ,
+      "transform":
+      {
+        "pos": "-7.75962 28.8063 19.4967"
+        ,
+        "rotation": "0.67559 0.0 0.0 -0.737277"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_corto_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_corto_low003"
+      ,
+      "transform":
+      {
+        "pos": "-6.94001 20.534 18.7729"
+        ,
+        "rotation": "0.0 -0.737277 0.67559 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_corto_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_corto_low004"
+      ,
+      "transform":
+      {
+        "pos": "-7.75962 20.534 18.7729"
+        ,
+        "rotation": "0.0 -0.737277 0.67559 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_corto_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_grande_corto_low001"
+      ,
+      "transform":
+      {
+        "pos": "-3.62981 24.9459 18.0116"
+        ,
+        "rotation": "0.477715 -0.521334 0.477714 -0.521334"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_grande_corto_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_grande_corto_low002"
+      ,
+      "transform":
+      {
+        "pos": "-5.20602 27.8231 19.6138"
+        ,
+        "rotation": "0.624164 -0.282144 0.258537 -0.681155"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_grande_corto_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz2_low001"
+      ,
+      "transform":
+      {
+        "pos": "-15.6415 22.9636 25.2878"
+        ,
+        "rotation": "-0.843391 0.0 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz2_low001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz2_low002"
+      ,
+      "transform":
+      {
+        "pos": "-14.7626 22.9636 25.2878"
+        ,
+        "rotation": "-0.843391 0.0 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz2_low002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz2_low003"
+      ,
+      "transform":
+      {
+        "pos": "-13.8837 22.9636 25.2878"
+        ,
+        "rotation": "-0.843391 0.0 0.0 -0.5373"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz2_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_low003"
+      ,
+      "transform":
+      {
+        "pos": "-4.86446 23.7583 17.2616"
+        ,
+        "rotation": "-0.579228 -0.40558 0.579228 -0.40558"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_low004"
+      ,
+      "transform":
+      {
+        "pos": "-4.86446 23.7583 16.0094"
+        ,
+        "rotation": "-0.579228 -0.40558 0.579228 -0.40558"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "capsula_low004"
+      ,
+      "transform":
+      {
+        "pos": "-15.9151 19.9065 21.466"
+        ,
+        "rotation": "-0.707107 0.707107 -2.99244e-07 1.30657e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/capsula_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "capsula_low005"
+      ,
+      "transform":
+      {
+        "pos": "-12.6102 19.9065 21.466"
+        ,
+        "rotation": "-0.707107 0.707107 -2.99244e-07 1.30657e-07"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/capsula_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "tubito_grande_corto_low003"
+      ,
+      "transform":
+      {
+        "pos": "-30.3174 20.1659 21.5723"
+        ,
+        "rotation": "-0.5 -0.5 0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/tubito_grande_corto_low003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "sortidor2_low004"
+      ,
+      "transform":
+      {
+        "pos": "-5.84903 21.979 19.0266"
+        ,
+        "rotation": "-0.706009 -0.211145 0.658122 -0.154416"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/sortidor2_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "final_low"
+      ,
+      "transform":
+      {
+        "pos": "-7.95672 25.1021 14.0611"
+        ,
+        "rotation": "0.477715 -0.521334 0.477714 -0.521334"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/final_low.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "capsula_low006"
+      ,
+      "transform":
+      {
+        "pos": "-3.9295 27.046 13.9468"
+        ,
+        "rotation": "-0.702189 -0.159211 -0.206466 -0.662537"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/capsula_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "capsula_low007"
+      ,
+      "transform":
+      {
+        "pos": "-3.76429 27.2819 10.6545"
+        ,
+        "rotation": "-0.702189 -0.159211 -0.206466 -0.662537"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/capsula_low007.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz2_low004"
+      ,
+      "transform":
+      {
+        "pos": "-5.33742 22.937 17.3927"
+        ,
+        "rotation": "0.596368 0.379928 -0.596368 0.379928"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz2_low004.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz2_low005"
+      ,
+      "transform":
+      {
+        "pos": "-5.33742 22.937 16.5137"
+        ,
+        "rotation": "0.596368 0.379928 -0.596368 0.379928"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz2_low005.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz2_low006"
+      ,
+      "transform":
+      {
+        "pos": "-5.33742 22.937 15.6348"
+        ,
+        "rotation": "0.596368 0.379928 -0.596368 0.379928"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/luz2_low006.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_default.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

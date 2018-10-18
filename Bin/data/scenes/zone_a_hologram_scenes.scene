@@ -1,0 +1,42 @@
+[{
+		"entity": {
+			"name": "Hologram_scene",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/player_tutorial.prefab",
+			"transform": {
+				"pos": "-40.306 1.125 -90.335"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/patrol_tutorial.prefab",
+			"transform": {
+				"pos": "-40.306 1.125 -87",
+				"scale": "1.7 1.7 1.7"
+			}
+		}
+	},
+	{
+		"xentity": {
+			"prefab": "data/prefabs/tutorial/fence_tutorial.prefab",
+			"transform": {
+				"pos": "-40.306 1.125 -88"
+			}
+		}
+	},
+	{
+		"xentity": {
+			"prefab": "data/prefabs/tutorial/container_tutorial.prefab",
+			"transform": {
+				"pos": "-40.306 1.125 -89"
+			}
+		}
+	}
+]

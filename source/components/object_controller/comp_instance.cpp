@@ -7,11 +7,13 @@
 #include "physics/physics_collider.h"
 #include "components/comp_name.h"
 #include "components/comp_tags.h"
+#include "entity/entity_parser.h"
 
 DECL_OBJ_MANAGER("instance", TCompInstance);
 
 void TCompInstance::load(const json& j, TEntityParseContext& ctx) {
 
+    _type = j.value("type", "default");
     _instance_mesh = j.value("mesh", "data/meshes/GeoSphere001.instanced_mesh");
     EngineInstancing.parseInstance(j, ctx);
 }
@@ -25,22 +27,20 @@ void TCompInstance::registerMsgs() {
 void TCompInstance::onGroupCreated(const TMsgEntitiesGroupCreated& msg) {
 
     TCompTransform * self_transform = get<TCompTransform>();
-    MAT44 w_matrix = self_transform->asMatrix();
-    _index = EngineInstancing.addInstance(_instance_mesh, w_matrix);
+    const CTransform r_transform = msg.ctx.root_transform;
+   
+    //dbg(" %s %f %f %f \n", _instance_mesh, pos.x, pos.y, pos.z);
+    _index = EngineInstancing.addInstance(_instance_mesh, _type, self_transform->asMatrix());
 }
 
 void TCompInstance::onMsgEntityCreated(const TMsgEntityCreated& msg) {
 
-
-    //TCompTransform * self_transform = get<TCompTransform>();
-    //MAT44 w_matrix = self_transform->asMatrix();
-    //_index = EngineInstancing.addInstance(_instance_mesh, w_matrix);
 }
 
 /* Update the world matrix of the given instance */
 void TCompInstance::update(float dt) {
-
-    TCompTransform * self_transform = get<TCompTransform>();
-    //_instance->world = self_transform->asMatrix();
-    EngineInstancing.updateInstance(_instance_mesh, _index, self_transform->asMatrix());
+    if(CHandle(this).getOwner().isValid()) {
+        TCompTransform * self_transform = get<TCompTransform>();
+        EngineInstancing.updateInstance(_instance_mesh, _index, self_transform->asMatrix());
+    }
 }

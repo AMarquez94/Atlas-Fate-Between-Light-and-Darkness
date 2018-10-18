@@ -16,8 +16,11 @@
 #include "modules/system/module_scene_manager.h"
 #include "modules/system/module_instancing.h"
 #include "modules/system/module_particles.h"
+#include "modules/system/module_file.h"
 #include "modules/game/module_game_manager.h"
 #include "modules/system/module_debug.h"
+#include "modules/system/module_lerp.h"
+#include "modules/module_animations.h"
 
 class CModuleGameManager;
 
@@ -36,22 +39,24 @@ public:
     CModuleManager& getModules() { return _modules; }
     CModuleRender& getRender() { return _module_render; }
     CModuleIA& getIA() { return _module_ia; }
+	CModuleAnimations& getAnimations() { return _module_animations; }
     CModuleInput& getInput() { return _module_input; }
     CModulePhysics& getPhysics() { return _module_physics; }
     CModuleCameras& getCameras() { return _module_cameras; }
     CModuleEntities& getEntities() { return _module_entities; }
     CModuleNavmesh& getNavmeshes() { return _module_navmesh; }
     CModuleFSM& getFSM() { return _module_fsm; }
-    CModuleSound getSound() { return _module_sound; }
+    CModuleSound& getSound() { return _module_sound; }
     CModuleLogic& getLogic() { return _module_logic; }
     CModuleGameConsole& getGameConsole() { return _module_game_console; }
-    CModuleGameConsole getGameConsoleBis() { return _module_game_console; }
     CModuleGUI& getGUI() { return _module_gui; }
     CModuleSceneManager& getSceneManager() { return _module_scene_manager; }
     CModuleInstancing& getInstancing() { return _module_instancing; }
+	CModuleLerp& getLerp() { return _module_lerp; }
     CModuleParticles& getParticles() { return _module_particles; }
 
     CModuleDebug& getDebug() { return _module_debug; }
+    CModuleFile& getFile() { return _module_file; }
 
     // Game modules
     CModuleGameManager& getGameManager();
@@ -62,6 +67,7 @@ private:
     CModuleEntities _module_entities;
     CModulePhysics _module_physics;
     CModuleIA       _module_ia;
+	CModuleAnimations       _module_animations;
     CModuleInput    _module_input;
     CModuleCameras  _module_cameras;
     CModuleFSM      _module_fsm;
@@ -71,9 +77,11 @@ private:
     CModuleGameConsole _module_game_console;
     CModuleGUI _module_gui;
     CModuleSceneManager _module_scene_manager;
+	CModuleLerp _module_lerp;
     CModuleInstancing _module_instancing;
     CModuleParticles  _module_particles;
     CModuleDebug _module_debug;
+    CModuleFile _module_file;
 };
 
 #define Engine CEngine::get()
@@ -90,5 +98,8 @@ private:
 #define EngineSound CEngine::get().getSound()
 #define EngineGUI CEngine::get().getGUI()
 #define EngineScene CEngine::get().getSceneManager()
+#define EngineLerp CEngine::get().getLerp()
 #define EngineInstancing CEngine::get().getInstancing()
 #define EngineDebug CEngine::get().getDebug()
+#define EngineAnimations CEngine::get().getAnimations()
+#define EngineFiles CEngine::get().getFile()

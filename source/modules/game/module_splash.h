@@ -9,6 +9,7 @@ public:
 		: IModule(name)
 	{}
   bool start() override;
+  bool stop() override;
   void update(float delta) override;
 
 private:

@@ -54,3 +54,42 @@ float4 PS(
 
   return cfinal;
 }
+
+float4 PS_PostBlur(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0) : SV_Target
+{
+	//return  txAlbedo.Sample(samClampLinear, iTex0);
+	float uBias = 0.05;
+	float uScale = 1;
+	return max(float4(0,0,0,0), txAlbedo.Sample(samClampLinear, iTex0) + uBias) * uScale;
+
+	float4 c0 = txAlbedo.Sample(samClampLinear, iTex0) / 4;
+	float4 c1 = txAlbedo.Sample(samClampLinear, iTex0) / 2;
+	float4 c2 = txAlbedo.Sample(samClampLinear, iTex0) / 4;
+	float4 c3 = txAlbedo.Sample(samClampLinear, iTex0);
+	float4 cf = (c0 + c1 + c2) * .4;
+
+	return float4(cf.xyz + c3.xyz, 1);
+}
+
+
+float4 PS_MOTION(in float4 iPosition : SV_POSITION, in float2 iTex0 : TEXCOORD0) : SV_Target
+{
+  float4 color = txAlbedo.Sample(samClampLinear, iTex0); 
+  float depth = txGBufferLinearDepth.Load(uint3(iPosition.xy, 0)).x;
+  float3 wPos = getWorldCoords(iPosition.xy , depth);
+
+  float4 currentPos = float4(iTex0.x * 2 - 1, (1 - iTex0.y) * 2 - 1, depth, 1);
+  float4 previousPos = mul(float4(wPos,1), prev_camera_view_proj); 
+  previousPos /= previousPos.w;  
+
+  float2 velocity = mblur_blur_speed * (currentPos.xy - previousPos.xy) / (mblur_blur_samples * 2);  
+  iTex0 -= velocity * mblur_blur_samples * .5; 
+
+  for(float i = 0; i < mblur_blur_samples ; ++i, iTex0 += velocity)  
+  {  
+		float4 currentColor = txAlbedo.Sample(samClampPoint, iTex0);  
+		color += currentColor;  
+  }  
+
+  return (color / mblur_samples);
+}

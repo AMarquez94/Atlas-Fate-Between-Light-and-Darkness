@@ -1,0 +1,7 @@
+{
+	"technique": "pbr_beam_spotlight.tech",
+	"shadows": false,
+	"textures": {
+		"albedo": "data/textures/tx_shaft_flare.dds"
+	}
+}

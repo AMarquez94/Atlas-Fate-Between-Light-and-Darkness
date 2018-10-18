@@ -2,46 +2,74 @@
 
 #include "modules/module.h"
 #include "checkpoints/checkpoint.h"
+#include "sound/soundEvent.h"
+
 
 class CModuleGameManager : public IModule
 {
-	/* Mantain a handle of the player */
-	CHandle player;
+    enum PauseState;
+    PauseState _currentstate;
 
-	// Menu window related variables.
-	ImGuiWindowFlags window_flags;
-	unsigned int window_width;
-	unsigned int window_height;
-	unsigned int menuPosition = 0;
-	const unsigned int menuSize = 4;
+    enum MusicState;
+    MusicState _musicstate;
 
-	CCheckpoint* lastCheckpoint;
+    /* Mantain a handle of the player */
+    CHandle _player;
+    CHandle _fly_camera;
+    CCheckpoint* lastCheckpoint;
 
-	bool isPaused;
-	bool victoryMenuVisible;
-	bool playerDiedMenuVisible;
+    /* Maintain the sound for ambient sound */
+    SoundEvent ambient;
+    SoundEvent persecution_theme;
+    float persecution_lerp;
+    SoundEvent main_theme;
+    float main_theme_lerp;
+    SoundEvent transmission;
+    SoundEvent finalScene;
+    float final_scene_lerp;
 
-	bool isStarted = false;
+    // Menu window related variables.
+    ImGuiWindowFlags window_flags;
+    unsigned int window_width;
+    unsigned int window_height;
+    unsigned int menuPosition = 0;
+    const unsigned int menuSize = 4;
+
+    void resetState();
+    void debugRender();
+    void updateGameCondition();
+    void updateMusicState(float dt);
+
+    void changeMusicState(MusicState new_state);
+    
+    void switchState(PauseState pause);
 
 public:
-    bool menuVisible;
 
-    struct ConfigPublic {
-        bool drawfps = true;
+    enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2, void_state };
 
-    }config;
+    enum MusicState { normal, persecution, ending_persecution, player_died, no_music, end_scene };
 
-	CModuleGameManager(const std::string& name): IModule(name) {}
+    CModuleGameManager(const std::string& name) : IModule(name) {}
 
-	bool start() override;
-	void update(float delta) override;
-	void render() override;
+	CModuleGameManager* getPointer() { return this; }
 
-	bool saveCheckpoint(VEC3 playerPos, QUAT playerRot);
-	bool loadCheckpoint();
-	bool deleteCheckpoint();
+    bool start() override;
+    void update(float delta) override;
+    bool stop() override;
+    void renderMain();
 
-  void unpauseGame();
-
-  void debugRender();
+	void setPauseState(PauseState pause);
+    bool saveCheckpoint(VEC3 playerPos, QUAT playerRot);
+    bool loadCheckpoint();
+    bool deleteCheckpoint();
+    bool isCheckpointSaved() { return lastCheckpoint != nullptr && lastCheckpoint->isSaved(); };
+    bool isPaused() const;
+	void resetLevel();
+	void resetToCheckpoint();
+    PauseState getCurrentState();
+    bool isCinematicMode = false;
+    void stopAllSoundEvents();
+    void playTransmissionSound(bool play);
+    void changeToEndScene();
 };

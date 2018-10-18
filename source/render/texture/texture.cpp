@@ -1,17 +1,25 @@
 #include "mcv_platform.h"
 #include "texture.h"
 #include "DDSTextureLoader.h"
+#include "render/video/video_texture.h"
 
 // ----------------------------------------------
 class CTexturesResourceClass : public CResourceClass {
 public:
 	CTexturesResourceClass() {
 		class_name = "Textures";
-		extensions = { ".dds" };
+		extensions = { ".dds", ".h264" };
 	}
 	IResource* create(const std::string& name) const override {
 		dbg("Creating texture %s\n", name.c_str());
-		CTexture* res = new CTexture();
+        CTexture* res;
+        
+        std::string ext = name.substr(name.length() - 5);
+        if (ext == ".h264")
+            res = new CVideoTexture();
+        else
+            res = new CTexture();
+
 		bool is_ok = res->create(name);
 		assert(is_ok);
 		return res;
@@ -29,21 +37,26 @@ const CResourceClass* getResourceClassOf<CTexture>() {
 // ----------------------------------------------------------
 bool CTexture::create(const std::string& name) {
 
-	wchar_t wFilename[MAX_PATH];
-	mbstowcs(wFilename, name.c_str(), name.length() + 1);
+	//wchar_t wFilename[MAX_PATH];
+	//mbstowcs(wFilename, name.c_str(), name.length() + 1);
 
-	HRESULT hr = DirectX::CreateDDSTextureFromFile(
-		Render.device,
-		wFilename,
-		&texture,
-		&shader_resource_view
-	);
+    const std::vector<char> &file_data = EngineFiles.loadResourceFile(name);
+
+    HRESULT hr = DirectX::CreateDDSTextureFromMemory(
+        Render.device,
+        (const uint8_t*)file_data.data(),
+        file_data.size(),
+        &texture,
+        &shader_resource_view);
+
 	if (FAILED(hr))
 		return false;
 
 	// Name both objects in DX
 	setDXName(texture, name.c_str());
 	setDXName(shader_resource_view, name.c_str());
+
+    EngineFiles.addPendingResourceFile(name, false);
 
 	// Update the resolution from the resource
 	// ...
@@ -164,16 +177,20 @@ bool CTexture::create(
 
 	setNameAndClass(getName(), getResourceClassOf<CTexture>());
 
-	Resources.registerResource(this);
+    // Autoregister render targets only
+    if (options == TCreateOptions::CREATE_RENDER_TARGET)
+	    Resources.registerResource(this);
 
 	return true;
 }
 
-void CTexture::setDXParams(int new_xres, int new_yres, ID3D11Texture2D* new_texture, ID3D11ShaderResourceView* new_srv) {
+void CTexture::setDXParams(int new_xres, int new_yres, ID3D11Resource* new_texture, ID3D11ShaderResourceView* new_srv) {
 	xres = new_xres;
 	yres = new_yres;
-	texture = new_texture;
 	shader_resource_view = new_srv;
-	new_texture->AddRef();
 	new_srv->AddRef();
+    if (new_texture) {
+        texture = new_texture;
+        new_texture->AddRef();
+    }
 }

@@ -1,0 +1,2674 @@
+[
+  {
+    "entity":
+    {
+      "name": "col_bc_corridor_lights"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      },
+	  "tags": [
+		"corridor"
+	  ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni098"
+      ,
+      "transform":
+      {
+        "pos": "-2.2503 0.903741 -62.1742"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni099"
+      ,
+      "transform":
+      {
+        "pos": "-2.2503 0.903741 -58.086"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni100"
+      ,
+      "transform":
+      {
+        "pos": "-2.2503 0.903741 -55.1483"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni101"
+      ,
+      "transform":
+      {
+        "pos": "-2.2503 0.903741 -51.145"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni102"
+      ,
+      "transform":
+      {
+        "pos": "-2.2503 0.903741 -47.5802"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni103"
+      ,
+      "transform":
+      {
+        "pos": "-2.2503 0.903741 -44.0693"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni104"
+      ,
+      "transform":
+      {
+        "pos": "-2.2503 0.903742 -40.2016"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni105"
+      ,
+      "transform":
+      {
+        "pos": "-2.2503 0.903742 -37.0617"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni106"
+      ,
+      "transform":
+      {
+        "pos": "2.25034 0.903741 -62.1742"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni107"
+      ,
+      "transform":
+      {
+        "pos": "2.25034 0.903741 -58.086"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni108"
+      ,
+      "transform":
+      {
+        "pos": "2.25034 0.903741 -55.1483"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni109"
+      ,
+      "transform":
+      {
+        "pos": "2.25034 0.903741 -51.145"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni110"
+      ,
+      "transform":
+      {
+        "pos": "2.25034 0.903741 -47.5802"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni111"
+      ,
+      "transform":
+      {
+        "pos": "2.25034 0.903741 -44.0693"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni112"
+      ,
+      "transform":
+      {
+        "pos": "2.25034 0.903742 -40.2016"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni113"
+      ,
+      "transform":
+      {
+        "pos": "2.25034 0.903742 -37.0617"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 0.91
+        ,
+        "outer_cut": 1.24
+        ,
+        "color": "1.0 0.54902 0.145098 1.0"
+        ,
+        "intensity": 1.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 0.68
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni114"
+      ,
+      "transform":
+      {
+        "pos": "1.55162 3.8735 -64.2104"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni115"
+      ,
+      "transform":
+      {
+        "pos": "1.55162 3.8735 -60.2122"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni116"
+      ,
+      "transform":
+      {
+        "pos": "1.55162 3.8735 -56.5367"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni117"
+      ,
+      "transform":
+      {
+        "pos": "1.55162 3.8735 -53.1512"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni118"
+      ,
+      "transform":
+      {
+        "pos": "1.55162 3.8735 -49.1409"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni119"
+      ,
+      "transform":
+      {
+        "pos": "1.55162 3.8735 -45.9995"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni120"
+      ,
+      "transform":
+      {
+        "pos": "1.55162 3.8735 -42.0226"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni121"
+      ,
+      "transform":
+      {
+        "pos": "1.55162 3.8735 -38.5899"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni122"
+      ,
+      "transform":
+      {
+        "pos": "1.55162 3.8735 -35.2569"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni123"
+      ,
+      "transform":
+      {
+        "pos": "-1.77557 3.82751 -64.2104"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni124"
+      ,
+      "transform":
+      {
+        "pos": "-1.77557 3.82751 -60.2122"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni125"
+      ,
+      "transform":
+      {
+        "pos": "-1.77557 3.82751 -56.5367"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni126"
+      ,
+      "transform":
+      {
+        "pos": "-1.77557 3.82751 -53.1512"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni127"
+      ,
+      "transform":
+      {
+        "pos": "-1.77557 3.82751 -49.1409"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni128"
+      ,
+      "transform":
+      {
+        "pos": "-1.77557 3.82751 -45.9995"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni129"
+      ,
+      "transform":
+      {
+        "pos": "-1.77557 3.82751 -42.0226"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni130"
+      ,
+      "transform":
+      {
+        "pos": "-1.77557 3.82751 -38.5899"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni131"
+      ,
+      "transform":
+      {
+        "pos": "-1.77557 3.82751 -35.2569"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.46901
+        ,
+        "outer_cut": 3.11743
+        ,
+        "color": "0.00392157 0.82353 0.0980392 1.0"
+        ,
+        "intensity": 2.0
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.98424
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni132"
+      ,
+      "transform":
+      {
+        "pos": "0.0610826 1.56922 -33.1652"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni133"
+      ,
+      "transform":
+      {
+        "pos": "0.0690324 1.55912 -38.9592"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni134"
+      ,
+      "transform":
+      {
+        "pos": "0.0683763 1.5323 -42.9332"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni135"
+      ,
+      "transform":
+      {
+        "pos": "0.0528886 1.54653 -46.9516"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni136"
+      ,
+      "transform":
+      {
+        "pos": "0.0603158 1.5612 -50.9797"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni137"
+      ,
+      "transform":
+      {
+        "pos": "0.0460832 1.54233 -58.9303"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni138"
+      ,
+      "transform":
+      {
+        "pos": "0.0245759 1.5436 -62.9128"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni139"
+      ,
+      "transform":
+      {
+        "pos": "0.0690324 1.55912 -36.0662"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni140"
+      ,
+      "transform":
+      {
+        "pos": "0.0690324 1.55912 -41.0689"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni141"
+      ,
+      "transform":
+      {
+        "pos": "0.0690324 1.55912 -46.0715"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni142"
+      ,
+      "transform":
+      {
+        "pos": "0.0690324 1.55912 -51.0742"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni143"
+      ,
+      "transform":
+      {
+        "pos": "0.0690324 1.55912 -56.0768"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni144"
+      ,
+      "transform":
+      {
+        "pos": "0.0690324 1.55912 -61.0794"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.92447
+        ,
+        "outer_cut": 3.45619
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.54656
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni145"
+      ,
+      "transform":
+      {
+        "pos": "-0.0508826 4.89561 -29.338"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 3.2175
+        ,
+        "outer_cut": 3.85
+        ,
+        "color": "1.0 0.921569 0.827451 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.75
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Omni146"
+      ,
+      "transform":
+      {
+        "pos": "-0.0508826 7.52959 -29.661"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707107"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 3.2175
+        ,
+        "outer_cut": 3.85
+        ,
+        "color": "1.0 0.921569 0.827451 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.75
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "Spot002"
+      ,
+      "transform":
+      {
+        "pos": "0.0873468 3.07981 -29.3368"
+        ,
+        "lookat": "-0.017874 8.26586 -29.5542"
+      }
+      ,
+      "light_spot":
+      {
+        "type": "spotlight"
+        ,
+        "proj_type": "perspective"
+        ,
+        "range": 5.19167
+        ,
+        "angle": 49.3
+        ,
+        "inner_cut": 46.5
+        ,
+        "z_far": 5.19167
+        ,
+        "volume": false
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/Spot002.collider"
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light", "corridor"
+      ]
+    }
+  }
+]

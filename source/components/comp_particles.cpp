@@ -4,6 +4,17 @@
 
 DECL_OBJ_MANAGER("particles", TCompParticles);
 
+TCompParticles::~TCompParticles()
+{
+    if (_particles) {
+        Engine.getParticles().kill(_particles, _fadeout);
+    }
+
+    for (auto p : _cores) {
+        Engine.getParticles().kill(p.second, _fadeout);
+    }
+}
+
 void TCompParticles::registerMsgs() {
 
     DECL_MSG(TCompParticles, TMsgEntityCreated, onCreated);
@@ -22,6 +33,7 @@ void TCompParticles::load(const json& j, TEntityParseContext& ctx) {
 
     _fadeout = j.value("fade_out", 0.f);
     _on_start = j.value("on_start", true);
+
 
     if(j.count("core"))
         _core = Resources.get(j.value("core", ""))->as<Particles::TCoreSystem>();
@@ -44,26 +56,33 @@ void TCompParticles::onCreated(const TMsgEntityCreated&) {
 
     // Launch the set of cores
     for (auto p : _cores) {
-        _cores[p.first] = Engine.getParticles().launchSystem(p.first, CHandle(this).getOwner());
+        if (_cores[p.first] == 0)
+            _cores[p.first] = Engine.getParticles().launchSystem(p.first, CHandle(this).getOwner());
+    }
+
+    if (!_on_start) {
+        setSystemState(false);
     }
 }
 
 void TCompParticles::onGroupCreated(const TMsgEntitiesGroupCreated&) {
+
     if (_core && !_particles) {
         _particles = Engine.getParticles().launchSystem(_core, CHandle(this).getOwner());
     }
+
+    // Launch the set of cores
+    for (auto p : _cores) {
+        if(_cores[p.first] == 0)
+            _cores[p.first] = Engine.getParticles().launchSystem(p.first, CHandle(this).getOwner());
+    }
+
+    if (!_on_start) {
+        setSystemState(false);
+    }
 }
 
-
 void TCompParticles::onDestroyed(const TMsgEntityDestroyed&) {
-
-    if (_particles) {
-        Engine.getParticles().kill(_particles, _fadeout);
-    }
-
-    for (auto p : _cores) {
-        Engine.getParticles().kill(_particles, _fadeout);
-    }
 }
 
 void TCompParticles::playSystem() {
@@ -82,7 +101,7 @@ void TCompParticles::setSystemState(bool state) {
 
     for (auto p : _cores) {
         Particles::CSystem * system = Engine.get().getParticles().getSystem(p.second);
-        if (system)
+        if (system != nullptr)
             system->setActive(state);
     }
 }

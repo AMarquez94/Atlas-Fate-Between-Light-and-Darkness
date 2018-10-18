@@ -74,9 +74,9 @@
       ,
       "collider":
       {
-        "shape": "box"
+        "shape": "mesh"
         ,
-        "size": "2.5 8.0 115.0"
+        "name": "data/colliders/collider_muro_muralla_grande.collider"
       }
       ,
       "abs_aabb": true

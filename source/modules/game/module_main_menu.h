@@ -10,6 +10,8 @@ class CModuleMainMenu : public IModule
 	unsigned menu_load = 0;
 	const unsigned int menu_size = 6;
 
+    SoundEvent menu_theme;
+
 	float time;
 
 public:

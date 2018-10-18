@@ -6,6 +6,7 @@
 #include "components/lighting/comp_projector.h"
 #include "components/comp_render.h"
 #include "components/comp_particles.h"
+#include "components/player_controller/comp_shadow_controller.h"
 
 // Refactor this after Milestone3, move everything unnecessary to player class
 namespace FSM
@@ -16,6 +17,7 @@ namespace FSM
         target->name = jData["target"];
         target->blendIn = jData.value("blendIn", 0.01f);
         target->blendOut = jData.value("blendOut", 0.01f);
+        target->fov = jData.value("fov", 70.f);
 
         return target;
     }
@@ -58,6 +60,7 @@ namespace FSM
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
         TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
         playerController->resetRemoveInhibitor();
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 0;
     }
 
     void IdleState::onFinish(CContext& ctx) const {
@@ -84,6 +87,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 2;
 
         // Disable the players projector.
         CHandle player_light = getEntityByName("LightPlayer");
@@ -115,6 +119,8 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::WALK_SLOW , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 1;
+
     }
 
     void WalkSlowState::onFinish(CContext& ctx) const {
@@ -138,6 +144,8 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::RUN , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 3;
+
     }
 
     void RunState::onFinish(CContext& ctx) const {
@@ -161,11 +169,37 @@ namespace FSM
         // Send a message to the player controller
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::FALL , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::fallState, _speed, _size, _radius, _target, _noise });
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 0;
+
     }
 
     void FallState::onFinish(CContext& ctx) const {
 
+    }
+
+    bool FallDieState::load(const json& jData) {
+
+        _force = jData.value("force", 1.f);
+        _speed = jData.value("speed", 3.f);
+        _size = jData.value("size", 1.f);
+        _radius = jData.value("radius", 0.3f);
+        _animationName = jData["animation"];
+        _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+        _target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+        return true;
+    }
+
+    void FallDieState::onStart(CContext& ctx) const {
+
+        // Send a message to the player controller
+        CEntity* e = ctx.getOwner();
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+    }
+
+    void FallDieState::onFinish(CContext& ctx) const {
+        CEntity* e = ctx.getOwner();
+        e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::die });
     }
 
 
@@ -188,6 +222,8 @@ namespace FSM
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
         TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
         playerController->resetRemoveInhibitor();
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 0;
+
     }
 
     void CrouchState::onFinish(CContext& ctx) const {
@@ -196,7 +232,7 @@ namespace FSM
         playerController->canRemoveInhibitor = false;
     }
 
-    bool SonarState::load(const json& jData) {
+    bool SonarStateCrouch::load(const json& jData) {
 
         _animationName = jData["animation"];
         _speed = jData.value("speed", 3.f);
@@ -209,17 +245,44 @@ namespace FSM
         return true;
     }
 
-    void SonarState::onStart(CContext& ctx) const {
+    void SonarStateCrouch::onStart(CContext& ctx) const {
 
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_IDLE , 1.0f });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SONDA_CROUCH , 1.0f });        
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
         e->sendMsg(TMsgSonarActive{ 1.f });
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 3;
     }
 
-    void SonarState::onFinish(CContext& ctx) const {
+    void SonarStateCrouch::onFinish(CContext& ctx) const {
 
     }
+
+	bool SonarStateUp::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 3.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_rotation_speed = jData.value("rotationSpeed", 10.f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		_target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+
+		return true;
+	}
+
+	void SonarStateUp::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SONDA_NORMAL , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+		e->sendMsg(TMsgSonarActive{ 1.f });
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 3;
+	}
+
+	void SonarStateUp::onFinish(CContext& ctx) const {
+
+	}
 
     bool CrouchWalkState::load(const json& jData) {
 
@@ -239,6 +302,8 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::CROUCH_WALK , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::walkState, _speed, _size, _radius, _target, _noise });
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 1;
+
     }
 
     void CrouchWalkState::onFinish(CContext& ctx) const {
@@ -300,10 +365,17 @@ namespace FSM
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", ctx.getOwner());
         Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 0;
 
         TCompParticles * c_e_particle = e->get<TCompParticles>();
         c_e_particle->setSystemState(true);
 
+        CEntity * ent = getEntityByName("Player_Idle_SM");
+        TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
+        assert(c_e_particle2);
+        c_e_particle2->setSystemState(false);
+
+        EngineLogic.execScript("animation_enter_merge()");
     }
 
     void EnterMergeState::onFinish(CContext& ctx) const {
@@ -312,7 +384,62 @@ namespace FSM
 
         TCompRender * render = e->get<TCompRender>();
         render->visible = false;
+        e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetMergeFall });
     }
+
+	bool FallEnterMergeState::load(const json& jData) {
+
+		_animationName = jData["animation"];
+		_speed = jData.value("speed", 3.f);
+		_size = jData.value("size", 1.f);
+		_radius = jData.value("radius", 0.3f);
+		_noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+		_target = jData.count("camera") ? getTargetCamera(jData["camera"]) : nullptr;
+
+		return true;
+	}
+
+	void FallEnterMergeState::onStart(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SM_POSE , 1.0f });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::SM_ENTER_FALL , 1.0f });
+		e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, _speed, _size, _radius, _target, _noise });
+		e->sendMsg(TMsgFadeBody{ false });
+
+		//// Testing!
+		CHandle player_light = getEntityByName("LightPlayer");
+		if (player_light.isValid()) {
+			CEntity * entity_light = (CEntity*)player_light;
+			TCompProjector * light = entity_light->get<TCompProjector>();
+			light->isEnabled = true;
+		}
+
+		// Move this to LUA in the future.
+		Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
+		Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash2.particles", ctx.getOwner());
+		Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 0;
+
+		TCompParticles * c_e_particle = e->get<TCompParticles>();
+		c_e_particle->setSystemState(true);
+
+		CEntity * ent = getEntityByName("Player_Idle_SM");
+		TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
+		assert(c_e_particle2);
+		c_e_particle2->setSystemState(false);
+
+		EngineLogic.execScript("animation_enter_merge()");
+	}
+
+	void FallEnterMergeState::onFinish(CContext& ctx) const {
+
+		CEntity* e = ctx.getOwner();
+
+		TCompRender * render = e->get<TCompRender>();
+		render->visible = false;
+		e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetMergeFall });
+	}
 
     bool MergeState::load(const json& jData) {
 
@@ -356,7 +483,9 @@ namespace FSM
         // Send a message to the player controller
         CEntity* e = ctx.getOwner();
         //e->sendMsg(TMsgAnimation{ "crouch" });
-
+		TCompPlayerAnimator *c_animator = e->get<TCompPlayerAnimator>();
+		if(c_animator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::SM_ENTER))
+			c_animator->removeAction((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::SM_ENTER);
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeState, _speed, _size, _radius, _target, _noise });
     }
 
@@ -400,6 +529,8 @@ namespace FSM
 
         TCompParticles * c_e_particle = e->get<TCompParticles>();
         c_e_particle->setSystemState(false);
+
+        EngineLogic.execScript("animation_exit_merge()");
     }
 
     void ExitMergeState::onFinish(CContext& ctx) const {
@@ -409,6 +540,12 @@ namespace FSM
 
         TCompRender * render = e->get<TCompRender>();
         render->visible = true;
+
+        TCompShadowController * shadow = e->get<TCompShadowController>();
+        CEntity * ent = getEntityByName("Player_Idle_SM");
+        TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
+        assert(c_e_particle2);
+        c_e_particle2->setSystemState(shadow->is_shadow);
     }
 
 	bool ExitMergeCrouchedState::load(const json & jData)
@@ -436,6 +573,17 @@ namespace FSM
 			TCompProjector * light = entity_light->get<TCompProjector>();
 			light->isEnabled = false;
 		}
+
+        // TO REFACTOR
+        // Sets particles and calls the finishing state.
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", ctx.getOwner());
+        Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
+
+        TCompParticles * c_e_particle = e->get<TCompParticles>();
+        c_e_particle->setSystemState(false);
+
+        EngineLogic.execScript("animation_exit_merge()");
 	}
 
 	void ExitMergeCrouchedState::onFinish(CContext & ctx) const
@@ -446,6 +594,12 @@ namespace FSM
 
 		TCompRender * render = e->get<TCompRender>();
 		render->visible = true;
+
+        TCompShadowController * shadow = e->get<TCompShadowController>();
+        CEntity * ent = getEntityByName("Player_Idle_SM");
+        TCompParticles * c_e_particle2 = ent->get<TCompParticles>();
+        assert(c_e_particle2);
+        c_e_particle2->setSystemState(shadow->is_shadow);
 	}
 
     bool LandMergeState::load(const json& jData) {
@@ -461,33 +615,38 @@ namespace FSM
 
     void LandMergeState::onStart(CContext& ctx) const {
 
+        // Send a message to the player controller
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState,_speed, _size, _radius, _target, _noise });
+        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::FALL , 1.0f });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::mergeFallState, _speed, _size, _radius, _target, _noise });
 
-        CHandle player_light = getEntityByName("LightPlayer");
-        if (player_light.isValid()) {
-            CEntity * entity_light = (CEntity*)player_light;
-            TCompProjector * light = entity_light->get<TCompProjector>();
-            light->isEnabled = true;
-        }
+        //CEntity* e = ctx.getOwner();
+        //e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
+        //e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState,_speed, _size, _radius, _target, _noise });
 
-        // Move all of this to LUA
-        Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
-        Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", ctx.getOwner());
-        Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
+        //CHandle player_light = getEntityByName("LightPlayer");
+        //if (player_light.isValid()) {
+        //    CEntity * entity_light = (CEntity*)player_light;
+        //    TCompProjector * light = entity_light->get<TCompProjector>();
+        //    light->isEnabled = true;
+        //}
 
-        TCompParticles * c_e_particle = e->get<TCompParticles>();
-        c_e_particle->setSystemState(true);
+        //// Move all of this to LUA
+        //Engine.get().getParticles().launchSystem("data/particles/sm_enter_expand.particles", ctx.getOwner());
+        //Engine.get().getParticles().launchSystem("data/particles/sm_enter_splash.particles", ctx.getOwner());
+        //Engine.get().getParticles().launchSystem("data/particles/sm_enter_sparks.particles", ctx.getOwner());
 
-        TCompRender * render = e->get<TCompRender>();
-        render->visible = false;
+        //TCompParticles * c_e_particle = e->get<TCompParticles>();
+        //c_e_particle->setSystemState(true);
+
+        //TCompRender * render = e->get<TCompRender>();
+        //render->visible = false;
     }
 
     void LandMergeState::onFinish(CContext& ctx) const {
 
-        CEntity* e = ctx.getOwner();
-        e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetMerge });
+        //CEntity* e = ctx.getOwner();
+        //e->sendMsg(TMsgStateFinish{ (actionfinish)&TCompTempPlayerController::resetMerge });
     }
 
 
@@ -508,6 +667,9 @@ namespace FSM
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_SOFT , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 2;
+
+        EngineLogic.execScript("animation_soft_land()");
     }
 
     void SoftLandState::onFinish(CContext& ctx) const {
@@ -530,6 +692,11 @@ namespace FSM
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::LAND_HARD , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
         e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+        TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
+        playerController->getDamage(30.f);
+        EngineLogic.execScript("animation_hard_land()");
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 3;
+
     }
 
     void HardLandState::onFinish(CContext& ctx) const {
@@ -553,7 +720,9 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::ATTACK , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::attackState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+		//EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SOUND_GRAPH)->getAllChilds()[0]->getSpriteParams()->_playing_sprite = 3;
+
     }
 
     void AttackState::onFinish(CContext& ctx) const {
@@ -626,7 +795,7 @@ namespace FSM
         CEntity* e = ctx.getOwner();
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEATH , 1.0f });
         e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::DEAD , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::deadState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
     }
 
     void DieState::onFinish(CContext& ctx) const {
@@ -669,8 +838,9 @@ namespace FSM
     void GrabEnemyState::onStart(CContext& ctx) const {
 
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
-        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, nullptr, _noise });
+        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::GRAB_ENEMY , 1.0f });
+		e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::GRABING_ENEMY , 1.0f });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
 
     }
 
@@ -696,7 +866,7 @@ namespace FSM
       e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
       TCompTempPlayerController * playerController = e->get<TCompTempPlayerController>();
       playerController->markObjectAsMoving(true);
-      e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::movingObjectState, _speed, _size, _radius, nullptr, _noise });
+      e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::movingObjectState, _speed, _size, _radius, _target, _noise });
     }
 
     void MovingObjectState::onFinish(CContext& ctx) const {
@@ -720,12 +890,34 @@ namespace FSM
     void PressingButtonState::onStart(CContext& ctx) const {
 
         CEntity* e = ctx.getOwner();
-        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::METRALLA_FINISH , 1.0f });
-        //e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
-        //e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
+        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::HACK , 1.0f });
+		e->sendMsg(TMsgAnimationPlaced{});
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::idleState, _speed, _size, _radius, _target, _noise });
     }
 
     void PressingButtonState::onFinish(CContext& ctx) const {
+
+    }
+
+    bool StunnedState::load(const json& jData) {
+
+        _animationName = jData["animation"];
+        _speed = jData.value("speed", 2.f);
+        _size = jData.value("size", 1.f);
+        _radius = jData.value("radius", 0.3f);
+        _noise = jData.count("noise") ? getNoise(jData["noise"]) : getNoise(NULL);
+        if (jData.count("camera")) _target = getTargetCamera(jData["camera"]);
+        return true;
+    }
+
+    void StunnedState::onStart(CContext& ctx) const {
+
+        CEntity* e = ctx.getOwner();
+        e->sendMsg(TCompPlayerAnimator::TMsgExecuteAnimation{ TCompPlayerAnimator::EAnimation::IDLE , 1.0f });
+        e->sendMsg(TMsgStateStart{ (actionhandler)&TCompTempPlayerController::stunnedState, _speed, _size, _radius, _target, _noise });
+    }
+
+    void StunnedState::onFinish(CContext& ctx) const {
 
     }
 }

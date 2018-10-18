@@ -1,0 +1,78 @@
+{
+	"system": {
+		"duration": 1.0,
+		"looping": true,
+		"start_delay": 0.0,
+		"start_lifetime": 1.0,
+		"start_speed": -40.0,
+		"start_size": "1 1 1",
+		"start_rotation": "0 0 0",
+		"random_rotation": 0.0,
+		"start_color": "1 0 0 1",
+		"gravity": 0,
+		"simulation_speed": 1,
+		"max_particles": 140000,
+		"offset": "0 25 0"
+	},
+	"emission": {
+		"rate_time": 500.0,
+		"rate_distance": 0.0,
+		"variation" : 0.0
+	},	
+	"shape": {
+		"type": "cone",
+		"size": "5 25 5",
+		"angle": 0
+		
+	},
+	"velocity": {
+		"constant_velocity": "0.0 0.0 0.0",
+		"velocity" : [
+      [0.0, "0.0 -1 0.0"],
+			[0.5, "0 -1 0"],
+			[1.0, "0 -1 0"]
+    ],
+		"rotation" : [
+		  [0.0, "0.0 0.0 0.0"],
+      [1.0, "0.0 0.0 0.0"]
+    ],
+		"acceleration": 1,
+		"wind": 0
+	},
+	"noise": {
+		"texture": "data/textures/particles/fx_smoke1.dds",
+		"strength": 0.0,
+		"frequency": 0.5,
+		"scroll_speed": 0.0,
+		"damping": true,
+		"octaves": 1
+	},
+	"collision": {
+		"collision": true
+	},
+	"renderer": {
+			"mode": "vertical",
+			"texture": "data/textures/particles/rain_drop.dds",
+      "frame_size" : "1 1",
+      "initial_frame" : 0,
+      "num_frames" : 1,
+      "frame_speed" : 0.0
+	},
+  "size" : {
+    "scale" : 0.025,
+    "scale_variation" : 0.3,
+    "sizes" : [
+		  [0.0, "0.05 0.14 0.05"],
+			[1.0, "0.05 0.26 0.05"]
+    ]
+  },
+  "color" : {
+    "opacity" : 0.26,
+    "colors" : [
+      [0.0, "1.0 1.0 1.0 0.0"],
+			[0.3, "1.0 1.0 1.0 1.0"],
+			[0.8, "1.0 1.0 1.0 1.0"],
+			[1.0, "1.0 1.0 1.0 0.0"]
+    ] 
+  }
+}

@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "bc_pantalla_atlas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_pantalla_atlas"
+      ,
+      "transform":
+      {
+        "pos": "4.37873 17.9268 -388.455"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bc_mesh_pantalla_atlas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_bc_pantalla_atlas.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

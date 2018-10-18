@@ -41,7 +41,7 @@
         ,
         "name": "data/colliders/collider_puerta_reja_grande.collider"
         ,
-        "group": "wall"
+        "group": "noncastshadow"
         ,
         "mask": "player"
         ,
@@ -90,9 +90,9 @@
         ,
         "name": "data/colliders/collider_puerta_reja_grande001.collider"
         ,
-        "group": ""
+        "group": "noncastshadow"
         ,
-        "mask": ""
+        "mask": "player"
         ,
         "is_trigger": false
         ,
@@ -139,7 +139,7 @@
         ,
         "name": "data/colliders/collider_puerta_reja_pequena.collider"
         ,
-        "group": "wall"
+        "group": "noncastshadow"
         ,
         "mask": "player"
         ,

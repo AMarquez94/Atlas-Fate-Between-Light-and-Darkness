@@ -14,6 +14,8 @@ DXGI_FORMAT readFormat(const json& j, const std::string& label) {
 		return DXGI_FORMAT_R8G8B8A8_UNORM;
 	if (format == "R32_TYPELESS")
 		return DXGI_FORMAT_R32_TYPELESS;
+    if (format == "R16_FLOAT")
+        return DXGI_FORMAT_R16_FLOAT;
 
 	return DXGI_FORMAT_UNKNOWN;
 }
@@ -64,6 +66,15 @@ struct CZConfigs {
         if (!add(desc, ZCFG_TEST_BUT_NO_WRITE, "test_but_no_write"))
             return false;
 
+        memset(&desc, 0x00, sizeof(desc));
+        desc.DepthEnable = true;
+        desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;    // don't write
+        desc.DepthFunc = D3D11_COMPARISON_ALWAYS;               // only near z
+        desc.StencilEnable = false;
+
+        if (!add(desc, ZCFG_TEST_RAYMARCH, "test_raymarch"))
+            return false;
+
         // test for equal but don't write. Used to render on those pixels where
         // we have render previously like wireframes
         memset(&desc, 0x00, sizeof(desc));
@@ -87,7 +98,8 @@ struct CZConfigs {
         memset(&desc, 0x00, sizeof(desc));
         desc.DepthEnable = TRUE;
         desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO; // <<--
-        desc.DepthFunc = D3D11_COMPARISON_NEVER;
+        desc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+
         // Stencil test parameters
         desc.StencilEnable = true;
         desc.StencilReadMask = 0xFF;
@@ -95,8 +107,8 @@ struct CZConfigs {
 
         // Stencil operations if pixel is front-facing
         desc.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-        desc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_REPLACE;
-        desc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+        desc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_REPLACE;
         desc.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
         // Stencil operations if pixel is back-facing
@@ -208,6 +220,22 @@ struct CRasterizers {
         if (!add(desc, RSCFG_WIREFRAME, "wireframe"))
             return false;
 
+        // Wireframe and default culling back
+        D3D11_RASTERIZER_DESC sdescs = {
+            D3D11_FILL_SOLID, // D3D11_FILL_MODE FillMode;
+            D3D11_CULL_NONE,  // D3D11_CULL_MODE CullMode;
+            FALSE,            // BOOL FrontCounterClockwise;
+            -100,                // INT DepthBias;
+            0.0f,             // FLOAT DepthBiasClamp;
+            0.0,              // FLOAT SlopeScaledDepthBias;
+            TRUE,             // BOOL DepthClipEnable;
+            FALSE,            // BOOL ScissorEnable;
+            FALSE,            // BOOL MultisampleEnable;
+            FALSE,            // BOOL AntialiasedLineEnable;
+        };
+        if (!add(sdescs, RSCFG_DEPTH_BIAS, "depth_bias"))
+            return false;
+
 		return true;
 	}
 
@@ -292,11 +320,48 @@ struct CBlends {
         desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
         desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
         desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+
         // Blend also the 4 render tarngets
         desc.RenderTarget[1] = desc.RenderTarget[0];
         desc.RenderTarget[2] = desc.RenderTarget[0];
         desc.RenderTarget[3] = desc.RenderTarget[0];
         if (!add(desc, BLEND_CFG_COMBINATIVE_GBUFFER, "combinative_gbuffer"))
+            return false;
+
+        // Combinative blending
+        memset(&desc, 0x00, sizeof(desc));
+        desc.RenderTarget[0].BlendEnable = TRUE;
+        desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlend = D3D11_BLEND_INV_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlend = D3D11_BLEND_SRC_ALPHA;
+        desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+        desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+
+        // Blend also the 4 render tarngets
+        desc.RenderTarget[1] = desc.RenderTarget[0];
+        desc.RenderTarget[2] = desc.RenderTarget[0];
+        desc.RenderTarget[3] = desc.RenderTarget[0];
+        if (!add(desc, BLEND_CFG_MULTIPLICATIVE_GBUFFER, "multiplicative_gbuffer"))
+            return false;
+
+        // Combinative blending
+        memset(&desc, 0x00, sizeof(desc));
+        desc.RenderTarget[0].BlendEnable = TRUE;
+        desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
+        desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+        desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
+
+        // Blend also the 4 render tarngets
+        desc.RenderTarget[1] = desc.RenderTarget[0];
+        desc.RenderTarget[2] = desc.RenderTarget[0];
+        desc.RenderTarget[3] = desc.RenderTarget[0];
+        if (!add(desc, BLEND_CFG_ALPHA_GBUFFER, "alpha_gbuffer"))
             return false;
 
 		return true;
@@ -443,9 +508,9 @@ void activateAllSamplers() {
 	Render.ctx->PSSetSamplers(0, SAMPLERS_COUNT, samplers.all_samplers);
 }
 
-void activateZConfig(enum ZConfig cfg) {
+void activateZConfig(enum ZConfig cfg, UINT color_mask) {
 	assert(zconfigs.z_cfgs[cfg] != nullptr);
-	Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], 255);
+	Render.ctx->OMSetDepthStencilState(zconfigs.z_cfgs[cfg], color_mask);
 }
 
 void activateRSConfig(enum RSConfig cfg) {

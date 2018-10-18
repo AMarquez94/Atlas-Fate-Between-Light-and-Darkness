@@ -14,10 +14,10 @@
 		"max_particles": 2400
 	},
 	"emission": {
-		"rate_time": 1320.0,
+		"rate_time": 2400.0,
 		"rate_distance": 0.0,
 		"variation" : 0.0,
-		"interval" : 0.01
+		"interval" : 1000.0
 	},
 	"shape": {
 		"type": "box",

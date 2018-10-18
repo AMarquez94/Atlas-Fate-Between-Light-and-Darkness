@@ -38,7 +38,7 @@ public:
   void setName(const std::string& name);
   const std::string& getName(void) const;
 
-  void registerCallback(CalAnimationCallback *callback,float min_interval);
+  void registerCallback(CalAnimationCallback *callback,float min_interval, bool animationCompletedCallback);
   void removeCallback(CalAnimationCallback *callback);
 
   unsigned int getTrackCount() const;
@@ -49,6 +49,7 @@ public:
   {
     CalAnimationCallback *callback;
     float                 min_interval;
+	bool                 animationCompletedCallback;
   };
 
   std::vector<CallbackRecord>& getCallbackList() { return m_listCallbacks; }

@@ -8,6 +8,7 @@
 #include "entity/entity_parser.h"
 #include "components/physics/comp_collider.h"
 #include "physics/physics_collider.h"
+#include "components/comp_audio.h"
 
 DECL_OBJ_MANAGER("dynamic_capsules_manager", TCompDynamicCapsulesManager);
 
@@ -53,6 +54,10 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 			TCompTransform *capsuleTransform = eCapsule->get<TCompTransform>();
 			newPos = start_point + (float)i * offset;
 			capsuleTransform->setPosition(newPos + temp_offset);
+            float delta_yaw = capsuleTransform->getDeltaYawToAimTo(end_point);
+            float yaw, pitch;
+            capsuleTransform->getYawPitchRoll(&yaw, &pitch);
+            capsuleTransform->setYawPitchRoll(yaw + delta_yaw, pitch);
 			cGroup->add(eCapsule);
 
 			/* Set dynamic capsule component */
@@ -60,10 +65,14 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 			cDynamicCapsule->setStartPoint(start_point + temp_offset);
 			cDynamicCapsule->setEndPoint(end_point + temp_offset);
 			cDynamicCapsule->setSpeed(speed);
+
+            TCompAudio *cAudio = eCapsule->get<TCompAudio>();
+            cAudio->playEvent("event:/Sounds/Objects/Capsules/Caspule");
 		}
 	}
 }
 
 void TCompDynamicCapsulesManager::update(float dt) {
-
+    if (!CHandle(this).getOwner().isValid())
+        return;
 }

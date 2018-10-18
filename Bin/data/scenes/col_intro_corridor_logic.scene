@@ -1,0 +1,113 @@
+[{
+		"entity": {
+			"name": "col_intro_corridor_logic",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"tags": [
+				"corridor"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_corridor_intro",
+			"transform": {
+				"pos": "-0.263777 0.0 22.346",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "6.31231 1.14714 1.92169",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_corridor_intro01",
+			"transform": {
+				"pos": "-7.51849 0.0 27.7587",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.71829 1.13715 5.25371",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_corridor_intro02",
+			"transform": {
+				"pos": "7.30381 0.0 27.7587",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "1.71829 1.13715 5.25371",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "COL_trigger_corridor_zone_a",
+			"transform": {
+				"pos": "-32.8285 -0.860209 0.497086",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "3.1164 3.07523 8.50663",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+
+	,
+	{
+		"entity": {
+			"name": "COL_trigger_opendoor_intro",
+			"transform": {
+				"pos": "-0.237027 -0.860207 32.4403",
+				"rotation": "0.0 -0.707107 0.0 -0.707107"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "4.68177 3.07523 8.50663",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]

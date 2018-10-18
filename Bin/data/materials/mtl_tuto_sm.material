@@ -1,0 +1,7 @@
+{
+  "shadows": false,
+  "technique": "hologram_dump.tech",
+  "textures": {
+    "albedo": "data/textures/tx_tuto_sm.dds"
+  }
+}

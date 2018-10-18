@@ -40,6 +40,7 @@ struct TMeshLoader {
 	VMeshSubGroups         subgroups;
 
 	bool load(CDataProvider& dp);
+	bool load(const std::string& filename);
 	bool save(CDataSaver& ds);
 
 };

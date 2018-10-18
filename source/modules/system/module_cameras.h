@@ -6,7 +6,7 @@
 class CModuleCameras : public IModule
 {
 public:
-	enum EPriority { DEFAULT = 0, GAMEPLAY, TEMPORARY, DEBUG, NUM_PRIORITIES };
+    enum EPriority { DEFAULT = 0, GAMEPLAY, TEMPORARY, CINEMATIC, DEBUG, NUM_PRIORITIES };
 
 	CModuleCameras(const std::string& name);
 	bool start() override;
@@ -25,6 +25,9 @@ public:
 	CHandle getOutputCamera();
 	CHandle getCurrentCamera();
 	VEC3 getResultPos() { return resultPos; };
+
+    EPriority getPriorityFromString(const std::string& priority);
+    Interpolator::IInterpolator* getInterpolatorFromString(const std::string& interpolator);
 
 private:
 	void renderInMenu();

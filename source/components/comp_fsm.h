@@ -21,6 +21,7 @@ public:
 	void onVariableValue(const TMsgSetFSMVariable& msg);
 	void onConsoleChanged(const TMsgConsoleOn& msg);
     void onMsgNoClipToggle(const TMsgNoClipToggle& msg);
+    void onMsgAIMode(const TMsgPlayerAIEnabled& msg);
 
 	static void registerMsgs();
 
@@ -29,6 +30,12 @@ public:
 private:
 
     bool isInNoClipMode = false;
+    bool isInAIMode = false;
 	FSM::CContext _context;
+
+    /* TODO: Temp - Borrar. Solo con motivo de debug */
+    std::vector<HistoricalAction> historic;
+    void addActionToHistoric(const std::string & action);
+
 	DECL_SIBLING_ACCESS();
 };

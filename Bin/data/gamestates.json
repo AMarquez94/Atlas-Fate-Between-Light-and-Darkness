@@ -1,5 +1,5 @@
 {
-	"startup" : "main_menu",
+	"startup" : "splash",
 	"gamestates" : 
 	[
 		{
@@ -9,6 +9,10 @@
 		{
 			"name" : "main_menu",
 			"modules" : [ "main_menu" ]
+		},
+		{
+			"name" : "credits",
+			"modules" : [ "credits" ]
 		},
 		{
 			"name" : "game_over",

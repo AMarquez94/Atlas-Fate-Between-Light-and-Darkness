@@ -1,0 +1,29 @@
+[
+	{
+		"name" : "dead_menu_buttons",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "dead_buttons",
+				"type" : "widget",
+				"position" : "150 500",
+				"children" : [
+					{
+						"name" : "restart_dead",
+						"type" : "button",
+						"position" : "0 0",
+						"size" : "340 29",
+						"texture" : "data/textures/gui/soundgraph_idle.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/soundgraph_idle.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/soundgraph_idle.dds"
+						}
+					}
+				]
+			}
+		]
+	}
+]

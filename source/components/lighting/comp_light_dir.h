@@ -27,6 +27,7 @@ class TCompLightDir : public TCompCamera {
 	DECL_SIBLING_ACCESS();
 public:
 
+    bool              volumetric = false;
 	const CTexture* projector = nullptr;
 
 	/* spotlight parameters */

@@ -567,3 +567,7 @@ void CalModel::disableInternalData()
 }
 
 //****************************************************************************//
+
+void CalModel::setOwnerName(std::string name) {
+	
+}

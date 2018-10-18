@@ -1,15 +1,17 @@
 {
 	"update":
 	[
+		"files",
 		"input",
 		"entities",
 		"physics",
 		"render",
 		"navmeshes",
 		"cameras",
-		"particles",
+		"lerp",
 		"gui",
 		"logic",
+		"particles",
 		"sound",
 		"main_menu",
 		"game_manager",
@@ -19,6 +21,7 @@
 		"level_select",
 		"game_over",
 		"instancing",
+		"scene_manager",
 		"debug"
 	],
 	"render":
@@ -37,6 +40,7 @@
 		"console",
 		"cameras",
 		"input",
-		"sound"
+		"sound",
+		"debug"
 	]
 }

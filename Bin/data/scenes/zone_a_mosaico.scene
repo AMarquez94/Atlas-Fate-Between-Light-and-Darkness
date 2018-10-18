@@ -1,0 +1,133 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_mosaico"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_mosaico"
+      ,
+      "transform":
+      {
+        "pos": "-87.7926 0.00999406 -135.784"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_mosaico.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mosaico.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "piedras"
+      ,
+      "transform":
+      {
+        "pos": "-77.3955 0.0 -171.632"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/piedras.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_piedras_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_mosaico001"
+      ,
+      "transform":
+      {
+        "pos": "-102.877 0.00999482 -118.595"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_mosaico001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_mosaico.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "piedras001"
+      ,
+      "transform":
+      {
+        "pos": "-67.0292 0.0 -108.198"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/piedras001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_piedras_mezquita.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

@@ -1,0 +1,77 @@
+{
+	"system": {
+		"duration": 8.0,
+		"looping": true,
+		"start_delay": 0.0,
+		"start_lifetime": 1.0,
+		"start_speed": 0.7,
+		"start_size": "1 1 1",
+		"start_rotation": "0 0 0",
+		"random_rotation": 0.0,
+		"start_color": "1 0 0 1",
+		"gravity": 0.0,
+		"simulation_speed": 1,
+		"max_particles": 400
+	},
+	"emission": {
+		"rate_time": 25.0,
+		"rate_distance": 0.0,
+		"variation" : 0.0
+	},	
+	"shape": {
+		"type": "box",
+		"size": "15 1 4",
+		"angle": 0
+		
+	},
+	"velocity": {
+		"constant_velocity": "0.0 0.0 0.0",
+		"velocity" : [
+      [0.0, "2 0.2 0"],
+			[0.5, "2 0.2 0"],
+			[1.0, "2 0.2 0"]
+    ],
+		"rotation" : [
+		  [0.0, "0.0 0.0 0.0"],
+      [1.0, "0.0 0.0 14.5"]
+    ],
+		"acceleration": 1,
+		"wind": 0
+	},
+	"noise": {
+		"texture": "data/textures/particles/fx_smoke1.dds",
+		"strength": 1.0,
+		"frequency": 0.5,
+		"scroll_speed": 0.0,
+		"damping": true,
+		"octaves": 1
+	},
+	"collision": {
+		"collision": true
+	},
+	"renderer": {
+			"mode": "billboard",
+			"texture": "data/textures/particles/glow.dds",
+      "frame_size" : "1 1",
+      "initial_frame" : 0,
+      "num_frames" : 1,
+      "frame_speed" : 0.0
+	},
+  "size" : {
+    "scale" : 1,
+    "scale_variation" : 0.1,
+    "sizes" : [
+		  [0.0, "0.05 0.05 0.05"],
+		  [1.0, "0.05 0.05 0.05"]
+    ]
+  },
+  "color" : {
+    "opacity" : 0.3,
+    "colors" : [
+      [0.0, "0.513 0.34 0.25 0.0"],
+			[0.2, "0.513 0.34 0.25 1.0"],
+			[0.8, "0.513 0.34 0.25 1.0"],
+			[1.0, "0.513 0.34 0.25 0.0"]
+    ] 
+  }
+}

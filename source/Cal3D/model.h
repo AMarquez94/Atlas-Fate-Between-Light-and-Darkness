@@ -15,7 +15,6 @@
 #include "cal3d/global.h"
 #include "cal3d/vector.h"
 
-
 class CalCoreModel;
 class CalSkeleton;
 class CalAbstractMixer;
@@ -25,7 +24,6 @@ class CalPhysique;
 class CalSpringSystem;
 class CalRenderer;
 class CalMesh;
-
 
 class CAL3D_API CalModel : cal3d::noncopyable
 {
@@ -53,6 +51,7 @@ public:
   void setUserData(Cal::UserData userData);
   void update(float deltaTime);
   void disableInternalData();
+  void setOwnerName(std::string name);
 
 private:
   CalCoreModel *m_pCoreModel;
@@ -65,6 +64,7 @@ private:
   Cal::UserData m_userData;
   std::vector<CalMesh *> m_vectorMesh;
   CalBoundingBox m_boundingBox;
+  std::string owner_name;
 };
 
 #endif

@@ -1,0 +1,15 @@
+[
+	{
+		"name" : "splash_screen_background",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "background_splash",
+				"type" : "video",
+				"size" : "1080 640",
+				"texture" : "data/textures/gui/videos/splashrobot.h264"
+			}
+		]
+	}
+]

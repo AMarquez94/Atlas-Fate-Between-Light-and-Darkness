@@ -1,60 +1,35 @@
 [
   {
     "entity": {
-      "name": "Buttons"
-    }
+      "name": "Terminals"
+    }        
   },
   {
-    "entity": {
+	"entity": {
       "name": "Button End Scene",
+	  "prefab": "data/prefabs/terminal.prefab",
       "transform": {
-        "pos": "-38.6 1 -133",
-        "rotation": "-0.707107 0 0 0.707107"
-      },
-      "render": [
-        {
-          "mesh": "data/meshes/Buttons/Button.mesh",
-          "materials": [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ],
-      "collider": {
-        "shape": "box",
-        "size": "0.3 0.3 0.3",
-        "group": "button"
+        "pos": "-40 0 -133.5",
+        "lookat": "-39 0 -133.5"
       },
       "button": {
-        "script": "transition_zone_a_to_coliseum()",
+        "script": "transition_zone_a_to_coliseum",
 		"canBePressed": false
-      },
-      "tags": [ "button" ]
+      }
     }
   },
   {
-    "entity": {
+	"entity": {
       "name": "Button Open Exit",
+	  "prefab": "data/prefabs/terminal.prefab",
       "transform": {
-        "pos": "-106 1.1 -133.5",
-        "rotation": "-0.707107 0 0 0.707107"
-      },
-      "render": [
-        {
-          "mesh": "data/meshes/Buttons/Button.mesh",
-          "materials": [
-            "data/materials/mtl_default.material"
-          ]
-        }
-      ],
-      "collider": {
-        "shape": "box",
-        "size": "0.3 0.3 0.3",
-        "group": "button"
+        "pos": "-104 0 -140.6",
+        "lookat": "-105 0 -141.6"
       },
       "button": {
-        "script": "enable_button_exit()"
-      },
-      "tags": [ "button" ]
+        "script": "enable_button_exit",
+		"canBePressed": true
+      }
     }
   }
 ]

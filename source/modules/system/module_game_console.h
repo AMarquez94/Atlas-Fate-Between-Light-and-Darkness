@@ -40,7 +40,7 @@ public:
 
     bool start() override;
     void update(float delta) override;
-    void render() override;
+    void renderMain();
 
     int ConsoleBehaviourCallback(ImGuiTextEditCallbackData* data);
 

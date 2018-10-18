@@ -35,6 +35,14 @@ void TCompFSM::debugInMenu()
     ImGui::TreePop();
   }
   paused = false;
+
+  if (ImGui::CollapsingHeader("Action Historic")) {
+      ImGui::Separator();
+      for (int i = 0; i < historic.size(); i++) {
+          ImGui::Text("Action: %s - %d", historic[i].action, historic[i].number_of_times);
+      }
+      ImGui::Separator();
+  }
 }
 
 void TCompFSM::registerMsgs() {
@@ -43,6 +51,7 @@ void TCompFSM::registerMsgs() {
   DECL_MSG(TCompFSM, TMsgScenePaused, onPaused); 
   DECL_MSG(TCompFSM, TMsgConsoleOn, onConsoleChanged);
   DECL_MSG(TCompFSM, TMsgNoClipToggle, onMsgNoClipToggle);
+  DECL_MSG(TCompFSM, TMsgPlayerAIEnabled, onMsgAIMode);
 }
 
 const std::string TCompFSM::getStateName()
@@ -61,8 +70,12 @@ void TCompFSM::load(const json& j, TEntityParseContext& ctx)
 
 void TCompFSM::update(float dt) 
 {
-	if (!paused && !isConsoleOn && !isInNoClipMode) {
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
+	if (!paused && !isConsoleOn && !isInNoClipMode  /*&& !isInAIMode*/) {
 		_context.update(dt);
+        addActionToHistoric(_context.getCurrentState()->getName());
 	}
 }
 
@@ -89,4 +102,31 @@ void TCompFSM::onConsoleChanged(const TMsgConsoleOn & msg)
 void TCompFSM::onMsgNoClipToggle(const TMsgNoClipToggle & msg)
 {
     isInNoClipMode = !isInNoClipMode;
+}
+
+void TCompFSM::onMsgAIMode(const TMsgPlayerAIEnabled & msg)
+{
+    isInAIMode = msg.enableAI;
+    if (isInAIMode) {
+        _context.restart();
+    }
+}
+
+
+
+/* TODO: Delete */
+void TCompFSM::addActionToHistoric(const std::string & action)
+{
+    if (historic.size() == 0 || std::strcmp(historic[historic.size() - 1].action, action.c_str()) != 0) {
+        HistoricalAction historicalAction;
+        historicalAction.action = action.c_str();
+        historicalAction.number_of_times = 1;
+        historic.push_back(historicalAction);
+        if (historic.size() >= 500) {
+            historic.erase(historic.begin());
+        }
+    }
+    else {
+        historic[historic.size() - 1].number_of_times += 1;
+    }
 }

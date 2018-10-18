@@ -1,0 +1,41 @@
+[{
+		"entity": {
+			"name": "Inhibitor",
+			"transform": {
+				"pos": "0 0 0",
+				"rotation": "0.0 0.0 0.0 -1.0",
+				"scale": "4 4 4"
+			},
+			"render": [{
+					"mesh": "data/meshes/Drone_Lantern.mesh",
+					"materials": [
+						"data/materials/mtl_whitebox.material"
+					]
+				}
+			],
+			"inhibitor": {
+				"speed": 30.0
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 1.3157,
+				"outer_cut": 3.07496,
+				"color": "0.137255 0.654902 0.94902 1.0",
+				"intensity": 15.0
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_projectile_trail.particles",
+					"data/particles/def_projectile_trail_main.particles",
+					"data/particles/def_projectile_trail_main2.particles",
+					"data/particles/def_projectile_flare.particles"
+				]
+			},
+			"audio": {}
+			,
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]

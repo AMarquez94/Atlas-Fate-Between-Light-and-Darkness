@@ -29,8 +29,10 @@ CalAnimation::CalAnimation(CalCoreAnimation* pCoreAnimation)
   assert(pCoreAnimation);
 
   std::vector<CalCoreAnimation::CallbackRecord>& list = m_pCoreAnimation->getCallbackList();
-  for (size_t i=0; i<list.size(); i++)
-    m_lastCallbackTimes.push_back(0.0F);  // build up the last called list
+  for (size_t i = 0; i < list.size(); i++) {
+	  m_lastCallbackTimes.push_back(0.0F);  // build up the last called list
+	  m_lastCallbackDone.push_back(false);
+  }
 }
 
 
@@ -156,29 +158,37 @@ void CalAnimation::checkCallbacks(float animationTime,CalModel *model)
 
   for (size_t i=0; i<list.size(); i++)
   {
-	if (m_lastCallbackTimes.size() <= i)                // need these two lines to allow dynamic adding of callbacks. 
-		m_lastCallbackTimes.push_back(animationTime);
+	  if (m_lastCallbackTimes.size() <= i) {               // need these two lines to allow dynamic adding of callbacks. 
+		  m_lastCallbackTimes.push_back(animationTime);
+		  m_lastCallbackDone.push_back(false);
+	  }
+	  if (list[i].animationCompletedCallback) continue;
 
-    list[i].callback->AnimationUpdate(animationTime, model, model->getUserData());
-    if (animationTime > 0 && animationTime < m_lastCallbackTimes[i])  // looped
-        m_lastCallbackTimes[i] -= m_pCoreAnimation->getDuration();
-    else if (animationTime < 0 && animationTime > m_lastCallbackTimes[i])     // reverse-looped  
-        m_lastCallbackTimes[i] += m_pCoreAnimation->getDuration();
-  
-    if ((animationTime >= 0 && animationTime >= m_lastCallbackTimes[i] + list[i].min_interval) ||
-        (animationTime <  0 && animationTime <= m_lastCallbackTimes[i] - list[i].min_interval))
-    {
-      list[i].callback->AnimationUpdate(animationTime,model, model->getUserData());
-      m_lastCallbackTimes[i] = animationTime;
-    }
+	  if (animationTime > 0 && animationTime < m_lastCallbackTimes[i]) {  // looped
+		 // m_lastCallbackTimes[i] -= m_pCoreAnimation->getDuration();
+		  m_lastCallbackDone[i] = false;
+	  }
+	  else if (animationTime < 0 && animationTime > m_lastCallbackTimes[i]) {     // reverse-looped  
+		 // m_lastCallbackTimes[i] += m_pCoreAnimation->getDuration();
+		  m_lastCallbackDone[i] = false;
+	  }
+	  if ((animationTime >= 0 && !m_lastCallbackDone[i] && animationTime >= list[i].min_interval) ||
+        (animationTime <  0 && !m_lastCallbackDone[i] && animationTime <= list[i].min_interval))
+	  {
+		  list[i].callback->AnimationUpdate(animationTime,model);
+		  m_lastCallbackDone[i] = true;
+		  m_lastCallbackTimes[i] = animationTime;
+      }
   }
 }
 
 void CalAnimation::completeCallbacks(CalModel *model)
 {
   std::vector<CalCoreAnimation::CallbackRecord>& list = m_pCoreAnimation->getCallbackList();
-  for (size_t i=0; i<list.size(); i++)
-    list[i].callback->AnimationComplete(model, model->getUserData());
+  for (size_t i = 0; i < list.size(); i++) {
+	  if(list[i].animationCompletedCallback)	list[i].callback->AnimationComplete(model);
+  }
+
 }
 
 //****************************************************************************//

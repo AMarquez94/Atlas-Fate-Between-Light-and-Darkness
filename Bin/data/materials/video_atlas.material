@@ -1,0 +1,11 @@
+{
+"technique": "tv_screen.tech",
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/video/pantalla_atlas.h264"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

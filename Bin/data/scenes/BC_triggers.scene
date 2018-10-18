@@ -1,0 +1,57 @@
+[
+  {
+    "entity":
+    {
+      "name": "BC_triggers"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_trigger_closed_door"
+      ,
+      "transform":
+      {
+        "pos": "4.60459 -1.71062e-05 -391.345"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "is_trigger" :true,
+        "size": "5.75473 3.06191 4.99761"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "BC_trigger_interior_enter"
+      ,
+      "transform":
+      {
+        "pos": "-9.22605 14.8642 -390.775"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "is_trigger" :true,
+        "size": "5.80296 2.96795 2.64484"
+      }
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "technique": "pbr_decals.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/TexturesCom_DecalBottom0005_1_alphamasked_S.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

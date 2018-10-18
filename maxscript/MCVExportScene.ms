@@ -19,7 +19,7 @@ struct TMaterialExporter (
 		local base_name = getFilenameFile map_filename
 		local json_filename = "data/textures/" + base_name + ".dds"
 		local ofull_path = project_path + json_filename
-		print ofull_path
+
 		-- Check if ofull_path exists
 		if not doesFileExist ofull_path then (
 			format "We should copy from % to %\n" map_filename ofull_path
@@ -29,17 +29,49 @@ struct TMaterialExporter (
 		fs.writeKeyValue alias json_filename
 	),
 	
-	-- Exports a single std material to a json format
-	fn exportStdMaterial mat mat_name tech = (
+		-- Exports a single std material to a json format
+	fn exportMixMaterial mat mat_name base_name tech sdw = (
 		
-		format "Exporting material % % %\n" mat_name mat (classof mat as string)
+		exported_materials = #()
+		local mat_name1 = base_name + mat.map1.name + ".material"
+		local mat_name2 = base_name + mat.map2.name + ".material"
+		append exported_materials mat_name1
+		append exported_materials mat_name2
+		
+		format "Exporting mixed material % % %\n" mat_name mat (classof mat as string)
 		fs.begin (project_path + mat_name )
 		fs.beginObj()
 			if tech != undefined then ( 
 				fs.writeKeyValue "technique" tech 
 				fs.writeComma()
 			)
-			fs.writeKeyValue "shadows" true
+			
+			fs.writeKeyValue "shadows" sdw
+			fs.writeComma()
+			fs.writeKey "textures" 
+			fs.beginObj()
+			fs.endObj()
+			fs.writeComma()
+			fs.writeKey "mats"
+			fs.arrayOfStrings exported_materials
+			fs.writeComma()
+			exportMap mat.mask "mix_blend_weights"
+			
+		fs.endObj()
+		fs.end()
+	),
+	
+	-- Exports a single std material to a json format
+	fn exportStdMaterial mat mat_name tech sdw = (
+		
+		format "Exporting mixing material % % %\n" mat_name mat (classof mat as string)
+		fs.begin (project_path + mat_name )
+		fs.beginObj()
+			if tech != undefined then ( 
+				fs.writeKeyValue "technique" tech 
+				fs.writeComma()
+			)
+			fs.writeKeyValue "shadows" sdw
 			fs.writeComma()
 			fs.writeKey "textures" 
 			fs.beginObj()
@@ -58,10 +90,16 @@ struct TMaterialExporter (
 					fs.writeComma()
 					exportMap mat.glossinessMap "roughness"
 				)	
+				
 				if mat.bumpMap != undefined then (
 					fs.writeComma()
 					exportMap mat.bumpMap "normal"
-				)			
+				)
+				else (
+					fs.writeComma()
+					fs.writeKeyValue "normal" "data/textures/null_normal.dds"
+				)
+				
 				if mat.displacementMap != undefined then (
 					fs.writeComma()
 					exportMap mat.displacementMap "height"
@@ -81,15 +119,25 @@ struct TMaterialExporter (
 		fs.end()
 	),
 	
+	fn determineTechnique obj mat = (
+		
+		c_values = retrieveComponent obj component_technique
+		if mat != undefined and mat.twoSided == true then ( return "pbr_no_cull.tech" )
+		else if c_values != undefined then ( return c_values.techtype )
+		
+		return undefined
+	),
+	
 	-- Will return an array of all the materials names used by obj and exported by us
-	fn exportMaterial mat base_name obj tech = (
+	fn exportMaterial mat base_name obj tech sdw = (
 		
 		local exported_materials = #()
 		
 		if classof mat == StandardMaterial then (
 			local mat_name = base_name + mat.name + ".material"
-			append exported_materials mat_name
-			exportStdMaterial mat mat_name tech
+			append exported_materials mat_name 
+			local d_tech = determineTechnique obj mat
+			exportStdMaterial mat mat_name d_tech sdw
 			
 		) else if classof mat == MultiMaterial then (
 			local multi_mat = mat
@@ -98,14 +146,22 @@ struct TMaterialExporter (
 			for mat_idx = 1 to materials_of_mesh.count do (
 				if materials_of_mesh[ mat_idx ] == undefined then continue
 				local mat_of_mesh = multi_mat[ mat_idx ]
-				
+				local d_tech = determineTechnique obj mat_of_mesh
 				if mat_of_mesh == undefined then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string)+ " but the multimat does not have this submat")
 				if classof mat_of_mesh != StandardMaterial then throw ("Mesh " + obj.name + " is using a multimaterial in slot " + (mat_idx as string) + " but the multimat in this slot is not a stdMaterial")
 				
 				local mat_name = base_name + mat_of_mesh.name + ".material"
 				append exported_materials mat_name
-				exportStdMaterial mat_of_mesh mat_name tech
+				exportStdMaterial mat_of_mesh mat_name d_tech sdw
 			)
+		) else if classof mat == Blend then (
+			local mat_name = base_name + mat.name + ".material"
+			local mat_name1 = base_name + mat.map1.name + ".material"
+			local mat_name2 = base_name + mat.map2.name + ".material"
+			append exported_materials mat_name
+			exportStdMaterial mat.map1 mat_name1 tech sdw
+			exportStdMaterial mat.map2 mat_name2 tech sdw
+			exportMixMaterial mat mat_name base_name "pbr_mix.tech"
 		)
 		
 		return exported_materials
@@ -123,6 +179,7 @@ struct TSceneExporter (
 	mats_path = base_path + "materials/",
 	cols_path = base_path + "colliders/",
 	tex_path = base_path + "textures/",
+	curve_path = base_path + "curves/",
 	local_path = "",
 	use_instancing = false,
 	is_prefab = false,
@@ -134,7 +191,6 @@ struct TSceneExporter (
 	),
 	
 	fn exportAABB obj = (
-		fs.writeComma()
 		fs.writeKeyValue "abs_aabb" true
 		fs.writeComma()
 		fs.writeKeyValue "local_aabb" true
@@ -147,6 +203,91 @@ struct TSceneExporter (
 		writeColliderComponent obj
 	),
 
+	function writeAudioComponent obj = (
+	
+		c_values = retrieveComponent obj component_audio
+			
+		if c_values != undefined then (
+			local f_items = filterString c_values.audio_file "\n"
+			
+			fs.writeKey "audio" 
+			fs.beginObj()
+			fs.writeKey "clips"
+			fs.beginArray()
+			for p in f_items do (
+				local relative = false
+				local f_file = filterString p "_x_"
+				if f_file.count > 1 then ( relative = (f_file[2] as booleanClass))
+				
+				fs.beginObj()
+					fs.writeKeyValue "eventName" f_file[1]
+					fs.writeComma()
+					fs.writeKeyValue "relativeToPlayer" relative
+				fs.endObj()
+			)
+			fs.endArray()
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+		function writeParticlesComponent obj = (
+	
+		c_values = retrieveComponent obj component_particles
+			
+		if c_values != undefined then (
+			local f_items = filterString c_values.particles_files "\n"
+			local t_particles = #()
+			for p in f_items do (
+				append t_particles p
+			)
+			
+			fs.writeKey "particles" 
+			fs.beginObj()
+			fs.writeKey "cores"
+			fs.arrayOfStrings t_particles
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+	function writeRotatorComponent obj = (
+	
+		c_values = retrieveComponent obj component_rotator
+			
+		if c_values != undefined then (
+			fs.writeKey "rotator" 
+			fs.beginObj()
+			fs.writeKeyValue "speed" c_values.r_speed
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+	function writeNeonComponent obj = (
+	
+		c_values = retrieveComponent obj component_neon
+			
+		if c_values != undefined then (
+			fs.writeKey "neon_controller" 
+			fs.beginObj()
+			fs.writeKeyValue "flicker" c_values.flicker
+			fs.writeComma()
+			fs.writeKeyValue "fluctuate" c_values.fluctuate
+			fs.endObj()
+			fs.writeComma()
+		)
+	),
+	
+	function writeCustomComponents obj = (
+		
+		-- Prepare comps to be serialized.
+		writeAudioComponent obj
+		writeParticlesComponent obj
+		writeRotatorComponent obj
+		writeNeonComponent obj
+	),
+	
 	function writeTagComponent obj = (
 		
 		c_values = retrieveComponent obj component_tag
@@ -159,12 +300,10 @@ struct TSceneExporter (
 				if tag != "" then ( append final_Tags tag )
 			)
 			
-			total_tags
-			fs.writeComma()
 			fs.writeKey "tags"
 			fs.arrayOfStrings final_tags
+			fs.writeComma()
 		)
-
 	),
 
 	function writeColliderComponent obj = (
@@ -256,6 +395,44 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	fn exportTransformDecal obj = (
+		fs.writeKey "transform" 
+		
+		local max2mcv = rotateXMatrix -90
+		local mcv2max = rotateXMatrix 90
+		local mcv_position = obj.pos * max2mcv
+		print obj.pos
+		local mcv_transform = mcv2max * obj.transform * max2mcv
+		local mcv_quat = mcv_transform.rotationPart as quat
+		local mcv_final_position = checkPoint mcv_position
+		fs.beginObj()
+			fs.writeKeyValue "pos" mcv_final_position
+			fs.writeComma()
+			fs.writeKeyValue "rotation" mcv_quat
+			fs.writeComma()
+			fs.writeKeyValue "scale" [obj.width, 0.1, obj.length]
+		fs.endObj()
+	),
+	
+	fn exportTransformNormal obj = (
+		fs.writeKey "transform" 
+		
+		local max2mcv = rotateXMatrix -90
+		local mcv2max = rotateXMatrix 90
+		local mcv_position = obj.pos * max2mcv
+		print obj.pos
+		local mcv_transform = obj.transform * max2mcv
+		local mcv_quat = mcv_transform.rotationPart as quat
+		local mcv_final_position = checkPoint mcv_position
+		fs.beginObj()
+			fs.writeKeyValue "pos" mcv_final_position
+			fs.writeComma()
+			fs.writeKeyValue "rotation" mcv_quat
+			fs.writeComma()
+			fs.writeKeyValue "scale" [obj.width, obj.length, 1]
+		fs.endObj()
+	),
+	
 		-- ----------------------------------------------------------
 	fn exportTransformPrefab obj = (
 		fs.writeKey "transform" 
@@ -317,7 +494,7 @@ struct TSceneExporter (
 		
 			if mat != undefined then (
 				local me = TMaterialExporter project_path:project_path base_path:base_path
-				exported_materials = me.exportMaterial mat f_mats_path obj undefined
+				exported_materials = me.exportMaterial mat f_mats_path obj undefined true
 			)
 			
 			fs.writeKey "materials"
@@ -368,11 +545,45 @@ struct TSceneExporter (
 				
 		if mat != undefined then (
 			local me = TMaterialExporter project_path:project_path base_path:base_path
-			exported_materials = me.exportMaterial mat f_mats_path obj "pbr_instanced.tech"
+			exported_materials = me.exportMaterial mat f_mats_path obj "pbr_instanced.tech" true
 		)
 		
 		fs.writeKey "materials"
 		fs.arrayOfStrings exported_materials
+		fs.endObj()
+	),
+	
+	fn exportDecalInstance obj = (
+		
+		local decal_name = "instanced_default"
+		local f_mats_path = mats_path + local_path
+		local exported_materials = #(f_mats_path + "mtl_instanced_default.material")
+		local mat = obj.material
+		
+		-- Do some material safe checks.
+		if mat != undefined then (
+			decal_name = substituteString mat.name "mtl_" ""
+		)
+		
+		-- First, export the instanced mesh file
+		local mesh_name = "data/meshes/UnitBox.mesh"
+		local imesh_name = mesh_path + local_path + decal_name + ".instanced_mesh"
+		exportInstancedMesh imesh_name mesh_name
+		
+		-- Export instanced Mesh
+		fs.writeKey "instance" 
+		fs.beginObj()
+		fs.writeKeyValue "mesh" imesh_name
+		fs.writeComma()
+				
+		if mat != undefined then (
+			local me = TMaterialExporter project_path:project_path base_path:base_path
+			exported_materials = me.exportMaterial mat f_mats_path obj "pbr_decals.tech" false
+		)
+		
+		fs.writeKey "materials"
+		fs.arrayOfStrings exported_materials
+		fs.endObj()
 	),
 	
 	-- ----------------------------------------------------------
@@ -406,7 +617,7 @@ struct TSceneExporter (
 					fs.writeComma()
 					fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
 				) else (
-					fs.writeKeyValue "shape" "convex" 
+					fs.writeKeyValue "shape" "mesh" 
 					fs.writeComma()
 					fs.writeKeyValue "name" (cols_path + obj.name + ".collider")
 				)
@@ -451,6 +662,8 @@ struct TSceneExporter (
 			fs.writeKeyValue "shadows_resolution" 4096
 			fs.writeComma()
 			fs.writeKeyValue "shadows_fmt" "R32_TYPELESS"
+			fs.writeComma()
+			fs.writeKeyValue "volume" false
 			fs.endObj()			
 			return true
 		)
@@ -469,6 +682,8 @@ struct TSceneExporter (
 			fs.writeKeyValue "inner_cut" obj.hotspot
 			fs.writeComma()
 			fs.writeKeyValue "z_far" (distance target.pos obj.pos)
+						fs.writeComma()
+			fs.writeKeyValue "volume" false
 			fs.writeComma()	
 		)
 		else if classof obj == Omnilight   then (
@@ -500,6 +715,7 @@ struct TSceneExporter (
 		fs.writeComma()
 		fs.writeKeyValue "shadows_fmt" "R32_TYPELESS"
 		fs.endObj()
+		fs.writeComma()
 	),
 
 	-- ----------------------------------------------------------
@@ -524,14 +740,13 @@ struct TSceneExporter (
 			fs.beginObj()
 			exportRenderInstance obj
 			fs.endObj()			
-		) else (
+		) else if classof obj != Dummy then(
 			fs.writeComma()
 			fs.writeKey "render" 
 			fs.beginArray()
 			exportRenderMesh obj
 			fs.endArray()
 		)
-	
 		
 		for child in obj.children do (
 			if isCollider child then (
@@ -539,9 +754,10 @@ struct TSceneExporter (
 				exportCompCollider child
 			)
 		)
-		
+		fs.writeComma()
+		writeCustomComponents obj
 		writeTagComponent obj
-		exportAABB obj
+		exportAABB obj 
 	),
 	
 	-- Automatic light collider generation depending on light type
@@ -553,9 +769,9 @@ struct TSceneExporter (
 			if dist == undefined then ( dist = obj.baseObject.targetDistance )
 			local int_radius = tan(obj.falloff * .5f) * dist
 			local totalsides = clamp 12 32 ((int_radius * .25f) as integer)
-			local collider = cone radius1:int_radius radius2:0 height:dist heightsegs:1 sides:totalsides
+			local collider = cone radius1:int_radius radius2:0 height:obj.nearAttenEnd heightsegs:1 sides:totalsides
 			collider.transform = obj.transform
-			collider.position = (obj.position - obj.dir * dist)
+			collider.position = (obj.position - obj.dir * obj.nearAttenEnd)
 			collider = convertToMesh collider
 			collider.pivot = obj.position
 			
@@ -575,9 +791,9 @@ struct TSceneExporter (
 		else if classof obj == omnilight then ( 
 			fs.writeKey "collider" 
 			fs.beginObj()
-			fs.writeKeyValue "shape" "sphere" 
+			fs.writeKeyValue "shape" "sphere"
 			fs.writeComma()
-			fs.writeKeyValue "radius" ((obj.farAttenEnd - obj.farAttenStart) * .5 + obj.farAttenStart) 
+			fs.writeKeyValue "radius" obj.nearAttenEnd
 			fs.writeComma()
 			fs.writeKeyValue "is_trigger" true
 			fs.endObj()
@@ -636,14 +852,62 @@ struct TSceneExporter (
 		fs.endObj()
 	),
 	
+	-- Export an entity which is an xref object as a prefab
+	fn exportEntityDecal obj = (
+		
+		-- We must ignore those which are 
+		if (nitems > 0) then fs.writeComma()
+				
+		fs.beginObj()
+		fs.writeKey "entity"
+			fs.beginObj()
+			exportName obj 
+			fs.writeComma()
+			exportTransformDecal obj
+			fs.writeComma()
+			exportDecalInstance obj
+			exportAABB obj
+			fs.endObj()
+		fs.endObj()
+	),
+	
+		-- Export an entity which is an xref object as a prefab
+	fn exportEntityGrass obj = (
+		
+		-- We must ignore those which are 
+		if (nitems > 0) then fs.writeComma()
+		
+		local exported_mesh_path = mesh_path + "grass.instanced_mesh"
+		local exported_materials = #(mats_path + "grass_instanced.material")
+				
+		fs.beginObj()
+		fs.writeKey "entity"
+			fs.beginObj()
+			exportName obj 
+			fs.writeComma()
+			exportTransformNormal obj
+			fs.writeComma()
+			fs.writeKey "instance" 
+			fs.beginObj()
+			fs.writeKeyValue "mesh" exported_mesh_path
+			fs.writeComma()
+			fs.writeKey "materials"
+			fs.arrayOfStrings exported_materials
+			fs.endObj()
+			fs.endObj()
+		fs.endObj()
+	),
+	
 	-- ----------------------------------------------------------
 	fn exportEntity obj = (
 		
 		-- Adding general discarding here
 		if classof obj == Targetobject then (return false )
 		if isCollider obj and  obj.parent != undefined then (return false )
+		if classof obj == QuadPatch then (return exportEntityDecal obj)
+		if classof obj == TriPatch then (return exportEntityGrass obj)
 		if classof obj == xrefobject then (return exportEntityPrefab obj)
-		
+				
 		if (nitems > 0) then fs.writeComma()
 		
 		fs.beginObj()
@@ -655,6 +919,54 @@ struct TSceneExporter (
 			fs.endObj()
 		fs.endObj()
 		
+	),
+	
+	fn exportContainerEntity filename items mesh_name mat_name = (
+		
+		local max2mcv = rotateXMatrix -90
+		local mcv2max = rotateXMatrix 90
+		local internal_count = 0
+		
+		fs.beginObj()
+		fs.writeKey "instance_container"
+		
+			fs.beginObj()
+			fs.writeKeyValue "name" (filename as string)
+			fs.writeComma()
+			
+			-- Export instanced Mesh
+			fs.writeKey "instance_data" 
+			fs.beginObj()
+				fs.writeKeyValue "mesh" mesh_name
+				fs.writeComma()
+				fs.writeKey "materials"
+				fs.arrayOfStrings #(mat_name)
+			fs.endObj()
+			fs.writeComma()
+			fs.writeKey "instances" 
+			fs.beginArray()
+			for p in items do (
+				local mcv_position = p.transform.pos * max2mcv
+				local mcv_transform = mcv2max * p.transform * max2mcv
+				local mcv_quat = mcv_transform.rotationPart as quat
+				local mcv_final_position = checkPoint mcv_position
+				if (internal_count > 0) then fs.writeComma()
+				fs.beginObj()
+					fs.writeKeyValue "pos" mcv_final_position
+					fs.writeComma()
+					fs.writeKeyValue "rotation" mcv_quat
+					fs.writeComma()
+					if classof p == QuadPatch then (
+						fs.writeKeyValue "scale" [p.width, 0.1, p.length]
+					) else (
+						fs.writeKeyValue "scale" "1 1 1"
+					)
+				fs.endObj()
+				internal_count += 1
+			)
+			fs.endArray()
+		fs.endObj()
+		fs.endObj()
 	),
 	
 	fn exportRoot filename = (
@@ -697,6 +1009,7 @@ struct TSceneExporter (
 		doesFolderExist (project_path + mats_path + local_path ) create:true
 		doesFolderExist (project_path + cols_path + local_path) create:true
 		doesFolderExist (project_path + tex_path + local_path) create:true
+		doesFolderExist (project_path + curve_path + local_path) create:true
 		
 		-- Decide output filename based on .max filename
 		local full_path = project_path + prefabs_path + ofilename + ".prefab"
@@ -730,6 +1043,131 @@ struct TSceneExporter (
 		fs.end()	
 		
 		messageBox ("Scene SUCCESFULLY exported at location: \n\n" + full_path)		
+	),
+	
+	fn exportContainer nodes ofilename prg = (
+		
+		-------------------------------------------------------------------------
+		local req_path = findstring project_path "\bin"
+		if req_path == undefined then (
+			messageBox "Path is not located at /bin.\nPlease, provide a correct path."
+			return false				
+		)
+		-------------------------------------------------------------------------
+		local_path = getFilenamePath ofilename
+		
+		-- Create the folders if they doesn't exist
+		doesFolderExist (project_path + base_path) create:true
+		doesFolderExist (project_path + scenes_path + local_path) create:true
+		doesFolderExist (project_path + prefabs_path + local_path) create:true
+		doesFolderExist (project_path + mesh_path + local_path) create:true
+		doesFolderExist (project_path + mats_path + local_path ) create:true
+		doesFolderExist (project_path + cols_path + local_path) create:true
+		doesFolderExist (project_path + tex_path + local_path) create:true
+		doesFolderExist (project_path + curve_path + local_path) create:true
+		
+		-- Decide output filename based on .max filename
+		local full_path = project_path + scenes_path + ofilename + ".scene"
+		
+		-- Begin to write
+		fs.begin full_path
+		fs.beginArray()
+		
+		format "Exporting to %\n" full_path
+		
+		nitems = 0
+		local prg_step = 100 / (nodes.count + 1)
+		local container_types = Dictionary()
+		local container_decals = Dictionary()
+
+		-- Loop through all xref
+		for obj in nodes do (
+			
+			if classof obj == xrefobject then (
+				local ref_type = (getFilenameFile obj.filename) as name
+				
+				local has_value = HasDictValue container_types ref_type
+				if has_value == false then (
+					container_types[ref_type] = #()
+				)
+
+				-- Get the array and set the values
+				local dict_value = GetDictValue container_types ref_type
+				append dict_value obj
+				SetDictValue container_types ref_type dict_value
+			)
+			
+			if classof obj == QuadPatch then (
+				local ref_type = (obj.material.name) as name
+				
+				local has_value = HasDictValue container_decals ref_type
+				if has_value == false then (
+					container_decals[ref_type] = #()
+				)
+				
+				-- Get the array and set the values
+				local dict_value = GetDictValue container_decals ref_type
+				append dict_value obj
+				SetDictValue container_decals ref_type dict_value
+			)
+			
+			nitems = nitems + 1
+			prg.value = (nitems + 1) * prg_step
+		)
+		
+		local titems = 0
+		-- Little bit repetitive, change this later on.
+		for p in container_types do (
+
+			if (titems > 0) then fs.writeComma()
+			
+			-- First, export the instanced mesh file
+			local mesh_name = (mesh_path + local_path + p.key) + ".mesh"
+			local imesh_name = (mesh_path + local_path + p.key) + ".instanced_mesh"
+			exportInstancedMesh imesh_name mesh_name		
+			exportMeshObject p.value[1] (project_path + mesh_name)
+						
+			local mat = p.value[1].material
+			local mat_path = mats_path + p.value[1].material.name + ".material"
+			
+			if mat != undefined then (
+				local me = TMaterialExporter project_path:project_path base_path:base_path
+				me.exportStdMaterial mat.overrideMaterial mat_path "grass.tech" true
+			)
+		
+			-- Export the scene container
+			exportContainerEntity p.key p.value imesh_name mat_path
+			titems += 1
+		)
+		
+		for p in container_decals do (
+
+			if (titems > 0) then fs.writeComma()
+			
+			-- First, export the instanced mesh file
+			local mesh_name = (mesh_path + local_path + "UnitBox") + ".mesh"
+			local imesh_name = (mesh_path + local_path + p.key) + ".instanced_mesh"
+			exportInstancedMesh imesh_name mesh_name		
+						
+			local mat = p.value[1].material
+			local mat_path = mats_path + p.value[1].material.name + ".material"
+			
+			if mat != undefined then (
+				local me = TMaterialExporter project_path:project_path base_path:base_path
+				me.exportStdMaterial mat mat_path "pbr_decal.tech" false
+			)
+		
+			-- Export the scene container
+			exportContainerEntity p.key p.value imesh_name mat_path
+			titems += 1
+		)
+		
+		free container_types
+		prg.value = 100
+		fs.endArray()
+		fs.end()	
+		
+		messageBox ("Scene container SUCCESFULLY exported at location: \n\n" + full_path)		
 	)
 )
 

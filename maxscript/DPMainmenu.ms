@@ -91,7 +91,7 @@ rollout SBExport "Export Tools" width:474 height:469
 	edittext 'asset_dir' "Asset dir:" pos:[18,17] width:389 height:20 fieldwidth:340 labelOnTop:false align:#left
 	button 'btn_test' "..." pos:[420,17] width:25 height:21 toolTip:"This is a tooltip" align:#left
 	
-	GroupBox 'grp1' "Export Mesh" pos:[10,54] width:450 height:101 align:#left
+	GroupBox 'grp1' "Export Item" pos:[10,54] width:450 height:101 align:#left
 	GroupBox 'grp2' "Export Scene" pos:[10,270] width:450 height:153 align:#left
 	progressBar 'pb6' "ProgressBar" pos:[11,434] width:449 height:21 color:(color 0 255 0) align:#left
 	edittext 'edt24' "Name" pos:[193,79] width:234 height:19 align:#left
@@ -105,7 +105,7 @@ rollout SBExport "Export Tools" width:474 height:469
 	button 'btn41' "Button" pos:[160,75] width:2 height:70 align:#left
 	edittext 'scene_name' "Name" pos:[191,300] width:234 height:19 align:#left
 	checkbox 'chk5' "Generate Colliders" pos:[28,380] width:108 height:14 align:#left
-	checkbox 'chk6' "Generate LODS" pos:[28,355] width:97 height:14 align:#left
+	checkbox 'chk6' "Generate as Container" pos:[28,355] width:97 height:14 align:#left
 	checkbox 'chk7' "Generate Textures" pos:[28,329] width:107 height:14 checked:true align:#left
 	checkbox 'chk8' "Generate Materials" pos:[28,304] width:111 height:14 checked:true align:#left
 	checkbox 'chk9' "Rewrite existing files" pos:[307,331] width:120 height:14 checked:true align:#left
@@ -154,7 +154,12 @@ rollout SBExport "Export Tools" width:474 height:469
 		local objs_selected = selection as array
 		local scene_exporter = TSceneExporter()
 		scene_exporter.project_path = asset_dir.text +"\\"
-		scene_exporter.exportAll objs_selected scene_name.text pb6 true
+		
+		if chk6.state == true then (
+			scene_exporter.exportContainer objs_selected scene_name.text pb6
+		) else (
+			scene_exporter.exportAll objs_selected scene_name.text pb6 true
+		)
 	)
 		
 	on btn40 pressed do
@@ -202,7 +207,7 @@ rollout SBUtils "Utils Tools" width:469 height:263
 	checkbox 'chk1' "As Entity" pos:[105,74] width:72 height:16 align:#left
 	
 	GroupBox 'grp5' "Component Generator" pos:[8,130] width:453 height:107 align:#left
-	dropdownList 'ddl2' "" pos:[93,162] width:93 height:21 items:#("tag", "collider", "prefab") align:#left
+	dropdownList 'ddl2' "" pos:[93,162] width:93 height:21 items:#("tag", "collider", "prefab", "technique", "audio", "particles", "rotator", "neon") align:#left
 	label 'lbl4' "Type" pos:[63,164] width:29 height:17 align:#left
 	button 'btn3' "Generate Selection" pos:[247,163] width:156 height:20 align:#left	
 	button 'btn7' "Remove Selection" pos:[247,197] width:156 height:20 align:#left

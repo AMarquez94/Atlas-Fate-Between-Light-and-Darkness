@@ -10,15 +10,20 @@ DECL_OBJ_MANAGER("chromatic_aberration", TCompChromaticAberration);
 void TCompChromaticAberration::debugInMenu() {
 
     ImGui::Checkbox("Enabled", &enabled);
-    ImGui::DragFloat("Amount", &cb_postfx.postfx_ca_amount, 0.01f, 0.0f, 1.0f);
-    ImGui::DragFloat("Offset", &cb_postfx.postfx_ca_offset, 0.01f, 0.0f, 1.0f);
-    ImGui::DragFloat("Shifting", &cb_postfx.postfx_cs_offset, 0.01f, 0.0f, 1.0f);
+    ImGui::DragFloat("Amount", &amount, 0.01f, 0.0f, 4.0f);
+    ImGui::DragFloat("Block Amount", &block_amount, 0.01f, 0.0f, 4.0f);
+    ImGui::DragFloat("Scan Jitter", &scanline_jitter, 0.01f, 0.0f, 4.0f);
+    ImGui::DragFloat("Scan Drift", &scanline_drift, 0.01f, 0.0f, 4.0f);
 }
 
 void TCompChromaticAberration::load(const json& j, TEntityParseContext& ctx) {
 
     enabled = j.value("enabled", true);
     amount = j.value("amount", 1.0f);
+    scanline_jitter = j.value("jitter", 1.190f);
+    scanline_drift = j.value("drift", 0.520f);
+    block_amount = j.value("block", 0.04f);
+
     int xres = Render.width;
     int yres = Render.height;
 
@@ -34,15 +39,21 @@ void TCompChromaticAberration::load(const json& j, TEntityParseContext& ctx) {
     tech = Resources.get("postfx_chromatic_aberration.tech")->as<CRenderTechnique>();
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 
-    cb_postfx.postfx_ca_amount = 0.05f;
-    cb_postfx.postfx_ca_offset = 0.05f;
-    cb_postfx.postfx_cs_offset = 0.5f;
+    cb_postfx.postfx_ca_amount = 0.09f;
 
 }
 
 CTexture* TCompChromaticAberration::apply(CTexture* in_texture) {
 
+    float threshold = Clamp(1.0f - scanline_jitter * 1.2f, 0.f, 1.f);
+    float disperssion = pow(scanline_jitter, 3) * 0.05f;
+    cb_postfx.postfx_block_random = urand(-1, 1);
+    cb_postfx.postfx_block_amount = block_amount;
+    //cb_postfx.postfx_scan_amount = amount;
+    cb_postfx.postfx_scan_drift = VEC2(scanline_drift * 0.04f, cb_globals.global_world_time * 600);
+    cb_postfx.postfx_scan_jitter = VEC2(disperssion, threshold);
     cb_postfx.updateGPU();
+    cb_postfx.activate();
 
     if (!enabled)
         return in_texture;

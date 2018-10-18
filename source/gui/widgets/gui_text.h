@@ -4,16 +4,16 @@
 
 namespace GUI
 {
-  class CText : public CWidget
-  {
-  public:
-    CText() = default;
-    void render() override;
-    TTextParams* getTextParams() override;
+    class CText : public CWidget
+    {
+    public:
+        CText() = default;
+        void render() override;
+        TTextParams* getTextParams() override;
 
-  private:
-    TTextParams _textParams;
+    private:
+        TTextParams _textParams;
 
-    friend class CParser;
-  };
+        friend class CParser;
+    };
 }

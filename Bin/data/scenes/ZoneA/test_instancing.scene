@@ -1,6 +1,6 @@
 [{
-		"entity": {
-			"name": "Instanced Spheres",
+		"xentity": {
+			"name": "Instanced meshes",
 			"transform": {
 				"pos": "0 0 0"
 			},
@@ -13,7 +13,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Instanced Blood",
 			"transform": {
 				"pos": "0 0 0"
@@ -21,13 +21,13 @@
 			"render": [{
 					"mesh": "data/meshes/blood.instanced_mesh",
 					"materials": [
-						"data/materials/blood_instanced.material"
+						"data/materials/mtl_instanced_decal.material"
 					]
 				}
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Instanced Grass",
 			"transform": {
 				"pos": "0 0 0"
@@ -55,7 +55,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Instanced Capsules",
 			"transform": {
 				"pos": "0 0 0"
@@ -65,6 +65,26 @@
 					"materials":
 					[
 						"data/materials/mtl_instanced_capsule.material"
+					]
+				}
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "Instanced House",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"render": [{
+					"mesh": "data/meshes/mesh_casa1_4x6.instanced_mesh",
+					"materials":
+					[
+						"data/materials/mtl_casa2.material"
+						,
+						"data/materials/mtl_ornamentos_casa.material"
+						,
+						"data/materials/mtl_casa1.material"
 					]
 				}
 			]
@@ -101,5 +121,39 @@
 				}
 			]
 		}
-	}
+	},
+	{
+    "entity": {
+      "name": "GPU Particles",
+      "transform": {
+        "pos": "0 200 0"
+      },
+      "render" : [
+        {
+          "mesh": "data/meshes/gpu_particles.instanced_mesh",
+          "materials": [
+            "data/materials/gpu_particles_instanced.material"
+          ]
+        }
+      ],
+      "gpu_particles" : {
+        "core" : {
+          "speed" : "0 2 0",
+          "radius" : 135.0,
+          "height" : 40.0,
+          "life_time" : 2.0,
+          "radius" : 3.0,
+          "min_size" : 1,
+          "max_size" : 2
+        },
+        "nparticles" : 5000,
+        "update" : {
+          "name": "kernel_bw.compute",
+          "cs_file": "data/shaders/compute_particles.fx",
+          "cs_entry_point": "move_particles",
+					"profile" : "cs_5_0"
+        }
+      }
+    }
+  }
 ]

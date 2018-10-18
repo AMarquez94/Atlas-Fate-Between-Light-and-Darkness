@@ -9,7 +9,7 @@
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "0 0 0 0.24",
-		"gravity": -2.2,
+		"gravity": -0.0,
 		"simulation_speed": 0.6,
 		"max_particles": 900
 	},
@@ -56,7 +56,8 @@
       "frame_size" : "8 8",
       "initial_frame" : 0,
       "num_frames" : 64,
-      "frame_speed" : 64.0
+      "frame_speed" : 64.0,
+			"soft" : 0
 	},
   "size" : {
     "scale" : 1.0,

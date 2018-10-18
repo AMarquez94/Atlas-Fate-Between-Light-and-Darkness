@@ -62,8 +62,8 @@ float4 PS(
 	, float3 iWorldPos : TEXCOORD2
 ) : SV_Target
 {
-return float4(1,1,1,1);
-  //return txAlbedo.Sample(samLinear, input.UV);
+	//return float4(1,1,1,1);
+  return txAlbedo.Sample(samLinear, input.UV);
 }
 
 void VS_SKIN_GBuffer(

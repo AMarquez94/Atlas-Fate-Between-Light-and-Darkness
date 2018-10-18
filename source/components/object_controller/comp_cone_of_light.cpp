@@ -16,8 +16,8 @@ void TCompConeOfLightController::debugInMenu() {
 }
 
 void TCompConeOfLightController::load(const json& j, TEntityParseContext& ctx) {
-    hor_fov = deg2rad(j.value("fov", 70.f));
-    ver_fov = deg2rad(j.value("fov", 45.f));
+    hor_fov = deg2rad(j.value("hor_fov", 70.f));
+    ver_fov = deg2rad(j.value("ver_fov", 70.f));
     dist = j.value("dist", 10.f);
     h_player = getEntityByName(j.value("target", "The Player"));
     turnedOn = j.value("turnedOn", false);
@@ -35,6 +35,10 @@ void TCompConeOfLightController::onMsgGroupCreated(const TMsgEntitiesGroupCreate
 }
 
 void TCompConeOfLightController::update(float dt) {
+
+    if (!CHandle(this).getOwner().isValid())
+        return;
+
     bool isPlayerIlluminatedNow = false;
     if (turnedOn) {
         CEntity* player = h_player;
@@ -42,9 +46,14 @@ void TCompConeOfLightController::update(float dt) {
         TCompTransform* ppos = player->get<TCompTransform>();
         TCompTransform* mypos = get<TCompTransform>();
         bool inDist = VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist;
-        if (VEC3::Distance(mypos->getPosition(), ppos->getPosition()) < dist
-            && mypos->isInFov(ppos->getPosition(), hor_fov, ver_fov)) {
-            if (!isPlayerHiddenFromLight()) {
+        //dbg("======================================\n");
+        //dbg("Is in dist %s\n", inDist ? "True" : "False");
+        bool inFov = mypos->isInFov(ppos->getPosition(), hor_fov, ver_fov);
+        //dbg("Is in fov %s\n", inFov ? "True" : "False");
+        if (inDist && inFov) {
+            bool isHidden = isPlayerHiddenFromLight();
+            //dbg("Is hidden %s\n", isHidden ? "True" : "False");
+            if (!isHidden) {
                 isPlayerIlluminatedNow = true;
                 if (!playerIlluminated) {
                     playerIlluminated = true;

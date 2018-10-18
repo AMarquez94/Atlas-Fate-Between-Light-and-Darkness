@@ -11,8 +11,9 @@ Texture2D    txEmissive       SLOT(TS_EMISSIVE);
 Texture2D    txAOcclusion     SLOT(TS_AOCCLUSION);
 Texture2D    txHeight         SLOT(TS_HEIGHT);
 Texture2D    txNoiseMap       SLOT(TS_NOISE_MAP);
-Texture2D    txNoiseMap2       SLOT(TS_NOISE_MAP2);
+Texture2D    txNoiseMap2      SLOT(TS_NOISE_MAP2);
 Texture3D    txLUT            SLOT(TS_LUT_COLOR_GRADING);
+Texture2D    txLuminance      SLOT(TS_LUMINANCE);
 
 // from the light and env
 Texture2D    txLightProjector SLOT(TS_LIGHT_PROJECTOR);
@@ -27,19 +28,22 @@ Texture2D    txGBufferNormals     SLOT(TS_DEFERRED_NORMALS);
 Texture2D    txGBufferLinearDepth SLOT(TS_DEFERRED_LINEAR_DEPTH);
 Texture2D    txAccLights          SLOT(TS_DEFERRED_ACC_LIGHTS);
 Texture2D    txSelfIllum          SLOT(TS_DEFERRED_SELF_ILLUMINATION);
+Texture2D    txOutlines           SLOT(TS_DEFERRED_OUTLINE);
 Texture2D    txAO                 SLOT(TS_DEFERRED_AO);
 
 // 2nd material
 Texture2D    txAlbedo1         SLOT( TS_ALBEDO1 );
 Texture2D    txNormal1         SLOT( TS_NORMAL1 );
-//Texture2D    txMetallic1       SLOT( (TS_FIRST_SLOT_MATERIAL_1 + TS_METALLIC) );
-//Texture2D    txRoughness1      SLOT( (TS_FIRST_SLOT_MATERIAL_1 + TS_ROUGHNESS) );
+Texture2D    txMetallic1       SLOT( TS_METALLIC1 );
+Texture2D    txRoughness1      SLOT( TS_ROUGHNESS1 );
+Texture2D    txHeight1     	   SLOT( TS_HEIGHT1 );
 
 // 3rd material
 Texture2D    txAlbedo2         SLOT( TS_ALBEDO2 );
 Texture2D    txNormal2         SLOT( TS_NORMAL2 );
-//Texture2D    txMetallic2       SLOT( (TS_FIRST_SLOT_MATERIAL_2 + TS_METALLIC) );
-//Texture2D    txRoughness2      SLOT( (TS_FIRST_SLOT_MATERIAL_2 + TS_ROUGHNESS) );
+Texture2D    txMetallic2       SLOT( TS_METALLIC2 );
+Texture2D    txRoughness2      SLOT( TS_ROUGHNESS2 );
+Texture2D    txHeight2     	   SLOT( TS_HEIGHT2 );
 
 Texture2D    txMixBlendWeights SLOT( TS_MIX_BLEND_WEIGHTS );
 
@@ -58,6 +62,8 @@ SamplerComparisonState samPCFWhite : register(s4);
 SamplerState samClampBilinear   : register(s5);
 SamplerState samClampPoint    : register(s6);
 SamplerState samCount   			: register(s7);
+
+static const float PI = 3.14159265f;
 
 //--------------------------------------------------------------------------------------
 // 
@@ -85,6 +91,11 @@ float4x4 getSkinMtx(int4 iBones, float4 iWeights) {
 
 //--------------------------------------------------------------------------------------
 float2 hash2(float n) { return frac(sin(float2(n, n + 1.0))*float2(43758.5453123, 22578.1459123)); }
+
+float nrand(float x, float y) {
+
+	return frac(sin(dot(float2(x, y), float2(12.9898, 78.233))) * 43758.5453);
+}
 
 // ----------------------------------------
 float shadowsTap(float2 homo_coord, float coord_z) {
@@ -147,6 +158,7 @@ float computeShadowFactor(float3 wPos) {
   }
   //return shadowsTap(homo_space.xy, homo_space.z);
   // Divide by the number of taps
+  
   return shadow_factor / 12.f;
 }
 
@@ -190,6 +202,18 @@ float3 computeNormalMap(float3 inputN, float4 inputT, float2 inUV) {
   return wN;
 }
 
+float3 computeNormalDistortion(float3 inputN, float4 inputT, float2 noise) {
+
+  // You might want to normalize input.N and input.T.xyz
+  float3x3 TBN = computeTBN(inputN, inputT);
+
+  // Add some noise to the calculus
+  float3 normal_color = float3( noise.xy, 1.5 );
+  float3 wN = mul(normal_color, TBN);
+  wN = normalize(wN);
+
+  return wN;
+}
 
 // ------------------------------------------------------
 // screen_coords va entre 0..1024
@@ -267,19 +291,25 @@ float4 projectColor(float3 wPos) {
   float4 pos_in_light_proj_space = mul(float4(wPos, 1), light_view_proj_offset);
   float3 pos_in_light_homo_space = pos_in_light_proj_space.xyz / pos_in_light_proj_space.w; // -1..1
 
-  // Use these coords to access the projector texture of the light dir
-  //float2 t_uv = pos_in_light_homo_space.xy;
-  //float distortionOffset = -global_world_time * 0.25;
-
-  //float2 distort_uv = float2(t_uv.x + sin((t_uv.y + distortionOffset) * 20) * 0.05, t_uv.y + sin((t_uv.x + distortionOffset) * 20) * 0.05);
   float4 light_projector_color = txLightProjector.Sample(samBorderLinear, pos_in_light_homo_space.xy);
 
   if (pos_in_light_proj_space.z < 0.)
       light_projector_color = float4(0, 0, 0, 0); //return 1.f;
 
-  // Fade to zero in the last 1% of the zbuffer of the light
-  //light_projector_color *= smoothstep(1.0f, 0.15f, pos_in_light_homo_space.z);
   return light_projector_color;
+}
+
+
+// ----------------------------------------
+float randNoise2D(float2 c)
+{
+  return frac(sin(dot(c.xy,float2(12.9898,78.233))) * 43758.5453);
+}
+
+float window_cubic(float x, float c, float r)
+{
+	x = min(abs(x - c) / r, 1.0);
+	return 1.0 - x * x * (3.0 - 2.0 * x);
 }
 
 float2 parallaxMappingB(float2 texCoords, float3 view_dir) {
@@ -349,4 +379,65 @@ float2 parallaxMapping(float2 texCoords, float3 view_dir)
 
   // return result
   return finalTexCoords;
+}
+
+
+// Noise samples from GLSL, not from our own.
+float3 mod289(float3 x) {
+  return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+float2 mod289(float2 x) {
+  return x - floor(x * (1.0 / 289.0)) * 289.0;
+}
+
+float3 permute(float3 x) {
+  return mod289(((x*34.0)+1.0)*x);
+}
+
+float snoise(float2 v)
+{
+  const float4 C = float4(0.211324865405187,  // (3.0-sqrt(3.0))/6.0
+                      0.366025403784439,  // 0.5*(sqrt(3.0)-1.0)
+                     -0.577350269189626,  // -1.0 + 2.0 * C.x
+                      0.024390243902439); // 1.0 / 41.0
+	// First corner
+  float2 i  = floor(v + dot(v, C.yy) );
+  float2 x0 = v -   i + dot(i, C.xx);
+
+	// Other corners
+  float2 i1;
+  i1 = (x0.x > x0.y) ? float2(1.0, 0.0) : float2(0.0, 1.0);
+  // x0 = x0 - 0.0 + 0.0 * C.xx ;
+  // x1 = x0 - i1 + 1.0 * C.xx ;
+  // x2 = x0 - 1.0 + 2.0 * C.xx ;
+  float4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+
+	// Permutations
+  i = mod289(i);
+  float3 p = permute( permute( i.y + float3(0.0, i1.y, 1.0 ))
+		+ i.x + float3(0.0, i1.x, 1.0 ));
+
+  float3 m = max(0.5 - float3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+  m = m*m ;
+  m = m*m ;
+	
+  float3 x = 2.0 * frac(p * C.www) - 1.0;
+  float3 h = abs(x) - 0.5;
+  float3 ox = floor(x + 0.5);
+  float3 a0 = x - ox;
+
+  m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
+
+	// Compute final noise value at P
+  float3 g;
+  g.x  = a0.x  * x0.x  + h.x  * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
+
+float rand(float2 co)
+{
+   return frac(sin(dot(co.xy,float2(12.9898,78.233))) * 43758.5453);
 }
