@@ -35,7 +35,7 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_tubogrande_curvo.collider"
       }

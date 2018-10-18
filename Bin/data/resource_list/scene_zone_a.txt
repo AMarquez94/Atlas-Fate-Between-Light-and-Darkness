@@ -264,7 +264,7 @@ data/scenes/zone_a_coberturas.scene
 data/prefabs/containerbasura.prefab
 data/meshes/mesh_containerbasura.mesh
 data/textures/tx_coberturas_alb.dds
-data/textures/tx_coberturass_ao.dds
+data/textures/tx_coberturas_ao.dds
 data/textures/tx_coberturas_emi.dds
 data/textures/tx_coberturas_hgt.dds
 data/textures/tx_coberturas_met.dds
@@ -355,7 +355,7 @@ data/textures/tx_andamio_rgh.dds
 data/materials/mtl_andamio.material
 data/prefabs/andamio.prefab
 data/meshes/mesh_andamio.mesh
-data/scenes/zone_a_conductos.scene
+data/scenes/zona_a_conductos.scene
 data/prefabs/conductoconector.prefab
 data/meshes/mesh_conductoconector.mesh
 data/textures/tx_conductogrande_alb.dds
@@ -784,14 +784,6 @@ data/colliders/collider_cartel_verde_2.collider
 data/prefabs/neon_amarillo_1.prefab
 data/meshes/neon_cartel_amarillo_1.mesh
 data/colliders/collider_cartel_amarillo_1.collider
-data/scenes/zone_a_decal.scene
-data/meshes/Material #312.instanced_mesh
-data/textures/grieta_alb.dds
-data/textures/grieta_nml.dds
-data/materials/Material #312.material
-data/meshes/Material #302.instanced_mesh
-data/textures/TexturesCom_DecalBottom0005_1_alphamasked_S.dds
-data/materials/Material #302.material
 data/scenes/ZoneA/enemy2.scene
 data/prefabs/patrol.prefab
 data/skeletons/patrol/Mech_low.mesh

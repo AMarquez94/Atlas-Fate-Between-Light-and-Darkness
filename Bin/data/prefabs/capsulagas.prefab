@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "capsulagas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_capsulagas"
+      ,
+      "transform":
+      {
+        "pos": "2.83311 0.0 4.25227"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_capsulagas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_bordescoliseo.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.251783 1.02112 0.251783"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
