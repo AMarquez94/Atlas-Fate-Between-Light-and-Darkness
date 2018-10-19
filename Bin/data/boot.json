@@ -288,6 +288,8 @@
 			"data/scenes/bc_corridor_logic.scene",
 			"data/scenes/bc_corridor_lights.scene",
 
+			"data/scenes/bc_casas_lp.scene",
+
 			"data/scenes/Basilic_courtyard/bc_capsule_cable.scene",
 			"data/scenes/BC_Maderas_Andamios.scene",
 			"data/scenes/BC_ColliderAuxEntrances.scene",
