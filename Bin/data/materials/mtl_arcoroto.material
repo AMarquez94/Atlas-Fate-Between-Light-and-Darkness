@@ -5,8 +5,6 @@
   {
     "albedo": "data/textures/tx_arcoroto_alb.dds"
     ,
-    "metallic": "data/textures/tx_arcoroto_met.dds"
-    ,
     "roughness": "data/textures/tx_arcoroto_rgh.dds"
     ,
     "normal": "data/textures/tx_arcoroto_nml.dds"

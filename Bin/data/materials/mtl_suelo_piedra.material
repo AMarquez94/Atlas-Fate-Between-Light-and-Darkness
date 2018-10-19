@@ -3,7 +3,6 @@
 	"shadows": true,
 	"textures": {
 		"albedo": "data/textures/tx_suelo_piedra_marron_alb.dds",
-		"metallic": "data/textures/tx_suelo_piedra_met.dds",
 		"roughness": "data/textures/tx_suelo_piedra_rgh.dds",
 		"normal": "data/textures/tx_suelo_piedra_nml.dds",
 		"height": "data/textures/tx_suelo_piedra_hgt.dds",

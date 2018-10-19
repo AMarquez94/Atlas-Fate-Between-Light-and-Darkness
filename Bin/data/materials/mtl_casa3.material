@@ -4,9 +4,7 @@
   "textures":
   {
     "albedo": "data/textures/tx_casa3_alb.dds"
-    ,
-    "metallic": "data/textures/tx_casa3_met.dds"
-    ,
+     ,
     "roughness": "data/textures/tx_casa3_rgh.dds"
     ,
     "normal": "data/textures/tx_casa3_nml.dds"

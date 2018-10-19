@@ -5,8 +5,6 @@
   {
     "albedo": "data/textures/tx_tierrapiedras_alb.dds"
     ,
-    "metallic": "data/textures/tx_tierrapiedras_met.dds"
-    ,
     "roughness": "data/textures/tx_tierrapiedras_rgh.dds"
     ,
     "normal": "data/textures/tx_tierrapiedras_nml.dds"

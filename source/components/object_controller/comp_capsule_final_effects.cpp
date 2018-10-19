@@ -40,6 +40,7 @@ void TCompCapsuleFinalEffects::onMsgEmisiveCapsuleState(const TMsgEmisiveCapsule
 	deactivate = msg.enable;
 
 	TCompRender* renderMesh = meshRenderHandle;
-	//rand();
-	EngineLerp.lerpElement(&renderMesh->self_intensity, 1.0, 4, 0);
+	int rand_time = 250 + ((std::rand()) % (1000 - 250 + 1));
+	float time_f = (float)rand_time / 100.0f;
+	EngineLerp.lerpElement(&renderMesh->self_intensity, 0.0, 0.5, time_f);
 }
