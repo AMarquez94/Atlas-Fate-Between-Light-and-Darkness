@@ -64,6 +64,7 @@
 		"player_input",
 		"movable_object",
 		"particles",
+		"rotator_accelerator_final_scene",
 		"capsule_final_effect",
 		"emission_controller",
 		"fade_controller",

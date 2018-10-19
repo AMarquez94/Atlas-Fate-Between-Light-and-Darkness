@@ -1263,8 +1263,9 @@ void setOutBlackScreen(float time_to_lerp) {
 
 void lightUpForFinalScene(float time) {
 
-	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{false});
-	
+	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ false });
+	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 10.0f,2.0f,0.0f });
+	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{0.0f,4.0f,10.0f});
 }
 
 void lightDownForFinalScene() {

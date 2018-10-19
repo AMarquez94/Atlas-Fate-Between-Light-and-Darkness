@@ -333,6 +333,13 @@ struct TMsgEmisiveCapsuleState {
 	DECL_MSG_ID();
 };
 
+struct TMsgRotatorAccelerate {
+	float speed;
+	float time_to_lerp;
+	float time_to_start;
+	DECL_MSG_ID();
+};
+
 struct TMsgCinematicState {
     std::string state;
     bool enableCinematic;
