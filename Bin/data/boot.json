@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_zone_a",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -44,6 +44,8 @@
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",
 
+			"data/scenes/zone_a_decals.scene",
+						
 			"data/scenes/intro_casas_lp_1.scene",
 			"data/scenes/intro_casas_lp_2.scene",
 			
@@ -171,6 +173,8 @@
 			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zone_a_colliders_valla_luz.scene",
 			"data/scenes/zone_a_test.scene",
+
+			"data/scenes/zone_a_decals.scene",
 			
 			"data/scenes/zone_a_casas_lp_1.scene",
 			"data/scenes/zone_a_casas_lp_2.scene",

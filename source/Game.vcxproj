@@ -134,6 +134,7 @@
     <ClCompile Include="components\object_controller\comp_instance.cpp" />
     <ClCompile Include="components\object_controller\comp_landing.cpp" />
     <ClCompile Include="components\object_controller\comp_laser.cpp" />
+    <ClCompile Include="components\object_controller\comp_light_destroy_final_scene.cpp" />
     <ClCompile Include="components\object_controller\comp_movable_object.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
     <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
@@ -388,6 +389,7 @@
     <ClInclude Include="components\object_controller\comp_instance.h" />
     <ClInclude Include="components\object_controller\comp_landing.h" />
     <ClInclude Include="components\object_controller\comp_laser.h" />
+    <ClInclude Include="components\object_controller\comp_light_destroy_final_scene.h" />
     <ClInclude Include="components\object_controller\comp_movable_object.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
     <ClInclude Include="components\lighting\comp_emission_controller.h" />
