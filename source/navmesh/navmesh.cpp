@@ -88,6 +88,7 @@ void CNavmesh::loadAll(const char* path)
     assert(mesh);
     m_navMesh = mesh;
     m_draw = new DebugDrawGL();
+    EngineFiles.addPendingResourceFile(path, false);
 }
 
 void CNavmesh::prepareQueries() {

@@ -378,6 +378,8 @@ void CModuleLogic::publishClasses() {
     m->set("destroyPartialScene", SLB::FuncCall::create(&destroyPartialScene));
     m->set("testingLoadPartialScene", SLB::FuncCall::create(&testingLoadPartialScene));
     m->set("testLoco", SLB::FuncCall::create(&testLoco));
+    m->set("printAllResources", SLB::FuncCall::create(&printAllResources));
+    m->set("deleteAllCacheResources", SLB::FuncCall::create(&deleteAllCacheResources));
 
     /* Handle converters */
     m->set("toEntity", SLB::FuncCall::create(&toEntity));
@@ -1162,6 +1164,16 @@ void testLoco() {
     my_rigidbody->setGlobalPose(tplayer->getPosition(), tplayer->getRotation());
 
     /* TODO: rotation */
+}
+
+void printAllResources()
+{
+    Resources.printAllResources();
+}
+
+void deleteAllCacheResources()
+{
+    EngineFiles.deleteAllCacheResources();
 }
 
 void unPauseGame() {

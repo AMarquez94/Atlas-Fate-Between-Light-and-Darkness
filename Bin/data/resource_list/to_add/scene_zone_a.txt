@@ -874,13 +874,16 @@ data/meshes/intro_mosaico001.mesh
 data/meshes/piedras001.mesh
 data/scenes/ZoneA/whitebox_zone_light.scene
 data/scenes/ZoneA/test_instancing.scene
+unit_quad_pos_xy.mesh
 data/meshes/particles.instanced_mesh
 data/textures/fire.dds
 data/materials/particles_fire_instanced.material
 data/meshes/mesh_casa1_4x6.instanced_mesh
+unit_quad_center_xy.mesh
 data/meshes/quad_volume.instanced_mesh
 data/textures/grass/grass.dds
 data/materials/volume_instanced.material
+unit_quad_xy.mesh
 data/meshes/quad_volume_particles.instanced_mesh
 data/materials/volume_particles_instanced.material
 data/meshes/gpu_particles.instanced_mesh

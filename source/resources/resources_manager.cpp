@@ -49,6 +49,13 @@ const bool CResourceManager::resourceExists(const std::string & resourceName)
     return it != all_resources.end();
 }
 
+void CResourceManager::printAllResources()
+{
+    dbg("PRINTEANDO RESOURCES\n");
+    for (auto const& mapkey : all_resources)
+        dbg("%s\n", mapkey.first.c_str());
+}
+
 
 const IResource* CResourceManager::get(const std::string& res_name) {
 
@@ -101,8 +108,21 @@ void CResourceManager::destroyAll() {
     for (auto it : all_resources) {
         IResource* r = it.second;
         r->destroy();
+        delete r;
     }
     all_resources.clear();
+}
+
+void CResourceManager::destroy(const std::string& resource) {
+
+    auto it = all_resources.find(resource);
+
+    // if found delete
+    if (it != all_resources.end()) {
+        it->second->destroy();
+        delete it->second;
+        all_resources.erase(it);
+    }
 }
 
 void CResourceManager::debugInMenu() {

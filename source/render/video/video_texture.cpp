@@ -59,6 +59,13 @@ bool CVideoTexture::create(const std::string& name) {
     return true;
 }
 
+void CVideoTexture::destroy()
+{
+    deleteVideoTextureForBackgroundPlayer(this);
+    CTexture::destroy();
+    return;
+}
+
 bool CVideoTexture::uploadToVRAM() {
 
     if (!picData)

@@ -14,6 +14,7 @@ public:
 		CCurve* res = new CCurve();
 		bool is_ok = res->load(name);
 		assert(is_ok);
+        EngineFiles.addPendingResourceFile(name, false);
 		return res;
 	}
 };

@@ -425,6 +425,8 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
 
     }
 
+    EngineFiles.addPendingResourceFile(name, false);
+
     return true;
 }
 

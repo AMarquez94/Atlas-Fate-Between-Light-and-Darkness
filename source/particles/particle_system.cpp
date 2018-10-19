@@ -21,6 +21,7 @@ public:
         dbg("Creating particles %s\n", name.c_str());
         Particles::CParser parser;
         Particles::TCoreSystem* res = parser.parseParticlesFile(name);
+        EngineFiles.addPendingResourceFile(name, false);
         assert(res);
         return res;
     }

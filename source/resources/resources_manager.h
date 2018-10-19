@@ -21,6 +21,7 @@ public:
 
   void debugInMenu();
   void destroyAll();
+  void destroy(const std::string& resource_name);
 
   // 
   void registerResource( IResource* res );
@@ -28,7 +29,8 @@ public:
 
   const std::string getResourceName(const std::string& resourcePath);
   const bool resourceExists(const std::string& resourceName);
+
+  void printAllResources();
 };
 
 extern CResourceManager Resources;
-
