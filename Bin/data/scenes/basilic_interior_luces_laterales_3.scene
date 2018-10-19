@@ -7,6 +7,9 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
+      },
+      "light_destroy_final_scene":{
+        "time_to_destroy" : 7
       }
     }
   }
