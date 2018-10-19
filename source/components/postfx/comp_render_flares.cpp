@@ -16,6 +16,7 @@ void TCompRenderFlares::debugInMenu() {
 
 void TCompRenderFlares::load(const json& j, TEntityParseContext& ctx) {
 
+    TCompRenderBlur::load(j, ctx, false);
     enabled = j.value("enabled", enabled);
     global_distance = j.value("global_distance", 1.0f);
     distance_factors = VEC4(1, 1, 1, 1);
@@ -43,7 +44,7 @@ void TCompRenderFlares::load(const json& j, TEntityParseContext& ctx) {
         assert(is_ok);
 
         static int g_blur_counter = 0;
-        for (int i = 0; i < nsteps; ++i) {
+        for (int i = 0; i < 6; ++i) {
             CBlurStep* s = new CBlurStep;
 
             char blur_name[64];

@@ -29,6 +29,7 @@ struct TCompRenderBloom : public TCompRenderBlur {
     void debugInMenu();
     void addBloom();
 
+    CTexture* applyCustom(CTexture* in_texture);
 };
 
 #endif

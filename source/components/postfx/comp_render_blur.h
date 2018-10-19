@@ -16,7 +16,7 @@ struct TCompRenderBlur : public TCompBase {
 	float global_distance;
 	int   nactive_steps;
 	bool enabled;
-	void load(const json& j, TEntityParseContext& ctx);
+	void load(const json& j, TEntityParseContext& ctx, bool gen = true);
 	void debugInMenu();
 	CTexture* apply(CTexture* in_texture);
 

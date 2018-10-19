@@ -33,7 +33,7 @@ void TCompRenderBloom::debugInMenu() {
 
 void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
 
-    TCompRenderBlur::load(j, ctx);
+    TCompRenderBlur::load(j, ctx, false);
     if (j.count("weights"))
         add_weights = loadVEC4(j["weights"]);
 
@@ -49,13 +49,32 @@ void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
         sprintf(rt_name, "BloomFiltered_%08x", CHandle(this).asUnsigned());
         bool is_ok = rt_highlights->createRT(rt_name, Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
         assert(is_ok);
+
+        int xres = Render.width;
+        int yres = Render.height;
+
+        // To generate unique names
+        static int g_blur_counter = 0;
+        for (int i = 0; i < 4; ++i) {
+            CBlurStep* s = new CBlurStep;
+
+            char blur_name[64];
+            sprintf(blur_name, "%s_%02d", "bloom", g_blur_counter);
+            g_blur_counter++;
+
+            is_ok &= s->create(blur_name, xres, yres);
+            assert(is_ok);
+            t_steps.push_back(s);
+            xres /= 2;
+            yres /= 2;
+        }
     }
 
     tech_filter = Resources.get("bloom_filter.tech")->as<CRenderTechnique>();
     tech_add = Resources.get("bloom_add.tech")->as<CRenderTechnique>();
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+    nactive_steps = (int)j.value("active_steps", t_steps.size());
 }
-
 
 void TCompRenderBloom::addBloom() {
 
@@ -76,7 +95,7 @@ void TCompRenderBloom::addBloom() {
     int i = nactive_steps - 1;
     int nslot = 0;
     while (nslot < 4 && i >= 0) {
-        steps[i]->rt_output->activate(nslot);
+        t_steps[i]->rt_output->activate(nslot);
         ++nslot;
         --i;
     }
@@ -105,3 +124,22 @@ void TCompRenderBloom::generateHighlights(CTexture* in_texture) {
     // Restore the prev rt
     prev_rt->activateRT();
 }
+
+//CTexture* TCompRenderBloom::applyCustom(CTexture* in_texture) {
+//
+//    //if (!enabled)
+//    //    return in_texture;
+//
+//    //CTraceScoped scope("CompBlur");
+//
+//    //CTexture* output = in_texture;
+//    //int nsteps_to_apply = nactive_steps;
+//    //for (auto s : steps) {
+//    //    if (--nsteps_to_apply < 0)
+//    //        break;
+//    //    output = s->apply(in_texture, global_distance, distance_factors, weights);
+//    //    in_texture = output;
+//    //}
+//
+//    //return output;
+//}
