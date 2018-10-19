@@ -11,7 +11,7 @@ std::vector< CBlurStep* > TCompRenderFlares::t_steps;
 
 // ---------------------
 void TCompRenderFlares::debugInMenu() {
-
+    ImGui::Checkbox("Enabled", &enabled);
 }
 
 void TCompRenderFlares::load(const json& j, TEntityParseContext& ctx) {
@@ -60,6 +60,7 @@ void TCompRenderFlares::load(const json& j, TEntityParseContext& ctx) {
 
 	tech = Resources.get("postfx_flare.tech")->as<CRenderTechnique>();
 	mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>(); 
+    nactive_steps = (int)j.value("active_steps", t_steps.size());
 }
 
 CTexture* TCompRenderFlares::apply(CTexture* in_color, CTexture * in_lights) {

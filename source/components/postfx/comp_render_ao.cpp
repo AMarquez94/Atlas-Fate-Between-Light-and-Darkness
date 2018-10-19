@@ -9,6 +9,7 @@ CRenderToTexture* TCompRenderAO::rt_output = nullptr;
 // ---------------------
 void TCompRenderAO::debugInMenu() {
 
+    ImGui::Checkbox("Enabled", &enabled);
 	ImGui::DragFloat("Amount", &amount, 0.01f, 0.0f, 1.0f);
 	ImGui::DragFloat("Radius", &radius, 0.01f, 0.0f, 10.0f);
 	ImGui::DragFloat("ZRange Discard", &zrange_discard, 0.001f, 0.0f, 0.1f);

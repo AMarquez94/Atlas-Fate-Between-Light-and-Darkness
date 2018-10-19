@@ -10,6 +10,7 @@ struct TCompRenderBloom : public TCompRenderBlur {
 
     CRenderCte< CCteBloom >       cte_bloom;
     static CRenderToTexture*             rt_highlights;
+    static std::vector< CBlurStep* > t_steps;
 
     const CRenderTechnique*       tech_filter = nullptr;
     const CRenderTechnique*       tech_add = nullptr;
