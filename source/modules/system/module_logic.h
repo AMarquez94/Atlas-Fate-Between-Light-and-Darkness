@@ -178,9 +178,12 @@ void setOutBlackScreen(float time_to_lerp);
 void activateMission(int mission_num);
 void lightUpForFinalScene(float time);
 void lightDownForFinalScene();
+void speedUpRuedasFinalScene();
+void stopRuedasFinalScene();
 void execLastAtlasScreen();
 void removeAtlasSplash();
 void removeTempCredits();
+
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
 void toggle_spotlight(const std::string& lightName);

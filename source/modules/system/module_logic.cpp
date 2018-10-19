@@ -314,8 +314,10 @@ void CModuleLogic::publishClasses() {
 
     // cinematic
     m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
-    m->set("setAIState", SLB::FuncCall::create(&setAIState));
-
+	m->set("setAIState", SLB::FuncCall::create(&setAIState));
+	m->set("speedUpRuedasFinalScene", SLB::FuncCall::create(&speedUpRuedasFinalScene));
+	m->set("stopRuedasFinalScene", SLB::FuncCall::create(&stopRuedasFinalScene));
+	
 	//GUI
 	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
 	m->set("backFromControls", SLB::FuncCall::create(&backFromControls));
@@ -1262,19 +1264,24 @@ void setOutBlackScreen(float time_to_lerp) {
 }
 
 void lightUpForFinalScene(float time) {
-
 	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ false });
-	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 10.0f,2.0f,0.0f });
-	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{0.0f,4.0f,10.0f});
 }
 
 void lightDownForFinalScene() {
+	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ true });
+}
 
+void speedUpRuedasFinalScene() {
+	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 10.0f,4.0f,0.0f });
+}
+
+void stopRuedasFinalScene() {
+	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 0.0f,4.0f,10.0f });
 }
 
 void execLastAtlasScreen() {
 
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH)->makeChildsFadeIn(0.25, 0, false);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH)->makeChildsFadeIn(0.1, 0, false);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,25,false);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
 	EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);

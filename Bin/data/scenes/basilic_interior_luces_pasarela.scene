@@ -9,7 +9,7 @@
         "pos": "0.0 0.0 0.0"
       },
       "xlight_destroy_final_scene":{
-        "time_to_destroy" : 1.5
+        "time_to_destroy" : 12
       }
     }
   }
