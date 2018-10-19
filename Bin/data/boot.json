@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_interior",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -43,8 +43,10 @@
 			"data/scenes/intro_tubo_capsulas.scene",
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",
-			"data/scenes/intro_edificios_segunda_1.scene",
-			"data/scenes/intro_edificios_segunda_2.scene",
+
+			"data/scenes/intro_casas_lp_1.scene",
+			"data/scenes/intro_casas_lp_2.scene",
+			
 			"data/scenes/intro_carteles.scene",
 			"data/scenes/intro_muralla.scene",
 			"data/scenes/intro_pozo.scene",
