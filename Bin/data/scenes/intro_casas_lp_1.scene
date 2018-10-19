@@ -62,6 +62,22 @@
   {
     "entity":
     {
+      "name": "mesh_casas_2_lp002"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-33.1199 8.50683 84.109"
+        ,
+        "rotation": "0.0 -0.953717 0.0 -0.300706"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_casas_3_lp001"
       ,
       "prefab": "data/prefabs/casas_3_lp.prefab"
