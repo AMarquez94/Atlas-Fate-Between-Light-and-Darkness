@@ -7,7 +7,7 @@ bool CModuleFile::start() {
     // Register the resource types
     Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
 
-    preloadResources(false);
+    preloadResources(true);
 
     resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
 

@@ -97,7 +97,6 @@ data/scenes/COL_pared_suelo.scene
 data/meshes/COL_mesh_pared.mesh
 data/textures/tx_mezquita_alb.dds
 data/textures/tx_mezquita_hgt.dds
-data/textures/tx_mezquita_met.dds
 data/textures/tx_mezquita_nml.dds
 data/textures/tx_mezquita_rgh.dds
 data/materials/mtl_mezquita.material
@@ -106,7 +105,6 @@ data/meshes/COL_mesh_suelo.mesh
 data/textures/tx_suelo_plaza_alb.dds
 data/textures/tx_suelo_plaza_ao.dds
 data/textures/tx_suelo_plaza_hgt.dds
-data/textures/tx_suelo_plaza_met.dds
 data/textures/tx_suelo_plaza_nml.dds
 data/textures/tx_suelo_plaza_rgh.dds
 data/materials/mtl_suelo_plaza.material
@@ -153,7 +151,6 @@ data/meshes/COL_mesh_arcoroto.mesh
 data/textures/tx_arcoroto_alb.dds
 data/textures/tx_arcoroto_ao.dds
 data/textures/tx_arcoroto_hgt.dds
-data/textures/tx_arcoroto_met.dds
 data/textures/tx_arcoroto_nml.dds
 data/textures/tx_arcoroto_rgh.dds
 data/materials/mtl_arcoroto.material
@@ -161,7 +158,6 @@ data/colliders/COL_collider_arcoroto.collider
 data/meshes/COL_mesh_arcoroto_cover.mesh
 data/textures/tx_bordillos_alb.dds
 data/textures/tx_bordillos_ao.dds
-data/textures/tx_bordillos_met.dds
 data/textures/tx_bordillos_nml.dds
 data/textures/tx_bordillos_rgh.dds
 data/materials/mtl_bordillos.material
@@ -578,7 +574,6 @@ data/textures/tx_alminar_mezquita_alb.dds
 data/textures/tx_alminar_mezquita_ao.dds
 data/textures/tx_alminar_mezquita_emi.dds
 data/textures/tx_alminar_mezquita_hgt.dds
-data/textures/tx_alminar_mezquita_met.dds
 data/textures/tx_alminar_mezquita_nml.dds
 data/textures/tx_alminar_mezquita_rgh.dds
 data/materials/mtl_alminar_mezquita.material
@@ -611,7 +606,6 @@ data/meshes/BC_tejados.mesh
 data/textures/tx_tejados_alb.dds
 data/textures/tx_tejados_ao.dds
 data/textures/tx_tejados_hgt.dds
-data/textures/tx_tejados_met.dds
 data/textures/tx_tejados_nml.dds
 data/textures/tx_tejados_rgh.dds
 data/materials/mtl_tejados.material
@@ -635,10 +629,10 @@ data/textures/tx_luna_alb.dds
 data/textures/tx_luna_ao.dds
 data/textures/tx_luna_emi.dds
 data/textures/tx_luna_hgt.dds
-data/textures/tx_luna_met.dds
 data/textures/tx_luna_nml.dds
 data/textures/tx_luna_rgh.dds
 data/materials/mtl_luna.material
+data/textures/tx_luna_met.dds
 data/materials/mtl_luna_back.material
 data/textures/tx_planeta_rojo_alb.dds
 data/textures/tx_planeta_rojo_ao.dds
