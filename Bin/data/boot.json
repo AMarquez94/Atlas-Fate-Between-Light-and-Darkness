@@ -325,7 +325,17 @@
 			"data/scenes/basilic_interior_sueloyagarres.scene",
 			"data/scenes/Basilic_interior/basilic_interior_particles.scene",
 			"data/scenes/Basilic_interior/basilic_interior_holograms.scene",
+
 			"data/scenes/basilic_interior_luces.scene",
+			"data/scenes/basilic_interior_luces_nucleo.scene",
+			"data/scenes/basilic_interior_luces_pasarela.scene",
+			"data/scenes/basilic_interior_luces_laterales_1.scene",
+			"data/scenes/basilic_interior_luces_laterales_2.scene",
+			"data/scenes/basilic_interior_luces_laterales_3.scene",
+			"data/scenes/basilic_interior_luces_laterales_4.scene",
+			"data/scenes/basilic_interior_luces_laterales_5.scene",
+			"data/scenes/basilic_interior_luces_laterales_6.scene",
+
 			"data/scenes/Basilic_interior/basilic_interior_cinematic.scene"
 
 		]
