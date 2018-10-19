@@ -142,13 +142,6 @@ float4 PS_IVLight(
 		, float4x4 iViewProj: TInstanceLight
 ) : SV_Target
 {
-		 float4x4 ditherPattern = {{ 0.0f, 0.5f, 0.125f, 0.625f},
-                            { 0.75f, 0.22f, 0.875f, 0.375f},
-                            { 0.1875f, 0.6875f, 0.0625f, 0.5625},
-                            { 0.9375f, 0.4375f, 0.8125f, 0.3125}};
-		float ditherValue = ditherPattern[iPos.x % 4][iPos.y % 4];
-		//iWorldPos = iWorldPos * ditherValue;
-	
     // Sampling planes volumetric lights based shader.
 		float shadow_factor = computeVolumeShadowFactorLight(iViewProj, iWorldPos);
 
