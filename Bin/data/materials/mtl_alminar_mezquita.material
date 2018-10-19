@@ -5,8 +5,6 @@
   {
     "albedo": "data/textures/tx_alminar_mezquita_alb.dds"
     ,
-    "metallic": "data/textures/tx_alminar_mezquita_met.dds"
-    ,
     "roughness": "data/textures/tx_alminar_mezquita_rgh.dds"
     ,
     "normal": "data/textures/tx_alminar_mezquita_nml.dds"

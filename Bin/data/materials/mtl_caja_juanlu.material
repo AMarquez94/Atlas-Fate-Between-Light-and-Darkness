@@ -4,8 +4,7 @@
   "textures":
   {
     "albedo": "data/textures/tx_box_alb.dds"
-    ,
-    "metallic": "data/textures/tx_box_met.dds"
+
     ,
     "roughness": "data/textures/tx_box_rgh.dds"
     ,
