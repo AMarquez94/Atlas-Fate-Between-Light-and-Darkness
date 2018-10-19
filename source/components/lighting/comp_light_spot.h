@@ -66,6 +66,7 @@ public:
 
     void cullFrame();
     bool isCulled() const;
+    bool isVolumeEnabled() const;
 
     MAT44 getWorld();
 	void setColor(const VEC4 & new_color);

@@ -341,6 +341,10 @@ bool TCompLightSpot::isCulled() const {
     return cull_enabled;
 }
 
+bool TCompLightSpot::isVolumeEnabled() const
+{
+    return volume_enabled;
+}
 
 void TCompLightSpot::setIntensity(float new_int)
 {

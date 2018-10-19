@@ -142,6 +142,13 @@ float4 PS_IVLight(
 		, float4x4 iViewProj: TInstanceLight
 ) : SV_Target
 {
+		 float4x4 ditherPattern = {{ 0.0f, 0.5f, 0.125f, 0.625f},
+                            { 0.75f, 0.22f, 0.875f, 0.375f},
+                            { 0.1875f, 0.6875f, 0.0625f, 0.5625},
+                            { 0.9375f, 0.4375f, 0.8125f, 0.3125}};
+		float ditherValue = ditherPattern[iPos.x % 4][iPos.y % 4];
+		//iWorldPos = iWorldPos * ditherValue;
+	
     // Sampling planes volumetric lights based shader.
 		float shadow_factor = computeVolumeShadowFactorLight(iViewProj, iWorldPos);
 
@@ -161,11 +168,11 @@ float4 PS_IVLight(
     return float4(light_color.xyz, clamp_spot * val * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
 }
 
-#define FACTOR_TAU 0.0001f
+#define FACTOR_TAU 0.000001f
 #define FACTOR_PHI 100000.0f
 #define PI_RCP 1.318309388618379067153776752674503f
 
-float4 PS_GBuffer_RayShafts(
+float4 PS_GBuffer_RayShafts_Spot(
   float4 Pos       : SV_POSITION
   , float3 iNormal : NORMAL0
   , float4 iTangent : NORMAL1
@@ -174,9 +181,9 @@ float4 PS_GBuffer_RayShafts(
   , float3 iWorldPos : TEXCOORD2
 ): SV_Target0
 {
-	float NB_STEPS = 40;
-  float TAU = FACTOR_TAU * 25.1;
-  float PHI = FACTOR_PHI * light_intensity * 4;
+	float NB_STEPS = 45;
+  float TAU = FACTOR_TAU * 3.1;
+  float PHI = FACTOR_PHI * light_intensity;
 	
 	// Clamped world position to closest fragment
 	int3   ss_load_coords = uint3(Pos.xy, 0);
@@ -196,7 +203,7 @@ float4 PS_GBuffer_RayShafts(
                             { 0.1875f, 0.6875f, 0.0625f, 0.5625},
                             { 0.9375f, 0.4375f, 0.8125f, 0.3125}};
   float ditherValue = ditherPattern[Pos.x % 4][Pos.y % 4];
-	
+
 	float3 currentPosition = wPos + step * ditherValue;
 	float total_fog = 0.0f;
 	float l = ray_length;
@@ -207,9 +214,69 @@ float4 PS_GBuffer_RayShafts(
     float d = length(currentPosition - light_pos);
     float dRCP = rcp(d);
     float amount = TAU*(shadowTerm*(PHI*0.25f*PI_RCP)*dRCP*dRCP)*exp(-d*TAU)*exp(-l*TAU)*step_length;
-		
+
+		// From wPos to Light
+		float3 light_dir = normalize(light_pos.xyz - currentPosition);
+		float theta = dot(light_dir, -light_direction.xyz);
+		float att_spot = clamp((theta - light_outer_cut) / (light_inner_cut - light_outer_cut), 0, 1);
+		float clamp_spot = theta > light_angle ? 1.0 * att_spot : 0.0; // spot factor 
+	
 		l-=step_length;
-    total_fog += amount;
+    total_fog += amount * clamp_spot;
+		currentPosition += step;
+	}
+	
+	return float4(light_color.xyz * total_fog, 1);
+}
+
+float4 PS_GBuffer_RayShafts_Point(
+  float4 Pos       : SV_POSITION
+  , float3 iNormal : NORMAL0
+  , float4 iTangent : NORMAL1
+  , float2 iTex0 : TEXCOORD0
+  , float2 iTex1 : TEXCOORD1
+  , float3 iWorldPos : TEXCOORD2
+): SV_Target0
+{
+	float NB_STEPS = 10;
+  float TAU = FACTOR_TAU * 1.1;
+  float PHI = FACTOR_PHI * light_intensity * 0.25;
+	
+	// Clamped world position to closest fragment
+	int3   ss_load_coords = uint3(Pos.xy, 0);
+  float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
+  float  depth = zlinear > Pos.z ? Pos.z : zlinear;
+  float3 wPos = getWorldCoords(Pos.xy, depth);
+	
+  float3 ray_vector = camera_pos - wPos;
+	float ray_length = length(ray_vector);
+	float3 ray_dir = ray_vector / ray_length;
+
+	float step_length = ray_length / NB_STEPS;
+	float3 step = ray_dir * step_length;
+
+  float4x4 ditherPattern = {{ 0.0f, 0.5f, 0.125f, 0.625f},
+                            { 0.75f, 0.22f, 0.875f, 0.375f},
+                            { 0.1875f, 0.6875f, 0.0625f, 0.5625},
+                            { 0.9375f, 0.4375f, 0.8125f, 0.3125}};
+  float ditherValue = ditherPattern[Pos.x % 4][Pos.y % 4];
+
+	float3 currentPosition = wPos + step * ditherValue * 0.2;
+	float total_fog = 0.0f;
+	float l = ray_length;
+			
+	for (int i = 0; i < NB_STEPS; i++)
+	{
+    float d = length(currentPosition - light_pos);
+    float dRCP = rcp(d);
+    float amount = TAU*((PHI*0.25f*PI_RCP)*dRCP*dRCP)*exp(-d*TAU)*exp(-l*TAU)*step_length;
+
+		float distance_to_light = length(light_pos.xyz - currentPosition);
+		//float  att = (1. - smoothstep(inner_atten, far_atten, distance_to_light / light_radius));
+		float att = 1 / (distance_to_light * distance_to_light);
+	
+		l-=step_length;
+    total_fog += amount * att;
 		currentPosition += step;
 	}
 
