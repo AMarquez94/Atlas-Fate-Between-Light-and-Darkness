@@ -2,6 +2,7 @@ function onSceneStart_scene_basilic_interior()
 	setOutBlackScreen(0.25);
 	pre_end_cinematic_scene();
 	gameManager:changeToEndScene();
+	--execScriptDelayed("lightUpForFinalScene(10);");
 	--shutdown_end_cinematic_scene
 	--temp_final_decision();
 end
@@ -41,7 +42,8 @@ function finish_job_end_cinematic_scene()
 	execScriptDelayed("startTransmission(7)", 38);
 	execScriptDelayed("activateSubtitles(31);",38);
 	execScriptDelayed("deactivateSubtitles();",45);
-	execScriptDelayed("execLastAtlasScreen()",50);
+	execScriptDelayed("execLastAtlasScreen()",47);
+	execScriptDelayed("lightUpForFinalScene(10);",35);
 end
 
 function shutdown_end_cinematic_scene()
