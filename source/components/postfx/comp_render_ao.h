@@ -21,7 +21,7 @@ class TCompRenderAO : public TCompBase {
 	float                   amount = 1.f;
 	float                   radius = 0.110f;
 	float                   zrange_discard = 0.100f;
-	float                   amount_spreading = 0.960f;
+	float                   amount_spreading = 0.970f;
 	int                     xres = 0;
 	int                     yres = 0;
     bool enabled;
