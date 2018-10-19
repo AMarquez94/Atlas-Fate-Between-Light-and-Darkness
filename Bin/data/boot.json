@@ -44,6 +44,8 @@
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",
 
+			"data/scenes/zone_a_decals.scene",
+						
 			"data/scenes/intro_casas_lp_1.scene",
 			"data/scenes/intro_casas_lp_2.scene",
 			
@@ -111,7 +113,7 @@
 			"data/scenes/col_zone_a_corridor.scene",
 			"data/scenes/Coliseo/coliseo_cinematic.scene",
 			"data/scenes/col_bc_corridor.scene",
-			
+			"data/scenes/col_casas_lp.scene",
 
 			"data/scenes/col_intro_corridor_logic.scene",
 			"data/scenes/Coliseo/col_mosque.scene",
@@ -171,7 +173,12 @@
 			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zone_a_colliders_valla_luz.scene",
 			"data/scenes/zone_a_test.scene",
-			"data/scenes/zone_a_edificios_segunda.scene",
+
+			"data/scenes/zone_a_decals.scene",
+			
+			"data/scenes/zone_a_casas_lp_1.scene",
+			"data/scenes/zone_a_casas_lp_2.scene",
+			"data/scenes/zone_a_casas_lp_3.scene",
 			"data/scenes/zone_a_neones.scene",
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/zone_a_grass.scene",
@@ -284,6 +291,8 @@
 			"data/scenes/bc_pasillo_entre.scene",
 			"data/scenes/bc_corridor_logic.scene",
 			"data/scenes/bc_corridor_lights.scene",
+
+			"data/scenes/bc_casas_lp.scene",
 
 			"data/scenes/Basilic_courtyard/bc_capsule_cable.scene",
 			"data/scenes/BC_Maderas_Andamios.scene",

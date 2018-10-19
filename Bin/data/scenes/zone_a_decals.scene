@@ -2,26 +2,26 @@
   {
     "instance_container":
     {
-      "name": "mtl_barrodecal"
+      "name": "mtl_decal_bottom"
       ,
       "instance_data":
       {
-        "mesh": "data/meshes/mtl_barrodecal.instanced_mesh"
+        "mesh": "data/meshes/mtl_decal_bottom.instanced_mesh"
         ,
         "materials":
         [
-          "data/materials/mtl_barrodecal.material"
+          "data/materials/mtl_decal_bottom.material"
         ]
       }
       ,
       "instances":
       [
         {
-          "pos": "-47.4528 0.518795 -86.7026"
+          "pos": "-38.0 0.248531 -86.7009"
           ,
           "rotation": "0.0 0.707107 -0.707107 0.0"
           ,
-          "scale": "2.76183 0.1 1.01161"
+          "scale": "6.0 0.1 0.549774"
         }
       ]
     }

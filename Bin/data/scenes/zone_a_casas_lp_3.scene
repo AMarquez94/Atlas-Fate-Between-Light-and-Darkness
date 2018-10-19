@@ -1,0 +1,93 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_casas_lp_3"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_2_lp006"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-12.078 9.19549 -182.137"
+        ,
+        "rotation": "0.0 0.342013 0.0 -0.939695"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_3_lp006"
+      ,
+      "prefab": "data/prefabs/casas_3_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.2808 8.86584 -162.045"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_4_lp004"
+      ,
+      "prefab": "data/prefabs/casas_4_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.0566 10.6444 -135.086"
+        ,
+        "rotation": "0.0 -0.737277 0.0 -0.675591"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_2_lp005"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.7042 10.8012 -100.344"
+        ,
+        "rotation": "0.0 0.737272 0.0 -0.675596"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_1_lp004"
+      ,
+      "prefab": "data/prefabs/casas_1_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.0888 13.0448 -64.1081"
+        ,
+        "rotation": "0.0 -0.675588 0.0 -0.737279"
+      }
+    }
+  }
+]
