@@ -258,6 +258,7 @@ data/prefabs/containerbasura.prefab
 data/meshes/mesh_containerbasura.mesh
 data/textures/tx_coberturas_alb.dds
 data/textures/tx_coberturas_ao.dds
+data/textures/tx_coberturas_emi.dds
 data/textures/tx_coberturas_hgt.dds
 data/textures/tx_coberturas_met.dds
 data/textures/tx_coberturas_nml.dds
@@ -484,7 +485,7 @@ data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlights.material
 data/colliders/collider_baselargalectrica.collider
 data/meshes/mesh_zone_a_cable133.mesh
-data/textures/tx_cables_alb.dds
+data/textures/tx_alminar_mezquita_met.dds
 data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/scenes/zone_a_hologramas.scene
@@ -498,6 +499,9 @@ data/meshes/mesh_chimenea_holograma005.mesh
 data/scenes/zona_a_colliders_barandillas.scene
 data/scenes/zone_a_colliders_valla_luz.scene
 data/scenes/zone_a_test.scene
+data/scenes/zone_a_decals.scene
+data/textures/barro_bottom.dds
+data/materials/mtl_decal_bottom.material
 data/scenes/zone_a_casas_lp_1.scene
 data/prefabs/casas_1_lp.prefab
 data/meshes/mesh_casas_1_lp.mesh
@@ -784,6 +788,7 @@ data/textures/tx_neon_moderdonia_met.dds
 data/textures/tx_neon_moderdonia_nml.dds
 data/textures/tx_neon_moderdonia_rgh.dds
 data/materials/mtl_neon_moderdonia.material
+data/textures/tx_cables_alb.dds
 data/materials/mtl_default.material
 data/scenes/zonea_triggers.scene
 data/scenes/zone_a_in_corridor.scene
@@ -925,8 +930,9 @@ data/meshes/zone_a_in_rejas001.mesh
 data/meshes/zone_a_in_sala002.mesh
 data/meshes/zone_a_in_suelo001.mesh
 data/textures/tx_sueloytecho_alb.dds
-data/textures/tx_sueloytecho_hgt.dds
+data/textures/tx_sueloytecho_ao.dds
 data/textures/tx_sueloytecho_emi.dds
+data/textures/tx_sueloytecho_hgt.dds
 data/textures/tx_sueloytecho_met.dds
 data/textures/tx_sueloytecho_nml.dds
 data/textures/tx_sueloytecho_rgh.dds

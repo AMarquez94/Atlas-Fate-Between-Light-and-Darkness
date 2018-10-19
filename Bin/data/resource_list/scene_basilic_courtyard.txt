@@ -163,6 +163,7 @@ data/prefabs/piezaconcreto.prefab
 data/meshes/mesh_piezaconcreto.mesh
 data/textures/tx_coberturas_alb.dds
 data/textures/tx_coberturas_ao.dds
+data/textures/tx_coberturas_emi.dds
 data/textures/tx_coberturas_hgt.dds
 data/textures/tx_coberturas_met.dds
 data/textures/tx_coberturas_nml.dds
@@ -242,6 +243,7 @@ data/meshes/mesh_containerbasura.mesh
 data/colliders/collider_containerbasura.collider
 data/scenes/BC_cables.scene
 data/meshes/BC_cables.mesh
+data/textures/tx_alminar_mezquita_met.dds
 data/materials/mtl_cables.material
 data/prefabs/baselargaelectrica.prefab
 data/meshes/mesh_baselargalectrica.mesh
@@ -561,8 +563,9 @@ data/meshes/bc_rejas001.mesh
 data/meshes/bc_sala002.mesh
 data/meshes/bc_suelo001.mesh
 data/textures/tx_sueloytecho_alb.dds
-data/textures/tx_sueloytecho_hgt.dds
+data/textures/tx_sueloytecho_ao.dds
 data/textures/tx_sueloytecho_emi.dds
+data/textures/tx_sueloytecho_hgt.dds
 data/textures/tx_sueloytecho_met.dds
 data/textures/tx_sueloytecho_nml.dds
 data/textures/tx_sueloytecho_rgh.dds

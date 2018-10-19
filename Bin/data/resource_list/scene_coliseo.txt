@@ -58,7 +58,7 @@ data/materials/mtl_planet1.material
 data/materials/mtl_planet1_back.material
 data/scenes/Coliseo/coliseo_cables.scene
 data/meshes/COL_Circle001.mesh
-data/textures/tx_cables_alb.dds
+data/textures/tx_alminar_mezquita_met.dds
 data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/meshes/COL_Line001.mesh
@@ -304,6 +304,7 @@ data/textures/tx_sala_nml.dds
 data/textures/tx_sala_rgh.dds
 data/materials/mtl_sala.material
 data/meshes/col_intro_aux_pared_sombra.mesh
+data/textures/tx_cables_alb.dds
 data/materials/mtl_default.material
 data/meshes/col_intro_baseycolumna001.mesh
 data/textures/tx_baseycolumna_alb.dds
@@ -434,8 +435,9 @@ data/meshes/col_intro_rejas001.mesh
 data/meshes/col_intro_sala002.mesh
 data/meshes/col_intro_suelo001.mesh
 data/textures/tx_sueloytecho_alb.dds
-data/textures/tx_sueloytecho_hgt.dds
+data/textures/tx_sueloytecho_ao.dds
 data/textures/tx_sueloytecho_emi.dds
+data/textures/tx_sueloytecho_hgt.dds
 data/textures/tx_sueloytecho_met.dds
 data/textures/tx_sueloytecho_nml.dds
 data/textures/tx_sueloytecho_rgh.dds

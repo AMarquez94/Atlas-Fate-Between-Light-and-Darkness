@@ -147,6 +147,7 @@ data/prefabs/barril.prefab
 data/meshes/mesh_barril.mesh
 data/textures/tx_coberturas_alb.dds
 data/textures/tx_coberturas_ao.dds
+data/textures/tx_coberturas_emi.dds
 data/textures/tx_coberturas_hgt.dds
 data/textures/tx_coberturas_met.dds
 data/textures/tx_coberturas_nml.dds
@@ -220,8 +221,9 @@ data/colliders/collider_bi_suelo.collider
 data/meshes/tubo_pasarela003.mesh
 data/meshes/suelo_corridor.mesh
 data/textures/tx_sueloytecho_alb.dds
-data/textures/tx_sueloytecho_hgt.dds
+data/textures/tx_sueloytecho_ao.dds
 data/textures/tx_sueloytecho_emi.dds
+data/textures/tx_sueloytecho_hgt.dds
 data/textures/tx_sueloytecho_met.dds
 data/textures/tx_sueloytecho_nml.dds
 data/textures/tx_sueloytecho_rgh.dds
