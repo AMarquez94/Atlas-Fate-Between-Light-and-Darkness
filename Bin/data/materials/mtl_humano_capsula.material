@@ -5,15 +5,14 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_box_met.dds"
+    "albedo": "data/textures/tx_cables_alb.dds"
+
     ,
-    "metallic": "data/textures/tx_box_met.dds"
+    "height": "data/textures/tx_capsula_humano_in_hgt.dds"
     ,
     "roughness": "data/textures/tx_capsula_humano_in_rgh.dds"
     ,
     "normal": "data/textures/tx_capsula_humano_in_nml.dds"
-    ,
-    "height": "data/textures/tx_capsula_humano_in_hgt.dds"
     ,
     "emissive": "data/textures/tx_capsula_humano_in_emi.dds"
   }

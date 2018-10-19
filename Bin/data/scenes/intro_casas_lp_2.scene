@@ -1,0 +1,237 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_casas_lp_2"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_1_lp003"
+      ,
+      "prefab": "data/prefabs/casas_1_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-37.0738 10.7745 -9.74872"
+        ,
+        "rotation": "0.0 0.707107 0.0 -0.707106"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_1_lp004"
+      ,
+      "prefab": "data/prefabs/casas_1_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-55.9683 14.1769 -68.8067"
+        ,
+        "rotation": "0.0 -1.0 0.0 -4.01339e-07"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_1_lp005"
+      ,
+      "prefab": "data/prefabs/casas_1_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "49.3752 11.6332 -16.5568"
+        ,
+        "rotation": "0.0 -0.707106 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_1_lp006"
+      ,
+      "prefab": "data/prefabs/casas_1_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "15.3788 14.7128 -91.7808"
+        ,
+        "rotation": "0.0 -0.996195 0.0 0.0871552"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_2_lp003"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-50.5113 8.50683 -33.8438"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_2_lp004"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "32.4062 8.50683 -29.2035"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_2_lp005"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "13.8682 12.3188 -69.4325"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_2_lp006"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.16843 13.4991 -101.667"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_3_lp003"
+      ,
+      "prefab": "data/prefabs/casas_3_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-64.0219 16.269 -27.6614"
+        ,
+        "rotation": "0.0 4.76837e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_3_lp004"
+      ,
+      "prefab": "data/prefabs/casas_3_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "33.3041 9.43307 -8.91281"
+        ,
+        "rotation": "0.0 4.76837e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_3_lp005"
+      ,
+      "prefab": "data/prefabs/casas_3_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "52.9048 9.43307 -58.0947"
+        ,
+        "rotation": "0.0 0.5373 0.0 -0.843391"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_3_lp006"
+      ,
+      "prefab": "data/prefabs/casas_3_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-35.9695 13.7554 -90.588"
+        ,
+        "rotation": "0.0 0.793354 0.0 -0.608761"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_4_lp002"
+      ,
+      "prefab": "data/prefabs/casas_4_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-54.1252 10.674 -64.8671"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_4_lp003"
+      ,
+      "prefab": "data/prefabs/casas_4_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.0339 9.43307 -60.8633"
+        ,
+        "rotation": "0.0 -1.0 0.0 0.0"
+      }
+    }
+  }
+]

@@ -10,6 +10,7 @@ class TCompRotator : public TCompBase
     float _max_acceleration;
 
     bool _rotate_pitch = false;
+	bool _rotate_roll = false;
 
     DECL_SIBLING_ACCESS();
 

@@ -1154,7 +1154,7 @@ struct TSceneExporter (
 			
 			if mat != undefined then (
 				local me = TMaterialExporter project_path:project_path base_path:base_path
-				me.exportStdMaterial mat mat_path "pbr_decal.tech" false
+				me.exportStdMaterial mat mat_path "pbr_decals.tech" false
 			)
 		
 			-- Export the scene container

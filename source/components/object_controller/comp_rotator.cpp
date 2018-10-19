@@ -20,6 +20,7 @@ void TCompRotator::load(const json& j, TEntityParseContext& ctx) {
     _acceleration = j.value("acceleration", 0.f);
     _max_acceleration = j.value("max_acceleration", 0.f);
     _rotate_pitch = j.value("rotate_pitch", false);
+	_rotate_roll = j.value("rotate_roll", false);
 }
 
 void TCompRotator::registerMsgs()
@@ -38,8 +39,9 @@ void TCompRotator::update(float dt) {
     _total_accel += _total_accel > _max_acceleration ? 0 : _acceleration * dt;
     self_transform->getYawPitchRoll(&yaw, &pitch, &roll);
     //dbg("total pitch %f\n", pitch);
-
-    if(_rotate_pitch)
+	if (_rotate_roll)
+		self_transform->setYawPitchRoll(yaw, pitch, roll + (dt * _speed) + _total_accel);
+    else if(_rotate_pitch)
         self_transform->setYawPitchRoll(yaw, pitch + (dt * _speed) + _total_accel, roll);
     else
         self_transform->setYawPitchRoll(yaw + (dt * _speed) + _total_accel, pitch, roll);

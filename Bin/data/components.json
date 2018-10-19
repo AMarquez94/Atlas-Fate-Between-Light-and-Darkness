@@ -58,6 +58,7 @@
 		"fsm",
 		"blur_active_controller",
 		"gpu_particles",
+		"light_destroy_final_scene",
 		"glitch_controller",
 		"player_animator",
 		"player_input",
