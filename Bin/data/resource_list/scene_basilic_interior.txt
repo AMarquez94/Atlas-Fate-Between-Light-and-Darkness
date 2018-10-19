@@ -150,7 +150,7 @@ data/scenes/basilic_interior_props.scene
 data/prefabs/barril.prefab
 data/meshes/mesh_barril.mesh
 data/textures/tx_coberturas_alb.dds
-data/textures/tx_coberturass_ao.dds
+data/textures/tx_coberturas_ao.dds
 data/textures/tx_coberturas_emi.dds
 data/textures/tx_coberturas_hgt.dds
 data/textures/tx_coberturas_met.dds

@@ -1,0 +1,41 @@
+[
+  {
+    "entity":
+    {
+      "name": "beerbottle_line"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_beerbottle_line"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_beerbottle_line.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_decalprops.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_decalsprops_alb.dds"
+    ,
+    "metallic": "data/textures/tx_decalsprops_met.dds"
+    ,
+    "roughness": "data/textures/tx_decalsprops_rgh.dds"
+    ,
+    "normal": "data/textures/tx_decalsprops_nml.dds"
+    ,
+    "emissive": "data/textures/tx_decalsprops_emi.dds"
+    ,
+    "aocclusion": "data/textures/tx_decalsprops_ao.dds"
+  }
+}

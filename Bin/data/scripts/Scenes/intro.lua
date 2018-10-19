@@ -68,7 +68,7 @@ function intro_intro_cinematic()
 
 	--Returning to player camera
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_SM_Caida\", 5)", 88);
-	intro_intro_cinematicExecuted = true;
+	execScriptDelayed("intro_intro_cinematicExecuted = true", 50);
 end
 
 -- # Transition cinematic # --

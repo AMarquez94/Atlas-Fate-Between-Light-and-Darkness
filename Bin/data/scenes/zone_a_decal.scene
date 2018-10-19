@@ -1,73 +1,29 @@
 [
   {
-    "entity":
+    "instance_container":
     {
-      "name": "zone_a_decal"
+      "name": "mtl_barrodecal"
       ,
-      "transform":
+      "instance_data":
       {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "QuadPatch002"
-      ,
-      "transform":
-      {
-        "pos": "-48.5321 6.6864 -84.7096"
-        ,
-        "rotation": "0.0 0.707107 -0.707107 0.0"
-        ,
-        "scale": "5.00016 0.1 2.02637"
-      }
-      ,
-      "instance":
-      {
-        "mesh": "data/meshes/Material #312.instanced_mesh"
+        "mesh": "data/meshes/mtl_barrodecal.instanced_mesh"
         ,
         "materials":
         [
-          "data/materials/Material #312.material"
+          "data/materials/mtl_barrodecal.material"
         ]
       }
       ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "QuadPatch001"
-      ,
-      "transform":
-      {
-        "pos": "-38.0 0.978777 -86.7057"
-        ,
-        "rotation": "0.0 -0.707107 0.707107 0.0"
-        ,
-        "scale": "6.0 0.1 2.0"
-      }
-      ,
-      "instance":
-      {
-        "mesh": "data/meshes/Material #302.instanced_mesh"
-        ,
-        "materials":
-        [
-          "data/materials/Material #302.material"
-        ]
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
+      "instances":
+      [
+        {
+          "pos": "-47.4528 0.518795 -86.7026"
+          ,
+          "rotation": "0.0 0.707107 -0.707107 0.0"
+          ,
+          "scale": "2.76183 0.1 1.01161"
+        }
+      ]
     }
   }
 ]
