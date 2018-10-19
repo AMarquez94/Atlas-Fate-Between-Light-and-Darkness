@@ -275,6 +275,18 @@ void TCompTempPlayerController::onMsgBulletHit(const TMsgBulletHit & msg)
     getDamage(msg.damage);
 }
 
+TCompTempPlayerController::~TCompTempPlayerController()
+{
+    if (pxShadowFilterData != nullptr) {
+        //delete pxShadowFilterData;
+        //pxShadowFilterData = nullptr;
+    }
+    if (pxPlayerFilterData != nullptr) {
+        //delete pxPlayerFilterData;
+        //pxPlayerFilterData = nullptr;
+    }
+}
+
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
     /* Variable initialization */

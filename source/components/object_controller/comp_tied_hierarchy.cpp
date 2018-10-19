@@ -10,7 +10,7 @@ DECL_OBJ_MANAGER("tied_hierarchy", TCompTiedHierarchy);
 
 void TCompTiedHierarchy::load(const json& j, TEntityParseContext& ctx) {
 
-    assert(j.count("parent"));
+    //assert(j.count("parent"));
     parent_name = j.value("parent", "");
     orig_pos = loadVEC3(j["pos"]);
     if (j.count("scale"))

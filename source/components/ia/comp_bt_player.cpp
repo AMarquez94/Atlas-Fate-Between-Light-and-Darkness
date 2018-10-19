@@ -38,6 +38,10 @@ void TCompAIPlayer::debugInMenu() {
 
 }
 
+TCompAIPlayer::~TCompAIPlayer() {
+    //TCompIAController::~TCompIAController();
+}
+
 void TCompAIPlayer::preUpdate(float dt)
 {
 }
@@ -315,6 +319,7 @@ void TCompAIPlayer::onMsgEntityGroupCreated(const TMsgEntitiesGroupCreated & msg
     h_sm_tutorial = myGroup->getHandleByName("Tutorial SM");
 
     TCompName* my_name = get<TCompName>();
+    name = my_name->getName();
     is_main_character = std::strcmp(my_name->getName(), "The Player") == 0;
 
     if (is_main_character) {

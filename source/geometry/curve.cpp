@@ -28,6 +28,11 @@ const CResourceClass* getResourceClassOf<CCurve>() {
 }
 // ----------------------------------------------
 
+CCurve::~CCurve()
+{
+    delete _knots;
+}
+
 bool CCurve::load(const std::string& name)
 {
     auto jData = Resources.get(name)->as<CJsonResource>()->getJson();
