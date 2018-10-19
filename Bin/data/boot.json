@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_basilic_interior",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -320,6 +320,7 @@
 			"data/scenes/basilic_interior_capsulas.scene",
 			"data/scenes/basilic_interior_props.scene",
 			"data/scenes/basilic_interior_monitorytubos.scene",
+			"data/scenes/basilic_interior_ruedas.scene",
 			"data/scenes/basilic_interior_nucleo.scene",
 			"data/scenes/basilic_interior_sueloyagarres.scene",
 			"data/scenes/Basilic_interior/basilic_interior_particles.scene",
