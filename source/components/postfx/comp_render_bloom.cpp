@@ -119,27 +119,27 @@ void TCompRenderBloom::generateHighlights(CTexture* in_texture) {
     mesh->activateAndRender();
 
     // Blur the highlights
-    apply(rt_highlights);
+    applyCustom(rt_highlights);
 
     // Restore the prev rt
     prev_rt->activateRT();
 }
 
-//CTexture* TCompRenderBloom::applyCustom(CTexture* in_texture) {
-//
-//    //if (!enabled)
-//    //    return in_texture;
-//
-//    //CTraceScoped scope("CompBlur");
-//
-//    //CTexture* output = in_texture;
-//    //int nsteps_to_apply = nactive_steps;
-//    //for (auto s : steps) {
-//    //    if (--nsteps_to_apply < 0)
-//    //        break;
-//    //    output = s->apply(in_texture, global_distance, distance_factors, weights);
-//    //    in_texture = output;
-//    //}
-//
-//    //return output;
-//}
+CTexture* TCompRenderBloom::applyCustom(CTexture* in_texture) {
+
+    if (!enabled)
+        return in_texture;
+
+    CTraceScoped scope("CompBlur");
+
+    CTexture* output = in_texture;
+    int nsteps_to_apply = nactive_steps;
+    for (auto s : t_steps) {
+        if (--nsteps_to_apply < 0)
+            break;
+        output = s->apply(in_texture, global_distance, distance_factors, weights);
+        in_texture = output;
+    }
+
+    return output;
+}
