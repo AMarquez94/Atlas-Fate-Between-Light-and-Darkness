@@ -7,8 +7,12 @@ class TCompCapsuleFinalEffects : public TCompBase
 
 	DECL_SIBLING_ACCESS();
 	CHandle meshRenderHandle;
+	CHandle firstLight;
+	CHandle secondLight;
 
 	bool active = false;
+	float time_passed = 0.0f;
+	float time_for_close_lights = 0.0f;
 	bool deactivate;
 
 public:

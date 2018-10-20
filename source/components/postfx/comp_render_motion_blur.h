@@ -12,8 +12,9 @@ class CRenderToTexture;
 // ------------------------------------
 struct TCompRenderMotionBlur : public TCompBase {
 
+    static CRenderToTexture*       rt;
+
     bool                    enabled;
-    CRenderToTexture*       rt = nullptr;
     const CRenderTechnique* tech = nullptr;
     const CRenderMesh*      mesh = nullptr;
 

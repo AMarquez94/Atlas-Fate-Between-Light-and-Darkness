@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "boxopen"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_boxopen"
+      ,
+      "transform":
+      {
+        "pos": "0.0 -0.011547 0.10321"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_boxopen.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_decalprops.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.366907 0.230833 0.549201"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

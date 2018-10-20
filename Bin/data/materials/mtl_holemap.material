@@ -6,9 +6,7 @@
   "textures":
   {
     "albedo": "data/textures/tx_hole_map_alb.dds"
-    ,
-    "metallic": "data/textures/tx_hole_map_met.dds"
-    ,
+   ,
     "roughness": "data/textures/tx_hole_map_rgh.dds"
     ,
     "normal": "data/textures/tx_hole_map_nml.dds"

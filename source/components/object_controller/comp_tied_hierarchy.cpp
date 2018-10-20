@@ -10,13 +10,12 @@ DECL_OBJ_MANAGER("tied_hierarchy", TCompTiedHierarchy);
 
 void TCompTiedHierarchy::load(const json& j, TEntityParseContext& ctx) {
 
-    //assert(j.count("parent"));
-    parent_name = j.value("parent", "");
     orig_pos = loadVEC3(j["pos"]);
     if (j.count("scale"))
     {
         orig_scale = loadVEC3(j["scale"]);
     }
+
     // Relative transform is loaded as any other json transform
     CTransform::load(j);
 }
@@ -28,12 +27,12 @@ void TCompTiedHierarchy::registerMsgs() {
 
 void TCompTiedHierarchy::onGroupCreated(const TMsgHierarchyGroupCreated& msg) {
 
-    setParentEntity(msg.ctx.findEntityByName(parent_name));
+    CEntity* e_my_owner = CHandle(this).getOwner();
+    h_my_transform = e_my_owner->get<TCompTransform>();
 }
 
 void TCompTiedHierarchy::debugInMenu() {
 
-    ImGui::LabelText("Parent Name", "%s", parent_name.c_str());
     ImGui::DragFloat3("Pos", &orig_pos.x);
     ImGui::DragFloat3("Rot", &orig_rot.x);
     ImGui::DragFloat3("Scale", &orig_scale.x);
@@ -42,12 +41,6 @@ void TCompTiedHierarchy::debugInMenu() {
     if (h_parent_entity.isValid())
         h_parent_entity.debugInMenu();
     CTransform::debugInMenu();
-}
-
-void TCompTiedHierarchy::setParentEntity(CHandle new_h_parent) {
-
-    CEntity* e_my_owner = CHandle(this).getOwner();
-    h_my_transform = e_my_owner->get<TCompTransform>();
 }
 
 void TCompTiedHierarchy::update(float dt) {

@@ -1,0 +1,16 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_casas_low_poly_alb.dds"
+    ,
+    "metallic": "data/textures/tx_casas_low_poly_met.dds"
+    ,
+    "roughness": "data/textures/tx_casas_low_poly_rgh.dds"
+    ,
+    "normal": "data/textures/tx_casas_low_poly_nml.dds"
+    ,
+    "height": "data/textures/tx_casas_low_poly_hgt.dds"
+  }
+}

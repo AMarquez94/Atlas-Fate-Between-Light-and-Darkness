@@ -6,8 +6,6 @@
   {
     "albedo": "data/textures/tx_mosaico_alb.dds"
     ,
-    "metallic": "data/textures/tx_mosaico_met.dds"
-    ,
     "roughness": "data/textures/tx_mosaico_rgh.dds"
     ,
     "normal": "data/textures/tx_mosaico_nml.dds"

@@ -10,7 +10,7 @@ bool CModuleFile::start() {
     preloadResources(true);
     //preloadResourcesToDelete(true);
 
-    resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
+    //resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
 
     return true;
 }
@@ -24,6 +24,7 @@ bool CModuleFile::stop() {
 }
 
 void CModuleFile::update(float delta) {
+
     if (areResourcesToLoad()) {
         int amountLoaded = 0;
         int i = 0;

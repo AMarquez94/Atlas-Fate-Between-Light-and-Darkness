@@ -4,6 +4,7 @@
 #include "render/texture/render_to_texture.h"
 
 DECL_OBJ_MANAGER("render_focus", TCompRenderFocus);
+CRenderToTexture* TCompRenderFocus::rt = nullptr;
 
 // ---------------------
 TCompRenderFocus::TCompRenderFocus()
@@ -38,9 +39,11 @@ void TCompRenderFocus::load(const json& j, TEntityParseContext& ctx) {
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 
     // with the first use, init with the input resolution
-    rt = new CRenderToTexture;
-    bool is_ok = rt->createRT("RT_Focus", Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM);
-    assert(is_ok);
+    if (!rt) {
+        rt = new CRenderToTexture;
+        bool is_ok = rt->createRT("RT_Focus", Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM);
+        assert(is_ok);
+    }
 }
 
 CTexture* TCompRenderFocus::apply(CTexture* focus_texture, CTexture* blur_texture) {

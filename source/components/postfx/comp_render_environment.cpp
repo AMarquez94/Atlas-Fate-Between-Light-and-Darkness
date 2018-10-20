@@ -5,6 +5,7 @@
 #include "render/render_objects.h"
 
 extern ID3D11ShaderResourceView* depth_shader_resource_view;
+CRenderToTexture* TCompRenderEnvironment::rt = nullptr;
 
 DECL_OBJ_MANAGER("render_environment", TCompRenderEnvironment);
 

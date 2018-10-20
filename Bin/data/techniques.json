@@ -191,7 +191,7 @@
 	},
 	"decals": {
 		"vs_file": "data/shaders/pbr_decals.fx",
-		"vertex_type": "PosNUvUvT_x_InstanceColored",
+		"vertex_type": "PosNUvUvT_x_Instance",
 		"ps_entry_point": "PS_default",
 		"category": "decals",
 		"z": "test_but_no_write",
@@ -202,7 +202,7 @@
 	},
 	"pbr_decals": {
 		"vs_file": "data/shaders/pbr_decals.fx",
-		"vertex_type": "PosNUvUvT_x_InstanceColored",
+		"vertex_type": "PosNUvUvT_x_Instance",
 		"category": "gbuffer_decals",
 		"z": "test_but_no_write",
 		"blend": "multiplicative_gbuffer",
@@ -636,7 +636,7 @@
     "vertex_type": "Pos_x_GpuParticleInstance",
     "category": "cp_particles",
     "blend": "combinative",
-    "z": "test_but_no_write"
+    "z": "test_equal"
   },
 	"pbr_instanced_volume": {
 		"vs_file": "data/shaders/pbr_vol_instanced.fx",
@@ -889,13 +889,39 @@
 			"noise": "data/textures/noise_light.dds"
 		}
 	},
-	"pbr_ray_shafts": {
+	"pbr_rayshaft_directional": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/pbr_vol_instanced.fx",
-		"ps_entry_point": "PS_GBuffer_RayShafts",
+		"ps_entry_point": "PS_GBuffer_RayShafts_Point",
 		"vertex_type": "PosClr",
 		"blend": "additive",
 		"rs_config": "cull_none",
+		"z": "disable_all",
+		"textures": {
+			"noise": "data/textures/noise_light.dds"
+		}
+	},
+	"pbr_rayshaft_spotlight": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr_vol_instanced.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer_RayShafts_Spot",
+		"vertex_type": "PosNUvUvT",
+		"blend": "additive",
+		"rs_config": "reverse_culling",
+		"z": "disable_all",
+		"textures": {
+			"noise": "data/textures/noise_light.dds"
+		}
+	},
+	"pbr_rayshaft_pointlight": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr_vol_instanced.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer_RayShafts_Point",
+		"vertex_type": "PosNUvUvT",
+		"blend": "additive",
+		"rs_config": "reverse_culling",
 		"z": "disable_all",
 		"textures": {
 			"noise": "data/textures/noise_light.dds"

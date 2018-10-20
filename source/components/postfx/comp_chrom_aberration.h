@@ -9,6 +9,9 @@ class CRenderToTexture;
 
 // ------------------------------------
 struct TCompChromaticAberration : public TCompBase {
+
+    static CRenderToTexture*             rt;
+
     bool                          enabled = true;
     float                         amount = 1.f;
     float                         block_amount;
@@ -16,7 +19,6 @@ struct TCompChromaticAberration : public TCompBase {
     float                         scanline_jitter;
     const CRenderTechnique*       tech = nullptr;
     const CRenderMesh*            mesh = nullptr;
-    CRenderToTexture*             rt = nullptr;
 
     void debugInMenu();
     void load(const json& j, TEntityParseContext& ctx);

@@ -15,6 +15,6 @@
     ,
     "emissive": "data/textures/tx_coberturas_emi.dds"
     ,
-    "aocclusion": "data/textures/tx_coberturass_ao.dds"
+    "aocclusion": "data/textures/tx_coberturas_ao.dds"
   }
 }

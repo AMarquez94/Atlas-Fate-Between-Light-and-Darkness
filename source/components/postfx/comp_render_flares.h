@@ -13,8 +13,9 @@ class CTexture;
 // ------------------------------------
 class TCompRenderFlares : public TCompRenderBlur {
 
-	CRenderToTexture*       rt_output = nullptr;
-    CRenderToTexture*       rt_output2 = nullptr;
+	static CRenderToTexture*       rt_output;
+    static std::vector< CBlurStep* > t_steps;
+
 	const CRenderTechnique* tech = nullptr;
 	const CRenderMesh*      mesh = nullptr;
 	int                     xres = 0;

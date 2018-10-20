@@ -36,10 +36,10 @@ data/textures/tx_luna_alb.dds
 data/textures/tx_luna_ao.dds
 data/textures/tx_luna_emi.dds
 data/textures/tx_luna_hgt.dds
-data/textures/tx_luna_met.dds
 data/textures/tx_luna_nml.dds
 data/textures/tx_luna_rgh.dds
 data/materials/mtl_luna.material
+data/textures/tx_luna_met.dds
 data/materials/mtl_luna_back.material
 data/textures/tx_planeta_rojo_alb.dds
 data/textures/tx_planeta_rojo_ao.dds
@@ -62,7 +62,7 @@ data/materials/mtl_planet1.material
 data/materials/mtl_planet1_back.material
 data/scenes/Coliseo/coliseo_cables.scene
 data/meshes/COL_Circle001.mesh
-data/textures/tx_cables_alb.dds
+data/textures/tx_alminar_mezquita_met.dds
 data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/meshes/COL_Line001.mesh
@@ -156,7 +156,6 @@ data/meshes/COL_mesh_arcoroto.mesh
 data/textures/tx_arcoroto_alb.dds
 data/textures/tx_arcoroto_ao.dds
 data/textures/tx_arcoroto_hgt.dds
-data/textures/tx_arcoroto_met.dds
 data/textures/tx_arcoroto_nml.dds
 data/textures/tx_arcoroto_rgh.dds
 data/materials/mtl_arcoroto.material
@@ -164,7 +163,6 @@ data/colliders/COL_collider_arcoroto.collider
 data/meshes/COL_mesh_arcoroto_cover.mesh
 data/textures/tx_bordillos_alb.dds
 data/textures/tx_bordillos_ao.dds
-data/textures/tx_bordillos_met.dds
 data/textures/tx_bordillos_nml.dds
 data/textures/tx_bordillos_rgh.dds
 data/materials/mtl_bordillos.material
@@ -289,7 +287,6 @@ data/scenes/COL_pared_suelo.scene
 data/meshes/COL_mesh_pared.mesh
 data/textures/tx_mezquita_alb.dds
 data/textures/tx_mezquita_hgt.dds
-data/textures/tx_mezquita_met.dds
 data/textures/tx_mezquita_nml.dds
 data/textures/tx_mezquita_rgh.dds
 data/materials/mtl_mezquita.material
@@ -298,7 +295,6 @@ data/meshes/COL_mesh_suelo.mesh
 data/textures/tx_suelo_plaza_alb.dds
 data/textures/tx_suelo_plaza_ao.dds
 data/textures/tx_suelo_plaza_hgt.dds
-data/textures/tx_suelo_plaza_met.dds
 data/textures/tx_suelo_plaza_nml.dds
 data/textures/tx_suelo_plaza_rgh.dds
 data/materials/mtl_suelo_plaza.material
@@ -312,6 +308,7 @@ data/textures/tx_sala_nml.dds
 data/textures/tx_sala_rgh.dds
 data/materials/mtl_sala.material
 data/meshes/col_intro_aux_pared_sombra.mesh
+data/textures/tx_cables_alb.dds
 data/materials/mtl_default.material
 data/meshes/col_intro_baseycolumna001.mesh
 data/textures/tx_baseycolumna_alb.dds
@@ -442,8 +439,9 @@ data/meshes/col_intro_rejas001.mesh
 data/meshes/col_intro_sala002.mesh
 data/meshes/col_intro_suelo001.mesh
 data/textures/tx_sueloytecho_alb.dds
-data/textures/tx_sueloytecho_hgt.dds
+data/textures/tx_sueloytecho_ao.dds
 data/textures/tx_sueloytecho_emi.dds
+data/textures/tx_sueloytecho_hgt.dds
 data/textures/tx_sueloytecho_met.dds
 data/textures/tx_sueloytecho_nml.dds
 data/textures/tx_sueloytecho_rgh.dds
@@ -602,6 +600,21 @@ data/colliders/col_bc_collider_suelo_pasillo002.collider
 data/meshes/col_bc_techo003.mesh
 data/meshes/col_bc_tubo_x007.mesh
 data/meshes/col_bc_tubo006.mesh
+data/scenes/col_casas_lp.scene
+data/prefabs/casas_1_lp.prefab
+data/meshes/mesh_casas_1_lp.mesh
+data/textures/tx_casas_low_poly_alb.dds
+data/textures/tx_casas_low_poly_hgt.dds
+data/textures/tx_casas_low_poly_met.dds
+data/textures/tx_casas_low_poly_nml.dds
+data/textures/tx_casas_low_poly_rgh.dds
+data/materials/mtl_casas_low_poly.material
+data/prefabs/casas_2_lp.prefab
+data/meshes/mesh_casas_2_lp.mesh
+data/prefabs/casas_3_lp.prefab
+data/meshes/mesh_casas_3_lp.mesh
+data/prefabs/casas_4_lp.prefab
+data/meshes/mesh_casas_4_lp.mesh
 data/scenes/col_intro_corridor_logic.scene
 data/scenes/Coliseo/col_mosque.scene
 data/meshes/BC_alminar1.mesh
@@ -609,7 +622,6 @@ data/textures/tx_alminar_mezquita_alb.dds
 data/textures/tx_alminar_mezquita_ao.dds
 data/textures/tx_alminar_mezquita_emi.dds
 data/textures/tx_alminar_mezquita_hgt.dds
-data/textures/tx_alminar_mezquita_met.dds
 data/textures/tx_alminar_mezquita_nml.dds
 data/textures/tx_alminar_mezquita_rgh.dds
 data/materials/mtl_alminar_mezquita.material
@@ -642,7 +654,6 @@ data/meshes/BC_tejados.mesh
 data/textures/tx_tejados_alb.dds
 data/textures/tx_tejados_ao.dds
 data/textures/tx_tejados_hgt.dds
-data/textures/tx_tejados_met.dds
 data/textures/tx_tejados_nml.dds
 data/textures/tx_tejados_rgh.dds
 data/materials/mtl_tejados.material

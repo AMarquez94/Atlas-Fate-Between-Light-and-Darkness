@@ -113,15 +113,15 @@ void CResourceManager::destroyAll() {
     all_resources.clear();
 }
 
-void CResourceManager::destroy(const std::string& resource) {
+void CResourceManager::destroyResource(const std::string & name) {
 
-    auto it = all_resources.find(resource);
+    auto it = all_resources.find(name);
 
     // if found delete
     if (it != all_resources.end()) {
-        it->second->destroy();
-        delete it->second;
-        all_resources.erase(it);
+        if (it->second)
+            (it)->second->destroy();
+        all_resources.erase(name);
     }
 }
 

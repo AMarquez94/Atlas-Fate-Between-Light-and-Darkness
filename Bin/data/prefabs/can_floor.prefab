@@ -1,0 +1,41 @@
+[
+  {
+    "entity":
+    {
+      "name": "can_floor"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_can_floor"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 -0.1"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_can_floor.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_decalprops.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

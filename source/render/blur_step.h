@@ -20,6 +20,8 @@ struct CBlurStep {
     void applyBlur(float dx, float dy);
     CTexture* apply(CTexture* input, float global_distance, VEC4 distances, VEC4 weights);
     CTexture* applyHalf(CTexture* input, float global_distance, VEC4 distances, VEC4 weights);
+
+    void destroy();
 };
 
 #endif

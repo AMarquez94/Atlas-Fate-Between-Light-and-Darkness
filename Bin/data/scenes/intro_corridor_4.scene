@@ -1,0 +1,384 @@
+[{
+		"entity": {
+			"name": "intro_corridor_4",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"tags": [
+				"corridor"
+			]
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_agujero002",
+			"transform": {
+				"pos": "-18.754 5.59896 -111.849",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_agujero002.mesh",
+				"materials": [
+					"data/materials/mtl_sala.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_baseycolumna001",
+			"transform": {
+				"pos": "-18.6632 2.24961 -91.4368",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_baseycolumna001.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/intro_collider_barandillas_pasillo.collider",
+				"group": "fence",
+				"mask": "player",
+				"is_trigger": false,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_boton001",
+			"transform": {
+				"pos": "-20.2018 1.452 -75.4975",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_boton001.mesh",
+				"materials": []
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_cable_suelo001",
+			"transform": {
+				"pos": "-18.5323 -0.0675373 -115.437",
+				"rotation": "0.326506 -0.627211 -0.627211 0.326506"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_cable_suelo001.mesh",
+				"materials": [
+					"data/materials/mtl_default.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_cable_techo001",
+			"transform": {
+				"pos": "-18.6174 4.79917 -107.437",
+				"rotation": "0.183013 0.683013 -0.683013 -0.183013"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_cable_techo001.mesh",
+				"materials": [
+					"data/materials/mtl_cables.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_framedoor",
+			"prefab": "data/prefabs/puerta_tech.prefab",
+			"transform": {
+				"pos": "-18.6621 -0.129043 -115.782",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_lampara001",
+			"transform": {
+				"pos": "-18.6632 4.29127 -75.4679",
+				"rotation": "0.130526 0.0 0.0 -0.991445"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_lampara001.mesh",
+				"materials": []
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_marco_puerta001",
+			"prefab": "data/prefabs/tech_door_little.prefab",
+			"transform": {
+				"pos": "-18.6632 0.0709004 -75.2688",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_pared_aux_suelo_pasillo001",
+			"transform": {
+				"pos": "-18.5843 1.74969 -105.437",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_pared_aux_suelo_pasillo001.mesh",
+				"materials": [
+					"data/materials/mtl_default.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_pared_puerta_peq001",
+			"transform": {
+				"pos": "-18.3372 0.0 -75.4368",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_pared_puerta_peq001.mesh",
+				"materials": [
+					"data/materials/mtl_puerta_peq.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/intro_collider_puerta_pasillo.collider"
+			},
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_pared001",
+			"transform": {
+				"pos": "-18.6632 0.081826 -103.437",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_pared001.mesh",
+				"materials": [
+					"data/materials/mtl_paredes_corridor.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_puerta_tubo028",
+			"transform": {
+				"pos": "-15.3827 1.36621 -106.473",
+				"rotation": "0.212631 0.67438 0.212631 -0.67438"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_puerta_tubo028.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_reja_techo018",
+			"transform": {
+				"pos": "-17.2694 4.77358 -104.581",
+				"rotation": "-0.433633 0.558536 -0.433633 -0.558536"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_reja_techo018.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_rejas001",
+			"transform": {
+				"pos": "-18.6512 3.7701 -75.4852",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_rejas001.mesh",
+				"materials": []
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_sala002",
+			"transform": {
+				"pos": "-18.5795 2.06434 -107.484",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_sala002.mesh",
+				"materials": [
+					"data/materials/mtl_sala.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_suelo001",
+			"transform": {
+				"pos": "-18.6632 0.0 -105.437",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_suelo001.mesh",
+				"materials": [
+					"data/materials/mtl_sueloytecho.material"
+				]
+			}],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/intro_collider_suelo_pasillo.collider"
+			},
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_techo001",
+			"transform": {
+				"pos": "-18.6632 0.0392496 -104.076",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_techo001.mesh",
+				"materials": [
+					"data/materials/mtl_sueloytecho.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_tubo_x005",
+			"transform": {
+				"pos": "-16.7928 4.82059 -108.034",
+				"rotation": "0.0 0.704122 0.0 -0.710079"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_tubo_x005.mesh",
+				"materials": [
+					"data/materials/mtl_baseycolumna.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "intro_tubo004",
+			"transform": {
+				"pos": "-15.5898 3.92691 -109.437",
+				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_tubo004.mesh",
+				"materials": [
+					"data/materials/mtl_sala.material"
+				]
+			}],
+			"tags": [
+				"corridor"
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
+]
