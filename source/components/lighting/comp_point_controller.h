@@ -9,7 +9,7 @@ class CRenderToTexture;
 class TCompLightSpot;
 class TCompLightPoint;
 
-class TCompLightController : public TCompBase {
+class TCompPointController : public TCompBase {
 
     CHandle _parent;
     TCompLightSpot * _spot_light;
