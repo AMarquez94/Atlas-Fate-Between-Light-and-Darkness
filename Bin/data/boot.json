@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -44,8 +44,9 @@
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",
 
-			"data/scenes/zone_a_decals.scene",
-						
+			"data/scenes/intro_decals.scene",
+			"data/scenes/intro_decals_rotura.scene",
+			
 			"data/scenes/intro_casas_lp_1.scene",
 			"data/scenes/intro_casas_lp_2.scene",
 			
