@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/neones_juntos_2_nml.dds"
     ,
-    "height": "data/textures/neones_juntos_2_hgt.dds"
-    ,
     "emissive": "data/textures/neones_juntos_2_emi.dds"
   }
 }

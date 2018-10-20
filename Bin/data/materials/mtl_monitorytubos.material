@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_monitorytubos_nml.dds"
     ,
-    "height": "data/textures/tx_monitorytubos_hgt.dds"
-    ,
     "emissive": "data/textures/tx_monitorytubos_emi.dds"
     ,
     "aocclusion": "data/textures/tx_monitorytubos_ao.dds"

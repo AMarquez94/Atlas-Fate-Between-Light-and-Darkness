@@ -10,7 +10,5 @@
     "roughness": "data/textures/tx_neones_juntos_1_rgh.dds"
     ,
     "normal": "data/textures/tx_neones_juntos_1_nml.dds"
-    ,
-    "height": "data/textures/tx_neones_juntos_1_hgt.dds"
   }
 }

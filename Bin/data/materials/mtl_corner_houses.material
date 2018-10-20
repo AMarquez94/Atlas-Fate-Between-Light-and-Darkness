@@ -4,7 +4,7 @@
   "textures":
   {
     "albedo": "data/textures/m2/tx_concrete-a.dds",
-		"normal": "data/textures/m2/tx_concrete-n.dds",
+	"normal": "data/textures/m2/tx_concrete-n.dds",
     "roughness": "data/textures/m2/tx_concrete-r.dds"
   }
 }
