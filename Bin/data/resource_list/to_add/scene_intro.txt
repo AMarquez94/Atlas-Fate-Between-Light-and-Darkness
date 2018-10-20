@@ -496,6 +496,8 @@ data/scenes/intro_decals.scene
 data/textures/barro_bottom.dds
 data/materials/mtl_decal_bottom.material
 data/scenes/intro_decals_rotura.scene
+data/textures/bordes_largos.dds
+data/materials/mtl_decal_rotura_larga.material
 data/textures/tx_rotura_filo_alb.dds
 data/textures/tx_rotura_filo_nml.dds
 data/textures/tx_rotura_filo_rgh.dds

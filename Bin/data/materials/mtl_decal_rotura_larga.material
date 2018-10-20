@@ -1,0 +1,14 @@
+{
+  "technique": "pbr_decals.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/bordes_largos.dds"
+    ,
+    "roughness": "data/textures/bordes_largos.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}
