@@ -69,7 +69,6 @@ data/meshes/agarre_rueda.mesh
 data/textures/tx_adornos_nucleo_alb.dds
 data/textures/tx_adornos_nucleo_ao.dds
 data/textures/tx_adornos_nucleo_emi.dds
-data/textures/tx_adornos_nucleo_hgt.dds
 data/textures/tx_adornos_nucleo_met.dds
 data/textures/tx_adornos_nucleo_nml.dds
 data/textures/tx_adornos_nucleo_rgh.dds
@@ -81,14 +80,15 @@ data/meshes/tubo_mesa.mesh
 data/scenes/basilic_interior_estructura.scene
 data/meshes/Box001.mesh
 data/textures/tx_mezquita_alb.dds
+data/textures/tx_mezquita_ao.dds
 data/textures/tx_mezquita_hgt.dds
+data/textures/tx_mezquita_met.dds
 data/textures/tx_mezquita_nml.dds
 data/textures/tx_mezquita_rgh.dds
 data/materials/mtl_mezquita.material
 data/meshes/mesh_arcosfront.mesh
 data/textures/tx_arco_mezquita_alb.dds
 data/textures/tx_arco_mezquita_ao.dds
-data/textures/tx_arco_mezquita_hgt.dds
 data/textures/tx_arco_mezquita_met.dds
 data/textures/tx_arco_mezquita_nml.dds
 data/textures/tx_arco_mezquita_rgh.dds
@@ -132,7 +132,6 @@ data/prefabs/capsula_humano.prefab
 data/meshes/mesh_capsula_humano.mesh
 data/textures/tx_capsula_humano_alb.dds
 data/textures/tx_capsula_emi.dds
-data/textures/tx_capsula_hgt.dds
 data/textures/tx_capsula_humano_met.dds
 data/textures/tx_capsula_nml.dds
 data/textures/tx_capsula_humano_rgh.dds
@@ -148,7 +147,6 @@ data/meshes/mesh_barril.mesh
 data/textures/tx_coberturas_alb.dds
 data/textures/tx_coberturas_ao.dds
 data/textures/tx_coberturas_emi.dds
-data/textures/tx_coberturas_hgt.dds
 data/textures/tx_coberturas_met.dds
 data/textures/tx_coberturas_nml.dds
 data/textures/tx_coberturas_rgh.dds
@@ -158,7 +156,6 @@ data/prefabs/caja_juanlu.prefab
 data/meshes/mesh_caja_juanlu.mesh
 data/textures/tx_box_alb.dds
 data/textures/tx_box_emi.dds
-data/textures/tx_box_hgt.dds
 data/textures/tx_box_nml.dds
 data/textures/tx_box_rgh.dds
 data/materials/mtl_caja_juanlu.material
@@ -170,7 +167,6 @@ data/meshes/monitor1.mesh
 data/textures/tx_monitorytubos_alb.dds
 data/textures/tx_monitorytubos_ao.dds
 data/textures/tx_monitorytubos_emi.dds
-data/textures/tx_monitorytubos_hgt.dds
 data/textures/tx_monitorytubos_met.dds
 data/textures/tx_monitorytubos_nml.dds
 data/textures/tx_monitorytubos_rgh.dds
@@ -190,7 +186,6 @@ data/meshes/mesa.mesh
 data/textures/tx_nucleo_alb.dds
 data/textures/tx_nucleo_ao.dds
 data/textures/tx_nucleo_emi.dds
-data/textures/tx_nucleo_hgt.dds
 data/textures/tx_nucleo_met.dds
 data/textures/tx_nucleo_nml.dds
 data/textures/tx_nucleo_rgh.dds
@@ -200,7 +195,6 @@ data/meshes/nucleo_capsulas.mesh
 data/textures/tx_powerytornillo_alb.dds
 data/textures/tx_powerytornillo_ao.dds
 data/textures/tx_powerytornillo_emi.dds
-data/textures/tx_powerytornillo_hgt.dds
 data/textures/tx_powerytornillo_met.dds
 data/textures/tx_powerytornillo_nml.dds
 data/textures/tx_powerytornillo_rgh.dds
@@ -212,7 +206,6 @@ data/meshes/pasarela.mesh
 data/textures/tx_pasarela_alb.dds
 data/textures/tx_pasarela_ao.dds
 data/textures/tx_pasarela_emi.dds
-data/textures/tx_pasarela_hgt.dds
 data/textures/tx_pasarela_met.dds
 data/textures/tx_pasarela_nml.dds
 data/textures/tx_pasarela_rgh.dds
