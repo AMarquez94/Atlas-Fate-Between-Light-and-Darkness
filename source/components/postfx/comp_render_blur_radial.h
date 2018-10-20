@@ -11,7 +11,8 @@ class CRenderToTexture;
 // ------------------------------------
 class TCompRenderBlurRadial : public TCompBase {
 
-	CRenderToTexture*       rt_output = nullptr;
+	static CRenderToTexture*       rt_output;
+
 	const CRenderTechnique* tech = nullptr;
 	const CRenderMesh*      mesh = nullptr;
 	bool                    enabled = true;

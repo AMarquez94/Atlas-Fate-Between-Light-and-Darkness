@@ -105,6 +105,18 @@ void CResourceManager::destroyAll() {
     all_resources.clear();
 }
 
+void CResourceManager::destroyResource(const std::string & name) {
+
+    auto it = all_resources.find(name);
+
+    // if found delete
+    if (it != all_resources.end()) {
+        if (it->second)
+            (it)->second->destroy();
+        all_resources.erase(name);
+    }
+}
+
 void CResourceManager::debugInMenu() {
 
     if (ImGui::TreeNode("Resources")) {

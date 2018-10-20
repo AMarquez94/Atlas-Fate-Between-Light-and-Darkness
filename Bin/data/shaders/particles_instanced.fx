@@ -73,7 +73,7 @@ float4 PS_Particles(
 	, in float3 iWorldPos : TEXCOORD4
   ) : SV_Target
 {
-  float2 finalUV = lerp(iMinUv, iMaxUv, iTex0);
+  float2 finalUV = lerp(iMinUv, iMaxUv, iTex0).xy;
   float4 oDiffuse = txAlbedo1.Sample(samLinear, finalUV);
 
   float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, oDiffuse.a * iColorP.a);
@@ -90,7 +90,7 @@ float4 PS_Particles_Soft(
   ): SV_Target
 {
   int3 ss_load_coords = uint3(iPos.xy, 0);
-  float2 finalUV = lerp(iMinUv, iMaxUv, iTex0);
+  float2 finalUV = lerp(iMinUv, iMaxUv, iTex0).xy;
   float4 oDiffuse = txAlbedo1.Sample(samLinear, finalUV);
 	
 	float  zLinear  = txGBufferLinearDepth.Load(ss_load_coords).x;
@@ -116,7 +116,7 @@ void PS_GBuffer_Particles(
 	, out float4 o_selfIllum : SV_Target3
   )
 {
-  float2 finalUV = lerp(iMinUv, iMaxUv, iTex0);
+  float2 finalUV = lerp(iMinUv, iMaxUv, iTex0).xy;
   float4 oDiffuse = txAlbedo1.Sample(samLinear, finalUV);
   float4 finalColor = float4(oDiffuse.rgb * iColorP.rgb, 1);
 	o_albedo = finalColor;

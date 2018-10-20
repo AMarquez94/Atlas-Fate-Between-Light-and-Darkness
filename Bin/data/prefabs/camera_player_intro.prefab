@@ -39,9 +39,6 @@
 			"chromatic_aberration": {
 				"enabled": true
 			},
-			"fog": {
-				"enabled": true
-			},
 			"antialiasing": {
 				"enabled": true
 			},

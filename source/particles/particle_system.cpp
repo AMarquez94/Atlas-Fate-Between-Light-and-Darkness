@@ -354,8 +354,9 @@ namespace Particles
             _fadeTime += delta;
             _fadeRatio = (1.f - (_fadeTime / _fadeDuration));
         }
-
-        _fadeRatio = 1.0f;
+        else {
+            _fadeRatio = 1.0f;
+        }
     }
 
     void CSystem::updateCollision(float delta) {

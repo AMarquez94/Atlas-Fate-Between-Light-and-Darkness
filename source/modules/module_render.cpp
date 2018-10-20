@@ -317,13 +317,13 @@ void CModuleRender::activateMainCamera() {
 
 void CModuleRender::generateFrame() {
 
+    uploadAllVideoTexturesReady();
+
     // PRE CONFIGURATION
     {
         activateMainCamera();
         cb_globals.updateGPU();
     }
-
-    uploadAllVideoTexturesReady();
 
     {
         // SHADOW GENERATION
@@ -447,9 +447,9 @@ void CModuleRender::postProcessingStack() {
         if (c_chroma_aberration)
             curr_rt = c_chroma_aberration->apply(curr_rt);
 
-        TCompSSR* c_srr = e_cam->get< TCompSSR >();
-        if (c_srr)
-            curr_rt = c_srr->apply(curr_rt);
+        //TCompSSR* c_srr = e_cam->get< TCompSSR >();
+        //if (c_srr)
+        //    curr_rt = c_srr->apply(curr_rt);
 
         TCompRenderEnvironment * c_render_enviornment = e_cam->get< TCompRenderEnvironment >();
         if (c_render_enviornment)

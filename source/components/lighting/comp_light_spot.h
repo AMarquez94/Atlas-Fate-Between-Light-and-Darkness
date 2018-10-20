@@ -43,6 +43,8 @@ public:
     static CRenderMeshInstanced* volume_instance;
 	const CTexture* projector = nullptr;
 
+    ~TCompLightSpot();
+
 	/* spotlight parameters */
 	float range;
 	float angle;
@@ -67,6 +69,7 @@ public:
 
     void cullFrame();
     bool isCulled() const;
+    bool isVolumeEnabled() const;
 
     MAT44 getWorld();
 	void setColor(const VEC4 & new_color);
