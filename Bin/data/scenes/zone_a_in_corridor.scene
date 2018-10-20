@@ -7,7 +7,10 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
-      }
+      },
+	  "tags": [
+		"corridor"
+	  ]
     }
   }
   ,
@@ -154,6 +157,7 @@
           ,
           "materials":
           [
+		  	"data/materials/mtl_puerta_peq.material"
           ]
         }
       ]
@@ -274,6 +278,7 @@
           ,
           "materials":
           [
+		  	"data/materials/mtl_puerta_peq.material"
           ]
         }
       ]
@@ -324,6 +329,7 @@
           ,
           "materials":
           [
+			"data/materials/mtl_puerta_peq.material"
           ]
         }
       ]

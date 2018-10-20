@@ -16,7 +16,7 @@ public:
 	void activate(int slot) const;
 	virtual bool create(const std::string& name);
 	void debugInMenu() override;
-	void destroy() override;
+	void destroy();
 	void onFileChanged(const std::string& filename) override;
 	static void setNullTexture(int slot);
 

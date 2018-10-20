@@ -49,6 +49,13 @@ const bool CResourceManager::resourceExists(const std::string & resourceName)
     return it != all_resources.end();
 }
 
+void CResourceManager::printAllResources()
+{
+    dbg("PRINTEANDO RESOURCES\n");
+    for (auto const& mapkey : all_resources)
+        dbg("%s\n", mapkey.first.c_str());
+}
+
 
 const IResource* CResourceManager::get(const std::string& res_name) {
 

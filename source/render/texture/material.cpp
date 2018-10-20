@@ -29,6 +29,7 @@ public:
 
 		bool is_ok = res->create(j);
 		assert(is_ok);
+        EngineFiles.addPendingResourceFile(name, false);
 		return res;
 	}
 };

@@ -78,6 +78,9 @@ protected:
     float maxYDiff = 0;
 
 public:
+
+    ~TCompAIEnemy();
+
     void debugInMenu();
 
     bool isStunned() { return current && current->getName().compare("stunned") == 0; }

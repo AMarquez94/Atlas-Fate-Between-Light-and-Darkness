@@ -16,6 +16,11 @@
 #include "render/render_objects.h"
 #include "components/comp_tags.h"
 
+TCompAIEnemy::~TCompAIEnemy()
+{
+    //TCompIAController::~TCompIAController();
+}
+
 void TCompAIEnemy::debugInMenu() {
 
     TCompIAController::debugInMenu();

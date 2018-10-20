@@ -214,6 +214,10 @@ void CModuleGameManager::update(float delta) {
 bool CModuleGameManager::stop()
 {
     stopAllSoundEvents();
+    if (lastCheckpoint) {
+        delete lastCheckpoint;
+        lastCheckpoint = nullptr;
+    }
     return true;
 }
 
