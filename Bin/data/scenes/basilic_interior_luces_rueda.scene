@@ -21,7 +21,8 @@
         "pos": "-5.64488 1.50113 7.3414"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -74,7 +75,8 @@
         "pos": "-12.3098 1.58617 7.12131"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -127,7 +129,8 @@
         "pos": "-5.64488 4.55856 9.04723"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -180,7 +183,8 @@
         "pos": "-12.3098 4.55856 9.26664"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -233,7 +237,8 @@
         "pos": "-17.7583 9.26111 6.85312"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -286,7 +291,8 @@
         "pos": "-5.64488 4.20083 6.67516"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -339,7 +345,8 @@
         "pos": "-12.3103 4.20083 6.67516"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -392,7 +399,8 @@
         "pos": "0.269806 9.26111 6.85312"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -445,7 +453,8 @@
         "pos": "3.42161 1.69049 6.13311"
         ,
         "lookat": "1.75701 0.0 -7.6895"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_spot":
       {
@@ -506,7 +515,8 @@
         "pos": "-21.3264 1.69049 6.13311"
         ,
         "lookat": "-19.6951 0.0 -7.6895"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_spot":
       {
@@ -567,7 +577,8 @@
         "pos": "2.97739 2.5154 2.02928"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -620,7 +631,8 @@
         "pos": "-20.7402 2.09443 1.90065"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -673,7 +685,8 @@
         "pos": "3.04704 8.37985 8.86205"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
@@ -726,7 +739,8 @@
         "pos": "-21.0314 8.37985 8.86205"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "wheel_final_controller": true
       ,
       "light_point":
       {
