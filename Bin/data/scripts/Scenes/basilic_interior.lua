@@ -58,7 +58,8 @@ function finish_job_end_cinematic_scene()
 	--execScriptDelayed("startTransmission(7)", 38);
 	execScriptDelayed("activateSubtitles(31);",38);
 	execScriptDelayed("deactivateSubtitles();",45);
-	execScriptDelayed("execLastAtlasScreen()",53);
+	--execScriptDelayed("execLastAtlasScreen()",53);
+	execScriptDelayed("execLastAtlasScreen()",3);
 	execScriptDelayed("lightUpForFinalScene(true,3);",37);
 end
 

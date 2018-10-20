@@ -1300,11 +1300,23 @@ void stopRuedasFinalScene() {
 void execLastAtlasScreen() {
 
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH)->makeChildsFadeIn(0.1, 0, false);
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,25,false);
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
-	EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);
-	EngineLogic.execScriptDelayed("removeTempCredits()", 25.25);
-	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")",25.5);
+	
+	GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH_LINE);
+	if (w) {
+		float *aux_x = &w->getChild("line_atlas_left")->getBarParams()->_ratio;
+		*aux_x = 0.0f;
+		EngineLerp.lerpElement(aux_x, 1.0f, 4.0f, 5.0f);
+
+		float *aux_x_r = &w->getChild("line_atlas_right")->getBarParams()->_ratio;
+		*aux_x_r = 0.0f;
+		EngineLerp.lerpElement(aux_x_r, 1.0f, 4.0f, 5.0f);
+
+	}
+	//EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,25,false);
+	//EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
+	//EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);
+	//EngineLogic.execScriptDelayed("removeTempCredits()", 25.25);
+	//EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")",25.5);
 }
 
 void removeAtlasSplash() {
