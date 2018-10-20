@@ -33,13 +33,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_mesh_littlespotlight.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true
