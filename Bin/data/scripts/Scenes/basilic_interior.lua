@@ -5,8 +5,8 @@ function onSceneStart_scene_basilic_interior()
 	--execScriptDelayed("lightUpForFinalScene(10);");
 	--shutdown_end_cinematic_scene
 	--temp_final_decision();
-	--finish_job_end_cinematic_scene()
-	shutdown_end_cinematic_scene();
+	finish_job_end_cinematic_scene()
+	--shutdown_end_cinematic_scene();
 
 
 --lightUpForFinalScene(2) 
@@ -49,6 +49,7 @@ function finish_job_end_cinematic_scene()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_16_Rot_2\", 0.0)",17);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_16_Rot_1\", 0.0)",17);
 
+	execScriptDelayed("ambientAdjustmentForFinalScene(10)",37);
 	execScriptDelayed("move(\"The Player\", VEC3(-8.850, 0.044, -4.275),VEC3(-8.850, 0.044, -8));",28);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_2\", 25.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
@@ -57,7 +58,8 @@ function finish_job_end_cinematic_scene()
 	--execScriptDelayed("startTransmission(7)", 38);
 	execScriptDelayed("activateSubtitles(31);",38);
 	execScriptDelayed("deactivateSubtitles();",45);
-	execScriptDelayed("execLastAtlasScreen()",53);
+	--execScriptDelayed("execLastAtlasScreen()",53);
+	execScriptDelayed("execLastAtlasScreen()",3);
 	execScriptDelayed("lightUpForFinalScene(true,3);",37);
 end
 
@@ -99,11 +101,12 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 0.0)",28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
-	--execScriptDelayed("startTransmission(7)", 38);
-
+	--
+	execScriptDelayed("pasarelaLightsFadeOut()", 44);
+	
 
 	execScriptDelayed("execLastAtlasScreen()",53);
-	execScriptDelayed("lightUpForFinalScene(false, 2.0);",23);
+	execScriptDelayed("lightUpForFinalScene(false, 4.0);",22);
 	execScriptDelayed("lightDownForFinalScene(true, 0.5);",37);
 
 
