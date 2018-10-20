@@ -8,14 +8,14 @@
 				"name" : "line_atlas_left",
 				"type" : "middle_bar",
 				"ratio" : 1.0,
-				"position" : "540 314",
+				"position" : "540 310",
 				"size" : "-637 28",
 				"texture" : "data/textures/gui/pausemenu_line.dds"
 			},{
 				"name" : "line_atlas_right",
 				"type" : "middle_bar",
 				"ratio" : 1.0,
-				"position" : "540 314",
+				"position" : "540 310",
 				"size" : "637 28",
 				"texture" : "data/textures/gui/pausemenu_line.dds"
 			}
