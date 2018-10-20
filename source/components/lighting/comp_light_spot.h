@@ -17,7 +17,7 @@ struct TInstanceLight {
 class TCompLightSpot : public TCompCamera {
 
 	VEC4			color = VEC4(1, 1, 1, 1);
-	float			intensity = 1.0f;
+	
     float			volume_intensity = 1.0f;
 
     //CRenderMesh * spotcone;
@@ -48,6 +48,7 @@ public:
 	float angle;
 	float inner_cut;
 	float outer_cut;
+	float			intensity = 1.0f;
 
 	void debugInMenu();
 	void renderDebug();

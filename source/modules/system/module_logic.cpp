@@ -1273,10 +1273,17 @@ void lightDownForFinalScene(bool random, float time_to_lerp) {
 
 void speedUpRuedasFinalScene() {
 	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 10.0f,4.0f,0.0f });
+
 }
 
 void stopRuedasFinalScene() {
 	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 0.0f,7.0f,0.0f });
+
+	CEntity* ent = getEntityByName("rueda");
+	TCompRender* comp_rend = ent->get<TCompRender>();
+	if (comp_rend != nullptr) {
+		EngineLerp.lerpElement(&comp_rend->self_intensity,0.0f,7.0f,0.0f);
+	}
 }
 
 void execLastAtlasScreen() {

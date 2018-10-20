@@ -60,6 +60,7 @@
 		"gpu_particles",
 		"light_destroy_final_scene",
 		"glitch_controller",
+		"wheel_final_controller",
 		"player_animator",
 		"player_input",
 		"movable_object",
