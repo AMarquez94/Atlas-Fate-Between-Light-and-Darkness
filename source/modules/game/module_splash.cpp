@@ -6,7 +6,7 @@
 
 bool CModuleSplash::start()
 {
-	_max_time = 38.5f;
+	_max_time = 41.0f;
     _timer = 0.0f;
     
 	//EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SPLASH_UPF)->makeChildsFadeOut(1.5,4.5,false,false);
@@ -18,6 +18,7 @@ bool CModuleSplash::start()
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::SPLASH_BABYROBOT)->makeChildsFadeIn(1.5, 12, false);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::SPLASH_SOFTWARE)->makeChildsFadeIn(1.5, 21.5, false);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::SPLASH_ENGINE)->makeChildsFadeIn(1.5, 30, false);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2.5, 37.0f , false);
     return true;
 }
 
@@ -53,7 +54,11 @@ void CModuleSplash::update(float delta)
 
 bool CModuleSplash::stop()
 {
-	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SPLASH_SCREEN);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SPLASH_BACKGROUND);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SPLASH_UPF);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SPLASH_BABYROBOT);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SPLASH_SOFTWARE);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SPLASH_ENGINE);
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
 	return true;
 }

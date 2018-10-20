@@ -25,7 +25,7 @@ bool CModuleMainMenu::start()
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_SCENE);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BACKGROUND);
 	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_BUTTONS);
-	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.25,0,false);
+	CEngine::get().getGUI().activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.75,0,false);
 
 	CHandle h_camera = getEntityByName("test_camera_flyover");
 	if (h_camera.isValid())
