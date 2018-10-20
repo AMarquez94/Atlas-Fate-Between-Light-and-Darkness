@@ -129,5 +129,4 @@ TCompRenderBlur::~TCompRenderBlur()
         b->destroy();
         delete b;
     }
-
 }

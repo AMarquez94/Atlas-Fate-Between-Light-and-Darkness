@@ -254,7 +254,7 @@ float4 PS_GBuffer_RayShafts_Point(
                             { 0.9375f, 0.4375f, 0.8125f, 0.3125}};
   float ditherValue = ditherPattern[Pos.x % 4][Pos.y % 4];
 
-	float3 currentPosition = wPos + step * ditherValue * 0.2;
+	float3 currentPosition = wPos + step * ditherValue;
 	float total_fog = 0.0f;
 	float l = ray_length;
 			
