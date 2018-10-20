@@ -320,6 +320,7 @@ void CModuleLogic::publishClasses() {
 	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
 	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
 	m->set("pasarelaLightsFadeOut", SLB::FuncCall::create(&pasarelaLightsFadeOut));
+	m->set("ambientAdjustmentForFinalScene", SLB::FuncCall::create(&ambientAdjustmentForFinalScene));
 	
 	//GUI
 	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
@@ -1266,6 +1267,10 @@ void setOutBlackScreen(float time_to_lerp) {
 
 void lightUpForFinalScene(bool random, float time_to_lerp) {
 	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ false , random, time_to_lerp});
+}
+
+void ambientAdjustmentForFinalScene(float time_to_lerp) {
+	EngineLerp.lerpElement(&cb_globals.global_exposure_adjustment,2.2f, time_to_lerp,0.0f);
 }
 
 void lightDownForFinalScene(bool random, float time_to_lerp) {
