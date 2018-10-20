@@ -671,6 +671,7 @@ data/materials/mtl_mosaico.material
 data/meshes/piedras.mesh
 data/textures/tx_piedras_mezquita_alb.dds
 data/textures/tx_piedras_mezquita_ao.dds
+data/textures/tx_piedras_mezquita_hgt.dds
 data/textures/tx_piedras_mezquita_met.dds
 data/textures/tx_piedras_mezquita_nml.dds
 data/textures/tx_piedras_mezquita_rgh.dds

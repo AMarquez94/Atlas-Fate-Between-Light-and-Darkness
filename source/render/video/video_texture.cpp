@@ -176,10 +176,9 @@ void CVideoTexture::update(float dt) {
         initDecoder();
 
         // Reload
-        CFileDataProvider dp(name.c_str());
-        if (dp.isValid())
-            dp.readBytes(data.data(), data.size());
-        
+        //CFileDataProvider dp(name.c_str());
+        //if (dp.isValid())
+        //    dp.readBytes(data.data(), data.size());
         
         const std::vector<char> file_data = EngineFiles.loadResourceFile(name);
 

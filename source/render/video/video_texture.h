@@ -31,7 +31,7 @@ public:
     ~CVideoTexture();
 
     bool create(const std::string& name) override;
-    void destroy();
+    void destroy() override;
     void update(float dt);
     bool isFrameReadyToUpload() const;
     bool uploadToVRAM();
