@@ -25,7 +25,6 @@ data/meshes/mesh_terminal.mesh
 data/textures/tx_terminal_alb.dds
 data/textures/tx_terminal_ao.dds
 data/textures/tx_terminal_emi.dds
-data/textures/tx_terminal_hgt.dds
 data/textures/tx_terminal_met.dds
 data/textures/tx_terminal_nml.dds
 data/textures/tx_terminal_rgh.dds
@@ -72,7 +71,6 @@ data/meshes/mesh_littlespotlight.mesh
 data/textures/tx_spotlight_alb.dds
 data/textures/tx_spotlight_ao.dds
 data/textures/tx_spotlight_emi.dds
-data/textures/tx_spotlight_hgt.dds
 data/textures/tx_spotlight_met.dds
 data/textures/tx_spotlight_nml.dds
 data/textures/tx_spotlight_rgh.dds
@@ -96,6 +94,7 @@ data/colliders/COL_collider_tubospared.collider
 data/scenes/COL_pared_suelo.scene
 data/meshes/COL_mesh_pared.mesh
 data/textures/tx_mezquita_alb.dds
+data/textures/tx_mezquita_ao.dds
 data/textures/tx_mezquita_hgt.dds
 data/textures/tx_mezquita_nml.dds
 data/textures/tx_mezquita_rgh.dds
@@ -118,7 +117,6 @@ data/meshes/COL_mesh_grancartel03.mesh
 data/textures/tx_grancartel_alb.dds
 data/textures/tx_grancartel_ao.dds
 data/textures/tx_grancartel_emi.dds
-data/textures/tx_grancartel_hgt.dds
 data/textures/tx_grancartel_met.dds
 data/textures/tx_grancartel_nml.dds
 data/textures/tx_grancartel_rgh.dds
@@ -139,7 +137,6 @@ data/scenes/Coliseo/coliseo_structures.scene
 data/meshes/COL_mesh_arcomuralla01.mesh
 data/textures/tx_arcomuralla_alb.dds
 data/textures/tx_arcomuralla_ao.dds
-data/textures/tx_arcomuralla_hgt.dds
 data/textures/tx_arcomuralla_met.dds
 data/textures/tx_arcomuralla_nml.dds
 data/textures/tx_arcomuralla_rgh.dds
@@ -150,7 +147,6 @@ data/colliders/COL_collider_arcomuralla02.collider
 data/meshes/COL_mesh_arcoroto.mesh
 data/textures/tx_arcoroto_alb.dds
 data/textures/tx_arcoroto_ao.dds
-data/textures/tx_arcoroto_hgt.dds
 data/textures/tx_arcoroto_nml.dds
 data/textures/tx_arcoroto_rgh.dds
 data/materials/mtl_arcoroto.material
@@ -165,7 +161,6 @@ data/meshes/COL_mesh_bordillo.mesh
 data/meshes/COL_mesh_grancupula.mesh
 data/textures/tx_grancupula_alb.dds
 data/textures/tx_grancupula_ao.dds
-data/textures/tx_grancupula_hgt.dds
 data/textures/tx_grancupula_met.dds
 data/textures/tx_grancupula_nml.dds
 data/textures/tx_grancupula_rgh.dds
@@ -174,7 +169,6 @@ data/colliders/COL_collider_grancupula.collider
 data/meshes/COL_mesh_andamio.mesh
 data/textures/tex_andamio_alb.dds
 data/textures/tx_andamio_ao.dds
-data/textures/tx_andamio_hgt.dds
 data/textures/tx_andamio_met.dds
 data/textures/tx_andamio_nml.dds
 data/textures/tx_andamio_rgh.dds
@@ -192,7 +186,6 @@ data/meshes/COL_mesh_baselargalectrica006.mesh
 data/meshes/COL_mesh_enchufebase.mesh
 data/textures/tx_conexiones_alb.dds
 data/textures/tx_conexiones_ao.dds
-data/textures/tx_conexiones_hgt.dds
 data/textures/tx_conexiones_met.dds
 data/textures/tx_conexiones_nml.dds
 data/textures/tx_conexiones_rgh.dds
@@ -228,7 +221,6 @@ data/meshes/COL_mesh_maquina02.mesh
 data/textures/tx_maquina_alb.dds
 data/textures/tx_maquina_ao.dds
 data/textures/tx_maquina_emi.dds
-data/textures/tx_maquina_hgt.dds
 data/textures/tx_maquina_met.dds
 data/textures/tx_maquina_nml.dds
 data/textures/tx_maquina_rgh.dds
@@ -236,7 +228,6 @@ data/materials/mtl_maquina.material
 data/textures/tx_props_plaza_alb.dds
 data/textures/tx_props_plaza_ao.dds
 data/textures/tx_props_plaza_emi.dds
-data/textures/tx_props_plaza_hgt.dds
 data/textures/tx_props_plaza_met.dds
 data/textures/tx_props_plaza_nml.dds
 data/textures/tx_props_plaza_rgh.dds
@@ -272,7 +263,6 @@ data/scenes/col_intro_corridor.scene
 data/meshes/col_intro_agujero002.mesh
 data/textures/tx_sala_alb.dds
 data/textures/tx_sala_ao.dds
-data/textures/tx_sala_hgt.dds
 data/textures/tx_sala_met.dds
 data/textures/tx_sala_nml.dds
 data/textures/tx_sala_rgh.dds
@@ -284,7 +274,6 @@ data/meshes/col_intro_baseycolumna001.mesh
 data/textures/tx_baseycolumna_alb.dds
 data/textures/tx_baseycolumna_ao.dds
 data/textures/tx_baseycolumna_emi.dds
-data/textures/tx_baseycolumna_hgt.dds
 data/textures/tx_baseycolumna_met.dds
 data/textures/tx_baseycolumna_nml.dds
 data/textures/tx_baseycolumna_rgh.dds
@@ -302,7 +291,6 @@ data/meshes/doortop.mesh
 data/textures/tx_puertatech_alb.dds
 data/textures/tx_puertatech_ao.dds
 data/textures/tx_puertatech_emi.dds
-data/textures/tx_puertatech_hgt.dds
 data/textures/tx_puertatech_met.dds
 data/textures/tx_puertatech_nml.dds
 data/textures/tx_puertatech_rgh.dds
@@ -333,7 +321,6 @@ data/meshes/intro_puerta_r001.mesh
 data/textures/tx_puerta_peq_alb.dds
 data/textures/tx_puerta_peq_ao.dds
 data/textures/tx_puerta_peq_emi.dds
-data/textures/tx_puerta_peq_hgt.dds
 data/textures/tx_puerta_peq_met.dds
 data/textures/tx_puerta_peq_nml.dds
 data/textures/tx_puerta_peq_rgh.dds
@@ -346,7 +333,6 @@ data/meshes/col_intro_pared001.mesh
 data/textures/tx_paredes_alb.dds
 data/textures/tx_paredes_ao.dds
 data/textures/tx_paredes_emi.dds
-data/textures/tx_paredes_hgt.dds
 data/textures/tx_paredes_met.dds
 data/textures/tx_paredes_nml.dds
 data/textures/tx_paredes_rgh.dds
@@ -418,7 +404,6 @@ data/meshes/BC_alminar1.mesh
 data/textures/tx_alminar_mezquita_alb.dds
 data/textures/tx_alminar_mezquita_ao.dds
 data/textures/tx_alminar_mezquita_emi.dds
-data/textures/tx_alminar_mezquita_hgt.dds
 data/textures/tx_alminar_mezquita_nml.dds
 data/textures/tx_alminar_mezquita_rgh.dds
 data/materials/mtl_alminar_mezquita.material
@@ -431,7 +416,6 @@ data/meshes/BC_barandilla_low.mesh
 data/textures/tx_arco_central_mezquita_alb.dds
 data/textures/tx_arco_central_mezquita_ao.dds
 data/textures/tx_arco_central_mezquita_emi.dds
-data/textures/tx_arco_central_mezquita_hgt.dds
 data/textures/tx_arco_central_mezquita_met.dds
 data/textures/tx_arco_central_mezquita_nml.dds
 data/textures/tx_arco_central_mezquita_rgh.dds
@@ -440,7 +424,6 @@ data/meshes/BC_cupula_arco_low.mesh
 data/meshes/BC_cupulayventanas.mesh
 data/textures/tx_cupulasyventanas_alb.dds
 data/textures/tx_cupulasyventanas_ao.dds
-data/textures/tx_cupulasyventanas_hgt.dds
 data/textures/tx_cupulasyventanas_met.dds
 data/textures/tx_cupulasyventanas_nml.dds
 data/textures/tx_cupulasyventanas_rgh.dds
