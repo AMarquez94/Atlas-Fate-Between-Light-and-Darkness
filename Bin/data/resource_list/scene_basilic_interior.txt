@@ -264,10 +264,6 @@ data/scenes/basilic_interior_luces.scene
 data/colliders/luz_lateral.collider
 data/colliders/luz_lateral001.collider
 data/colliders/luz_pantalla.collider
-data/colliders/luz_rueda.collider
-data/colliders/luz_rueda001.collider
-data/scenes/basilic_interior_luces_nucleo.scene
-data/scenes/basilic_interior_luces_pasarela.scene
 data/colliders/luz_pasarela.collider
 data/colliders/luz_pasarela001.collider
 data/colliders/luz_pasarela002.collider
@@ -280,6 +276,8 @@ data/colliders/luz_pasarela008.collider
 data/colliders/luz_pasarela009.collider
 data/colliders/luz_pasarela010.collider
 data/colliders/luz_pasarela011.collider
+data/scenes/basilic_interior_luces_nucleo.scene
+data/scenes/basilic_interior_luces_pasarela.scene
 data/scenes/basilic_interior_luces_laterales_1.scene
 data/scenes/basilic_interior_luces_laterales_2.scene
 data/scenes/basilic_interior_luces_laterales_3.scene
