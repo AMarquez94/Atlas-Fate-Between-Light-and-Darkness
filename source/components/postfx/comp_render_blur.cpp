@@ -122,3 +122,12 @@ CTexture* TCompRenderBlur::apply(CTexture* in_texture) {
 
     return output;
 }
+
+TCompRenderBlur::~TCompRenderBlur()
+{
+    for (auto b : steps) {
+        b->destroy();
+        delete b;
+    }
+
+}

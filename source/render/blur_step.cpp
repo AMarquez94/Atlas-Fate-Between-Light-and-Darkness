@@ -106,3 +106,22 @@ CTexture* CBlurStep::applyHalf(
 
     return rt_output;
 }
+
+void CBlurStep::destroy()
+{
+    if (rt_half_y) {
+        rt_half_y->destroy();
+        Resources.destroyResource(rt_half_y->getName());
+        delete rt_half_y;
+
+        rt_half_y = nullptr;
+    }
+
+    if (rt_output) {
+        rt_output->destroy();
+        Resources.destroyResource(rt_output->getName());
+        delete rt_output;
+
+        rt_output = nullptr;
+    }
+}

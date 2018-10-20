@@ -20,6 +20,8 @@ struct TCompRenderBlur : public TCompBase {
 	void debugInMenu();
 	CTexture* apply(CTexture* in_texture);
 
+    ~TCompRenderBlur();
+
 };
 
 #endif
