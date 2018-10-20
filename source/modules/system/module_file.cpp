@@ -10,7 +10,7 @@ bool CModuleFile::start() {
     preloadResources(true);
     //preloadResourcesToDelete(true);
 
-    //resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
+    resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
 
     return true;
 }

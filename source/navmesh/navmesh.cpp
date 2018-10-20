@@ -9,9 +9,8 @@ CNavmesh::CNavmesh()
     m_navQuery = dtAllocNavMeshQuery();
 }
 
-void CNavmesh::loadAll(const char* path)
+void CNavmesh::load(const std::vector<char>& navmesh_data)
 {
-    const std::vector<char> &file_data = EngineFiles.loadResourceFile(path);
     int file_pos = 0;
 
     //FILE* fp = fopen(path, "rb");
@@ -19,7 +18,7 @@ void CNavmesh::loadAll(const char* path)
 
     // Read header.
     NavMeshSetHeader header;
-    memcpy_s(&header, sizeof(NavMeshSetHeader), &file_data[file_pos], sizeof(NavMeshSetHeader));
+    memcpy_s(&header, sizeof(NavMeshSetHeader), &navmesh_data[file_pos], sizeof(NavMeshSetHeader));
     file_pos += sizeof(NavMeshSetHeader);
 
     //size_t readLen = fread(&header, sizeof(NavMeshSetHeader), 1, fp);
@@ -51,7 +50,7 @@ void CNavmesh::loadAll(const char* path)
     for (int i = 0; i < header.numTiles; ++i)
     {
         NavMeshTileHeader tileHeader;
-        memcpy_s(&tileHeader, sizeof(NavMeshTileHeader), &file_data[file_pos], sizeof(NavMeshTileHeader));
+        memcpy_s(&tileHeader, sizeof(NavMeshTileHeader), &navmesh_data[file_pos], sizeof(NavMeshTileHeader));
         file_pos += sizeof(NavMeshTileHeader);
 
         //readLen = fread(&tileHeader, sizeof(tileHeader), 1, fp);
@@ -68,7 +67,7 @@ void CNavmesh::loadAll(const char* path)
         if (!data) break;
         memset(data, 0, tileHeader.dataSize);
 
-        memcpy_s(data, tileHeader.dataSize, &file_data[file_pos], tileHeader.dataSize);
+        memcpy_s(data, tileHeader.dataSize, &navmesh_data[file_pos], tileHeader.dataSize);
         file_pos += tileHeader.dataSize;
 
 
@@ -88,7 +87,6 @@ void CNavmesh::loadAll(const char* path)
     assert(mesh);
     m_navMesh = mesh;
     m_draw = new DebugDrawGL();
-    EngineFiles.addPendingResourceFile(path, false);
 }
 
 void CNavmesh::prepareQueries() {

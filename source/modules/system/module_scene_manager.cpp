@@ -338,8 +338,8 @@ void CModuleSceneManager::removeSceneResources(const std::string& sceneName) {
 }
 
 void CModuleSceneManager::destroySceneResources(const std::string& sceneName) {
-    const std::vector<std::string> resources_to_destroy = EngineFiles.getFilesToDestroy(sceneName);
-    for (int i = 0; i < resources_to_destroy.size(); i++) {
-        Resources.destroy(resources_to_destroy[i]);
-    }
+    //const std::vector<std::string> resources_to_destroy = EngineFiles.getFilesToDestroy(sceneName);
+    //for (int i = 0; i < resources_to_destroy.size(); i++) {
+    //    Resources.destroy(resources_to_destroy[i]);
+    //}
 }
