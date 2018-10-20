@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_alminar_nml.dds"
     ,
-    "height": "data/textures/tx_alminar_hgt.dds"
-    ,
     "emissive": "data/textures/tx_alminar_emi.dds"
   }
 }

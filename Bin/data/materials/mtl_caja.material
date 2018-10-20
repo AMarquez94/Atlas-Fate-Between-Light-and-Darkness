@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_box_nml.dds"
     ,
-    "height": "data/textures/tx_box_hgt.dds"
-    ,
     "emissive": "data/textures/tx_box_emi.dds"
   },
 	"color": "1.0 1.0 1.0 1.0"

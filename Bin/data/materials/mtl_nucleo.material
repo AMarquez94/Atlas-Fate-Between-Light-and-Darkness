@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_nucleo_nml.dds"
     ,
-    "height": "data/textures/tx_nucleo_hgt.dds"
-    ,
     "emissive": "data/textures/tx_nucleo_emi.dds"
     ,
     "aocclusion": "data/textures/tx_nucleo_ao.dds"

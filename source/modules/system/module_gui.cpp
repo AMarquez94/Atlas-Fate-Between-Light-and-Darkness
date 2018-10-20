@@ -179,6 +179,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_SCENE, "data/gui/main_menu_scene.json");
 	registerWigdetStruct(EGUIWidgets::CINEMATIC_INTRO, "data/gui/ingame_cinematic_intro.json");
 	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH, "data/gui/atlas_last_splash.json");
+	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH_LINE, "data/gui/atlas_last_splash_line.json");
 	
 }
 

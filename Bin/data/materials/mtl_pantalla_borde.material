@@ -11,6 +11,5 @@
     ,
     "normal": "data/textures/tx_pantalla_borde_nml.dds"
     ,
-    "height": "data/textures/tx_pantalla_borde_hgt.dds"
   }
 }

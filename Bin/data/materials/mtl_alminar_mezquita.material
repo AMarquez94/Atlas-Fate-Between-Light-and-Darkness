@@ -9,8 +9,6 @@
     ,
     "normal": "data/textures/tx_alminar_mezquita_nml.dds"
     ,
-    "height": "data/textures/tx_alminar_mezquita_hgt.dds"
-    ,
     "emissive": "data/textures/tx_alminar_mezquita_emi.dds"
     ,
     "aocclusion": "data/textures/tx_alminar_mezquita_ao.dds"

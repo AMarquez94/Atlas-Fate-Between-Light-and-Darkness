@@ -10,7 +10,5 @@
     "roughness": "data/textures/tx_tubos_pozo_rgh.dds"
     ,
     "normal": "data/textures/tx_tubos_pozo_nml.dds"
-    ,
-    "height": "data/textures/tx_tubos_pozo_hgt.dds"
   }
 }

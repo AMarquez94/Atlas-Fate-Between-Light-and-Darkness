@@ -124,6 +124,7 @@
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
     <ClCompile Include="components\lighting\comp_fade_controller.cpp" />
     <ClCompile Include="components\lighting\comp_light_controller.cpp" />
+    <ClCompile Include="components\lighting\comp_point_controller.cpp" />
     <ClCompile Include="components\lighting\comp_projector.cpp" />
     <ClCompile Include="components\object_controller\comp_billboard.cpp" />
     <ClCompile Include="components\object_controller\comp_bone_controller.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
     <ClCompile Include="components\lighting\comp_light_spot.cpp" />
+    <ClCompile Include="components\object_controller\comp_omni_fade_out.cpp" />
     <ClCompile Include="components\object_controller\comp_player_weapon.cpp" />
     <ClCompile Include="components\object_controller\comp_rotator.cpp" />
     <ClCompile Include="components\object_controller\comp_rotator_accelerator_final_scene.cpp" />
@@ -149,6 +151,7 @@
     <ClCompile Include="components\object_controller\comp_tied_hierarchy.cpp" />
     <ClCompile Include="components\object_controller\comp_trigger_checkpoint.cpp" />
     <ClCompile Include="components\object_controller\comp_wheel_final_scene_controller.cpp" />
+    <ClCompile Include="components\object_controller\particles_final_scene_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_glitch_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_noclip_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
@@ -381,6 +384,7 @@
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
     <ClInclude Include="components\lighting\comp_fade_controller.h" />
     <ClInclude Include="components\lighting\comp_light_controller.h" />
+    <ClInclude Include="components\lighting\comp_point_controller.h" />
     <ClInclude Include="components\lighting\comp_projector.h" />
     <ClInclude Include="components\object_controller\comp_billboard.h" />
     <ClInclude Include="components\object_controller\comp_bone_controller.h" />
@@ -397,6 +401,7 @@
     <ClInclude Include="components\lighting\comp_emission_controller.h" />
     <ClInclude Include="components\lighting\comp_light_point.h" />
     <ClInclude Include="components\lighting\comp_light_spot.h" />
+    <ClInclude Include="components\object_controller\comp_omni_fade_out.h" />
     <ClInclude Include="components\object_controller\comp_player_weapon.h" />
     <ClInclude Include="components\object_controller\comp_rotator.h" />
     <ClInclude Include="components\object_controller\comp_rotator_accelerator_final_scene.h" />
@@ -406,6 +411,7 @@
     <ClInclude Include="components\object_controller\comp_tied_hierarchy.h" />
     <ClInclude Include="components\object_controller\comp_trigger_checkpoint.h" />
     <ClInclude Include="components\object_controller\comp_wheel_final_scene_controller.h" />
+    <ClInclude Include="components\object_controller\particles_final_scene_controller.h" />
     <ClInclude Include="components\player_controller\comp_glitch_controller.h" />
     <ClInclude Include="components\player_controller\comp_noclip_controller.h" />
     <ClInclude Include="components\player_controller\comp_player_animator.h" />

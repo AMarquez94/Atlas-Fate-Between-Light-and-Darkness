@@ -21,7 +21,8 @@
         "pos": "-8.70517 1.08749 -28.9124"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "omni_fade_out": true
       ,
       "light_point":
       {
@@ -74,7 +75,8 @@
         "pos": "-8.70517 1.08749 -25.7078"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "omni_fade_out": true
       ,
       "light_point":
       {
@@ -127,7 +129,8 @@
         "pos": "-8.70517 1.08749 -21.4991"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "omni_fade_out": true
       ,
       "light_point":
       {
@@ -180,7 +183,8 @@
         "pos": "-8.70517 1.08749 -17.9282"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "omni_fade_out": true
       ,
       "light_point":
       {
@@ -233,7 +237,8 @@
         "pos": "-8.70517 1.08749 -13.1863"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "omni_fade_out": true
       ,
       "light_point":
       {
@@ -286,7 +291,8 @@
         "pos": "-8.70517 1.08749 -10.0969"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
-      }
+      },
+      "omni_fade_out": true
       ,
       "light_point":
       {

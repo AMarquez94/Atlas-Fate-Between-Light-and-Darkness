@@ -1,0 +1,53 @@
+[
+  {
+    "instance_container":
+    {
+      "name": "mtl_decal_borde_filo"
+      ,
+      "instance_data":
+      {
+        "mesh": "data/meshes/mtl_decal_borde_filo.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_borde_filo.material"
+        ]
+      }
+      ,
+      "instances":
+      [
+        {
+          "pos": "-14.997 2.38014 -11.4976"
+          ,
+          "rotation": "-0.5 -0.5 0.5 -0.5"
+          ,
+          "scale": "1.236 0.1 0.573811"
+        }
+        ,
+        {
+          "pos": "-14.9949 0.405322 -11.4976"
+          ,
+          "rotation": "-0.5 -0.5 -0.5 0.5"
+          ,
+          "scale": "1.236 0.1 0.573811"
+        }
+        ,
+        {
+          "pos": "-14.997 1.38832 -12.3984"
+          ,
+          "rotation": "0.0 0.0 0.707107 -0.707107"
+          ,
+          "scale": "1.39668 0.1 0.573811"
+        }
+        ,
+        {
+          "pos": "-14.997 1.38832 -10.5945"
+          ,
+          "rotation": "-0.707107 -0.707107 0.0 -1.22224e-07"
+          ,
+          "scale": "1.39668 0.1 0.573811"
+        }
+      ]
+    }
+  }
+]

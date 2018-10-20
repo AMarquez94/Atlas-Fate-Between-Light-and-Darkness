@@ -276,6 +276,9 @@ data/colliders/luz_pasarela008.collider
 data/colliders/luz_pasarela009.collider
 data/colliders/luz_pasarela010.collider
 data/colliders/luz_pasarela011.collider
+data/scenes/basilic_interior_luces_rueda.scene
+data/colliders/luz_rueda.collider
+data/colliders/luz_rueda001.collider
 data/scenes/basilic_interior_luces_nucleo.scene
 data/scenes/basilic_interior_luces_pasarela.scene
 data/scenes/basilic_interior_luces_laterales_1.scene
@@ -285,17 +288,3 @@ data/scenes/basilic_interior_luces_laterales_4.scene
 data/scenes/basilic_interior_luces_laterales_5.scene
 data/scenes/basilic_interior_luces_laterales_6.scene
 data/scenes/Basilic_interior/basilic_interior_cinematic.scene
-data/scenes/Basilic_interior/test_instancing.scene
-data/meshes/capsule.mesh
-data/meshes/capsule.instanced_mesh
-data/textures/tx_capsula_alb.dds
-data/textures/tx_capsula_met.dds
-data/textures/tx_capsula_rgh.dds
-data/materials/mtl_instanced_capsule.material
-unit_quad_center_xy.mesh
-data/meshes/quad_volume.instanced_mesh
-data/textures/grass/grass.dds
-data/materials/volume_instanced.material
-unit_quad_xy.mesh
-data/meshes/quad_volume_particles.instanced_mesh
-data/materials/volume_particles_instanced.material

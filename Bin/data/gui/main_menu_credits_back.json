@@ -7,7 +7,7 @@
 			{
 				"name" : "buttons_back_credits_mm",
 				"type" : "widget",
-				"position" : "25 580",
+				"position" : "1500 580",
 				"children" : [
 					{
 						"name" : "controls_credits_back_mm",

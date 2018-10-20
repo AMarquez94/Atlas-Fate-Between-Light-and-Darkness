@@ -13,8 +13,6 @@
     ,
     "normal": "data/textures/tx_cartelholo_nml.dds"
     ,
-    "height": "data/textures/tx_cartelholo_hgt.dds"
-    ,
     "emissive": "data/textures/tx_cartelholo_emi.dds"
     ,
     "aocclusion": "data/textures/tx_cartelholo_ao.dds"
