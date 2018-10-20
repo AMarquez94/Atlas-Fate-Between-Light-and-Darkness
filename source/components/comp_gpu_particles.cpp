@@ -11,6 +11,7 @@ CRenderMeshInstanced* particles_instances_mesh = nullptr;
 TCompGPUParticles::~TCompGPUParticles()
 {
     delete system_instance;
+    system_instance = nullptr;
 }
 
 void TCompGPUParticles::debugInMenu() {

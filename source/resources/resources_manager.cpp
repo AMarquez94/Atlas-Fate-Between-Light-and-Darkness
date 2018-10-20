@@ -108,7 +108,6 @@ void CResourceManager::destroyAll() {
     for (auto it : all_resources) {
         IResource* r = it.second;
         r->destroy();
-        delete r;
     }
     all_resources.clear();
 }

@@ -76,6 +76,10 @@ bool CModuleSceneManager::start() {
 bool CModuleSceneManager::stop() {
     next_scene = "";
     unLoadActiveScene();
+    for (auto& scene : _scenes) {
+        delete scene.second;
+    }
+    _scenes.clear();
 
     return true;
 }
@@ -196,6 +200,7 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
             }
 
             for (auto& scene_name : current_scene->groups_subscenes) {
+
                 dbg("Autoloading scene %s\n", scene_name.c_str());
                 TEntityParseContext ctx;
                 parseScene(scene_name, ctx);
