@@ -13,6 +13,8 @@
     ,
     "height": "data/textures/tx_coberturas_hgt.dds"
     ,
+    "emissive": "data/textures/tx_coberturas_emi.dds"
+    ,
     "aocclusion": "data/textures/tx_coberturas_ao.dds"
   }
 }

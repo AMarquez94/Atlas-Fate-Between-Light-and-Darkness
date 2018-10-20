@@ -40,16 +40,10 @@
 			"chromatic_aberration": {
 				"enabled": true
 			},
-			"fog": {
-				"enabled": true
-			},
 			"antialiasing": {
 				"enabled": true
 			},
 			"vignette": {
-				"enabled": true
-			},
-			"ssr": {
 				"enabled": true
 			},
 			"render_flares": {

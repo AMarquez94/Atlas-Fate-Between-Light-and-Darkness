@@ -459,7 +459,7 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 0.0
+        "inner_cut": 0.2
         ,
         "outer_cut": 0.445411
         ,
@@ -484,7 +484,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 0.2
         ,
         "is_trigger": true
       }
@@ -512,7 +512,7 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 0.0
+        "inner_cut": 0.2
         ,
         "outer_cut": 0.445411
         ,
@@ -537,7 +537,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 0.2
         ,
         "is_trigger": true
       }
@@ -565,7 +565,7 @@
       {
         "type": "pointlight"
         ,
-        "inner_cut": 0.0
+        "inner_cut": 0.2
         ,
         "outer_cut": 0.445411
         ,
@@ -590,7 +590,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 0.0
+        "radius": 0.2
         ,
         "is_trigger": true
       }

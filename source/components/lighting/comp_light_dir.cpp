@@ -12,6 +12,16 @@
 
 DECL_OBJ_MANAGER("light_dir", TCompLightDir);
 
+TCompLightDir::~TCompLightDir()
+{
+    // Delete the shadow map
+    shadows_rt->destroy();
+    Resources.destroyResource(shadows_rt->getName());
+    delete shadows_rt;
+
+    shadows_rt = nullptr;
+}
+
 void TCompLightDir::debugInMenu() {
     TCompCamera::debugInMenu();
     ImGui::Checkbox("Enabled", &isEnabled);

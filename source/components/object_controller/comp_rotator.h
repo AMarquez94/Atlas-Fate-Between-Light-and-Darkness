@@ -4,7 +4,7 @@
 
 class TCompRotator : public TCompBase
 {
-    float _speed;
+    
     float _acceleration;
     float _total_accel = 0.f;
     float _max_acceleration;
@@ -18,7 +18,7 @@ public:
     void debugInMenu();
     void load(const json& j, TEntityParseContext& ctx);
     void update(float dt);
-
+	float _speed;
     static void registerMsgs();
 
 };

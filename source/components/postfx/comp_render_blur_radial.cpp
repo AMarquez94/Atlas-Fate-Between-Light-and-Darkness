@@ -5,6 +5,7 @@
 #include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("render_blur_radial", TCompRenderBlurRadial);
+CRenderToTexture* TCompRenderBlurRadial::rt_output = nullptr;
 
 // ---------------------
 void TCompRenderBlurRadial::debugInMenu() {
@@ -23,12 +24,14 @@ void TCompRenderBlurRadial::load(const json& j, TEntityParseContext& ctx) {
 	xres = Render.width;
 	yres = Render.height;
 
-	static int g_blur_radial_counter = 0;
-	rt_output = new CRenderToTexture();
-	char rt_name[64];
-	sprintf(rt_name, "BlurRadial_%02d", g_blur_radial_counter++);
-	bool is_ok = rt_output->createRT(rt_name, xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
-	assert(is_ok);
+    if (!rt_output) {
+        static int g_blur_radial_counter = 0;
+        rt_output = new CRenderToTexture();
+        char rt_name[64];
+        sprintf(rt_name, "BlurRadial_%02d", g_blur_radial_counter++);
+        bool is_ok = rt_output->createRT(rt_name, xres, yres, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
+        assert(is_ok);
+    }
 
 	tech = Resources.get("blur_radial.tech")->as<CRenderTechnique>();
 	mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();

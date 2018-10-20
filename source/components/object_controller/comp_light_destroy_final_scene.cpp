@@ -36,5 +36,5 @@ void TCompLightDestroyFinalScene::onMsgEntityCreated(const TMsgEntityCreated& ms
 }
 
 void TCompLightDestroyFinalScene::onMsgEmisiveCapsuleState(const TMsgEmisiveCapsuleState& msg) {
-	active = true;
+	active = msg.enable;
 }

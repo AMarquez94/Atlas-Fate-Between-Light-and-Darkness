@@ -67,10 +67,9 @@
 			"data/scenes/Intro/intro_particles.scene",
 
 			"data/scenes/intro_puerta_corridor.scene",
-
 			"data/scenes/grass_container.scene",
 			"data/scenes/decal_test.scene",
-			"data/scenes/intro_corridor_3.scene",
+			"data/scenes/intro_corridor_4.scene",
 			"data/scenes/intro_corridor_logic.scene",
 			"data/scenes/intro_col_corridor_lights.scene",
 			"data/scenes/pantalla_intro_video.scene",

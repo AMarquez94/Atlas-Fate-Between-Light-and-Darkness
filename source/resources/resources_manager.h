@@ -28,6 +28,8 @@ public:
 
   const std::string getResourceName(const std::string& resourcePath);
   const bool resourceExists(const std::string& resourceName);
+  void destroyResource(const std::string & name);
+
 };
 
 extern CResourceManager Resources;

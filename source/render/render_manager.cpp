@@ -95,9 +95,6 @@ void CRenderManager::addRenderKey(
                 shadow_mat = Resources.get("data/materials/shadows_instanced.material")->as<CMaterial>();
         }
         else {
-            //if(mesh->getVertexDecl()->name == "PosNUvCvTan" )
-            //  shadow_mat = Resources.get("data/materials/shadows_mix.material")->as<CMaterial>();
-            //else
             shadow_mat = Resources.get("data/materials/shadows.material")->as<CMaterial>();
         }
 
@@ -242,14 +239,6 @@ void CRenderManager::renderCategory(const char* category_name) {
                 cs->cb_bones.activate();
             }
         }
-
-        //if (uses_capa) {
-        //  CCapaShader* cp = (CCapaShader*) it->tech;
-        //  cp->setValues(it->h_render_owner.getOwner());
-        //}
-
-        //if (it->usesCustomCtes) 
-         // it->material->tech->updateCustomCtes(h_render_owner.getOwner());
 
         // Has the mesh changed?
         if (prev_it->mesh != it->mesh)

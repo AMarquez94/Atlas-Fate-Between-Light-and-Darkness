@@ -13,6 +13,7 @@ class CModuleLerp : public IModule
 		float time_to_start_lerping = 0.0;
 		float time_to_end_lerp;
 		float current_time = 0.0;
+		bool first_frame = true;
 	};
 
 	std::list<LerpingElement> _elements_to_lerp;
