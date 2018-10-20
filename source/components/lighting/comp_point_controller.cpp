@@ -29,6 +29,8 @@ void TCompPointController::load(const json& j, TEntityParseContext& ctx) {
     _radius_flow_speed = j.value("radius_flow_speed", 0.0f);
     _emissive_intensity = j.value("emissive_intensity", 0.0f);
     _emissive_target = j.value("emissive_target", "");
+    _light_target = j.value("light_target", "");
+    _mesh_target = j.value("mesh_target", "");
 
     for (auto& b : j["bursts"])
     {
@@ -59,9 +61,9 @@ void TCompPointController::registerMsgs() {
 void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
 
     CEntity * owner = CHandle(this).getOwner();
-    CEntity * parent = _parent;
+    TCompGroup* cGroup = owner->get<TCompGroup>();
+
     if (_emissive_target != "") {
-        TCompGroup* cGroup = parent->get<TCompGroup>();
         CEntity* eCone = cGroup->getHandleByName(_emissive_target);
         if (eCone) {
             _object_render = eCone->get<TCompRender>();
@@ -69,7 +71,17 @@ void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
         }
     }
 
-    _point_light = owner->get<TCompLightPoint>();
+    if (_light_target != "") {
+        CEntity* eCone = cGroup->getHandleByName(_light_target);
+        _point_light = eCone->get<TCompLightPoint>();
+
+    }
+
+    if (_mesh_target != "") {
+        CEntity* eCone = cGroup->getHandleByName(_mesh_target);
+        _mesh_render = eCone->get<TCompRender>();
+
+    }
 
     if (_point_light) {
         _radius = _point_light->getRadius();
@@ -124,6 +136,7 @@ void TCompPointController::updateFlicker(float dt)
             if (_point_light) _point_light->isEnabled = false;
             if (_object_render)  _object_render->self_intensity = 0;
             if (_object_particles)  _object_particles->setSystemState(false);
+            if (_mesh_render)  _mesh_render->visible = false;
             _flicker_status = true;
         }
 
@@ -135,6 +148,7 @@ void TCompPointController::updateFlicker(float dt)
 
             if (_object_render) _object_render->self_intensity = _emissive_intensity;
             if (_object_particles) _object_particles->setSystemState(true);
+            if (_mesh_render)  _mesh_render->visible = true;
 
             _flicker_status = false;
 

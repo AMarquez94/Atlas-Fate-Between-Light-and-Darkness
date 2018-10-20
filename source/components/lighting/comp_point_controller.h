@@ -12,6 +12,7 @@ class TCompLightPoint;
 class TCompPointController : public TCompBase {
 
     CHandle _parent;
+    TCompRender * _mesh_render;
     TCompRender * _object_render;
 	TCompLightPoint * _point_light;
     TCompParticles * _object_particles;
@@ -19,6 +20,8 @@ class TCompPointController : public TCompBase {
 
     float _emissive_intensity;
     std::string _emissive_target;
+    std::string _light_target;
+    std::string _mesh_target;
 
     float _intensity;
     float _intensity_flow;
