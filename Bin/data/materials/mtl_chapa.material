@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_chapa_nml.dds"
     ,
-    "height": "data/textures/tx_chapa_hgt.dds"
-    ,
     "aocclusion": "data/textures/tx_chapa_ao.dds"
   }
 }

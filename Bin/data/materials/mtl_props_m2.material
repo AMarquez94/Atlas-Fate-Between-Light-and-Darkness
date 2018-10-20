@@ -11,8 +11,8 @@
     ,
     "normal": "data/textures/tx_props_nml.dds"
     ,
-    "height": "data/textures/tx_props_hgt.dds"
-    ,
     "emissive": "data/textures/tx_props_emi.dds"
+	,
+	"aocclusion": "data/textures/tx_props_ao.dds"
   }
 }

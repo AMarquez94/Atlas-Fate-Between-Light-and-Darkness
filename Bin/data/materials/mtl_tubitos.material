@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_tubitos_nml.dds"
     ,
-    "height": "data/textures/tx_tubitos_hgt.dds"
-    ,
     "aocclusion": "data/textures/tx_tubitos_ao.dds"
   }
 }

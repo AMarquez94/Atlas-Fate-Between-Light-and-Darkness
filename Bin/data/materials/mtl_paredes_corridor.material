@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_paredes_nml.dds"
     ,
-    "height": "data/textures/tx_paredes_hgt.dds"
-    ,
     "emissive": "data/textures/tx_paredes_emi.dds"
     ,
     "aocclusion": "data/textures/tx_paredes_ao.dds"

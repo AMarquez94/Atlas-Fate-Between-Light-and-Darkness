@@ -9,8 +9,6 @@
     ,
     "normal": "data/textures/tx_muralla_intro_nml.dds"
     ,
-    "height": "data/textures/tx_muralla_intro_hgt.dds"
-    ,
     "emissive": "data/textures/tx_muralla_intro_emi.dds"
   }
 }

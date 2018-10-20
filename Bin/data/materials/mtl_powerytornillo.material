@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_powerytornillo_nml.dds"
     ,
-    "height": "data/textures/tx_powerytornillo_hgt.dds"
-    ,
     "emissive": "data/textures/tx_powerytornillo_emi.dds"
     ,
     "aocclusion": "data/textures/tx_powerytornillo_ao.dds"
