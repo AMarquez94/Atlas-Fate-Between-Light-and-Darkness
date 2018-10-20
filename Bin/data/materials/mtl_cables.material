@@ -3,7 +3,7 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_alminar_mezquita_met.dds"
+    "albedo": "data/textures/default_texture.dds"
     ,
     "normal": "data/textures/null_normal.dds"
   }
