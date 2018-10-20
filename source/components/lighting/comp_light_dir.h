@@ -29,6 +29,7 @@ public:
 
     bool              volumetric = false;
 	const CTexture* projector = nullptr;
+    ~TCompLightDir();
 
 	/* spotlight parameters */
 	float range;

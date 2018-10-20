@@ -28,6 +28,7 @@ void TCompLightSpot::debugInMenu() {
     ImGui::DragInt("Num Samples", &num_samples, 1, 0, 250);
 }
 
+
 void TCompLightSpot::renderDebug() {
 
     // Render a wire sphere
@@ -117,6 +118,16 @@ void TCompLightSpot::registerMsgs() {
     DECL_MSG(TCompLightSpot, TMsgEntityCreated, onCreate);
     DECL_MSG(TCompLightSpot, TMsgEntityDestroyed, onDestroy);
     DECL_MSG(TCompLightSpot, TMsgEntitiesGroupCreated, onGroupCreated);
+}
+
+TCompLightSpot::~TCompLightSpot()
+{
+    // Delete the shadow map
+    shadows_rt->destroy();
+    Resources.destroyResource(shadows_rt->getName());
+    delete shadows_rt;
+
+    shadows_rt = nullptr;
 }
 
 // Generate the AABB for the spotlight

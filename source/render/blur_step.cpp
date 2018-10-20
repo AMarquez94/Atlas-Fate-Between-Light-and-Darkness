@@ -7,24 +7,24 @@
 // ---------------------
 bool CBlurStep::create(const char* name, int in_xres, int in_yres) {
 
-  // Get input resolution
-  xres = in_xres;
-  yres = in_yres;
+    // Get input resolution
+    xres = in_xres;
+    yres = in_yres;
 
-  rt_half_y = new CRenderToTexture();
-  std::string sname = std::string(name) + "_y";
-  bool is_ok = rt_half_y->createRT(sname.c_str(), xres, yres / 2, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
-  assert(is_ok);
+    rt_half_y = new CRenderToTexture();
+    std::string sname = std::string(name) + "_y";
+    bool is_ok = rt_half_y->createRT(sname.c_str(), xres, yres / 2, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
+    assert(is_ok);
 
-  sname = std::string(name) + "_xy";
-  rt_output = new CRenderToTexture();
-  is_ok = rt_output->createRT(sname.c_str(), xres / 2, yres / 2, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
-  assert(is_ok);
+    sname = std::string(name) + "_xy";
+    rt_output = new CRenderToTexture();
+    is_ok = rt_output->createRT(sname.c_str(), xres / 2, yres / 2, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
+    assert(is_ok);
 
-  tech = Resources.get("blur.tech")->as<CRenderTechnique>();
-  mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+    tech = Resources.get("blur.tech")->as<CRenderTechnique>();
+    mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 
-  return is_ok;
+    return is_ok;
 }
 
 // --------------------

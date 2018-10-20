@@ -43,6 +43,8 @@ public:
     static CRenderMeshInstanced* volume_instance;
 	const CTexture* projector = nullptr;
 
+    ~TCompLightSpot();
+
 	/* spotlight parameters */
 	float range;
 	float angle;

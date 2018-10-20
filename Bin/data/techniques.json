@@ -636,7 +636,7 @@
     "vertex_type": "Pos_x_GpuParticleInstance",
     "category": "cp_particles",
     "blend": "combinative",
-    "z": "test_but_no_write"
+    "z": "test_equal"
   },
 	"pbr_instanced_volume": {
 		"vs_file": "data/shaders/pbr_vol_instanced.fx",
