@@ -11,6 +11,8 @@
     ,
     "normal": "data/textures/tx_piedras_mezquita_nml.dds"
     ,
+    "height": "data/textures/tx_piedras_mezquita_hgt.dds"
+    ,
     "aocclusion": "data/textures/tx_piedras_mezquita_ao.dds"
   }
 }
