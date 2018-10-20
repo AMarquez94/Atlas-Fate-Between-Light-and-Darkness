@@ -126,6 +126,7 @@
     <ClCompile Include="components\lighting\comp_light_controller.cpp" />
     <ClCompile Include="components\lighting\comp_point_controller.cpp" />
     <ClCompile Include="components\lighting\comp_projector.cpp" />
+    <ClCompile Include="components\lighting\comp_spot_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_billboard.cpp" />
     <ClCompile Include="components\object_controller\comp_bone_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_button.cpp" />
@@ -386,6 +387,7 @@
     <ClInclude Include="components\lighting\comp_light_controller.h" />
     <ClInclude Include="components\lighting\comp_point_controller.h" />
     <ClInclude Include="components\lighting\comp_projector.h" />
+    <ClInclude Include="components\lighting\comp_spot_controller.h" />
     <ClInclude Include="components\object_controller\comp_billboard.h" />
     <ClInclude Include="components\object_controller\comp_bone_controller.h" />
     <ClInclude Include="components\object_controller\comp_button.h" />
