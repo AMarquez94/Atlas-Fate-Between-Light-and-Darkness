@@ -36,6 +36,10 @@ void TCompAIDrone::debugInMenu() {
     ImGui::DragFloat("Lerp Value", &lerpValue, 0.05f, 0.f, 1.f);
 }
 
+TCompAIDrone::~TCompAIDrone() {
+    //TCompAIEnemy::~TCompAIEnemy();
+}
+
 void TCompAIDrone::preUpdate(float dt)
 {
 }

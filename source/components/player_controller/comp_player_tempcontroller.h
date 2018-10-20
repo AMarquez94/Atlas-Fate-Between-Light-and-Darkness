@@ -141,6 +141,9 @@ class TCompTempPlayerController : public TCompBase
     DECL_SIBLING_ACCESS();
 
 public:
+
+    ~TCompTempPlayerController();
+
     /* Debug and console variables */
     bool infiniteStamina;
     bool isImmortal;

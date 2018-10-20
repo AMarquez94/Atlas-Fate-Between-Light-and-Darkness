@@ -37,6 +37,18 @@ void addVideoTextureToBackgroundPlayer(CVideoTexture* vt) {
         decoder_thread = new std::thread(decodeVideoTextures);
 }
 
+void deleteVideoTextureForBackgroundPlayer(CVideoTexture * vt)
+{
+    sem_can_upload.wait();
+    int i = 0;
+    bool found = false;
+    for (i = 0; i < playing_video_textures.size(); i++) {
+        found = playing_video_textures[i] == vt;
+        playing_video_textures.erase(playing_video_textures.begin() + i);
+    }
+    sem_can_upload.notify();
+}
+
 // Called from the main thread...
 void uploadAllVideoTexturesReady() {
 

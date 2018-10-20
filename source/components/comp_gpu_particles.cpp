@@ -8,6 +8,12 @@ DECL_OBJ_MANAGER("gpu_particles", TCompGPUParticles);
 
 CRenderMeshInstanced* particles_instances_mesh = nullptr;
 
+TCompGPUParticles::~TCompGPUParticles()
+{
+    delete system_instance;
+    system_instance = nullptr;
+}
+
 void TCompGPUParticles::debugInMenu() {
 
     assert(system_instance);

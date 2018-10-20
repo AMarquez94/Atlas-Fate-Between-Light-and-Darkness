@@ -54,9 +54,9 @@ BTNode * TCompIAController::createRoot(const std::string& rootName, BTNode::ETyp
 
 BTNode * TCompIAController::addChild(const std::string& parentName, std::string childName, BTNode::EType type, BTCondition btCondition, BTAction btAction, BTAssert btAssert)
 {
-    BTNode *parent = findNode(parentName);
+    BTNode * parent = findNode(parentName);
     assert(parent);
-    BTNode *son = createNode(childName);
+    BTNode * son = createNode(childName);
     parent->addChild(son);
     son->setParent(parent);
     son->setType(type);
@@ -449,6 +449,15 @@ void TCompIAController::update(float dt) {
 void TCompIAController::printTree()
 {
     root->printNode(0, this);
+}
+
+TCompIAController::~TCompIAController()
+{
+    dbg("Borramos nodos %s\n", name.c_str());
+    for (auto& node : tree) {
+        delete node.second;
+    }
+    tree.clear();
 }
 
 void TCompIAController::onMsgScenePaused(const TMsgScenePaused & msg)

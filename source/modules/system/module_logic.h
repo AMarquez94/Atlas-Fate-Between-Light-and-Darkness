@@ -194,6 +194,8 @@ void removeSceneResources(const std::string& scene);
 void destroyPartialScene();
 void testingLoadPartialScene();
 void testLoco();
+void printAllResources();
+void deleteAllCacheResources();
 
 // Extra cvar commands
 void cg_drawfps(bool value);

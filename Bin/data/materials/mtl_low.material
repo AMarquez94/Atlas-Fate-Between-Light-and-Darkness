@@ -10,7 +10,5 @@
     "roughness": "data/textures/tx_containers_rgh.dds"
     ,
     "normal": "data/textures/tx_containers_nml.dds"
-    ,
-    "height": "data/textures/tx_containers_hgt.dds"
   }
 }
