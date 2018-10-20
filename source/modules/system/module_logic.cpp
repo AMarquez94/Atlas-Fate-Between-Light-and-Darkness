@@ -1270,6 +1270,7 @@ void lightUpForFinalScene(bool random, float time_to_lerp) {
 
 void lightDownForFinalScene(bool random, float time_to_lerp) {
 	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ true , random, time_to_lerp});
+	EngineLerp.lerpElement(&cb_globals.global_fog_density,0.364f,3,5);
 }
 
 void pasarelaLightsFadeOut() {
