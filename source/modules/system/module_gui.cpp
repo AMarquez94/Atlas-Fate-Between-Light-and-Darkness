@@ -180,7 +180,11 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::CINEMATIC_INTRO, "data/gui/ingame_cinematic_intro.json");
 	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH, "data/gui/atlas_last_splash.json");
 	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH_LINE, "data/gui/atlas_last_splash_line.json");
-	
+	registerWigdetStruct(EGUIWidgets::SPLASH_BACKGROUND, "data/gui/splash_background.json");
+	registerWigdetStruct(EGUIWidgets::SPLASH_UPF, "data/gui/splash_upf.json");
+	registerWigdetStruct(EGUIWidgets::SPLASH_BABYROBOT, "data/gui/splash_baby_robot.json");
+	registerWigdetStruct(EGUIWidgets::SPLASH_SOFTWARE, "data/gui/splash_software.json");
+	registerWigdetStruct(EGUIWidgets::SPLASH_ENGINE, "data/gui/splash_engine.json");
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
