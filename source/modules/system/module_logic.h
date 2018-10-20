@@ -178,6 +178,7 @@ void setOutBlackScreen(float time_to_lerp);
 void activateMission(int mission_num);
 void lightUpForFinalScene(bool random, float time_to_lerp);
 void lightDownForFinalScene(bool random, float time_to_lerp);
+void pasarelaLightsFadeOut();
 void speedUpRuedasFinalScene();
 void stopRuedasFinalScene();
 void execLastAtlasScreen();

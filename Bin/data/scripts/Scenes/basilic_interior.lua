@@ -99,11 +99,12 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 0.0)",28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
-	--execScriptDelayed("startTransmission(7)", 38);
-
+	--
+	execScriptDelayed("pasarelaLightsFadeOut()", 44);
+	
 
 	execScriptDelayed("execLastAtlasScreen()",53);
-	execScriptDelayed("lightUpForFinalScene(false, 2.0);",23);
+	execScriptDelayed("lightUpForFinalScene(false, 4.0);",22);
 	execScriptDelayed("lightDownForFinalScene(true, 0.5);",37);
 
 

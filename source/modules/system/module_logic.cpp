@@ -319,6 +319,7 @@ void CModuleLogic::publishClasses() {
 	m->set("stopRuedasFinalScene", SLB::FuncCall::create(&stopRuedasFinalScene));
 	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
 	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
+	m->set("pasarelaLightsFadeOut", SLB::FuncCall::create(&pasarelaLightsFadeOut));
 	
 	//GUI
 	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
@@ -1269,6 +1270,10 @@ void lightUpForFinalScene(bool random, float time_to_lerp) {
 
 void lightDownForFinalScene(bool random, float time_to_lerp) {
 	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ true , random, time_to_lerp});
+}
+
+void pasarelaLightsFadeOut() {
+	EngineEntities.broadcastMsg(TMsgOmniFadeOut{});
 }
 
 void speedUpRuedasFinalScene() {

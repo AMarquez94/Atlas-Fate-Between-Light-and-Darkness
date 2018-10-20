@@ -277,6 +277,11 @@ struct TMsgObjectBeingMoved {
   DECL_MSG_ID();
 };
 
+struct TMsgOmniFadeOut {
+	
+	DECL_MSG_ID();
+};
+
 struct TMsgInfiniteStamina {
     DECL_MSG_ID();
 };
