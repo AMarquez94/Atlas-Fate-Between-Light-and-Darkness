@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_arcomuralla_nml.dds"
     ,
-    "height": "data/textures/tx_arcomuralla_hgt.dds"
-    ,
     "aocclusion": "data/textures/tx_arcomuralla_ao.dds"
   }
 }

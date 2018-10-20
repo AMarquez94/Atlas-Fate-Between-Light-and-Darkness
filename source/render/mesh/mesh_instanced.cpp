@@ -8,6 +8,7 @@ CRenderMesh* loadMeshInstanced(const std::string& name) {
     auto mesh = new CRenderMeshInstanced();
     json j = loadJson(name);
     mesh->configure(j);
+    EngineFiles.addPendingResourceFile(name, false);
     return mesh;
     ////dbg("Creating instanced mesh %s\n", name.c_str());
     //auto mesh = new CRenderMeshInstanced();

@@ -78,6 +78,8 @@ namespace RigidAnims {
 
         total_duration = header.total_duration;
 
+        EngineFiles.addPendingResourceFile(name, false);
+
         return true;
     }
 

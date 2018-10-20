@@ -9,8 +9,6 @@
     ,
     "normal": "data/textures/tx_arcoroto_nml.dds"
     ,
-    "height": "data/textures/tx_arcoroto_hgt.dds"
-    ,
     "aocclusion": "data/textures/tx_arcoroto_ao.dds"
   }
 }

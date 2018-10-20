@@ -1,8 +1,0 @@
-{
-  "shadows": true
-  ,
-  "textures":
-  {
-    "albedo": "data/textures/valla_low_1001_BaseColor.dds"
-  }
-}

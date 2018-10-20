@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_tubo_capsulas_props_nml.dds"
     ,
-    "height": "data/textures/tx_tubo_capsulas_props_hgt.dds"
-    ,
     "emissive": "data/textures/tx_tubo_capsulas_props_emi.dds"
   }
 }

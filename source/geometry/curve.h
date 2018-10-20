@@ -8,6 +8,7 @@ public:
 	enum class EType { UNKNOWN = 0, CATMULL_ROM };
 
 	CCurve() = default;
+    ~CCurve();
 	bool load(const std::string& name);
 	void clear();
 	void addKnot(const VEC3& point);

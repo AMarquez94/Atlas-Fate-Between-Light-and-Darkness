@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_foco_pared_nml.dds"
     ,
-    "height": "data/textures/tx_foco_pared_hgt.dds"
-    ,
     "emissive": "data/textures/tx_foco_pared_emi.dds"
   }
 }

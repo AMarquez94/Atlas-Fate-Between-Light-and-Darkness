@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_cupulasyventanas_nml.dds"
     ,
-    "height": "data/textures/tx_cupulasyventanas_hgt.dds"
-    ,
     "aocclusion": "data/textures/tx_cupulasyventanas_ao.dds"
   }
 }

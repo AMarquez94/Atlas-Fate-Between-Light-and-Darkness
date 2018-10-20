@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_grancartel_nml.dds"
     ,
-    "height": "data/textures/tx_grancartel_hgt.dds"
-    ,
     "emissive": "data/textures/tx_grancartel_emi.dds"
     ,
     "aocclusion": "data/textures/tx_grancartel_ao.dds"

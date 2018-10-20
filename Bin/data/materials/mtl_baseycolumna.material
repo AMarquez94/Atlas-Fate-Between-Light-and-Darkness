@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_baseycolumna_nml.dds"
     ,
-    "height": "data/textures/tx_baseycolumna_hgt.dds"
-    ,
     "emissive": "data/textures/tx_baseycolumna_emi.dds"
     ,
     "aocclusion": "data/textures/tx_baseycolumna_ao.dds"

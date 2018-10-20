@@ -10,7 +10,5 @@
     "roughness": "data/textures/tx_arco_rgh.dds"
     ,
     "normal": "data/textures/tx_arco_nml.dds"
-    ,
-    "height": "data/textures/tx_arco_Hgt.dds"
   }
 }

@@ -10,7 +10,5 @@
     "roughness": "data/textures/tx_porcho_cupula_rgh.dds"
     ,
     "normal": "data/textures/tx_porcho_cupula_nml.dds"
-    ,
-    "height": "data/textures/tx_porcho_cupula_hgt.dds"
   }
 }
