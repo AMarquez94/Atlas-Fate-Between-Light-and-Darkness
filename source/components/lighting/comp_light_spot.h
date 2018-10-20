@@ -17,7 +17,7 @@ struct TInstanceLight {
 class TCompLightSpot : public TCompCamera {
 
 	VEC4			color = VEC4(1, 1, 1, 1);
-	float			intensity = 1.0f;
+	
     float			volume_intensity = 1.0f;
 
     //CRenderMesh * spotcone;
@@ -43,11 +43,14 @@ public:
     static CRenderMeshInstanced* volume_instance;
 	const CTexture* projector = nullptr;
 
+    ~TCompLightSpot();
+
 	/* spotlight parameters */
 	float range;
 	float angle;
 	float inner_cut;
 	float outer_cut;
+	float			intensity = 1.0f;
 
 	void debugInMenu();
 	void renderDebug();
@@ -66,6 +69,7 @@ public:
 
     void cullFrame();
     bool isCulled() const;
+    bool isVolumeEnabled() const;
 
     MAT44 getWorld();
 	void setColor(const VEC4 & new_color);

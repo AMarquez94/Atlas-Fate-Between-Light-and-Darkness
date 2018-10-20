@@ -15,6 +15,7 @@ class TCompLightController : public TCompBase {
     TCompLightSpot * _spot_light;
 	TCompLightPoint * _point_light;
     TCompRender * _object_render;
+    TCompParticles * object_particles;
 
     float _emissive_intensity;
     std::string _emissive_target;

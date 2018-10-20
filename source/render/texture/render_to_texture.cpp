@@ -16,6 +16,12 @@ void CRenderToTexture::destroy() {
 	SAFE_RELEASE(depth_stencil_view);
 	SAFE_RELEASE(depth_resource);
 	CTexture::destroy();
+
+    if (ztexture) {
+        Resources.destroyResource(ztexture->getName());
+        delete ztexture;
+        ztexture = nullptr;
+    }
 }
 
 void CRenderToTexture::debugInMenu() {

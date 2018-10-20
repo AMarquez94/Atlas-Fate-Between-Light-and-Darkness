@@ -11,18 +11,20 @@ class CRenderMesh;
 class CTexture;
 
 // ------------------------------------
-class TCompRenderAO : public TCompRenderBlur {
+class TCompRenderAO : public TCompBase {
 
-	CRenderToTexture*       rt_output = nullptr;
+	static CRenderToTexture*       rt_output;
+
 	const CTexture*         white = nullptr;
 	const CRenderTechnique* tech = nullptr;
 	const CRenderMesh*      mesh = nullptr;
 	float                   amount = 1.f;
 	float                   radius = 0.110f;
 	float                   zrange_discard = 0.100f;
-	float                   amount_spreading = 0.960f;
+	float                   amount_spreading = 0.970f;
 	int                     xres = 0;
 	int                     yres = 0;
+    bool enabled;
 
 public:
 

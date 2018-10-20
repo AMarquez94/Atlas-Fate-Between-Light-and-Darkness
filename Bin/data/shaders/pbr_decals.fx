@@ -99,19 +99,19 @@ void PS(
   float amount_of_z = dot( decal_top_left_to_wPos, input.decal_axis_z); 
 
   float4 decal_color = txAlbedo.Sample(samClampLinear, float2(amount_of_x,amount_of_z));
-	float roughness = 1;//txRoughness.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;	
+	float roughness = txRoughness.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;	
 	float3 N = computeNormalMap(input.normal, input.tangent, float2(amount_of_x,amount_of_z));
-	//o_normal = encodeNormal(N, roughness * decal_color.a);
+	o_normal = encodeNormal(N, roughness);
   o_albedo.xyz = decal_color.xyz;
   o_albedo.a = (1-decal_color.a);//txMetallic.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;;
 	 
   // Change to true 'see' the boxes 
-  if( false ) {
+  /*if( false ) {
     o_albedo.a += 0.3;
    
     if( (input.uv.x < 0.01 || input.uv.x > 0.99 ) || (input.uv.y < 0.01 || input.uv.y > 0.99 ) )
       o_albedo.a = 1.0;
-  }
+  }*/
 }
 
 float4 PS_default(

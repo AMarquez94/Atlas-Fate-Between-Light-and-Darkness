@@ -314,8 +314,14 @@ void CModuleLogic::publishClasses() {
 
     // cinematic
     m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
-    m->set("setAIState", SLB::FuncCall::create(&setAIState));
-
+	m->set("setAIState", SLB::FuncCall::create(&setAIState));
+	m->set("speedUpRuedasFinalScene", SLB::FuncCall::create(&speedUpRuedasFinalScene));
+	m->set("stopRuedasFinalScene", SLB::FuncCall::create(&stopRuedasFinalScene));
+	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
+	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
+	m->set("pasarelaLightsFadeOut", SLB::FuncCall::create(&pasarelaLightsFadeOut));
+	m->set("ambientAdjustmentForFinalScene", SLB::FuncCall::create(&ambientAdjustmentForFinalScene));
+	
 	//GUI
 	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
 	m->set("backFromControls", SLB::FuncCall::create(&backFromControls));
@@ -335,8 +341,6 @@ void CModuleLogic::publishClasses() {
 	m->set("setInBlackScreen", SLB::FuncCall::create(&setInBlackScreen));
 	m->set("setOutBlackScreen", SLB::FuncCall::create(&setOutBlackScreen));
 	m->set("subClear", SLB::FuncCall::create(&subClear));
-	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
-	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
 	m->set("execLastAtlasScreen", SLB::FuncCall::create(&execLastAtlasScreen));
 	m->set("removeAtlasSplash", SLB::FuncCall::create(&removeAtlasSplash));
 	m->set("removeTempCredits", SLB::FuncCall::create(&removeTempCredits));
@@ -1261,24 +1265,58 @@ void setOutBlackScreen(float time_to_lerp) {
 	EngineLogic.execScriptDelayed("takeOutBlackScreen();", time_to_lerp + 0.1f);
 }
 
-void lightUpForFinalScene(float time) {
-
-	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{false});
-	
+void lightUpForFinalScene(bool random, float time_to_lerp) {
+	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ false , random, time_to_lerp});
 }
 
-void lightDownForFinalScene() {
+void ambientAdjustmentForFinalScene(float time_to_lerp) {
+	EngineLerp.lerpElement(&cb_globals.global_exposure_adjustment,2.2f, time_to_lerp,0.0f);
+}
 
+void lightDownForFinalScene(bool random, float time_to_lerp) {
+	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ true , random, time_to_lerp});
+	EngineLerp.lerpElement(&cb_globals.global_fog_density,0.364f,3,5);
+}
+
+void pasarelaLightsFadeOut() {
+	EngineEntities.broadcastMsg(TMsgOmniFadeOut{});
+}
+
+void speedUpRuedasFinalScene() {
+	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 10.0f,4.0f,0.0f });
+
+}
+
+void stopRuedasFinalScene() {
+	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 0.0f,7.0f,0.0f });
+
+	CEntity* ent = getEntityByName("rueda");
+	TCompRender* comp_rend = ent->get<TCompRender>();
+	if (comp_rend != nullptr) {
+		EngineLerp.lerpElement(&comp_rend->self_intensity,0.0f,7.0f,0.0f);
+	}
 }
 
 void execLastAtlasScreen() {
 
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH)->makeChildsFadeIn(0.25, 0, false);
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,25,false);
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
-	EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);
-	EngineLogic.execScriptDelayed("removeTempCredits()", 25.25);
-	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")",25.5);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH)->makeChildsFadeIn(0.1, 0, false);
+	
+	GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH_LINE);
+	if (w) {
+		float *aux_x = &w->getChild("line_atlas_left")->getBarParams()->_ratio;
+		*aux_x = 0.0f;
+		EngineLerp.lerpElement(aux_x, 1.0f, 4.0f, 5.0f);
+
+		float *aux_x_r = &w->getChild("line_atlas_right")->getBarParams()->_ratio;
+		*aux_x_r = 0.0f;
+		EngineLerp.lerpElement(aux_x_r, 1.0f, 4.0f, 5.0f);
+
+	}
+	//EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,25,false);
+	//EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
+	//EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);
+	//EngineLogic.execScriptDelayed("removeTempCredits()", 25.25);
+	//EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")",25.5);
 }
 
 void removeAtlasSplash() {

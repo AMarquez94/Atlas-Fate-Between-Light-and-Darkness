@@ -5,6 +5,8 @@
 
 DECL_OBJ_MANAGER("motion_blur", TCompRenderMotionBlur);
 
+CRenderToTexture* TCompRenderMotionBlur::rt = nullptr;
+
 // ---------------------
 TCompRenderMotionBlur::TCompRenderMotionBlur()
 {
@@ -33,11 +35,13 @@ void TCompRenderMotionBlur::load(const json& j, TEntityParseContext& ctx) {
     tech = Resources.get("postfx_motion_blur.tech")->as<CRenderTechnique>();
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 
-    rt = new CRenderToTexture;
-    char rt_name[64];
-    sprintf(rt_name, "RT_MotionBlur_%08x", CHandle(this).asUnsigned());
-    bool is_ok = rt->createRT(rt_name, Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM);
-    assert(is_ok);
+    if (!rt) {
+        rt = new CRenderToTexture;
+        char rt_name[64];
+        sprintf(rt_name, "RT_MotionBlur_%08x", CHandle(this).asUnsigned());
+        bool is_ok = rt->createRT(rt_name, Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM);
+        assert(is_ok);
+    }
 }
 
 CTexture* TCompRenderMotionBlur::apply(CTexture* in_texture) {

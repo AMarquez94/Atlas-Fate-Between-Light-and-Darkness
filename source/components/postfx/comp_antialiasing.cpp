@@ -5,6 +5,7 @@
 #include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("antialiasing", TCompAntiAliasing);
+CRenderToTexture* TCompAntiAliasing::rt = nullptr;
 
 // ---------------------
 void TCompAntiAliasing::debugInMenu() {

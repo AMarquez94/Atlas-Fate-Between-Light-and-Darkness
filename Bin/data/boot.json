@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -44,8 +44,9 @@
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",
 
-			"data/scenes/zone_a_decals.scene",
-						
+			"data/scenes/intro_decals.scene",
+			"data/scenes/intro_decals_rotura.scene",
+			
 			"data/scenes/intro_casas_lp_1.scene",
 			"data/scenes/intro_casas_lp_2.scene",
 			
@@ -67,10 +68,9 @@
 			"data/scenes/Intro/intro_particles.scene",
 
 			"data/scenes/intro_puerta_corridor.scene",
-
 			"data/scenes/grass_container.scene",
 			"data/scenes/decal_test.scene",
-			"data/scenes/intro_corridor_3.scene",
+			"data/scenes/intro_corridor_4.scene",
 			"data/scenes/intro_corridor_logic.scene",
 			"data/scenes/intro_col_corridor_lights.scene",
 			"data/scenes/pantalla_intro_video.scene",
@@ -338,6 +338,7 @@
 			"data/scenes/Basilic_interior/basilic_interior_holograms.scene",
 
 			"data/scenes/basilic_interior_luces.scene",
+			"data/scenes/basilic_interior_luces_rueda.scene",
 			"data/scenes/basilic_interior_luces_nucleo.scene",
 			"data/scenes/basilic_interior_luces_pasarela.scene",
 			"data/scenes/basilic_interior_luces_laterales_1.scene",

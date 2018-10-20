@@ -50,7 +50,8 @@ void TCompRenderBlur::debugInMenu() {
     }
 }
 
-void TCompRenderBlur::load(const json& j, TEntityParseContext& ctx) {
+void TCompRenderBlur::load(const json& j, TEntityParseContext& ctx, bool gen) {
+
     enabled = j.value("enabled", true);
     global_distance = j.value("global_distance", 1.0f);
     distance_factors = VEC4(1, 2, 3, 4);
@@ -83,20 +84,22 @@ void TCompRenderBlur::load(const json& j, TEntityParseContext& ctx) {
 
     std::string rt_name = j.value("rt_name", "Blur");
 
-    // To generate unique names
-    static int g_blur_counter = 0;
-    for (int i = 0; i < nsteps; ++i) {
-        CBlurStep* s = new CBlurStep;
+    if (gen) {
+        // To generate unique names
+        static int g_blur_counter = 0;
+        for (int i = 0; i < nsteps; ++i) {
+            CBlurStep* s = new CBlurStep;
 
-        char blur_name[64];
-        sprintf(blur_name, "%s_%02d", rt_name.c_str(), g_blur_counter);
-        g_blur_counter++;
+            char blur_name[64];
+            sprintf(blur_name, "%s_%02d", rt_name.c_str(), g_blur_counter);
+            g_blur_counter++;
 
-        is_ok &= s->create(blur_name, xres, yres);
-        assert(is_ok);
-        steps.push_back(s);
-        xres /= 2;
-        yres /= 2;
+            is_ok &= s->create(blur_name, xres, yres);
+            assert(is_ok);
+            steps.push_back(s);
+            xres /= 2;
+            yres /= 2;
+        }
     }
 
     nactive_steps = (int)j.value("active_steps", steps.size());
@@ -118,4 +121,12 @@ CTexture* TCompRenderBlur::apply(CTexture* in_texture) {
     }
 
     return output;
+}
+
+TCompRenderBlur::~TCompRenderBlur()
+{
+    for (auto b : steps) {
+        b->destroy();
+        delete b;
+    }
 }

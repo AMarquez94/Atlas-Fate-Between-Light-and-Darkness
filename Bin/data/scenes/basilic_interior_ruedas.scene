@@ -34,8 +34,10 @@
           ]
         }
       ],
+      "rotator_accelerator_final_scene" : true
+      ,
       "rotator": {
-        "speed": 0.7,
+        "speed": 0.25,
         "rotate_roll": true
       }
       ,
