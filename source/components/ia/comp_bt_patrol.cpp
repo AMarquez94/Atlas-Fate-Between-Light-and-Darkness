@@ -28,6 +28,11 @@ void TCompAIPatrol::debugInMenu() {
     TCompAIEnemy::debugInMenu();
 }
 
+TCompAIPatrol::~TCompAIPatrol()
+{
+    //TCompAIEnemy::~TCompAIEnemy();
+}
+
 void TCompAIPatrol::preUpdate(float dt)
 {
     // Dirty and nasty way of doing this.

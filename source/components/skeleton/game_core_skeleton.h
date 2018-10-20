@@ -20,6 +20,8 @@ public:
   bool create(const std::string& res_name);
   void debugInMenu() override;
 
+  ~CGameCoreSkeleton();
+
   float              bone_ids_debug_scale = 1.f;
   std::vector< int > bone_ids_to_debug;
 

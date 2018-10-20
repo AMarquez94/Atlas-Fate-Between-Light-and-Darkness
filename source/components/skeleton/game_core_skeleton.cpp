@@ -94,6 +94,12 @@ void CGameCoreSkeleton::debugInMenu() {
     ImGui::DragFloat("Debug Bones Scale", &bone_ids_debug_scale, 0.01f, 0.1f, 5.0f);
 }
 
+CGameCoreSkeleton::~CGameCoreSkeleton()
+{
+    //TODO: delete callbacks
+    //for callbacks -> delete callbacks[i]
+}
+
 // ------------------------------------------------------------
 bool CGameCoreSkeleton::convertCalCoreMesh2RenderMesh(CalCoreMesh* cal_mesh, const std::string& ofilename) {
 
@@ -424,6 +430,8 @@ bool CGameCoreSkeleton::create(const std::string& res_name) {
         }
 
     }
+
+    EngineFiles.addPendingResourceFile(name, false);
 
     return true;
 }

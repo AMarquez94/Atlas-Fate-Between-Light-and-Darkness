@@ -32,7 +32,7 @@ public:
   DebugDrawGL*           m_draw;
 
   CNavmesh( );
-  void loadAll(const char* path);
+  void load(const std::vector<char>& navmeshData);
   void prepareQueries( );
   void destroy( );
   void render();

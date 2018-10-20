@@ -68,7 +68,9 @@
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_boton001.mesh",
-				"materials": []
+				"materials": [
+					"data/materials/mtl_puerta_peq.material"
+				]
 			}],
 			"tags": [
 				"corridor"
@@ -136,7 +138,9 @@
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_lampara001.mesh",
-				"materials": []
+				"materials": [
+					"data/materials/mtl_puerta_peq.material"
+				]
 			}],
 			"tags": [
 				"corridor"
