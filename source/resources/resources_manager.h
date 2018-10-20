@@ -30,7 +30,8 @@ public:
   const bool resourceExists(const std::string& resourceName);
   void destroyResource(const std::string & name);
 
+
+  void printAllResources();
 };
 
 extern CResourceManager Resources;
-

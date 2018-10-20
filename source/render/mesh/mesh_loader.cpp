@@ -168,6 +168,8 @@ CRenderMesh* loadMesh(const char* filename) {
 	))
 		return nullptr;
 
+    EngineFiles.addPendingResourceFile(filename, false);
+
 	return mesh;
 }
 

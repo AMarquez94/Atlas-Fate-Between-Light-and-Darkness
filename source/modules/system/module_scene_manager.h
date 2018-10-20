@@ -49,7 +49,8 @@ public:
     Scene* createScene(const std::string& name);
     Scene* getSceneByName(const std::string& name);
     Scene* getActiveScene();
-    bool unLoadActiveScene(bool partial = false);
+    bool unLoadActiveScene(bool partial = false, const std::string& new_scene = "");
+    void destroySceneResources(const std::string& sceneName);
     void changeGameState(const std::string& gamestate);
 
     std::string getDefaultSceneName();

@@ -2,48 +2,48 @@
 #define INC_ENTITY_MSGS_
 
 struct IMsgBaseCallback {
-  // La interfaz virtual quiere un handle y una direccion al msg
-  virtual void sendMsg(CHandle h_recv, const void* msg) = 0;
+    // La interfaz virtual quiere un handle y una direccion al msg
+    virtual void sendMsg(CHandle h_recv, const void* msg) = 0;
 };
 
 template< typename TComp, typename TMsg >
 struct TMsgCallback : public IMsgBaseCallback {
 
-  // La signature de un metodo de la class TComp que recibe
-  // como argumento una referencia a una instancia de TMsg
-  // y que no devuelve nada.
-  typedef void(TComp::*TMethodCallback)(const TMsg&);
+    // La signature de un metodo de la class TComp que recibe
+    // como argumento una referencia a una instancia de TMsg
+    // y que no devuelve nada.
+    typedef void(TComp::*TMethodCallback)(const TMsg&);
 
-  // Una instancia de un puntero a uno de esos metodos
-  TMethodCallback method = nullptr;
+    // Una instancia de un puntero a uno de esos metodos
+    TMethodCallback method = nullptr;
 
-  TMsgCallback(TMethodCallback new_method) 
-  : method(new_method)
-  { }
+    TMsgCallback(TMethodCallback new_method)
+        : method(new_method)
+    { }
 
-  void sendMsg(CHandle h_recv, const void* generic_msg) {
-    TComp* obj_recv = h_recv;
-    assert(obj_recv);
-    const TMsg* msg = static_cast<const TMsg*>(generic_msg);
-    assert(method != nullptr);
-    (obj_recv->*method)(*msg);
-  }
+    void sendMsg(CHandle h_recv, const void* generic_msg) {
+        TComp* obj_recv = h_recv;
+        assert(obj_recv);
+        const TMsg* msg = static_cast<const TMsg*>(generic_msg);
+        assert(method != nullptr);
+        (obj_recv->*method)(*msg);
+    }
 };
 
 struct TCallbackSlot {
-  uint32_t          comp_type;
-  IMsgBaseCallback* callback;
+    uint32_t          comp_type;
+    IMsgBaseCallback* callback;
 };
 
 extern std::unordered_multimap< uint32_t, TCallbackSlot > all_registered_msgs;
 
 template< typename TComp, typename TMsg, typename TMethod >
 void registerMsg(TMethod method) {
-  std::pair< uint32_t, TCallbackSlot > v;
-  v.first = TMsg::getMsgID();
-  v.second.comp_type = getObjectManager<TComp>()->getType();
-  v.second.callback = new TMsgCallback< TComp, TMsg >(method);
-  all_registered_msgs.insert(v);
+    std::pair< uint32_t, TCallbackSlot > v;
+    v.first = TMsg::getMsgID();
+    v.second.comp_type = getObjectManager<TComp>()->getType();
+    v.second.callback = new TMsgCallback< TComp, TMsg >(method);
+    all_registered_msgs.insert(v);
 }
 
 #define DECL_MSG( acomp, amsg, amethod ) \
@@ -51,20 +51,20 @@ void registerMsg(TMethod method) {
 
 template< typename TComp, typename TMsg >
 void unregisterMsg() {
-	std::pair< uint32_t, TCallbackSlot > v;
-	v.first = TMsg::getMsgID();
-	v.second.comp_type = getObjectManager<TComp>()->getType();
-	for (auto it = all_registered_msgs.begin(); it != all_registered_msgs.end(); )
-	{
-		if ((it->first) == v.first && it->second.comp_type == v.second.comp_type)
-		{
-			it = all_registered_msgs.erase(it);
-			break;
-		}
-		else {
-			it++;
-		}
-	}
+    std::pair< uint32_t, TCallbackSlot > v;
+    v.first = TMsg::getMsgID();
+    v.second.comp_type = getObjectManager<TComp>()->getType();
+    for (auto it = all_registered_msgs.begin(); it != all_registered_msgs.end(); )
+    {
+        if ((it->first) == v.first && it->second.comp_type == v.second.comp_type)
+        {
+            it = all_registered_msgs.erase(it);
+            break;
+        }
+        else {
+            it++;
+        }
+    }
 }
 
 #define UNDECL_MSG( acomp, amsg ) \
@@ -82,9 +82,9 @@ uint32_t getNextUniqueMsgID();
 
 template< class TMsg >
 void CHandle::sendMsg(const TMsg& msg) {
-  CEntity* e = getObjectManager< std::remove_const<CEntity>::type >()->getAddrFromHandle(*this);
-  if (e)
-    e->sendMsg(msg);
+    CEntity* e = getObjectManager< std::remove_const<CEntity>::type >()->getAddrFromHandle(*this);
+    if (e)
+        e->sendMsg(msg);
 }
 
 #endif

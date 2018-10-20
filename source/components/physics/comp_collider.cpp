@@ -21,6 +21,8 @@ TCompCollider::~TCompCollider() {
             config->actor = nullptr;
         }
     }
+
+    delete config;
 }
 
 void TCompCollider::debugInMenu() {

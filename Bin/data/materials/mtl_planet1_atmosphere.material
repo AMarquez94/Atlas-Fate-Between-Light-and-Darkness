@@ -3,7 +3,6 @@
 	"shadows": false,
 	"textures": {
 		"albedo": "data/textures/tx_planeta1_alb.dds",
-		"metallic": "data/textures/tx_planeta1_met.dds",
 		"roughness": "data/textures/tx_planeta1_rgh.dds",
 		"normal": "data/textures/tx_planeta1_nml.dds",
 		"height": "data/textures/tx_planeta1_hgt.dds",
