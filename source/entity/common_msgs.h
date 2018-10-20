@@ -330,6 +330,8 @@ struct TMsgPlayerAIEnabled {
 
 struct TMsgEmisiveCapsuleState {
 	bool enable;
+	bool random;
+	float time_to_lerp;
 	DECL_MSG_ID();
 };
 

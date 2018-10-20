@@ -317,6 +317,8 @@ void CModuleLogic::publishClasses() {
 	m->set("setAIState", SLB::FuncCall::create(&setAIState));
 	m->set("speedUpRuedasFinalScene", SLB::FuncCall::create(&speedUpRuedasFinalScene));
 	m->set("stopRuedasFinalScene", SLB::FuncCall::create(&stopRuedasFinalScene));
+	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
+	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
 	
 	//GUI
 	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
@@ -337,8 +339,6 @@ void CModuleLogic::publishClasses() {
 	m->set("setInBlackScreen", SLB::FuncCall::create(&setInBlackScreen));
 	m->set("setOutBlackScreen", SLB::FuncCall::create(&setOutBlackScreen));
 	m->set("subClear", SLB::FuncCall::create(&subClear));
-	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
-	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
 	m->set("execLastAtlasScreen", SLB::FuncCall::create(&execLastAtlasScreen));
 	m->set("removeAtlasSplash", SLB::FuncCall::create(&removeAtlasSplash));
 	m->set("removeTempCredits", SLB::FuncCall::create(&removeTempCredits));
@@ -1263,12 +1263,12 @@ void setOutBlackScreen(float time_to_lerp) {
 	EngineLogic.execScriptDelayed("takeOutBlackScreen();", time_to_lerp + 0.1f);
 }
 
-void lightUpForFinalScene(float time) {
-	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ false });
+void lightUpForFinalScene(bool random, float time_to_lerp) {
+	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ false , random, time_to_lerp});
 }
 
-void lightDownForFinalScene() {
-	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ true });
+void lightDownForFinalScene(bool random, float time_to_lerp) {
+	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ true , random, time_to_lerp});
 }
 
 void speedUpRuedasFinalScene() {
@@ -1276,7 +1276,7 @@ void speedUpRuedasFinalScene() {
 }
 
 void stopRuedasFinalScene() {
-	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 0.0f,4.0f,10.0f });
+	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 0.0f,7.0f,0.0f });
 }
 
 void execLastAtlasScreen() {
