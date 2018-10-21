@@ -61,11 +61,14 @@ void TCompVideo::update(float dt) {
 
     if (culling_bits) {
         CHandle aabb = owner->get<TCompAbsAABB>();
-        auto idx = aabb.getExternalIndex();
-        bool test = culling_bits->test(idx);
-        if (test != enabled) {
-            enabled = test;
-            _video->setActive(test);
+
+        if (aabb.isValid()) {
+            auto idx = aabb.getExternalIndex();
+            bool test = culling_bits->test(idx);
+            if (test != enabled) {
+                enabled = test;
+                _video->setActive(test);
+            }
         }
     }
 }
