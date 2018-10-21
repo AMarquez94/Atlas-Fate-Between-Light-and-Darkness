@@ -493,6 +493,7 @@ data/materials/mtl_patrol_estatico.material
 data/colliders/collider_mesh_patrol_atrapado.collider
 data/scenes/intro_decals.scene
 data/textures/barro_bottom.dds
+data/textures/tx_parche_cemento_rgh.dds
 data/materials/mtl_decal_bottom.material
 data/scenes/intro_decals_rotura.scene
 data/textures/parche cemento.dds
@@ -501,7 +502,6 @@ data/textures/bordes_largos.dds
 data/materials/mtl_decal_rotura_larga.material
 data/textures/tx_rotura_filo_alb.dds
 data/textures/tx_rotura_filo_nml.dds
-data/textures/tx_rotura_filo_rgh.dds
 data/materials/mtl_decal_borde_filo.material
 data/scenes/intro_decals_poster.scene
 data/textures/cartel_sam.dds

@@ -147,8 +147,18 @@
     "entity": {
       "name": "Camera_Cinematic_Plane_8",
       "transform": {
-        "pos": "-9.790 1.078 -6.173",
-        "rotation": "-0.1578 0.4854 0.0895 0.8552"
+        "pos": "-9.566 1.150 -6.629",
+        "rotation": "-0.0590 0.3234 0.0202 0.9441"
+      },
+       "prefab": "data/prefabs/camera_player_basilic.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_Plane_8_2",
+      "transform": {
+        "pos": "-9.870 1.131 -6.277",
+        "rotation": "-0.1760 0.3834 0.0747 0.9035"
       },
        "prefab": "data/prefabs/camera_player_basilic.prefab"
     }
