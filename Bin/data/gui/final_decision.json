@@ -12,7 +12,8 @@
 					{
 						"name" : "radial_endjob_child",
 						"type" : "radialbar",
-						"size" : "48 48",
+						"position" : "4 5",
+						"size" : "37 38",
 						"color" : "1 1 1 1",
 						"texture" : "data/textures/gui/radial_cuadrado.dds",
 						"variable" : "radial_endjob_factor"
@@ -53,7 +54,8 @@
 					{
 						"name" : "radial_shutdown_child",
 						"type" : "radialbar",
-						"size" : "48 48",
+						"position" : "6 5",
+						"size" : "37 38",
 						"color" : "1 1 1 1",
 						"texture" : "data/textures/gui/radial_cuadrado.dds",
 						"variable" : "radial_shutdown_factor"
