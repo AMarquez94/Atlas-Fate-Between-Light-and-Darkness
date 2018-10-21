@@ -7,6 +7,8 @@
 
 CApp* CApp::app_instance = nullptr;
 
+#define IDI_ICON1 102
+
 // 
 //--------------------------------------------------------------------------------------
 LRESULT CALLBACK CApp::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
@@ -157,12 +159,18 @@ bool CApp::createWindow(HINSTANCE new_hInstance, int nCmdShow) {
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
     wcex.hInstance = hInstance;
-    wcex.hIcon = NULL;
+    wcex.hIcon = (HICON)LoadImage(hInstance,
+        MAKEINTRESOURCE(IDI_ICON1), IMAGE_ICON,
+        ::GetSystemMetrics(SM_CXICON),
+        ::GetSystemMetrics(SM_CYICON), 0);
     wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wcex.lpszMenuName = NULL;
     wcex.lpszClassName = "MCVWindowsClass";
-    wcex.hIconSm = NULL;
+    wcex.hIconSm = (HICON)LoadImage(hInstance,
+        MAKEINTRESOURCE(IDI_ICON1), IMAGE_ICON,
+        ::GetSystemMetrics(SM_CXSMICON),
+        ::GetSystemMetrics(SM_CYSMICON), 0);
 
     if (!RegisterClassEx(&wcex))
         return false;
