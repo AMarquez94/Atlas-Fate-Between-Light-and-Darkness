@@ -10,7 +10,7 @@ end
 
 function restartCinematics()
 
-	cinematicsEnabled = false;
+	cinematicsEnabled = true;
 	
 	intro_intro_cinematicExecuted = false;
 	intro_inhibitor_cinematicExecuted = false;

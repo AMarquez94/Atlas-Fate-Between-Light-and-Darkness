@@ -16,8 +16,8 @@ bool CVideoTexture::initDecoder() {
     status = h264bsdInit(decoder, 0);
     if (status > 0) return false;
 
-    len = (u32)data.size();
-    byteStrm = data.data();
+    len = (u32)streaming_data.size();
+    byteStrm = streaming_data.data();
     num_frame = 0;
     picData = nullptr;
     finished = false;
@@ -37,12 +37,15 @@ bool CVideoTexture::create(const std::string& name) {
 
     //CFileDataProvider dp(name.c_str());
 
-    const std::vector<char> file_data = EngineFiles.loadResourceFile(name);
-    if (!file_data.size() > 0) {
+    dbg("CREATING VIDEO TEXTURE WITH NAME %s", name.c_str());
+    video_data = EngineFiles.loadResourceFile(name);
+    if (!video_data.size() > 0) {
         return false;
     }
-    data.resize(file_data.size());
-    std::copy(file_data.begin(), file_data.end(), &data[0]);
+    streaming_data = std::vector<u8>(video_data.begin(), video_data.end());
+
+    //data.resize(file_data.size());
+    //std::copy(file_data.begin(), file_data.end(), &data[0]);
     //data.resize(file_data.size() * sizeof(uint8_t));
     //memcpy_s(&data, sizeof(data), &file_data[0], sizeof(file_data.size()/** sizeof(char)*/));
 
@@ -70,6 +73,8 @@ bool CVideoTexture::create(const std::string& name) {
     uploadToVRAM();
 
     addVideoTextureToBackgroundPlayer(this);
+
+    EngineFiles.addPendingResourceFile(name, false);
 
     return true;
 }
@@ -176,6 +181,10 @@ void CVideoTexture::update(float dt) {
             dbg("Video %s loops after %f secs\n", getName(), time_to_play);
 
             close();
+
+            streaming_data.clear();
+            streaming_data = std::vector<u8>(video_data.begin(), video_data.end());
+
             initDecoder();
 
             // Reload
@@ -183,12 +192,6 @@ void CVideoTexture::update(float dt) {
             //if (dp.isValid())
             //    dp.readBytes(data.data(), data.size());
 
-            const std::vector<char> file_data = EngineFiles.loadResourceFile(name);
-
-            if (!file_data.size() > 0) {
-                data.resize(file_data.size());
-                std::copy(file_data.begin(), file_data.end(), &data[0]);
-            }
         }
     }
 }
