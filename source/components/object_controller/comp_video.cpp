@@ -59,7 +59,7 @@ void TCompVideo::update(float dt) {
         culling = cam->get<TCompCulling>();
     const TCompCulling::TCullingBits* culling_bits = culling ? &culling->bits : nullptr;
 
-    if (culling_bits) {
+    if (owner && cam && culling_bits) {
         CHandle aabb = owner->get<TCompAbsAABB>();
 
         if (aabb.isValid()) {
