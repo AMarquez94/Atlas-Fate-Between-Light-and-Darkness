@@ -323,7 +323,7 @@ data/meshes/mesh_littlespotlight.mesh
 data/textures/FLARE.dds
 data/textures/null_normal.dds
 data/materials/flare.material
-data/textures/VL.dds
+data/textures/tx_shaft_beam.dds
 data/materials/spot.material
 data/textures/tx_spotlight_alb.dds
 data/textures/tx_spotlight_ao.dds
@@ -332,7 +332,6 @@ data/textures/tx_spotlight_met.dds
 data/textures/tx_spotlight_nml.dds
 data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlight.material
-data/colliders/collider_mesh_littlespotlight.collider
 data/prefabs/neon_amarillo_3.prefab
 data/meshes/mesh_neon_amarilllo_3.mesh
 data/textures/neones_juntos_2_alb.dds
@@ -446,7 +445,6 @@ data/scenes/intro_cables.scene
 data/prefabs/baselargaelectrica.prefab
 data/meshes/mesh_baselargalectrica.mesh
 data/materials/mtl_spotlights.material
-data/colliders/collider_baselargalectrica.collider
 data/meshes/mesh_intro_cable001.mesh
 data/textures/default_emissive.dds
 data/materials/mtl_cables.material
@@ -961,9 +959,15 @@ data/scenes/intro_col_corridor_lights.scene
 data/colliders/luz_pasillo037.collider
 data/colliders/luz_pasillo.collider
 data/scenes/pantalla_intro_video.scene
-data/meshes/prueba_pantalla.mesh
-data/video/pantalla_atlas.h264
-data/materials/video_atlas.material
+data/meshes/intro_pantalla_video.mesh
+data/textures/default_texture.dds
+data/materials/video.material
+data/meshes/intro_pantalla_video_estr_low.mesh
+data/textures/tx_pantalla_borde_alb.dds
+data/textures/tx_pantalla_borde_nml.dds
+data/textures/tx_pantalla_borde_rgh.dds
+data/materials/mtl_pantalla_borde.material
+data/colliders/collider_intro_pantalla_video_estr_low.collider
 data/scenes/intro_planets.scene
 data/meshes/sphere_moon.mesh
 data/textures/tx_luna_alb.dds

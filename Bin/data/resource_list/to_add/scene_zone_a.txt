@@ -230,6 +230,7 @@ data/textures/tx_muralla_rgh.dds
 data/materials/mtl_muralla.material
 data/colliders/collider_muro_muralla_grande.collider
 data/meshes/mesh_muralla_interior.mesh
+data/colliders/collider_mesh_muralla_interior.collider
 data/scenes/zona_a_valla_torre.scene
 data/prefabs/pivote_valla_torre.prefab
 data/meshes/mesh_pivote_valla_torre.mesh

@@ -41,7 +41,7 @@ data/meshes/mesh_spotpannel.mesh
 data/textures/FLARE.dds
 data/textures/null_normal.dds
 data/materials/flare.material
-data/textures/VL.dds
+data/textures/tx_shaft_beam.dds
 data/materials/spot.material
 data/textures/tx_spotlight_alb.dds
 data/textures/tx_spotlight_ao.dds
