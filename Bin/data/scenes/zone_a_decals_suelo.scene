@@ -1,0 +1,29 @@
+[
+  {
+    "instance_container":
+    {
+      "name": "mtl_decal_suelo_damage1"
+      ,
+      "instance_data":
+      {
+        "mesh": "data/meshes/mtl_decal_suelo_damage1.instanced_mesh"
+        ,
+        "materials":
+        [
+          "data/materials/mtl_decal_suelo_damage1.material"
+        ]
+      }
+      ,
+      "instances":
+      [
+        {
+          "pos": "-52.1928 -0.0175448 -89.8874"
+          ,
+          "rotation": "0.0 0.707107 -1.37679e-07 -0.707107"
+          ,
+          "scale": "6.38725 0.1 3.79378"
+        }
+      ]
+    }
+  }
+]
