@@ -72,7 +72,8 @@
 		"fade_controller",
 		"rotator",
 		"lod",
-		"audio"
+		"audio",
+		"video"
 	],
 	"render_debug": [
 		"player_tempcontroller",

@@ -12,7 +12,7 @@ static void decodeVideoTextures() {
 
     CTimer tm;
     CTimer tm2;
-    float desired_frame_fps = 1.0f / 30.0f;
+    float desired_frame_fps = 1.0f / 25.0f;
     dbg("total fps %f ", desired_frame_fps);
 
     while (true) {
@@ -28,7 +28,7 @@ static void decodeVideoTextures() {
 
         float elapsed = tm.elapsedAndReset();
         float remaining_time = (desired_frame_fps - elapsed);
-        dbg("total remaining time %f\n", remaining_time);
+        //dbg("total remaining time %f\n", remaining_time);
 
         if (remaining_time > 0)
             std::this_thread::sleep_for(std::chrono::milliseconds((int)(remaining_time * 1000)));

@@ -115,6 +115,11 @@ struct TMsgFadeBody {
     DECL_MSG_ID();
 };
 
+struct TMsgVideoStatus {
+    bool status;
+    DECL_MSG_ID();
+};
+
 struct TMsgTriggerEnter {
 	CHandle h_other_entity;
 	DECL_MSG_ID();
