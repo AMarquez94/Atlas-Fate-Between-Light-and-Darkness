@@ -7,7 +7,7 @@
   {
     "albedo": "data/textures/tx_rotura_filo_alb.dds"
     ,
-    "roughness": "data/textures/tx_rotura_filo_rgh.dds"
+    "roughness": "data/textures/tx_parche_cemento_rgh.dds"
     ,
     "normal": "data/textures/tx_rotura_filo_nml.dds"
   }

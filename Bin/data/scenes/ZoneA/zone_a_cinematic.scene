@@ -7,8 +7,18 @@
     "entity": {
       "name": "Camera_Cinematic_ZoneA_Tower",
       "transform": {
-        "pos": "-95.96 7.29 -124.026",
-        "rotation": "0.0137 -0.9271 0.0343 0.3729"
+        "pos": "-99.894 4.88 -123.06",
+        "rotation": "-0.0252 -0.9729 -0.1894 0.1297"
+      },
+       "prefab": "data/prefabs/camera_player.prefab"
+    }
+  },
+  {
+    "entity": {
+      "name": "Camera_Cinematic_ZoneA_Tower_2",
+      "transform": {
+        "pos": "-94.1 4.88 -125-8",
+        "rotation": "-0.0595 -0.9327 -0.1816 0.3056"
       },
        "prefab": "data/prefabs/camera_player.prefab"
     }

@@ -58,28 +58,30 @@ end
 function cinematic_enter_zone_a()
 
 	startCinematicMode(10)
-	execScriptDelayed("startTransmission(9.5)", 0.27);
+	execScriptDelayed("startTransmission(11.25)", 0.27);
 	execScriptDelayed("activateSubtitles(20);", 0.27);
-	execScriptDelayed("activateSubtitles(21);", 5);
-	execScriptDelayed("deactivateSubtitles();", 9.5);
+	execScriptDelayed("activateSubtitles(21);", 7);
+	execScriptDelayed("deactivateSubtitles();", 11.5);
 	
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 	execScriptDelayed("move(\"The Player\", VEC3(-40,0,-90),VEC3(-41,0,-90));",3);
 	execScriptDelayed("resetMainCameras();",3.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_ZoneA_Tower_2\", 10.0, \"cinematic\", \"\")", 0.27);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_ZoneA_Tower\", 0.0, \"cinematic\", \"\")", 0.27);
 
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Sonar_2\", 10.0, \"cinematic\", \"\")", 5);
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Sonar_1\", 0.0, \"cinematic\", \"\")", 5);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_ZoneA_Tower\", 0)", 5.25);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Sonar_2\", 10.0, \"cinematic\", \"\")", 7);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Sonar_1\", 0.0, \"cinematic\", \"\")", 7);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_ZoneA_Tower\", 0)", 7.25);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_ZoneA_Tower_2\", 0)", 7.25);
 
-	execScriptDelayed("setInBlackScreen(0.25)",9);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Sonar_2\", 0)", 9.25);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Sonar_1\", 0)", 9.25);
-	execScriptDelayed("setOutBlackScreen(0.25);",9.75);
+	execScriptDelayed("setInBlackScreen(0.25)",11);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Sonar_2\", 0)", 11.25);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Sonar_1\", 0)", 11.25);
+	execScriptDelayed("setOutBlackScreen(0.25);",11.75);
 
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
-	execScriptDelayed("setCinematicPlayerState(false, \"\")", 10);
+	execScriptDelayed("setCinematicPlayerState(false, \"\")", 12);
 	cinematic_enter_zone_aExecuted = true;
 
 	temp = getEntityByName("intro_trigger_muralla");

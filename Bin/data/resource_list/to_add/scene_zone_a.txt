@@ -477,7 +477,16 @@ data/scenes/zone_a_colliders_valla_luz.scene
 data/scenes/zone_a_test.scene
 data/scenes/zone_a_decals.scene
 data/textures/barro_bottom.dds
+data/textures/tx_parche_cemento_rgh.dds
 data/materials/mtl_decal_bottom.material
+data/scenes/zone_a_decals_rotura.scene
+data/textures/tx_rotura_filo_alb.dds
+data/textures/tx_rotura_filo_nml.dds
+data/materials/mtl_decal_borde_filo.material
+data/textures/tx_parche_cemento_alb.dds
+data/materials/mtl_parche_cemento.material
+data/textures/bordes_largos.dds
+data/materials/mtl_decal_rotura_larga.material
 data/scenes/zone_a_props_torre.scene
 data/scenes/zone_a_casas_lp_1.scene
 data/prefabs/casas_1_lp.prefab
