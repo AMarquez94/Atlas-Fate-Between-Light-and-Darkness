@@ -37,13 +37,6 @@
       ,
       "collider":
       {
-        "shape": "box"
-        ,
-        "size": "0.75 1.0 0.07"
-      }
-      ,
-      "collider":
-      {
         "shape": "mesh"
         ,
         "name": "data/colliders/collider_BC_madera_andamio.collider"

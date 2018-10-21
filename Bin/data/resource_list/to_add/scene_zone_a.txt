@@ -480,6 +480,7 @@ data/scenes/zone_a_test.scene
 data/scenes/zone_a_decals.scene
 data/textures/barro_bottom.dds
 data/materials/mtl_decal_bottom.material
+data/scenes/zone_a_props_torre.scene
 data/scenes/zone_a_casas_lp_1.scene
 data/prefabs/casas_1_lp.prefab
 data/meshes/mesh_casas_1_lp.mesh

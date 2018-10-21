@@ -18,7 +18,7 @@ namespace GUI {
     class CWidget {
 
     public:
-		enum EWidgetType {WIDGET = 0, IMAGE, BAR, BUTTON, RADIAL_BAR, SPRITE, SUBTITLES, TEXT, VIDEO};
+		enum EWidgetType {WIDGET = 0, IMAGE, BAR, MIDDLE_BAR, BUTTON, RADIAL_BAR, SPRITE, SUBTITLES, TEXT, VIDEO};
         CWidget();
 
 		EWidgetType widgt_type;

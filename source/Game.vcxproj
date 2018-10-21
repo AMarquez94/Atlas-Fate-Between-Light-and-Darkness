@@ -224,6 +224,7 @@
     <ClCompile Include="gui\widgets\gui_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_button.cpp" />
     <ClCompile Include="gui\widgets\gui_image.cpp" />
+    <ClCompile Include="gui\widgets\gui_middle_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_radial_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_sprite.cpp" />
     <ClCompile Include="gui\widgets\gui_subtitles.cpp" />
@@ -501,6 +502,7 @@
     <ClInclude Include="gui\controllers\gui_menu_buttons_controller.h" />
     <ClInclude Include="gui\effects\gui_animate_uv.h" />
     <ClInclude Include="gui\effects\gui_change_textures.h" />
+    <ClInclude Include="gui\widgets\gui_middle_bar.h" />
     <ClInclude Include="gui\gui_controller.h" />
     <ClInclude Include="gui\gui_effect.h" />
     <ClInclude Include="gui\gui_params.h" />

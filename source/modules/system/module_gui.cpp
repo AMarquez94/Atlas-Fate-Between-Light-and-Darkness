@@ -103,7 +103,6 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineLogic.execSystemScriptDelayed("execDeadButton();", 3.2f);
 		EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 6.5f);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(3, 0, false);
-		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(3, 3.5, false);
 		EngineGUI.setButtonsState(false);
 	};
 
@@ -180,6 +179,12 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::CINEMATIC_INTRO, "data/gui/ingame_cinematic_intro.json");
 	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH, "data/gui/atlas_last_splash.json");
 	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH_LINE, "data/gui/atlas_last_splash_line.json");
+	registerWigdetStruct(EGUIWidgets::SPLASH_BACKGROUND, "data/gui/splash_background.json");
+	registerWigdetStruct(EGUIWidgets::SPLASH_UPF, "data/gui/splash_upf.json");
+	registerWigdetStruct(EGUIWidgets::SPLASH_BABYROBOT, "data/gui/splash_baby_robot.json");
+	registerWigdetStruct(EGUIWidgets::SPLASH_SOFTWARE, "data/gui/splash_software.json");
+	registerWigdetStruct(EGUIWidgets::SPLASH_ENGINE, "data/gui/splash_engine.json");
+	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH_SUB, "data/gui/atlas_last_splash_subtitle.json");
 	
 }
 
