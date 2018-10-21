@@ -166,6 +166,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::DEAD_MENU_BACKGROUND, "data/gui/dead_menu_background.json");
 	registerWigdetStruct(EGUIWidgets::CONTROLS, "data/gui/controls.json");
 	registerWigdetStruct(EGUIWidgets::LOADING_SPRITE, "data/gui/loading.json");
+	registerWigdetStruct(EGUIWidgets::LOADING_BACKGROUND, "data/gui/loading_background.json");
 	registerWigdetStruct(EGUIWidgets::BLACK_SCREEN, "data/gui/black_background.json");
 	registerWigdetStruct(EGUIWidgets::CREDITS_BACKGROUND, "data/gui/credits_background.json");
 	registerWigdetStruct(EGUIWidgets::CREDITS, "data/gui/credits.json");
