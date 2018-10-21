@@ -5,7 +5,7 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/barro_bottom.dds"
+    "albedo": "data/textures/tx_parche_cemento_alb.dds"
     ,
     "roughness": "data/textures/tx_parche_cemento_rgh.dds"
     ,

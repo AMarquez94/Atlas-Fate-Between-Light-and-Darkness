@@ -78,10 +78,8 @@ data/textures/tx_spotlight_met.dds
 data/textures/tx_spotlight_nml.dds
 data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlights.material
-data/colliders/collider_mesh_littlespotlight.collider
 data/prefabs/foco_brian.prefab
 data/meshes/mesh_spotlight.mesh
-data/colliders/collider_spotlight.collider
 data/prefabs/tubosgas.prefab
 data/meshes/mesh_tubosgas.mesh
 data/meshes/COL_mesh_tubospared.mesh
@@ -205,7 +203,6 @@ data/colliders/COL_collider_enchufebase004.collider
 data/meshes/COL_mesh_fuente.mesh
 data/textures/tx_fuentecoliseo_alb.dds
 data/textures/tx_fuentecoliseo_ao.dds
-data/textures/tx_fuentecoliseo_hgt.dds
 data/textures/tx_fuentecoliseo_nml.dds
 data/textures/tx_fuentecoliseo_rgh.dds
 data/materials/mtl_fuentecoliseo.material
