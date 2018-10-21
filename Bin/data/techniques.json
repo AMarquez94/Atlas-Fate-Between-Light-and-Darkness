@@ -210,6 +210,15 @@
 			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
+	"pbr_decals_solid": {
+		"vs_file": "data/shaders/pbr_decals.fx",
+		"vertex_type": "PosNUvUvT_x_Instance",
+		"category": "gbuffer_decals",
+		"z": "test_but_no_write",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds"
+		}
+	},
 	"pbr_ambient": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/pbr.fx",
@@ -294,6 +303,17 @@
 			"noise2": "data/textures/tx_noise_shadow2.dds"
 		}
 	},
+	"pbr_point_lights_shadow": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_pass",
+    "ps_entry_point": "PS_point_lights_shadow",
+    "vertex_type": "PosNUvUvT",
+    "category": "pbr_proc",
+    "z": "inverse_test_no_write",
+    "rs_config": "reverse_culling",
+    "blend": "additive"
+  },
 	"water": {
 		"vs_file": "data/shaders/water.fx",
 		"ps_file": "data/shaders/water.fx",

@@ -37,13 +37,6 @@
         }
       ]
       ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_spotlight.collider"
-      }
-      ,
       "abs_aabb": true
       ,
       "local_aabb": true

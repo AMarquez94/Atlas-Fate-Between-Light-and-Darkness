@@ -10,6 +10,7 @@
 #include "gui/widgets/gui_radial_bar.h"
 #include "gui/widgets/gui_video.h"
 #include "gui/widgets/gui_subtitles.h"
+#include "gui/widgets/gui_middle_bar.h"
 
 namespace
 {
@@ -65,11 +66,12 @@ CWidget* CParser::parseWidget(const json& data, CWidget* parent)
     // create and parse the widget
     if (type == "image")				wdgt = parseImage(data);
     else if (type == "text")			wdgt = parseText(data);
-    else if (type == "bar")			wdgt = parseBar(data);
-    else if (type == "radialbar")     wdgt = parseRadialBar(data);
-    else if (type == "button")		wdgt = parseButton(data);
+    else if (type == "bar")				wdgt = parseBar(data);
+	else if (type == "middle_bar")		wdgt = parseMiddleBar(data);
+    else if (type == "radialbar")		wdgt = parseRadialBar(data);
+    else if (type == "button")			wdgt = parseButton(data);
     else if (type == "video")			wdgt = parseUIVideo(data);
-    else if (type == "sprite")		wdgt = parseSprite(data);
+    else if (type == "sprite")			wdgt = parseSprite(data);
     else if (type == "subtitles")		wdgt = parseSubtitles(data);
     else								wdgt = parseWidget(data);
 
@@ -239,6 +241,18 @@ CWidget* CParser::parseBar(const json& data) {
     parseBarParams(wdgt->_barParams, data);
 
     return wdgt;
+}
+
+CWidget* CParser::parseMiddleBar(const json& data) {
+
+	CMiddleBar* wdgt = new CMiddleBar();
+
+	wdgt->widgt_type = CWidget::EWidgetType::MIDDLE_BAR;
+	parseParams(wdgt->_params, data);
+	parseImageParams(wdgt->_imageParams, data);
+	parseBarParams(wdgt->_barParams, data);
+
+	return wdgt;
 }
 
 CWidget* CParser::parseRadialBar(const json& data) {

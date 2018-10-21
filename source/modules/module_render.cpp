@@ -38,6 +38,7 @@
 #include "components/postfx/comp_render_environment.h"
 #include "components/postfx/comp_ssr.h"
 #include "render/video/background_player.h"
+#include "components/lighting/comp_light_point_shadows.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -338,6 +339,10 @@ void CModuleRender::generateFrame() {
             // Generate the shadow map for each active light
             getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
                 c->cullFrame();
+                c->generateShadowMap();
+            });
+
+            getObjectManager<TCompLightPointShadows>()->forEach([](TCompLightPointShadows* c) {
                 c->generateShadowMap();
             });
         }

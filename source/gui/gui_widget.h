@@ -18,7 +18,7 @@ namespace GUI {
     class CWidget {
 
     public:
-		enum EWidgetType {WIDGET = 0, IMAGE, BAR, BUTTON, RADIAL_BAR, SPRITE, SUBTITLES, TEXT, VIDEO};
+		enum EWidgetType {WIDGET = 0, IMAGE, BAR, MIDDLE_BAR, BUTTON, RADIAL_BAR, SPRITE, SUBTITLES, TEXT, VIDEO};
         CWidget();
 
 		EWidgetType widgt_type;
@@ -34,7 +34,15 @@ namespace GUI {
 		virtual TSpriteParams* getSpriteParams() { return nullptr; }
 		virtual TSubtitlesParams* getSubtitleParams() { return nullptr; }
         virtual TParams* getTParams() { return nullptr; }
-		
+        virtual void onActivate() {           
+            for (auto& child : _children)
+                child->onActivate();
+        }
+        virtual void onDeactivate() {
+            for (auto& child : _children)
+                child->onDeactivate();
+        }
+
         void addEffect(CEffect* fx);
 
         void computeLocal();

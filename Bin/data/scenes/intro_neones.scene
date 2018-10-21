@@ -295,7 +295,21 @@
         "pos": "5.36563 3.35196 3.38558"
         ,
         "rotation": "-0.707107 0.0 0.707107 -1.37679e-07"
-      }
+      },
+			"point_controller": {
+				"intensity_flow": 0.4,
+				"intensity_flow_speed": 0.1,
+				"radius_flow": 0.25,
+				"radius_flow_speed": 4,
+				"emissive_target": "mesh_neon_azul_2",
+				"light_target": "luz_neon_azul_2",		
+				"bursts" : [
+					["2 0.1 0.0"],
+					["0.2 0.05 0.0"],
+					["0.1 0.05 0.0"],
+					["0.1 0.05 0.0"]
+				]
+			}
     }
   }
   ,

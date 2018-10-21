@@ -10,7 +10,7 @@
 		"entity": {
 			"name": "BC_trigger_opendoor_bc",
 			"transform": {
-				"pos": "4.33772 -1.02928 -308.1655",
+				"pos": "4.33772 -1.02928 -305",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
 			"collider": {

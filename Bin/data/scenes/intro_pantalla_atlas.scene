@@ -1,80 +1,52 @@
-[
-  {
-    "entity":
-    {
-      "name": "intro_pantalla_atlas"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "intro_pantalla_video_estr_low"
-      ,
-      "transform":
-      {
-        "pos": "12.85 15.36 26.04"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/intro_pantalla_video_estr_low.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_pantalla_borde.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_intro_pantalla_video_estr_low.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "intro_pantalla_video"
-      ,
-      "transform":
-      {
-        "pos": "12.85 15.36 26.04"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/intro_pantalla_video.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/video.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
+[{
+		"entity": {
+			"name": "intro_pantalla_atlas",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "intro_pantalla_video_estr_low",
+			"transform": {
+				"pos": "12.85 15.36 26.04",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/intro_pantalla_video_estr_low.mesh",
+					"materials":
+					[
+						"data/materials/mtl_pantalla_borde.material"
+					]
+				}
+			],
+			"collider": {
+				"shape": "mesh",
+				"name": "data/colliders/collider_intro_pantalla_video_estr_low.collider"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "intro_pantalla_video",
+			"transform": {
+				"pos": "12.85 15.36 26.04",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/intro_pantalla_video.mesh",
+					"materials":
+					[
+						"data/materials/video.material"
+					]
+				}
+			],
+			"video": {},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
 ]

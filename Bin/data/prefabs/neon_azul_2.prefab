@@ -23,16 +23,6 @@
 				"shadows_resolution": 512,
 				"shadows_fmt": "R32_TYPELESS"
 			},
-			"light_controller": {
-				"intensity_flow": 0.4,
-				"intensity_flow_speed": 0.1,
-				"radius_flow": 0.25,
-				"radius_flow_speed": 4,
-				"emissive_target": "mesh_neon_azul_2",
-				"has_flicker": true,
-				"flicker_time": "0.2 4",
-				"off_time": 0.1
-			},
 			"abs_aabb": true,
 			"local_aabb": true,
 			"collider": {

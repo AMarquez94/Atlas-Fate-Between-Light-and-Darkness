@@ -158,11 +158,15 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         TMsgSceneCreated msg;
         EngineEntities.broadcastMsg(msg);
 
+        TMsgVideoStatus msg2;
+        msg2.status = true;
+        EngineEntities.broadcastMsg(msg2);
+
 		CModuleGameManager gameManager = CEngine::get().getGameManager();
 		/* TODO: Comprobar que se sigue en la misma escena */
 		gameManager.loadCheckpoint();
         Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->name);
-
+        
         // Set the global data.
         cb_globals.global_fog_color = current_scene->ground_fog;
         cb_globals.global_fog_env_color = current_scene->env_fog;
@@ -214,6 +218,10 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
 
             /* Only new entities */
             EngineEntities.broadcastMsg(msg);
+
+            TMsgVideoStatus msg2;
+            msg2.status = true;
+            EngineEntities.broadcastMsg(msg2);
 
             Engine.getLogic().execEvent(EngineLogic.SCENE_PARTIAL_START, current_scene->name);
 
@@ -273,6 +281,10 @@ bool CModuleSceneManager::unLoadActiveScene(bool partial, const std::string& new
             EngineInstancing.clearInstances();
             EngineParticles.killAll();
         }
+
+        TMsgVideoStatus msg;
+        msg.status = false;
+        EngineEntities.broadcastMsg(msg);
 
         EngineIA.clearSharedBoards();
         EngineNavmeshes.destroyNavmesh();

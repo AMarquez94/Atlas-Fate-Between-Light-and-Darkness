@@ -14,4 +14,6 @@ public:
 
 private:
   float _timer;
+  float _max_time;
+
 };

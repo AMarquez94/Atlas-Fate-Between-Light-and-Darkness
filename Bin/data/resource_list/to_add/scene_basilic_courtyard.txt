@@ -37,7 +37,6 @@ data/materials/mtl_spotlight.material
 data/colliders/collider_mesh_littlespotlight.collider
 data/prefabs/foco_brian.prefab
 data/meshes/mesh_spotlight.mesh
-data/colliders/collider_spotlight.collider
 data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene
 data/scenes/Basilic_courtyard/test_instancing.scene
 unit_quad_pos_xy.mesh
@@ -141,7 +140,6 @@ data/colliders/collider_BC_cupula_arco_low.collider
 data/meshes/BC_arco_low001.mesh
 data/textures/tx_arco_mezquita_alb.dds
 data/textures/tx_arco_mezquita_ao.dds
-data/textures/tx_arco_mezquita_met.dds
 data/textures/tx_arco_mezquita_nml.dds
 data/textures/tx_arco_mezquita_rgh.dds
 data/materials/mtl_arco_mezquita.material
@@ -551,6 +549,7 @@ data/textures/tx_tablas_subida_met.dds
 data/textures/tx_tablas_subida_nml.dds
 data/textures/tx_tablas_subida_rgh.dds
 data/materials/mtl_texturas_subida.material
+data/colliders/collider_BC_madera_andamio.collider
 data/scenes/BC_ColliderAuxEntrances.scene
 data/scenes/BC_estandarte.scene
 data/meshes/mesh_estandarte003.mesh

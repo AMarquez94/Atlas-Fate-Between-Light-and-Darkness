@@ -38,6 +38,10 @@
         "shape": "box"
         ,
         "size": "0.274919 0.341353 0.274058"
+		,
+		"group": "fence"
+		,
+		"mask": "player"
       }
       ,
       "abs_aabb": true

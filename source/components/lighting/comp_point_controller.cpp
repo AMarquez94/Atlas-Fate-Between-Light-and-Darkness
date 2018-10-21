@@ -4,6 +4,7 @@
 #include "components/comp_render.h"
 #include "components/lighting/comp_light_spot.h"
 #include "components/lighting/comp_light_point.h"
+#include "components/comp_particles.h"
 #include "components/comp_group.h"
 #include "entity/entity_parser.h"
 
@@ -16,12 +17,11 @@ void TCompPointController::debugInMenu() {
     ImGui::DragFloat("Intensity Flow Speed: ", &_intensity_flow_speed, 0.01, 0, 100);
     ImGui::DragFloat("Radius Flow: ", &_radius_flow, 0.01, 0, 100);
     ImGui::DragFloat("Radius Flow Speed: ", &_radius_flow_speed, 0.01, 0, 100);
-    ImGui::DragFloat("Flicker Off Time: ", &_off_time, 0.01, 0, 100);
-    ImGui::DragFloat2("Flicker Time Interval: ", &_flicker_time.x, 0.01, 0, 100);
 }
 
 void TCompPointController::load(const json& j, TEntityParseContext& ctx) {
 
+    _current_burst = -1;
     _intensity_flow = j.value("intensity_flow", 0.0f);
     _intensity_flow_speed = j.value("intensity_flow_speed", 0.0f);
 
@@ -29,13 +29,17 @@ void TCompPointController::load(const json& j, TEntityParseContext& ctx) {
     _radius_flow_speed = j.value("radius_flow_speed", 0.0f);
     _emissive_intensity = j.value("emissive_intensity", 0.0f);
     _emissive_target = j.value("emissive_target", "");
-    _flicker_time = j.count("flicker_time") ? loadVEC2(j["flicker_time"]) : VEC2::Zero;
-    _has_flicker = j.value("has_flicker", false);
-    _off_time = j.value("off_time", 0.0f);
-    _parent = ctx.entities_loaded.back();
+    _light_target = j.value("light_target", "");
+    _mesh_target = j.value("mesh_target", "");
 
-    // Pick a random time between these two values
-    _random_time = urand(_flicker_time.x, _flicker_time.y);
+    for (auto& b : j["bursts"])
+    {
+        VEC3 value = loadVEC3(b[0]);
+        _bursts.push_back(value);
+        _current_burst = 0;
+    }
+
+    _parent = ctx.entities_loaded.back();
 }
 
 /* Update the values during the given time */
@@ -57,9 +61,9 @@ void TCompPointController::registerMsgs() {
 void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
 
     CEntity * owner = CHandle(this).getOwner();
-    CEntity * parent = _parent;
+    TCompGroup* cGroup = owner->get<TCompGroup>();
+
     if (_emissive_target != "") {
-        TCompGroup* cGroup = parent->get<TCompGroup>();
         CEntity* eCone = cGroup->getHandleByName(_emissive_target);
         if (eCone) {
             _object_render = eCone->get<TCompRender>();
@@ -67,7 +71,17 @@ void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
         }
     }
 
-    _point_light = owner->get<TCompLightPoint>();
+    if (_light_target != "") {
+        CEntity* eCone = cGroup->getHandleByName(_light_target);
+        _point_light = eCone->get<TCompLightPoint>();
+
+    }
+
+    if (_mesh_target != "") {
+        CEntity* eCone = cGroup->getHandleByName(_mesh_target);
+        _mesh_render = eCone->get<TCompRender>();
+
+    }
 
     if (_point_light) {
         _radius = _point_light->getRadius();
@@ -112,22 +126,37 @@ void TCompPointController::updateIntensity(float dt)
 void TCompPointController::updateFlicker(float dt)
 {
     _flicker_elapsed_time += dt;
-    if (_has_flicker && _flicker_elapsed_time > _random_time) {
 
-        if (_point_light) _point_light->isEnabled = false;
-        if (_object_render)  _object_render->self_intensity = 0;
+    if (_current_burst != -1 && _flicker_elapsed_time > _bursts[_current_burst].x) {
 
-        if (_flicker_elapsed_time > (_random_time + _off_time)) {
+        float current_wait_time = _bursts[_current_burst].x + _random_time;// +_random_time;
+
+        // Flicker has been launched.
+        if (!_flicker_status) {
+            if (_point_light) _point_light->isEnabled = false;
+            if (_object_render)  _object_render->self_intensity = 0;
+            if (_object_particles)  _object_particles->setSystemState(false);
+            if (_mesh_render)  _mesh_render->visible = false;
+            _flicker_status = true;
+        }
+
+        if (_flicker_elapsed_time > (current_wait_time + _bursts[_current_burst].y)) {
             if (_point_light) {
                 _point_light->isEnabled = true;
                 _point_light->setIntensity(_intensity);
             }
 
-            if (_object_render)  _object_render->self_intensity = _emissive_intensity;
+            if (_object_render) _object_render->self_intensity = _emissive_intensity;
+            if (_object_particles) _object_particles->setSystemState(true);
+            if (_mesh_render)  _mesh_render->visible = true;
+
+            _flicker_status = false;
 
             _elapsed_time = 0;
             _flicker_elapsed_time = 0;
-            _random_time = urand(_flicker_time.x, _flicker_time.y);
+            _current_burst = (_current_burst + 1) % _bursts.size();
+            _random_time = _bursts[_current_burst].z > 0 ? urand(_bursts[_current_burst].x - _bursts[_current_burst].z,
+                                                                    _bursts[_current_burst].x + _bursts[_current_burst].z) : 0;
         }
     }
 }

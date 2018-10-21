@@ -16,8 +16,8 @@ bool CVideoTexture::initDecoder() {
     status = h264bsdInit(decoder, 0);
     if (status > 0) return false;
 
-    len = (u32)data.size();
-    byteStrm = data.data();
+    len = (u32)streaming_data.size();
+    byteStrm = streaming_data.data();
     num_frame = 0;
     picData = nullptr;
     finished = false;
@@ -30,19 +30,22 @@ bool CVideoTexture::create(const std::string& name) {
     // Read the whole file...
     //CFileDataProvider dp(name.c_str());
     //if (!dp.isValid())
-        //return false;
+    //return false;
 
     //data.resize(dp.fileSize());
     //dp.readBytes(data.data(), data.size());
 
     //CFileDataProvider dp(name.c_str());
 
-    const std::vector<char> file_data = EngineFiles.loadResourceFile(name);
-    if (!file_data.size() > 0) {
+    dbg("CREATING VIDEO TEXTURE WITH NAME %s", name.c_str());
+    video_data = EngineFiles.loadResourceFile(name);
+    if (!video_data.size() > 0) {
         return false;
     }
-    data.resize(file_data.size());
-    std::copy(file_data.begin(), file_data.end(), &data[0]);
+    streaming_data = std::vector<u8>(video_data.begin(), video_data.end());
+
+    //data.resize(file_data.size());
+    //std::copy(file_data.begin(), file_data.end(), &data[0]);
     //data.resize(file_data.size() * sizeof(uint8_t));
     //memcpy_s(&data, sizeof(data), &file_data[0], sizeof(file_data.size()/** sizeof(char)*/));
 
@@ -70,6 +73,8 @@ bool CVideoTexture::create(const std::string& name) {
     uploadToVRAM();
 
     addVideoTextureToBackgroundPlayer(this);
+
+    EngineFiles.addPendingResourceFile(name, false);
 
     return true;
 }
@@ -165,28 +170,33 @@ bool CVideoTexture::isFrameReadyToUpload() const {
 // Called from a background thread...
 void CVideoTexture::update(float dt) {
 
-    decodeNextFrame();
+    if (active) {
+        //dbg("Video active updated\n");
+        decodeNextFrame();
 
-    // Rewind those that finished.
-    if (hasFinished()) {
+        // Rewind those that finished.
+        if (hasFinished()) {
 
-        float time_to_play = chrono.elapsedAndReset();
+            float time_to_play = chrono.elapsedAndReset();
+            dbg("Video %s loops after %f secs\n", getName(), time_to_play);
 
-        close();
-        initDecoder();
+            close();
 
-        // Reload
-        CFileDataProvider dp(name.c_str());
-        if (dp.isValid())
-            dp.readBytes(data.data(), data.size());
-        
-        
-        const std::vector<char> file_data = EngineFiles.loadResourceFile(name);
+            streaming_data.clear();
+            streaming_data = std::vector<u8>(video_data.begin(), video_data.end());
 
-        if (!file_data.size() > 0) {
-            data.resize(file_data.size());
-            std::copy(file_data.begin(), file_data.end(), &data[0]);
+            initDecoder();
+
+            // Reload
+            //CFileDataProvider dp(name.c_str());
+            //if (dp.isValid())
+            //    dp.readBytes(data.data(), data.size());
+
         }
     }
 }
 
+void CVideoTexture::setActive(bool state) {
+
+    active = state;
+}

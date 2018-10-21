@@ -18,6 +18,7 @@ Texture2D    txLuminance      SLOT(TS_LUMINANCE);
 // from the light and env
 Texture2D    txLightProjector SLOT(TS_LIGHT_PROJECTOR);
 Texture2D    txLightShadowMap SLOT(TS_LIGHT_SHADOW_MAP);
+TextureCube  txCubeShadowMap  SLOT( TS_LIGHT_SHADOW_MAP );    // Only one shadow map slot will be active
 Texture1DArray    txLightVolumeMap SLOT(TS_LIGHT_VOLUME_MAP);
 TextureCube  txEnvironmentMap SLOT(TS_ENVIRONMENT_MAP);
 TextureCube  txIrradianceMap  SLOT(TS_IRRADIANCE_MAP);
@@ -159,6 +160,97 @@ float computeShadowFactor(float3 wPos) {
   //return shadowsTap(homo_space.xy, homo_space.z);
   // Divide by the number of taps
   
+  return shadow_factor / 12.f;
+}
+
+float tapCubeShadowAt(float3 L) {
+
+  // Might be removed in changing faces layout...
+  L = float3( -L.x, -L.y, L.z );
+
+  // Hardcoded for testing only
+  float zn = 1;
+  float zf = 200;
+
+  // Get zLinear in view space
+  float3 LAbs = abs(L);
+  float zLinear = max(LAbs.x, max(LAbs.y, LAbs.z));
+
+  // get zProj as stored in the depth buffer
+  float zProj = zf / ( zf - zn ) * ( 1.0 - zn / zLinear ); 
+
+  // Use PCF sampling
+  return txCubeShadowMap.SampleCmpLevelZero(samPCF, L, zProj);
+}
+
+//--------------------------------------------------------------------------------------
+// Multiple samples rotated using a random angle based on the direction, are taken as the
+// regular 2D
+// Random values are added to the full vector L, so the bigger it is, the more we have to move (*d2l)
+float computeCubeShadowFactor( float3 L ) {
+
+  // Value to tweak, fixes some shadow acne if a value of shadows_steps is too big/
+  L *= 0.99f;
+  
+  // Simple shadow with PCF
+  //return tapCubeShadowAt(L);
+
+  // Poisson distribution random points around a circle
+  const float2 offsets[] = {
+    float2(0,0),
+    float2(-0.3700152, 0.575369),
+    float2(0.5462944, 0.5835142),
+    float2(-0.4171277, -0.2965972),
+    float2(-0.8671125, 0.4483297),
+    float2(0.183309, 0.1595028),
+    float2(0.6757001, -0.4031624),
+    float2(0.8230421, 0.1482845),
+    float2(0.1492012, 0.9389217),
+    float2(-0.2219742, -0.7762423),
+    float2(-0.9708459, -0.1171268),
+    float2(0.2790326, -0.8920202)
+  };
+
+  // 1./ resolution * custom scale factor
+  float coords_scale = light_shadows_step_with_inv_res * 2;
+
+  // Find a random rotation angle based on the world light dir coords
+  float angle = 2 * 3.14159268f * hash2( L.x + L.y + L.z ).x;
+  float cos_angle = cos( angle );
+  float sin_angle = sin( angle );
+
+  // Find two perp axis
+  float d2l = length( L );
+  float3 left = normalize(cross(float3(0, 1, 0), L));
+  float3 up = normalize(cross(L, left));
+
+  left *= coords_scale * d2l;
+  up *= coords_scale * d2l;
+
+  // Accumulate shadow taps
+  float shadow_factor = 0;
+  [unroll]
+  for( int i=0; i<12; ++i ) {
+
+    // Get the random offset
+    float2 coords = offsets[i];
+
+    // Rotate the offset
+    float2 rotated_coord = float2( 
+                              coords.x * cos_angle - coords.y * sin_angle,
+                              coords.y * cos_angle + coords.x * sin_angle 
+                              );
+
+    // Rotate around the L direction
+    float3 deltaDir = left * rotated_coord.x + up * rotated_coord.y; 
+
+    // Tap on a point perp to the original L
+    float tap_sample = tapCubeShadowAt(L + deltaDir);
+
+    shadow_factor += tap_sample;
+  }
+
+  // Divide by the number of taps
   return shadow_factor / 12.f;
 }
 

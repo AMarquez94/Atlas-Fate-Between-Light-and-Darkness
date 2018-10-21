@@ -1,0 +1,14 @@
+{
+  "technique": "pbr_decals_solid.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/cartel_sam.dds"
+    ,
+    "roughness": "data/textures/tx_parche_cemento_rgh.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

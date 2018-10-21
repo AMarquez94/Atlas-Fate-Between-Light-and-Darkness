@@ -42,7 +42,8 @@
 		"light_dir",
 		"light_spot",
 		"light_point",
-		"light_controller",
+		"point_controller",
+		"spot_controller",
 		"projector",
 		"camera_flyover",
 		"rigid_anim",
@@ -71,7 +72,8 @@
 		"fade_controller",
 		"rotator",
 		"lod",
-		"audio"
+		"audio",
+		"video"
 	],
 	"render_debug": [
 		"player_tempcontroller",

@@ -344,6 +344,7 @@ void CModuleLogic::publishClasses() {
 	m->set("execLastAtlasScreen", SLB::FuncCall::create(&execLastAtlasScreen));
 	m->set("removeAtlasSplash", SLB::FuncCall::create(&removeAtlasSplash));
 	m->set("removeTempCredits", SLB::FuncCall::create(&removeTempCredits));
+	m->set("activateCredits", SLB::FuncCall::create(&activateCredits));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -1198,6 +1199,7 @@ void unlockDeadButton() {
 }
 
 void execDeadButton() {
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(3, 0.3, false);
 	EngineGUI.setButtonsState(true);
 	Engine.get().getGameManager().resetToCheckpoint();
 }
@@ -1324,15 +1326,33 @@ void execLastAtlasScreen() {
 		EngineLerp.lerpElement(aux_x_r, 1.0f, 4.0f, 5.0f);
 
 	}
-	//EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,25,false);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH_SUB)->makeChildsFadeIn(2.0, 9, false);
+
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,16,false);
+	EngineLogic.execScriptDelayed("activateCredits();",18.5);
 	//EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
 	//EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);
 	//EngineLogic.execScriptDelayed("removeTempCredits()", 25.25);
 	//EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")",25.5);
 }
 
-void removeAtlasSplash() {
+void activateCredits() {
+	EngineLogic.execScript("unloadScene();");
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH_LINE);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH_SUB);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.25, 0.0, false);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS_BACKGROUND);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS);
+	EngineLogic.execScriptDelayed("removeAtlasSplash()", 43.0);
+	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")", 43.0);
+	
+}
+
+void removeAtlasSplash() {
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CREDITS);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CREDITS_BACKGROUND);
 }
 
 void tempCredits() {

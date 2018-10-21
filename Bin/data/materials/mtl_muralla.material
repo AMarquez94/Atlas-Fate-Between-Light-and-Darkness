@@ -1,14 +1,10 @@
 {
-  "shadows": true
-  ,
-  "textures":
-  {
-    "albedo": "data/textures/tx_muralla_alb.dds"
-    ,
-    "roughness": "data/textures/tx_muralla_rgh.dds"
-    ,
-    "normal": "data/textures/tx_muralla_nml.dds"
-    ,
-    "height": "data/textures/tx_muralla_hgt.dds"
-  }
+	"technique": "pbr_parallax.tech",
+	"shadows": true,
+	"textures": {
+		"albedo": "data/textures/tx_muralla_alb.dds",
+		"roughness": "data/textures/tx_muralla_rgh.dds",
+		"normal": "data/textures/tx_muralla_nml.dds",
+		"height": "data/textures/tx_muralla_hgt.dds"
+	}
 }

@@ -12,8 +12,11 @@ class CRenderToCube : public CTexture {
 
     CCamera                     camera;
     ID3D11RenderTargetView*     render_target_views[nsides];
-    ID3D11DepthStencilView*     depth_stencil_view = nullptr;
+    ID3D11DepthStencilView*     depth_stencil_views[nsides];
     CTexture*                   ztexture = nullptr;
+
+    ID3D11ShaderResourceView*   depth_shader_resource_view = nullptr;
+    ID3D11ShaderResourceView*   shader_resource_views[nsides];
 
     friend class CDeferredRender;
 
@@ -29,11 +32,13 @@ public:
     void activateViewport();
     void clearColorBuffer(int face, const FLOAT ColorRGBA[4]);
     void clearDepthBuffer();
+    void clearDepthBuffer(int face);
     void getCamera(int face, CCamera* camera_to_use) const;
 
     void setPosition(VEC3 new_pos);
     int  getNSides() const { return nsides; }
 
+    void activateCubeShadowMap(int slot);
     CTexture* getZTexture() { return ztexture; }
     bool isValid() const { return render_target_views[0] != nullptr; }
     void debugInMenu() override;
