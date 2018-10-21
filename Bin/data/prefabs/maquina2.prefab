@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "maquina2"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_maquina2"
       ,
       "transform":

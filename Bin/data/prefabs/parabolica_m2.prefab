@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "parabolica_m2"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_parabolica_m2"
       ,
       "transform":

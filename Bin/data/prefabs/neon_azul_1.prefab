@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "neon_azul_1"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_neon_azul_1"
       ,
       "transform":

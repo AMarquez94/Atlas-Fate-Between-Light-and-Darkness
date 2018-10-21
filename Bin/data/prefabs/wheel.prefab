@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "wheel"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_wheel"
       ,
       "transform":

@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "neon_amarillo_5"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "luz_neon_amarillo_5"
       ,
       "transform":

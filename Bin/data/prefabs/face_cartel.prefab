@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "Face_Cartel"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_cartel_low"
       ,
       "transform":

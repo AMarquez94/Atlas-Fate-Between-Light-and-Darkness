@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "saliente3"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_saliente3"
       ,
       "transform":
