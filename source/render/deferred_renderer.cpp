@@ -11,6 +11,7 @@
 #include "components/postfx/comp_render_ao.h"
 #include "render/texture/render_to_cube.h"
 #include "components/comp_transform.h"
+#include "components/lighting/comp_light_point_shadows.h"
 #include "ctes.h"
 
 void CDeferredRenderer::renderGBuffer() {
@@ -143,6 +144,7 @@ void CDeferredRenderer::renderAccLight() {
 	renderPointLights();
 	renderSpotLights();
     renderProjectors();
+    renderPointLightsShadows();
 	renderDirectionalLights();
 	renderSkyBox();
     renderPreHDR();
@@ -237,6 +239,15 @@ void CDeferredRenderer::renderSpotLights() {
             mesh->render();
         }
 	});
+}
+
+// -------------------------------------------------------------------------
+void CDeferredRenderer::renderPointLightsShadows() {
+    CTraceScoped gpu_scope("renderPointLightsShadows");
+    Resources.get("pbr_point_lights_shadow.tech")->as<CRenderTechnique>()->activate();
+    getObjectManager<TCompLightPointShadows>()->forEach([](TCompLightPointShadows* c) {
+        c->render();
+    });
 }
 
 // Optimize this in the next milestone, use CS
