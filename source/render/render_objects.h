@@ -25,6 +25,7 @@ void renderMesh(const CRenderMesh* mesh, MAT44 new_matrix, VEC4 color = VEC4(1, 
 void renderWiredAABB(const AABB& aabb, MAT44 world, VEC4 color);
 void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture);
 void renderLine(VEC3 src, VEC3 dst, VEC4 color);
+void renderCameraVolume(const CCamera& cam, VEC4 color = VEC4(1, 1, 1, 1));
 
 // Helper to create a depth stencil, returning all the dx objects
 bool createDepthStencil(

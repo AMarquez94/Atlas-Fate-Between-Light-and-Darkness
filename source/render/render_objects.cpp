@@ -470,6 +470,14 @@ void renderFullScreenQuad(const std::string& tech_name, const CTexture* texture)
 }
 
 // ---------------------------------------------
+void renderCameraVolume(const CCamera& camera, VEC4 color) {
+    MAT44 inv_view_proj = camera.getViewProjection().Invert();
+    auto mesh = Resources.get("unit_frustum.mesh")->as<CRenderMesh>();
+    setWorldTransform(inv_view_proj, color);
+    mesh->activateAndRender();
+}
+
+// ---------------------------------------------
 bool createDepthStencil(
 	const std::string& aname,
 	int width, int height,
