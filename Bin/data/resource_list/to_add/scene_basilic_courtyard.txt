@@ -567,11 +567,6 @@ data/textures/tx_terminal_rgh.dds
 data/materials/mtl_terminal.material
 data/materials/mtl_terminal_post.material
 data/colliders/collider_mesh_terminal.collider
-data/scenes/BC_Screens.scene
-data/meshes/BC_Screen001.mesh
-data/video/pantalla_atlas.h264
-data/materials/video_atlas.material
-data/meshes/BC_Screen002.mesh
 data/scenes/BC_Entrada_chapas.scene
 data/meshes/bc_mesh_chapa.mesh
 data/textures/tx_chapa_alb.dds

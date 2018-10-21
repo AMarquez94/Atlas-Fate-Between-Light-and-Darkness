@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "gui_video.h"
+#include "render/video/video_texture.h"
 
 using namespace GUI;
 
@@ -29,4 +30,14 @@ TImageParams* CUIVideo::getImageParams()
 void CUIVideo::update(float dt)
 {
 
+}
+
+void CUIVideo::onActivate() {
+
+    ((CVideoTexture*)(_imageParams._texture))->setActive(true);
+}
+
+void CUIVideo::onDeactivate() {
+
+    ((CVideoTexture*)(_imageParams._texture))->setActive(false);
 }

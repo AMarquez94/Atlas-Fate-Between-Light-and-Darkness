@@ -149,28 +149,35 @@ bool CVideoTexture::isFrameReadyToUpload() const {
 // Called from a background thread...
 void CVideoTexture::update(float dt) {
 
-    decodeNextFrame();
+    if (active) {
+        dbg("Video active updated\n");
+        decodeNextFrame();
 
-    // Rewind those that finished.
-    if (hasFinished()) {
+        // Rewind those that finished.
+        if (hasFinished()) {
 
-        float time_to_play = chrono.elapsedAndReset();
-        dbg("Video loops after %f secs\n", time_to_play);
+            float time_to_play = chrono.elapsedAndReset();
+            dbg("Video %s loops after %f secs\n", getName(), time_to_play);
 
-        close();
-        initDecoder();
+            close();
+            initDecoder();
 
-        // Reload
-        CFileDataProvider dp(name.c_str());
-        if (dp.isValid())
-            dp.readBytes(data.data(), data.size());
-        
-        //const std::vector<char> file_data = EngineFiles.loadResourceFile(name);
+            // Reload
+            CFileDataProvider dp(name.c_str());
+            if (dp.isValid())
+                dp.readBytes(data.data(), data.size());
 
-        //if (!file_data.size() > 0) {
-        //    data.resize(file_data.size());
-        //    std::copy(file_data.begin(), file_data.end(), &data[0]);
-        //}
+            //const std::vector<char> file_data = EngineFiles.loadResourceFile(name);
+
+            //if (!file_data.size() > 0) {
+            //    data.resize(file_data.size());
+            //    std::copy(file_data.begin(), file_data.end(), &data[0]);
+            //}
+        }
     }
 }
 
+void CVideoTexture::setActive(bool state) {
+
+    active = state;
+}

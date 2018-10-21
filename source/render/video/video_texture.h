@@ -28,6 +28,8 @@ class CVideoTexture : public CTexture {
 
 public:
 
+    bool active = false;
+
     ~CVideoTexture();
 
     bool create(const std::string& name) override;
@@ -36,5 +38,6 @@ public:
     bool isFrameReadyToUpload() const;
     bool uploadToVRAM();
 
+    void setActive(bool state);
 };
 
