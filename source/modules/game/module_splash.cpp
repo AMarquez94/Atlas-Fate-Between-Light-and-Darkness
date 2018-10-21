@@ -6,9 +6,10 @@
 
 bool CModuleSplash::start()
 {
-	_max_time = 28.0f;
+	_max_time = 27.0f;
     _timer = 0.0f;
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::SPLASH_SCREEN);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(0.75,26,false);
     CEngine::get().getRender().setBackgroundColor(1.f, 0.f, 0.f, 1.f);
     return true;
 }
