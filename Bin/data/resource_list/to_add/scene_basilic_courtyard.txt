@@ -25,7 +25,7 @@ data/meshes/mesh_littlespotlight.mesh
 data/textures/FLARE.dds
 data/textures/null_normal.dds
 data/materials/flare.material
-data/textures/VL.dds
+data/textures/tx_shaft_beam.dds
 data/materials/spot.material
 data/textures/tx_spotlight_alb.dds
 data/textures/tx_spotlight_ao.dds
@@ -34,7 +34,6 @@ data/textures/tx_spotlight_met.dds
 data/textures/tx_spotlight_nml.dds
 data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlight.material
-data/colliders/collider_mesh_littlespotlight.collider
 data/prefabs/foco_brian.prefab
 data/meshes/mesh_spotlight.mesh
 data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene
@@ -245,7 +244,6 @@ data/materials/mtl_cables.material
 data/prefabs/baselargaelectrica.prefab
 data/meshes/mesh_baselargalectrica.mesh
 data/materials/mtl_spotlights.material
-data/colliders/collider_baselargalectrica.collider
 data/prefabs/cajafusibles.prefab
 data/meshes/mesh_cajafusibles.mesh
 data/prefabs/mastilelectrico.prefab
@@ -521,7 +519,6 @@ data/textures/tx_suelo_mezquita3_nml.dds
 data/textures/tx_suelo_mezquita3_rgh.dds
 data/materials/mtl_suelo_mezquita.material
 data/colliders/collider_mesh_bc_pasillo_entre.collider
-data/meshes/BC_piedra_arco.mesh
 data/scenes/bc_corridor_logic.scene
 data/scenes/bc_corridor_lights.scene
 data/colliders/luz_corridor_bc.collider

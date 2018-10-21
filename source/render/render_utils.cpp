@@ -350,6 +350,20 @@ struct CBlends {
         memset(&desc, 0x00, sizeof(desc));
         desc.RenderTarget[0].BlendEnable = TRUE;
         desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlend = D3D11_BLEND_INV_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlend = D3D11_BLEND_SRC_ALPHA;
+        desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+        desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+        desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_INV_SRC_ALPHA;
+        desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_SRC_ALPHA;
+
+        if (!add(desc, BLEND_CFG_NMULTIPLICATIVE_GBUFFER, "nmultiplicative_gbuffer"))
+            return false;
+
+        // Combinative blending
+        memset(&desc, 0x00, sizeof(desc));
+        desc.RenderTarget[0].BlendEnable = TRUE;
+        desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
         desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
         desc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE;
         desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
