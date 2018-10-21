@@ -60,5 +60,6 @@ bool CModuleSplash::stop()
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SPLASH_SOFTWARE);
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SPLASH_ENGINE);
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SPLASH_SCREEN);
 	return true;
 }
