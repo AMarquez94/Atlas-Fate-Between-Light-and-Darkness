@@ -559,7 +559,8 @@ float4 PS_dir_lights(in float4 iPosition : SV_Position) : SV_Target
 
 float4 PS_point_lights_shadow( in float4 iPosition : SV_Position ) : SV_Target
 {
-  return shade( iPosition, false, true );
+	float3 out_lightdir;
+  return shade( iPosition, out_lightdir, true );
 }
 
 float4 PS_spot_lights(in float4 iPosition : SV_Position) : SV_Target

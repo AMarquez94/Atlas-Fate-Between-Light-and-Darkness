@@ -243,6 +243,7 @@ void CDeferredRenderer::renderSpotLights() {
 
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderPointLightsShadows() {
+
     CTraceScoped gpu_scope("renderPointLightsShadows");
     Resources.get("pbr_point_lights_shadow.tech")->as<CRenderTechnique>()->activate();
     getObjectManager<TCompLightPointShadows>()->forEach([](TCompLightPointShadows* c) {

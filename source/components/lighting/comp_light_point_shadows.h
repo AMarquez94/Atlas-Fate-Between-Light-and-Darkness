@@ -1,7 +1,7 @@
 #pragma once
 
-#include "comp_base.h"
-#include "comp_camera.h"
+#include "../comp_base.h"
+#include "../comp_camera.h"
 
 class CTexture;
 class CRenderToCube;
