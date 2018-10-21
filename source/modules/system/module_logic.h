@@ -183,6 +183,7 @@ void pasarelaLightsFadeOut();
 void speedUpRuedasFinalScene();
 void stopRuedasFinalScene();
 void execLastAtlasScreen();
+void activateCredits();
 void removeAtlasSplash();
 void removeTempCredits();
 

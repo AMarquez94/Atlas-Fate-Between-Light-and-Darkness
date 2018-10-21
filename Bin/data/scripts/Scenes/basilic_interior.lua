@@ -1,12 +1,12 @@
 function onSceneStart_scene_basilic_interior()
 	deleteAllCacheResources();
 	setOutBlackScreen(0.25);
-	--pre_end_cinematic_scene();
+	pre_end_cinematic_scene();
 	gameManager:changeToEndScene();
 	--execScriptDelayed("lightUpForFinalScene(10);");
 	--shutdown_end_cinematic_scene
 	--temp_final_decision();
-	finish_job_end_cinematic_scene()
+	--finish_job_end_cinematic_scene()
 	--shutdown_end_cinematic_scene();
 
 
@@ -160,6 +160,7 @@ function pre_end_cinematic_scene()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_6_Rot_1\", 0.0)",39);
 
 	--Eighth plane
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_8_2\", 8.0, \"cinematic\", \"\")", 47);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_8\", 0.0, \"cinematic\", \"\")", 47);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_7_Rot_2\", 0.0)",47);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_7_Rot_1\", 0.0)",47);
@@ -169,6 +170,7 @@ function pre_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_9_Rot_2\", 15.0, \"cinematic\", \"\")", 51);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_9_Rot_1\", 0.0, \"cinematic\", \"\")", 51);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_8\", 0.0)",51);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_8_2\", 0.0)",51);
 
 	--Tenth plane--Starts talking
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_10_Rot_2\", 15.0, \"cinematic\", \"\")", 58);

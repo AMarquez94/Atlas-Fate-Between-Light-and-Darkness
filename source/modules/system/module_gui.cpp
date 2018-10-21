@@ -103,7 +103,6 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineLogic.execSystemScriptDelayed("execDeadButton();", 3.2f);
 		EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 6.5f);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(3, 0, false);
-		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(3, 3.5, false);
 		EngineGUI.setButtonsState(false);
 	};
 
@@ -168,6 +167,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::CONTROLS, "data/gui/controls.json");
 	registerWigdetStruct(EGUIWidgets::LOADING_SPRITE, "data/gui/loading.json");
 	registerWigdetStruct(EGUIWidgets::BLACK_SCREEN, "data/gui/black_background.json");
+	registerWigdetStruct(EGUIWidgets::CREDITS_BACKGROUND, "data/gui/credits_background.json");
 	registerWigdetStruct(EGUIWidgets::CREDITS, "data/gui/credits.json");
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CONTROLS_BACKGROUND , "data/gui/main_menu_controls_background.json");
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND , "data/gui/main_menu_credits_background.json");
