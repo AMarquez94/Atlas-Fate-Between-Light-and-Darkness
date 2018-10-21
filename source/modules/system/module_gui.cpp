@@ -103,7 +103,6 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineLogic.execSystemScriptDelayed("execDeadButton();", 3.2f);
 		EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 6.5f);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(3, 0, false);
-		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(3, 3.5, false);
 		EngineGUI.setButtonsState(false);
 	};
 

@@ -1199,6 +1199,7 @@ void unlockDeadButton() {
 }
 
 void execDeadButton() {
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(3, 0.3, false);
 	EngineGUI.setButtonsState(true);
 	Engine.get().getGameManager().resetToCheckpoint();
 }
