@@ -8,7 +8,7 @@ bool CModuleSplash::start()
 {
 	_max_time = 28.0f;
     _timer = 0.0f;
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::SPLASH_SCREEN);
+	//EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::SPLASH_SCREEN);
 	//EngineGUI.getWidget(CModuleGUI::EGUIWidgets::SPLASH_SCREEN)->makeChildsFadeOut(1.5,4.5,false);
     //EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(0.25f,7.75f,false);
     CEngine::get().getRender().setBackgroundColor(1.f, 0.f, 0.f, 1.f);
