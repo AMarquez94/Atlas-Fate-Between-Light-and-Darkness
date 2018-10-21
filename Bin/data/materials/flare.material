@@ -3,7 +3,7 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/default_texture.dds"
+    "albedo": "data/textures/FLARE.dds"
     ,
     "normal": "data/textures/null_normal.dds"
   }
