@@ -35,9 +35,13 @@
       ,
       "collider":
       {
-        "shape": "mesh"
+        "shape": "convex"
         ,
         "name": "data/colliders/collider_chairjunk.collider"
+		,
+		"group": "fence"
+		,
+		"mask": "player"
       }
       ,
       "abs_aabb": true

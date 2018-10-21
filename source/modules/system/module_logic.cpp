@@ -1324,6 +1324,7 @@ void execLastAtlasScreen() {
 		EngineLerp.lerpElement(aux_x_r, 1.0f, 4.0f, 5.0f);
 
 	}
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH_SUB)->makeChildsFadeIn(2.0, 9, false);
 	//EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,25,false);
 	//EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
 	//EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);
