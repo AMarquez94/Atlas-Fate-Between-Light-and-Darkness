@@ -252,6 +252,7 @@
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_game_manager.cpp" />
     <ClCompile Include="modules\game\module_level_select.cpp" />
+    <ClCompile Include="modules\game\module_loading.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
     <ClCompile Include="modules\game\module_map_intro.cpp" />
     <ClCompile Include="modules\game\module_map_test.cpp" />
@@ -549,6 +550,7 @@
     <ClInclude Include="modules\game\module_gameover.h" />
     <ClInclude Include="modules\game\module_game_manager.h" />
     <ClInclude Include="modules\game\module_level_select.h" />
+    <ClInclude Include="modules\game\module_loading.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
     <ClInclude Include="modules\game\module_map_intro.h" />
     <ClInclude Include="modules\game\module_map_test.h" />

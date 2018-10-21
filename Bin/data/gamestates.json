@@ -1,7 +1,11 @@
 {
-	"startup" : "splash",
+	"startup" : "loading",
 	"gamestates" : 
 	[
+		{
+			"name" : "loading",
+			"modules" : [ "loading" ]
+		},
 		{
 			"name" : "splash",
 			"modules" : [ "splash" ]
