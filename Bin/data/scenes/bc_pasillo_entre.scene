@@ -79,34 +79,4 @@
       "local_aabb": true
     }
   }
-  ,
-  {
-    "entity":
-    {
-      "name": "BC_piedra_arco"
-      ,
-      "transform":
-      {
-        "pos": "4.61804 -1.41505e-05 -323.726"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/BC_piedra_arco.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_piedras_mezquita.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
 ]
