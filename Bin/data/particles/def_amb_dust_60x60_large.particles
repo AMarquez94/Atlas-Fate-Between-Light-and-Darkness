@@ -58,7 +58,6 @@
       "frame_speed" : 0.0,
 			"tech" : "particles_instanced_additive.tech"
 	},
-	},
   "size" : {
     "scale" : 1.5,
     "scale_variation" : 0.1,

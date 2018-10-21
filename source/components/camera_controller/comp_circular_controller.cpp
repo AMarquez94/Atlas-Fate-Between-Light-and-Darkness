@@ -54,7 +54,8 @@ void TCompCircularController::load(const json& j, TEntityParseContext& ctx) {
     vertical_speed = j.value("vertical_speed", 0.f);
     oscilation_speed = j.value("oscilation_speed", 0.f);
     target_name = j.value("target", "");
-  
+    forward = j.value("forward", 0.0f);
+
     h_target = ctx.findEntityByName(target_name);
     oscilation_range = (radius.y - radius.x) * .5f;
 }
@@ -81,10 +82,11 @@ void TCompCircularController::update(float dt) {
     float t_radius = radius.x + (oscilation_range + sin(oscilation_speed * total_time) * oscilation_range);
 
     float my_y = c_my_transform->getPosition().y;
-    VEC3 my_new_pos = c_target->getPosition() + getVectorFromYaw(curr_yaw) * t_radius;
+    VEC3 target_pos = (c_target->getPosition() + forward * c_my_transform->getFront());
+    VEC3 my_new_pos =  + getVectorFromYaw(curr_yaw) * t_radius;
     my_new_pos.y = my_y + curr_height;
 
     assert(c_my_transform);
-    c_my_transform->lookAt(my_new_pos, c_target->getPosition());
+    c_my_transform->lookAt(my_new_pos, target_pos);
 }
 

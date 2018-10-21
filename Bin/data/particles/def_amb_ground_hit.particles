@@ -19,7 +19,7 @@
 		"rate_distance": 0.0,
 		"variation" : 0.0,
 		"bursts" : [    
-			[0, 50, 1, 0.0]			
+			[0, 20, 1, 0.0]			
 		] 
 	},	
 	"shape": {

@@ -20,6 +20,7 @@ class TCompCircularController : public TCompBase {
   float       curr_yaw = 0.f;
   float       curr_height = 0.f;
   float       oscilation_range = 0.f;
+  float       forward = 0.f;
 
   void onCreate(const TMsgEntityCreated& msg);
   void onNewTarget(const TMsgCircularControllerTarget& msg);
