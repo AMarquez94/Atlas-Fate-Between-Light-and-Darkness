@@ -7,7 +7,7 @@
 			{
 				"name" : "screen_credits",
 				"type" : "image",
-				"size" : "1080 2560",
+				"size" : "1080 3555",
 				"texture" : "data/textures/gui/credits_finale.dds",
 				"effects" : [
 							{
