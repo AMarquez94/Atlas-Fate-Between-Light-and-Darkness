@@ -1,5 +1,5 @@
 #include "mcv_platform.h"
-#include "comp_point_controller.h"
+#include "comp_spot_controller.h"
 #include "components/comp_transform.h"
 #include "components/comp_render.h"
 #include "components/lighting/comp_light_spot.h"
@@ -8,10 +8,10 @@
 #include "components/comp_group.h"
 #include "entity/entity_parser.h"
 
-DECL_OBJ_MANAGER("point_controller", TCompPointController);
+DECL_OBJ_MANAGER("spot_controller", TCompSpotController);
 
 // Refactor this with point light and spot light superclass to avoid conditional testing.
-void TCompPointController::debugInMenu() {
+void TCompSpotController::debugInMenu() {
 
     ImGui::DragFloat("Intensity Flow: ", &_intensity_flow, 0.01, 0, 100);
     ImGui::DragFloat("Intensity Flow Speed: ", &_intensity_flow_speed, 0.01, 0, 100);
@@ -19,7 +19,7 @@ void TCompPointController::debugInMenu() {
     ImGui::DragFloat("Radius Flow Speed: ", &_radius_flow_speed, 0.01, 0, 100);
 }
 
-void TCompPointController::load(const json& j, TEntityParseContext& ctx) {
+void TCompSpotController::load(const json& j, TEntityParseContext& ctx) {
 
     _current_burst = -1;
     _intensity_flow = j.value("intensity_flow", 0.0f);
@@ -43,7 +43,7 @@ void TCompPointController::load(const json& j, TEntityParseContext& ctx) {
 }
 
 /* Update the values during the given time */
-void TCompPointController::update(float dt) {
+void TCompSpotController::update(float dt) {
 
     _elapsed_time += dt;
     updateIntensity(dt);
@@ -51,14 +51,14 @@ void TCompPointController::update(float dt) {
     updateFlicker(dt);
 }
 
-void TCompPointController::registerMsgs() {
+void TCompSpotController::registerMsgs() {
 
-	DECL_MSG(TCompPointController, TMsgSceneCreated, onSceneCreated);
-    DECL_MSG(TCompPointController, TMsgEntitiesGroupCreated, onGroupCreated);
+	DECL_MSG(TCompSpotController, TMsgSceneCreated, onSceneCreated);
+    DECL_MSG(TCompSpotController, TMsgEntitiesGroupCreated, onGroupCreated);
 }
 
 /* Used to retrieve the total materials from our render component */
-void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
+void TCompSpotController::onSceneCreated(const TMsgSceneCreated& msg) {
 
     CEntity * owner = CHandle(this).getOwner();
     TCompGroup* cGroup = owner->get<TCompGroup>();
@@ -73,7 +73,7 @@ void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
 
     if (_light_target != "") {
         CEntity* eCone = cGroup->getHandleByName(_light_target);
-        _point_light = eCone->get<TCompLightPoint>();
+        _spot_light = eCone->get<TCompLightSpot>();
 
     }
 
@@ -83,9 +83,9 @@ void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
 
     }
 
-    if (_point_light) {
-        _radius = _point_light->getRadius();
-        _intensity = _point_light->getIntensity();
+    if (_spot_light) {
+        _radius = _spot_light->getAngle();
+        _intensity = _spot_light->getIntensity();
     }
 
     if (!_object_render) {
@@ -94,7 +94,7 @@ void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
     }
 }
 
-void TCompPointController::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
+void TCompSpotController::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
 {
     CEntity * owner = CHandle(this).getOwner();
     /*if (_emissive_target != "") {
@@ -104,36 +104,37 @@ void TCompPointController::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
     }*/
 }
 
-void TCompPointController::updateMovement(float dt)
+void TCompSpotController::updateMovement(float dt)
 {
     float new_radius = _radius + _radius_flow * sin(_elapsed_time * _radius_flow_speed);
 
-    if (_point_light) _point_light->setRadius(new_radius);
+    if (_spot_light) _spot_light->setAngle(new_radius);
 }
 
-void TCompPointController::updateIntensity(float dt)
+void TCompSpotController::updateIntensity(float dt)
 {
     float variable_flow = _intensity_flow * sin(_elapsed_time * _intensity_flow_speed);
     float new_intensity = _intensity + variable_flow;
 
-    if (_point_light) _point_light->setIntensity(new_intensity);
+    if (_spot_light) _spot_light->setIntensity(new_intensity);
 
     //if (_object_render) {
     //    _object_render->self_intensity = _emissive_intensity + variable_flow;
     //}
 }
 
-void TCompPointController::updateFlicker(float dt)
+void TCompSpotController::updateFlicker(float dt)
 {
+    if (_current_burst == -1) return;
+
     _flicker_elapsed_time += dt;
+    float current_wait_time = _bursts[_current_burst].x + _random_time;// +_random_time;
 
-    if (_current_burst != -1 && _flicker_elapsed_time > _bursts[_current_burst].x) {
-
-        float current_wait_time = _bursts[_current_burst].x + _random_time;// +_random_time;
+    if (_flicker_elapsed_time > current_wait_time) {
 
         // Flicker has been launched.
         if (!_flicker_status) {
-            if (_point_light) _point_light->isEnabled = false;
+            if (_spot_light) _spot_light->isEnabled = false;
             if (_object_render)  _object_render->self_intensity = 0;
             if (_object_particles)  _object_particles->setSystemState(false);
             if (_mesh_render)  _mesh_render->visible = false;
@@ -141,9 +142,9 @@ void TCompPointController::updateFlicker(float dt)
         }
 
         if (_flicker_elapsed_time > (current_wait_time + _bursts[_current_burst].y)) {
-            if (_point_light) {
-                _point_light->isEnabled = true;
-                _point_light->setIntensity(_intensity);
+            if (_spot_light) {
+                _spot_light->isEnabled = true;
+                _spot_light->setIntensity(_intensity);
             }
 
             if (_object_render) _object_render->self_intensity = _emissive_intensity;

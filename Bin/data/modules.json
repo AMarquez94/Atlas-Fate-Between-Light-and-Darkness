@@ -2,6 +2,7 @@
 	"update":
 	[
 		"files",
+		"loading",
 		"input",
 		"entities",
 		"physics",

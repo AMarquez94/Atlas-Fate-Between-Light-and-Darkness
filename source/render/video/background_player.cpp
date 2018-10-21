@@ -11,19 +11,26 @@ static std::vector< CVideoTexture* > playing_video_textures;
 static void decodeVideoTextures() {
 
     CTimer tm;
-    float desired_frame_fps = 1.0f / 30.0f;
+    CTimer tm2;
+    float desired_frame_fps = 1.0f / 25.0f;
     dbg("total fps %f ", desired_frame_fps);
 
     while (true) {
 
         //std::this_thread::sleep_for(std::chrono::milliseconds(30));
+        tm.elapsedAndReset();
         sem_can_decode.wait();
+        //tm2.reset();
         for (auto t : playing_video_textures)
             t->update(0.f);   // 0.f is not correct either
+        //float utime = tm2.elapsedAndReset();
+        //dbg("total time update video %f\n", utime);
         sem_can_upload.notify();
 
         float elapsed = tm.elapsedAndReset();
         float remaining_time = (desired_frame_fps - elapsed);
+        //dbg("total remaining time %f\n", remaining_time);
+
         if (remaining_time > 0)
             std::this_thread::sleep_for(std::chrono::milliseconds((int)(remaining_time * 1000)));
     }

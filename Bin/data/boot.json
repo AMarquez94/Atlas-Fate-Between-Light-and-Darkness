@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -303,7 +303,6 @@
 			"data/scenes/BC_ColliderAuxEntrances.scene",
 			"data/scenes/BC_estandarte.scene",
 			"data/scenes/BC_Terminal.scene",
-			"data/scenes/BC_Screens.scene",
 			"data/scenes/BC_Entrada_chapas.scene",
 			"data/scenes/BC_Conducto.scene",
 			"data/scenes/BC_triggers.scene",

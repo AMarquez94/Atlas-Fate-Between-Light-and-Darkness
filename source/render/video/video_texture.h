@@ -7,7 +7,8 @@ extern "C" {
 class CVideoTexture : public CTexture {
 
     storage_t *decoder = nullptr;
-    std::vector< u8 > data;
+    std::vector<char> video_data;
+    std::vector< u8 > streaming_data;
     u32 len = 0;
     u32 status = H264BSD_RDY;
     u8* byteStrm = nullptr;
@@ -28,13 +29,16 @@ class CVideoTexture : public CTexture {
 
 public:
 
+    bool active = false;
+
     ~CVideoTexture();
 
     bool create(const std::string& name) override;
-    void destroy();
+    void destroy() override;
     void update(float dt);
     bool isFrameReadyToUpload() const;
     bool uploadToVRAM();
 
+    void setActive(bool state);
 };
 

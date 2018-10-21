@@ -34,7 +34,15 @@ namespace GUI {
 		virtual TSpriteParams* getSpriteParams() { return nullptr; }
 		virtual TSubtitlesParams* getSubtitleParams() { return nullptr; }
         virtual TParams* getTParams() { return nullptr; }
-		
+        virtual void onActivate() {           
+            for (auto& child : _children)
+                child->onActivate();
+        }
+        virtual void onDeactivate() {
+            for (auto& child : _children)
+                child->onDeactivate();
+        }
+
         void addEffect(CEffect* fx);
 
         void computeLocal();

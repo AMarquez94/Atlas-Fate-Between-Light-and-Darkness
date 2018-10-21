@@ -9,12 +9,12 @@ class CRenderToTexture;
 class TCompLightSpot;
 class TCompLightPoint;
 
-class TCompPointController : public TCompBase {
+class TCompSpotController : public TCompBase {
 
     CHandle _parent;
     TCompRender * _mesh_render;
     TCompRender * _object_render;
-	TCompLightPoint * _point_light;
+	TCompLightSpot * _spot_light;
     TCompParticles * _object_particles;
     TCompCollider * _object_collider;
 

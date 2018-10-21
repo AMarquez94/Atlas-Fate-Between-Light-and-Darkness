@@ -8,11 +8,12 @@ CRenderToCube::CRenderToCube()
     : res(0)
     , color_fmt(DXGI_FORMAT_UNKNOWN)
     , depth_fmt(DXGI_FORMAT_UNKNOWN)
-    , depth_stencil_view(nullptr)
     , ztexture(nullptr)
 {
     for (int i = 0; i < nsides; ++i)
         render_target_views[i] = nullptr;
+    for (int i = 0; i < nsides; ++i)
+        depth_stencil_views[i] = nullptr;
 }
 
 // ------------------------------------------------
@@ -37,30 +38,26 @@ bool CRenderToCube::create(
             return false;
 
     // Create ZBuffer
-    if (depth_fmt != DXGI_FORMAT_UNKNOWN) {
+    if (depth_fmt != DXGI_FORMAT_UNKNOWN)
         if (!createDepthBuffer())
             return false;
-    }
-    else
-        depth_stencil_view = nullptr;
 
     Resources.registerResource(this);
-
-    camera.setPerspective(deg2rad(90.f), 1.0f, 1000);
-    camera.setViewport(0, 0, res, res);
 
     return true;
 }
 
 // ------------------------------------------------
 void CRenderToCube::debugInMenu() {
-
     ImGui::Text("Cube %dx%d", res, res);
+    for (int i = 0; i < nsides; ++i) {
+        if (shader_resource_views[i])
+            ImGui::Image(shader_resource_views[i], ImVec2(128, 128));
+    }
 }
 
 // ------------------------------------------------
 bool CRenderToCube::createColorBuffer() {
-
     // Create a color surface
     D3D11_TEXTURE2D_DESC desc;
     ZeroMemory(&desc, sizeof(desc));
@@ -115,16 +112,17 @@ bool CRenderToCube::createColorBuffer() {
 
 // ------------------------------------------------
 void CRenderToCube::destroy() {
-
     for (int i = 0; i < nsides; ++i)
         SAFE_RELEASE(render_target_views[i]);
-    SAFE_RELEASE(depth_stencil_view);
+    for (int i = 0; i < nsides; ++i)
+        SAFE_RELEASE(depth_stencil_views[i]);
+    SAFE_RELEASE(shader_resource_view);
+    SAFE_RELEASE(depth_shader_resource_view);
     CTexture::destroy();
 }
 
 // ------------------------------------------------
 bool CRenderToCube::createDepthBuffer() {
-
     auto device = Render.device;
     //assert(ztexture.resource_view == NULL);
     assert(depth_fmt != DXGI_FORMAT_UNKNOWN);
@@ -144,7 +142,7 @@ bool CRenderToCube::createDepthBuffer() {
     depthBufferDesc.Width = res;
     depthBufferDesc.Height = res;
     depthBufferDesc.MipLevels = 1;
-    depthBufferDesc.ArraySize = 1;
+    depthBufferDesc.ArraySize = nsides;
     depthBufferDesc.Format = depth_fmt;
     depthBufferDesc.SampleDesc.Count = 1;
     depthBufferDesc.SampleDesc.Quality = 0;
@@ -154,6 +152,7 @@ bool CRenderToCube::createDepthBuffer() {
     depthBufferDesc.MiscFlags = 0;
 
     depthBufferDesc.BindFlags |= D3D11_BIND_SHADER_RESOURCE;
+    depthBufferDesc.MiscFlags |= D3D11_RESOURCE_MISC_TEXTURECUBE;
 
     DXGI_FORMAT texturefmt = DXGI_FORMAT_R32_TYPELESS;
     DXGI_FORMAT SRVfmt = DXGI_FORMAT_R32_FLOAT;       // Stencil format
@@ -188,87 +187,103 @@ bool CRenderToCube::createDepthBuffer() {
     if (FAILED(hr))
         return false;
 
-    // Initialize the depth stencil view.
+    // Initialize the depth stencil view for each face
     D3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc;
     ZeroMemory(&depthStencilViewDesc, sizeof(depthStencilViewDesc));
-
-    // Set up the depth stencil view description.
     depthStencilViewDesc.Format = DSVfmt;
-    depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-    depthStencilViewDesc.Texture2D.MipSlice = 0;
+    depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2DARRAY;
+    depthStencilViewDesc.Texture2DArray.ArraySize = 1;
+    depthStencilViewDesc.Texture2DArray.MipSlice = 0;
+    for (int i = 0; i < nsides; ++i) {
+        depthStencilViewDesc.Texture2DArray.FirstArraySlice = i;
+        hr = Render.device->CreateDepthStencilView(ztexture2d, &depthStencilViewDesc, &depth_stencil_views[i]);
+        if (FAILED(hr))
+            return false;
+        char side_name[64];
+        sprintf(side_name, "%s.%d.zdsv", getName().c_str(), i);
+        setDXName(depth_stencil_views[i], side_name);
 
-    // Create the depth stencil view.
-    hr = device->CreateDepthStencilView(ztexture2d, &depthStencilViewDesc, &depth_stencil_view);
+        // Create a shader resource view to 'view' each face of the cube zbuffer independently
+        D3D11_SHADER_RESOURCE_VIEW_DESC shaderResourceViewDesc;
+        ZeroMemory(&shaderResourceViewDesc, sizeof(shaderResourceViewDesc));
+        shaderResourceViewDesc.Format = SRVfmt;
+        shaderResourceViewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2DARRAY;
+        shaderResourceViewDesc.Texture2D.MostDetailedMip = 0;
+        shaderResourceViewDesc.Texture2D.MipLevels = depthBufferDesc.MipLevels;
+        shaderResourceViewDesc.Texture2DArray.ArraySize = 1;
+        shaderResourceViewDesc.Texture2DArray.FirstArraySlice = i;
+
+        // Create the shader resource view.
+        ID3D11ShaderResourceView* depth_resource_view = nullptr;
+        hr = device->CreateShaderResourceView(ztexture2d, &shaderResourceViewDesc, &depth_resource_view);
+        if (FAILED(hr))
+            return false;
+    }
+
+    // Now create a shader resource view to 'view the cube zbuffer' in the shaders
+    // Create a shader resource view to 'view' each face of the cube zbuffer independently
+    D3D11_SHADER_RESOURCE_VIEW_DESC srvd;
+    ZeroMemory(&srvd, sizeof(srvd));
+    srvd.Format = SRVfmt;
+    srvd.ViewDimension = D3D11_SRV_DIMENSION_TEXTURECUBE;
+    srvd.TextureCube.MipLevels = -1;
+    hr = device->CreateShaderResourceView(ztexture2d, &srvd, &depth_shader_resource_view);
     if (FAILED(hr))
         return false;
-    setDXName(depth_stencil_view, "ZTextureDSV");
 
-    // Setup the description of the shader resource view.
-    D3D11_SHADER_RESOURCE_VIEW_DESC shaderResourceViewDesc;
-    shaderResourceViewDesc.Format = SRVfmt;
-    shaderResourceViewDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
-    shaderResourceViewDesc.Texture2D.MostDetailedMip = 0;
-    shaderResourceViewDesc.Texture2D.MipLevels = depthBufferDesc.MipLevels;
-
-    // Create the shader resource view.
-    ID3D11ShaderResourceView* depth_resource_view = nullptr;
-    hr = device->CreateShaderResourceView(ztexture2d, &shaderResourceViewDesc, &depth_resource_view);
-    if (FAILED(hr))
-        return false;
-
-    ztexture = new CTexture();
-    ztexture->setDXParams(res, res, ztexture2d, depth_resource_view);
-    ztexture->setNameAndClass(("Z" + getName()).c_str(), getResourceClassOf<CTexture>());
-    //  texture_manager.registerNew(ztexture->getName(), ztexture);
-    const char* zname = ztexture->getName().c_str();
-    setDXName(depth_resource_view, zname);
-
-    SAFE_RELEASE(ztexture2d);
     return true;
 }
 
-void CRenderToCube::setPosition(VEC3 new_pos) {
+// ----------------------------------------------------------------
+void CRenderToCube::activateCubeShadowMap(int slot) {
+    assert(depth_shader_resource_view);
+    Render.ctx->PSSetShaderResources(slot, 1, &depth_shader_resource_view);
+}
 
+// ----------------------------------------------------------------
+void CRenderToCube::getCamera(int face, CCamera* camera) const {
+
+    static VEC3 fronts[nsides] = {
+        VEC3(+1, 0, 0),
+        VEC3(-1, 0, 0),
+        VEC3(0, +1, 0),
+        VEC3(0, -1, 0),
+        VEC3(0, 0, -1),
+        VEC3(0, 0, +1),
+    };
+    static VEC3 ups[nsides]{
+        VEC3(0, 1, 0),
+        VEC3(0, 1, 0),
+        VEC3(0, 0, +1),
+        VEC3(0, 0, -1),
+        VEC3(0, 1, 0),
+        VEC3(0, 1, 0),
+    };
+
+    camera->lookAt(camera->getPosition()
+        , camera->getPosition() + fronts[face]
+        , ups[face]
+    );
+
+    // Set also the viewport and the fov. znear/zfar are left untouched
+    camera->setViewport(0, 0, res, res);
+    camera->setPerspective(deg2rad(90.0f), camera->getZNear(), camera->getZFar());
+}
+
+void CRenderToCube::setPosition(VEC3 new_pos)
+{
     camera.lookAt(new_pos, new_pos + VEC3(0, 0, 1), VEC3(0, 1, 0));
 }
 
-void CRenderToCube::getCamera(int face, CCamera* camera_to_use) const {
-
-    static VEC3 fronts[nsides] = {
-      VEC3(+1, 0, 0),
-      VEC3(-1, 0, 0),
-      VEC3(0, +1, 0),
-      VEC3(0, -1, 0),
-      VEC3(0, 0, +1),
-      VEC3(0, 0, -1),
-    };
-    static VEC3 ups[nsides]{
-      VEC3(0, 1, 0),
-      VEC3(0, 1, 0),
-      VEC3(0, 0, -1),
-      VEC3(0, 0, 1),
-      VEC3(0, 1, 0),
-      VEC3(0, 1, 0),
-    };
-
-    *camera_to_use = camera;
-    camera_to_use->lookAt(camera.getPosition()
-        , camera.getPosition() + fronts[face]
-        , ups[face]
-    );
-}
-
 void CRenderToCube::activateFace(int face, CCamera* camera_to_use) {
-
     assert(camera_to_use);
-    Render.ctx->OMSetRenderTargets(1, &render_target_views[face], depth_stencil_view);
+    Render.ctx->OMSetRenderTargets(1, &render_target_views[face], depth_stencil_views[face]);
     activateViewport();
     getCamera(face, camera_to_use);
 }
 
 void CRenderToCube::activateViewport() {
     // activate the associated viewport
-
     D3D11_VIEWPORT vp;
     vp.Width = (FLOAT)res;
     vp.Height = (FLOAT)res;
@@ -280,13 +295,16 @@ void CRenderToCube::activateViewport() {
 }
 
 void CRenderToCube::clearColorBuffer(int face, const FLOAT ColorRGBA[4]) {
-
     assert(render_target_views[face]);
     Render.ctx->ClearRenderTargetView(render_target_views[face], ColorRGBA);
 }
 
 void CRenderToCube::clearDepthBuffer() {
+    //assert(depth_stencil_view);
+    //Render.ctx->ClearDepthStencilView(depth_stencil_views, D3D11_CLEAR_DEPTH, 1.0f, 0);
+}
 
-    assert(depth_stencil_view);
-    Render.ctx->ClearDepthStencilView(depth_stencil_view, D3D11_CLEAR_DEPTH, 1.0f, 0);
+void CRenderToCube::clearDepthBuffer(int face) {
+    assert(depth_stencil_views[face]);
+    Render.ctx->ClearDepthStencilView(depth_stencil_views[face], D3D11_CLEAR_DEPTH, 1.0f, 0);
 }

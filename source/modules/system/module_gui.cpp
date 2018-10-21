@@ -315,9 +315,11 @@ CWidget* CModuleGUI::activateWidget(EGUIWidgets wdgt)
 	CWidget* widgt = getWidget(wdgt_struct._widgetName);
 	if (widgt)
 	{
+        widgt->onActivate();
 		wdgt_struct.enabled = true;
 		_widgetStructureMap[wdgt] = wdgt_struct;
 		_activeWidgets.push_back(widgt);
+
 		if (wdgt_struct._controller != nullptr) {
 			registerController(wdgt_struct._controller);
 		}
@@ -336,11 +338,14 @@ void CModuleGUI::deactivateWidget(EGUIWidgets wdgt)
 	CWidget* widgt = getWidget(wdgt_struct._widgetName);
 	for (auto it = _activeWidgets.begin(); it != _activeWidgets.end();) {
 		if (*it == widgt) {
+
+            (*it)->onDeactivate();
 			_activeWidgets.erase(it);
 			break;
 		}
 		it++;
 	}
+
 	wdgt_struct.enabled = false;
 	_widgetStructureMap[wdgt] = wdgt_struct;
 	if (wdgt_struct._controller != nullptr) {
