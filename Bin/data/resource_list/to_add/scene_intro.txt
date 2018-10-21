@@ -484,12 +484,13 @@ data/textures/tx_shaft_flare.dds
 data/materials/mtl_lightpost_flare.material
 data/scenes/intro_patrol_atrapado.scene
 data/meshes/mesh_patrol_atrapado.mesh
-data/textures/tx_tierrapiedras_alb.dds
-data/textures/tx_tierrapiedras_ao.dds
-data/textures/tx_tierrapiedras_hgt.dds
-data/textures/tx_tierrapiedras_nml.dds
-data/textures/tx_tierrapiedras_rgh.dds
-data/materials/mtl_tierra.material
+data/textures/mix/blending_intro/blue/tx_arena_alb.dds
+data/textures/mix/blending_intro/blue/tx_arena_ao.dds
+data/textures/mix/blending_intro/blue/tx_arena_hgt.dds
+data/textures/mix/blending_intro/blue/tx_arena_mtl.dds
+data/textures/mix/blending_intro/blue/tx_arena_nml.dds
+data/textures/mix/blending_intro/blue/tx_arena_rgh.dds
+data/materials/mix_intro_blue.material
 data/materials/mtl_patrol_estatico.material
 data/colliders/collider_mesh_patrol_atrapado.collider
 data/scenes/intro_decals.scene
@@ -498,10 +499,15 @@ data/materials/mtl_decal_bottom.material
 data/scenes/intro_decals_rotura.scene
 data/textures/bordes_largos.dds
 data/materials/mtl_decal_rotura_larga.material
+data/textures/parche cemento.dds
+data/materials/Material #2162.material
 data/textures/tx_rotura_filo_alb.dds
 data/textures/tx_rotura_filo_nml.dds
 data/textures/tx_rotura_filo_rgh.dds
 data/materials/mtl_decal_borde_filo.material
+data/scenes/intro_decals_poster.scene
+data/textures/cartel_sam.dds
+data/materials/mtl_cartel_sam.material
 data/scenes/intro_casas_lp_1.scene
 data/prefabs/casas_1_lp.prefab
 data/meshes/mesh_casas_1_lp.mesh
@@ -650,13 +656,6 @@ data/textures/mix/blending_intro/green/tx_suelo_tutorial2_met.dds
 data/textures/mix/blending_intro/green/tx_suelo_tutorial2_nml.dds
 data/textures/mix/blending_intro/green/tx_suelo_tutorial2_rgh.dds
 data/materials/mix_intro_green.material
-data/textures/mix/blending_intro/blue/tx_arena_alb.dds
-data/textures/mix/blending_intro/blue/tx_arena_ao.dds
-data/textures/mix/blending_intro/blue/tx_arena_hgt.dds
-data/textures/mix/blending_intro/blue/tx_arena_mtl.dds
-data/textures/mix/blending_intro/blue/tx_arena_nml.dds
-data/textures/mix/blending_intro/blue/tx_arena_rgh.dds
-data/materials/mix_intro_blue.material
 data/textures/mix/blending_intro/blending_mask.dds
 data/materials/mix_intro1.material
 data/colliders/collider_mesh_suelo_intro2.collider
