@@ -12,7 +12,7 @@
 				"effects" : [
 							{
 								"type" : "animate_uv",
-								"speed" : "0.0 0.01"
+								"speed" : "0.0 0.02"
 							}
 						]
 			}

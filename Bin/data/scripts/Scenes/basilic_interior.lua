@@ -1,26 +1,11 @@
 function onSceneStart_scene_basilic_interior()
+	startCinematicMode(178.5);
 	deleteAllCacheResources();
 	setOutBlackScreen(0.25);
-	pre_end_cinematic_scene();
 	gameManager:changeToEndScene();
-	--execScriptDelayed("lightUpForFinalScene(10);");
-	--shutdown_end_cinematic_scene
-	--temp_final_decision();
 	--finish_job_end_cinematic_scene()
 	--shutdown_end_cinematic_scene();
-
-
---lightUpForFinalScene(2) 
-
---lightDownForFinalScene()
-
-
---speedUpRuedasFinalScene() 
-
-
-
---stopRuedasFinalScene()
-
+	pre_end_cinematic_scene();
 end
 
 function finish_job_end_cinematic_scene()

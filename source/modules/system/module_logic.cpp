@@ -1345,10 +1345,14 @@ void activateCredits() {
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.25, 0.0, false);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS_BACKGROUND);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS);
+	EngineLogic.execScriptDelayed("removeAtlasSplash()", 43.0);
+	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")", 43.0);
+	
 }
 
 void removeAtlasSplash() {
-	
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CREDITS);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CREDITS_BACKGROUND);
 }
 
 void tempCredits() {
