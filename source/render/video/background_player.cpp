@@ -18,6 +18,7 @@ static void decodeVideoTextures() {
     while (true) {
 
         //std::this_thread::sleep_for(std::chrono::milliseconds(30));
+        tm.elapsedAndReset();
         sem_can_decode.wait();
         //tm2.reset();
         for (auto t : playing_video_textures)

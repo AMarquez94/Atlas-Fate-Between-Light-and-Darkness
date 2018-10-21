@@ -150,7 +150,7 @@ bool CVideoTexture::isFrameReadyToUpload() const {
 void CVideoTexture::update(float dt) {
 
     if (active) {
-        dbg("Video active updated\n");
+        //dbg("Video active updated\n");
         decodeNextFrame();
 
         // Rewind those that finished.
