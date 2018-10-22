@@ -1,5 +1,5 @@
 {
-  "technique": "pbr_decals.tech"
+  "technique": "pbr_decals_solid.tech"
   ,
   "shadows": false
   ,
