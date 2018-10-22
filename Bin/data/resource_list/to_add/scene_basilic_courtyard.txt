@@ -75,6 +75,7 @@ data/meshes/BC_pared_capsulas.mesh
 data/textures/tx_mezquita_alb.dds
 data/textures/tx_mezquita_ao.dds
 data/textures/tx_mezquita_hgt.dds
+data/textures/tx_mezquita_met.dds
 data/textures/tx_mezquita_nml.dds
 data/textures/tx_mezquita_rgh.dds
 data/materials/mtl_mezquita.material
