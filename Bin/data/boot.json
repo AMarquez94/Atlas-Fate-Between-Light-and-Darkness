@@ -1,10 +1,10 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_basilic_courtyard",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
 			"navmesh": "data/navmeshes/intro_navmesh.bin",
-			"exposure": 1.51,
+			"exposure": 2,
 			"ambient": 0.04,
 			"gamma": 0.92,
 			"tone_mapping": 0.5,
@@ -181,7 +181,6 @@
 
 			"data/scenes/zone_a_decals.scene",
 			"data/scenes/zone_a_decals_rotura.scene",
-			"data/scenes/zone_a_decals_suelo.scene",
 			"data/scenes/zone_a_decals_poster.scene",
 
             		"data/scenes/zone_a_props_torre.scene",
@@ -291,6 +290,8 @@
 			"data/scenes/BC_tubos.scene",
 			"data/scenes/BC_capsulas.scene",
 			"data/scenes/BC_neones.scene",
+			"data/scenes/BC_decals.scene",
+
 			"data/scenes/bc_pantalla_atlas.scene",
 			"data/scenes/suelo_mezquita.scene",
 			"data/scenes/Basilic_courtyard/basilic_courtyard_particles.scene",

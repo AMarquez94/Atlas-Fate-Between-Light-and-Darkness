@@ -1,11 +1,11 @@
 function onSceneStart_scene_basilic_interior()
-	startCinematicMode(178.5);
+	startCinematicMode(192.5);
 	deleteAllCacheResources();
 	setOutBlackScreen(0.25);
 	gameManager:changeToEndScene();
-	--finish_job_end_cinematic_scene()
-	--shutdown_end_cinematic_scene();
 	pre_end_cinematic_scene();
+	--finish_job_end_cinematic_scene();
+	--shutdown_end_cinematic_scene();
 end
 
 function finish_job_end_cinematic_scene()
@@ -70,11 +70,13 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_2\", 0.0)",12);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0)",12);
 	
-	--execScriptDelayed("startTransmission(19)", 17);
+	execScriptDelayed("startTransmission(11.5)", 17);
 	execScriptDelayed("activateSubtitles(32);",17);
 	execScriptDelayed("activateSubtitles(33);",23);
-	execScriptDelayed("activateSubtitles(34);",28.5);
-	execScriptDelayed("deactivateSubtitles();",36);
+	execScriptDelayed("deactivateSubtitles();",28.5);
+
+	execScriptDelayed("activateSubtitles(34);",38);
+	execScriptDelayed("deactivateSubtitles();",45);
 
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 20.0, \"cinematic\", \"\")", 17);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0, \"cinematic\", \"\")", 17);

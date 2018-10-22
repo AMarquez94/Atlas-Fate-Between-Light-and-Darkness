@@ -6,9 +6,6 @@ function onSceneStart()
 	--cg_drawfps(false);
 	execScriptDelayed("immortal(false)", 1);
 	execScriptDelayed("resetPatrolLights()", 0.1);
-	if(ambiance == nil or not ambiance:isValid()) then
-		ambiance = playEvent("event:/Ambiance/Intro_Ambiance");
-	end
 
 	if isDebug() then
 		lanternsDisable(true);
@@ -21,9 +18,6 @@ end
 function onSceneEnd()
 	--particles:killAll();
 	stopAllAudioComponents();
-	if(ambiance ~= nil and ambiance:isValid()) then
-		ambiance:stop();
-	end
 end
 
 function onScenePartialEnd()

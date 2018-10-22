@@ -32,7 +32,7 @@ class CModuleGameManager : public IModule
     ImGuiWindowFlags window_flags;
     unsigned int window_width;
     unsigned int window_height;
-    unsigned int menuPosition = 0;
+    unsigned int menuPosition;
     const unsigned int menuSize = 4;
 
     void resetState();
@@ -68,8 +68,9 @@ public:
 	void resetLevel();
 	void resetToCheckpoint();
     PauseState getCurrentState();
-    bool isCinematicMode = false;
+    bool isCinematicMode;
     void stopAllSoundEvents();
     void playTransmissionSound(bool play);
     void changeToEndScene();
+    void preloadFinalSceneSoundEvent();
 };

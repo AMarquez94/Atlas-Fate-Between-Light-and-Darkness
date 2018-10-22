@@ -201,7 +201,7 @@ end
 
 function onTriggerEnter_intro_trigger_muralla_alto_player()
 	subClear();
-	startTransmission(17);
+	startTransmission(10);
 	activateSubtitles(11);
 	execScriptDelayed("activateSubtitles(12);",7);
 	execScriptDelayed("deactivateSubtitles();", 10);

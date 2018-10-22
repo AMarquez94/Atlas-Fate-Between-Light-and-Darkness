@@ -75,8 +75,8 @@ public:
     void setPause(bool paused) { this->paused = paused; }
     void clearDelayedScripts();
 
-	void eraseDelayedScripts(std::string keyWord);
-	void eraseSystemDelayedScripts(std::string keyWord);
+    void eraseDelayedScripts(std::string keyWord);
+    void eraseSystemDelayedScripts(std::string keyWord);
 
 private:
 
@@ -145,6 +145,8 @@ void invalidatePlayerPhysxCache();
 void GUI_EnableRemoveInhibitor();
 void sendPlayerIlluminatedMsg(CHandle h, bool illuminated);
 void isInCinematicMode(bool isCinematic);
+SoundEvent preloadSoundEvent(const std::string& soundevent);
+void stopRenderingEntities();
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);

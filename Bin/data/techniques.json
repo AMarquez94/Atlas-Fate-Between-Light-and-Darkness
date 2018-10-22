@@ -206,6 +206,7 @@
 		"category": "gbuffer_decals",
 		"z": "test_but_no_write",
 		"blend": "multiplicative_gbuffer",
+		"rs_config": "depth_bias",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds"
 		}
@@ -216,6 +217,7 @@
 		"category": "gbuffer_decals",
 		"z": "test_but_no_write",
 		"blend": "multiplicative_gbuffer",
+		"rs_config": "depth_bias",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds"
 		}
@@ -226,6 +228,7 @@
 		"ps_entry_point": "PS_SOLID",
 		"category": "gbuffer_decals",
 		"z": "test_but_no_write",
+		"rs_config": "depth_bias",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds"
 		}

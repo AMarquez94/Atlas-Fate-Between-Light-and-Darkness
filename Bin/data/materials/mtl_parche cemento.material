@@ -7,7 +7,7 @@
   {
     "albedo": "data/textures/parche cemento.dds"
     ,
-    "roughness": "data/textures/parche cemento.dds"
+    "roughness": "data/textures/tx_parche_cemento_rgh.dds"
     ,
     "normal": "data/textures/null_normal.dds"
   }

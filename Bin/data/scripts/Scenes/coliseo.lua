@@ -69,7 +69,8 @@ end
 
 function cinematicCorridorToZoneA()
 	startCinematicMode(18);
-	execScriptDelayed("startTransmission(23.5)", 0.5);
+	execScriptDelayed("startTransmission(9.5)", 0.5);
+	execScriptDelayed("startTransmission(6)", 18);
 	execScriptDelayed("activateSubtitles(17);",0.5);
 	execScriptDelayed("deactivateSubtitles();", 10);
 	execScriptDelayed("activateSubtitles(18);",18);

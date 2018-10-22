@@ -14,13 +14,29 @@
   {
     "entity":
     {
+      "name": "mesh_casas_2_lp002"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-138.21 5.89532 -57.3916"
+        ,
+        "rotation": "0.0 -0.843395 0.0 -0.537294"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_casas_1_lp001"
       ,
       "prefab": "data/prefabs/casas_1_lp.prefab"
       ,
       "transform":
       {
-        "pos": "-51.2202 11.8296 -50.2639"
+        "pos": "-51.2202 11.125 -42.7324"
         ,
         "rotation": "0.0 -1.0 0.0 -2.81731e-06"
       }
@@ -36,7 +52,7 @@
       ,
       "transform":
       {
-        "pos": "-87.3522 9.20294 -47.4889"
+        "pos": "-87.9752 8.40686 -39.6584"
         ,
         "rotation": "0.0 -7.00156e-06 0.0 -1.0"
       }
@@ -52,7 +68,7 @@
       ,
       "transform":
       {
-        "pos": "-107.992 9.20294 -76.9893"
+        "pos": "-113.757 6.66237 -57.8929"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -68,7 +84,7 @@
       ,
       "transform":
       {
-        "pos": "-125.905 10.6501 -88.7277"
+        "pos": "-142.778 8.13105 -83.5186"
         ,
         "rotation": "0.0 0.461749 0.0 -0.887011"
       }
@@ -78,15 +94,15 @@
   {
     "entity":
     {
-      "name": "mesh_casas_2_lp002"
+      "name": "mesh_casas_3_lp005"
       ,
-      "prefab": "data/prefabs/casas_2_lp.prefab"
+      "prefab": "data/prefabs/casas_3_lp.prefab"
       ,
       "transform":
       {
-        "pos": "-140.895 11.6413 -74.4846"
+        "pos": "-174.248 10.7442 -91.7762"
         ,
-        "rotation": "0.0 -0.707112 0.0 -0.707102"
+        "rotation": "0.0 -0.976296 0.0 -0.21644"
       }
     }
   }
@@ -103,22 +119,6 @@
         "pos": "-146.337 9.73109 -118.694"
         ,
         "rotation": "0.0 -0.953718 0.0 0.300703"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_casas_3_lp005"
-      ,
-      "prefab": "data/prefabs/casas_3_lp.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-174.248 10.9654 -91.7762"
-        ,
-        "rotation": "0.0 -0.976296 0.0 -0.21644"
       }
     }
   }
