@@ -294,9 +294,11 @@ data/particles/def_amb_flare_neon_blue4.particles
 data/prefabs/neon_amarillo_5.prefab
 data/meshes/mesh_neon_amarillo_5.mesh
 data/colliders/collider_cartel_amarillo_5.collider
+data/particles/def_amb_flare_neon_yellow5.particles
 data/prefabs/neon_amarillo_3.prefab
 data/meshes/mesh_neon_amarilllo_3.mesh
 data/colliders/collider_cartel_amarillo_3.collider
+data/particles/def_amb_flare_neon_yellow3.particles
 data/colliders/BC_Spot020.collider
 data/colliders/BC_Spot019.collider
 data/colliders/BC_Spot017.collider

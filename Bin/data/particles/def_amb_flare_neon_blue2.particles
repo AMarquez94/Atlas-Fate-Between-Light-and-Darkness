@@ -15,7 +15,7 @@
 		"offset": "0.29 0.8 0"
 	},
 	"emission": {
-		"rate_time": 1.0,
+		"rate_time": 20.0,
 		"rate_distance": 0.0,
 		"variation" : 0.0
 	},	
