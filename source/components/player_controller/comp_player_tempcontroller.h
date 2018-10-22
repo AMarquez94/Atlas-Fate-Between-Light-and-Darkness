@@ -119,6 +119,7 @@ class TCompTempPlayerController : public TCompBase
 
     void onCreate(const TMsgEntityCreated& msg);
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+    void onSceneCreated(const TMsgSceneCreated& msg);
     void onStateStart(const TMsgStateStart& msg);
     void onStateFinish(const TMsgStateFinish& msg);
 
@@ -222,6 +223,7 @@ public:
     void playPlayerStep(bool left);
     void playLandParticles(bool left); 
     void playSMSpirals();
+    void resetSMFilters();
 
     static void registerMsgs();
 };

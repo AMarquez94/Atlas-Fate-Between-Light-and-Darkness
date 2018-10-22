@@ -167,6 +167,7 @@ void CModuleLogic::publishClasses() {
         .set("playPlayerStep", &TCompTempPlayerController::playPlayerStep)
         .set("playLandParticles", &TCompTempPlayerController::playLandParticles)
         .set("playSMSpirals", &TCompTempPlayerController::playSMSpirals)
+        .set("resetSMFilters", &TCompTempPlayerController::resetSMFilters)
         ;
 
     SLB::Class< TCompNoiseEmitter >("NoiseEmitter", m)

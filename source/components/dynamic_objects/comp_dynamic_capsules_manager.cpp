@@ -65,9 +65,6 @@ void TCompDynamicCapsulesManager::load(const json & j, TEntityParseContext & ctx
 			cDynamicCapsule->setStartPoint(start_point + temp_offset);
 			cDynamicCapsule->setEndPoint(end_point + temp_offset);
 			cDynamicCapsule->setSpeed(speed);
-
-            TCompAudio *cAudio = eCapsule->get<TCompAudio>();
-            cAudio->playEvent("event:/Sounds/Objects/Capsules/Caspule");
 		}
 	}
 }
