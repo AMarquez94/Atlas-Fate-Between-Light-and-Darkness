@@ -1,10 +1,10 @@
 {
 	"system": {
-		"duration": 4.0,
+		"duration": 4,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
-		"start_speed": 1.1,
+		"start_speed": 0.0,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
@@ -16,43 +16,43 @@
 	"emission": {
 		"rate_time": 0.0,
 		"rate_distance": 0.0,
-		"variation" : 1.0,
+		"variation" : 0.0,
 		"bursts" :[
 		  [0.0, 38.0, 2500.0, 22.0],
-			[0.01, 14.0, 2500.0, 22.0015],
-			[0.05, 15.0, 2500.0, 22.002],
+			[0.01, 14.0, 2500.0, 22.005],
+			[0.05, 15.0, 2500.0, 22.01],
 			[1.25, 15.0, 2500.0, 34.02],
 			[1.35, 15.0, 2500.0, 34.03]
 		]
 	},	
 	"shape": {
-		"type": "cone",
+		"type": "box",
 		"size": "0.01 0.01 0.01",
 		"angle": 10
 		
 	},
 	"velocity": {
 		"constant_velocity": "0.0 0.0 0.0",
-		"velocity" : [	
-		  [0.0, "-32 -5.0 0"],
-      [0.1, "-7 -2.0 0"],
-			[0.6, "-2 -1.0 0"],
-			[1.0, "0 0 0"]
-    ],
-		"rotation" : [
-		  [0.0, "0.0 0.0 0.0"],
-      [1.0, "0.0 0.0 0.0"]
-    ],
-		"acceleration": 1.0,
+		"velocity" : [   
+      [0.0, "0.0 0.0 0.0"],     
+			[0.5, "0.0 0.0 0.0"],       
+			[1.0, "0.0 0.0 0.0"]       
+    ],   
+		"rotation" : [      
+		  [0.0, "0.0 0.0 0.0"], 
+      [1.0, "0.0 0.0 0.0"]    
+    ],   
+		"acceleration": 0.0,
 		"wind": 0
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
-		"strength": 1.0,
+		"strength": 0.1,
 		"frequency": 0.5,
 		"scroll_speed": 0.0,
 		"damping": true,
-		"octaves": 1
+		"octaves": 1,
+			"tech" : "particles_instanced_additive.tech"
 	},
 	"collision": {
 		"collision": true
@@ -63,23 +63,24 @@
       "frame_size" : "1 1",
       "initial_frame" : 0,
       "num_frames" : 1,
-      "frame_speed" : 0.0,
-			"tech" : "particles_instanced_additive.tech"
+      "frame_speed" : 0.0
 	},
-  "size" : {
-    "scale" : 1,
-    "scale_variation" : 1.1,
-    "sizes" : [
-		  [0.0, "0.03 0.05 0.03"],
-		  [1.0, "0.03 0.4 0.03"]
-    ]
-  },
+  "size" : {     
+    "scale" : 4.6,
+    "scale_variation" : 1.6,   
+    "sizes" : [ 
+		  [0.0, "0.01 0.01 0.01"],
+			[0.1, "0.01 0.075 0.01"], 
+			[0.25, "0.0 0.0 0.0"],     
+			[1.0, "0.0 0.0 0.0"]     
+    ] 
+  },  
   "color" : {
     "opacity" : 1,
     "colors" : [
-      [0.0, "0.5 0.1 0.1 1.0"],
-			[0.2, "0.5 0.5 0.0 1.0"],
-			[1.0, "0.5 0.8 0.5 0.0"]
+      [0.0, "0.1 0.1 0.1 1.0"],
+			[0.2, "1 1.0 0.5 1.0"],
+			[1.0, "1 1.0 1.0 0.0"]
     ] 
   }
 }
