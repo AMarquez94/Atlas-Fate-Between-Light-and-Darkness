@@ -637,7 +637,7 @@ BTNode::ERes TCompAIDrone::actionGenerateNavmeshChase(float dt)
     /* Shoot */
     CEntity* eLanternLight = hLanternLight;
     TCompShooter* shooter = eLanternLight->get<TCompShooter>();
-    shooter->setIsFiring(true, getEntityByName(entityToChase));
+    shooter->setIsFiring(false, getEntityByName(entityToChase));
     return BTNode::ERes::LEAVE;
 }
 
