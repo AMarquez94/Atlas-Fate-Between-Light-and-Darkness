@@ -291,6 +291,8 @@
 			"data/scenes/BC_tubos.scene",
 			"data/scenes/BC_capsulas.scene",
 			"data/scenes/BC_neones.scene",
+			"data/scenes/BC_decals.scene",
+
 			"data/scenes/bc_pantalla_atlas.scene",
 			"data/scenes/suelo_mezquita.scene",
 			"data/scenes/Basilic_courtyard/basilic_courtyard_particles.scene",
