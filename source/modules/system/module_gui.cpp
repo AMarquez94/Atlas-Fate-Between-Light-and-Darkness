@@ -73,14 +73,16 @@ void CModuleGUI::initializeWidgetStructure() {
 	};
 	auto pm_restartLevel = []() {
         //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
+		EngineGUI.clearSubtitles();
 		CEngine::get().getGameManager().resetLevel();
 	};
 	auto pm_RestartFromCheckPoint = []() {
         //EngineLogic.execSystemScriptDelayed("gameManager:resetToCheckpoint()", 2.f);
+		EngineGUI.clearSubtitles();
 		CEngine::get().getGameManager().resetToCheckpoint();
 	};
 	auto pm_ReturnMainMenu = []() {
-
+		EngineGUI.clearSubtitles();
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
@@ -101,6 +103,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	};
 
 	auto pm_Dead = []() {
+		EngineGUI.clearSubtitles();
 		EngineLogic.execSystemScriptDelayed("execDeadButton();", 3.2f);
 		EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 6.5f);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(3, 0, false);
