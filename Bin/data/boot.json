@@ -327,7 +327,7 @@
 			"tone_mapping": 0,
 			"shadow_intensity": 0.1,
 			"ground_fog_density": 3,
-			"env_fog_density": 0.27,
+			"env_fog_density": 0.364,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.0 0.0 0.0",
 			"env_fog": "0.0 0.0 0.0"
