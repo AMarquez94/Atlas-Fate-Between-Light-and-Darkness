@@ -86,13 +86,13 @@
 	"scene_coliseo": {
 		"static_data": {
 			"initial_script": "coliseo",
-			"exposure": 1.3,
+			"exposure": 2,
 			"ambient": 0.05,
 			"gamma": 0.9,
 			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
+			"env_fog_density": 0.4,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117"
@@ -140,7 +140,7 @@
 			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
+			"env_fog_density": 0.27,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117"
@@ -209,12 +209,12 @@
 	"scene_coliseo_2": {
 		"static_data": {
 			"initial_script": "coliseo2",
-			"exposure": 1.3,
+			"exposure": 2,
 			"ambient": 0.05,
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"ground_fog_density": 0.1,
+			"ground_fog_density": 0.4,
 			"env_fog_density": 0.1,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
@@ -257,10 +257,10 @@
 			"exposure": 1.51,
 			"ambient": 0.05,
 			"gamma": 0.92,
-			"tone_mapping": 0.59,
+			"tone_mapping": 0.9,
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.061,
-			"env_fog_density": 0.083,
+			"env_fog_density": 0.09,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117"
