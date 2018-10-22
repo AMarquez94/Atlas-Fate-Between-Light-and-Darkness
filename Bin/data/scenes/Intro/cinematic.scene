@@ -36,7 +36,7 @@
     "entity": {
       "name": "Camera_Cinematic_Intro_video",
       "transform": {
-        "pos": "9.9 15.5 26",
+        "pos": "9 15.5 26",
         "rotation": "0.0150 0.7051 -0.0149 0.7087"
       },
       "prefab": "data/prefabs/camera_player.prefab"
