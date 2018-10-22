@@ -477,7 +477,7 @@ data/textures/tx_props_plaza_nml.dds
 data/textures/tx_props_plaza_rgh.dds
 data/materials/mtl_props_plaza.material
 data/textures/particles/fx_smoke1.dds
-data/textures/particles/glow.dds
+data/textures/particles/amb_puff.dds
 data/particles/def_amb_dust_lightpost.particles
 data/colliders/Lightpost_Light.collider
 data/meshes/prop_lightpose_cone.mesh
@@ -501,13 +501,15 @@ data/textures/barro_bottom.dds
 data/textures/tx_parche_cemento_rgh.dds
 data/materials/mtl_decal_bottom.material
 data/scenes/intro_decals_rotura.scene
+data/textures/tx_leaking_alb.dds
+data/materials/mtl_decal_leaking.material
 data/textures/parche cemento.dds
 data/materials/mtl_parche cemento.material
-data/textures/bordes_largos.dds
-data/materials/mtl_decal_rotura_larga.material
 data/textures/tx_rotura_filo_alb.dds
 data/textures/tx_rotura_filo_nml.dds
 data/materials/mtl_decal_borde_filo.material
+data/textures/bordes_largos.dds
+data/materials/mtl_decal_rotura_larga.material
 data/scenes/intro_decals_poster.scene
 data/textures/cartel_sam.dds
 data/materials/mtl_cartel_sam.material
@@ -838,7 +840,6 @@ data/materials/mtl_terminal.material
 data/materials/mtl_terminal_post.material
 data/colliders/collider_mesh_terminal.collider
 data/scenes/Intro/intro_particles.scene
-data/textures/particles/dust_spore.dds
 data/particles/def_amb_dust_30x30.particles
 data/textures/particles/amb_smoke2.dds
 data/particles/def_amb_fog_30x30.particles
@@ -1022,6 +1023,7 @@ data/skeletons/player/player.skeleton
 data/particles/sm_ground.particles
 data/textures/particles/sm_smokeball.dds
 data/particles/sm_top.particles
+data/textures/particles/glow.dds
 data/particles/sm_whisps.particles
 data/particles/sm_whisps2.particles
 data/textures/particles/WispySmoke01_8x8.dds
