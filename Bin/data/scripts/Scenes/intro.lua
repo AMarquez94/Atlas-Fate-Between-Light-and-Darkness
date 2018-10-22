@@ -23,7 +23,7 @@ function onScenePartialEnd_scene_intro()
 end
 
 function intro_intro_cinematic()
-	startCinematicMode(88);
+	startCinematicMode(93);
 	move("The Player", VEC3(-6.275, 12.115, 32.7),VEC3(-6.275, 12.115, 31.7));
 	resetMainCameras();
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
