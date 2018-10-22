@@ -16,7 +16,7 @@
 				"type": "directional",
 				"proj_type": "ortographic",
 				"color": "0.92 0.94 0.627 1.0",
-				"intensity": 0.25,
+				"intensity": 0.32,
 				"z_near": 0.1,
 				"z_far": 187.671,
 				"ortosize": 155.0,
