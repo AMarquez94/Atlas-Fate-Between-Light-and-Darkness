@@ -73,14 +73,16 @@ void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
 
     if (_light_target != "") {
         CEntity* eCone = cGroup->getHandleByName(_light_target);
-        _point_light = eCone->get<TCompLightPoint>();
-
+        if (eCone) {
+            _point_light = eCone->get<TCompLightPoint>();
+        }
     }
 
     if (_mesh_target != "") {
         CEntity* eCone = cGroup->getHandleByName(_mesh_target);
-        _mesh_render = eCone->get<TCompRender>();
-
+        if (eCone) {
+            _mesh_render = eCone->get<TCompRender>();
+        }
     }
 
     if (_point_light) {
