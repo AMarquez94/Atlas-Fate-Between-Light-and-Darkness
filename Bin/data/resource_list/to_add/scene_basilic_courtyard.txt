@@ -271,6 +271,8 @@ data/textures/neones_juntos_2_nml.dds
 data/textures/neones_juntos_2_rgh.dds
 data/materials/mtl_neones2.material
 data/colliders/collider_cartel_verde_4.collider
+data/textures/particles/glow.dds
+data/particles/def_amb_flare_neon_green4.particles
 data/prefabs/neon_redondo_azul.prefab
 data/meshes/mesh_neon_redondo_azul.mesh
 data/textures/tx_neones_juntos_1_alb.dds
@@ -285,7 +287,6 @@ data/colliders/collider_neon_rectangulo_verde.collider
 data/prefabs/neon_azul_2.prefab
 data/meshes/mesh_neon_azul_2.mesh
 data/colliders/collider_cartel_azul_2.collider
-data/textures/particles/glow.dds
 data/particles/def_amb_flare_neon_blue2.particles
 data/prefabs/neon_azul_4.prefab
 data/meshes/mesh_neon_azul_4.mesh
