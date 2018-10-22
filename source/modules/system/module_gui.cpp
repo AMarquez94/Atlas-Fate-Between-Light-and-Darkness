@@ -88,6 +88,7 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SUBTITLES);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
+		EngineLogic.execScript("restartCinematics()");
         EngineScene.changeGameState("main_menu");
     };
 	auto pm_Exit = []() {
