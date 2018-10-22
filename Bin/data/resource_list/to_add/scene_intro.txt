@@ -959,8 +959,8 @@ data/colliders/luz_pasillo037.collider
 data/colliders/luz_pasillo.collider
 data/scenes/pantalla_intro_video.scene
 data/meshes/intro_pantalla_video.mesh
-data/textures/pantalla_atlas.h264
-data/materials/video.material
+data/video/pantalla_atlas.h264
+data/materials/video_atlas.material
 data/meshes/intro_pantalla_video_estr_low.mesh
 data/textures/tx_pantalla_borde_alb.dds
 data/textures/tx_pantalla_borde_nml.dds

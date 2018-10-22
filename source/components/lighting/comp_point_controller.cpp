@@ -67,6 +67,7 @@ void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
         CEntity* eCone = cGroup->getHandleByName(_emissive_target);
         if (eCone) {
             _object_render = eCone->get<TCompRender>();
+            _object_particles = eCone->get<TCompParticles>();
             if (_object_render) _emissive_intensity = _object_render->self_intensity;
         }
     }
