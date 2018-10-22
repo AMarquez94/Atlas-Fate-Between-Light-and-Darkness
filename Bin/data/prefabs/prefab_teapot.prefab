@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "prefab_teapot"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "prefab_box"
       ,
       "transform":

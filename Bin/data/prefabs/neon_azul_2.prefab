@@ -1,12 +1,5 @@
 [{
 		"entity": {
-			"name": "neon_azul_2",
-			"transform": {
-				"pos": "0.0 0.0 0.0"
-			}
-		}
-	}, {
-		"entity": {
 			"name": "luz_neon_azul_2",
 			"transform": {
 				"pos": "1.62556 0.873474 0.149808",

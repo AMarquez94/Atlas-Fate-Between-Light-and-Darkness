@@ -210,6 +210,26 @@
 			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
+	"pbr_decals_top": {
+		"vs_file": "data/shaders/pbr_decals.fx",
+		"vertex_type": "PosNUvUvT_x_Instance",
+		"category": "gbuffer_decals",
+		"z": "test_but_no_write",
+		"blend": "multiplicative_gbuffer",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds"
+		}
+	},
+	"pbr_decals_solid": {
+		"vs_file": "data/shaders/pbr_decals.fx",
+		"vertex_type": "PosNUvUvT_x_Instance",
+		"ps_entry_point": "PS_SOLID",
+		"category": "gbuffer_decals",
+		"z": "test_but_no_write",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds"
+		}
+	},
 	"pbr_ambient": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/pbr.fx",

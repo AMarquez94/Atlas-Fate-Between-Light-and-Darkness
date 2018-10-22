@@ -230,6 +230,7 @@ data/textures/tx_muralla_rgh.dds
 data/materials/mtl_muralla.material
 data/colliders/collider_muro_muralla_grande.collider
 data/meshes/mesh_muralla_interior.mesh
+data/colliders/collider_mesh_muralla_interior.collider
 data/scenes/zona_a_valla_torre.scene
 data/prefabs/pivote_valla_torre.prefab
 data/meshes/mesh_pivote_valla_torre.mesh
@@ -487,6 +488,12 @@ data/textures/tx_parche_cemento_alb.dds
 data/materials/mtl_parche_cemento.material
 data/textures/bordes_largos.dds
 data/materials/mtl_decal_rotura_larga.material
+data/scenes/zone_a_decals_suelo.scene
+data/textures/tx_suelo_damage1_alb.dds
+data/materials/mtl_decal_suelo_damage1.material
+data/scenes/zone_a_decals_poster.scene
+data/textures/cartel_sam.dds
+data/materials/mtl_cartel_sam.material
 data/scenes/zone_a_props_torre.scene
 data/scenes/zone_a_casas_lp_1.scene
 data/prefabs/casas_1_lp.prefab

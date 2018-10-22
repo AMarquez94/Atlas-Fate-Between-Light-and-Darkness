@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "neon_magenta_1"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "luz_neon_magenta_1"
       ,
       "transform":

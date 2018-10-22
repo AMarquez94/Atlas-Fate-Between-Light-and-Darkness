@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "tubogrande_rectocierre"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_tubogrande_rectocierre"
       ,
       "transform":

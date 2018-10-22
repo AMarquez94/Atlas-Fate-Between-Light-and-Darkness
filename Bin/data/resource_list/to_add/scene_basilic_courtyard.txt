@@ -22,13 +22,18 @@ data/colliders/bc_Spot016.collider
 data/scenes/basiliclantern.scene
 data/prefabs/littlespotlight.prefab
 data/meshes/mesh_littlespotlight.mesh
+data/textures/FLARE.dds
+data/textures/null_normal.dds
+data/materials/flare.material
+data/textures/tx_shaft_beam.dds
+data/materials/spot.material
 data/textures/tx_spotlight_alb.dds
 data/textures/tx_spotlight_ao.dds
 data/textures/tx_spotlight_emi.dds
 data/textures/tx_spotlight_met.dds
 data/textures/tx_spotlight_nml.dds
 data/textures/tx_spotlight_rgh.dds
-data/materials/mtl_spotlights.material
+data/materials/mtl_spotlight.material
 data/prefabs/foco_brian.prefab
 data/meshes/mesh_spotlight.mesh
 data/scenes/Basilic_courtyard/whitebox_patio_test_light.scene
@@ -55,7 +60,6 @@ data/materials/volume_particles_instanced.material
 data/scenes/Basilic_courtyard/buttons.scene
 data/meshes/Buttons/Button.mesh
 data/textures/tx_cables_alb.dds
-data/textures/null_normal.dds
 data/materials/mtl_default.material
 data/scenes/Basilic_courtyard/capsules.scene
 data/scenes/Basilic_courtyard/BC_mezquita.scene
@@ -239,6 +243,7 @@ data/textures/default_emissive.dds
 data/materials/mtl_cables.material
 data/prefabs/baselargaelectrica.prefab
 data/meshes/mesh_baselargalectrica.mesh
+data/materials/mtl_spotlights.material
 data/prefabs/cajafusibles.prefab
 data/meshes/mesh_cajafusibles.mesh
 data/prefabs/mastilelectrico.prefab
@@ -514,7 +519,6 @@ data/textures/tx_suelo_mezquita3_nml.dds
 data/textures/tx_suelo_mezquita3_rgh.dds
 data/materials/mtl_suelo_mezquita.material
 data/colliders/collider_mesh_bc_pasillo_entre.collider
-data/meshes/BC_piedra_arco.mesh
 data/scenes/bc_corridor_logic.scene
 data/scenes/bc_corridor_lights.scene
 data/colliders/luz_corridor_bc.collider
@@ -564,6 +568,11 @@ data/textures/tx_terminal_rgh.dds
 data/materials/mtl_terminal.material
 data/materials/mtl_terminal_post.material
 data/colliders/collider_mesh_terminal.collider
+data/scenes/BC_Screens.scene
+data/meshes/BC_Screen001.mesh
+data/video/pantalla_atlas.h264
+data/materials/video_atlas.material
+data/meshes/BC_Screen002.mesh
 data/scenes/BC_Entrada_chapas.scene
 data/meshes/bc_mesh_chapa.mesh
 data/textures/tx_chapa_alb.dds

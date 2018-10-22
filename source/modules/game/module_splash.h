@@ -16,8 +16,4 @@ private:
   float _timer;
   float _max_time;
 
-  bool upfFadedOut = false;
-  bool babyRobotFadedOut = false;
-  bool softwareFadedOut = false; 
-  bool engineFadedOut = false;
 };

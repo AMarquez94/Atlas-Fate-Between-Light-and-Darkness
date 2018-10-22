@@ -2,13 +2,6 @@
 		"entity": {
 			"name": "prop_lightpost",
 			"transform": {
-				"pos": "0.0 0.0 0.0"
-			}
-		}
-	}, {
-		"entity": {
-			"name": "prop_lightpost",
-			"transform": {
 				"pos": "-0.0725327 -0.689261 -1.58236"
 			},
 			"render":

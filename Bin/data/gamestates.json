@@ -3,6 +3,10 @@
 	"gamestates" : 
 	[
 		{
+			"name" : "loading",
+			"modules" : [ "loading" ]
+		},
+		{
 			"name" : "splash",
 			"modules" : [ "splash" ]
 		},

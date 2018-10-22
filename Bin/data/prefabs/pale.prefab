@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "pale"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_pale"
       ,
       "transform":

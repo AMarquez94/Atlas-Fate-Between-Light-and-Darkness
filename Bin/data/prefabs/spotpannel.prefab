@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "spotpannel"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_spotpannel"
       ,
       "transform":
@@ -28,9 +16,13 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotbody.material"
+            "data/materials/flare.material"
             ,
-            "data/materials/mtl_decalprops.material"
+            "data/materials/spot.material"
+            ,
+            "data/materials/mtl_spotlight.material"
+            ,
+            "data/materials/mtl_decalsprops.material"
           ]
         }
       ]

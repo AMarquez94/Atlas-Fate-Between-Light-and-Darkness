@@ -102,7 +102,7 @@
   }
   ,
   {
-    "entity":
+    "xentity":
     {
       "name": "COL_mesh_littlespotlight"
       ,
@@ -118,7 +118,7 @@
   }
   ,
   {
-    "entity":
+    "xentity":
     {
       "name": "COL_mesh_spotlight"
       ,
@@ -134,7 +134,7 @@
   }
   ,
   {
-    "entity":
+    "xentity":
     {
       "name": "COL_mesh_spotlight001"
       ,
@@ -150,7 +150,7 @@
   }
   ,
   {
-    "entity":
+    "xentity":
     {
       "name": "COL_mesh_spotlight002"
       ,

@@ -1,6 +1,7 @@
 #include "mcv_platform.h"
 #include "engine.h"
 
+#include "modules/game/module_loading.h"
 #include "modules/game/module_splash.h"
 #include "modules/game/module_main_menu.h"
 #include "modules/game/module_gameover.h"
@@ -40,6 +41,7 @@ CEngine::CEngine()
 
 bool CEngine::start() {
 
+    static CModuleLoading module_loading("loading");
 	static CModuleSplash module_splash("splash");
 	static CModuleGameManager module_game_manager("game_manager");
 	static CModuleMainMenu module_main_menu("main_menu");
@@ -72,6 +74,7 @@ bool CEngine::start() {
     //IMPORTANT: ALWAYS LAST to start the ongamestarted event from here
 	_modules.registerSystemModule(&_module_logic); 
 
+    _modules.registerGameModule(&module_loading);
 	_modules.registerGameModule(&module_splash);
 	_modules.registerGameModule(&module_game_manager);
 	_modules.registerGameModule(&module_main_menu);
