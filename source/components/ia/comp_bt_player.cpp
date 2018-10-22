@@ -876,6 +876,7 @@ BTNode::ERes TCompAIPlayer::actionAnimationStandingHardPoseLooking(float dt)
 	_timer += dt;
 	if (_timer > _maxTimer) {
 		_timer = 0.f;
+		_maxTimer = 0.0f;
 		return BTNode::ERes::LEAVE;
 	}
 	else {
