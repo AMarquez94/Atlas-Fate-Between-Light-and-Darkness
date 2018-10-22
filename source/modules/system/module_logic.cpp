@@ -1374,7 +1374,7 @@ void activateCredits() {
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS);
 	EngineLogic.execScriptDelayed("removeAtlasSplash()", 57.0f);
 	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")", 57.0f);
-	
+	EngineLogic.execScript("restartCinematics()");
 }
 
 void removeAtlasSplash() {
