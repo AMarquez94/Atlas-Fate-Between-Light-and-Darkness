@@ -38,6 +38,10 @@ void TCompAIPlayer::debugInMenu() {
 
 }
 
+TCompAIPlayer::~TCompAIPlayer() {
+    //TCompIAController::~TCompIAController();
+}
+
 void TCompAIPlayer::preUpdate(float dt)
 {
 }
@@ -315,6 +319,7 @@ void TCompAIPlayer::onMsgEntityGroupCreated(const TMsgEntitiesGroupCreated & msg
     h_sm_tutorial = myGroup->getHandleByName("Tutorial SM");
 
     TCompName* my_name = get<TCompName>();
+    name = my_name->getName();
     is_main_character = std::strcmp(my_name->getName(), "The Player") == 0;
 
     if (is_main_character) {
@@ -871,6 +876,7 @@ BTNode::ERes TCompAIPlayer::actionAnimationStandingHardPoseLooking(float dt)
 	_timer += dt;
 	if (_timer > _maxTimer) {
 		_timer = 0.f;
+		_maxTimer = 0.0f;
 		return BTNode::ERes::LEAVE;
 	}
 	else {

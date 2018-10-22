@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "columna1"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_columna1"
       ,
       "transform":

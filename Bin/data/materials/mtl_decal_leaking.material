@@ -1,0 +1,14 @@
+{
+  "technique": "pbr_decals.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_leaking_alb.dds"
+    ,
+    "roughness": "data/textures/tx_parche_cemento_rgh.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

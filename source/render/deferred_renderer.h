@@ -25,6 +25,7 @@ public:
   void renderDirectionalLights();
   void renderPointLights();
   void renderSpotLights();
+  void renderPointLightsShadows();
   void renderSkyBox() const;
   void renderPreHDR() const;
   void renderProjectors();

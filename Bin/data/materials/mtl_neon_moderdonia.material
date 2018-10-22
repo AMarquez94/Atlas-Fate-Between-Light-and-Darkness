@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_neon_moderdonia_nml.dds"
     ,
-    "height": "data/textures/tx_neon_moderdonia_hgt.dds"
-    ,
     "emissive": "data/textures/tx_neon_moderdonia_emi.dds"
   }
 }

@@ -1,0 +1,125 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_casas_lp_1"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_2_lp002"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-138.21 5.89532 -57.3916"
+        ,
+        "rotation": "0.0 -0.843395 0.0 -0.537294"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_1_lp001"
+      ,
+      "prefab": "data/prefabs/casas_1_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-51.2202 11.125 -42.7324"
+        ,
+        "rotation": "0.0 -1.0 0.0 -2.81731e-06"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_2_lp001"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-87.9752 8.40686 -39.6584"
+        ,
+        "rotation": "0.0 -7.00156e-06 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_3_lp001"
+      ,
+      "prefab": "data/prefabs/casas_3_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-113.757 6.66237 -57.8929"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_4_lp001"
+      ,
+      "prefab": "data/prefabs/casas_4_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-142.778 8.13105 -83.5186"
+        ,
+        "rotation": "0.0 0.461749 0.0 -0.887011"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_3_lp005"
+      ,
+      "prefab": "data/prefabs/casas_3_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-174.248 10.7442 -91.7762"
+        ,
+        "rotation": "0.0 -0.976296 0.0 -0.21644"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_1_lp002"
+      ,
+      "prefab": "data/prefabs/casas_1_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-146.337 9.73109 -118.694"
+        ,
+        "rotation": "0.0 -0.953718 0.0 0.300703"
+      }
+    }
+  }
+]

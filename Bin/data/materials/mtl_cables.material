@@ -3,7 +3,7 @@
   ,
   "textures":
   {
-    "albedo": "data/textures/tx_cables_alb.dds"
+    "albedo": "data/textures/default_emissive.dds"
     ,
     "normal": "data/textures/null_normal.dds"
   }

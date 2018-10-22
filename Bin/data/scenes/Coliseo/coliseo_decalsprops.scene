@@ -1,0 +1,45 @@
+[
+  {
+    "entity":
+    {
+      "name": "coliseo_decalsprops"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_spotpannel001"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "15.5732 0.993896 8.89418"
+        ,
+        "rotation": "0.0 -0.939692 0.0 -0.342022"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "COL_mesh_spotpannel"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "14.0138 0.993896 7.92583"
+        ,
+        "rotation": "0.0 -0.976296 0.0 -0.216441"
+      }
+    }
+  }
+]

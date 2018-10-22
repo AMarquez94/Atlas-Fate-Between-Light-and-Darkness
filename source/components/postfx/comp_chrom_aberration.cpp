@@ -5,6 +5,7 @@
 #include "render/render_objects.h"
 
 DECL_OBJ_MANAGER("chromatic_aberration", TCompChromaticAberration);
+CRenderToTexture* TCompChromaticAberration::rt = nullptr;
 
 // ---------------------
 void TCompChromaticAberration::debugInMenu() {

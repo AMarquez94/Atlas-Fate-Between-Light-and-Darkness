@@ -8,6 +8,8 @@ extern ID3D11ShaderResourceView* depth_shader_resource_view;
 
 DECL_OBJ_MANAGER("render_outlines", TCompRenderOutlines);
 
+CRenderToTexture* TCompRenderOutlines::post_rt = nullptr;
+
 // ---------------------
 void TCompRenderOutlines::debugInMenu() {
 

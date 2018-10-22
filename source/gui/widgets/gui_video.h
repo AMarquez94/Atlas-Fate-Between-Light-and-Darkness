@@ -12,6 +12,9 @@ namespace GUI
         void update(float dt) override;
         TImageParams* getImageParams() override;
 
+        void onActivate() override;
+        void onDeactivate() override;
+
     private:
         TImageParams _imageParams;
 

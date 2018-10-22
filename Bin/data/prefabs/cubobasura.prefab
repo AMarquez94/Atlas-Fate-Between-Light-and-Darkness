@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "cubobasura"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_cubobasura"
       ,
       "transform":
@@ -35,7 +23,7 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_basurabin.collider"
         ,

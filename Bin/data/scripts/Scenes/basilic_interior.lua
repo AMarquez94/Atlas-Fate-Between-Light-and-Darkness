@@ -1,9 +1,11 @@
 function onSceneStart_scene_basilic_interior()
+	startCinematicMode(192.5);
+	deleteAllCacheResources();
 	setOutBlackScreen(0.25);
-	pre_end_cinematic_scene();
 	gameManager:changeToEndScene();
-	--shutdown_end_cinematic_scene
-	--temp_final_decision();
+	pre_end_cinematic_scene();
+	--finish_job_end_cinematic_scene();
+	--shutdown_end_cinematic_scene();
 end
 
 function finish_job_end_cinematic_scene()
@@ -20,28 +22,31 @@ function finish_job_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0, \"cinematic\", \"\")", 6);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_2\", 0.0)",6);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_1\", 0.0)",6);
-
+	execScriptDelayed("speedUpRuedasFinalScene()",7.5); 
 
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_16_Rot_2\", 10.0, \"cinematic\", \"\")", 12);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_16_Rot_1\", 0.0, \"cinematic\", \"\")", 12);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_2\", 0.0)",12);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0)",12);
 
-
+	
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 20.0, \"cinematic\", \"\")", 17);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0, \"cinematic\", \"\")", 17);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_16_Rot_2\", 0.0)",17);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_16_Rot_1\", 0.0)",17);
 
+	execScriptDelayed("ambientAdjustmentForFinalScene(10)",37);
 	execScriptDelayed("move(\"The Player\", VEC3(-8.850, 0.044, -4.275),VEC3(-8.850, 0.044, -8));",28);
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_2\", 20.0, \"cinematic\", \"\")", 28.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_2\", 25.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 0.0)",28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
-	execScriptDelayed("startTransmission(7)", 38);
+	--execScriptDelayed("startTransmission(7)", 38);
 	execScriptDelayed("activateSubtitles(31);",38);
 	execScriptDelayed("deactivateSubtitles();",45);
-	execScriptDelayed("execLastAtlasScreen()",50);
+	execScriptDelayed("execLastAtlasScreen()",53);
+	--execScriptDelayed("execLastAtlasScreen()",3);
+	execScriptDelayed("lightUpForFinalScene(true,3);",37);
 end
 
 function shutdown_end_cinematic_scene()
@@ -58,29 +63,40 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0, \"cinematic\", \"\")", 6);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_2\", 0.0)",6);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_1\", 0.0)",6);
-	execScriptDelayed("startTransmission(19)", 17);
-	execScriptDelayed("activateSubtitles(32);",17);
-	execScriptDelayed("activateSubtitles(33);",23);
-	execScriptDelayed("activateSubtitles(34);",28.5);
-	execScriptDelayed("deactivateSubtitles();",36);
+	execScriptDelayed("speedUpRuedasFinalScene()",7.5); 
 
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_16_Rot_2\", 10.0, \"cinematic\", \"\")", 12);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_16_Rot_1\", 0.0, \"cinematic\", \"\")", 12);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_2\", 0.0)",12);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0)",12);
+	
+	execScriptDelayed("startTransmission(11.5)", 17);
+	execScriptDelayed("activateSubtitles(32);",17);
+	execScriptDelayed("activateSubtitles(33);",23);
+	execScriptDelayed("deactivateSubtitles();",28.5);
 
+	execScriptDelayed("activateSubtitles(34);",38);
+	execScriptDelayed("deactivateSubtitles();",45);
 
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 20.0, \"cinematic\", \"\")", 17);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0, \"cinematic\", \"\")", 17);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_16_Rot_2\", 0.0)",17);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_16_Rot_1\", 0.0)",17);
+	execScriptDelayed("stopRuedasFinalScene()",30); 
 
 	execScriptDelayed("move(\"The Player\", VEC3(-8.850, 0.044, -4.275),VEC3(-8.850, 0.044, -8));",28);
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_2\", 20.0, \"cinematic\", \"\")", 28.5);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_2\", 25.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_18_Rot_1\", 0.0, \"cinematic\", \"\")", 28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_2\", 0.0)",28.5);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
-	execScriptDelayed("execLastAtlasScreen()",50);
+	--
+	execScriptDelayed("pasarelaLightsFadeOut()", 44);
+	
+
+	execScriptDelayed("execLastAtlasScreen()",53);
+	execScriptDelayed("lightUpForFinalScene(false, 13.0);",22);
+	execScriptDelayed("lightDownForFinalScene(true, 0.5);",37);
+
 
 end
 
@@ -131,6 +147,7 @@ function pre_end_cinematic_scene()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_6_Rot_1\", 0.0)",39);
 
 	--Eighth plane
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_8_2\", 8.0, \"cinematic\", \"\")", 47);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_8\", 0.0, \"cinematic\", \"\")", 47);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_7_Rot_2\", 0.0)",47);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_7_Rot_1\", 0.0)",47);
@@ -140,6 +157,7 @@ function pre_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_9_Rot_2\", 15.0, \"cinematic\", \"\")", 51);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_9_Rot_1\", 0.0, \"cinematic\", \"\")", 51);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_8\", 0.0)",51);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_8_2\", 0.0)",51);
 
 	--Tenth plane--Starts talking
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_10_Rot_2\", 15.0, \"cinematic\", \"\")", 58);

@@ -8,6 +8,8 @@ class CRenderMeshInstanced;
 
 struct TCompGPUParticles : public TCompBase {
 
+    ~TCompGPUParticles();
+
     GPUParticles::TSystemInstance* system_instance = nullptr;
     CRenderMeshInstanced* instances_mesh = nullptr;
 

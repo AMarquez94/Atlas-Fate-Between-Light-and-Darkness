@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "neon_baby"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "luz_neon_baby"
       ,
       "transform":

@@ -13,6 +13,7 @@ public:
 	IResource* create(const std::string& name) const override {
 		dbg("Creating mesh %s\n", name.c_str());
 		CPhysicsMesh* res = loadPhysicsMesh(name.c_str());
+        EngineFiles.addPendingResourceFile(name, false);
 		return res;
 	}
 };

@@ -154,7 +154,11 @@
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
-				"core": "data/particles/def_amb_whisps.particles"
+				"cores":
+				[
+					"data/particles/def_amb_whisps.particles",
+					"data/particles/def_amb_whisps_core.particles"
+				]
 			}
 		}
 	}, {
@@ -165,7 +169,11 @@
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
-				"core": "data/particles/def_amb_whisps.particles"
+				"cores":
+				[
+					"data/particles/def_amb_whisps.particles",
+					"data/particles/def_amb_whisps_core.particles"
+				]
 			}
 		}
 	}, {
@@ -176,7 +184,11 @@
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
-				"core": "data/particles/def_amb_whisps.particles"
+				"cores":
+				[
+					"data/particles/def_amb_whisps.particles",
+					"data/particles/def_amb_whisps_core.particles"
+				]
 			}
 		}
 	}, {
@@ -187,7 +199,109 @@
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
-				"core": "data/particles/def_amb_whisps.particles"
+				"cores":
+				[
+					"data/particles/def_amb_whisps.particles",
+					"data/particles/def_amb_whisps_core.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Dummy014",
+			"transform": {
+				"pos": "-63.0 0.0 -88",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_neon_fog_yellow.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Dummy014",
+			"transform": {
+				"pos": "-54.0 0.0 -153.4",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_neon_fog_yellow.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Dummy011",
+			"transform": {
+				"pos": "-57.0 0.0 -76.6",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_neon_fog_blue.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Dummy011",
+			"transform": {
+				"pos": "-91.4915 0.0 -104",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_neon_fog_blue.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Dummy011",
+			"transform": {
+				"pos": "-42.0 0.0 -82",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_neon_fog_red.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Dummy011",
+			"transform": {
+				"pos": "-47.0 0.0 -76.5",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_neon_fog_red.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Dummy011",
+			"transform": {
+				"pos": "-115.0 0.0 -124.0",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_neon_fog_green.particles"
+				]
 			}
 		}
 	}

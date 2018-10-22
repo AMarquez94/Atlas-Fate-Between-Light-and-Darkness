@@ -4,7 +4,7 @@
 		"static_data": {
 			"initial_script": "intro",
 			"navmesh": "data/navmeshes/intro_navmesh.bin",
-			"exposure": 1.51,
+			"exposure": 2,
 			"ambient": 0.04,
 			"gamma": 0.92,
 			"tone_mapping": 0.5,
@@ -43,8 +43,14 @@
 			"data/scenes/intro_tubo_capsulas.scene",
 			"data/scenes/intro_farolas.scene",
 			"data/scenes/intro_patrol_atrapado.scene",
-			"data/scenes/intro_edificios_segunda_1.scene",
-			"data/scenes/intro_edificios_segunda_2.scene",
+
+			"data/scenes/intro_decals.scene",
+			"data/scenes/intro_decals_rotura.scene",
+			"data/scenes/intro_decals_poster.scene",
+
+			"data/scenes/intro_casas_lp_1.scene",
+			"data/scenes/intro_casas_lp_2.scene",
+			
 			"data/scenes/intro_carteles.scene",
 			"data/scenes/intro_muralla.scene",
 			"data/scenes/intro_pozo.scene",
@@ -63,28 +69,30 @@
 			"data/scenes/Intro/intro_particles.scene",
 
 			"data/scenes/intro_puerta_corridor.scene",
-
 			"data/scenes/grass_container.scene",
 			"data/scenes/decal_test.scene",
-			"data/scenes/intro_corridor_3.scene",
+			"data/scenes/intro_corridor_4.scene",
 			"data/scenes/intro_corridor_logic.scene",
 			"data/scenes/intro_col_corridor_lights.scene",
 			"data/scenes/pantalla_intro_video.scene",
 			"data/scenes/intro_planets.scene",
 			"data/scenes/intro_subtitle_triggers.scene",
+
+			"data/scenes/intro_silueta_casas.scene",
+			
 			"data/scenes/intro_tubo_grande.scene"
 		]
 	},
 	"scene_coliseo": {
 		"static_data": {
 			"initial_script": "coliseo",
-			"exposure": 1.3,
+			"exposure": 2,
 			"ambient": 0.05,
 			"gamma": 0.9,
 			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
+			"env_fog_density": 0.4,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117"
@@ -100,6 +108,7 @@
 			"data/scenes/Coliseo/coliseo_luces.scene",
 			"data/scenes/Coliseo/coliseo_planets.scene",
 			"data/scenes/Coliseo/coliseo_cables.scene",
+			"data/scenes/Coliseo/coliseo_decalsprops.scene",
 			"data/scenes/col_pantallas_distritos.scene",
 			"data/scenes/Coliseo/coliseo_rellenoprops.scene",
 			"data/scenes/Coliseo/coliseo_structures.scene",
@@ -109,7 +118,7 @@
 			"data/scenes/col_zone_a_corridor.scene",
 			"data/scenes/Coliseo/coliseo_cinematic.scene",
 			"data/scenes/col_bc_corridor.scene",
-			
+			"data/scenes/col_casas_lp.scene",
 
 			"data/scenes/col_intro_corridor_logic.scene",
 			"data/scenes/Coliseo/col_mosque.scene",
@@ -131,7 +140,7 @@
 			"tone_mapping": 0.5,
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.1,
-			"env_fog_density": 0.1,
+			"env_fog_density": 0.27,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117"
@@ -156,9 +165,10 @@
 			"data/scenes/zone_a_coberturas.scene",
 			"data/scenes/zone_a_electrictower.scene",
 			"data/scenes/zone_a_towerlights.scene",
+			"data/scenes/zone_a_decalsprops.scene",
 			"data/scenes/zone_a_props.scene",
 			"data/scenes/zona_a_andamios.scene",
-			"data/scenes/zone_a_conductos.scene",
+			"data/scenes/zona_a_conductos.scene",
 			"data/scenes/zone_a_puertas_reja.scene",
 			"data/scenes/zona_a_tubos.scene",
 			"data/scenes/zone_a_tubitos.scene",
@@ -168,10 +178,16 @@
 			"data/scenes/zona_a_colliders_barandillas.scene",
 			"data/scenes/zone_a_colliders_valla_luz.scene",
 			"data/scenes/zone_a_test.scene",
-			"data/scenes/zone_a_edificios_segunda.scene",
-			"data/scenes/zone_a_neones.scene",
 
-			"data/scenes/zone_a_decal.scene",
+			"data/scenes/zone_a_decals.scene",
+			"data/scenes/zone_a_decals_rotura.scene",
+			"data/scenes/zone_a_decals_poster.scene",
+
+            		"data/scenes/zone_a_props_torre.scene",
+			"data/scenes/zone_a_casas_lp_1.scene",
+			"data/scenes/zone_a_casas_lp_2.scene",
+			"data/scenes/zone_a_casas_lp_3.scene",
+			"data/scenes/zone_a_neones.scene",
 			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/zone_a_grass.scene",
 			"data/scenes/ZoneA/zonea_planets.scene",
@@ -183,9 +199,7 @@
 			"data/scenes/zone_a_carteles.scene",
 			"data/scenes/ZoneA/carteles.scene",
 			"data/scenes/zonea_triggers.scene",
-			"data/scenes/zone_a_props_torre.scene",
-
-			"data/scenes/zone_a_in_corridor.scene",
+          	"data/scenes/zone_a_in_corridor.scene",
 			"data/scenes/zone_a_in_corridor_lights.scene",
 			"data/scenes/zone_a_out_corridor.scene",
 			"data/scenes/zone_a_out_corridor_lights.scene",
@@ -195,12 +209,12 @@
 	"scene_coliseo_2": {
 		"static_data": {
 			"initial_script": "coliseo2",
-			"exposure": 1.3,
+			"exposure": 2,
 			"ambient": 0.05,
 			"gamma": 1,
 			"tone_mapping": 1,
 			"shadow_intensity": 0,
-			"ground_fog_density": 0.1,
+			"ground_fog_density": 0.4,
 			"env_fog_density": 0.1,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
@@ -215,6 +229,7 @@
 			"data/scenes/Coliseo/coliseo_particles.scene",
 			"data/scenes/Coliseo/buttons.scene",
 			"data/scenes/col_sub_triggers.scene",
+			"data/scenes/Coliseo/coliseo_decalsprops.scene",
 			"data/scenes/Coliseo/coliseo_cables.scene",
 			"data/scenes/Coliseo/coliseo_rellenoprops.scene",
 			"data/scenes/COL_pared_suelo.scene",
@@ -242,10 +257,10 @@
 			"exposure": 1.51,
 			"ambient": 0.05,
 			"gamma": 0.92,
-			"tone_mapping": 0.59,
+			"tone_mapping": 0.9,
 			"shadow_intensity": 0,
 			"ground_fog_density": 0.061,
-			"env_fog_density": 0.083,
+			"env_fog_density": 0.09,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117"
@@ -275,6 +290,8 @@
 			"data/scenes/BC_tubos.scene",
 			"data/scenes/BC_capsulas.scene",
 			"data/scenes/BC_neones.scene",
+			"data/scenes/BC_decals.scene",
+
 			"data/scenes/bc_pantalla_atlas.scene",
 			"data/scenes/suelo_mezquita.scene",
 			"data/scenes/Basilic_courtyard/basilic_courtyard_particles.scene",
@@ -285,6 +302,8 @@
 			"data/scenes/bc_pasillo_entre.scene",
 			"data/scenes/bc_corridor_logic.scene",
 			"data/scenes/bc_corridor_lights.scene",
+
+			"data/scenes/bc_casas_lp.scene",
 
 			"data/scenes/Basilic_courtyard/bc_capsule_cable.scene",
 			"data/scenes/BC_Maderas_Andamios.scene",
@@ -308,28 +327,42 @@
 			"tone_mapping": 0,
 			"shadow_intensity": 0.1,
 			"ground_fog_density": 3,
-			"env_fog_density": 0.27,
+			"env_fog_density": 0.364,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.0 0.0 0.0",
 			"env_fog": "0.0 0.0 0.0"
 		},
 		"persistent_scenes": [],
-		"scene_group": [
-			"data/scenes/Basilic_interior/player.scene",
-			"data/scenes/Basilic_interior/_main_cameras.scene",
-			"data/scenes/basilic_interior_adornos_nucleo.scene",
-			"data/scenes/basilic_interior_estructura.scene",
-			"data/scenes/basilic_interior_cables.scene",
-			"data/scenes/basilic_interior_capsulas.scene",
-			"data/scenes/basilic_interior_props.scene",
-			"data/scenes/basilic_interior_monitorytubos.scene",
-			"data/scenes/basilic_interior_nucleo.scene",
-			"data/scenes/basilic_interior_sueloyagarres.scene",
-			"data/scenes/Basilic_interior/basilic_interior_particles.scene",
-			"data/scenes/Basilic_interior/basilic_interior_holograms.scene",
-			"data/scenes/basilic_interior_luces.scene",
-			"data/scenes/Basilic_interior/basilic_interior_cinematic.scene"
+    "scene_group": [
+      "data/scenes/Basilic_interior/player.scene",
+      "data/scenes/Basilic_interior/_main_cameras.scene",
+      "data/scenes/basilic_interior_adornos_nucleo.scene",
+      "data/scenes/basilic_interior_estructura.scene",
+      "data/scenes/basilic_interior_cables.scene",
+      "data/scenes/basilic_interior_capsulas.scene",
+      "data/scenes/basilic_interior_props.scene",
+      "data/scenes/basilic_interior_monitorytubos.scene",
+      "data/scenes/basilic_interior_ruedas.scene",
+      "data/scenes/basilic_interior_nucleo.scene",
+      "data/scenes/basilic_interior_sueloyagarres.scene",
+      "data/scenes/Basilic_interior/basilic_interior_particles.scene",
+      "data/scenes/Basilic_interior/basilic_interior_holograms.scene",
+      "data/scenes/Basilic_interior/basilic_interior_monitores.scene",
 
-		]
+			"data/scenes/basilic_interior_luces.scene",
+			"data/scenes/basilic_interior_luces_rueda.scene",
+			"data/scenes/basilic_interior_luces_nucleo.scene",
+			"data/scenes/basilic_interior_luces_pasarela.scene",
+			"data/scenes/basilic_interior_luces_laterales_1.scene",
+			"data/scenes/basilic_interior_luces_laterales_2.scene",
+			"data/scenes/basilic_interior_luces_laterales_3.scene",
+			"data/scenes/basilic_interior_luces_laterales_4.scene",
+			"data/scenes/basilic_interior_luces_laterales_5.scene",
+			"data/scenes/basilic_interior_luces_laterales_6.scene",
+
+      "data/scenes/Basilic_interior/basilic_interior_cinematic.scene",
+      "data/scenes/Basilic_interior/test_instancing.scene"
+
+    ]
 	}
 }

@@ -27,6 +27,11 @@ void TCompAIMimetic::debugInMenu() {
     TCompAIEnemy::debugInMenu();
 }
 
+TCompAIMimetic::~TCompAIMimetic()
+{
+    //TCompAIEnemy::~TCompAIEnemy();
+}
+
 void TCompAIMimetic::preUpdate(float dt)
 {
     TCompTransform* myPos = get<TCompTransform>();

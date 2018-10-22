@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "tubogrande_recto"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_tubogrande_recto"
       ,
       "transform":
@@ -35,7 +23,7 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "mesh"
         ,
         "name": "data/colliders/collider_tubogrande_recto.collider"
       }

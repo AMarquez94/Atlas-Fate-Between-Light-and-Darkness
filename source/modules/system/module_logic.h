@@ -75,8 +75,8 @@ public:
     void setPause(bool paused) { this->paused = paused; }
     void clearDelayedScripts();
 
-	void eraseDelayedScripts(std::string keyWord);
-	void eraseSystemDelayedScripts(std::string keyWord);
+    void eraseDelayedScripts(std::string keyWord);
+    void eraseSystemDelayedScripts(std::string keyWord);
 
 private:
 
@@ -145,6 +145,8 @@ void invalidatePlayerPhysxCache();
 void GUI_EnableRemoveInhibitor();
 void sendPlayerIlluminatedMsg(CHandle h, bool illuminated);
 void isInCinematicMode(bool isCinematic);
+SoundEvent preloadSoundEvent(const std::string& soundevent);
+void stopRenderingEntities();
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);
@@ -176,11 +178,17 @@ void deactivateCinematicVideoIntro();
 void setInBlackScreen(float time_to_lerp);
 void setOutBlackScreen(float time_to_lerp);
 void activateMission(int mission_num);
-void lightUpForFinalScene(float time);
-void lightDownForFinalScene();
+void lightUpForFinalScene(bool random, float time_to_lerp);
+void ambientAdjustmentForFinalScene(float time_to_lerp);
+void lightDownForFinalScene(bool random, float time_to_lerp);
+void pasarelaLightsFadeOut();
+void speedUpRuedasFinalScene();
+void stopRuedasFinalScene();
 void execLastAtlasScreen();
+void activateCredits();
 void removeAtlasSplash();
 void removeTempCredits();
+
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);
 void toggle_spotlight(const std::string& lightName);
@@ -189,6 +197,8 @@ void removeSceneResources(const std::string& scene);
 void destroyPartialScene();
 void testingLoadPartialScene();
 void testLoco();
+void printAllResources();
+void deleteAllCacheResources();
 
 // Extra cvar commands
 void cg_drawfps(bool value);

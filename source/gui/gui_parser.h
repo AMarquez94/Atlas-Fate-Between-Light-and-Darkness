@@ -17,7 +17,8 @@ namespace GUI
     CWidget* parseImage(const json& data);
     CWidget* parseText(const json& data);
     CWidget* parseButton(const json& data);
-    CWidget* parseBar(const json& data);
+	CWidget* parseBar(const json& data);
+	CWidget* parseMiddleBar(const json& data);
     CWidget* parseRadialBar(const json& data);
     CWidget* parseUIVideo(const json& data);
 	CWidget* parseSprite(const json& data);

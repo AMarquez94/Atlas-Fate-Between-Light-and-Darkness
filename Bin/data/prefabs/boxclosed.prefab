@@ -1,0 +1,40 @@
+[
+  {
+    "entity":
+    {
+      "name": "mesh_boxclosed"
+      ,
+      "transform":
+      {
+        "pos": "0.0 -0.011547 0.0821381"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_boxclosed.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_decalprops.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.360124 0.251087 0.491075"
+		,
+		"group": "fence"
+		,
+		"mask": "player"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

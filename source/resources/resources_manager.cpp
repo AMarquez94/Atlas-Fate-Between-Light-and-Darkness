@@ -21,7 +21,9 @@ void CResourceManager::registerResourceClass(const CResourceClass* new_class) {
 }
 
 void CResourceManager::onFileChanged(const std::string& filename) {
+
     // Scan each category in the order that were registered
+    //EngineFiles.addPendingResourceFile(filename, false);
     for (auto& rc : resource_classes_by_file_change_priority) {
         // Give the oportunity to each resource to reload/refresh if the file has changed
         for (auto& r : all_resources) {
@@ -47,6 +49,13 @@ const bool CResourceManager::resourceExists(const std::string & resourceName)
 {
     auto it = all_resources.find(resourceName);
     return it != all_resources.end();
+}
+
+void CResourceManager::printAllResources()
+{
+    dbg("PRINTEANDO RESOURCES\n");
+    for (auto const& mapkey : all_resources)
+        dbg("%s\n", mapkey.first.c_str());
 }
 
 
@@ -103,6 +112,18 @@ void CResourceManager::destroyAll() {
         r->destroy();
     }
     all_resources.clear();
+}
+
+void CResourceManager::destroyResource(const std::string & name) {
+
+    auto it = all_resources.find(name);
+
+    // if found delete
+    if (it != all_resources.end()) {
+        if (it->second)
+            (it)->second->destroy();
+        all_resources.erase(name);
+    }
 }
 
 void CResourceManager::debugInMenu() {

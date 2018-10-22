@@ -76,6 +76,10 @@ bool CModuleSceneManager::start() {
 bool CModuleSceneManager::stop() {
     next_scene = "";
     unLoadActiveScene();
+    for (auto& scene : _scenes) {
+        delete scene.second;
+    }
+    _scenes.clear();
 
     return true;
 }
@@ -117,7 +121,7 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
             gameManager.deleteCheckpoint();
         }
 
-        unLoadActiveScene();
+        unLoadActiveScene(false, name);
 
         // Load the subscene
         Scene * current_scene = it->second;
@@ -154,11 +158,15 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
         TMsgSceneCreated msg;
         EngineEntities.broadcastMsg(msg);
 
+        TMsgVideoStatus msg2;
+        msg2.status = true;
+        EngineEntities.broadcastMsg(msg2);
+
 		CModuleGameManager gameManager = CEngine::get().getGameManager();
 		/* TODO: Comprobar que se sigue en la misma escena */
 		gameManager.loadCheckpoint();
         Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->name);
-
+        
         // Set the global data.
         cb_globals.global_fog_color = current_scene->ground_fog;
         cb_globals.global_fog_env_color = current_scene->env_fog;
@@ -187,7 +195,7 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
             CModuleGameManager gameManager = CEngine::get().getGameManager();
             gameManager.deleteCheckpoint();
 
-            unLoadActiveScene(true);
+            unLoadActiveScene(true, name);
 
             // Load the subscene
             Scene * current_scene = it->second;
@@ -196,6 +204,7 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
             }
 
             for (auto& scene_name : current_scene->groups_subscenes) {
+
                 dbg("Autoloading scene %s\n", scene_name.c_str());
                 TEntityParseContext ctx;
                 parseScene(scene_name, ctx);
@@ -209,6 +218,10 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
 
             /* Only new entities */
             EngineEntities.broadcastMsg(msg);
+
+            TMsgVideoStatus msg2;
+            msg2.status = true;
+            EngineEntities.broadcastMsg(msg2);
 
             Engine.getLogic().execEvent(EngineLogic.SCENE_PARTIAL_START, current_scene->name);
 
@@ -235,7 +248,7 @@ bool CModuleSceneManager::loadPartialScene(const std::string & name)
     }
 }
 
-bool CModuleSceneManager::unLoadActiveScene(bool partial) {
+bool CModuleSceneManager::unLoadActiveScene(bool partial, const std::string& new_scene) {
 
     // This will allow us to mantain the gamestate.
 
@@ -269,10 +282,17 @@ bool CModuleSceneManager::unLoadActiveScene(bool partial) {
             EngineParticles.killAll();
         }
 
+        TMsgVideoStatus msg;
+        msg.status = false;
+        EngineEntities.broadcastMsg(msg);
+
         EngineIA.clearSharedBoards();
         EngineNavmeshes.destroyNavmesh();
 
         removeSceneResources(_activeScene->name);
+        //if (_activeScene->name != new_scene) {
+        //    destroySceneResources(_activeScene->name);
+        //}
 
         _activeScene->isLoaded = false;
         _activeScene = nullptr;
@@ -328,8 +348,15 @@ void CModuleSceneManager::preloadOnlyScene(const std::string& sceneName) {
 
 void CModuleSceneManager::removeSceneResources(const std::string& sceneName) {
 
-    const std::vector<std::string> resources = EngineFiles.getFileResourceVector(sceneName);
-    for (int i = 0; i < resources.size(); i++) {
-        EngineFiles.addPendingResourceFile(resources[i], false);
+    const std::vector<std::string> preresources = EngineFiles.getFileResourceVector(sceneName);
+    for (int i = 0; i < preresources.size(); i++) {
+        EngineFiles.addPendingResourceFile(preresources[i], false);
     }
+}
+
+void CModuleSceneManager::destroySceneResources(const std::string& sceneName) {
+    //const std::vector<std::string> resources_to_destroy = EngineFiles.getFilesToDestroy(sceneName);
+    //for (int i = 0; i < resources_to_destroy.size(); i++) {
+    //    Resources.destroy(resources_to_destroy[i]);
+    //}
 }

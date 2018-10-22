@@ -1,0 +1,40 @@
+[
+  {
+    "entity":
+    {
+      "name": "mesh_chairjunk"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_chairjunk.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_decalprops.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "convex"
+        ,
+        "name": "data/colliders/collider_chairjunk.collider"
+		,
+		"group": "fence"
+		,
+		"mask": "player"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

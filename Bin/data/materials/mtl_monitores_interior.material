@@ -1,0 +1,14 @@
+{
+  "shadows": true
+  ,
+  "technique": "tv_screen.tech"
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_monitores_interior_alb.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+	,
+	"emissive": "data/textures/tx_monitores_interior_alb.dds" 
+  }
+}

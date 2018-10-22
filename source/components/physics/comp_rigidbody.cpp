@@ -14,6 +14,11 @@ TCompRigidbody::~TCompRigidbody() {
         controller->release();
     }
 
+    if (filters.mFilterData) {
+        delete filters.mFilterData;
+        filters.mFilterData = nullptr;
+    }
+
     // Rigidbody destruction here.
 }
 

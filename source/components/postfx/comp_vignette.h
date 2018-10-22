@@ -10,6 +10,8 @@ class CRenderToTexture;
 // ------------------------------------
 struct TCompVignette : public TCompBase {
 
+    static CRenderToTexture*             rt;
+
     bool                          enabled = true;
     float                         amount = 0.95f;
     float                         softness_amount = 0.66f;
@@ -18,7 +20,6 @@ struct TCompVignette : public TCompBase {
     float                         lut_amount = 0.6f;
     const CRenderTechnique*       tech = nullptr;
     const CRenderMesh*            mesh = nullptr;
-    CRenderToTexture*             rt = nullptr;
     const CTexture*               lut1 = nullptr;
 
     void load(const json& j, TEntityParseContext& ctx);

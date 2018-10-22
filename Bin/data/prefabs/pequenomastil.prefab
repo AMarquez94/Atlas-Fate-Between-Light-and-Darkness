@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "pequenomastil"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_pequenomastil"
       ,
       "transform":

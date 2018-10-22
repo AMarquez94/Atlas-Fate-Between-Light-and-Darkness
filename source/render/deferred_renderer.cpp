@@ -11,6 +11,7 @@
 #include "components/postfx/comp_render_ao.h"
 #include "render/texture/render_to_cube.h"
 #include "components/comp_transform.h"
+#include "components/lighting/comp_light_point_shadows.h"
 #include "ctes.h"
 
 void CDeferredRenderer::renderGBuffer() {
@@ -143,6 +144,7 @@ void CDeferredRenderer::renderAccLight() {
 	renderPointLights();
 	renderSpotLights();
     renderProjectors();
+    renderPointLightsShadows();
 	renderDirectionalLights();
 	renderSkyBox();
     renderPreHDR();
@@ -189,34 +191,15 @@ void CDeferredRenderer::renderPointLights() {
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderDirectionalLights() {
     
-    //rt_prev_acc_light->activateRT();
-    //rt_prev_acc_light->clear(VEC4(0, 0, 0, 0));
-    auto* tech = Resources.get("pbr_ray_shafts.tech")->as<CRenderTechnique>();
-    tech->activate();
-
-    // All light directional use the same mesh
-    auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
-    mesh->activate();
-
-    // Para todas las luces... pintala
-    getObjectManager<TCompLightDir>()->forEach([mesh](TCompLightDir* c) {
-
-        if (c->isEnabled && c->volumetric) {
-            c->activate();
-            setWorldTransform(c->getViewProjection().Invert());
-            mesh->render();
-        }
-    });
-
 	CTraceScoped gpu_scope("renderDirectionalLights");
     //rt_acc_light->activateRT();
 
 	// Activate tech for the light dir 
-    tech = Resources.get("pbr_dir_lights.tech")->as<CRenderTechnique>();
+    auto* tech = Resources.get("pbr_dir_lights.tech")->as<CRenderTechnique>();
 	tech->activate();
 
 	// All light directional use the same mesh
-    mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
+    auto* mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();
 	mesh->activate();
 
 	// Para todas las luces... pintala
@@ -258,14 +241,24 @@ void CDeferredRenderer::renderSpotLights() {
 	});
 }
 
+// -------------------------------------------------------------------------
+void CDeferredRenderer::renderPointLightsShadows() {
+
+    CTraceScoped gpu_scope("renderPointLightsShadows");
+    Resources.get("pbr_point_lights_shadow.tech")->as<CRenderTechnique>()->activate();
+    getObjectManager<TCompLightPointShadows>()->forEach([](TCompLightPointShadows* c) {
+        c->render();
+    });
+}
+
 // Optimize this in the next milestone, use CS
 // -------------------------------------------------------------------------
 void CDeferredRenderer::renderVolumes() {
 
+    // render everything on half resolution?
     CTraceScoped gpu_scope("renderVolumes");
     /*
-    // Activate tech for the light dir 
-    auto* tech = Resources.get("pbr_ray_shafts.tech")->as<CRenderTechnique>();
+    auto* tech = Resources.get("pbr_rayshaft_directional.tech")->as<CRenderTechnique>();
     tech->activate();
 
     // All light directional use the same mesh
@@ -273,16 +266,50 @@ void CDeferredRenderer::renderVolumes() {
     mesh->activate();
 
     // Para todas las luces... pintala
-    getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
+    getObjectManager<TCompLightDir>()->forEach([mesh](TCompLightDir* c) {
 
-        if (c->isEnabled && !c->isCulled()) {
+        if (c->isEnabled && c->volumetric) {
             c->activate();
-		    setWorldTransform(c->getViewProjection().Invert());
+            setWorldTransform(c->getViewProjection().Invert());
             mesh->render();
         }
     });
-    */
-    
+
+    // Activate tech for the light dir 
+    tech = Resources.get("pbr_rayshaft_spotlight.tech")->as<CRenderTechnique>();
+    tech->activate();
+
+    // All light directional use the same mesh
+    mesh = Resources.get("data/meshes/UnitCone.mesh")->as<CRenderMesh>();
+    mesh->activate();
+
+    getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
+
+        if (c->isEnabled && !c->isCulled() && c->isVolumeEnabled()) {
+            c->activate();
+		    setWorldTransform(c->getWorld());
+            mesh->render();
+        }
+    });
+
+    // Activate tech for the light dir 
+    tech = Resources.get("pbr_rayshaft_pointlight.tech")->as<CRenderTechnique>();
+    tech->activate();
+
+    // All light directional use the same mesh
+    mesh = Resources.get("data/meshes/UnitSphere.mesh")->as<CRenderMesh>();
+    mesh->activate();
+
+    // Para todas las luces... pintala
+    getObjectManager<TCompLightPoint>()->forEach([mesh](TCompLightPoint* c) {
+
+        if (c->isEnabled && !c->isCulled()) {
+            c->activate();
+            setWorldTransform(c->getWorld());
+            mesh->render();
+        }
+    });*/
+
     auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
     TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
     TCompLightSpot::volume_instance->vtx_decl = CVertexDeclManager::get().getByName("InstanceLight");
@@ -320,21 +347,22 @@ void CDeferredRenderer::renderAO(CHandle h_camera) const {
 
 // --------------------------------------
 void CDeferredRenderer::renderProjectors() {
-  // Activate tech for the light dir 
-  auto* tech = Resources.get("pbr_projection.tech")->as<CRenderTechnique>();
-  tech->activate();
 
-  // All light directional use the same mesh
-  auto* mesh = Resources.get("data/meshes/UnitFrustum.mesh")->as<CRenderMesh>();
-  mesh->activate();
+    // Activate tech for the light dir 
+    auto* tech = Resources.get("pbr_projection.tech")->as<CRenderTechnique>();
+    tech->activate();
 
-  // Para todas las luces... pintala
-  getObjectManager<TCompProjector>()->forEach([mesh](TCompProjector* c) {
+    // All light directional use the same mesh
+    auto* mesh = Resources.get("data/meshes/UnitFrustum.mesh")->as<CRenderMesh>();
+    mesh->activate();
+
+    // Para todas las luces... pintala
+    getObjectManager<TCompProjector>()->forEach([mesh](TCompProjector* c) {
 
     c->activate();
     setWorldTransform(c->getViewProjection().Invert());
     mesh->render();
-  });
+    });
 }
 
 // --------------------------------------------------------------

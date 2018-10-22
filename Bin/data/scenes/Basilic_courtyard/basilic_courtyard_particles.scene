@@ -27,7 +27,7 @@
       {
         "cores":
         [
-          "data/particles/def_amb_dust_60x60.particles"
+          "data/particles/def_amb_dust_60x60_large.particles"
         ]
       }
     }
@@ -49,7 +49,7 @@
       {
         "cores":
         [
-          "data/particles/def_amb_fog_60x60.particles"
+          "data/particles/def_amb_fog_60x60_large.particles"
         ]
       }
     }

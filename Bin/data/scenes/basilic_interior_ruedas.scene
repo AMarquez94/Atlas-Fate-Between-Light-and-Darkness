@@ -1,0 +1,49 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_ruedas"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "rueda"
+      ,
+      "transform":
+      {
+        "pos": "-8.87873 1.70531 10.4711"
+        ,
+        "rotation": "-0.5 0.5 0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/rueda.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_adornos_nucleo.material"
+          ]
+        }
+      ],
+      "rotator_accelerator_final_scene" : true
+      ,
+      "rotator": {
+        "speed": 0.25,
+        "rotate_roll": true
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

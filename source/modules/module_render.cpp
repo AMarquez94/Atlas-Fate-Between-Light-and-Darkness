@@ -38,6 +38,7 @@
 #include "components/postfx/comp_render_environment.h"
 #include "components/postfx/comp_ssr.h"
 #include "render/video/background_player.h"
+#include "components/lighting/comp_light_point_shadows.h"
 
 //--------------------------------------------------------------------------------------
 
@@ -317,13 +318,13 @@ void CModuleRender::activateMainCamera() {
 
 void CModuleRender::generateFrame() {
 
+    uploadAllVideoTexturesReady();
+
     // PRE CONFIGURATION
     {
         activateMainCamera();
         cb_globals.updateGPU();
     }
-
-    uploadAllVideoTexturesReady();
 
     {
         // SHADOW GENERATION
@@ -338,6 +339,10 @@ void CModuleRender::generateFrame() {
             // Generate the shadow map for each active light
             getObjectManager<TCompLightSpot>()->forEach([](TCompLightSpot* c) {
                 c->cullFrame();
+                c->generateShadowMap();
+            });
+
+            getObjectManager<TCompLightPointShadows>()->forEach([](TCompLightPointShadows* c) {
                 c->generateShadowMap();
             });
         }
@@ -447,9 +452,9 @@ void CModuleRender::postProcessingStack() {
         if (c_chroma_aberration)
             curr_rt = c_chroma_aberration->apply(curr_rt);
 
-        TCompSSR* c_srr = e_cam->get< TCompSSR >();
-        if (c_srr)
-            curr_rt = c_srr->apply(curr_rt);
+        //TCompSSR* c_srr = e_cam->get< TCompSSR >();
+        //if (c_srr)
+        //    curr_rt = c_srr->apply(curr_rt);
 
         TCompRenderEnvironment * c_render_enviornment = e_cam->get< TCompRenderEnvironment >();
         if (c_render_enviornment)

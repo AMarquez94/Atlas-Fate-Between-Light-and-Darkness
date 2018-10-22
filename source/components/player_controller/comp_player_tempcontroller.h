@@ -119,6 +119,7 @@ class TCompTempPlayerController : public TCompBase
 
     void onCreate(const TMsgEntityCreated& msg);
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+    void onSceneCreated(const TMsgSceneCreated& msg);
     void onStateStart(const TMsgStateStart& msg);
     void onStateFinish(const TMsgStateFinish& msg);
 
@@ -141,6 +142,9 @@ class TCompTempPlayerController : public TCompBase
     DECL_SIBLING_ACCESS();
 
 public:
+
+    ~TCompTempPlayerController();
+
     /* Debug and console variables */
     bool infiniteStamina;
     bool isImmortal;
@@ -219,6 +223,7 @@ public:
     void playPlayerStep(bool left);
     void playLandParticles(bool left); 
     void playSMSpirals();
+    void resetSMFilters();
 
     static void registerMsgs();
 };

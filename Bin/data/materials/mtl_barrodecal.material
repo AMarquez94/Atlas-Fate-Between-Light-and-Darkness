@@ -1,0 +1,12 @@
+{
+  "technique": "pbr_decal.tech"
+  ,
+  "shadows": false
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/barro_bottom.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

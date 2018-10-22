@@ -5,12 +5,8 @@
   {
     "albedo": "data/textures/tx_pantalla_borde_alb.dds"
     ,
-    "metallic": "data/textures/tx_pantalla_borde_met.dds"
-    ,
     "roughness": "data/textures/tx_pantalla_borde_rgh.dds"
     ,
     "normal": "data/textures/tx_pantalla_borde_nml.dds"
-    ,
-    "height": "data/textures/tx_pantalla_borde_hgt.dds"
   }
 }

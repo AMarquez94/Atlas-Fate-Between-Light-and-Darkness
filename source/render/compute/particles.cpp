@@ -156,6 +156,7 @@ namespace GPUParticles {
 
     // --------------------------------------------------
     void TSystemInstance::destroy() {
+
         for (int i = 0; i < num_states; ++i)
             states[i].destroy();
         curr_render.destroy();

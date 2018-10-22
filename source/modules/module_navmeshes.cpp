@@ -10,6 +10,7 @@ bool CModuleNavmesh::start() {
 
 bool CModuleNavmesh::stop() {
     destroyNavmesh();
+    navmeshesCache.clear();
     return true;
 }
 
@@ -21,11 +22,27 @@ void CModuleNavmesh::render() {
     if (renderNamvesh) {
         navmesh.render();
     }
+    if (ImGui::TreeNode("Navmesh"))
+    {
+        ImGui::Text("Navmesh cache %d", navmeshesCache.size());
+        ImGui::TreePop();
+    }
     //ImGui::DragFloat2("Nearest Poly Extents", &navmeshQuery.nearestPolyExtents.x, 0.5f, 0.0f, 100.f);
 }
 
 void CModuleNavmesh::buildNavmesh(const std::string& path) {
-    navmesh.loadAll(path.c_str());
+    std::vector<char> navmeshData;
+    auto it_navmesh = navmeshesCache.find(path);
+    if (it_navmesh == navmeshesCache.end()) {
+        navmeshData = EngineFiles.loadResourceFile(path);
+        navmeshesCache[path] = navmeshData;
+        EngineFiles.addPendingResourceFile(path, false);
+    }
+    else {
+        navmeshData = it_navmesh->second;
+    }
+
+    navmesh.load(navmeshData);
     if (navmesh.m_navMesh) {
         navmeshCreated = true;
         navmesh.prepareQueries();

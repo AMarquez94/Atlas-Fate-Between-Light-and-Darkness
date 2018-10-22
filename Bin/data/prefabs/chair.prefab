@@ -1,0 +1,40 @@
+[
+  {
+    "entity":
+    {
+      "name": "mesh_chair"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0041467 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_chair.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_decalprops.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.274919 0.341353 0.274058"
+		,
+		"group": "fence"
+		,
+		"mask": "player"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

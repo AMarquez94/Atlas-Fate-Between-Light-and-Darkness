@@ -31,6 +31,16 @@ void TCompDynamicCapsule::update(float dt) {
         return;
 
     if (!paused) {
+
+        if (!soundStartedToPlay) {
+            timer += dt;
+            if (timer > 1.f) {
+                TCompAudio* my_audio = get<TCompAudio>();
+                my_audio->playEvent("event:/Sounds/Objects/Capsules/Caspule");
+                soundStartedToPlay = true;
+            }
+        }
+
         VEC3 dir = end_point - start_point;
         dir.Normalize();
 

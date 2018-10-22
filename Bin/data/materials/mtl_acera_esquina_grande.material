@@ -1,8 +1,0 @@
-{
-  "shadows": true
-  ,
-  "textures":
-  {
-    "albedo": "data/textures/default_texture.dds"
-  }
-}

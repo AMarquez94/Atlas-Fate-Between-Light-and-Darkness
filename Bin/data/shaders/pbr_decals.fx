@@ -99,19 +99,50 @@ void PS(
   float amount_of_z = dot( decal_top_left_to_wPos, input.decal_axis_z); 
 
   float4 decal_color = txAlbedo.Sample(samClampLinear, float2(amount_of_x,amount_of_z));
-	float roughness = 1;//txRoughness.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;	
+	float roughness = txRoughness.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;	
 	float3 N = computeNormalMap(input.normal, input.tangent, float2(amount_of_x,amount_of_z));
-	//o_normal = encodeNormal(N, roughness * decal_color.a);
+	o_normal = encodeNormal(N, roughness);
   o_albedo.xyz = decal_color.xyz;
-  o_albedo.a = (1-decal_color.a);//txMetallic.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;;
-	 
+  o_albedo.a = (1-decal_color.a);//txMetallic.Sample(samLinear, float2(amount_of_x,amount_of_z)).r;
+	
+	/*
   // Change to true 'see' the boxes 
-  if( false ) {
+  if( true ) {
     o_albedo.a += 0.3;
    
     if( (input.uv.x < 0.01 || input.uv.x > 0.99 ) || (input.uv.y < 0.01 || input.uv.y > 0.99 ) )
       o_albedo.a = 1.0;
-  }
+  }*/
+}
+
+//--------------------------------------------------------------------------------------
+// Pixel Shader
+//--------------------------------------------------------------------------------------
+void PS_SOLID(
+		in VS_TEXTURED_OUTPUT input
+	, out float4 o_albedo : SV_Target0
+	, out float4 o_normal : SV_Target1
+  )
+{
+  float2 iPosition = input.Pos.xy;
+  int3 ss_load_coords = uint3(iPosition, 0);
+
+  // Recuperar la posicion de mundo para ese pixel
+  float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
+  float3 wPos = getWorldCoords(iPosition, zlinear);
+
+  // Convert to local unit decal space
+  float3 decal_top_left_to_wPos = wPos - input.decal_top_left;
+  float amount_of_x = dot( decal_top_left_to_wPos, input.decal_axis_x); 
+  float amount_of_z = dot( decal_top_left_to_wPos, input.decal_axis_z); 
+
+  float4 decal_color = txAlbedo.Sample(samClampLinear, input.uv);
+	float roughness = txRoughness.Sample(samLinear, input.uv).r;	
+	float3 N = computeNormalMap(input.normal, input.tangent, input.uv);
+	o_normal = encodeNormal(N, roughness);
+  o_albedo.xyz = decal_color.xyz;
+  o_albedo.a = (1-decal_color.a);
+
 }
 
 float4 PS_default(

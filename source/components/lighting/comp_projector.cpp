@@ -139,7 +139,7 @@ void TCompProjector::generateShadowMap() {
     shadows_rt->activateRT();
 
     {
-        PROFILE_FUNCTION("Clear&SetCommonCtes");
+        //PROFILE_FUNCTION("Clear&SetCommonCtes");
         shadows_rt->clearZ();
         // We are going to render the scene from the light position & orientation
         activateCamera(*this, shadows_rt->getWidth(), shadows_rt->getHeight());

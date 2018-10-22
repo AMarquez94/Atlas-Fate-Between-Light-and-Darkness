@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_tablas_subida_nml.dds"
     ,
-    "height": "data/textures/tx_tablas_subida_hgt.dds"
-    ,
     "aocclusion": "data/textures/tx_tablas_subida_ao.dds"
   }
 }

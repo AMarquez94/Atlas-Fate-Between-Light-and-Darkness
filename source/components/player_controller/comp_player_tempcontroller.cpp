@@ -214,6 +214,13 @@ void TCompTempPlayerController::playSMSpirals() {
     }
 }
 
+void TCompTempPlayerController::resetSMFilters() {
+    TCompRigidbody* c_my_rigidbody = get<TCompRigidbody>();
+    c_my_rigidbody->filters.mFilterData = isMerged ? pxShadowFilterData : pxPlayerFilterData;
+    c_my_rigidbody->invalidateCache();
+}
+
+
 void TCompTempPlayerController::registerMsgs() {
 
     DECL_MSG(TCompTempPlayerController, TMsgStateStart, onStateStart);
@@ -275,6 +282,18 @@ void TCompTempPlayerController::onMsgBulletHit(const TMsgBulletHit & msg)
     getDamage(msg.damage);
 }
 
+TCompTempPlayerController::~TCompTempPlayerController()
+{
+    if (isMerged && pxPlayerFilterData) {
+        delete pxPlayerFilterData;
+        pxPlayerFilterData == nullptr;
+    }
+    else if(!isMerged && pxShadowFilterData) {
+        delete pxShadowFilterData;
+        pxShadowFilterData = nullptr;
+    }
+}
+
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
     /* Variable initialization */
@@ -292,8 +311,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     PxPlayerDiscardQuery = physx::PxQueryFilterData();
     PxPlayerDiscardQuery.data.word0 = FilterGroup::Scenario;
 
-    TCompRigidbody* c_my_rigidbody = get<TCompRigidbody>();
-    c_my_rigidbody->filters.mFilterData = pxPlayerFilterData;
+    EngineLogic.execScriptDelayed("playerController:resetSMFilters()", 1.f);
 
     /* Initial reset messages */
     hitPoints = 0;
@@ -322,6 +340,12 @@ void TCompTempPlayerController::onGroupCreated(const TMsgEntitiesGroupCreated & 
     weaponRight = my_group->getHandleByName("weapon_disc_right");
     cb_player.player_disk_radius = clamp(0.f, 0.f, 1.f);
     cb_player.updateGPU();
+}
+
+void TCompTempPlayerController::onSceneCreated(const TMsgSceneCreated& msg) {
+    TCompRigidbody* c_my_rigidbody = get<TCompRigidbody>();
+    c_my_rigidbody->filters.mFilterData = isMerged ? pxShadowFilterData : pxPlayerFilterData ;
+    c_my_rigidbody->invalidateCache();
 }
 
 /* Call this function once the state has been changed */
@@ -572,7 +596,11 @@ void TCompTempPlayerController::resetState(float dt) {
         physx::PxRaycastHit hit;
         float offset_distance = 1.1f;
         VEC3 desired_pos = c_my_transform->getPosition() + .1f * c_my_transform->getUp();
-        if (EnginePhysics.Raycast(desired_pos, VEC3::Up, offset_distance, hit, physx::PxQueryFlag::eSTATIC))
+
+        physx::PxQueryFilterData discardQueryEdge = physx::PxQueryFilterData();
+        discardQueryEdge.data.word0 = FilterGroup::Fence;
+
+        if (EnginePhysics.Raycast(desired_pos, VEC3::Up, offset_distance, hit, physx::PxQueryFlag::eSTATIC, discardQueryEdge))
             c_my_transform->setPosition(c_my_transform->getPosition() + VEC3(0, -(offset_distance - hit.distance), 0));
     }
 
@@ -811,6 +839,9 @@ void TCompTempPlayerController::die()
         e->sendMsg(groundMsg);
         life = 0;
 		e->sendMsg(TMsgFadeBody{ false, 3.0f,VEC4(1.0f,1.0f,1.0f,0) });
+
+        TCompAudio* my_audio = get<TCompAudio>();
+        my_audio->playEvent("event:/Ambiance/GameOver", false);
 
         CEntity * ent = getEntityByName("Player_Idle_SM");
         TCompParticles * c_e_particle = ent->get<TCompParticles>();

@@ -1,0 +1,141 @@
+[
+  {
+    "entity":
+    {
+      "name": "bc_casas_lp"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_1_lp001"
+      ,
+      "prefab": "data/prefabs/casas_1_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "22.1846 13.1512 -315.401"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_1_lp002"
+      ,
+      "prefab": "data/prefabs/casas_1_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-34.0857 16.666 -314.543"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_2_lp001"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "51.2485 17.2248 -329.664"
+        ,
+        "rotation": "0.0 -0.647795 0.0 -0.761814"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_2_lp002"
+      ,
+      "prefab": "data/prefabs/casas_2_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-34.5986 17.2248 -375.55"
+        ,
+        "rotation": "0.0 -0.647795 0.0 -0.761814"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_3_lp001"
+      ,
+      "prefab": "data/prefabs/casas_3_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "47.8603 15.2701 -386.584"
+        ,
+        "rotation": "0.0 4.76837e-07 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_3_lp002"
+      ,
+      "prefab": "data/prefabs/casas_3_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-39.308 15.9458 -346.364"
+        ,
+        "rotation": "0.0 -0.97088 0.0 -0.239566"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_4_lp001"
+      ,
+      "prefab": "data/prefabs/casas_4_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "53.1702 15.1542 -354.73"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_casas_4_lp002"
+      ,
+      "prefab": "data/prefabs/casas_4_lp.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.12012 13.1656 -304.868"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+]

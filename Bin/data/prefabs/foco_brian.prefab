@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "foco_brian"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_spotlight"
       ,
       "transform":
@@ -28,17 +16,14 @@
           ,
           "materials":
           [
-            "data/materials/mtl_spotlights.material"
+            "data/materials/flare.material"
+            ,
+            "data/materials/spot.material"
+            ,
+            "data/materials/mtl_spotlight.material"
           ]
         }
       ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_spotlight.collider"
-      }
       ,
       "abs_aabb": true
       ,

@@ -5,12 +5,8 @@
   {
     "albedo": "data/textures/tx_agarre_arcos_alb.dds"
     ,
-    "metallic": "data/textures/tx_agarre_arcos_met.dds"
-    ,
     "roughness": "data/textures/tx_agarre_arcos_rgh.dds"
     ,
     "normal": "data/textures/tx_agarre_arcos_nml.dds"
-    ,
-    "height": "data/textures/tx_agarre_arcos_hgt.dds"
-  }
+    }
 }

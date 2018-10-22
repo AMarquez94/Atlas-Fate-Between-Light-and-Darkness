@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "casa1_8x10_2"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_casa1_8x10"
       ,
       "transform":

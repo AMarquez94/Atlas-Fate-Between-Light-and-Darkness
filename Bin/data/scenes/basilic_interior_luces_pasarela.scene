@@ -1,0 +1,337 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_luces_pasarela"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasarela026"
+      ,
+      "transform":
+      {
+        "pos": "-8.70517 1.08749 -28.9124"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "omni_fade_out": true
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 80.0
+        ,
+        "outer_cut": 200.0
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.09
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 40.0
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasarela027"
+      ,
+      "transform":
+      {
+        "pos": "-8.70517 1.08749 -25.7078"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "omni_fade_out": true
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 80.0
+        ,
+        "outer_cut": 200.0
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.09
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 40.0
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasarela028"
+      ,
+      "transform":
+      {
+        "pos": "-8.70517 1.08749 -21.4991"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "omni_fade_out": true
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 80.0
+        ,
+        "outer_cut": 200.0
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.09
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 40.0
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasarela029"
+      ,
+      "transform":
+      {
+        "pos": "-8.70517 1.08749 -17.9282"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "omni_fade_out": true
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 80.0
+        ,
+        "outer_cut": 200.0
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.09
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 40.0
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasarela030"
+      ,
+      "transform":
+      {
+        "pos": "-8.70517 1.08749 -13.1863"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "omni_fade_out": true
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 80.0
+        ,
+        "outer_cut": 200.0
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.09
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 40.0
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "luz_pasarela031"
+      ,
+      "transform":
+      {
+        "pos": "-8.70517 1.08749 -10.0969"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+      "omni_fade_out": true
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 80.0
+        ,
+        "outer_cut": 200.0
+        ,
+        "color": "1.0 1.0 1.0 1.0"
+        ,
+        "intensity": 0.09
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 40.0
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+]

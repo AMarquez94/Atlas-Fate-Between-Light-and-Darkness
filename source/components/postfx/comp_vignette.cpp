@@ -6,6 +6,8 @@
 
 DECL_OBJ_MANAGER("vignette", TCompVignette);
 
+CRenderToTexture* TCompVignette::rt = nullptr;
+
 // ---------------------
 void TCompVignette::debugInMenu() {
 
@@ -13,7 +15,6 @@ void TCompVignette::debugInMenu() {
     ImGui::DragFloat("Amount", &amount, 0.01f, 0.0f, 1.0f);
     ImGui::DragFloat("Softness Amount", &softness_amount, 0.01f, 0.0f, 1.0f);
     ImGui::DragFloat("Contrast", &contrast, 0.01f, 0.0f, 3.0f);
-    //ImGui::DragFloat("Brightness", &brightness, 0.01f, 0.0f, 3.0f);
 }
 
 void TCompVignette::load(const json& j, TEntityParseContext& ctx) {
@@ -35,9 +36,6 @@ void TCompVignette::load(const json& j, TEntityParseContext& ctx) {
         bool is_ok = rt->createRT(rt_name, xres, yres, DXGI_FORMAT_B8G8R8A8_UNORM);
         assert(is_ok);
     }
-
-    //std::string lut_name = j.value("lut", "");
-    //lut1 = Resources.get(lut_name)->as<CTexture>();
 
     tech = Resources.get("postfx_vignette.tech")->as<CRenderTechnique>();
     mesh = Resources.get("unit_quad_xy.mesh")->as<CRenderMesh>();

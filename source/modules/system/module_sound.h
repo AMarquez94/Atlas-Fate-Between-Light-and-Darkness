@@ -25,7 +25,10 @@ class CModuleSound : public IModule
     std::unordered_map<std::string, FMOD::Studio::Bank*> myBanks;
     std::unordered_map<std::string, FMOD::Studio::EventDescription*> myEvents;
     std::unordered_map<unsigned int, FMOD::Studio::EventInstance*> myEventInstances;
+    std::unordered_map<unsigned int, FMOD::Studio::EventInstance*> myPreloadedEventInstances;
     std::unordered_map<std::string, FMOD::Studio::Bus*> myBuses;
+
+    std::unordered_map<std::string, SoundEvent> preloadedSoundEventObjects;
 
     /* ID for event instances (always incremental) */
     static unsigned int sNextID;
@@ -39,6 +42,7 @@ class CModuleSound : public IModule
 protected:
     friend class SoundEvent;
     FMOD::Studio::EventInstance* getEventInstance(unsigned int id);
+    bool playPreloadedEventInstance(unsigned int id);
 
 public:
 
@@ -54,6 +58,7 @@ public:
     void unloadAllBanks();
 
     SoundEvent playEvent(const std::string& name);
+    SoundEvent preloadEvent(const std::string& name);
 
     CHandle getListener() { return h_listener; };
     void setListener(CHandle h_listener /*const CTransform& transform*/);

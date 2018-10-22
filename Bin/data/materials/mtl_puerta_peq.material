@@ -11,8 +11,6 @@
     ,
     "normal": "data/textures/tx_puerta_peq_nml.dds"
     ,
-    "height": "data/textures/tx_puerta_peq_hgt.dds"
-    ,
     "emissive": "data/textures/tx_puerta_peq_emi.dds"
     ,
     "aocclusion": "data/textures/tx_puerta_peq_ao.dds"

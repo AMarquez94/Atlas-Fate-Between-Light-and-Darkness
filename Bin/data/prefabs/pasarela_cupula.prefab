@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "pasarela_cupula"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "pasarela_cupula_low"
       ,
       "transform":

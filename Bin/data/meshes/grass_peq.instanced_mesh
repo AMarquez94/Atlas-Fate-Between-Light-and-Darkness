@@ -1,7 +1,7 @@
 {
   "instanced_mesh": "data/meshes/grass_peq.mesh"
   ,
-  "instances_type": "Instance"
+  "instances_type": "InstancedPos"
   ,
   "num_instances_reserved": 8
 }

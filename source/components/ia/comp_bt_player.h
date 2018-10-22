@@ -8,6 +8,8 @@ class TCompAIPlayer : public TCompIAController {
 
 public:
 
+    ~TCompAIPlayer();
+
     enum EState {
         TUT_CROUCH = 0,
         TUT_SM,

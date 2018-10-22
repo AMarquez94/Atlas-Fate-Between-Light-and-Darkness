@@ -2,6 +2,9 @@
 	{
 		"entity": {
 			"name": "Capsules",
+			"transform": {
+				"pos": "0 -100 0"
+			},
 			"dynamic_capsules_manager": {
 				"start_point": "13.5 29 -186",
 				"end_point": "22.5 29 -414",

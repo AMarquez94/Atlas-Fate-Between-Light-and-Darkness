@@ -360,7 +360,32 @@ SoundEvent CModuleSound::playEvent(const std::string & name)
     return soundEvent;
 }
 
+SoundEvent CModuleSound::preloadEvent(const std::string & name)
+{
+    unsigned int retID = 0;
+    auto iter = myEvents.find(name);
+    SoundEvent soundEvent;
+    if (iter != myEvents.end()) {
 
+        /* Create instance of an event */
+        FMOD::Studio::EventInstance* event = nullptr;
+        iter->second->createInstance(&event);
+        if (event) {
+
+            /* Get the next id and add it to map */
+            sNextID++;
+            retID = sNextID;
+            myPreloadedEventInstances.emplace(retID, event);
+        }
+
+        soundEvent = SoundEvent(retID, true);
+        event->setUserData(&soundEvent);
+    }
+    else {
+        soundEvent = SoundEvent(retID, true);
+    }
+    return soundEvent;
+}
 
 void CModuleSound::setListener(CHandle h_listener /*const CTransform & transform*/)
 {
@@ -459,4 +484,16 @@ FMOD::Studio::EventInstance * CModuleSound::getEventInstance(unsigned int id)
         event = iter->second;
     }
     return event;
+}
+
+bool CModuleSound::playPreloadedEventInstance(unsigned int id)
+{
+    auto iter = myPreloadedEventInstances.find(id);
+    if (iter != myPreloadedEventInstances.end()) {
+        iter->second->start();
+        myEventInstances.emplace(id, iter->second);
+        myPreloadedEventInstances.erase(id);
+        return true;
+    }
+    return false;
 }

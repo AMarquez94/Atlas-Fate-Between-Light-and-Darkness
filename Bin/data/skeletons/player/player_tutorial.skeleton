@@ -21,6 +21,7 @@
 		{ "name" : "land_soft"},
 		{ "name" : "cinematic_walk"},
 		{ "name" : "cinematic_idle"},
+		{ "name" : "menu_pose"},
 		{ "name" : "hack"},
 		{ "name" : "cinematic_listen_crouch"},
 		{ "name" : "cinematic_listen_idle"},

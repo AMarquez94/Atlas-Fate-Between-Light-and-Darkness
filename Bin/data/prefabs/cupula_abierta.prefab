@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "cupula_abierta"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_cupula_abierta"
       ,
       "transform":

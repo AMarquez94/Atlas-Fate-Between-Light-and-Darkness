@@ -29,6 +29,7 @@
 #include "components/comp_animated_object_controller.h"
 #include "components/object_controller/comp_door.h"
 #include "components/postfx/comp_render_bloom.h"
+#include "input/devices/mouse.h"
 
 bool CModuleLogic::start() {
 
@@ -138,6 +139,7 @@ void CModuleLogic::publishClasses() {
         .property("isCinematicMode", &CModuleGameManager::isCinematicMode)
 		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint)
         .set("changeToEndScene", &CModuleGameManager::changeToEndScene) //TODO: Delete
+        .set("preloadFinalSceneSoundEvent", &CModuleGameManager::preloadFinalSceneSoundEvent) //TODO: Delete
         ;
 
     SLB::Class< VEC3 >("VEC3", m)
@@ -167,6 +169,7 @@ void CModuleLogic::publishClasses() {
         .set("playPlayerStep", &TCompTempPlayerController::playPlayerStep)
         .set("playLandParticles", &TCompTempPlayerController::playLandParticles)
         .set("playSMSpirals", &TCompTempPlayerController::playSMSpirals)
+        .set("resetSMFilters", &TCompTempPlayerController::resetSMFilters)
         ;
 
     SLB::Class< TCompNoiseEmitter >("NoiseEmitter", m)
@@ -314,8 +317,14 @@ void CModuleLogic::publishClasses() {
 
     // cinematic
     m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
-    m->set("setAIState", SLB::FuncCall::create(&setAIState));
-
+	m->set("setAIState", SLB::FuncCall::create(&setAIState));
+	m->set("speedUpRuedasFinalScene", SLB::FuncCall::create(&speedUpRuedasFinalScene));
+	m->set("stopRuedasFinalScene", SLB::FuncCall::create(&stopRuedasFinalScene));
+	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
+	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
+	m->set("pasarelaLightsFadeOut", SLB::FuncCall::create(&pasarelaLightsFadeOut));
+	m->set("ambientAdjustmentForFinalScene", SLB::FuncCall::create(&ambientAdjustmentForFinalScene));
+	
 	//GUI
 	m->set("unPauseGame", SLB::FuncCall::create(&unPauseGame));
 	m->set("backFromControls", SLB::FuncCall::create(&backFromControls));
@@ -335,11 +344,10 @@ void CModuleLogic::publishClasses() {
 	m->set("setInBlackScreen", SLB::FuncCall::create(&setInBlackScreen));
 	m->set("setOutBlackScreen", SLB::FuncCall::create(&setOutBlackScreen));
 	m->set("subClear", SLB::FuncCall::create(&subClear));
-	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
-	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
 	m->set("execLastAtlasScreen", SLB::FuncCall::create(&execLastAtlasScreen));
 	m->set("removeAtlasSplash", SLB::FuncCall::create(&removeAtlasSplash));
 	m->set("removeTempCredits", SLB::FuncCall::create(&removeTempCredits));
+	m->set("activateCredits", SLB::FuncCall::create(&activateCredits));
 	
     // Other
     m->set("lanternsDisable", SLB::FuncCall::create(&lanternsDisable));
@@ -368,6 +376,8 @@ void CModuleLogic::publishClasses() {
     m->set("GUI_EnableRemoveInhibitor", SLB::FuncCall::create(&GUI_EnableRemoveInhibitor));
     m->set("sendPlayerIlluminatedMsg", SLB::FuncCall::create(&sendPlayerIlluminatedMsg));
     m->set("isInCinematicMode", SLB::FuncCall::create(&isInCinematicMode));
+    m->set("preloadSoundEvent", SLB::FuncCall::create(&preloadSoundEvent));
+    m->set("stopRenderingEntities", SLB::FuncCall::create(&stopRenderingEntities));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -378,6 +388,8 @@ void CModuleLogic::publishClasses() {
     m->set("destroyPartialScene", SLB::FuncCall::create(&destroyPartialScene));
     m->set("testingLoadPartialScene", SLB::FuncCall::create(&testingLoadPartialScene));
     m->set("testLoco", SLB::FuncCall::create(&testLoco));
+    m->set("printAllResources", SLB::FuncCall::create(&printAllResources));
+    m->set("deleteAllCacheResources", SLB::FuncCall::create(&deleteAllCacheResources));
 
     /* Handle converters */
     m->set("toEntity", SLB::FuncCall::create(&toEntity));
@@ -890,6 +902,28 @@ void isInCinematicMode(bool isCinematic)
 {
     dbg("SETEAMOS A %s\n", isCinematic ? "TRUE" : "FALSE");
     CEngine::get().getGameManager().isCinematicMode = isCinematic;
+    if (isCinematic) {
+        // Lock/Unlock the cursor
+        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+        mouse->setOnlyLockMouse(false);
+    }
+    else {
+        // Lock/Unlock the cursor
+        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+        mouse->setOnlyLockMouse(true);
+    }
+}
+
+SoundEvent preloadSoundEvent(const std::string & soundevent)
+{
+    return EngineSound.preloadEvent(soundevent);
+}
+
+void stopRenderingEntities()
+{
+    TMsgSetVisible msg;
+    msg.visible = false;
+    EngineEntities.broadcastMsg(msg);
 }
 
 
@@ -1164,6 +1198,16 @@ void testLoco() {
     /* TODO: rotation */
 }
 
+void printAllResources()
+{
+    Resources.printAllResources();
+}
+
+void deleteAllCacheResources()
+{
+    EngineFiles.deleteAllCacheResources();
+}
+
 void unPauseGame() {
 
 	CEngine::get().getGameManager().setPauseState(CModuleGameManager::PauseState::none);
@@ -1182,6 +1226,7 @@ void unlockDeadButton() {
 }
 
 void execDeadButton() {
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(3, 0.3, false);
 	EngineGUI.setButtonsState(true);
 	Engine.get().getGameManager().resetToCheckpoint();
 }
@@ -1261,51 +1306,80 @@ void setOutBlackScreen(float time_to_lerp) {
 	EngineLogic.execScriptDelayed("takeOutBlackScreen();", time_to_lerp + 0.1f);
 }
 
-void lightUpForFinalScene(float time) {
-
-	/*EngineLerp.lerpElement(&cb_globals.global_exposure_adjustment,1.02, time,0);
-	EngineLerp.lerpElement(&cb_globals.global_fog_density, 0.185, time, 0);
-	CHandle h_cam = EngineCameras.getCurrentCamera();
-	CEntity *e_cam = h_cam;
-	TCompRenderBloom* comp_bloom = e_cam->get<TCompRenderBloom>();
-	EngineLerp.lerpElement(&comp_bloom->threshold_min, 0.170, time, 0);
-	EngineLerp.lerpElement(&comp_bloom->threshold_max, 0.490, time, 0);
-	EngineLerp.lerpElement(&comp_bloom->multiplier, 1.780, time, 0);
-	EngineLerp.lerpElement(&comp_bloom->add_weights.x, 1.480, time, 0);
-	EngineLerp.lerpElement(&comp_bloom->add_weights.y, 1.7, time, 0);
-	EngineLerp.lerpElement(&comp_bloom->add_weights.z, 0.360, time, 0);
-	EngineLerp.lerpElement(&comp_bloom->add_weights.w, 1.2, time, 0);*/
-	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{false});
-	/*ImGui::DragFloat("Exposure Adjustment", &cb_globals.global_exposure_adjustment, 0.01f, 0.1f, 32.f);
-	ImGui::DragFloat("Ambient Adjustment", &cb_globals.global_ambient_adjustment, 0.01f, 0.0f, 1.f);
-	//ImGui::DragFloat("HDR", &cb_globals.global_hdr_enabled, 0.01f, 0.0f, 1.f);
-	ImGui::DragFloat("Gamma Correction", &cb_globals.global_gamma_correction_enabled, 0.01f, 0.0f, 1.f);
-	ImGui::DragFloat("Reinhard vs Uncharted2", &cb_globals.global_tone_mapping_mode, 0.01f, 0.0f, 1.f);
-	ImGui::DragFloat("Global shadow intensity", &cb_globals.global_shadow_intensity, 0.001f, 0.0f, 1.f);
-	// Fog settings edition
-	ImGui::DragFloat("Fog Ground density", &cb_globals.global_fog_ground_density, 0.001f, 0.0f, 1.f);
-	ImGui::DragFloat("Fog Environment density", &cb_globals.global_fog_density, 0.001f, 0.0f, 1.f);
-	ImGui::ColorEdit4("Shadow Color", &cb_globals.global_shadow_color.x, 0.0001f);
-	ImGui::ColorEdit4("Fog Ground Color", &cb_globals.global_fog_color.x, 0.0001f);
-	ImGui::ColorEdit4("Fog Environment Color", &cb_globals.global_fog_env_color.x, 0.0001f);*/
+void lightUpForFinalScene(bool random, float time_to_lerp) {
+	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ false , random, time_to_lerp});
 }
 
-void lightDownForFinalScene() {
+void ambientAdjustmentForFinalScene(float time_to_lerp) {
+	EngineLerp.lerpElement(&cb_globals.global_exposure_adjustment,2.2f, time_to_lerp,0.0f);
+}
 
+void lightDownForFinalScene(bool random, float time_to_lerp) {
+	EngineEntities.broadcastMsg(TMsgEmisiveCapsuleState{ true , random, time_to_lerp});
+	EngineLerp.lerpElement(&cb_globals.global_fog_density,0.364f,3,5);
+}
+
+void pasarelaLightsFadeOut() {
+	EngineEntities.broadcastMsg(TMsgOmniFadeOut{});
+}
+
+void speedUpRuedasFinalScene() {
+	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 10.0f,4.0f,0.0f });
+
+}
+
+void stopRuedasFinalScene() {
+	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 0.0f,7.0f,0.0f });
+
+	CEntity* ent = getEntityByName("rueda");
+	TCompRender* comp_rend = ent->get<TCompRender>();
+	if (comp_rend != nullptr) {
+		EngineLerp.lerpElement(&comp_rend->self_intensity,0.0f,7.0f,0.0f);
+	}
 }
 
 void execLastAtlasScreen() {
 
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH)->makeChildsFadeIn(0.25, 0, false);
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,25,false);
-	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
-	EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);
-	EngineLogic.execScriptDelayed("removeTempCredits()", 25.25);
-	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")",25.5);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH)->makeChildsFadeIn(0.1, 0, false);
+	
+	GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH_LINE);
+	if (w) {
+		float *aux_x = &w->getChild("line_atlas_left")->getBarParams()->_ratio;
+		*aux_x = 0.0f;
+		EngineLerp.lerpElement(aux_x, 1.0f, 4.0f, 5.0f);
+
+		float *aux_x_r = &w->getChild("line_atlas_right")->getBarParams()->_ratio;
+		*aux_x_r = 0.0f;
+		EngineLerp.lerpElement(aux_x_r, 1.0f, 4.0f, 5.0f);
+
+	}
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH_SUB)->makeChildsFadeIn(2.0, 9, false);
+
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(2,16,false);
+	EngineLogic.execScriptDelayed("activateCredits();",18.5);
+	//EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::MAIN_MENU_CREDITS_BACKGROUND)->makeChildsFadeIn(2, 10, true);
+	//EngineLogic.execScriptDelayed("removeAtlasSplash()",12.25);
+	//EngineLogic.execScriptDelayed("removeTempCredits()", 25.25);
+	//EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")",25.5);
+}
+
+void activateCredits() {
+	EngineLogic.execScript("unloadScene();");
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH_LINE);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH_SUB);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.25, 0.0, false);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS_BACKGROUND);
+	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS);
+	EngineLogic.execScriptDelayed("removeAtlasSplash()", 57.0f);
+	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")", 57.0f);
+	EngineLogic.execScript("restartCinematics()");
 }
 
 void removeAtlasSplash() {
-	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::ATLAS_LAST_SPLASH);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CREDITS);
+	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::CREDITS_BACKGROUND);
 }
 
 void tempCredits() {

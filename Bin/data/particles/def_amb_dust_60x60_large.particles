@@ -51,10 +51,10 @@
 	},
 	"renderer": {
 			"mode": "billboard",
-			"texture": "data/textures/particles/dust_spore.dds",
-      "frame_size" : "1 1",
+			"texture": "data/textures/particles/amb_puff.dds",
+      "frame_size" : "2 2",
       "initial_frame" : 0,
-      "num_frames" : 1,
+      "num_frames" : 4,
       "frame_speed" : 0.0,
 			"tech" : "particles_instanced_additive.tech"
 	},
@@ -62,8 +62,8 @@
     "scale" : 1.5,
     "scale_variation" : 0.1,
     "sizes" : [
-		  [0.0, "0.025 0.025 0.025"],
-			[1.0, "0.025 0.025 0.025"]
+		  [0.0, "0.075 0.075 0.075"],
+			[1.0, "0.075 0.075 0.075"]
     ]
   },
   "color" : {

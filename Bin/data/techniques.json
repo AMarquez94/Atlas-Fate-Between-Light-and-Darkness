@@ -191,7 +191,7 @@
 	},
 	"decals": {
 		"vs_file": "data/shaders/pbr_decals.fx",
-		"vertex_type": "PosNUvUvT_x_InstanceColored",
+		"vertex_type": "PosNUvUvT_x_Instance",
 		"ps_entry_point": "PS_default",
 		"category": "decals",
 		"z": "test_but_no_write",
@@ -202,10 +202,33 @@
 	},
 	"pbr_decals": {
 		"vs_file": "data/shaders/pbr_decals.fx",
-		"vertex_type": "PosNUvUvT_x_InstanceColored",
+		"vertex_type": "PosNUvUvT_x_Instance",
 		"category": "gbuffer_decals",
 		"z": "test_but_no_write",
 		"blend": "multiplicative_gbuffer",
+		"rs_config": "depth_bias",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds"
+		}
+	},
+	"pbr_decals_top": {
+		"vs_file": "data/shaders/pbr_decals.fx",
+		"vertex_type": "PosNUvUvT_x_Instance",
+		"category": "gbuffer_decals",
+		"z": "test_but_no_write",
+		"blend": "multiplicative_gbuffer",
+		"rs_config": "depth_bias",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds"
+		}
+	},
+	"pbr_decals_solid": {
+		"vs_file": "data/shaders/pbr_decals.fx",
+		"vertex_type": "PosNUvUvT_x_Instance",
+		"ps_entry_point": "PS_SOLID",
+		"category": "gbuffer_decals",
+		"z": "test_but_no_write",
+		"rs_config": "depth_bias",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds"
 		}
@@ -294,6 +317,17 @@
 			"noise2": "data/textures/tx_noise_shadow2.dds"
 		}
 	},
+	"pbr_point_lights_shadow": {
+    "vs_file": "data/shaders/pbr.fx",
+    "ps_file": "data/shaders/pbr.fx",
+    "vs_entry_point": "VS_pass",
+    "ps_entry_point": "PS_point_lights_shadow",
+    "vertex_type": "PosNUvUvT",
+    "category": "pbr_proc",
+    "z": "inverse_test_no_write",
+    "rs_config": "reverse_culling",
+    "blend": "additive"
+  },
 	"water": {
 		"vs_file": "data/shaders/water.fx",
 		"ps_file": "data/shaders/water.fx",
@@ -889,13 +923,39 @@
 			"noise": "data/textures/noise_light.dds"
 		}
 	},
-	"pbr_ray_shafts": {
+	"pbr_rayshaft_directional": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/pbr_vol_instanced.fx",
-		"ps_entry_point": "PS_GBuffer_RayShafts",
+		"ps_entry_point": "PS_GBuffer_RayShafts_Point",
 		"vertex_type": "PosClr",
 		"blend": "additive",
 		"rs_config": "cull_none",
+		"z": "disable_all",
+		"textures": {
+			"noise": "data/textures/noise_light.dds"
+		}
+	},
+	"pbr_rayshaft_spotlight": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr_vol_instanced.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer_RayShafts_Spot",
+		"vertex_type": "PosNUvUvT",
+		"blend": "additive",
+		"rs_config": "reverse_culling",
+		"z": "disable_all",
+		"textures": {
+			"noise": "data/textures/noise_light.dds"
+		}
+	},
+	"pbr_rayshaft_pointlight": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr_vol_instanced.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer_RayShafts_Point",
+		"vertex_type": "PosNUvUvT",
+		"blend": "additive",
+		"rs_config": "reverse_culling",
 		"z": "disable_all",
 		"textures": {
 			"noise": "data/textures/noise_light.dds"

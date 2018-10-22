@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "conductofinal"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_conductofinal"
       ,
       "transform":

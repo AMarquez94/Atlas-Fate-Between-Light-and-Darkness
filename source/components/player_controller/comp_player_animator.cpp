@@ -447,6 +447,18 @@ void TCompPlayerAnimator::initializeAnimations() {
 		1.0f,
 		false
 	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::CINEMATIC_MAINMENU_POSE,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"menu_pose",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+	
 }
 
 void TCompPlayerAnimator::registerMsgs() {

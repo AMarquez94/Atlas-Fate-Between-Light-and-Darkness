@@ -24,7 +24,7 @@ bool CModuleGameManager::start() {
 
     _player = EngineEntities.getPlayerHandle();
     _fly_camera = getEntityByName("test_camera_flyover");
-    //ambient = EngineSound.playEvent("event:/Ambiance/Intro_Ambiance");
+    ambient = EngineSound.playEvent("event:/Ambiance/Intro_Ambiance");
 
     lastCheckpoint = new CCheckpoint();
     _currentstate = PauseState::none;
@@ -34,6 +34,8 @@ bool CModuleGameManager::start() {
     transmission = EngineSound.playEvent("event:/Ambiance/Transmission");
     transmission.setVolume(0.f);
     _musicstate = MusicState::normal;
+    isCinematicMode = true;
+    menuPosition = 0;
 
     return true;
 }
@@ -63,10 +65,12 @@ void CModuleGameManager::setPauseState(PauseState pause) {
         // Determine if player is paused
         CEntity * e_player = _player;
         CEntity * e_camera = _fly_camera;
-        TCompCameraFlyover * flyover = e_camera->get<TCompCameraFlyover>();
-        TMsgScenePaused msg2;
-        msg2.isPaused = (!msg.isPaused && flyover->paused) ? false : true && pause != PauseState::defeat;
-        e_player->sendMsg(msg2);
+        if (e_player && e_camera) {
+            TCompCameraFlyover * flyover = e_camera->get<TCompCameraFlyover>();
+            TMsgScenePaused msg2;
+            msg2.isPaused = (!msg.isPaused && flyover->paused) ? false : true && pause != PauseState::defeat;
+                e_player->sendMsg(msg2);
+        }
         //dbg("current state %d and message %d\n", _currentstate, msg.isPaused);
     }
     switchState(pause);
@@ -214,6 +218,10 @@ void CModuleGameManager::update(float delta) {
 bool CModuleGameManager::stop()
 {
     stopAllSoundEvents();
+    if (lastCheckpoint) {
+        delete lastCheckpoint;
+        lastCheckpoint = nullptr;
+    }
     return true;
 }
 
@@ -358,7 +366,7 @@ void CModuleGameManager::updateMusicState(float dt)
             if (!finalScene.isValid()) {
                 persecution_theme.stop();
                 main_theme.stop();
-                finalScene = EngineSound.playEvent("event:/Ambiance/EndMusic");
+                finalScene.restart();
                 finalScene.setVolume(0.f);
             }
             else if(finalScene.getVolume() < 1.f){
@@ -411,6 +419,9 @@ void CModuleGameManager::updateMusicState(float dt)
                 main_theme.setVolume(volume);
             }
         }
+    }
+    else if (_musicstate == MusicState::end_scene) {
+
     }
     else {
         stopAllSoundEvents();
@@ -626,6 +637,12 @@ void CModuleGameManager::playTransmissionSound(bool play)
 void CModuleGameManager::changeToEndScene()
 {
     changeMusicState(MusicState::end_scene);
+    ambient.stop();
+}
+
+void CModuleGameManager::preloadFinalSceneSoundEvent()
+{
+    finalScene = EngineSound.preloadEvent("event:/Ambiance/EndMusic");
 }
 
 void CModuleGameManager::resetState() {

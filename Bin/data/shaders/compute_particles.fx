@@ -98,7 +98,7 @@ void VS(
 
   float2 uv = iPos.xy;
 
-  float4 world_pos = float4(iCenter.xyz + float3(0,45,0) + camera_pos
+  float4 world_pos = float4(iCenter.xyz + float3(0,40,0) + camera_pos
     + (local_pos.x * camera_left + local_pos.y * camera_up)
     , 1);
 
@@ -117,5 +117,7 @@ float4 PS(
 ) : SV_Target
 {
   float a = txAlbedo.Sample(samLinear, iUV).r;
-  return pow( a, 3 )* ( 1 + sin(iSize.x * 3) * 3);
+	float d = txGBufferLinearDepth.Load(uint3(iPos.xy, 0)).x;
+			
+  return pow( a, 3 )* ( 1 + sin(iSize.x * 3) * 3) * d;
 }

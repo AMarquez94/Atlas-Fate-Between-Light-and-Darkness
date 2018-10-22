@@ -12,9 +12,10 @@ class CRenderToTexture;
 // ------------------------------------
 struct TCompRenderFocus : public TCompBase {
 
+    static CRenderToTexture*       rt;
+
     bool                    enabled;
     CRenderCte< CCteFocus > cte_focus;
-    CRenderToTexture*       rt = nullptr;
     const CRenderTechnique* tech = nullptr;
     const CRenderMesh*      mesh = nullptr;
 

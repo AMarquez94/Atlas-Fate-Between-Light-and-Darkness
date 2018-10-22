@@ -79,10 +79,10 @@
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"self_intensity": 0.21,
+					"self_intensity": 0.41,
 					"materials":
 					[
-						"data/materials/mtl_planet2.material"
+						"data/materials/mtl_planet1.material"
 					]
 				}
 			],
@@ -101,10 +101,10 @@
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
 					"color": "0.4 0.405 0.298 1",
-					"self_intensity": 0.0,
+					"self_intensity": 0.6,
 					"materials":
 					[
-						"data/materials/mtl_planet2_back.material"
+						"data/materials/mtl_planet1_back.material"
 					]
 				}
 			],
@@ -136,7 +136,7 @@
 		"entity": {
 			"name": "planet2",
 			"tied_hierarchy": {
-				"pos": "48 113 -148",
+				"pos": "48 111 -148",
 				"scale": "5 5 5"
 			},
 			"transform": {},
@@ -146,7 +146,7 @@
 					"self_intensity": 0.21,
 					"materials":
 					[
-						"data/materials/mtl_planet1.material"
+						"data/materials/mtl_planet2.material"
 					]
 				}
 			],
@@ -157,7 +157,7 @@
 		"entity": {
 			"name": "planet2_back",
 			"tied_hierarchy": {
-				"pos": "48 113 -148",
+				"pos": "48 111 -148",
 				"scale": "5.5 5.5 5.5"
 			},
 			"transform": {},
@@ -168,7 +168,7 @@
 					"self_intensity": 0.0,
 					"materials":
 					[
-						"data/materials/mtl_planet1_back.material"
+						"data/materials/mtl_planet2_back.material"
 					]
 				}
 			],
@@ -179,7 +179,7 @@
 		"entity": {
 			"name": "planet2_atmosphere",
 			"tied_hierarchy": {
-				"pos": "48 113 -148",
+				"pos": "48 111 -148",
 				"scale": "5.2 5.2 5.2"
 			},
 			"transform": {},

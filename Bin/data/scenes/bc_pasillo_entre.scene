@@ -14,6 +14,36 @@
   {
     "entity":
     {
+      "name": "bc_entre_tubos"
+      ,
+      "transform":
+      {
+        "pos": "6.31236 8.15678 -310.893"
+        ,
+        "rotation": "-0.696364 0.122788 0.122788 -0.696364"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bc_entre_tubos.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_tubos_pozo.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
       "name": "mesh_bc_pasillo_entre"
       ,
       "transform":

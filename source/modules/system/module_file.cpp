@@ -8,6 +8,7 @@ bool CModuleFile::start() {
     Resources.registerResourceClass(getResourceClassOf<CJsonResource>());
 
     preloadResources(false);
+    //preloadResourcesToDelete(true);
 
     resource_thread = std::thread(&CModuleFile::resourceThreadMain, this);
 
@@ -23,6 +24,7 @@ bool CModuleFile::stop() {
 }
 
 void CModuleFile::update(float delta) {
+
     if (areResourcesToLoad()) {
         int amountLoaded = 0;
         int i = 0;
@@ -32,7 +34,6 @@ void CModuleFile::update(float delta) {
             if (resources_to_load[i].substr(resources_to_load[i].find_last_of(".") + 1).compare("bin") != 0
                 && !Resources.resourceExists(resources_to_load[i])) {
                 const IResource* res = Resources.get(resources_to_load[i]);
-                dbg("PRELOADED %s\n", res->getName().c_str());
                 if (res->getClass()->class_name.compare("Textures")) {
                     amountLoaded += 5;
                 }
@@ -44,7 +45,6 @@ void CModuleFile::update(float delta) {
                 }
             }
         }
-        dbg("ITERACIONES %d\n", i);
 
         resources_to_load.erase(resources_to_load.begin(), resources_to_load.begin() + i);
     }
@@ -95,6 +95,11 @@ const std::vector<std::string> CModuleFile::getFileResourceVector(std::string fi
     return resources_by_file[filename];
 }
 
+const std::vector<std::string> CModuleFile::getFilesToDestroy(std::string filename)
+{
+    return resources_to_delete_by_scene[filename];
+}
+
 void CModuleFile::writeResourcesInFile(const std::string filename, const std::vector<std::string>& resources)
 {
     std::ofstream file(filename, std::ofstream::out);
@@ -109,21 +114,38 @@ void CModuleFile::writeResourcesInFile(const std::string filename, const std::ve
 
 void CModuleFile::preloadResources(bool overwrite)
 {
+    scene_files = std::vector<std::string>{ 
+        "scene_intro",
+        "scene_coliseo",
+        "scene_zone_a",
+        "scene_coliseo_2",
+        "scene_basilic_courtyard",
+        "scene_basilic_interior",
+    };
+
     const json& jboot = Resources.get("data/boot.json")->as<CJsonResource>()->getJson();
     std::vector<std::string> pending_resources_to_load;
-    for (auto it = std::next(jboot.begin(), 1); it != jboot.end(); ++it) {
-        std::string scene_name = "data/resource_list/" + it.key() + ".txt";
+
+    bool first = false;
+
+    for (int k = 0; k < scene_files.size(); k++) {
+        std::string scene_name = "data/resource_list/to_add/" + scene_files[k] + ".txt";
         std::ifstream read_file(scene_name);
         if (!read_file.is_open() || overwrite) {
-            if (jboot[it.key()]["static_data"].count("navmesh")) {
-                pending_resources_to_load.push_back(jboot[it.key()]["static_data"].value("navmesh", ""));
+            if (jboot[scene_files[k]]["static_data"].count("navmesh")) {
+                pending_resources_to_load.push_back(jboot[scene_files[k]]["static_data"].value("navmesh", ""));
             }
-            std::vector<std::string> persistent_subscenes = jboot[it.key()]["persistent_scenes"];
-            std::vector< std::string > groups_subscenes = jboot[it.key()]["scene_group"];
+            std::vector<std::string> persistent_subscenes = jboot[scene_files[k]]["persistent_scenes"];
+            std::vector< std::string > groups_subscenes = jboot[scene_files[k]]["scene_group"];
             groups_subscenes.insert(std::end(groups_subscenes), std::begin(persistent_subscenes), std::end(persistent_subscenes));
-            for (int i = 0; i < groups_subscenes.size(); i++) {
-                const json& j = Resources.get(groups_subscenes[i])->as<CJsonResource>()->getJson();
-                pending_resources_to_load.push_back(groups_subscenes[i]);
+            for (int z = 0; z < groups_subscenes.size(); z++) {
+                if (!first) {
+                    const json& preload_j = loadJson("data/scenes/_preloaded.scene");
+                    parseResourceScene(preload_j, pending_resources_to_load);
+                    first = true;
+                }
+                const json& j = Resources.get(groups_subscenes[z])->as<CJsonResource>()->getJson();
+                pending_resources_to_load.push_back(groups_subscenes[z]);
                 parseResourceScene(j, pending_resources_to_load);
             }
             writeResourcesInFile(scene_name, pending_resources_to_load);
@@ -135,12 +157,48 @@ void CModuleFile::preloadResources(bool overwrite)
             }
         }
         read_file.close();
-        for (int i = 0; i < pending_resources_to_load.size(); i++) {
-            addPendingResourceFile(pending_resources_to_load[i]);
+        for (int z = 0; z < pending_resources_to_load.size(); z++) {
+            addPendingResourceFile(pending_resources_to_load[z]);
         }
 
-        resources_by_file[it.key()] = pending_resources_to_load;
+        resources_by_file[scene_files[k]] = pending_resources_to_load;
         pending_resources_to_load.clear();
+    }
+}
+
+void CModuleFile::preloadResourcesToDelete(bool overwrite)
+{
+    for (int i = 0; i < scene_files.size(); i++) {
+        std::vector<std::string> resources_to_delete;
+        std::string scene_name = "data/resource_list/to_delete/" + scene_files[i] + ".txt";
+        std::ifstream read_file(scene_name);
+        if (!read_file.is_open() || overwrite) {
+            std::vector<std::string> resources_in_scene = resources_by_file[scene_files[i]];
+            for (int j = 0; j < resources_in_scene.size(); j++) {
+                std::string resource_name = resources_in_scene[j];
+                if (resource_name.find("data/") != std::string::npos) {
+                    bool found = false;
+                    for (int z = i + 1; !found && z < scene_files.size(); z++) {
+                        std::vector<std::string> next_scene = resources_by_file[scene_files[z]];
+                        for (int i_next_scene_element = 0; !found && i_next_scene_element < next_scene.size(); i_next_scene_element++) {
+                            found = resource_name == next_scene[i_next_scene_element];
+                        }
+                    }
+                    if (!found) {
+                        resources_to_delete.push_back(resource_name);
+                    }
+                }
+            }
+            writeResourcesInFile(scene_name, resources_to_delete);
+        }
+        else {
+            std::string new_resource;
+            while (std::getline(read_file, new_resource)) {
+                resources_to_delete.push_back(new_resource);
+            }
+        }
+        read_file.close();
+        resources_to_delete_by_scene[scene_files[i]] = resources_to_delete;
     }
 }
 
@@ -159,9 +217,19 @@ const std::vector<std::string> CModuleFile::getResourcesByFile(const std::string
 
 void CModuleFile::addPendingResourceFile(const std::string & resource, bool add)
 {
-    std::unique_lock<std::mutex> lck(pending_resource_files_mutex);
-    pending_resource_files.push_back(std::make_pair(resource, add));
-    condition_variable.notify_one();
+    if (add) {
+        std::unique_lock<std::mutex> lck(pending_resource_files_mutex);
+        pending_resource_files.push_back(std::make_pair(resource, add));
+        condition_variable.notify_one();
+    }
+    else {
+        resource_files_mutex.lock();
+        auto it = resource_files.find(resource);
+        if (it != resource_files.end()) {
+            resource_files.erase(it);
+        }
+        resource_files_mutex.unlock();
+    }
 }
 
 void CModuleFile::addResourceToLoad(const std::string & resourceToLoad)
@@ -173,6 +241,13 @@ void CModuleFile::addVectorResourceToLoad(const std::vector<std::string>& resour
 {
     resources_to_load.insert(std::end(resources_to_load), std::begin(resourcesToLoad), std::end(resourcesToLoad));
     //resources_to_load = resourcesToLoad;
+}
+
+void CModuleFile::deleteAllCacheResources()
+{
+    resource_files_mutex.lock();
+    resource_files.clear();
+    resource_files_mutex.unlock();
 }
 
 const std::pair<const std::string, bool> CModuleFile::getFirstPendingResourceFile()
@@ -246,6 +321,13 @@ void CModuleFile::parseResourceScene(const json& j, std::vector<std::string>& sc
                             /* Mesh */
                             std::string s_mesh = render_item.value().value("mesh", "");
                             if (s_mesh.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), s_mesh) == scene_resources.end()) {
+                                if (s_mesh.find(".instanced_mesh") != std::string::npos) {
+                                    json j = loadJson(s_mesh);
+                                    std::string s_instanced = j["instanced_mesh"];
+                                    if (s_instanced.compare("") != 0 && std::find(scene_resources.begin(), scene_resources.end(), s_instanced) == scene_resources.end()) {
+                                        scene_resources.push_back(s_instanced);
+                                    }
+                                }
                                 scene_resources.push_back(s_mesh);
                             }
                         }

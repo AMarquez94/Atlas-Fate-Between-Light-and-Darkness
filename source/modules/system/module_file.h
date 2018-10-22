@@ -22,21 +22,27 @@ public:
     bool ending_engine = false;
 
     const std::vector<std::string> getFileResourceVector(std::string filename);
+    const std::vector<std::string> getFilesToDestroy(std::string filename);
+
     void addPendingResourceFile(const std::string& resource, bool add = true);
 
     void addResourceToLoad(const std::string& resourceToLoad);
     void addVectorResourceToLoad(const std::vector<std::string>& resourcesToLoad);
     bool areResourcesToLoad() { return resources_to_load.size() > 0; };
+    void deleteAllCacheResources();
 
 private:
 
     /* Auxiliar methods */
     void writeResourcesInFile(const std::string scene_name, const std::vector<std::string>& resources);
     void preloadResources(bool overwrite);
+    void preloadResourcesToDelete(bool overwrite);
     const std::vector<std::string> getResourcesByFile(const std::string filename);
 
     /* Resources by file */
+    std::vector<std::string> scene_files;
     std::map<std::string, std::vector<std::string>> resources_by_file;
+    std::map<std::string, std::vector<std::string>> resources_to_delete_by_scene;
 
     /* Resource Files */
     std::recursive_mutex resource_files_mutex;

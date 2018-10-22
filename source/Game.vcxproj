@@ -46,11 +46,13 @@
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
     <IncludePath>$(SolutionDir)..\tools\PhysX\PhysX_3.4\Include;$(SolutionDir)..\tools\PhysX\PxShared\Include;$(IncludePath)</IncludePath>
+    <TargetName>Atlas' Fate - Between Light &amp; Darkness</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(SolutionDir)..\Build\$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)..\Bin\</OutDir>
     <IncludePath>$(SolutionDir)..\tools\PhysX\PhysX_3.4\Include;$(SolutionDir)..\tools\PhysX\PxShared\Include;$(IncludePath)</IncludePath>
+    <TargetName>Atlas' Fate - Between Light &amp; Darkness</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -60,7 +62,7 @@
       <AdditionalIncludeDirectories>.;../bin/data/shaders;.\SLB\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>mcv_platform.h</PrecompiledHeaderFile>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
     </ClCompile>
     <Link>
@@ -124,7 +126,10 @@
     <ClCompile Include="components\ia\comp_patrol_animator.cpp" />
     <ClCompile Include="components\lighting\comp_fade_controller.cpp" />
     <ClCompile Include="components\lighting\comp_light_controller.cpp" />
+    <ClCompile Include="components\lighting\comp_light_point_shadows.cpp" />
+    <ClCompile Include="components\lighting\comp_point_controller.cpp" />
     <ClCompile Include="components\lighting\comp_projector.cpp" />
+    <ClCompile Include="components\lighting\comp_spot_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_billboard.cpp" />
     <ClCompile Include="components\object_controller\comp_bone_controller.cpp" />
     <ClCompile Include="components\object_controller\comp_button.cpp" />
@@ -134,18 +139,24 @@
     <ClCompile Include="components\object_controller\comp_instance.cpp" />
     <ClCompile Include="components\object_controller\comp_landing.cpp" />
     <ClCompile Include="components\object_controller\comp_laser.cpp" />
+    <ClCompile Include="components\object_controller\comp_light_destroy_final_scene.cpp" />
     <ClCompile Include="components\object_controller\comp_movable_object.cpp" />
     <ClCompile Include="components\object_controller\comp_noise_emitter.cpp" />
     <ClCompile Include="components\lighting\comp_emission_controller.cpp" />
     <ClCompile Include="components\lighting\comp_light_point.cpp" />
     <ClCompile Include="components\lighting\comp_light_spot.cpp" />
+    <ClCompile Include="components\object_controller\comp_omni_fade_out.cpp" />
     <ClCompile Include="components\object_controller\comp_player_weapon.cpp" />
     <ClCompile Include="components\object_controller\comp_rotator.cpp" />
+    <ClCompile Include="components\object_controller\comp_rotator_accelerator_final_scene.cpp" />
     <ClCompile Include="components\object_controller\comp_shooter.cpp" />
     <ClCompile Include="components\object_controller\comp_speaker.cpp" />
     <ClCompile Include="components\object_controller\comp_suspect_element.cpp" />
     <ClCompile Include="components\object_controller\comp_tied_hierarchy.cpp" />
     <ClCompile Include="components\object_controller\comp_trigger_checkpoint.cpp" />
+    <ClCompile Include="components\object_controller\comp_video.cpp" />
+    <ClCompile Include="components\object_controller\comp_wheel_final_scene_controller.cpp" />
+    <ClCompile Include="components\object_controller\particles_final_scene_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_glitch_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_noclip_controller.cpp" />
     <ClCompile Include="components\player_controller\comp_player_animator.cpp" />
@@ -216,6 +227,7 @@
     <ClCompile Include="gui\widgets\gui_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_button.cpp" />
     <ClCompile Include="gui\widgets\gui_image.cpp" />
+    <ClCompile Include="gui\widgets\gui_middle_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_radial_bar.cpp" />
     <ClCompile Include="gui\widgets\gui_sprite.cpp" />
     <ClCompile Include="gui\widgets\gui_subtitles.cpp" />
@@ -242,6 +254,7 @@
     <ClCompile Include="modules\game\module_gameover.cpp" />
     <ClCompile Include="modules\game\module_game_manager.cpp" />
     <ClCompile Include="modules\game\module_level_select.cpp" />
+    <ClCompile Include="modules\game\module_loading.cpp" />
     <ClCompile Include="modules\game\module_main_menu.cpp" />
     <ClCompile Include="modules\game\module_map_intro.cpp" />
     <ClCompile Include="modules\game\module_map_test.cpp" />
@@ -378,7 +391,10 @@
     <ClInclude Include="components\ia\comp_patrol_animator.h" />
     <ClInclude Include="components\lighting\comp_fade_controller.h" />
     <ClInclude Include="components\lighting\comp_light_controller.h" />
+    <ClInclude Include="components\lighting\comp_light_point_shadows.h" />
+    <ClInclude Include="components\lighting\comp_point_controller.h" />
     <ClInclude Include="components\lighting\comp_projector.h" />
+    <ClInclude Include="components\lighting\comp_spot_controller.h" />
     <ClInclude Include="components\object_controller\comp_billboard.h" />
     <ClInclude Include="components\object_controller\comp_bone_controller.h" />
     <ClInclude Include="components\object_controller\comp_button.h" />
@@ -388,18 +404,24 @@
     <ClInclude Include="components\object_controller\comp_instance.h" />
     <ClInclude Include="components\object_controller\comp_landing.h" />
     <ClInclude Include="components\object_controller\comp_laser.h" />
+    <ClInclude Include="components\object_controller\comp_light_destroy_final_scene.h" />
     <ClInclude Include="components\object_controller\comp_movable_object.h" />
     <ClInclude Include="components\object_controller\comp_noise_emitter.h" />
     <ClInclude Include="components\lighting\comp_emission_controller.h" />
     <ClInclude Include="components\lighting\comp_light_point.h" />
     <ClInclude Include="components\lighting\comp_light_spot.h" />
+    <ClInclude Include="components\object_controller\comp_omni_fade_out.h" />
     <ClInclude Include="components\object_controller\comp_player_weapon.h" />
     <ClInclude Include="components\object_controller\comp_rotator.h" />
+    <ClInclude Include="components\object_controller\comp_rotator_accelerator_final_scene.h" />
     <ClInclude Include="components\object_controller\comp_shooter.h" />
     <ClInclude Include="components\object_controller\comp_speaker.h" />
     <ClInclude Include="components\object_controller\comp_suspect_element.h" />
     <ClInclude Include="components\object_controller\comp_tied_hierarchy.h" />
     <ClInclude Include="components\object_controller\comp_trigger_checkpoint.h" />
+    <ClInclude Include="components\object_controller\comp_video.h" />
+    <ClInclude Include="components\object_controller\comp_wheel_final_scene_controller.h" />
+    <ClInclude Include="components\object_controller\particles_final_scene_controller.h" />
     <ClInclude Include="components\player_controller\comp_glitch_controller.h" />
     <ClInclude Include="components\player_controller\comp_noclip_controller.h" />
     <ClInclude Include="components\player_controller\comp_player_animator.h" />
@@ -485,6 +507,7 @@
     <ClInclude Include="gui\controllers\gui_menu_buttons_controller.h" />
     <ClInclude Include="gui\effects\gui_animate_uv.h" />
     <ClInclude Include="gui\effects\gui_change_textures.h" />
+    <ClInclude Include="gui\widgets\gui_middle_bar.h" />
     <ClInclude Include="gui\gui_controller.h" />
     <ClInclude Include="gui\gui_effect.h" />
     <ClInclude Include="gui\gui_params.h" />
@@ -529,6 +552,7 @@
     <ClInclude Include="modules\game\module_gameover.h" />
     <ClInclude Include="modules\game\module_game_manager.h" />
     <ClInclude Include="modules\game\module_level_select.h" />
+    <ClInclude Include="modules\game\module_loading.h" />
     <ClInclude Include="modules\game\module_main_menu.h" />
     <ClInclude Include="modules\game\module_map_intro.h" />
     <ClInclude Include="modules\game\module_map_test.h" />
@@ -621,6 +645,7 @@
     <ClInclude Include="render\texture\texture_slots.h" />
     <ClInclude Include="render\video\background_player.h" />
     <ClInclude Include="render\video\video_texture.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="resources\json_resource.h" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="resources\resources_manager.h" />
@@ -668,6 +693,12 @@
     <ProjectReference Include="SLB\SLB.vcxproj">
       <Project>{4dd60738-3840-43c7-aa2d-30772a560f41}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Bin\Atlas.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

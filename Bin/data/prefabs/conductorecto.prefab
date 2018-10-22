@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "conductorecto"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_conductorecto"
       ,
       "transform":

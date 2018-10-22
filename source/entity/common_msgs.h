@@ -115,6 +115,11 @@ struct TMsgFadeBody {
     DECL_MSG_ID();
 };
 
+struct TMsgVideoStatus {
+    bool status;
+    DECL_MSG_ID();
+};
+
 struct TMsgTriggerEnter {
 	CHandle h_other_entity;
 	DECL_MSG_ID();
@@ -277,6 +282,11 @@ struct TMsgObjectBeingMoved {
   DECL_MSG_ID();
 };
 
+struct TMsgOmniFadeOut {
+	
+	DECL_MSG_ID();
+};
+
 struct TMsgInfiniteStamina {
     DECL_MSG_ID();
 };
@@ -330,6 +340,15 @@ struct TMsgPlayerAIEnabled {
 
 struct TMsgEmisiveCapsuleState {
 	bool enable;
+	bool random;
+	float time_to_lerp;
+	DECL_MSG_ID();
+};
+
+struct TMsgRotatorAccelerate {
+	float speed;
+	float time_to_lerp;
+	float time_to_start;
 	DECL_MSG_ID();
 };
 

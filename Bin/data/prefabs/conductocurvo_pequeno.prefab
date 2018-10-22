@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "conductocurvo_pequeno"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_conductocurvo_pequeno"
       ,
       "transform":
