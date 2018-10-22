@@ -505,11 +505,11 @@ data/textures/tx_leaking_alb.dds
 data/materials/mtl_decal_leaking.material
 data/textures/parche cemento.dds
 data/materials/mtl_parche cemento.material
+data/textures/bordes_largos.dds
+data/materials/mtl_decal_rotura_larga.material
 data/textures/tx_rotura_filo_alb.dds
 data/textures/tx_rotura_filo_nml.dds
 data/materials/mtl_decal_borde_filo.material
-data/textures/bordes_largos.dds
-data/materials/mtl_decal_rotura_larga.material
 data/scenes/intro_decals_poster.scene
 data/textures/cartel_sam.dds
 data/materials/mtl_cartel_sam.material
