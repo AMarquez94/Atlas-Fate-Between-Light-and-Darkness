@@ -727,6 +727,11 @@ data/materials/gpu_particles_instanced.material
 data/scenes/ZoneA/zone_a_particles.scene
 data/particles/def_amb_whisps.particles
 data/particles/def_amb_whisps_core.particles
+data/textures/particles/amb_smoke2.dds
+data/particles/def_amb_neon_fog_yellow.particles
+data/particles/def_amb_neon_fog_blue.particles
+data/particles/def_amb_neon_fog_red.particles
+data/particles/def_amb_neon_fog_green.particles
 data/scenes/ZoneA/buttons.scene
 data/prefabs/terminal.prefab
 data/meshes/mesh_terminal.mesh

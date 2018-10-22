@@ -365,10 +365,10 @@ data/textures/tx_piedras_mezquita_nml.dds
 data/textures/tx_piedras_mezquita_rgh.dds
 data/materials/mtl_piedras_mezquita.material
 data/scenes/Basilic_courtyard/basilic_courtyard_particles.scene
-data/textures/particles/dust_spore.dds
-data/particles/def_amb_dust_60x60.particles
+data/textures/particles/amb_puff.dds
+data/particles/def_amb_dust_60x60_large.particles
 data/textures/particles/amb_smoke2.dds
-data/particles/def_amb_fog_60x60.particles
+data/particles/def_amb_fog_60x60_large.particles
 data/meshes/gpu_particles.instanced_mesh
 data/textures/star.dds
 data/materials/gpu_particles_instanced.material
