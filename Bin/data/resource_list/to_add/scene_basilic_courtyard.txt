@@ -285,9 +285,12 @@ data/colliders/collider_neon_rectangulo_verde.collider
 data/prefabs/neon_azul_2.prefab
 data/meshes/mesh_neon_azul_2.mesh
 data/colliders/collider_cartel_azul_2.collider
+data/textures/particles/glow.dds
+data/particles/def_amb_flare_neon_blue2.particles
 data/prefabs/neon_azul_4.prefab
 data/meshes/mesh_neon_azul_4.mesh
 data/colliders/collider_cartel_azul_4.collider
+data/particles/def_amb_flare_neon_blue4.particles
 data/prefabs/neon_amarillo_5.prefab
 data/meshes/mesh_neon_amarillo_5.mesh
 data/colliders/collider_cartel_amarillo_5.collider
@@ -613,7 +616,6 @@ data/skeletons/player/player.skeleton
 data/particles/sm_ground.particles
 data/textures/particles/sm_smokeball.dds
 data/particles/sm_top.particles
-data/textures/particles/glow.dds
 data/particles/sm_whisps.particles
 data/particles/sm_whisps2.particles
 data/textures/particles/WispySmoke01_8x8.dds

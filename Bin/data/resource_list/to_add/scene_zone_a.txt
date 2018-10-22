@@ -533,15 +533,21 @@ data/colliders/collider_cartel_amarilla_4.collider
 data/prefabs/neon_azul_3.prefab
 data/meshes/mesh_neon_azul_3.mesh
 data/colliders/collider_cartel_azul_3.collider
+data/textures/particles/fx_smoke1.dds
+data/textures/particles/glow.dds
+data/particles/def_amb_flare_neon_blue3.particles
 data/prefabs/neon_azul_4.prefab
 data/meshes/mesh_neon_azul_4.mesh
 data/colliders/collider_cartel_azul_4.collider
+data/particles/def_amb_flare_neon_blue4.particles
 data/prefabs/neon_azul_1.prefab
 data/meshes/mesh_neon_azul_1.mesh
 data/colliders/collider_cartel_azul_1.collider
+data/particles/def_amb_flare_neon_blue1.particles
 data/prefabs/neon_azul_2.prefab
 data/meshes/mesh_neon_azul_2.mesh
 data/colliders/collider_cartel_azul_2.collider
+data/particles/def_amb_flare_neon_blue2.particles
 data/prefabs/neon_baby.prefab
 data/meshes/mesh_neon_baby.mesh
 data/colliders/collider_cartel_baby.collider
@@ -629,7 +635,6 @@ data/textures/enemy/tx_patrol_rgh.dds
 data/materials/characters/mtl_enemy_patrol.material
 data/materials/characters/mtl_enemy_patrol_post.material
 data/skeletons/patrol/patrol.skeleton
-data/textures/particles/fx_smoke1.dds
 data/textures/particles/flare_spotlight.dds
 data/particles/def_amb_flare_spotlight.particles
 data/prefabs/drone.prefab
@@ -711,7 +716,6 @@ data/meshes/gpu_particles.instanced_mesh
 data/textures/star.dds
 data/materials/gpu_particles_instanced.material
 data/scenes/ZoneA/zone_a_particles.scene
-data/textures/particles/glow.dds
 data/particles/def_amb_whisps.particles
 data/particles/def_amb_whisps_core.particles
 data/scenes/ZoneA/buttons.scene
