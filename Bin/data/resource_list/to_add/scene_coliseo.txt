@@ -85,7 +85,7 @@ data/prefabs/spotpannel.prefab
 data/meshes/mesh_spotpannel.mesh
 data/textures/FLARE.dds
 data/materials/flare.material
-data/textures/VL.dds
+data/textures/tx_shaft_beam.dds
 data/materials/spot.material
 data/textures/tx_spotlight_alb.dds
 data/textures/tx_spotlight_ao.dds
@@ -226,7 +226,7 @@ data/textures/tx_generador_nml.dds
 data/textures/tx_generador_rgh.dds
 data/materials/mtl_generador.material
 data/colliders/COL_collider_generador.collider
-data/meshes/COL_mesh_maquina01.mesh
+data/meshes/COL_mesh_maquina02.mesh
 data/textures/tx_maquina_alb.dds
 data/textures/tx_maquina_ao.dds
 data/textures/tx_maquina_emi.dds
@@ -241,13 +241,9 @@ data/textures/tx_props_plaza_met.dds
 data/textures/tx_props_plaza_nml.dds
 data/textures/tx_props_plaza_rgh.dds
 data/materials/mtl_props_plaza.material
-data/colliders/COL_collider_maquina01.collider
-data/meshes/COL_mesh_maquina02.mesh
 data/colliders/COL_collider_maquina02.collider
 data/meshes/COL_mesh_maquina03.mesh
 data/colliders/COL_collider_maquina03.collider
-data/meshes/COL_mesh_maquina04.mesh
-data/colliders/COL_collider_maquina04.collider
 data/meshes/COL_mesh_mastilelectrico001.mesh
 data/meshes/COL_mesh_mastilelectrico002.mesh
 data/meshes/COL_mesh_mastilelectrico003.mesh

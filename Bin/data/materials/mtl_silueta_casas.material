@@ -1,0 +1,12 @@
+{
+  "technique": "pbr_opacity.tech"
+  ,
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_silueta_casas_alb.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

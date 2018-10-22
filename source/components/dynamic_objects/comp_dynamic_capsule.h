@@ -13,6 +13,9 @@ class TCompDynamicCapsule : public TCompBase {
     VEC3 offset;
     VEC3 director;
 
+    bool soundStartedToPlay = false;
+    float timer = 0.f;
+
     void onMsgScenePaused(const TMsgScenePaused& msg);
 
 public:

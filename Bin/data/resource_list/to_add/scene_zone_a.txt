@@ -230,6 +230,7 @@ data/textures/tx_muralla_rgh.dds
 data/materials/mtl_muralla.material
 data/colliders/collider_muro_muralla_grande.collider
 data/meshes/mesh_muralla_interior.mesh
+data/colliders/collider_mesh_muralla_interior.collider
 data/scenes/zona_a_valla_torre.scene
 data/prefabs/pivote_valla_torre.prefab
 data/meshes/mesh_pivote_valla_torre.mesh
@@ -710,6 +711,9 @@ data/meshes/gpu_particles.instanced_mesh
 data/textures/star.dds
 data/materials/gpu_particles_instanced.material
 data/scenes/ZoneA/zone_a_particles.scene
+data/textures/particles/glow.dds
+data/particles/def_amb_whisps.particles
+data/particles/def_amb_whisps_core.particles
 data/scenes/ZoneA/buttons.scene
 data/prefabs/terminal.prefab
 data/meshes/mesh_terminal.mesh
@@ -925,7 +929,6 @@ data/skeletons/player/player.skeleton
 data/particles/sm_ground.particles
 data/textures/particles/sm_smokeball.dds
 data/particles/sm_top.particles
-data/textures/particles/glow.dds
 data/particles/sm_whisps.particles
 data/particles/sm_whisps2.particles
 data/textures/particles/WispySmoke01_8x8.dds

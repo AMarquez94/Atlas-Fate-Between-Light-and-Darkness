@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "chapa_barra"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_chapa_barra"
       ,
       "transform":

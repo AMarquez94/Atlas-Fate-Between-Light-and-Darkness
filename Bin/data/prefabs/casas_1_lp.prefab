@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "casas_1_lp"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_casas_1_lp"
       ,
       "transform":

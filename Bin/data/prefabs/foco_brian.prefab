@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "foco_brian"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_spotlight"
       ,
       "transform":

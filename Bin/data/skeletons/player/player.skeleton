@@ -61,6 +61,7 @@
 			  }
 			]},
 		{ "name" : "crouch"},
+		{ "name" : "menu_pose"},
 		{ "name" : "crouch_walk", 
 			"callbacks":[
 			{

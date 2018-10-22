@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "saliente1_esquina_grande"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_saliente1_esquina_grande"
       ,
       "transform":

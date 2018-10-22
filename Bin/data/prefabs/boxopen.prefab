@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "boxopen"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_boxopen"
       ,
       "transform":

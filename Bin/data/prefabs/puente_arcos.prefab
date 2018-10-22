@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "puente_arcos"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_puente_arcos"
       ,
       "transform":

@@ -111,9 +111,9 @@
       ,
       "collider":
       {
-        "shape": "box"
+        "shape": "mesh"
         ,
-        "size": "15.0 6.0 1.0"
+        "name": "data/colliders/collider_mesh_muralla_interior.collider"
       }
       ,
       "abs_aabb": true

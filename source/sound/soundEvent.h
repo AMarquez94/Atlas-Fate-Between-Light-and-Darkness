@@ -6,11 +6,13 @@ private:
 
     unsigned int myID;
     bool relativeToCameraOnly = false;
+    bool isBeingPreloaded = false;
 
 protected:
 
     friend class CModuleSound;
     SoundEvent(unsigned int id);
+    SoundEvent(unsigned int id, bool being_preloaded);
 
 public:
 
@@ -38,6 +40,9 @@ public:
     CTransform get3DAttributes();
 
     bool isPlaying();
+
+    bool getIsBeingPreloaded() { return isBeingPreloaded; }
+    void setIsBeingPreloaded(bool isBeingPreloaed) { this->isBeingPreloaded = isBeingPreloaded; }
 
     bool isRelativeToCameraOnly() const;
     void setIsRelativeToCameraOnly(bool relativeToCameraOnly);

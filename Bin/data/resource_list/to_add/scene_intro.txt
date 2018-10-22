@@ -324,7 +324,7 @@ data/meshes/mesh_littlespotlight.mesh
 data/textures/FLARE.dds
 data/textures/null_normal.dds
 data/materials/flare.material
-data/textures/VL.dds
+data/textures/tx_shaft_beam.dds
 data/materials/spot.material
 data/textures/tx_spotlight_alb.dds
 data/textures/tx_spotlight_ao.dds
@@ -478,7 +478,7 @@ data/textures/tx_props_plaza_nml.dds
 data/textures/tx_props_plaza_rgh.dds
 data/materials/mtl_props_plaza.material
 data/textures/particles/fx_smoke1.dds
-data/textures/particles/glow.dds
+data/textures/particles/amb_puff.dds
 data/particles/def_amb_dust_lightpost.particles
 data/colliders/Lightpost_Light.collider
 data/meshes/prop_lightpose_cone.mesh
@@ -502,13 +502,15 @@ data/textures/barro_bottom.dds
 data/textures/tx_parche_cemento_rgh.dds
 data/materials/mtl_decal_bottom.material
 data/scenes/intro_decals_rotura.scene
+data/textures/tx_leaking_alb.dds
+data/materials/mtl_decal_leaking.material
 data/textures/parche cemento.dds
 data/materials/mtl_parche cemento.material
-data/textures/bordes_largos.dds
-data/materials/mtl_decal_rotura_larga.material
 data/textures/tx_rotura_filo_alb.dds
 data/textures/tx_rotura_filo_nml.dds
 data/materials/mtl_decal_borde_filo.material
+data/textures/bordes_largos.dds
+data/materials/mtl_decal_rotura_larga.material
 data/scenes/intro_decals_poster.scene
 data/textures/cartel_sam.dds
 data/materials/mtl_cartel_sam.material
@@ -839,7 +841,6 @@ data/materials/mtl_terminal.material
 data/materials/mtl_terminal_post.material
 data/colliders/collider_mesh_terminal.collider
 data/scenes/Intro/intro_particles.scene
-data/textures/particles/dust_spore.dds
 data/particles/def_amb_dust_30x30.particles
 data/textures/particles/amb_smoke2.dds
 data/particles/def_amb_fog_30x30.particles
@@ -960,9 +961,15 @@ data/scenes/intro_col_corridor_lights.scene
 data/colliders/luz_pasillo037.collider
 data/colliders/luz_pasillo.collider
 data/scenes/pantalla_intro_video.scene
-data/meshes/prueba_pantalla.mesh
-data/video/pantalla_atlas.h264
-data/materials/video_atlas.material
+data/meshes/intro_pantalla_video.mesh
+data/textures/pantalla_atlas.h264
+data/materials/video.material
+data/meshes/intro_pantalla_video_estr_low.mesh
+data/textures/tx_pantalla_borde_alb.dds
+data/textures/tx_pantalla_borde_nml.dds
+data/textures/tx_pantalla_borde_rgh.dds
+data/materials/mtl_pantalla_borde.material
+data/colliders/collider_intro_pantalla_video_estr_low.collider
 data/scenes/intro_planets.scene
 data/meshes/sphere_moon.mesh
 data/textures/tx_luna_alb.dds
@@ -991,6 +998,10 @@ data/textures/tx_planeta_rojo_rgh.dds
 data/materials/mtl_planet2.material
 data/materials/mtl_planet2_back.material
 data/scenes/intro_subtitle_triggers.scene
+data/scenes/intro_silueta_casas.scene
+data/meshes/mesh_silueta_casas.mesh
+data/textures/tx_silueta_casas_alb.dds
+data/materials/mtl_silueta_casas.material
 data/scenes/intro_tubo_grande.scene
 data/prefabs/tubogrande_curvo.prefab
 data/meshes/mesh_tubogrande_curvo.mesh
@@ -1013,6 +1024,7 @@ data/skeletons/player/player.skeleton
 data/particles/sm_ground.particles
 data/textures/particles/sm_smokeball.dds
 data/particles/sm_top.particles
+data/textures/particles/glow.dds
 data/particles/sm_whisps.particles
 data/particles/sm_whisps2.particles
 data/textures/particles/WispySmoke01_8x8.dds

@@ -2,18 +2,6 @@
   {
     "entity":
     {
-      "name": "separador_piedra"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_separador_piedra"
       ,
       "transform":
