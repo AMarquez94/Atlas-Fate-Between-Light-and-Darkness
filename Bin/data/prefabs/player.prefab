@@ -214,6 +214,7 @@
 				"player"
 			],
 			"particles": {
+				"on_start":false,
 				"cores":
 				[
 					"data/particles/sm_ground.particles",
