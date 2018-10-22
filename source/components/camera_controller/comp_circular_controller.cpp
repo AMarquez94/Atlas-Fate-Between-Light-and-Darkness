@@ -82,8 +82,8 @@ void TCompCircularController::update(float dt) {
     float t_radius = radius.x + (oscilation_range + sin(oscilation_speed * total_time) * oscilation_range);
 
     float my_y = c_my_transform->getPosition().y;
-    VEC3 target_pos = (c_target->getPosition() + forward * c_my_transform->getFront());
-    VEC3 my_new_pos =  + getVectorFromYaw(curr_yaw) * t_radius;
+    VEC3 target_pos = (c_target->getPosition() + forward * c_target->getFront());
+    VEC3 my_new_pos = target_pos + getVectorFromYaw(curr_yaw) * t_radius;
     my_new_pos.y = my_y + curr_height;
 
     assert(c_my_transform);
