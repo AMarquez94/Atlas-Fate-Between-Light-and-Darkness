@@ -120,11 +120,13 @@ void CModuleFile::preloadResources(bool overwrite)
         "scene_zone_a",
         "scene_coliseo_2",
         "scene_basilic_courtyard",
-        "scene_basilic_interior" 
+        "scene_basilic_interior",
     };
 
     const json& jboot = Resources.get("data/boot.json")->as<CJsonResource>()->getJson();
     std::vector<std::string> pending_resources_to_load;
+
+    bool first = false;
 
     for (int k = 0; k < scene_files.size(); k++) {
         std::string scene_name = "data/resource_list/to_add/" + scene_files[k] + ".txt";
@@ -137,6 +139,11 @@ void CModuleFile::preloadResources(bool overwrite)
             std::vector< std::string > groups_subscenes = jboot[scene_files[k]]["scene_group"];
             groups_subscenes.insert(std::end(groups_subscenes), std::begin(persistent_subscenes), std::end(persistent_subscenes));
             for (int z = 0; z < groups_subscenes.size(); z++) {
+                if (!first) {
+                    const json& preload_j = loadJson("data/scenes/_preloaded.scene");
+                    parseResourceScene(preload_j, pending_resources_to_load);
+                    first = true;
+                }
                 const json& j = Resources.get(groups_subscenes[z])->as<CJsonResource>()->getJson();
                 pending_resources_to_load.push_back(groups_subscenes[z]);
                 parseResourceScene(j, pending_resources_to_load);

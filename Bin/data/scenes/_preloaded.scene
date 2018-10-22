@@ -1,0 +1,45 @@
+[{
+		"entity": {
+			"name": "basilic_interior_cables",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "preload_fence",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"prefab": "data/prefabs/tutorial/fence_tutorial.prefab"
+		}
+	},
+	{
+		"entity": {
+			"name": "preload_patrol",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"prefab": "data/prefabs/tutorial/patrol_inhibitor.prefab"
+		}
+	},
+	{
+		"entity": {
+			"name": "preload_suspect_triangle",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"prefab": "data/prefabs/suspect/suspect_triangle.prefab"
+		}
+	},
+	{
+		"entity": {
+			"name": "preload_inhibitor",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"prefab": "data/prefabs/inhibitor.prefab"
+		}
+	}
+]
