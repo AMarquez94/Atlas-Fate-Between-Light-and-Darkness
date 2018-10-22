@@ -596,7 +596,11 @@ void TCompTempPlayerController::resetState(float dt) {
         physx::PxRaycastHit hit;
         float offset_distance = 1.1f;
         VEC3 desired_pos = c_my_transform->getPosition() + .1f * c_my_transform->getUp();
-        if (EnginePhysics.Raycast(desired_pos, VEC3::Up, offset_distance, hit, physx::PxQueryFlag::eSTATIC))
+
+        physx::PxQueryFilterData discardQueryEdge = physx::PxQueryFilterData();
+        discardQueryEdge.data.word0 = FilterGroup::Fence;
+
+        if (EnginePhysics.Raycast(desired_pos, VEC3::Up, offset_distance, hit, physx::PxQueryFlag::eSTATIC, discardQueryEdge))
             c_my_transform->setPosition(c_my_transform->getPosition() + VEC3(0, -(offset_distance - hit.distance), 0));
     }
 
