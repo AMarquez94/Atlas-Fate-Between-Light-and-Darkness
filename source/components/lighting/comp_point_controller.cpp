@@ -73,8 +73,8 @@ void TCompPointController::onSceneCreated(const TMsgSceneCreated& msg) {
 
     if (_light_target != "") {
         CEntity* eCone = cGroup->getHandleByName(_light_target);
-        if (eCone) {
-            _point_light = eCone->get<TCompLightPoint>();
+        if (owner) {
+            _point_light = owner->get<TCompLightPoint>();
         }
     }
 
