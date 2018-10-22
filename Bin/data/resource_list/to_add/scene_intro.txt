@@ -210,6 +210,7 @@ data/meshes/BC_pared_entrada.mesh
 data/textures/tx_mezquita_alb.dds
 data/textures/tx_mezquita_ao.dds
 data/textures/tx_mezquita_hgt.dds
+data/textures/tx_mezquita_met.dds
 data/textures/tx_mezquita_nml.dds
 data/textures/tx_mezquita_rgh.dds
 data/materials/mtl_mezquita.material
@@ -332,7 +333,6 @@ data/textures/tx_spotlight_met.dds
 data/textures/tx_spotlight_nml.dds
 data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlight.material
-data/colliders/collider_mesh_littlespotlight.collider
 data/prefabs/neon_amarillo_3.prefab
 data/meshes/mesh_neon_amarilllo_3.mesh
 data/textures/neones_juntos_2_alb.dds
@@ -446,7 +446,6 @@ data/scenes/intro_cables.scene
 data/prefabs/baselargaelectrica.prefab
 data/meshes/mesh_baselargalectrica.mesh
 data/materials/mtl_spotlights.material
-data/colliders/collider_baselargalectrica.collider
 data/meshes/mesh_intro_cable001.mesh
 data/textures/default_emissive.dds
 data/materials/mtl_cables.material
