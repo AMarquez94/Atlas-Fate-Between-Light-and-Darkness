@@ -289,6 +289,7 @@ void CModuleInstancing::clearInstances() {
         p.second._instances.clear();
     }
 
+    _global_names.clear();
     _global_instances.clear();
     _global_names.clear();
 }

@@ -136,7 +136,7 @@
 		"entity": {
 			"name": "planet2",
 			"tied_hierarchy": {
-				"pos": "48 113 -148",
+				"pos": "48 111 -148",
 				"scale": "5 5 5"
 			},
 			"transform": {},
@@ -157,7 +157,7 @@
 		"entity": {
 			"name": "planet2_back",
 			"tied_hierarchy": {
-				"pos": "48 113 -148",
+				"pos": "48 111 -148",
 				"scale": "5.5 5.5 5.5"
 			},
 			"transform": {},
@@ -179,7 +179,7 @@
 		"entity": {
 			"name": "planet2_atmosphere",
 			"tied_hierarchy": {
-				"pos": "48 113 -148",
+				"pos": "48 111 -148",
 				"scale": "5.2 5.2 5.2"
 			},
 			"transform": {},
