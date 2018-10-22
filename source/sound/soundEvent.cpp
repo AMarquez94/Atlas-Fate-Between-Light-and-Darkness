@@ -12,14 +12,24 @@ SoundEvent::SoundEvent(unsigned int id) {
     myID = id;
 }
 
+SoundEvent::SoundEvent(unsigned int id, bool being_preloaded) {
+    myID = id;
+    isBeingPreloaded = being_preloaded;
+}
+
 bool SoundEvent::isValid() {
     return EngineSound.getEventInstance(myID) != nullptr;
 }
 
 void SoundEvent::restart() {
-    auto event = EngineSound.getEventInstance(myID);
-    if (event) {
-        event->start();
+    if (!isBeingPreloaded) {
+        auto event = EngineSound.getEventInstance(myID);
+        if (event) {
+            event->start();
+        }
+    }
+    else {
+        isBeingPreloaded = !EngineSound.playPreloadedEventInstance(myID);
     }
 }
 

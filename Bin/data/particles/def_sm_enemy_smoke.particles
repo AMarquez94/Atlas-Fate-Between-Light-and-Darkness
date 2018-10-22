@@ -12,7 +12,7 @@
 		"gravity": -0.4,  
 		"simulation_speed":1,
 		"max_particles": 900,
-		"offset": "0 1 0"
+		"offset": "0 1 1"
 	},      
 	"emission": {         
 		"rate_time": 200.0,    

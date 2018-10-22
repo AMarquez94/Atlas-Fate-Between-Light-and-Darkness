@@ -29,6 +29,7 @@
 #include "components/comp_animated_object_controller.h"
 #include "components/object_controller/comp_door.h"
 #include "components/postfx/comp_render_bloom.h"
+#include "input/devices/mouse.h"
 
 bool CModuleLogic::start() {
 
@@ -138,6 +139,7 @@ void CModuleLogic::publishClasses() {
         .property("isCinematicMode", &CModuleGameManager::isCinematicMode)
 		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint)
         .set("changeToEndScene", &CModuleGameManager::changeToEndScene) //TODO: Delete
+        .set("preloadFinalSceneSoundEvent", &CModuleGameManager::preloadFinalSceneSoundEvent) //TODO: Delete
         ;
 
     SLB::Class< VEC3 >("VEC3", m)
@@ -374,6 +376,8 @@ void CModuleLogic::publishClasses() {
     m->set("GUI_EnableRemoveInhibitor", SLB::FuncCall::create(&GUI_EnableRemoveInhibitor));
     m->set("sendPlayerIlluminatedMsg", SLB::FuncCall::create(&sendPlayerIlluminatedMsg));
     m->set("isInCinematicMode", SLB::FuncCall::create(&isInCinematicMode));
+    m->set("preloadSoundEvent", SLB::FuncCall::create(&preloadSoundEvent));
+    m->set("stopRenderingEntities", SLB::FuncCall::create(&stopRenderingEntities));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -898,6 +902,28 @@ void isInCinematicMode(bool isCinematic)
 {
     dbg("SETEAMOS A %s\n", isCinematic ? "TRUE" : "FALSE");
     CEngine::get().getGameManager().isCinematicMode = isCinematic;
+    if (isCinematic) {
+        // Lock/Unlock the cursor
+        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+        mouse->setOnlyLockMouse(false);
+    }
+    else {
+        // Lock/Unlock the cursor
+        Input::CMouse* mouse = static_cast<Input::CMouse*>(EngineInput.getDevice("mouse"));
+        mouse->setOnlyLockMouse(true);
+    }
+}
+
+SoundEvent preloadSoundEvent(const std::string & soundevent)
+{
+    return EngineSound.preloadEvent(soundevent);
+}
+
+void stopRenderingEntities()
+{
+    TMsgSetVisible msg;
+    msg.visible = false;
+    EngineEntities.broadcastMsg(msg);
 }
 
 
@@ -1346,8 +1372,8 @@ void activateCredits() {
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.25, 0.0, false);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS_BACKGROUND);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS);
-	EngineLogic.execScriptDelayed("removeAtlasSplash()", 57.0);
-	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")", 57.0);
+	EngineLogic.execScriptDelayed("removeAtlasSplash()", 57.0f);
+	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")", 57.0f);
 	
 }
 

@@ -81,6 +81,7 @@ end
 
 function enter_basilic_cinematic()
 	startCinematicMode(10.25);
+	gameManager:preloadFinalSceneSoundEvent();
 	setInBlackScreen(0.25);	
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 	setCinematicPlayerState(true, "inhibitor_capsules", "");

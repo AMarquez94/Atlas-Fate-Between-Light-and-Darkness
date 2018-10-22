@@ -71,4 +71,8 @@ namespace Input
         _lock_cursor = locked;
 	}
 
+    void CMouse::setOnlyLockMouse(bool locked) {
+        _lock_cursor = locked;
+    }
+
 }

@@ -3,9 +3,9 @@ function onSceneStart_scene_basilic_interior()
 	deleteAllCacheResources();
 	setOutBlackScreen(0.25);
 	gameManager:changeToEndScene();
+	pre_end_cinematic_scene();
 	--finish_job_end_cinematic_scene();
 	--shutdown_end_cinematic_scene();
-	pre_end_cinematic_scene();
 end
 
 function finish_job_end_cinematic_scene()

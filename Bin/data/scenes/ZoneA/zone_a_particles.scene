@@ -154,7 +154,11 @@
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
-				"core": "data/particles/def_amb_whisps.particles"
+			"cores":
+				[
+					"data/particles/def_amb_whisps.particles",
+					"data/particles/def_amb_whisps_core.particles"
+				]
 			}
 		}
 	}, {
@@ -165,7 +169,11 @@
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
-				"core": "data/particles/def_amb_whisps.particles"
+				"cores":
+				[
+					"data/particles/def_amb_whisps.particles",
+					"data/particles/def_amb_whisps_core.particles"
+				]
 			}
 		}
 	}, {
@@ -176,7 +184,11 @@
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
-				"core": "data/particles/def_amb_whisps.particles"
+				"cores":
+				[
+					"data/particles/def_amb_whisps.particles",
+					"data/particles/def_amb_whisps_core.particles"
+				]
 			}
 		}
 	}, {
@@ -187,7 +199,11 @@
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
-				"core": "data/particles/def_amb_whisps.particles"
+				"cores":
+				[
+					"data/particles/def_amb_whisps.particles",
+					"data/particles/def_amb_whisps_core.particles"
+				]
 			}
 		}
 	}

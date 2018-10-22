@@ -4,7 +4,7 @@
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
-		"start_speed": 0.0,
+		"start_speed": 1.0,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
@@ -35,12 +35,12 @@
 		  [0.0, "0.0 0.0 0.0"],
       [1.0, "0.0 0.0 0.0"]
     ],
-		"acceleration": 1,
+		"acceleration": 0,
 		"wind": 0
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
-		"strength": 0.0,
+		"strength": 0.1,
 		"frequency": 0.5,
 		"scroll_speed": 0.0,
 		"damping": true,
@@ -59,7 +59,7 @@
 			"tech" : "particles_instanced_additive.tech"
 	},
   "size" : {
-    "scale" : 1,
+    "scale" : 4,
     "scale_variation" : 0.1,
     "sizes" : [
 		  [0.0, "2 4 1"],
