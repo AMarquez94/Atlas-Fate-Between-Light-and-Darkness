@@ -515,6 +515,8 @@ void CModuleGUI::clearSubtitles() {
 	EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
 	EngineGUI.setSubtitlesToNone();
 	EngineLogic.eraseDelayedScripts("Subtitles(");
+    EngineLogic.eraseDelayedScripts("setEnemyHudState(");
+    EngineLogic.execScript("setEnemyHudState(false)");
 }
 
 void CModuleGUI::setMission(int mission_num) {
