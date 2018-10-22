@@ -290,6 +290,7 @@ void CModuleInstancing::clearInstances() {
     }
 
     _global_instances.clear();
+    _global_names.clear();
 }
 
 void CModuleInstancing::clearInstance(const std::string &name) {
