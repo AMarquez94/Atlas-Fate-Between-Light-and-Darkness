@@ -1,0 +1,14 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_escultura_alb.dds"
+    ,
+    "roughness": "data/textures/tx_escultura_rgh.dds"
+    ,
+    "normal": "data/textures/tx_escultura_nml.dds"
+    ,
+    "aocclusion": "data/textures/tx_escultura_ao.dds"
+  }
+}
