@@ -284,14 +284,14 @@ void TCompTempPlayerController::onMsgBulletHit(const TMsgBulletHit & msg)
 
 TCompTempPlayerController::~TCompTempPlayerController()
 {
-    if (isMerged && pxPlayerFilterData) {
+    /*if (isMerged && pxPlayerFilterData) {
         delete pxPlayerFilterData;
-        pxPlayerFilterData == nullptr;
+        pxPlayerFilterData = nullptr;
     }
     else if(!isMerged && pxShadowFilterData) {
         delete pxShadowFilterData;
         pxShadowFilterData = nullptr;
-    }
+    }*/
 }
 
 void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {

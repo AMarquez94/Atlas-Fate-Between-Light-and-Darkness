@@ -344,6 +344,7 @@ void CModuleLogic::publishClasses() {
 	m->set("setInBlackScreen", SLB::FuncCall::create(&setInBlackScreen));
 	m->set("setOutBlackScreen", SLB::FuncCall::create(&setOutBlackScreen));
 	m->set("subClear", SLB::FuncCall::create(&subClear));
+	m->set("playVoice", SLB::FuncCall::create(&playVoice));
 	m->set("execLastAtlasScreen", SLB::FuncCall::create(&execLastAtlasScreen));
 	m->set("removeAtlasSplash", SLB::FuncCall::create(&removeAtlasSplash));
 	m->set("removeTempCredits", SLB::FuncCall::create(&removeTempCredits));
@@ -1262,7 +1263,13 @@ void activateSubtitles(int sub_num) {
 }
 
 void subClear() {
+    CEngine::get().getGameManager().stopVoice();
 	EngineGUI.clearSubtitles();
+}
+
+void playVoice(const std::string & voice_event)
+{
+    CEngine::get().getGameManager().playVoice(voice_event);
 }
 
 void deactivateSubtitles() {
@@ -1281,11 +1288,11 @@ void setEnemyHudState(bool state) {
     CModuleGameManager gameManager = CEngine::get().getGameManager();
 	if (state) {
 		EngineGUI.activateEnemyHUD();  
-        gameManager.playTransmissionSound(true);
+        //gameManager.playTransmissionSound(true);
 	}
 	else {
 		EngineGUI.deactivateEnemyHUD();
-        gameManager.playTransmissionSound(false);
+        //gameManager.playTransmissionSound(false);
     }
 }
 

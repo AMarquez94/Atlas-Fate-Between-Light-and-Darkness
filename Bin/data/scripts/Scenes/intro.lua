@@ -39,6 +39,7 @@ function intro_intro_cinematic()
 
 	 --Activating the subtitles
 	execScriptDelayed("startTransmission(32.7)", 51.3);
+	execScriptDelayed("playVoice(\"intro_cinematic\")", 51.3);
 	execScriptDelayed("activateSubtitles(1);",51.5);
 	execScriptDelayed("activateSubtitles(2);",53.5);
 	execScriptDelayed("activateSubtitles(3);",58);
@@ -192,6 +193,7 @@ end
 -- # Subtitles tutorials # --
 function onTriggerEnter_intro_trigger_muralla_player()
 	subClear();
+	playVoice("intro_closeddoor");
 	startTransmission(8);
 	activateSubtitles(10);
 	execScriptDelayed("deactivateSubtitles();", 8);
@@ -201,6 +203,7 @@ end
 
 function onTriggerEnter_intro_trigger_muralla_alto_player()
 	subClear();
+	playVoice("intro_fall");
 	startTransmission(10);
 	activateSubtitles(11);
 	execScriptDelayed("activateSubtitles(12);",7);
