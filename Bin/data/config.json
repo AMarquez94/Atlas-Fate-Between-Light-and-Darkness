@@ -4,5 +4,5 @@
 	"fullscreen": false,
 	"drawfps": true,
 	"fixed_fps": 60,
-	"fixed_step": true
+	"fixed_step": false
 }

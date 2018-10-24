@@ -784,6 +784,19 @@
 				"shadows_resolution": 512,
 				"shadows_fmt": "R32_TYPELESS"
 			},
+			"spot_controller": {
+				"intensity_flow": 0.4,
+				"intensity_flow_speed": 0.1,
+				"radius_flow": 0.25,
+				"radius_flow_speed": 4,
+				"light_target": "Spot001",
+				"bursts": [
+					["2 0.1 0.0"],
+					["0.2 0.05 0.0"],
+					["0.1 0.05 0.0"],
+					["0.1 0.05 0.0"]
+				]
+			},
 			"abs_aabb": true,
 			"local_aabb": true,
 			"collider": {
@@ -852,6 +865,19 @@
 				"shadows_resolution": 512,
 				"shadows_fmt": "R32_TYPELESS"
 			},
+			"spot_controller": {
+				"intensity_flow": 0.4,
+				"intensity_flow_speed": 0.1,
+				"radius_flow": 0.25,
+				"radius_flow_speed": 4,
+				"light_target": "Spot003",
+				"bursts": [
+					["4 0.1 0.0"],
+					["0.2 0.05 0.0"],
+					["0.1 0.05 0.0"],
+					["0.1 0.05 0.0"]
+				]
+			},
 			"abs_aabb": true,
 			"local_aabb": true,
 			"collider": {
@@ -885,6 +911,19 @@
 				"shadows_step": 1.0,
 				"shadows_resolution": 512,
 				"shadows_fmt": "R32_TYPELESS"
+			},
+			"spot_controller": {
+				"intensity_flow": 0.4,
+				"intensity_flow_speed": 0.1,
+				"radius_flow": 0.25,
+				"radius_flow_speed": 4,
+				"light_target": "Spot005",
+				"bursts" : [
+					["2 0.1 0.0"],
+					["0.2 0.05 0.0"],
+					["0.1 0.05 0.0"],
+					["0.1 0.05 0.0"]
+				]
 			},
 			"abs_aabb": true,
 			"local_aabb": true,
