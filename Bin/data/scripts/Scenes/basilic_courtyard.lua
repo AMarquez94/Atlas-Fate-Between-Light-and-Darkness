@@ -30,6 +30,7 @@ end
 function onTriggerEnter_BC_trigger_closed_door_player()
 	--look_closing_screen();
 	subClear();
+	playVoice("bc_door_blocked");
 	startTransmission(8);
 	activateSubtitles(24);
 	execScriptDelayed("deactivateSubtitles();", 8);

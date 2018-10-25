@@ -119,7 +119,8 @@ function intro_inhibitor_cinematic()
 	startCinematicMode(5.75);
 	move("The Player", VEC3(-19, 7, -33.5),VEC3(-19, 7, -35.5));
 	resetMainCameras();
-
+	
+	execScriptDelayed("playVoice(\"intro_inhibitor\")", 5.75);
 	execScriptDelayed("startTransmission(7.25)", 5.75);
 	execScriptDelayed("activateSubtitles(14);", 5.75);
 	execScriptDelayed("activateSubtitles(15);", 10);
@@ -164,6 +165,7 @@ end
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 	if(cinematicsEnabled and not Capsules_CinematicExecuted) then
 		startCinematicMode(12.4);
+		execScriptDelayed("playVoice(\"intro_broken_bridge\")", 2);
 		execScriptDelayed("startTransmission(8)", 2);
 		execScriptDelayed("activateSubtitles(13);", 2);
 		execScriptDelayed("deactivateSubtitles();", 10);
@@ -214,6 +216,7 @@ end
 
 function onTriggerEnter_intro_trigger_patrol_care_player()
 	subClear();
+	playVoice("intro_patrol");
 	startTransmission(8);
 	activateSubtitles(16);
 	execScriptDelayed("deactivateSubtitles();", 8);
@@ -223,6 +226,7 @@ end
 
 function onTriggerEnter_intro_trigger_patrol_story_player()
 	subClear();
+	playVoice("intro_error");
 	startTransmission(9);
 	activateSubtitles(35);
 	execScriptDelayed("deactivateSubtitles();", 9);

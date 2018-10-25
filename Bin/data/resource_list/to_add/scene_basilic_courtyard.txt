@@ -320,6 +320,10 @@ data/textures/tx_parche_cemento_rgh.dds
 data/materials/mtl_decal_leaking.material
 data/textures/tx_desgaste_alb.dds
 data/materials/mtl_decal_desgaste.material
+data/scenes/BC_decals_filo.scene
+data/textures/tx_rotura_filo_alb.dds
+data/textures/tx_rotura_filo_nml.dds
+data/materials/mtl_decal_borde_filo.material
 data/scenes/bc_pantalla_atlas.scene
 data/meshes/bc_mesh_pantalla_atlas.mesh
 data/textures/tx_bc_pantalla_atlas_alb.dds
