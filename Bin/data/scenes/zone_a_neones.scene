@@ -1412,8 +1412,8 @@
 				"radius_flow": 0.25,
 				"radius_flow_speed": 4,
 				"light_target": "zone_a_Spot001",
-				"bursts" : [
-					["2 0.1 0.0"],
+				"bursts": [
+					["4 0.1 0.0"],
 					["0.2 0.05 0.0"],
 					["0.1 0.05 0.0"],
 					["0.1 0.05 0.0"]
@@ -1663,8 +1663,8 @@
 				"radius_flow": 0.25,
 				"radius_flow_speed": 4,
 				"light_target": "zone_a_Spot010",
-				"bursts" : [
-					["2 0.1 0.0"],
+				"bursts": [
+					["4 0.1 0.0"],
 					["0.2 0.05 0.0"],
 					["0.1 0.05 0.0"],
 					["0.1 0.05 0.0"]
