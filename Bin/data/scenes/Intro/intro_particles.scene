@@ -472,6 +472,38 @@
     }
   },
 	{
+		"entity": {
+			"name": "particles_whisps1",
+			"transform": {
+				"pos": "0.475 8.8 -38",
+				"rotation": "0.009 0 -1 0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps3.particles",
+					"data/particles/def_amb_whisps_core3.particles"
+				]
+			}
+		}
+	},
+	{
+		"entity": {
+			"name": "particles_whisps2",
+			"transform": {
+				"pos": "-28.0 8.1 -67.634",
+				"rotation": "0.009 0 -1 0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps3.particles",
+					"data/particles/def_amb_whisps_core3.particles"
+				]
+			}
+		}
+	},
+	{
     "entity": {
       "name": "GPU Particles",
       "transform": {

@@ -139,7 +139,7 @@
 		"entity": {
 			"name": "particles_whisps1",
 			"transform": {
-				"pos": "-62.2 5.2 -89.5",
+				"pos": "-68.4 5.2 -87.8",
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
@@ -154,7 +154,7 @@
 		"entity": {
 			"name": "particles_whisps2",
 			"transform": {
-				"pos": "-52.8 5.2 -88.3",
+				"pos": "-53.5 5.6 -89.7",
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
@@ -169,7 +169,7 @@
 		"entity": {
 			"name": "particles_whisps3",
 			"transform": {
-				"pos": "-62 5.2 -116.5",
+				"pos": "-45.7 11.6 -112.775",
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
@@ -207,6 +207,21 @@
 				[
 					"data/particles/def_amb_whisps2.particles",
 					"data/particles/def_amb_whisps_core2.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_whisps6",
+			"transform": {
+				"pos": "-70.27 11.05 -121.875",
+				"rotation": "0.009 0 1 0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps.particles",
+					"data/particles/def_amb_whisps_core.particles"
 				]
 			}
 		}
