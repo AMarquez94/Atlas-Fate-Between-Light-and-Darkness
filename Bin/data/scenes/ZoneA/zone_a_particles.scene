@@ -137,18 +137,22 @@
 		}
 	}, {
 		"entity": {
-			"name": "particles_whisps",
+			"name": "particles_whisps1",
 			"transform": {
 				"pos": "-62.2 5.2 -89.5",
 				"rotation": "0.009 0 -1 0"
 			},
 			"particles": {
-				"core": "data/particles/def_amb_whisps.particles"
+				"cores":
+				[
+					"data/particles/def_amb_whisps2.particles",
+					"data/particles/def_amb_whisps_core2.particles"
+				]
 			}
 		}
 	}, {
 		"entity": {
-			"name": "particles_whisps",
+			"name": "particles_whisps2",
 			"transform": {
 				"pos": "-52.8 5.2 -88.3",
 				"rotation": "0.009 0 -1 0"
@@ -163,7 +167,7 @@
 		}
 	}, {
 		"entity": {
-			"name": "particles_whisps",
+			"name": "particles_whisps3",
 			"transform": {
 				"pos": "-62 5.2 -116.5",
 				"rotation": "0.009 0 -1 0"
@@ -171,14 +175,14 @@
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_whisps.particles",
-					"data/particles/def_amb_whisps_core.particles"
+					"data/particles/def_amb_whisps2.particles",
+					"data/particles/def_amb_whisps_core2.particles"
 				]
 			}
 		}
 	}, {
 		"entity": {
-			"name": "particles_whisps",
+			"name": "particles_whisps4",
 			"transform": {
 				"pos": "-102 5.3 -108.4",
 				"rotation": "0.009 0 -1 0"
@@ -193,7 +197,7 @@
 		}
 	}, {
 		"entity": {
-			"name": "particles_whisps",
+			"name": "particles_whisps5",
 			"transform": {
 				"pos": "-67.7 6.7 -136.4",
 				"rotation": "0.009 0 -1 0"
@@ -201,8 +205,8 @@
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_whisps.particles",
-					"data/particles/def_amb_whisps_core.particles"
+					"data/particles/def_amb_whisps2.particles",
+					"data/particles/def_amb_whisps_core2.particles"
 				]
 			}
 		}

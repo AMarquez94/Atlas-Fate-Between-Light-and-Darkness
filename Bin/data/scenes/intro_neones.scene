@@ -218,7 +218,7 @@
 				"emissive_target": "mesh_neon_azul_1",
 				"light_target": "luz_neon_azul_1",		
 				"bursts" : [
-					["2 0.1 0.0"],
+					["3 0.1 0.0"],
 					["0.2 0.05 0.0"],
 					["0.1 0.05 0.0"],
 					["0.1 0.05 0.0"]

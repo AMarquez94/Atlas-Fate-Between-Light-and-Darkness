@@ -1,0 +1,86 @@
+{
+	"system": {
+		"duration": 4,
+		"looping": true,
+		"start_delay": 0.0,
+		"start_lifetime": 1.0,
+		"start_speed": 0.0,
+		"start_size": "1 1 1",
+		"start_rotation": "0 0 0",
+		"random_rotation": 0.0,
+		"start_color": "1 0 0 1",
+		"gravity": 0.0,
+		"simulation_speed": 8,
+		"max_particles": 240
+	},
+	"emission": {
+		"rate_time": 0.0,
+		"rate_distance": 0.0,
+		"variation" : 0.0,
+		"bursts" :[
+		  [0.0, 38.0, 2500.0, 26.0],
+			[0.01, 14.0, 2500.0, 26.005],
+			[0.05, 15.0, 2500.0, 26.01],
+			[1.25, 15.0, 2500.0, 35.02],
+			[1.35, 15.0, 2500.0, 35.03]
+		]
+	},	
+	"shape": {
+		"type": "box",
+		"size": "0.01 0.01 0.01",
+		"angle": 10
+		
+	},
+	"velocity": {
+		"constant_velocity": "0.0 0.0 0.0",
+		"velocity" : [   
+      [0.0, "0.0 0.0 0.0"],     
+			[0.5, "0.0 0.0 0.0"],       
+			[1.0, "0.0 0.0 0.0"]       
+    ],   
+		"rotation" : [      
+		  [0.0, "0.0 0.0 0.0"], 
+      [1.0, "0.0 0.0 0.0"]    
+    ],   
+		"acceleration": 0.0,
+		"wind": 0
+	},
+	"noise": {
+		"texture": "data/textures/particles/fx_smoke1.dds",
+		"strength": 0.1,
+		"frequency": 0.5,
+		"scroll_speed": 0.0,
+		"damping": true,
+		"octaves": 1,
+			"tech" : "particles_instanced_additive.tech"
+	},
+	"collision": {
+		"collision": true
+	},
+	"renderer": {
+			"mode": "stretched",
+			"texture": "data/textures/particles/glow.dds",
+      "frame_size" : "1 1",
+      "initial_frame" : 0,
+      "num_frames" : 1,
+      "frame_speed" : 0.0
+	},
+  "size" : {     
+    "scale" : 4.6,
+    "scale_variation" : 1.6,   
+    "sizes" : [ 
+		  [0.0, "0.01 0.01 0.01"],
+			[0.1, "0.01 0.075 0.01"], 
+			[0.25, "0.0 0.0 0.0"],     
+			[1.0, "0.0 0.0 0.0"]     
+    ] 
+  },  
+  "color" : {
+    "opacity" : 1,
+    "colors" : [
+      [0.0, "0.1 0.1 0.1 1.0"],
+			[0.2, "1 1.0 0.5 1.0"],
+			[1.0, "1 1.0 1.0 0.0"]
+    ] 
+  }
+}
