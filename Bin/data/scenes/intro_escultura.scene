@@ -14,11 +14,80 @@
   {
     "entity":
     {
-      "name": "mesh_base_escultura"
+      "name": "omni_escultura"
       ,
       "transform":
       {
-        "pos": "-3.19414 1.396 21.9491"
+        "pos": "-3.76946 4.87097 23.8069"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.7224
+        ,
+        "outer_cut": 3.5752
+        ,
+        "color": "1.0 1.0 0.443137 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.64
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_littlespotlight001"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-4.32883 2.89023 23.6887"
+        ,
+        "rotation": "0.130885 -0.868163 -0.315985 -0.359605"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_intro_base_escultura"
+      ,
+      "transform":
+      {
+        "pos": "-3.12865 1.396 21.9491"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -26,7 +95,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_base_escultura.mesh"
+          "mesh": "data/meshes/mesh_intro_base_escultura.mesh"
           ,
           "materials":
           [
@@ -75,59 +144,6 @@
       "abs_aabb": true
       ,
       "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "omni_escultura"
-      ,
-      "transform":
-      {
-        "pos": "-3.76946 4.87097 23.8069"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "light_point":
-      {
-        "type": "pointlight"
-        ,
-        "inner_cut": 2.7224
-        ,
-        "outer_cut": 3.5752
-        ,
-        "color": "1.0 1.0 0.443137 1.0"
-        ,
-        "intensity": 0.5
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-        "radius": 1.64
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
     }
   }
 ]
