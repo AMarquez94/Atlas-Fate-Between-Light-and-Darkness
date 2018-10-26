@@ -15,7 +15,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "mesh_neon_redondo_azul001",
 			"prefab": "data/prefabs/neon_redondo_azul.prefab",
 			"transform": {
