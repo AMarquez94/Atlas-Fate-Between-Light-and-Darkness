@@ -52,7 +52,6 @@ data/textures/tx_decalsprops_met.dds
 data/textures/tx_decalsprops_nml.dds
 data/textures/tx_decalsprops_rgh.dds
 data/materials/mtl_decalsprops.material
-data/colliders/collider_mesh_spotpannel.collider
 data/scenes/Coliseo/coliseo_cables.scene
 data/meshes/COL_Circle001.mesh
 data/textures/default_emissive.dds

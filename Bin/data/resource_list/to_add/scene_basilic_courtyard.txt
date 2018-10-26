@@ -40,7 +40,6 @@ data/textures/tx_decalsprops_met.dds
 data/textures/tx_decalsprops_nml.dds
 data/textures/tx_decalsprops_rgh.dds
 data/materials/mtl_decalsprops.material
-data/colliders/collider_mesh_spotpannel.collider
 data/colliders/bc_Spot016.collider
 data/colliders/bc_Spot024.collider
 data/colliders/bc_Spot025.collider

@@ -97,7 +97,6 @@ data/textures/tx_decalsprops_met.dds
 data/textures/tx_decalsprops_nml.dds
 data/textures/tx_decalsprops_rgh.dds
 data/materials/mtl_decalsprops.material
-data/colliders/collider_mesh_spotpannel.collider
 data/scenes/col_pantallas_distritos.scene
 data/meshes/COL_mesh_pantalla_distrito7.mesh
 data/textures/tx_distritos_alb.dds
