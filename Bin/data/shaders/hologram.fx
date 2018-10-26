@@ -378,7 +378,7 @@ float4 PS_TV_District(
   , float3 iWorldPos : TEXCOORD2
   ): SV_Target0
 {
-iTex0.x -= global_world_time * 0.1;
+	iTex0.x -= global_world_time * 0.1;
   // Noise wave, for each pixel adding a random noise on given position
   float xnoise = max(0.0, snoise(float2(global_world_time, iTex0.y * 0.3)) - 0.3) * (1.0 / 0.7);
   xnoise = xnoise + (snoise(float2(global_world_time*10.0, iTex0.y * 2.4)) - 0.5) * 0.15;
