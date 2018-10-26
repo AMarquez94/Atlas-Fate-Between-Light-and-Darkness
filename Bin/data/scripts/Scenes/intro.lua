@@ -23,7 +23,7 @@ function onScenePartialEnd_scene_intro()
 end
 
 function intro_intro_cinematic()
-	startCinematicMode(93);
+	startCinematicMode(91);
 	move("The Player", VEC3(-6.275, 12.115, 32.7),VEC3(-6.275, 12.115, 31.7));
 	resetMainCameras();
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
@@ -38,7 +38,7 @@ function intro_intro_cinematic()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_video\", 0)", 52);
 
 	 --Activating the subtitles
-	execScriptDelayed("startTransmission(32.7)", 51.3);
+	execScriptDelayed("startTransmission(28.5)", 51.5);
 	execScriptDelayed("playVoice(\"intro_cinematic\")", 51.3);
 	execScriptDelayed("activateSubtitles(1);",51.5);
 	execScriptDelayed("activateSubtitles(2);",53.5);
@@ -46,10 +46,10 @@ function intro_intro_cinematic()
 	execScriptDelayed("activateSubtitles(4);",63);
 	execScriptDelayed("activateSubtitles(5);",65.5);
 	execScriptDelayed("activateSubtitles(6);",70.5);
-	execScriptDelayed("activateSubtitles(7);",73.5);
-	execScriptDelayed("activateSubtitles(8);",76);
-	execScriptDelayed("activateSubtitles(9);",81);
-	execScriptDelayed("deactivateSubtitles();",84);
+	execScriptDelayed("activateSubtitles(7);",72);
+	execScriptDelayed("activateSubtitles(8);",73.25);
+	execScriptDelayed("activateSubtitles(9);",77.75);
+	execScriptDelayed("deactivateSubtitles();",80.0);
 
 	--Second Frame
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Player_Back\", 0)", 54.5);
@@ -63,13 +63,13 @@ function intro_intro_cinematic()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0.0, \"cinematic\", \"\")", 73.5);
 
 	--Last Frame
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_2\", 0)", 84);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0)", 84);
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_SM_Caida\", 0.0, \"cinematic\", \"\")", 84);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_2\", 0)", 81);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0)", 81);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_SM_Caida\", 0.0, \"cinematic\", \"\")", 81);
 
 	--Returning to player camera
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_SM_Caida\", 5)", 88);
-	execScriptDelayed("intro_intro_cinematicExecuted = true", 50);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_SM_Caida\", 5)", 86);
+	execScriptDelayed("intro_intro_cinematicExecuted = true", 52);
 end
 
 -- # Transition cinematic # --
@@ -121,10 +121,10 @@ function intro_inhibitor_cinematic()
 	resetMainCameras();
 	
 	execScriptDelayed("playVoice(\"intro_inhibitor\")", 5.75);
-	execScriptDelayed("startTransmission(7.25)", 5.75);
+	execScriptDelayed("startTransmission(7.75)", 5.75);
 	execScriptDelayed("activateSubtitles(14);", 5.75);
-	execScriptDelayed("activateSubtitles(15);", 10);
-	execScriptDelayed("deactivateSubtitles();", 13);
+	execScriptDelayed("activateSubtitles(15);", 11);
+	execScriptDelayed("deactivateSubtitles();", 13.5);
 
 	setCinematicPlayerState(true, "inhibitor_cinematic", "");
 	blendInCamera("Camera_Cinematic_Inhibitor_1" ,0,"cinematic","");
@@ -164,11 +164,12 @@ end
 
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 	if(cinematicsEnabled and not Capsules_CinematicExecuted) then
+		subClear();
 		startCinematicMode(12.4);
-		execScriptDelayed("playVoice(\"intro_broken_bridge\")", 2);
-		execScriptDelayed("startTransmission(8)", 2);
-		execScriptDelayed("activateSubtitles(13);", 2);
-		execScriptDelayed("deactivateSubtitles();", 10);
+		execScriptDelayed("playVoice(\"intro_broken_bridge\")", 3);
+		execScriptDelayed("startTransmission(6)", 3);
+		execScriptDelayed("activateSubtitles(13);", 3);
+		execScriptDelayed("deactivateSubtitles();", 9);
 		
 		setCinematicPlayerState(true, "capsules_cinematic", "");
 		setInBlackScreen(0.25);
@@ -196,9 +197,9 @@ end
 function onTriggerEnter_intro_trigger_muralla_player()
 	subClear();
 	playVoice("intro_closeddoor");
-	startTransmission(8);
+	startTransmission(6);
 	activateSubtitles(10);
-	execScriptDelayed("deactivateSubtitles();", 8);
+	execScriptDelayed("deactivateSubtitles();", 6);
 	temp = getEntityByName("intro_trigger_muralla");
 	temp:destroy();
 end
@@ -217,9 +218,9 @@ end
 function onTriggerEnter_intro_trigger_patrol_care_player()
 	subClear();
 	playVoice("intro_patrol");
-	startTransmission(8);
+	startTransmission(7);
 	activateSubtitles(16);
-	execScriptDelayed("deactivateSubtitles();", 8);
+	execScriptDelayed("deactivateSubtitles();", 7);
 	temp = getEntityByName("intro_trigger_patrol_care");
 	temp:destroy();
 end
@@ -227,9 +228,9 @@ end
 function onTriggerEnter_intro_trigger_patrol_story_player()
 	subClear();
 	playVoice("intro_error");
-	startTransmission(9);
+	startTransmission(8.5);
 	activateSubtitles(35);
-	execScriptDelayed("deactivateSubtitles();", 9);
+	execScriptDelayed("deactivateSubtitles();", 8.5);
 	temp = getEntityByName("intro_trigger_patrol_story");
 	temp:destroy();
 end
