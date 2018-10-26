@@ -537,7 +537,8 @@ data/colliders/collider_mesh_bc_pasillo_entre.collider
 data/meshes/BC_piedra_arco.mesh
 data/scenes/bc_corridor_logic.scene
 data/scenes/bc_corridor_lights.scene
-data/colliders/luz_corridor_bc.collider
+data/colliders/bc_Spot003.collider
+data/colliders/bc_Spot002.collider
 data/scenes/bc_casas_lp.scene
 data/prefabs/casas_1_lp.prefab
 data/meshes/mesh_casas_1_lp.mesh
