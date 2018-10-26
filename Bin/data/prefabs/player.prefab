@@ -204,7 +204,7 @@
 			"glitch_controller": {},
 			"emission_controller": {
 				"initial": "1.0 1.0 1.0 1.0",
-				"intensity": 1.25
+				"intensity": 0.5
 			},
 			"noise_emitter": {
 				"radius": -1
