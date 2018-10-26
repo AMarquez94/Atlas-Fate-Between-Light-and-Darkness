@@ -54,12 +54,16 @@ void TCompTiedHierarchy::update(float dt) {
     TCompTransform* c_my_transform = h_my_transform;
 
     CTransform new_t;
-    CEntity * ent = EngineCameras.getCurrentCamera();
+    CHandle ent = EngineCameras.getCurrentCamera();
 
-    TCompTransform * pos = ent->get<TCompTransform>();
-    new_t.setPosition(orig_pos + pos->getPosition());
-    new_t.setScale(orig_scale);
-    new_t.setRotation(QUAT::CreateFromYawPitchRoll(orig_rot.x, orig_rot.y, orig_rot.z));
-
-    c_my_transform->set(new_t);
+    if (ent.isValid()) {
+        CEntity * n_ent = ent;
+        TCompTransform * pos = n_ent->get<TCompTransform>();
+        if (pos) {
+            new_t.setPosition(orig_pos + pos->getPosition());
+            new_t.setScale(orig_scale);
+            new_t.setRotation(QUAT::CreateFromYawPitchRoll(orig_rot.x, orig_rot.y, orig_rot.z));
+            c_my_transform->set(new_t);
+        }
+    }
 }
