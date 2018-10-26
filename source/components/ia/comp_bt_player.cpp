@@ -1111,7 +1111,7 @@ BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall2(float dt)
 {
 	_currentState = EState::CINEMATIC_FALLSM;
-	_maxTimer = 33.5f;
+	_maxTimer = 31.5f;
 	return BTNode::ERes::LEAVE;
 }
 
