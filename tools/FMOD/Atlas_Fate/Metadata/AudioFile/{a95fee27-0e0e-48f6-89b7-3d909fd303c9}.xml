@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.10.00">
-    <object class="AudioFile" id="{277cda7e-dcb7-4930-b07a-7f71355c66a5}">
+    <object class="AudioFile" id="{a95fee27-0e0e-48f6-89b7-3d909fd303c9}">
         <property name="assetPath">
-            <value>voices/14.mp3</value>
+            <value>voices/20.mp3</value>
         </property>
         <property name="frequencyInKHz">
             <value>32</value>
@@ -11,7 +11,7 @@
             <value>2</value>
         </property>
         <property name="length">
-            <value>13.464</value>
+            <value>1.476</value>
         </property>
         <relationship name="masterAssetFolder">
             <destination>{7934f37e-95bd-414b-beb2-417a7b01c5d0}</destination>
