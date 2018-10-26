@@ -63,7 +63,7 @@ void TCompSpotController::onSceneCreated(const TMsgSceneCreated& msg) {
     CEntity * owner = CHandle(this).getOwner();
     TCompGroup* cGroup = owner->get<TCompGroup>();
 
-    if (_emissive_target != "") {
+    if (_emissive_target != "" && cGroup) {
         CEntity* eCone = cGroup->getHandleByName(_emissive_target);
         if (eCone) {
             _object_render = eCone->get<TCompRender>();
@@ -72,9 +72,13 @@ void TCompSpotController::onSceneCreated(const TMsgSceneCreated& msg) {
     }
 
     if (_light_target != "") {
-        CEntity* eCone = cGroup->getHandleByName(_light_target);
-        if (eCone) {
+        //CEntity* eCone = cGroup->getHandleByName(_light_target);
+        if (cGroup) {
+            CEntity* eCone = cGroup->getHandleByName(_light_target);
             _spot_light = eCone->get<TCompLightSpot>();
+        }
+        else if (owner) {
+            _spot_light = owner->get<TCompLightSpot>();
         }
     }
 
@@ -138,7 +142,7 @@ void TCompSpotController::updateFlicker(float dt)
         if (!_flicker_status) {
             if (_spot_light) _spot_light->isEnabled = false;
             if (_object_render)  _object_render->self_intensity = 0;
-            if (_object_particles)  _object_particles->setSystemState(false);
+            if (_object_particles)  _object_particles->setSystemPause(false);
             if (_mesh_render)  _mesh_render->visible = false;
             _flicker_status = true;
         }
@@ -150,7 +154,7 @@ void TCompSpotController::updateFlicker(float dt)
             }
 
             if (_object_render) _object_render->self_intensity = _emissive_intensity;
-            if (_object_particles) _object_particles->setSystemState(true);
+            if (_object_particles) _object_particles->setSystemPause(true);
             if (_mesh_render)  _mesh_render->visible = true;
 
             _flicker_status = false;

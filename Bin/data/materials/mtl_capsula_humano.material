@@ -1,5 +1,5 @@
 {
-  "technique": "pbr_opacity.tech"
+  "technique": "pbr_opacity_no_cull.tech"
   ,
   "shadows": true
   ,

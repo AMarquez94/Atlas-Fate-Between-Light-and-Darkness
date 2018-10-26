@@ -257,7 +257,6 @@ bool CApp::stop() {
     return CEngine::get().stop();
 }
 
-float fixed_fps = 1.f / 60.f;
 //--------------------------------------------------------------------------------------
 void CApp::doFrame() {
 
@@ -266,9 +265,22 @@ void CApp::doFrame() {
 
     float dt = time_since_last_render.elapsedAndReset();
 
-    if (dt > 1) return;
-    CEngine::get().update(dt);
-    CEngine::get().render();
+    if (fixed_step) {
+
+        float step = 1 / fixed_fps;
+        CEngine::get().update(step);
+        CEngine::get().render();
+
+        float remaining_time = step - time_since_last_render.elapsed();
+        if (remaining_time > 0)
+            std::this_thread::sleep_for(std::chrono::milliseconds((int)(remaining_time * 1000)));
+    }
+    else {
+
+        if (dt > 1) return;
+        CEngine::get().update(dt);
+        CEngine::get().render();
+    }
 
     // Adding an fps counter
     fps_counter.n_frames++;
@@ -278,10 +290,6 @@ void CApp::doFrame() {
         fps_counter.elapsed_time = 0;
         fps_counter.n_frames = 0;
     }
-
-    float remaining_time = fixed_fps - dt;
-    if (fixed_step && remaining_time > 0)
-        std::this_thread::sleep_for(std::chrono::milliseconds((int)(remaining_time * 1000)));
 
     /*
     // Semi fixed time step
