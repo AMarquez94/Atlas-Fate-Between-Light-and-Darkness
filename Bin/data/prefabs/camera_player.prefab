@@ -23,6 +23,7 @@
 				"enabled": true
 			},
 			"render_bloom": {
+				"change_by_scene": true,
 				"enabled": true,
 				"max_steps": 4,
 				"global_distance": 1,

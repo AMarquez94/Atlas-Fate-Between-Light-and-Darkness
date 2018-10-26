@@ -12,6 +12,7 @@ struct TCompRenderBloom : public TCompRenderBlur {
     static CRenderToTexture*             rt_highlights;
     static std::vector< CBlurStep* > t_steps;
 
+    bool                          change_by_scene = false;
     const CRenderTechnique*       tech_filter = nullptr;
     const CRenderTechnique*       tech_add = nullptr;
     const CRenderMesh*            mesh = nullptr;
@@ -30,6 +31,9 @@ struct TCompRenderBloom : public TCompRenderBlur {
     void addBloom();
 
     CTexture* applyCustom(CTexture* in_texture);
+
+    static void registerMsgs();
+    void onSceneCreated(const TMsgSceneCreated& msg);
 };
 
 #endif

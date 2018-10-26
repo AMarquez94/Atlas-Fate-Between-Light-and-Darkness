@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_interior",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -13,7 +13,17 @@
 			"env_fog_density": 0.345,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.0117"
+			"env_fog": "0.004 0.004 0.0117",
+			"bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"global_distance": 1.0,
+				"threshold_min": 0.53,
+				"threshold_max": 0.72,
+				"multiplier": 0.39,
+				"weights": "0.36 0.52 0.3 0.72",
+				"rt_name": "Bloom"
+			}
 		},
 		"persistent_scenes": [
 			"data/scenes/Intro/_player.scene",
@@ -48,6 +58,7 @@
 			"data/scenes/intro_decals_rotura.scene",
 			"data/scenes/intro_decals_poster.scene",
 			"data/scenes/intro_escultura.scene",
+			"data/scenes/intro_decals_cable.scene",
 
 			"data/scenes/intro_casas_lp_1.scene",
 			"data/scenes/intro_casas_lp_2.scene",
@@ -98,7 +109,17 @@
 			"env_fog_density": 0.4,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.0117"
+			"env_fog": "0.004 0.004 0.0117",
+			"bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"global_distance": 1.0,
+				"threshold_min": 0.53,
+				"threshold_max": 0.72,
+				"multiplier": 0.39,
+				"weights": "0.36 0.52 0.3 0.72",
+				"rt_name": "Bloom"
+			}
 		},
 		"persistent_scenes": [
 			"data/scenes/Coliseo/_player.scene",
@@ -146,7 +167,17 @@
 			"env_fog_density": 0.27,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.0117"
+			"env_fog": "0.004 0.004 0.0117",
+			"bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"global_distance": 1.0,
+				"threshold_min": 0.53,
+				"threshold_max": 0.72,
+				"multiplier": 0.39,
+				"weights": "0.36 0.52 0.3 0.72",
+				"rt_name": "Bloom"
+			}
 
 		},
 		"persistent_scenes": [
@@ -225,7 +256,17 @@
 			"env_fog_density": 0.1,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.0117"
+			"env_fog": "0.004 0.004 0.0117",
+			"bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"global_distance": 1.0,
+				"threshold_min": 0.53,
+				"threshold_max": 0.72,
+				"multiplier": 0.39,
+				"weights": "0.36 0.52 0.3 0.72",
+				"rt_name": "Bloom"
+			}
 		},
 		"persistent_scenes": [
 			"data/scenes/Coliseo/_player2.scene",
@@ -270,7 +311,17 @@
 			"env_fog_density": 0.09,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
-			"env_fog": "0.004 0.004 0.0117"
+			"env_fog": "0.004 0.004 0.0117",
+			"bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"global_distance": 1.0,
+				"threshold_min": 0.53,
+				"threshold_max": 0.72,
+				"multiplier": 0.39,
+				"weights": "0.36 0.52 0.3 0.72",
+				"rt_name": "Bloom"
+			}
 		},
 		"persistent_scenes": [
 			"data/scenes/Basilic_courtyard/_player.scene",
@@ -298,6 +349,8 @@
 			"data/scenes/BC_capsulas.scene",
 			"data/scenes/BC_neones.scene",
 			"data/scenes/BC_decals.scene",
+			"data/scenes/BC_decals_filo.scene",	
+			
 
 			"data/scenes/bc_pantalla_atlas.scene",
 			"data/scenes/suelo_mezquita.scene",
@@ -337,7 +390,17 @@
 			"env_fog_density": 0.364,
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.0 0.0 0.0",
-			"env_fog": "0.0 0.0 0.0"
+			"env_fog": "0.0 0.0 0.0",
+			"bloom": {
+				"enabled": true,
+				"max_steps": 4,
+				"global_distance": 1.0,
+				"threshold_min": 0.25,
+				"threshold_max": 0.4,
+				"multiplier": 2,
+				"weights": "0.6 0.2 0.16 0.18",
+				"rt_name": "Bloom"
+			}
 		},
 		"persistent_scenes": [],
     "scene_group": [

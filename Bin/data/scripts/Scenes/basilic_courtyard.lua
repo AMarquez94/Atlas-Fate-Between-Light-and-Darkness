@@ -30,9 +30,10 @@ end
 function onTriggerEnter_BC_trigger_closed_door_player()
 	--look_closing_screen();
 	subClear();
-	startTransmission(8);
+	playVoice("bc_door_blocked");
+	startTransmission(5);
 	activateSubtitles(24);
-	execScriptDelayed("deactivateSubtitles();", 8);
+	execScriptDelayed("deactivateSubtitles();", 5);
 	temp = getEntityByName("BC_trigger_closed_door");
 	temp:destroy();
 end

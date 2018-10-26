@@ -2,6 +2,19 @@
 
 #include "modules/module.h"
 
+class SceneBloom {
+
+public:
+    bool enabled = false;
+    int max_steps = 4;
+    float global_distance = 1.f;
+    float threshold_min = 0.53f;
+    float threshold_max = 0.72f;
+    float multiplier = 0.39f;
+    VEC4 weights = VEC4(0.36f,0.52f,0.3f,0.72f);
+    std::string rt_name = "Bloom";
+};
+
 // Container class for scenes.
 class Scene {
 
@@ -24,6 +37,8 @@ public:
     std::string name;
     std::string navmesh;
     std::string initial_script_name;
+
+    SceneBloom * bloom;
 
     std::vector<std::string> persistent_subscenes;
     std::vector<std::string> groups_subscenes;

@@ -1,5 +1,5 @@
 function onSceneStart_scene_basilic_interior()
-	startCinematicMode(192.5);
+	--startCinematicMode(192.5);
 	deleteAllCacheResources();
 	setOutBlackScreen(0.25);
 	gameManager:changeToEndScene();
@@ -43,6 +43,7 @@ function finish_job_end_cinematic_scene()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_17_Rot_1\", 0.0)",28.5);
 	--execScriptDelayed("startTransmission(7)", 38);
 	execScriptDelayed("activateSubtitles(31);",38);
+	execScriptDelayed("playVoice(\"bi_goodjob\");", 38);
 	execScriptDelayed("deactivateSubtitles();",45);
 	execScriptDelayed("execLastAtlasScreen()",53);
 	--execScriptDelayed("execLastAtlasScreen()",3);
@@ -70,6 +71,7 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_2\", 0.0)",12);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_1\", 0.0)",12);
 	
+	execScriptDelayed("playVoice(\"bi_tobecontinued\");", 17);
 	execScriptDelayed("startTransmission(11.5)", 17);
 	execScriptDelayed("activateSubtitles(32);",17);
 	execScriptDelayed("activateSubtitles(33);",23);
@@ -164,9 +166,10 @@ function pre_end_cinematic_scene()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_10_Rot_1\", 0.0, \"cinematic\", \"\")", 58);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_9_Rot_2\", 0.0)",58);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_9_Rot_1\", 0.0)",58);
-	execScriptDelayed("startTransmission(26)", 60);
-	execScriptDelayed("activateSubtitles(25);",60);
-	execScriptDelayed("activateSubtitles(26);",64);
+	execScriptDelayed("startTransmission(24)", 62);
+	execScriptDelayed("playVoice(\"bi_sermon\");", 62);
+	execScriptDelayed("activateSubtitles(25);",62);
+	execScriptDelayed("activateSubtitles(26);",65);
 
 	--Eleventh plane
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_11_Rot_2\", 10.0, \"cinematic\", \"\")", 69);
@@ -193,8 +196,12 @@ function pre_end_cinematic_scene()
 	
 	--Final Decision
 	execScriptDelayed("setCinematicPlayerState(true,\"final_decision_cinematic\")", 87.3);
-	execScriptDelayed("startTransmission(8.5)", 89);
+	execScriptDelayed("startTransmission(3)", 89);
+	execScriptDelayed("playVoice(\"bi_waiting\");", 89);
 	execScriptDelayed("activateSubtitles(29);",89);
+	execScriptDelayed("deactivateSubtitles();",92);
+	execScriptDelayed("startTransmission(3.5)", 94);
+	execScriptDelayed("playVoice(\"bi_doit\");", 94);
 	execScriptDelayed("activateSubtitles(30);",94);
 	execScriptDelayed("deactivateSubtitles();",97.5);
 end
