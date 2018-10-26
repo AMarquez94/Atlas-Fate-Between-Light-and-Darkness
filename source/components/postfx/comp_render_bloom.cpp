@@ -37,6 +37,7 @@ void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
     if (j.count("weights"))
         add_weights = loadVEC4(j["weights"]);
 
+    change_by_scene = j.value("change_by_scene", false);
     threshold_min = j.value("threshold_min", threshold_min);
     threshold_max = j.value("threshold_max", threshold_max);
     global_distance = j.value("global_distance", 1.f);
@@ -142,4 +143,24 @@ CTexture* TCompRenderBloom::applyCustom(CTexture* in_texture) {
     }
 
     return output;
+}
+
+void TCompRenderBloom::registerMsgs()
+{
+    DECL_MSG(TCompRenderBloom, TMsgSceneCreated, onSceneCreated);
+}
+
+void TCompRenderBloom::onSceneCreated(const TMsgSceneCreated & msg)
+{
+    if (change_by_scene) {
+        SceneBloom* scene_bloom = EngineScene.getActiveScene()->bloom;
+        if (scene_bloom) {
+            this->enabled = scene_bloom->enabled;
+            this->threshold_min = scene_bloom->threshold_min;
+            this->threshold_max = scene_bloom->threshold_max;
+            this->weights = scene_bloom->weights;
+            this->global_distance = scene_bloom->global_distance;
+            this->multiplier = scene_bloom->multiplier;
+        }
+    }
 }
