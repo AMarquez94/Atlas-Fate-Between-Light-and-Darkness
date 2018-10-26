@@ -511,9 +511,9 @@ data/colliders/collider_base_escultura.collider
 data/meshes/zone_a_mesh_base_escultura001.mesh
 data/prefabs/littlespotlight.prefab
 data/meshes/mesh_littlespotlight.mesh
-data/textures/FLARE.dds
+data/textures/tx_flare_alb.dds
 data/materials/flare.material
-data/textures/tx_shaft_beam.dds
+data/textures/tx_vl_alb.dds
 data/materials/spot.material
 data/materials/mtl_spotlight.material
 data/scenes/zone_a_alminares_pantallas.scene

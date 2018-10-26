@@ -34,14 +34,7 @@
           ]
         }
       ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
-        ,
-        "name": "data/colliders/collider_mesh_spotpannel.collider"
-      }
-      ,
+	  ,
       "abs_aabb": true
       ,
       "local_aabb": true

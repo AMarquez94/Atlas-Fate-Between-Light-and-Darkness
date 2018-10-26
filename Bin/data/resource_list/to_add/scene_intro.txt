@@ -279,7 +279,6 @@ data/prefabs/holograma_alminar_low.prefab
 data/meshes/BC_alminar_atlas_low001.mesh
 data/textures/tx_gradient.dds
 data/textures/tx_dron_emi.dds
-data/textures/tx_drone_hgt.dds
 data/textures/tx_drone_met.dds
 data/textures/tx_drone_nml.dds
 data/textures/tx_drone_rgh.dds
@@ -345,10 +344,10 @@ data/meshes/mesh_cartel_redondo_verde.mesh
 data/colliders/collider_mesh_cartel_redondo_verde.collider
 data/prefabs/littlespotlight.prefab
 data/meshes/mesh_littlespotlight.mesh
-data/textures/FLARE.dds
+data/textures/tx_flare_alb.dds
 data/textures/null_normal.dds
 data/materials/flare.material
-data/textures/tx_shaft_beam.dds
+data/textures/tx_vl_alb.dds
 data/materials/spot.material
 data/textures/tx_spotlight_alb.dds
 data/textures/tx_spotlight_ao.dds
