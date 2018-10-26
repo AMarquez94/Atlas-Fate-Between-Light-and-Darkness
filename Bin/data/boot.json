@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_coliseo_2",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -299,6 +299,8 @@
 			"data/scenes/BC_neones.scene",
 			"data/scenes/BC_decals.scene",
 			"data/scenes/BC_decals_filo.scene",	
+			
+
 			"data/scenes/bc_pantalla_atlas.scene",
 			"data/scenes/suelo_mezquita.scene",
 			"data/scenes/Basilic_courtyard/basilic_courtyard_particles.scene",
