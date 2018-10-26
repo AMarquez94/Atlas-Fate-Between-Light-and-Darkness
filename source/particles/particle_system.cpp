@@ -631,6 +631,11 @@ namespace Particles
         _enabled = active;
     }
 
+    void CSystem::setPause(bool active)
+    {
+        _enabled = active;
+    }
+
     void CSystem::fadeOut(float duration)
     {
         _fadeDuration = duration;

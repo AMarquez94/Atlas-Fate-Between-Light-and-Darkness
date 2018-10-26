@@ -61,6 +61,7 @@ void TCompLightPoint::registerMsgs() {
 
     DECL_MSG(TCompLightPoint, TMsgEntityCreated, onCreate);
     DECL_MSG(TCompLightPoint, TMsgEntitiesGroupCreated, onGroupCreated);
+    DECL_MSG(TCompLightPoint, TMsgSetVisible, onSetVisible);
 }
 
 // Generate the AABB for the spotlight
@@ -100,6 +101,11 @@ void TCompLightPoint::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
         CHandle h_comp = getObjectManager<TCompCulling>()->createHandle();
         e->set(h_comp.getType(), h_comp);
     }
+}
+
+void TCompLightPoint::onSetVisible(const TMsgSetVisible & msg)
+{
+    isEnabled = msg.visible;
 }
 
 void TCompLightPoint::cullFrame() {

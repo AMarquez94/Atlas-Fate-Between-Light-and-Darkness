@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 10000.0,
+		"duration": 15000.0,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
@@ -63,8 +63,8 @@
     "scale" : 0.4,
     "scale_variation" : 0.1,
     "sizes" : [
-		  [0.0, "2.25 6 2"],
-			[1.0, "2.25 6 2"]
+		  [0.0, "2 5.25 2"],
+			[1.0, "2 5.25 2"]
     ]
   },
   "color" : {

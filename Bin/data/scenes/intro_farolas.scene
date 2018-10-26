@@ -96,6 +96,21 @@
 			"transform": {
 				"pos": "2.36067 -0.689262 -18.2726",
 				"rotation": "0.0 0.707107 0.0 -0.707107"
+			},
+			"spot_controller": {
+				"intensity_flow": 0.4,
+				"intensity_flow_speed": 0.1,
+				"radius_flow": 0.25,
+				"radius_flow_speed": 4,
+				"emissive_target": "prop_lightpost",
+				"light_target": "Lightpost_Light",
+				"mesh_target": "prop_lightpose_cone",
+				"bursts": [
+					["5 0.1 0.0"],
+					["0.2 0.05 0.0"],
+					["0.1 0.05 0.0"],
+					["0.1 0.05 0.0"]
+				]
 			}
 		}
 	}, {
