@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_decals_cable"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "cable_suelo"
+      ,
+      "transform":
+      {
+        "pos": "-15.8012 6.03027 36.746"
+        ,
+        "rotation": "0.627211 0.326506 0.326506 -0.627211"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/cable_suelo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cable.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
