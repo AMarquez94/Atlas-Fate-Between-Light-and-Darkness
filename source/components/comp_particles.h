@@ -27,7 +27,7 @@ public:
 
     void playSystem();
     void setSystemState(bool state);
-
+    void setSystemPause(bool state);
     void setSystemFading(float time);
 };
 

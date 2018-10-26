@@ -106,6 +106,15 @@ void TCompParticles::setSystemState(bool state) {
     }
 }
 
+void TCompParticles::setSystemPause(bool state) {
+
+    for (auto p : _cores) {
+        Particles::CSystem * system = Engine.get().getParticles().getSystem(p.second);
+        if (system != nullptr)
+            system->setPause(state);
+    }
+}
+
 void TCompParticles::setSystemFading(float time) {
 
     for (auto p : _cores) {

@@ -18,7 +18,7 @@ class CApp {
 	HINSTANCE hInstance;
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-	// 
+	//
 	CTimer time_since_last_render;
 	CDirectoyWatcher resources_dir_watcher;
 

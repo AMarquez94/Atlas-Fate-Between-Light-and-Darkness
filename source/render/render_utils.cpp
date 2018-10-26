@@ -236,6 +236,22 @@ struct CRasterizers {
         if (!add(sdescs, RSCFG_DEPTH_BIAS, "depth_bias"))
             return false;
 
+        // Wireframe and default culling back
+        D3D11_RASTERIZER_DESC sdescs2 = {
+            D3D11_FILL_SOLID, // D3D11_FILL_MODE FillMode;
+            D3D11_CULL_NONE,  // D3D11_CULL_MODE CullMode;
+            FALSE,            // BOOL FrontCounterClockwise;
+            -10,                // INT DepthBias;
+            0.0f,             // FLOAT DepthBiasClamp;
+            0.0,              // FLOAT SlopeScaledDepthBias;
+            TRUE,             // BOOL DepthClipEnable;
+            FALSE,            // BOOL ScissorEnable;
+            FALSE,            // BOOL MultisampleEnable;
+            FALSE,            // BOOL AntialiasedLineEnable;
+        };
+        if (!add(sdescs2, RSCFG_DEPTH_BIAS_LOW, "depth_bias_low"))
+            return false;
+
 		return true;
 	}
 
