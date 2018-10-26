@@ -1,27 +1,26 @@
 {
 	"system": {
-		"duration": 0.99,
+		"duration": 15000.0,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
-		"start_speed": 0.0,
+		"start_speed": 1.0,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1",
 		"gravity": 0.0,
 		"simulation_speed": 1,
-		"max_particles": 2,
-		"offset": "0 0.0 0.2"
+		"max_particles": 20
 	},
 	"emission": {
-		"rate_time": 1.0,
+		"rate_time": 20.0,
 		"rate_distance": 0.0,
 		"variation" : 0.0
 	},	
 	"shape": {
 		"type": "box",
-		"size": "0.01 0.01 0.01",
+		"size": "0.1 0.1 0.1",
 		"angle": 0
 		
 	},
@@ -36,13 +35,12 @@
 		  [0.0, "0.0 0.0 0.0"],
       [1.0, "0.0 0.0 0.0"]
     ],
-		"inherit" : true,
-		"acceleration": 1,
+		"acceleration": 0,
 		"wind": 0
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
-		"strength": 0.0,
+		"strength": 0.1,
 		"frequency": 0.5,
 		"scroll_speed": 0.0,
 		"damping": true,
@@ -52,28 +50,29 @@
 		"collision": true
 	},
 	"renderer": {
-			"mode": "billboard",
-			"texture": "data/textures/particles/flare_spotlight.dds",
+			"mode": "vertical",
+			"texture": "data/textures/square_cookie.dds",
       "frame_size" : "1 1",
       "initial_frame" : 0,
       "num_frames" : 1,
-      "frame_speed" : 0.0
+      "frame_speed" : 0.0,
+			"tech" : "particles_instanced_additive.tech"
 	},
   "size" : {
-    "scale" : 2,
-    "scale_variation" : 0,
+    "scale" : 4,
+    "scale_variation" : 0.1,
     "sizes" : [
-		  [0.0, "6 4 6"],
-			[1.0, "6 4 6"]
+		  [0.0, "2.25 6.5 2"],
+			[1.0, "2.25 6.5 2"]
     ]
   },
   "color" : {
-    "opacity" : 0.75,
+    "opacity" : 1,
     "colors" : [
-      [0.0, "0.0 1.0 1.0 1.2"],
-			[0.1, "0.0 1.0 1.0 1.0"],
-			[0.8, "0.0 1.0 1.0 1.0"],
-			[1.0, "0.0 1.0 1.0 1.2"]
+      [0.0, "1.0 0.02 0.08 0.0"],
+			[0.1, "1.0 0.02 0.1 1.0"],
+			[0.8, "1.0 0.02 0.1 1.0"],
+			[1.0, "1.0 0.02 0.1 0.0"]
     ] 
   }
 }

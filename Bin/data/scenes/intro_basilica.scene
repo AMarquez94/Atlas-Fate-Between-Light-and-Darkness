@@ -432,7 +432,7 @@
   },
   {
 		"entity": {
-			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"prefab": "data/prefabs/holograma_alminar_low.prefab",
 			"name": "Alminar 1",
 			"transform": {
 				"pos": "34.4403 80 -179.089",
@@ -446,7 +446,7 @@
 	},
 	{
 		"entity": {
-			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"prefab": "data/prefabs/holograma_alminar_low.prefab",
 			"name": "Alminar 2",
 			"transform": {
 				"pos": "36.8863 80 -249.484",
@@ -460,7 +460,7 @@
 	},
 	{
 		"entity": {
-			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"prefab": "data/prefabs/holograma_alminar_low.prefab",
 			"name": "Alminar 3",
 			"transform": {
 				"pos": "37.9449 80 -309.841",
@@ -473,7 +473,7 @@
 	},
 	{
 		"entity": {
-			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"prefab": "data/prefabs/holograma_alminar_low.prefab",
 			"name": "Alminar 4",
 			"transform": {
 				"pos": "-40.899 80 -180.797",
@@ -486,7 +486,7 @@
 	},
 	{
 		"entity": {
-			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"prefab": "data/prefabs/holograma_alminar_low.prefab",
 			"name": "Alminar 5",
 			"transform": {
 				"pos": "-40.899 80 -249.235",
@@ -500,7 +500,7 @@
 	},
 	{
 		"entity": {
-			"prefab": "data/prefabs/holograma_alminar.prefab",
+			"prefab": "data/prefabs/holograma_alminar_low.prefab",
 			"name": "Alminar 6",
 			"transform": {
 				"pos": "-44.1837 80 -309.343",

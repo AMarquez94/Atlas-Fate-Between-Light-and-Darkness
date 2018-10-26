@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 0.99,
+		"duration": 15000.0,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
@@ -11,19 +11,18 @@
 		"start_color": "1 0 0 1",
 		"gravity": 0.0,
 		"simulation_speed": 1,
-		"max_particles": 2,
-		"offset": "0 0.0 0.2"
+		"max_particles": 20,
+		"offset": "0.0 0.0 0"
 	},
 	"emission": {
-		"rate_time": 1.0,
+		"rate_time": 20.0,
 		"rate_distance": 0.0,
 		"variation" : 0.0
 	},	
 	"shape": {
 		"type": "box",
-		"size": "0.01 0.01 0.01",
-		"angle": 0
-		
+		"size": "0.1 0.1 0.1",
+		"angle": 0		
 	},
 	"velocity": {
 		"constant_velocity": "0.0 0.0 0.0",
@@ -36,7 +35,6 @@
 		  [0.0, "0.0 0.0 0.0"],
       [1.0, "0.0 0.0 0.0"]
     ],
-		"inherit" : true,
 		"acceleration": 1,
 		"wind": 0
 	},
@@ -52,28 +50,29 @@
 		"collision": true
 	},
 	"renderer": {
-			"mode": "billboard",
-			"texture": "data/textures/particles/flare_spotlight.dds",
+			"mode": "vertical",
+			"texture": "data/textures/particles/glow.dds",
       "frame_size" : "1 1",
       "initial_frame" : 0,
       "num_frames" : 1,
-      "frame_speed" : 0.0
+      "frame_speed" : 0.0,
+			"tech" : "particles_instanced_additive.tech"
 	},
   "size" : {
-    "scale" : 2,
-    "scale_variation" : 0,
+    "scale" : 0.3,
+    "scale_variation" : 0.1,
     "sizes" : [
-		  [0.0, "6 4 6"],
-			[1.0, "6 4 6"]
+		  [0.0, "1.75 1.75 1.75"],
+			[1.0, "1.75 1.75 1.75"]
     ]
   },
   "color" : {
-    "opacity" : 0.75,
+    "opacity" : 0.015,
     "colors" : [
-      [0.0, "0.0 1.0 1.0 1.2"],
-			[0.1, "0.0 1.0 1.0 1.0"],
-			[0.8, "0.0 1.0 1.0 1.0"],
-			[1.0, "0.0 1.0 1.0 1.2"]
+      [0.0, "0.5 1.0 1.0 1.0"],
+			[0.1, "0.5 1.0 1.0 1.0"],
+			[0.8, "0.5 1.0 1.0 1.0"],
+			[1.0, "0.5 1.0 1.0 1.0"]
     ] 
   }
 }

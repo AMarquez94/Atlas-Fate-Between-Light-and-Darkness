@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 5.0,
+		"duration": 15000.0,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
@@ -14,7 +14,7 @@
 		"max_particles": 20
 	},
 	"emission": {
-		"rate_time": 1.0,
+		"rate_time": 20.0,
 		"rate_distance": 0.0,
 		"variation" : 0.0
 	},	
