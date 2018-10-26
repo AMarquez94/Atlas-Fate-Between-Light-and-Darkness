@@ -23,7 +23,7 @@ function onScenePartialEnd_scene_intro()
 end
 
 function intro_intro_cinematic()
-	startCinematicMode(93);
+	startCinematicMode(91);
 	move("The Player", VEC3(-6.275, 12.115, 32.7),VEC3(-6.275, 12.115, 31.7));
 	resetMainCameras();
 	setCinematicPlayerState(true,"crouchwalkfallsm_cinematic");
@@ -38,7 +38,7 @@ function intro_intro_cinematic()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_video\", 0)", 52);
 
 	 --Activating the subtitles
-	execScriptDelayed("startTransmission(32.7)", 51.3);
+	execScriptDelayed("startTransmission(28.5)", 51.5);
 	execScriptDelayed("playVoice(\"intro_cinematic\")", 51.3);
 	execScriptDelayed("activateSubtitles(1);",51.5);
 	execScriptDelayed("activateSubtitles(2);",53.5);
@@ -46,10 +46,10 @@ function intro_intro_cinematic()
 	execScriptDelayed("activateSubtitles(4);",63);
 	execScriptDelayed("activateSubtitles(5);",65.5);
 	execScriptDelayed("activateSubtitles(6);",70.5);
-	execScriptDelayed("activateSubtitles(7);",73.5);
-	execScriptDelayed("activateSubtitles(8);",76);
-	execScriptDelayed("activateSubtitles(9);",81);
-	execScriptDelayed("deactivateSubtitles();",84);
+	execScriptDelayed("activateSubtitles(7);",72);
+	execScriptDelayed("activateSubtitles(8);",73.25);
+	execScriptDelayed("activateSubtitles(9);",77.75);
+	execScriptDelayed("deactivateSubtitles();",80.0);
 
 	--Second Frame
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Player_Back\", 0)", 54.5);
@@ -63,13 +63,13 @@ function intro_intro_cinematic()
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0.0, \"cinematic\", \"\")", 73.5);
 
 	--Last Frame
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_2\", 0)", 84);
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0)", 84);
-	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_SM_Caida\", 0.0, \"cinematic\", \"\")", 84);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_2\", 0)", 81);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_Rotation_Other_1\", 0)", 81);
+	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Intro_SM_Caida\", 0.0, \"cinematic\", \"\")", 81);
 
 	--Returning to player camera
-	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_SM_Caida\", 5)", 88);
-	execScriptDelayed("intro_intro_cinematicExecuted = true", 50);
+	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Intro_SM_Caida\", 5)", 86);
+	execScriptDelayed("intro_intro_cinematicExecuted = true", 52);
 end
 
 -- # Transition cinematic # --
