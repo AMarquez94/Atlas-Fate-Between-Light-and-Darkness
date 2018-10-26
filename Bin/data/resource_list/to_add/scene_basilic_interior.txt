@@ -121,7 +121,6 @@ data/scenes/basilic_interior_cables.scene
 data/meshes/cable_capsula001.mesh
 data/textures/tx_cables_alb.dds
 data/textures/null_normal.dds
-data/textures/default_white.dds
 data/materials/mtl_cable.material
 data/meshes/cable_capsula003.mesh
 data/meshes/cable_capsula005.mesh
