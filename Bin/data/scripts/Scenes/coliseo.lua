@@ -70,13 +70,13 @@ end
 function cinematicCorridorToZoneA()
 	startCinematicMode(18);
 	execScriptDelayed("playVoice(\"col_district6_1\")", 0.5);
-	execScriptDelayed("startTransmission(9.5)", 0.5);
+	execScriptDelayed("startTransmission(7.5)", 0.5);
 	execScriptDelayed("playVoice(\"col_district6_2\")", 18);
-	execScriptDelayed("startTransmission(6)", 18);
+	execScriptDelayed("startTransmission(5)", 18);
 	execScriptDelayed("activateSubtitles(17);",0.5);
-	execScriptDelayed("deactivateSubtitles();", 10);
+	execScriptDelayed("deactivateSubtitles();", 8);
 	execScriptDelayed("activateSubtitles(18);",18);
-	execScriptDelayed("deactivateSubtitles();", 24);
+	execScriptDelayed("deactivateSubtitles();", 23);
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 	execScriptDelayed("move(\"The Player\", VEC3(0, 0.989,22),VEC3(0, 0.989,21));",0.27);
@@ -100,9 +100,9 @@ function onTriggerEnter_col_trigger_district_7_player()
 	if(not col_trigger_district_7Executed) then
 		subClear();
 		playVoice("col_district7");
-		startTransmission(7);
+		startTransmission(4.5);
 		activateSubtitles(19);
-		execScriptDelayed("deactivateSubtitles();", 7);
+		execScriptDelayed("deactivateSubtitles();", 4.5);
 		col_trigger_district_7Executed = true;
 	end
 	temp = getEntityByName("col_trigger_district_7");
