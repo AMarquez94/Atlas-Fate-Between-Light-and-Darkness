@@ -841,6 +841,14 @@
 		"category": "hologram_screen",
 		"ps_entry_point": "PS_TV"
 	},
+	"tv_screen_final": {
+		"vs_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_HologramScreen",
+		"vertex_type": "PosNUvUvT",
+		"ps_file": "data/shaders/hologram.fx",
+		"category": "hologram_screen",
+		"ps_entry_point": "PS_TV_Final"
+	},
 	"tv_screen_district": {
 		"vs_file": "data/shaders/hologram.fx",
 		"vs_entry_point": "VS_HologramScreen",

@@ -19,10 +19,9 @@ TCompCollider::~TCompCollider() {
         if (!config->is_controller) {
             config->actor->release();
             config->actor = nullptr;
+            delete config;
         }
     }
-
-    delete config;
 }
 
 void TCompCollider::debugInMenu() {
