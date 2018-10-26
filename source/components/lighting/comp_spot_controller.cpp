@@ -63,27 +63,31 @@ void TCompSpotController::onSceneCreated(const TMsgSceneCreated& msg) {
     CEntity * owner = CHandle(this).getOwner();
     TCompGroup* cGroup = owner->get<TCompGroup>();
 
-    if (_emissive_target != "") {
-        //CEntity* eCone = cGroup->getHandleByName(_emissive_target);
-        /*if (eCone) {
+    if (_emissive_target != "" && cGroup) {
+        CEntity* eCone = cGroup->getHandleByName(_emissive_target);
+        if (eCone) {
             _object_render = eCone->get<TCompRender>();
             if (_object_render) _emissive_intensity = _object_render->self_intensity;
-        }*/
+        }
     }
 
     if (_light_target != "") {
         //CEntity* eCone = cGroup->getHandleByName(_light_target);
-        if (owner) {
+        if (cGroup) {
+            CEntity* eCone = cGroup->getHandleByName(_light_target);
+            _spot_light = eCone->get<TCompLightSpot>();
+        }
+        else if (owner) {
             _spot_light = owner->get<TCompLightSpot>();
         }
     }
-    /**
+
     if (_mesh_target != "") {
         CEntity* eCone = cGroup->getHandleByName(_mesh_target);
         if (eCone) {
             _mesh_render = eCone->get<TCompRender>();
         }
-    }*/
+    }
 
     if (_spot_light) {
         _radius = _spot_light->getAngle();

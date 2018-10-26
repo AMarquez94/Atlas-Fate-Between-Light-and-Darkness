@@ -55,6 +55,7 @@ void TCompTiedHierarchy::update(float dt) {
 
     CTransform new_t;
     CEntity * ent = EngineCameras.getCurrentCamera();
+
     TCompTransform * pos = ent->get<TCompTransform>();
     new_t.setPosition(orig_pos + pos->getPosition());
     new_t.setScale(orig_scale);

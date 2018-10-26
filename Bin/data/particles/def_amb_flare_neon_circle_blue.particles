@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 10000.0,
+		"duration": 15000.0,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
@@ -12,7 +12,7 @@
 		"gravity": 0.0,
 		"simulation_speed": 1,
 		"max_particles": 20,
-		"offset": "0.29 0.7 0"
+		"offset": "0.0 0.0 0"
 	},
 	"emission": {
 		"rate_time": 20.0,
@@ -20,10 +20,9 @@
 		"variation" : 0.0
 	},	
 	"shape": {
-		"type": "cone",
+		"type": "box",
 		"size": "0.1 0.1 0.1",
-		"angle": 0
-		
+		"angle": 0		
 	},
 	"velocity": {
 		"constant_velocity": "0.0 0.0 0.0",
@@ -60,20 +59,20 @@
 			"tech" : "particles_instanced_additive.tech"
 	},
   "size" : {
-    "scale" : 0.4,
+    "scale" : 0.3,
     "scale_variation" : 0.1,
     "sizes" : [
-		  [0.0, "1.75 5 1.75"],
-			[1.0, "1.75 5 1.75"]
+		  [0.0, "1.75 1.75 1.75"],
+			[1.0, "1.75 1.75 1.75"]
     ]
   },
   "color" : {
-    "opacity" : 0.025,
+    "opacity" : 0.015,
     "colors" : [
-      [0.0, "0.0 0.5 1.0 1.0"],
-			[0.1, "0.0 0.5 1.0 1.0"],
-			[0.8, "0.0 0.5 1.0 1.0"],
-			[1.0, "0.0 0.5 1.0 1.0"]
+      [0.0, "0.5 1.0 1.0 1.0"],
+			[0.1, "0.5 1.0 1.0 1.0"],
+			[0.8, "0.5 1.0 1.0 1.0"],
+			[1.0, "0.5 1.0 1.0 1.0"]
     ] 
   }
 }

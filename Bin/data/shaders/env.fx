@@ -46,7 +46,7 @@ void PS_Moon(
 	o_albedo = txAlbedo.Sample(samLinear, iTex0);
 	o_albedo.a = 0;
 	o_selfIllum =  txEmissive.Sample(samLinear, iTex0);
-	o_selfIllum.xyz *= self_color.xyz * self_intensity * 5;
+	o_selfIllum.xyz *= self_color.xyz * self_intensity * 15;
 	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
 	
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
