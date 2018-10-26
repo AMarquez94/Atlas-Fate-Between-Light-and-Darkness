@@ -16,4 +16,5 @@ void CModuleIA::clearSharedBoards()
 {
 	patrolSB.stunnedPatrols.clear();
     patrolSB.patrolsWithLight.clear();
+    patrolSB.patrolsGoingAfterPlayer.clear();
 }

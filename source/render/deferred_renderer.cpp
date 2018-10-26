@@ -291,13 +291,13 @@ void CDeferredRenderer::renderVolumes() {
             mesh->render();
         }
     });
-
+    */
     // Activate tech for the light dir 
-    tech = Resources.get("pbr_rayshaft_pointlight.tech")->as<CRenderTechnique>();
+    /*auto tech = Resources.get("pbr_rayshaft_pointlight.tech")->as<CRenderTechnique>();
     tech->activate();
 
     // All light directional use the same mesh
-    mesh = Resources.get("data/meshes/UnitSphere.mesh")->as<CRenderMesh>();
+    auto mesh = Resources.get("data/meshes/UnitSphere.mesh")->as<CRenderMesh>();
     mesh->activate();
 
     // Para todas las luces... pintala

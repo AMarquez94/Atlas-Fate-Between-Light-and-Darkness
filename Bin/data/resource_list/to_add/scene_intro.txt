@@ -572,10 +572,6 @@ data/textures/tx_escultura_soporte_nml.dds
 data/textures/tx_escultura_soporte_rgh.dds
 data/materials/mtl_escultura_soporte.material
 data/colliders/collider_base_escultura.collider
-data/scenes/intro_decals_cable.scene
-data/meshes/cable_suelo.mesh
-data/textures/tx_cables_alb.dds
-data/materials/mtl_cable.material
 data/scenes/intro_casas_lp_1.scene
 data/prefabs/casas_1_lp.prefab
 data/meshes/mesh_casas_1_lp.mesh
@@ -706,6 +702,7 @@ data/colliders/collider_pozo_estructura.collider
 data/colliders/collider_puente_pozo002.collider
 data/scenes/intro_barra_capsulas.scene
 data/meshes/barra_capsulas_intro.mesh
+data/textures/tx_cables_alb.dds
 data/materials/mtl_default.material
 data/scenes/Intro/intro_suelo.scene
 data/meshes/mesh_suelo_intro2.mesh
