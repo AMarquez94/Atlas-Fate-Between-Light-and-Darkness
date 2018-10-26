@@ -34,6 +34,7 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
         std::string scene_name = it.key();
         std::vector< std::string> persistent_subscenes = jboot[scene_name]["persistent_scenes"];
         std::vector< std::string > groups_subscenes = jboot[scene_name]["scene_group"];
+
         
         // Create the scene and store it
         Scene * scene = createScene(scene_name);
@@ -55,6 +56,21 @@ void CModuleSceneManager::loadJsonScenes(const std::string filepath) {
         scene->scene_gamma = data.value("gamma", cb_globals.global_gamma_correction_enabled);
         scene->scene_tone_mapping = data.value("tone_mapping", cb_globals.global_tone_mapping_mode);
         scene->scene_shadow_intensity = data.value("shadow_intensity", cb_globals.global_shadow_intensity);
+
+        SceneBloom * scene_bloom = new SceneBloom();
+        if (data.count("bloom")) {
+            auto& bloom = data["bloom"];
+            scene_bloom->enabled = bloom.value("enabled", scene_bloom->enabled);
+            scene_bloom->max_steps = bloom.value("max_steps", scene_bloom->max_steps);
+            scene_bloom->global_distance = bloom.value("global_distance", scene_bloom->global_distance);
+            scene_bloom->threshold_min = bloom.value("threshold_min", scene_bloom->threshold_min);
+            scene_bloom->threshold_max = bloom.value("threshold_max", scene_bloom->threshold_max);
+            scene_bloom->multiplier = bloom.value("multiplier", scene_bloom->multiplier);
+            scene_bloom->weights = bloom.count("weights") ? loadVEC4(bloom["weights"]) : scene_bloom->weights;
+            scene_bloom->rt_name = bloom.value("rt_name", scene_bloom->rt_name);
+        }
+
+        scene->bloom = scene_bloom;
 
         _scenes.insert(std::pair<std::string, Scene*>(scene_name, scene));
     }
@@ -102,6 +118,7 @@ Scene* CModuleSceneManager::createScene(const std::string& name) {
     scene->navmesh = "UNDEFINED";
     scene->initial_script_name = "UNDEFINED";
     scene->isLoaded = false;
+    scene->bloom = nullptr;
 
     return scene;
 }
