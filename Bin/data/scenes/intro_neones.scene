@@ -210,7 +210,8 @@
 			"transform": {
 				"pos": "-10.6411 1.63882 -71.3966",
 				"rotation": "0.0 -1.0 1.94707e-07 0.0"
-			},			"point_controller": {
+			},			
+			"point_controller": {
 				"intensity_flow": 0.4,
 				"intensity_flow_speed": 0.1,
 				"radius_flow": 0.25,
@@ -218,7 +219,7 @@
 				"emissive_target": "mesh_neon_azul_1",
 				"light_target": "luz_neon_azul_1",		
 				"bursts" : [
-					["3 0.1 0.0"],
+					["4 0.1 0.0"],
 					["0.2 0.05 0.0"],
 					["0.1 0.05 0.0"],
 					["0.1 0.05 0.0"]
@@ -915,11 +916,11 @@
 			"spot_controller": {
 				"intensity_flow": 0.4,
 				"intensity_flow_speed": 0.1,
-				"radius_flow": 0.25,
-				"radius_flow_speed": 4,
+				"radius_flow": 0.5,
+				"radius_flow_speed": 0,
 				"light_target": "Spot005",
 				"bursts" : [
-					["2 0.1 0.0"],
+					["4 0.1 0.0"],
 					["0.2 0.05 0.0"],
 					["0.1 0.05 0.0"],
 					["0.1 0.05 0.0"]
