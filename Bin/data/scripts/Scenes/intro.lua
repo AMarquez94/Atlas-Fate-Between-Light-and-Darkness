@@ -121,10 +121,10 @@ function intro_inhibitor_cinematic()
 	resetMainCameras();
 	
 	execScriptDelayed("playVoice(\"intro_inhibitor\")", 5.75);
-	execScriptDelayed("startTransmission(7.25)", 5.75);
+	execScriptDelayed("startTransmission(7.75)", 5.75);
 	execScriptDelayed("activateSubtitles(14);", 5.75);
-	execScriptDelayed("activateSubtitles(15);", 10);
-	execScriptDelayed("deactivateSubtitles();", 13);
+	execScriptDelayed("activateSubtitles(15);", 11);
+	execScriptDelayed("deactivateSubtitles();", 13.5);
 
 	setCinematicPlayerState(true, "inhibitor_cinematic", "");
 	blendInCamera("Camera_Cinematic_Inhibitor_1" ,0,"cinematic","");
@@ -164,11 +164,12 @@ end
 
 function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 	if(cinematicsEnabled and not Capsules_CinematicExecuted) then
+		subClear();
 		startCinematicMode(12.4);
-		execScriptDelayed("playVoice(\"intro_broken_bridge\")", 2);
-		execScriptDelayed("startTransmission(8)", 2);
-		execScriptDelayed("activateSubtitles(13);", 2);
-		execScriptDelayed("deactivateSubtitles();", 10);
+		execScriptDelayed("playVoice(\"intro_broken_bridge\")", 3);
+		execScriptDelayed("startTransmission(6)", 3);
+		execScriptDelayed("activateSubtitles(13);", 3);
+		execScriptDelayed("deactivateSubtitles();", 9);
 		
 		setCinematicPlayerState(true, "capsules_cinematic", "");
 		setInBlackScreen(0.25);
@@ -196,9 +197,9 @@ end
 function onTriggerEnter_intro_trigger_muralla_player()
 	subClear();
 	playVoice("intro_closeddoor");
-	startTransmission(8);
+	startTransmission(6);
 	activateSubtitles(10);
-	execScriptDelayed("deactivateSubtitles();", 8);
+	execScriptDelayed("deactivateSubtitles();", 6);
 	temp = getEntityByName("intro_trigger_muralla");
 	temp:destroy();
 end
@@ -217,9 +218,9 @@ end
 function onTriggerEnter_intro_trigger_patrol_care_player()
 	subClear();
 	playVoice("intro_patrol");
-	startTransmission(8);
+	startTransmission(7);
 	activateSubtitles(16);
-	execScriptDelayed("deactivateSubtitles();", 8);
+	execScriptDelayed("deactivateSubtitles();", 7);
 	temp = getEntityByName("intro_trigger_patrol_care");
 	temp:destroy();
 end
@@ -227,9 +228,9 @@ end
 function onTriggerEnter_intro_trigger_patrol_story_player()
 	subClear();
 	playVoice("intro_error");
-	startTransmission(9);
+	startTransmission(8.5);
 	activateSubtitles(35);
-	execScriptDelayed("deactivateSubtitles();", 9);
+	execScriptDelayed("deactivateSubtitles();", 8.5);
 	temp = getEntityByName("intro_trigger_patrol_story");
 	temp:destroy();
 end
