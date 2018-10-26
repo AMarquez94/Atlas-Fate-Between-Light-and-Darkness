@@ -320,6 +320,10 @@ data/textures/tx_parche_cemento_rgh.dds
 data/materials/mtl_decal_leaking.material
 data/textures/tx_desgaste_alb.dds
 data/materials/mtl_decal_desgaste.material
+data/scenes/BC_decals_filo.scene
+data/textures/tx_rotura_filo_alb.dds
+data/textures/tx_rotura_filo_nml.dds
+data/materials/mtl_decal_borde_filo.material
 data/scenes/bc_pantalla_atlas.scene
 data/meshes/bc_mesh_pantalla_atlas.mesh
 data/textures/tx_bc_pantalla_atlas_alb.dds
@@ -533,7 +537,8 @@ data/colliders/collider_mesh_bc_pasillo_entre.collider
 data/meshes/BC_piedra_arco.mesh
 data/scenes/bc_corridor_logic.scene
 data/scenes/bc_corridor_lights.scene
-data/colliders/luz_corridor_bc.collider
+data/colliders/bc_Spot003.collider
+data/colliders/bc_Spot002.collider
 data/scenes/bc_casas_lp.scene
 data/prefabs/casas_1_lp.prefab
 data/meshes/mesh_casas_1_lp.mesh
