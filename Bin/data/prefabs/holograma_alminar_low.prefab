@@ -6,8 +6,8 @@
 			},
 			"render":
 			[{
-					"color": "0 0.25 1 1",
 					"mesh": "data/meshes/BC_alminar_atlas_low001.mesh",
+					"color": "0 0.1 0.25 0.35",
 					"materials":
 					[
 						"data/materials/mtl_hologram_sw_model.material"
