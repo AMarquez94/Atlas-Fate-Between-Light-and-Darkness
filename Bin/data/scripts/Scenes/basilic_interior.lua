@@ -77,6 +77,7 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("activateSubtitles(33);",23);
 	execScriptDelayed("deactivateSubtitles();",28.5);
 
+	execScriptDelayed("playVoice(\"bi_youwillregret\");", 38);
 	execScriptDelayed("activateSubtitles(34);",38);
 	execScriptDelayed("deactivateSubtitles();",45);
 
@@ -184,6 +185,7 @@ function pre_end_cinematic_scene()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_11_Rot_2\", 0.0)",79);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_11_Rot_1\", 0.0)",79);
 	execScriptDelayed("move(\"The Player\", VEC3(-8.850, 0.044, -4.275),VEC3(-8.850, 0.044, -1));",79);
+	execScriptDelayed("playVoice(\"bi_justdoyourjob\");", 79);
 	execScriptDelayed("activateSubtitles(28);",79);
 	execScriptDelayed("deactivateSubtitles();",86);
 
