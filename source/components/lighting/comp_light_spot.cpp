@@ -118,6 +118,7 @@ void TCompLightSpot::registerMsgs() {
     DECL_MSG(TCompLightSpot, TMsgEntityCreated, onCreate);
     DECL_MSG(TCompLightSpot, TMsgEntityDestroyed, onDestroy);
     DECL_MSG(TCompLightSpot, TMsgEntitiesGroupCreated, onGroupCreated);
+    DECL_MSG(TCompLightSpot, TMsgSetVisible, onSetVisible);
 }
 
 TCompLightSpot::~TCompLightSpot()
@@ -208,6 +209,11 @@ void TCompLightSpot::onGroupCreated(const TMsgEntitiesGroupCreated & msg)
         CHandle h_comp = getObjectManager<TCompCulling>()->createHandle();
         e->set(h_comp.getType(), h_comp);
     }
+}
+
+void TCompLightSpot::onSetVisible(const TMsgSetVisible & msg)
+{
+    isEnabled = msg.visible;
 }
 
 void TCompLightSpot::activate() {

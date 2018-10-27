@@ -135,25 +135,7 @@
             "data/materials/gpu_particles_instanced.material"
           ]
         }
-      ],
-      "gpu_particles" : {
-        "core" : {
-          "speed" : "0 2 0",
-          "radius" : 135.0,
-          "height" : 40.0,
-          "life_time" : 2.0,
-          "radius" : 3.0,
-          "min_size" : 1,
-          "max_size" : 2
-        },
-        "nparticles" : 5000,
-        "update" : {
-          "name": "kernel_bw.compute",
-          "cs_file": "data/shaders/compute_particles.fx",
-          "cs_entry_point": "move_particles",
-					"profile" : "cs_5_0"
-        }
-      }
+      ]
     }
   }
 ]

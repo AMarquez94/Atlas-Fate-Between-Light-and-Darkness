@@ -172,6 +172,7 @@ void takeOutCreditsOnMainMenu();
 void activateSubtitles(int sub_num);
 void deactivateSubtitles();
 void subClear();
+void playVoice(const std::string& voice_event);
 void setEnemyHudState(bool state);
 void activateCinematicVideoIntro(float time_to_lerp, float time_to_start);
 void deactivateCinematicVideoIntro();

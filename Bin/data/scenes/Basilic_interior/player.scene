@@ -7,6 +7,10 @@
 		},
 		"ai_player": {
 			"enabled": false
-		}
+		},
+		"emission_controller": {
+				"initial": "1.0 1.0 1.0 1.0",
+				"intensity": 0.2
+			}
 	}
 }]

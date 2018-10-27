@@ -24,9 +24,10 @@ class CModuleGameManager : public IModule
     float persecution_lerp;
     SoundEvent main_theme;
     float main_theme_lerp;
-    SoundEvent transmission;
+    //SoundEvent transmission;
     SoundEvent finalScene;
     float final_scene_lerp;
+    SoundEvent active_voice;
 
     // Menu window related variables.
     ImGuiWindowFlags window_flags;
@@ -73,4 +74,6 @@ public:
     void playTransmissionSound(bool play);
     void changeToEndScene();
     void preloadFinalSceneSoundEvent();
+    void playVoice(const std::string& voice_event);
+    void stopVoice();
 };

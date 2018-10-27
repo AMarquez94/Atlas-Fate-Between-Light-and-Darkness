@@ -111,6 +111,16 @@
 		"category": "gbuffer_opacity",
 		"blend": "default"
 	},
+	"pbr_opacity_no_cull": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer_Opacity",
+		"vertex_type": "PosNUvUvT",
+		"category": "gbuffer_opacity",
+		"blend": "default",
+		"rs_config": "cull_none"
+	},
 	"pbr_no_cull": {
 		"vs_file": "data/shaders/pbr.fx",
 		"ps_file": "data/shaders/pbr.fx",
@@ -384,6 +394,7 @@
 		"category": "env_effects_atmosphere",
 		"z": "test_but_no_write",
 		"blend": "additive_by_src_alpha",
+		"rs_config": "depth_bias_low",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds"
 		}

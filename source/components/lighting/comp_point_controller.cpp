@@ -138,7 +138,7 @@ void TCompPointController::updateFlicker(float dt)
         if (!_flicker_status) {
             if (_point_light) _point_light->isEnabled = false;
             if (_object_render)  _object_render->self_intensity = 0;
-            if (_object_particles)  _object_particles->setSystemState(false);
+            if (_object_particles)  _object_particles->setSystemPause(false);
             if (_mesh_render)  _mesh_render->visible = false;
             _flicker_status = true;
         }
@@ -150,7 +150,7 @@ void TCompPointController::updateFlicker(float dt)
             }
 
             if (_object_render) _object_render->self_intensity = _emissive_intensity;
-            if (_object_particles) _object_particles->setSystemState(true);
+            if (_object_particles) _object_particles->setSystemPause(true);
             if (_mesh_render)  _mesh_render->visible = true;
 
             _flicker_status = false;

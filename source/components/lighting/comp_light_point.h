@@ -11,6 +11,7 @@ class TCompLightPoint : public TCompBase {
 
     void onCreate(const TMsgEntityCreated& msg);
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
+    void onSetVisible(const TMsgSetVisible& msg);
 
     DECL_SIBLING_ACCESS();
 

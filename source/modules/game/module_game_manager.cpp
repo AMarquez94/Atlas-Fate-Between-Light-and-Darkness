@@ -31,8 +31,8 @@ bool CModuleGameManager::start() {
     EngineRender.setDebugMode(false);
     EngineLogic.setPause(false);
     main_theme = EngineSound.playEvent("event:/Ambiance/InGame");
-    transmission = EngineSound.playEvent("event:/Ambiance/Transmission");
-    transmission.setVolume(0.f);
+    //transmission = EngineSound.playEvent("event:/Ambiance/Transmission");
+    //transmission.setVolume(0.f);
     _musicstate = MusicState::normal;
     isCinematicMode = true;
     menuPosition = 0;
@@ -620,18 +620,18 @@ void CModuleGameManager::stopAllSoundEvents()
 {
     persecution_theme.stop();
     main_theme.stop();
-    transmission.stop();
+    //transmission.stop();
     finalScene.stop();
 }
 
 void CModuleGameManager::playTransmissionSound(bool play)
 {
-    if (play) {
-        transmission.setVolume(.25f);
-    }
-    else {
-        transmission.setVolume(0.f);
-    }
+    //if (play) {
+    //    transmission.setVolume(.25f);
+    //}
+    //else {
+    //    transmission.setVolume(0.f);
+    //}
 }
 
 void CModuleGameManager::changeToEndScene()
@@ -643,6 +643,18 @@ void CModuleGameManager::changeToEndScene()
 void CModuleGameManager::preloadFinalSceneSoundEvent()
 {
     finalScene = EngineSound.preloadEvent("event:/Ambiance/EndMusic");
+}
+
+void CModuleGameManager::playVoice(const std::string & voice_event)
+{
+    active_voice.stop();
+    active_voice = EngineSound.playEvent("event:/Voices/" + voice_event);
+}
+
+void CModuleGameManager::stopVoice()
+{
+    active_voice.stop();
+    EngineLogic.eraseDelayedScripts("playVoice(");
 }
 
 void CModuleGameManager::resetState() {

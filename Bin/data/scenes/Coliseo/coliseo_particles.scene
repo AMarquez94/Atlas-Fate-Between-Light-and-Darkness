@@ -46,14 +46,14 @@
       "gpu_particles" : {
         "core" : {
           "speed" : "0 2 0",
-          "radius" : 135.0,
+          "radius" : 235.0,
           "height" : 40.0,
           "life_time" : 2.0,
           "radius" : 3.0,
-          "min_size" : 1,
-          "max_size" : 2
+          "min_size" : 0.75,
+          "max_size" : 1.75
         },
-        "nparticles" : 3000,
+        "nparticles" : 7000,
         "update" : {
           "name": "kernel_bw.compute",
           "cs_file": "data/shaders/compute_particles.fx",

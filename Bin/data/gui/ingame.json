@@ -12,7 +12,7 @@
 					{
 						"name" : "staminar_bar",
 						"type" : "radialbar",
-						"size" : "32 32",
+						"size" : "25 25",
 						"color" : "1 1 1 0.45",
 						"texture" : "data/textures/gui/hud_stamina_bar.dds",
 						"variable" : "staminaBarFactor"

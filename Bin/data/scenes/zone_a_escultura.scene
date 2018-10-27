@@ -1,0 +1,278 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_escultura"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "zone_a_mesh_atlas"
+      ,
+      "transform":
+      {
+        "pos": "-99.3601 4.944 -125.235"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/zone_a_mesh_atlas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_escultura.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "zone_a_mesh_atlas001"
+      ,
+      "transform":
+      {
+        "pos": "-106.445 4.944 -125.235"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/zone_a_mesh_atlas001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_escultura.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "zone_a_mesh_base_escultura"
+      ,
+      "transform":
+      {
+        "pos": "-99.3192 1.08699 -125.235"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/zone_a_mesh_base_escultura.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_escultura_soporte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_base_escultura.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "zone_a_mesh_base_escultura001"
+      ,
+      "transform":
+      {
+        "pos": "-106.404 1.08699 -125.235"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/zone_a_mesh_base_escultura001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_escultura_soporte.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "zone_a_mesh_littlespotlight"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-100.224 2.01387 -124.029"
+        ,
+        "rotation": "0.0795457 -0.916025 -0.328103 -0.216607"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "zone_a_mesh_littlespotlight001"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-107.309 2.01387 -124.029"
+        ,
+        "rotation": "0.0795457 -0.916025 -0.328103 -0.216607"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "zone_a_omni_escultura"
+      ,
+      "transform":
+      {
+        "pos": "-99.74 3.29283 -123.874"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.8252
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "1.0 1.0 0.392157 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.29
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "zone_a_omni_escultura001"
+      ,
+      "transform":
+      {
+        "pos": "-106.825 3.29283 -123.874"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 1.8252
+        ,
+        "outer_cut": 2.262
+        ,
+        "color": "1.0 1.0 0.392157 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.29
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+]
