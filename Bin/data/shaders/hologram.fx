@@ -377,31 +377,30 @@ float4 PS_TV_Final(
   , float2 iTex0 : TEXCOORD0
   , float2 iTex1 : TEXCOORD1
   , float3 iWorldPos : TEXCOORD2
-	
-	, out float4 o_selfIllum : SV_Target3
   ): SV_Target0
 {
   // Noise wave, for each pixel adding a random noise on given position
-  float xnoise = max(0.0, snoise(float2(global_world_time, iTex0.y * 0.3)) - 0.3) * (1.0 / 0.7);
-  xnoise = xnoise + (snoise(float2(global_world_time*10.0, iTex0.y * 2.4)) - 0.5) * 0.15;
+  float xnoise = max(0.0, snoise(float2(global_world_time * self_intensity, iTex0.y * 0.3)) - 0.3) * (1.0 / 0.7);
+  xnoise = xnoise + (snoise(float2(global_world_time*7.0 * self_intensity, iTex0.y * 2.4)) - 0.5) * 0.15;
     
   // Noise displaces the horizontal coordinate per pixel
   float xpos = iTex0.x - xnoise * xnoise * 0.15;
+	float ypos = iTex0.y - xnoise * xnoise * 0.15;
+	
 	float4 color = txAlbedo.Sample(samLinear, float2(xpos, iTex0.y));
-  float scanline = sin(iTex0.x*400.0 + global_world_time)*0.025;
+  float scanline = sin(iTex0.x*800.0 + global_world_time * self_intensity)*0.025;
 	color -= scanline;
 	
   // Mix in some random interference for lines
-	float shift_itex = iTex0.x * global_world_time;
+	float shift_itex = iTex0.x * global_world_time * self_intensity;
 	float rand_interference = rand(float2(shift_itex, shift_itex));
-  float3 t_color = lerp(color.xyz, float3(rand_interference, rand_interference, rand_interference), xnoise * 0.8).xyz;
+  float3 t_color = lerp(color.xyz, float3(rand_interference, rand_interference, rand_interference), xnoise * 0.2).xyz;
 	
   // Shift green/blue channels (using the red channel)
-  t_color.x  = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(xpos + xnoise * 0.05, iTex0.y)).y, 0.25);
-	t_color.y = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(xpos + xnoise * 0.05, iTex0.y)).z, 0.25);
-	o_selfIllum = float4(1,1,1,1);
+  t_color.x  = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).y, 0.25);
+	t_color.y = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).z, 0.25);
 	
-	return float4(t_color, 1) * obj_color * 0.2;
+	return float4(t_color, 1) * obj_color * 0.6;
 	
 }
 

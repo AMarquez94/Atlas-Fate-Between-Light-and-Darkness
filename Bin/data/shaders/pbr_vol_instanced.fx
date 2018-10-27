@@ -219,7 +219,7 @@ float4 PS_GBuffer_RayShafts_Spot(
 		currentPosition += step;
 	}
 	
-	return float4(light_color.xyz * total_fog, 1);
+	return 1;//float4(light_color.xyz * total_fog, 1);
 }
 
 float4 PS_GBuffer_RayShafts_Point(
