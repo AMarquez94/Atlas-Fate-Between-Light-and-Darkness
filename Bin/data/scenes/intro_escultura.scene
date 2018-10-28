@@ -20,7 +20,7 @@
       {
         "pos": "-3.30627 0.453614 7.73744"
         ,
-        "lookat": "-3.28124 0.0 29.2275"
+        "lookat": "-3.28124 0.0 24.5629"
       }
       ,
       "light_spot":
@@ -29,13 +29,13 @@
         ,
         "proj_type": "perspective"
         ,
-        "range": 21.4949
+        "range": 16.8316
         ,
         "angle": 38.6
         ,
         "inner_cut": 32.4
         ,
-        "z_far": 21.4949
+        "z_far": 16.8316
         ,
         "volume": false
         ,
