@@ -54,7 +54,7 @@ float4 environment_fog(float4 iPosition, float2 iTex0, float3 in_color)
 	float dist = abs(length(frag_dir));
 	
 	float fog_factor = 1 - exp( (dist * -global_fog_density * 0.075)* (dist* global_fog_density * 0.075));	
-	if(depth > 0.99) fog_factor = 0.85;
+	if(depth > 0.99) fog_factor = 0.5;
 		
 	float3 color = lerp(in_color, global_fog_env_color, saturate(fog_factor) * 0.95);
 	return float4(color,1);

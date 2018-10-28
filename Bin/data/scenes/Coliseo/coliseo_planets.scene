@@ -37,7 +37,7 @@
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"color": "0.22 0.22 0.22 1",
+					"color": "0.05 0.05 0.05 1",
 					"self_intensity": 0.0,
 					"materials":
 					[
