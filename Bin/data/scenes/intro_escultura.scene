@@ -31,9 +31,9 @@
         ,
         "range": 16.8316
         ,
-        "angle": 38.6
+        "angle": 17.2
         ,
-        "inner_cut": 32.4
+        "inner_cut": 15.2
         ,
         "z_far": 16.8316
         ,
@@ -157,6 +157,13 @@
         }
       ]
       ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_atlas.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
@@ -209,7 +216,7 @@
       ,
       "transform":
       {
-        "pos": "-4.32883 2.89023 23.6887"
+        "pos": "-4.3 2.9 23.65"
         ,
         "rotation": "0.130885 -0.868163 -0.315985 -0.359605"
       }
