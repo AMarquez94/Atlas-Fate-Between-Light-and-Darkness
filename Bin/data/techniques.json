@@ -865,6 +865,18 @@
 		"category": "hologram_screen",
 		"ps_entry_point": "PS_HologramScreen"
 	},
+	"solid_light": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_SolidLight",
+		"vertex_type": "PosNUvUvT",
+		"category": "hologram",
+		"blend": "additive_by_src_alpha",
+		"textures": {
+			"noise": "data/textures/noise_cloud3.dds"
+		}
+	},
 	"pbr_hologram_sw": {
 		"vs_file": "data/shaders/hologram.fx",
 		"ps_file": "data/shaders/hologram.fx",

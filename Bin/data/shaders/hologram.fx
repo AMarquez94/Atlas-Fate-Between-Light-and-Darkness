@@ -292,6 +292,20 @@ float4 PS_GBuffer_SWPlayer(
 	return scan * color * theta + glow * scan * 0.24; 
 }
 
+float4 PS_SolidLight(
+  float4 Pos       : SV_POSITION
+  , float3 iNormal : NORMAL0
+  , float4 iTangent : NORMAL1
+  , float2 iTex0 : TEXCOORD0
+  , float2 iTex1 : TEXCOORD1
+  , float3 iWorldPos : TEXCOORD2
+	, float3 iModelPos : TEXCOORD3
+	, float  iMaxHeight : TEXCOORD4
+): SV_Target0
+{
+	return self_color * self_intensity;
+}
+
 void VS_HologramScreen(
 	in float4 iPos     : POSITION
 	, in float3 iNormal : NORMAL0

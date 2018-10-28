@@ -79,7 +79,7 @@
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"self_intensity": 0.5,
+					"self_intensity": 0.9,
 					"materials":
 					[
 						"data/materials/mtl_planet1.material"
@@ -143,7 +143,7 @@
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"self_intensity": 0.3,
+					"self_intensity": 0.28,
 					"materials":
 					[
 						"data/materials/mtl_planet2.material"

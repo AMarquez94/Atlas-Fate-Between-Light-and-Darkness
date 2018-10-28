@@ -374,6 +374,7 @@ void CModuleRender::generateFrame() {
 
         activateMainCamera();
         deferred.render(rt_main, h_e_camera);
+        CRenderManager::get().renderCategory("solid_light");
         Engine.get().getParticles().renderCombinative();
         postProcessingStack();
     }
