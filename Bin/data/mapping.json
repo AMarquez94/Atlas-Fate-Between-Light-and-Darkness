@@ -75,7 +75,7 @@
 	"buttons": ["q", "pad_r3"]
   },
   {
-    "name": "xbtDebugPause",
+    "name": "btDebugPause",
     "all": false,
     "buttons":  ["f1"]
   },
@@ -85,22 +85,22 @@
     "buttons":  ["control"]
   },
   {
-    "name": "xbtDebugShadows",
+    "name": "btDebugShadows",
     "all": false,
     "buttons":  ["f2"]
   },
 	{
-    "name": "xbtDebugMode",
+    "name": "btDebugMode",
     "all": false,
     "buttons":  ["f3"]
   },
 	{
-    "name": "xbtDebugParticles",
+    "name": "btDebugParticles",
     "all": false,
     "buttons":  ["f4"]
   },
 	{
-    "name": "xbtDebugModeUnpaused",
+    "name": "btDebugModeUnpaused",
     "all": false,
     "buttons":  ["f5"]
   },
