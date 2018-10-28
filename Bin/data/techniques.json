@@ -393,7 +393,7 @@
 		"vertex_type": "PosNUvUvT",
 		"category": "env_effects_atmosphere",
 		"z": "test_but_no_write",
-		"blend": "additive_by_src_alpha",
+		"blend": "additive",
 		"rs_config": "depth_bias_low",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds"

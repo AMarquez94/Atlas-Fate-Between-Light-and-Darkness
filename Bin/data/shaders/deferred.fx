@@ -126,7 +126,7 @@ float4 PS_Fog(
 	hdrColor *= txSelfIllum.Load(uint3(iPosition.xy,0)).a; // temp 
 	hdrColor = environment_fog(iPosition, iUV, hdrColor);
 	hdrColor = ground_fog(iPosition, iUV, hdrColor);
-	hdrColor += txSelfIllum.Load(uint3(iPosition.xy,0)).xyz;
+	//hdrColor += txSelfIllum.Load(uint3(iPosition.xy,0)).xyz;
 		
 	return float4(hdrColor, 1);
 }
