@@ -413,7 +413,7 @@
       ,
       "transform":
       {
-        "pos": "-4.04849 -4.7492 -26.9461"
+        "pos": "-4.04849 -4.7492 -26.4"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -448,12 +448,33 @@
         ]
       }
     }
+  } ,
+  {
+    "entity":
+    {
+      "name": "Dummy025"
+      ,
+      "transform":
+      {
+        "pos": "-11.7 -4.7492 -19.1"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+			"particles":
+      {
+        "cores":
+        [
+          "data/particles/def_amb_smoke.particles"
+        ]
+      }
+    }
   }
   ,
   {
     "entity":
     {
-      "name": "Dummy025"
+      "name": "Dummy026"
       ,
       "transform":
       {
@@ -536,5 +557,55 @@
         }
       }
     }
-  }
+  },{
+		"entity": {
+			"name": "particles_fire",
+			"transform": {
+				"pos": "-21.3 16.5 -23"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_fire_smoke.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_fire",
+			"transform": {
+				"pos": "-31.7 16.3 -58"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_fire_smoke.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_fire",
+			"transform": {
+				"pos": "-2.2 16.4 -44"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_fire_smoke.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_fire",
+			"transform": {
+				"pos": "15 16.6 -11.3"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_fire_smoke.particles"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "particles_fire",
+			"transform": {
+				"pos": "-3.5 16.5 33.3"
+			},
+			"particles": {
+				"core": "data/particles/def_amb_fire_smoke.particles"
+			}
+		}
+	}
 ]

@@ -9,7 +9,7 @@
 		"entity": {
 			"name": "luna",
 			"tied_hierarchy": {
-				"pos": "45 38 20",
+				"pos": "43 45 20",
 				"scale": "2 2 2"
 			},
 			"transform": {},
@@ -30,7 +30,7 @@
 		"entity": {
 			"name": "luna_back",
 			"tied_hierarchy": {
-				"pos": "45 38 20",
+				"pos": "43 45 20",
 				"scale": "2.5 2.5 2.5"
 			},
 			"transform": {},
@@ -52,7 +52,7 @@
 		"xentity": {
 			"name": "luna_back_atmosphere",
 			"tied_hierarchy": {
-				"pos": "45 38 20",
+				"pos": "43 45 20",
 				"scale": "2.1 2.1 2.1"
 			},
 			"transform": {},
