@@ -18,15 +18,75 @@
       ,
       "transform":
       {
-        "pos": "-38.7747 1.13323 -86.7042"
+        "pos": "-51.5005 1.2586 -86.7042"
         ,
-        "rotation": "0.5 -0.5 0.5 -0.5"
+        "rotation": "-0.489873 0.509925 -0.509925 0.489874"
       }
       ,
       "render":
       [
         {
           "mesh": "data/meshes/mesh_cartel_missing_1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cartel_missing.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_missing_2"
+      ,
+      "transform":
+      {
+        "pos": "-51.1609 1.3801 -86.704"
+        ,
+        "rotation": "0.507804 -0.492072 0.492072 -0.507804"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_cartel_missing_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cartel_missing.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_missing_3"
+      ,
+      "transform":
+      {
+        "pos": "-51.1258 0.908361 -86.7035"
+        ,
+        "rotation": "-0.488805 0.51095 -0.51095 0.488805"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_cartel_missing_3.mesh"
           ,
           "materials":
           [
