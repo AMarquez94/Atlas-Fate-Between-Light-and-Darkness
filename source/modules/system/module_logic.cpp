@@ -77,6 +77,27 @@ void CModuleLogic::update(float delta) {
     }
 }
 
+void CModuleLogic::render()
+{
+    if (ImGui::TreeNode("Logic")) {
+
+        if (ImGui::TreeNode("Delayed Scripts")) {
+            for (int i = 0; i < delayedScripts.size(); i++) {
+                ImGui::Text("%s - %f", delayedScripts[i].script.c_str(), delayedScripts[i].remainingTime);
+            }
+            ImGui::TreePop();
+        }
+
+        if (ImGui::TreeNode("System Delayed Scripts")) {
+            for (int i = 0; i < delayedSystemScripts.size(); i++) {
+                ImGui::Text("%s - %f", delayedSystemScripts[i].script.c_str(), delayedSystemScripts[i].remainingTime);
+            }
+            ImGui::TreePop();
+        }
+        ImGui::TreePop();
+    }
+}
+
 /* Where we publish all functions that we want and load all the scripts in the scripts folder */
 void CModuleLogic::BootLuaSLB() {
 
@@ -1269,6 +1290,7 @@ void subClear() {
 
 void playVoice(const std::string & voice_event)
 {
+    dbg("PLAYING VOICE %s\n", voice_event);
     CEngine::get().getGameManager().playVoice(voice_event);
 }
 
@@ -1278,10 +1300,6 @@ void deactivateSubtitles() {
 
 void activateMission(int mission_num) {
 	EngineGUI.setMission(mission_num);
-}
-
-void startCinematicMode(bool start) {
-
 }
 
 void setEnemyHudState(bool state) {

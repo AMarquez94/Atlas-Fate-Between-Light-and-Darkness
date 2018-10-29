@@ -251,7 +251,7 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("playerActivated", "finalDecisionCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicFinalDecision, nullptr, nullptr);
     addChild("finalDecisionCinematic", "ResetTimersFinalDecisionCinematic", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersFinalDecision, nullptr);
     addChild("finalDecisionCinematic", "ActionFinalDecision", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionFinalDecision, nullptr);
-    addChild("finalDecisionCinematic", "resetBTFinalDecision", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
+    addChild("finalDecisionCinematic", "ActionWaitFinalDecision", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdleCinematic, nullptr);
 
 	//Shutdown finale
 	addChild("playerActivated", "FinalShutdownCinematic", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionCinematicShutdownFinale, nullptr, nullptr);
@@ -1191,13 +1191,18 @@ BTNode::ERes TCompAIPlayer::actionResetTimersFinalDecision(float dt)
 
     /* Desactivo radial shutdown */
     EngineGUI.enableWidget("radial_shutdown", false);
+    EngineGUI.enableWidget("radial_endjob", true);
 
     /* Desactivo teclado/mando */
     if (EngineInput.pad().connected) {
+        EngineGUI.enableWidget("button_endjob_mando", true);
+        EngineGUI.enableWidget("button_shutdown_mando", true);
         EngineGUI.enableWidget("button_endjob_teclado", false);
         EngineGUI.enableWidget("button_shutdown_teclado", false);
     }
     else {
+        EngineGUI.enableWidget("button_endjob_teclado", true);
+        EngineGUI.enableWidget("button_shutdown_teclado", true);
         EngineGUI.enableWidget("button_endjob_mando", false);
         EngineGUI.enableWidget("button_shutdown_mando", false);
     }
@@ -1308,13 +1313,14 @@ BTNode::ERes TCompAIPlayer::actionFinalDecision(float dt)
     else {
 
         /* Borrar toda la gui */
-        EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_FINAL_DECISION);
         EngineGUI.enableWidget("button_endjob_teclado", false);
         EngineGUI.enableWidget("button_endjob_mando", false);
         EngineGUI.enableWidget("button_shutdown_teclado", false);
         EngineGUI.enableWidget("button_shutdown_mando", false);
         EngineGUI.enableWidget("radial_endjob", false);
         EngineGUI.enableWidget("radial_shutdown", false);
+        EngineGUI.enableWidget("ingame_final_decision", false);
+        EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_FINAL_DECISION);
 
         if (decisionMade == EState::CINEMATIC_FINAL_SHUTDOWN) {
             EngineLogic.execScript("shutdown_end_cinematic_scene()");

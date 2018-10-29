@@ -8,6 +8,7 @@ namespace GUI
   {
   public:
     virtual void update(float delta) override;
+    virtual void onDeactivate() override;
 
   private:
     VEC2 _speed;

@@ -9,7 +9,10 @@ function onSceneStart_scene_intro()
 	-- First Cinematic --
 	if(cinematicsEnabled and not isCheckpointSaved() and not intro_intro_cinematicExecuted) then
 		intro_intro_cinematic();
+	else
+		execScriptDelayed("isInCinematicMode(false)", 0.1);
 	end
+	
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
 	getSignRendersForIntro();
 end

@@ -34,7 +34,7 @@ bool CModuleGameManager::start() {
     //transmission = EngineSound.playEvent("event:/Ambiance/Transmission");
     //transmission.setVolume(0.f);
     _musicstate = MusicState::normal;
-    isCinematicMode = false;
+    isCinematicMode = true;
     menuPosition = 0;
 
     return true;
