@@ -20,7 +20,16 @@ end
 function transition_zone_a_to_coliseum(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 	makeVisibleByTag("corridor", true);
-	toDoor(toEntity(getEntityByName("zone_a_outmarco_puerta002")):getCompByName("door")):open();
+
+	h = toEntity(getEntityByName("zone_a_outmarco_puerta002"));
+	toDoor(h:getCompByName("door")):open();
+	
+	t_transform = toTransform(h:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	rot = t_transform:getRotation();
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke_base.particles", pos, rot, true);
+	
 end
 
 function enable_button_exit(button_handle)
@@ -48,6 +57,15 @@ end
 
 function onTriggerEnter_ZON_Trigger_Enter_ZoneA_player()
 	zonea_a_door = toDoor(toEntity(getEntityByName("zone_a_in_marco_puerta001")):getCompByName("door"));
+	
+	h = toEntity(getEntityByName("zone_a_in_marco_puerta001"));
+	
+	t_transform = toTransform(h:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	rot = t_transform:getRotation();
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke_base.particles", pos, rot, true);
+	
 	zonea_a_door:setClosedScript("setCorridorInvisible()");
 	zonea_a_door:close();
 	if(cinematicsEnabled and not cinematic_enter_zone_aExecuted) then

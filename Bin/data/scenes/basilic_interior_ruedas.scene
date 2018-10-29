@@ -34,6 +34,14 @@
           ]
         }
       ],
+			"particles": {
+				"on_start":true,
+				"cores":
+				[
+					"data/particles/def_amb_fast_smoke1.particles",
+					"data/particles/def_amb_fast_smoke2.particles"
+				]
+			},
       "rotator_accelerator_final_scene" : true
       ,
       "rotator": {
