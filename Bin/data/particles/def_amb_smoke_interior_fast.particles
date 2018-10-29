@@ -1,28 +1,28 @@
 {
 	"system": {
-		"duration":3,
+		"duration": 12.5,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
-		"start_speed": 0.0,
+		"start_speed": 1.0,
 		"start_size": "1 1 1",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 0 0 1",
 		"gravity": 0.0,
-		"simulation_speed": 1.5,
-		"max_particles": 1400,
-		"offset": "4 0 -12"
+		"simulation_speed": 5.5,
+		"max_particles": 400
 	},
 	"emission": {
-		"rate_time": 0.0,
-		"rate_distance": 1.0,
+		"rate_time": 16.0,
+		"rate_distance": 0.0,
 		"variation" : 0.0
 	},	
 	"shape": {
-		"type": "point",
+		"type": "cone",
 		"size": "0.05 0.05 0.05",
-		"angle": 5	
+		"angle": 5
+		
 	},
 	"velocity": {
 		"constant_velocity": "0.0 0.0 0.0",
@@ -33,9 +33,9 @@
     ],
 		"rotation" : [
 		  [0.0, "0.0 0.0 0.0"],
-      [1.0, "0.0 0.0 0.0"]
+      [1.0, "0.0 0.0 0.3"]
     ],
-		"acceleration": 12,
+		"acceleration": 1,
 		"wind": 0.0
 	},
 	"noise": {
@@ -55,25 +55,23 @@
       "frame_size" : "5 5",
       "initial_frame" : 0,
       "num_frames" : 25,
-      "frame_speed" : 25, 
-			"soft": 0,
-			"tech" : "particles_instanced_additive.tech"
+      "frame_speed" : 0
 	},
   "size" : {
     "scale" : 1,
     "scale_variation" : 0.1,
     "sizes" : [
 		  [0.0, "1 1 1"],
-			[0.3, "5 4 4"]
+			[0.3, "3 3 3"]
     ]
   },
   "color" : {
-    "opacity" : 0.01,
+    "opacity" : 0.2,
     "colors" : [
       [0.0, "0.1 0.1 0.1 0.0"],
-			[0.1, "0.2 0.2 0.2 1.0"],
-			[0.55, "0.2 0.2 0.2 1.0"],
-			[1.0, "0.2 0.2 0.2 0.0"]
+			[0.1, "0.1 0.1 0.1 1.0"],
+			[0.75, "0.27 0.27 0.27 1.0"],
+			[1.0, "0.37 0.37 0.37 0.0"]
     ] 
   }
 }
