@@ -2,6 +2,7 @@ function onSceneStart_scene_basilic_courtyard()
 	setCorridorInvisible();
 	toRender(toEntity(getEntityByName("BC_Screen001_Apagado")):getCompByName("render")).visible = false;
 	toRender(toEntity(getEntityByName("BC_Screen002_Apagado")):getCompByName("render")).visible = false;
+	execScriptDelayed("isInCinematicMode(false)", 0.1);
 end
 
 function onScenePartialStart_scene_basilic_courtyard()

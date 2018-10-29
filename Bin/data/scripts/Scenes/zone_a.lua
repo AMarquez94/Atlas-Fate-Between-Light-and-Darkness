@@ -1,5 +1,6 @@
 function onSceneStart_scene_zone_a()
 	setCorridorInvisible()
+	execScriptDelayed("isInCinematicMode(false)", 0.1);
 end
 
 function onScenePartialStart_scene_zone_a()

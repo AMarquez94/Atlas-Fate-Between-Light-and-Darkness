@@ -1,6 +1,7 @@
 function onSceneStart_scene_coliseo()
 	toButton(toEntity(getEntityByName("COL_mesh_terminal02")):getCompByName("button")):setCanBePressed(true);
 	toButton(toEntity(getEntityByName("COL_mesh_terminal01")):getCompByName("button")):setCanBePressed(false);
+	execScriptDelayed("isInCinematicMode(false)", 0.1);
 end
 
 function onScenePartialStart_scene_coliseo()
@@ -11,6 +12,7 @@ end
 function onSceneStart_scene_coliseo_2()
 	toButton(toEntity(getEntityByName("COL_mesh_terminal02")):getCompByName("button")):setCanBePressed(false);
 	toButton(toEntity(getEntityByName("COL_mesh_terminal01")):getCompByName("button")):setCanBePressed(true);
+	execScriptDelayed("isInCinematicMode(false)", 0.1);
 end
 
 function onScenePartialStart_scene_coliseo_2()
