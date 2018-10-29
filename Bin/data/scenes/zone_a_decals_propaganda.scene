@@ -2,7 +2,7 @@
   {
     "entity":
     {
-      "name": "zone_a_decals_missing"
+      "name": "zone_a_decals_propaganda"
       ,
       "transform":
       {
@@ -14,19 +14,19 @@
   {
     "entity":
     {
-      "name": "mesh_cartel_missing_1"
+      "name": "mesh_cartel_missing_9"
       ,
       "transform":
       {
-        "pos": "-29.6112 1.2586 -85.9807"
+        "pos": "-64.9971 7.66561 -82.8084"
         ,
-        "rotation": "-0.489873 0.509925 -0.509925 0.489874"
+        "rotation": "0.00963753 0.00963773 0.707041 -0.707041"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_cartel_missing_1.mesh"
+          "mesh": "data/meshes/mesh_cartel_missing_9.mesh"
           ,
           "materials":
           [
@@ -44,19 +44,19 @@
   {
     "entity":
     {
-      "name": "mesh_cartel_missing_3"
+      "name": "mesh_cartel_missing_8"
       ,
       "transform":
       {
-        "pos": "-29.2365 0.908361 -85.98"
+        "pos": "-45.5398 1.66413 -86.2273"
         ,
-        "rotation": "-0.488805 0.51095 -0.51095 0.488805"
+        "rotation": "0.254435 -0.286597 0.659745 -0.646423"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_cartel_missing_3.mesh"
+          "mesh": "data/meshes/mesh_cartel_missing_8.mesh"
           ,
           "materials":
           [
@@ -74,19 +74,19 @@
   {
     "entity":
     {
-      "name": "mesh_cartel_missing_6"
+      "name": "mesh_cartel_missing_7"
       ,
       "transform":
       {
-        "pos": "-29.6519 0.823601 -85.9847"
+        "pos": "-47.7372 1.71552 -74.7064"
         ,
-        "rotation": "0.5 -0.5 0.5 -0.5"
+        "rotation": "-0.477242 0.521766 -0.521766 0.477243"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_cartel_missing_6.mesh"
+          "mesh": "data/meshes/mesh_cartel_missing_7.mesh"
           ,
           "materials":
           [
@@ -104,19 +104,19 @@
   {
     "entity":
     {
-      "name": "mesh_cartel_missing_2"
+      "name": "mesh_cartel_missing_4"
       ,
       "transform":
       {
-        "pos": "-29.2716 1.3801 -85.9806"
+        "pos": "-51.6021 1.66081 -86.7113"
         ,
-        "rotation": "0.507804 -0.492072 0.492072 -0.507804"
+        "rotation": "0.511492 -0.488237 0.488238 -0.511492"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_cartel_missing_2.mesh"
+          "mesh": "data/meshes/mesh_cartel_missing_4.mesh"
           ,
           "materials":
           [
