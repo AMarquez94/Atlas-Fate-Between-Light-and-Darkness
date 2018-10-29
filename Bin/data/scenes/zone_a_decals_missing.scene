@@ -1,0 +1,43 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_decals_missing"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_missing_1"
+      ,
+      "transform":
+      {
+        "pos": "-38.6989 1.20349 -86.7042"
+        ,
+        "rotation": "0.5 -0.5 0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_cartel_missing_1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cartel_missing.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
