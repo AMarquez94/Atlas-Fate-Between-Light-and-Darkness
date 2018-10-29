@@ -15,7 +15,7 @@
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_dust_60x60_large.particles"
+					"data/particles/def_amb_dust_60x60_large_interior.particles"
 				]
 			}
 		}
@@ -35,16 +35,46 @@
 		}
 	}, {
 		"entity": {
-			"name": "Smoke_tiny1",
+			"name": "Smoke_fast_middle",
 			"transform": {
-				"pos": "-5.0 5.0 7.5",
+				"pos": "-9.7 4.8 6.8",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-			"particles_final_scene_controller" : true,
+			"particles_final_scene_controller": true,
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke_white.particles"
+					"data/particles/def_amb_smoke_interior_tiny.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Smoke_fast_middle",
+			"transform": {
+				"pos": "-8.1 4.8 6.8",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles_final_scene_controller": true,
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_smoke_interior_tiny.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Smoke_tiny1",
+			"transform": {
+				"pos": "-5.6 4.0 7.5",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles_final_scene_controller": true,
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_smoke_interior_huge.particles"
 				]
 			}
 		}
@@ -52,14 +82,14 @@
 		"entity": {
 			"name": "Smoke_tiny2",
 			"transform": {
-				"pos": "-13.3 5.0 7.5",
+				"pos": "-12.425 4.0 7.5",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-			"particles_final_scene_controller" : true,
+			"particles_final_scene_controller": true,
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke_white.particles"
+					"data/particles/def_amb_smoke_interior_huge.particles"
 				]
 			}
 		}
@@ -70,11 +100,11 @@
 				"pos": "1.6 4 8.0",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-			"particles_final_scene_controller" : true,
+			"particles_final_scene_controller": true,
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke2_white.particles"
+					"data/particles/def_amb_smoke_interior_fast.particles"
 				]
 			}
 		}
@@ -85,26 +115,26 @@
 				"pos": "5 4 8.0",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-			"particles_final_scene_controller" : true,
+			"particles_final_scene_controller": true,
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke2_white.particles"
+					"data/particles/def_amb_smoke_interior_fast.particles"
 				]
 			}
 		}
-	},{
+	}, {
 		"entity": {
 			"name": "Smoke_big1",
 			"transform": {
 				"pos": "1.6 0.7 6.0",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-			"particles_final_scene_controller" : true,
+			"particles_final_scene_controller": true,
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke2_white.particles"
+					"data/particles/def_amb_smoke_interior_fast.particles"
 				]
 			}
 		}
@@ -115,11 +145,11 @@
 				"pos": "5 0.7 6.0",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-			"particles_final_scene_controller" : true,
+			"particles_final_scene_controller": true,
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke2_white.particles"
+					"data/particles/def_amb_smoke_interior_fast.particles"
 				]
 			}
 		}
@@ -130,11 +160,11 @@
 				"pos": "-19.3 4 8.0",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-			"particles_final_scene_controller" : true,
+			"particles_final_scene_controller": true,
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke2_white.particles"
+					"data/particles/def_amb_smoke_interior_fast.particles"
 				]
 			}
 		}
@@ -145,11 +175,11 @@
 				"pos": "-22.4 4 8.0",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-			"particles_final_scene_controller" : true,
+			"particles_final_scene_controller": true,
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke2_white.particles"
+					"data/particles/def_amb_smoke_interior_fast.particles"
 				]
 			}
 		}
@@ -160,11 +190,11 @@
 				"pos": "-19.3 0.7 6.0",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-			"particles_final_scene_controller" : true,
+			"particles_final_scene_controller": true,
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke2_white.particles"
+					"data/particles/def_amb_smoke_interior_fast.particles"
 				]
 			}
 		}
@@ -175,11 +205,139 @@
 				"pos": "-22.4 0.7 6.0",
 				"rotation": "0.0 0.0 0.0 -1.0"
 			},
-			"particles_final_scene_controller" : true,
+			"particles_final_scene_controller": true,
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke2_white.particles"
+					"data/particles/def_amb_smoke_interior_fast.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Whisps1",
+			"transform": {
+				"pos": "1.5 5 9.0",
+				"eulers": "0.0 30.0 0.0"
+			},
+			"particles_final_scene_controller": true,
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps_interior2.particles",
+					"data/particles/def_amb_whisps_interior_core2.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Whisps2",
+			"transform": {
+				"pos": "4.8 4.475 8.3",
+				"eulers": "0.0 40.0 0.0"
+			},
+			"particles_final_scene_controller": true,
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps_interior3.particles",
+					"data/particles/def_amb_whisps_interior_core3.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Whisps3",
+			"transform": {
+				"pos": "1.6 0.775 6.675",
+				"eulers": "0.0 80.0 0.0"
+			},
+			"particles_final_scene_controller": true,
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps_interior1.particles",
+					"data/particles/def_amb_whisps_interior_core1.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Whisps4",
+			"transform": {
+				"pos": "5 1 6.675",
+				"eulers": "0.0 70.0 0.0"
+			},
+			"particles_final_scene_controller": true,
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps_interior2.particles",
+					"data/particles/def_amb_whisps_interior_core2.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Whisps5",
+			"transform": {
+				"pos": "-19.3 4 8.0",
+				"eulers": "0.0 30.0 0.0"
+			},
+			"particles_final_scene_controller": true,
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps_interior3.particles",
+					"data/particles/def_amb_whisps_interior_core3.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Whisps6",
+			"transform": {
+				"pos": "-22.4 4 8.0",
+				"eulers": "0.0 35.0 0.0"
+			},
+			"particles_final_scene_controller": true,
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps_interior1.particles",
+					"data/particles/def_amb_whisps_interior_core1.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Whisps7",
+			"transform": {
+				"pos": "-19.3 1.8 6.675",
+				"eulers": "0.0 85.0 0.0"
+			},
+			"particles_final_scene_controller": true,
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps_interior2.particles",
+					"data/particles/def_amb_whisps_interior_core2.particles"
+				]
+			}
+		}
+	}, {
+		"entity": {
+			"name": "Whisps8",
+			"transform": {
+				"pos": "-22.5 1.8 6.675",
+				"eulers": "0.0 75.0 0.0"
+			},
+			"particles_final_scene_controller": true,
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps_interior3.particles",
+					"data/particles/def_amb_whisps_interior_core3.particles"
 				]
 			}
 		}

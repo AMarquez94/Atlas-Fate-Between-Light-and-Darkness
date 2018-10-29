@@ -14,6 +14,7 @@
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117",
+			"delta_position": "72 140.5 33",
 			"bloom": {
 				"enabled": true,
 				"max_steps": 4,
@@ -93,7 +94,7 @@
 			"data/scenes/intro_silueta_casas.scene",
 
 			"data/scenes/intro_alminares_pantallas.scene",
-			
+			"data/scenes/corridor_particles.scene",
 			"data/scenes/intro_tubo_grande.scene"
 		]
 	},
@@ -110,6 +111,7 @@
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117",
+			"delta_position": "235 75 235",
 			"bloom": {
 				"enabled": true,
 				"max_steps": 4,
@@ -168,6 +170,7 @@
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117",
+			"delta_position": "67 112 -57",
 			"bloom": {
 				"enabled": true,
 				"max_steps": 4,
@@ -260,6 +263,7 @@
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117",
+			"delta_position": "150 170.5 175",
 			"bloom": {
 				"enabled": true,
 				"max_steps": 4,
@@ -315,6 +319,7 @@
 			"shadow_color": "0.0 0.0 0.0",
 			"ground_fog": "0.26 0.784 0.752",
 			"env_fog": "0.004 0.004 0.0117",
+			"delta_position": "150 170.5 175",
 			"bloom": {
 				"enabled": true,
 				"max_steps": 4,

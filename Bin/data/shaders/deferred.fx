@@ -121,11 +121,13 @@ float4 PS_Fog(
 {
   int3 ss_load_coords = uint3(iPosition.xy, 0);
   float3 hdrColor = txAlbedo.Sample(samLinear, iUV).xyz;
+		
 	hdrColor *= txAO.Sample(samLinear, iUV);	
 	hdrColor *= txSelfIllum.Load(uint3(iPosition.xy,0)).a; // temp 
 	hdrColor = environment_fog(iPosition, iUV, hdrColor);
 	hdrColor = ground_fog(iPosition, iUV, hdrColor);
-	
+	//hdrColor += txSelfIllum.Load(uint3(iPosition.xy,0)).xyz;
+		
 	return float4(hdrColor, 1);
 }
 

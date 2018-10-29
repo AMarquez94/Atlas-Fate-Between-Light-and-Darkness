@@ -57,13 +57,14 @@
 			"transform": {
 				"pos": "0.125444 7.92416 -37.9381",
 				"rotation": "0.0 0.0 0.0 -1.0"
-			},			"point_controller": {
+			},			
+			"point_controller": {
 				"intensity_flow": 0.4,
 				"intensity_flow_speed": 0.1,
 				"radius_flow": 0.25,
 				"radius_flow_speed": 4,
-				"emissive_target": "mesh_neon_amarillo_5",
-				"light_target": "luz_neon_amarillo_5",		
+				"emissive_target": "mesh_neon_amarilllo_3",
+				"light_target": "luz_neon_amarillo_3",		
 				"bursts" : [
 					["2 0.1 0.0"],
 					["0.2 0.05 0.0"],

@@ -1,6 +1,6 @@
 #include "mcv_platform.h"
 #include "comp_suspect_element.h"
-
+#include "entity/entity_parser.h"
 DECL_OBJ_MANAGER("suspect_ui_element", TCompSuspectElement);
 
 void TCompSuspectElement::onEnemySuspecting(const TMsgEnemySuspecting & msg)
@@ -23,7 +23,6 @@ void TCompSuspectElement::load(const json & j, TEntityParseContext & ctx)
 
 void TCompSuspectElement::update(float dt)
 {
-
     if (!CHandle(this).getOwner().isValid())
         return;
 

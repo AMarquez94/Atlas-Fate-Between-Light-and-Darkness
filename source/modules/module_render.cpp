@@ -155,6 +155,7 @@ bool CModuleRender::start()
     cb_globals.global_self_intensity = 10.f;
     cb_globals.global_delta_time = 0.f;
     cb_globals.global_shadow_intensity = 0.f;
+    cb_globals.global_delta_position = VEC3(0, 0, 0);
 
     cb_light.activate();
     cb_object.activate();
@@ -266,6 +267,7 @@ void CModuleRender::render()
         ImGui::ColorEdit4("Shadow Color", &cb_globals.global_shadow_color.x, 0.0001f);
         ImGui::ColorEdit4("Fog Ground Color", &cb_globals.global_fog_color.x, 0.0001f);
         ImGui::ColorEdit4("Fog Environment Color", &cb_globals.global_fog_env_color.x, 0.0001f);
+        ImGui::DragFloat3("Delta Posiiton", &cb_globals.global_delta_position.x, 0.1f);
 
         // Must be in the same order as the RO_* ctes
         static const char* render_output_str =
@@ -372,6 +374,7 @@ void CModuleRender::generateFrame() {
 
         activateMainCamera();
         deferred.render(rt_main, h_e_camera);
+        CRenderManager::get().renderCategory("solid_light");
         Engine.get().getParticles().renderCombinative();
         postProcessingStack();
     }

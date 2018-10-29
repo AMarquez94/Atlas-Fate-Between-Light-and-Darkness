@@ -80,6 +80,15 @@ function transition_intro_to_coliseum(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 	makeVisibleByTag("corridor", true);
 	toDoor(toEntity(getEntityByName("intro_marco_puerta001")):getCompByName("door")):open();
+	
+	h = toEntity(getEntityByName("intro_marco_puerta001"));
+	
+	t_transform = toTransform(h:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	rot = t_transform:getRotation();
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke_base.particles", pos, rot, true);
+	
 	--preloadScene("scene_coliseo");
 	
 	--execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\", \"\")", 2);

@@ -1,133 +1,94 @@
-[
-  {
-    "entity":
-    {
-      "name": "intro_alminares_pantallas"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "intro_alminar_pantallas_1"
-      ,
-      "transform":
-      {
-        "pos": "-27.9962 32.8168 50.1608"
-        ,
-        "rotation": "0.0 -0.198216 0.0 -0.980158"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/intro_alminar_pantallas_1.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_alminar.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "intro_alminar_pantallas_2"
-      ,
-      "transform":
-      {
-        "pos": "13.6136 32.8168 -36.5115"
-        ,
-        "rotation": "0.0 -0.198216 0.0 -0.980158"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/intro_alminar_pantallas_2.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_alminar.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "intro_alminar_pantallas_3"
-      ,
-      "transform":
-      {
-        "pos": "-39.257 32.743 -44.0697"
-        ,
-        "rotation": "0.0 -0.198216 0.0 -0.980158"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/intro_alminar_pantallas_3.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_alminar.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "intro_mesh_alminar"
-      ,
-      "transform":
-      {
-        "pos": "13.6136 7.67383 -36.5115"
-        ,
-        "rotation": "0.0 -0.198216 0.0 -0.980158"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/intro_mesh_alminar.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_alminar.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
+[{
+		"entity": {
+			"name": "intro_alminares_pantallas",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "intro_alminar_pantallas_1",
+			"transform": {
+				"pos": "-27.9962 32.8168 50.1608",
+				"rotation": "0.0 -0.198216 0.0 -0.980158"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/intro_alminar_pantallas_1.mesh",
+					"materials":
+					[
+						"data/materials/mtl_alminar.material"
+					]
+				}
+			],
+			"rotator": {
+				"speed": 0.7
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "intro_alminar_pantallas_2",
+			"transform": {
+				"pos": "13.6136 32.8168 -36.5115",
+				"rotation": "0.0 -0.198216 0.0 -0.980158"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/intro_alminar_pantallas_2.mesh",
+					"materials":
+					[
+						"data/materials/mtl_alminar.material"
+					]
+				}
+			],
+			"rotator": {
+				"speed": 0.7
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "intro_alminar_pantallas_3",
+			"transform": {
+				"pos": "-39.257 32.743 -44.0697",
+				"rotation": "0.0 -0.198216 0.0 -0.980158"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/intro_alminar_pantallas_3.mesh",
+					"materials":
+					[
+						"data/materials/mtl_alminar.material"
+					]
+				}
+			],
+			"rotator": {
+				"speed": 0.7
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "intro_mesh_alminar",
+			"transform": {
+				"pos": "13.6136 7.67383 -36.5115",
+				"rotation": "0.0 -0.198216 0.0 -0.980158"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/intro_mesh_alminar.mesh",
+					"materials":
+					[
+						"data/materials/mtl_alminar.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
 ]
