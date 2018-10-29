@@ -12,4 +12,13 @@ namespace GUI
       params->_maxUV += _speed * delta;
     }
   }
+  void CAnimateUV::onDeactivate()
+  {
+      TImageParams* params = _widget->getImageParams();
+      if (params)
+      {
+          params->_minUV = VEC2(0.f, 0.f);
+          params->_maxUV = VEC2(1.f, 1.f);
+      }
+  }
 }

@@ -64,6 +64,7 @@ public:
     bool start() override;
     bool stop() override;
     void update(float delta) override;
+    void render() override;
     CModuleLogic* getPointer() { return this; }
 
     void execCvar(std::string& script);

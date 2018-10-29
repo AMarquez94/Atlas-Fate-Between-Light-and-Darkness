@@ -178,7 +178,7 @@ void CVideoTexture::update(float dt) {
         if (hasFinished()) {
 
             float time_to_play = chrono.elapsedAndReset();
-            dbg("Video %s loops after %f secs\n", getName(), time_to_play);
+            dbg("Video %s loops after %f secs\n", getName().c_str(), time_to_play);
 
             close();
 

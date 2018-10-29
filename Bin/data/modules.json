@@ -42,6 +42,7 @@
 		"cameras",
 		"input",
 		"sound",
+		"logic",
 		"debug"
 	]
 }
