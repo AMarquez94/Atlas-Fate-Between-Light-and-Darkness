@@ -2,12 +2,15 @@
 	"entity": {
 		"name": "SuspectTriangle",
 		"transform": {
-			"pos": "0 0 0"
+			"pos": "0 0 0",
+			"scale": "0.75 0.5 0.75"
 		},
 		"render": [{
+			"self_intensity": 0.7,
+			"self_color": "1 1 0 1",
 			"mesh": "data/meshes/SuspectTriangle.mesh",
 			"materials": [
-				"data/materials/characters/mtl_player_main_hologram_solid.material"
+				"data/materials/mtl_suspect_triangle.material"
 			]
 		}],
 		"suspect_ui_element": {

@@ -1,6 +1,6 @@
 [{
 		"entity": {
-			"name": "basilic_courtyard_luna",
+			"name": "intro_planets",
 			"transform": {
 				"pos": "0.0 0.0 0.0"
 			}
@@ -9,14 +9,14 @@
 		"entity": {
 			"name": "luna",
 			"tied_hierarchy": {
-				"pos": "17.7689 38.3776 65.0954",
+				"pos": "20 43 -57",
 				"scale": "2 2 2"
 			},
 			"transform": {},
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"self_intensity": 0.21,
+					"self_intensity": 1.0,
 					"materials":
 					[
 						"data/materials/mtl_luna.material"
@@ -30,7 +30,7 @@
 		"entity": {
 			"name": "luna_back",
 			"tied_hierarchy": {
-				"pos": "17.7689 38.3776 65.0954",
+				"pos": "20 43 -57",
 				"scale": "2.5 2.5 2.5"
 			},
 			"transform": {},
@@ -52,7 +52,7 @@
 		"xentity": {
 			"name": "luna_back_atmosphere",
 			"tied_hierarchy": {
-				"pos": "17.7689 38.3776 65.0954",
+				"pos": "20 43 -57",
 				"scale": "2.1 2.1 2.1"
 			},
 			"transform": {},
@@ -72,14 +72,14 @@
 		"entity": {
 			"name": "planet1",
 			"tied_hierarchy": {
-				"pos": "20 150 -150",
+				"pos": "-130 150 -45",
 				"scale": "12 12 12"
 			},
 			"transform": {},
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"self_intensity": 0.41,
+					"self_intensity": 0.9,
 					"materials":
 					[
 						"data/materials/mtl_planet1.material"
@@ -93,14 +93,14 @@
 		"entity": {
 			"name": "planet1_back",
 			"tied_hierarchy": {
-				"pos": "20 150 -150",
+				"pos": "-130 150 -45",
 				"scale": "13.2 13.2 13.2"
 			},
 			"transform": {},
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"color": "0.4 0.405 0.298 1",
+					"color": "0.22 0.22 0.22 1",
 					"self_intensity": 0.6,
 					"materials":
 					[
@@ -115,14 +115,14 @@
 		"entity": {
 			"name": "planet1_atmosphere",
 			"tied_hierarchy": {
-				"pos": "20 150 -150",
+				"pos": "-130 150 -45",
 				"scale": "12.2 12.2 12.2"
 			},
 			"transform": {},
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"self_intensity": 0.3,
+					"self_intensity": 1,
 					"materials":
 					[
 						"data/materials/mtl_luna_back_atmosphere.material"
@@ -136,14 +136,14 @@
 		"entity": {
 			"name": "planet2",
 			"tied_hierarchy": {
-				"pos": "48 110 -148",
+				"pos": "-123 113 -70",
 				"scale": "5 5 5"
 			},
 			"transform": {},
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"self_intensity": 0.3,
+					"self_intensity": 0.28,
 					"materials":
 					[
 						"data/materials/mtl_planet2.material"
@@ -157,7 +157,7 @@
 		"entity": {
 			"name": "planet2_back",
 			"tied_hierarchy": {
-				"pos": "48 110 -148",
+				"pos": "-123 113 -70",
 				"scale": "5.5 5.5 5.5"
 			},
 			"transform": {},
@@ -176,17 +176,17 @@
 			"local_aabb": true
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "planet2_atmosphere",
 			"tied_hierarchy": {
-				"pos": "48 110 -148",
+				"pos": "-123 113 -70",
 				"scale": "5.2 5.2 5.2"
 			},
 			"transform": {},
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"self_intensity": 34.0,
+					"self_intensity": 0.13,
 					"materials":
 					[
 						"data/materials/mtl_luna_back_atmosphere.material"

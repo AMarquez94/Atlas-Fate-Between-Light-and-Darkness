@@ -3,7 +3,7 @@
 		"prefab": "data/prefabs/player.prefab",
 		"name": "The Player",
 		"transform": {
-			"pos": "-6.275 0 31.525",
+			"pos": "-22.2 0.7 -71.9",
 			"lookat": "-6.275 0 30.525"
 		},
 		"ai_player": {

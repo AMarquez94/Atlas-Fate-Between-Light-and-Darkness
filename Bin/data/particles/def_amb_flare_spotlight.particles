@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 0.99,
+		"duration": 15000.0,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
@@ -11,7 +11,7 @@
 		"start_color": "1 0 0 1",
 		"gravity": 0.0,
 		"simulation_speed": 1,
-		"max_particles": 2,
+		"max_particles": 1,
 		"offset": "0 0.0 0.2"
 	},
 	"emission": {

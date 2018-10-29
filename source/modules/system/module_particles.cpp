@@ -155,6 +155,49 @@ Particles::TParticleHandle CModuleParticles::launchDynamicSystem(const std::stri
     //return Particles::TParticleHandle();
 }
 
+Particles::TParticleHandle CModuleParticles::launchDynamicSystemRot(const std::string& name, VEC3 pos, QUAT rot, bool persistent)
+{
+    const Particles::TCoreSystem* cps = Resources.get(name)->as<Particles::TCoreSystem>();
+    assert(cps);
+
+    CHandle h_e;
+    h_e.create< CEntity >();
+    CEntity* e = h_e;
+
+    CHandle h_comp;
+    h_comp = getObjectManager<TCompTransform>()->createHandle();
+    e->set(h_comp.getType(), h_comp);
+
+    h_comp = getObjectManager<TCompName>()->createHandle();
+    e->set(h_comp.getType(), h_comp);
+    TCompName* p_name = e->get<TCompName>();
+    p_name->setName(std::string("Dynamic_Particle_" + h_e.asString()).c_str());
+
+    if (persistent) {
+        CHandle h_tag = getObjectManager<TCompTags>()->createHandle();
+        h_tag.setOwner(h_e);
+        e->set(h_tag.getType(), h_tag);
+        TCompTags* c_tag = h_tag;
+        CTagsManager::get().registerTagName(getID("persistent"), "persistent");
+        c_tag->addTag(getID("persistent"));
+    }
+
+
+    // Finally we set the desired position and rotation
+    TCompTransform * c_transform = e->get<TCompTransform>();
+    c_transform->setPosition(pos);
+    c_transform->setRotation(rot);
+
+    Particles::CSystem* ps = new Particles::CSystem(cps, h_e);
+    ps->_destroy_entity = true;
+    ps->launch();
+
+    _activeSystems.push_back(ps);
+
+    return ps->getHandle();
+    //return Particles::TParticleHandle();
+}
+
 void CModuleParticles::kill(Particles::TParticleHandle ph, float fadeOutTime) {
 
     auto it = std::find_if(_activeSystems.begin(), _activeSystems.end(), [&ph](const Particles::CSystem* ps)

@@ -1,7 +1,7 @@
 {
   "shadows": true
   ,
-  "technique": "tv_screen.tech"
+  "technique": "tv_screen_final.tech"
   ,
   "textures":
   {

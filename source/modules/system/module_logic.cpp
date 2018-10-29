@@ -153,7 +153,9 @@ void CModuleLogic::publishClasses() {
     SLB::Class< CModuleParticles >("Particles", m)
         .comment("This is our wrapper of the particles class")
         .set("killAll", &CModuleParticles::killAll)
-        .set("launchDynamicSystem", &CModuleParticles::launchDynamicSystem);
+        .set("launchDynamicSystemRot", &CModuleParticles::launchDynamicSystemRot)
+        .set("launchDynamicSystem", &CModuleParticles::launchDynamicSystem)
+        ;
 
 	SLB::Class< CModuleGameManager >("GameManager", m)
 		.comment("This is our wrapper of the gamemanager class")

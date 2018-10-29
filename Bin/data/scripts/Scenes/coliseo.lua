@@ -62,6 +62,14 @@ end
 
 function closeIntroDoor()
 	intro_door = toDoor(toEntity(getEntityByName("col_intro_framedoor")):getCompByName("door"));
+	
+	h = toEntity(getEntityByName("col_intro_framedoor"));
+	t_transform = toTransform(h:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	rot = t_transform:getRotation();
+	particles:launchDynamicSystemRot("data/particles/def_gate_smoke.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_gate_smoke_base.particles", pos, rot, true);
+	
 	intro_door:setClosedScript("setCorridorInvisible()");
 	intro_door:close();
 	getEntityByName("COL_trigger_corridor_intro"):destroy();
@@ -162,13 +170,31 @@ end
 function transition_coliseum_to_zone_a(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 	makeVisibleByTag("corridor", true);
-	toDoor(toEntity(getEntityByName("col_zone_a_framedoor001")):getCompByName("door")):open();
+
+	h = toEntity(getEntityByName("col_zone_a_framedoor001"));
+	toDoor(h:getCompByName("door")):open();
+	
+	t_transform = toTransform(h:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	rot = t_transform:getRotation();
+	particles:launchDynamicSystemRot("data/particles/def_gate_smoke.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_gate_smoke_base.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_gate_smoke_middle.particles", pos, rot, true);
 end
 
 function transition_coliseum_to_courtyard(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 	makeVisibleByTag("corridor", true);
-	toDoor(toEntity(getEntityByName("col_bc_framedoor002")):getCompByName("door")):open();
+
+	h = toEntity(getEntityByName("col_bc_framedoor002"));
+	toDoor(h:getCompByName("door")):open();
+	
+	t_transform = toTransform(h:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	rot = t_transform:getRotation();
+	particles:launchDynamicSystemRot("data/particles/def_gate_smoke.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_gate_smoke_base.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_gate_smoke_middle.particles", pos, rot, true);
 end
 
 function onTriggerEnter_COL_trigger_corridor_zone_a_player()
