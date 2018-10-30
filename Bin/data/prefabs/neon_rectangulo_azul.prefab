@@ -43,12 +43,6 @@
 					]
 				}
 			],
-			"particles": {
-				"cores":
-				[
-					"data/particles/def_amb_flare_neon_square_blue.particles"
-				]
-			},
 			"collider": {
 				"shape": "mesh",
 				"name": "data/colliders/collider_neon_rectangulo_low.collider"
