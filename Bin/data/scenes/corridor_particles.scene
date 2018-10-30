@@ -3,7 +3,10 @@
 			"name": "intro_particles",
 			"transform": {
 				"pos": "0.0 0.0 0.0"
-			}
+			},
+			"tags": [
+				"corridor", "corridor_particles", "intro_particles"
+			]
 		}
 	}, {
 		"entity": {
@@ -17,7 +20,10 @@
 				[
 					"data/particles/def_amb_dust_40x40_corridor.particles"
 				]
-			}
+			},
+			"tags": [
+				"corridor", "corridor_particles"
+			]
 		}
 	}, {
 		"entity": {
@@ -31,7 +37,10 @@
 				[
 					"data/particles/def_amb_fog_40x40_corridor.particles"
 				]
-			}
+			},
+			"tags": [
+				"corridor", "corridor_particles"
+			]
 		}
 	}, {
 		"entity": {
@@ -45,7 +54,10 @@
 				[
 					"data/particles/def_amb_whisps_corridor.particles"
 				]
-			}
+			},
+			"tags": [
+				"corridor", "corridor_particles"
+			]
 		}
 	}
 ]

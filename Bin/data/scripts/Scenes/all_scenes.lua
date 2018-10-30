@@ -28,10 +28,11 @@ function onTriggerEnter_TriggerKill_player()
 	playerController:die();
 end
 
-function setCorridorInvisible()
+function setCorridorInvisible(particles_to_destroy)
 	makeVisibleByTag("corridor", false);
 	makeVisibleByTag("corridor_door", true);
 	makeVisibleByTag("dir_light", true);
+	destroyHandleByTag(particles_to_destroy);
 end
 
 function startCinematicMode(time_to_end)

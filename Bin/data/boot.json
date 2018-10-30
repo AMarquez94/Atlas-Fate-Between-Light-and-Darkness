@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_zone_a",
+	"default_scene": "scene_intro",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -28,7 +28,8 @@
 		},
 		"persistent_scenes": [
 			"data/scenes/Intro/_player.scene",
-			"data/scenes/_main_cameras.scene"
+			"data/scenes/_main_cameras.scene",
+			"data/scenes/corridor_particles.scene"
 		],
 		"scene_group": [
 			"data/scenes/Intro/intro_test_instancing.scene",
@@ -94,7 +95,6 @@
 			"data/scenes/intro_silueta_casas.scene",
 
 			"data/scenes/intro_alminares_pantallas.scene",
-			"data/scenes/corridor_particles.scene",
 			"data/scenes/intro_tubo_grande.scene"
 		]
 	},
