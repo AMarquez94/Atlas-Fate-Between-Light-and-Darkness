@@ -18,7 +18,6 @@ function restartCinematics()
 	cinematicCorridorToZoneAExecuted = false;
 	cinematicCorridorToBasilicExecuted = false;
 	cinematic_enter_zone_aExecuted = false;
-	cinematic_tower_activatedExecuted = false;
 	col_trigger_district_7Executed = false;
 	zone_a_door_activated = false;
 end
