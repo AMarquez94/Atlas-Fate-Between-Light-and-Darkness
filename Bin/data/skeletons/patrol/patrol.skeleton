@@ -90,6 +90,12 @@
 			"name": "dead"
 		},
 		{
+			"name": "lookingfor"
+		},
+		{
+			"name": "repairing"
+		},
+		{
 			"name": "turn_left"
 		},
 		{

@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "luzpared"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_luzpared"
+      ,
+      "transform":
+      {
+        "pos": "-0.0074265 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_luzpared.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_generadortorre.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "box"
+        ,
+        "size": "0.299285 0.155825 0.299285"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

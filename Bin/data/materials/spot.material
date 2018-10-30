@@ -1,8 +1,10 @@
 {
-"technique": "pbr_shaft_spotlight.tech",
-	"shadows": false,
-	"textures": {
-		"albedo": "data/textures/tx_spot_beam_hd.dds",
-		"normal": "data/textures/null_normal.dds"
-	}
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/tx_spot_beam_hd.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
 }
