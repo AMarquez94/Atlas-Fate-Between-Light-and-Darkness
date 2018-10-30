@@ -81,6 +81,7 @@
 			"render":
 			[{
 					"mesh": "data/meshes/prop_lightpose_cone.mesh",
+					"self_intensity": 0.6,
 					"materials":
 					[
 						"data/materials/mtl_lightpost_shaft.material",

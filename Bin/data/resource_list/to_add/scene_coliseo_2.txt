@@ -493,7 +493,6 @@ data/textures/player/Shade_mtl_Emissive.dds
 data/textures/player/Shade_mtl_Metallic.dds
 data/textures/player/Shade_mtl_Normal.dds
 data/textures/player/Shade_mtl_Roughness.dds
-data/materials/characters/mtl_player_main_env.material
 data/materials/characters/mtl_player_main.material
 data/skeletons/player/bolsa_cinturon.mesh
 data/skeletons/player/buff_exterior.mesh
@@ -506,6 +505,7 @@ data/skeletons/player/cruzado_capsula1.mesh
 data/skeletons/player/cruzado_capsula2.mesh
 data/skeletons/player/cruzado_capsula3.mesh
 data/skeletons/player/hood.mesh
+data/materials/characters/mtl_player_main_env.material
 data/skeletons/player/tira_L.mesh
 data/skeletons/player/tira_R.mesh
 data/materials/characters/mtl_player_main_shade.material

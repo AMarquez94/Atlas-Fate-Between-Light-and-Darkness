@@ -30,6 +30,7 @@
 #include "components/object_controller/comp_door.h"
 #include "components/postfx/comp_render_bloom.h"
 #include "input/devices/mouse.h"
+#include "components/comp_group.h"
 
 bool CModuleLogic::start() {
 
@@ -1411,6 +1412,25 @@ void pasarelaLightsFadeOut() {
 
 void speedUpRuedasFinalScene() {
 	EngineEntities.broadcastMsg(TMsgRotatorAccelerate{ 10.0f,4.0f,0.0f });
+
+    // Dirty way of working, but no time to place this beautifully somewhere else
+    // Shutting down the slow particles.
+    CEntity * out = getEntityByName("Particles_Slow");
+    TCompGroup * out_group = out->get<TCompGroup>();
+    for (auto &p : out_group->handles) {
+        CEntity * current = p;
+        TCompParticles * part = current->get<TCompParticles>();
+        part->setSystemState(false);
+    }
+
+    //Enabling the fast particles
+    out = getEntityByName("Particles_Fast");
+    out_group = out->get<TCompGroup>();
+    for (auto &p : out_group->handles) {
+        CEntity * current = p;
+        TCompParticles * part = current->get<TCompParticles>();
+        part->setSystemState(true);
+    }
 
 }
 

@@ -1109,39 +1109,5 @@
 				"light"
 			]
 		}
-	}, {
-		"entity": {
-			"name": "Spot016",
-			"transform": {
-				"pos": "-3.1336 0.923832 8.40108",
-				"lookat": "-3.48471 0.715489 29.8925"
-			},
-			"light_spot": {
-				"type": "spotlight",
-				"proj_type": "perspective",
-				"range": 21.4953,
-				"angle": 29.1,
-				"inner_cut": 16.2,
-				"z_far": 21.4953,
-				"volume": false,
-				"color": "0.768628 0.54902 0.0705882 1.0",
-				"intensity": 0.8,
-				"casts_shadows": true,
-				"shadows_step": 1.0,
-				"shadows_resolution": 512,
-				"shadows_fmt": "R32_TYPELESS"
-			},
-			"abs_aabb": true,
-			"local_aabb": true,
-			"collider": {
-				"shape": "convex",
-				"name": "data/colliders/Spot016.collider",
-				"is_trigger": true
-			},
-			"tags":
-			[
-				"light"
-			]
-		}
 	}
 ]

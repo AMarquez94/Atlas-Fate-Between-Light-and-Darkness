@@ -421,6 +421,8 @@
       "data/scenes/basilic_interior_nucleo.scene",
       "data/scenes/basilic_interior_sueloyagarres.scene",
       "data/scenes/Basilic_interior/basilic_interior_particles.scene",
+			"data/scenes/Basilic_interior/basilic_interior_particles_slow.scene",
+			"data/scenes/Basilic_interior/basilic_interior_particles_fast.scene",
       "data/scenes/Basilic_interior/basilic_interior_holograms.scene",
       "data/scenes/Basilic_interior/basilic_interior_monitores.scene",
 
