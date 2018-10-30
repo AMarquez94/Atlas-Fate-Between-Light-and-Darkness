@@ -1,6 +1,6 @@
 {
 	"system": {
-		"duration": 1,
+		"duration": 0.75,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 1.0,
