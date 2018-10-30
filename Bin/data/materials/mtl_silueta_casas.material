@@ -9,6 +9,6 @@
     ,
     "normal": "data/textures/null_normal.dds"
 		    ,
-    "metallic": "data/textures/white.dds"
+    "emissive": "data/textures/white.dds"
   }
 }

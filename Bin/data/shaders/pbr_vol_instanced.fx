@@ -231,7 +231,7 @@ float4 PS_GBuffer_RayShafts_Point(
   , float3 iWorldPos : TEXCOORD2
 ): SV_Target0
 {
-	float STEPS = 30;
+	float STEPS = 40;
   float TAU = FACTOR_TAU * 0.5;
   float PHI = FACTOR_PHI * light_intensity * 0.25;
 	
