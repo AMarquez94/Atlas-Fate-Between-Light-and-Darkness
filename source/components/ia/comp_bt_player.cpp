@@ -1118,6 +1118,11 @@ BTNode::ERes TCompAIPlayer::actionResetTimersCinematicWalkFall2(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersBeforeSMCinematicFallSM(float dt)
 {
     _maxTimer = 1.f;
+
+    TCompEmissionController *my_emission = get<TCompEmissionController>();
+    if (my_emission) {
+        my_emission->blend(VEC4(0, 1, 1, 1), 0.5f);
+    }
     return BTNode::ERes::LEAVE;
 }
 
