@@ -391,11 +391,15 @@ void CModuleLogic::publishClasses() {
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
     m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
     m->set("destroyHandle", SLB::FuncCall::create(&destroyHandle));
+    m->set("destroyHandleByName", SLB::FuncCall::create(&destroyHandleByName));
+    m->set("destroyHandleByTag", SLB::FuncCall::create(&destroyHandleByTag));
     m->set("resetPatrolLights", SLB::FuncCall::create(&resetPatrolLights));
     m->set("animateSoundGraph", SLB::FuncCall::create(&animateSoundGraph));
     m->set("makeVisibleByTag", SLB::FuncCall::create(&makeVisibleByTag));
     m->set("getPlayerLocalCoordinatesInReferenceTo", SLB::FuncCall::create(&getPlayerLocalCoordinatesInReferenceTo));
+    m->set("getEntityLocalCoordinatesInReferenceTo", SLB::FuncCall::create(&getEntityLocalCoordinatesInReferenceTo));
     m->set("movePlayerToRefPos", SLB::FuncCall::create(&movePlayerToRefPos));
+    m->set("moveEntityToRefPos", SLB::FuncCall::create(&moveEntityToRefPos));
     m->set("invalidatePlayerPhysxCache", SLB::FuncCall::create(&invalidatePlayerPhysxCache));
     m->set("GUI_EnableRemoveInhibitor", SLB::FuncCall::create(&GUI_EnableRemoveInhibitor));
     m->set("sendPlayerIlluminatedMsg", SLB::FuncCall::create(&sendPlayerIlluminatedMsg));
@@ -839,6 +843,25 @@ void destroyHandle(unsigned int h)
     handle.destroy();
 }
 
+void destroyHandleByName(const std::string & name)
+{
+    if (name != "") {
+        CHandle h = getEntityByName(name);
+        if (h.isValid()) {
+            h.destroy();
+        }
+    }
+}
+
+void destroyHandleByTag(const std::string& tag) {
+    if (tag != "") {
+        VHandles v = CTagsManager::get().getAllEntitiesByTag(getID(tag.c_str()));
+        for (int i = 0; i < v.size(); i++) {
+            v[i].destroy();
+        }
+    }
+}
+
 void resetPatrolLights()
 {
     VHandles patrols = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
@@ -873,6 +896,23 @@ VEC3 getPlayerLocalCoordinatesInReferenceTo(const std::string & ref_entity)
     return VEC3::Transform(ppos->getPosition(), ref_trans);
 }
 
+VEC3 getEntityLocalCoordinatesInReferenceTo(const std::string & entityToGet, const std::string & ref_entity)
+{
+    CEntity* e_entity_to_get = getEntityByName(entityToGet);
+    CEntity* e_ref_entity = getEntityByName(ref_entity);
+    if (e_entity_to_get && e_ref_entity) {
+        TCompTransform* epos = e_entity_to_get->get<TCompTransform>();
+        TCompTransform* ref_pos = e_ref_entity->get<TCompTransform>();
+
+        MAT44 ref_trans = ref_pos->asMatrix().Invert();
+        return VEC3::Transform(epos->getPosition(), ref_trans);
+    }
+    else {
+        return VEC3::Zero;
+    }
+   
+}
+
 void movePlayerToRefPos(const std::string & ref_entity, VEC3 p_rel_pos)
 {
     CEntity* player = EngineEntities.getPlayerHandle();
@@ -892,6 +932,25 @@ void movePlayerToRefPos(const std::string & ref_entity, VEC3 p_rel_pos)
     tplayer->setPosition(final_pos);
     TCompRigidbody* my_rigidbody = player->get<TCompRigidbody>();
     my_rigidbody->setGlobalPose(tplayer->getPosition(), tplayer->getRotation());
+}
+
+void moveEntityToRefPos(const std::string & entity_to_move, const std::string & ref_entity, VEC3 p_rel_pos)
+{
+    CEntity* e_entity_to_move = getEntityByName(entity_to_move);
+    TCompTransform* t_entity_to_move = e_entity_to_move->get<TCompTransform>();
+    CEntity* final_reference = getEntityByName(ref_entity);
+    TCompTransform* t_final_reference = final_reference->get<TCompTransform>();
+
+    /* Rotate the vector */
+    QUAT rot_final = t_final_reference->getRotation();
+    VEC3 u = VEC3(rot_final.x, rot_final.y, rot_final.z);
+    float s = rot_final.w;
+    p_rel_pos = 2.0f * u.Dot(p_rel_pos) * u
+        + (s*s - u.Dot(u)) * p_rel_pos
+        + 2.0f * s * u.Cross(p_rel_pos);
+
+    VEC3 final_pos = p_rel_pos + t_final_reference->getPosition();
+    t_entity_to_move->setPosition(final_pos);
 }
 
 void invalidatePlayerPhysxCache() {

@@ -27,7 +27,8 @@
 		},
 		"persistent_scenes": [
 			"data/scenes/Intro/_player.scene",
-			"data/scenes/_main_cameras.scene"
+			"data/scenes/_main_cameras.scene",
+			"data/scenes/corridor_particles.scene"
 		],
 		"scene_group": [
 			"data/scenes/Intro/intro_test_instancing.scene",

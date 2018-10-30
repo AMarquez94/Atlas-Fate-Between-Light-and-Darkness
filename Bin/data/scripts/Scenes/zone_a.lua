@@ -1,5 +1,5 @@
 function onSceneStart_scene_zone_a()
-	setCorridorInvisible()
+	setCorridorInvisible("")
 	execScriptDelayed("isInCinematicMode(false)", 0.1);
 end
 
@@ -67,7 +67,7 @@ function onTriggerEnter_ZON_Trigger_Enter_ZoneA_player()
 	particles:launchDynamicSystemRot("data/particles/def_door_smoke.particles", pos, rot, true);
 	particles:launchDynamicSystemRot("data/particles/def_door_smoke_base.particles", pos, rot, true);
 	
-	zonea_a_door:setClosedScript("setCorridorInvisible()");
+	zonea_a_door:setClosedScript("setCorridorInvisible(\"\")");
 	zonea_a_door:close();
 	if(cinematicsEnabled and not cinematic_enter_zone_aExecuted) then
 		cinematic_enter_zone_a();
