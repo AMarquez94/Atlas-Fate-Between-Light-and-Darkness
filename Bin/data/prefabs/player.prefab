@@ -333,9 +333,10 @@
 		"entity": {
 			"name": "Player_Idle_SM",
 			"transform": "0 0 0",
-			"hierarchy": {
+			"bone_tracker": {
+				"bone": "Bip001 Spine2",
 				"parent": "The Player",
-				"pos": "0 0 0"
+				"rotation_update" : true
 			},
 			"render": {
 				"mesh": "axis.mesh"

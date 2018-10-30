@@ -30,6 +30,7 @@ public:
 	void activate();
     void cullFrame();
     bool isCulled() const;
+    bool volumetric = false;
 
 	MAT44 getWorld();
     VEC4 getColor() const;

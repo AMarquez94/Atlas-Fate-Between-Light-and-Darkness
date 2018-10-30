@@ -45,6 +45,7 @@ void TCompLightPoint::load(const json& j, TEntityParseContext& ctx) {
     intensity = j.value("intensity", intensity);
     inner_cut = j.value("inner_cut", inner_cut) + 0.01f;
     outer_cut = j.value("outer_cut", outer_cut);
+    volumetric = j.value("volumetric", false);
 
     if (j.count("projector")) {
         std::string projector_name = j.value("projector", "");

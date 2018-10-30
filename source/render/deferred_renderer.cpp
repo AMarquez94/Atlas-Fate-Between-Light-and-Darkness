@@ -293,7 +293,7 @@ void CDeferredRenderer::renderVolumes() {
     });
     */
     // Activate tech for the light dir 
-    /*auto tech = Resources.get("pbr_rayshaft_pointlight.tech")->as<CRenderTechnique>();
+    auto tech = Resources.get("pbr_rayshaft_pointlight.tech")->as<CRenderTechnique>();
     tech->activate();
 
     // All light directional use the same mesh
@@ -303,12 +303,12 @@ void CDeferredRenderer::renderVolumes() {
     // Para todas las luces... pintala
     getObjectManager<TCompLightPoint>()->forEach([mesh](TCompLightPoint* c) {
 
-        if (c->isEnabled && !c->isCulled()) {
+        if (c->isEnabled && !c->isCulled() && c->volumetric) {
             c->activate();
             setWorldTransform(c->getWorld());
             mesh->render();
         }
-    });*/
+    });
 
     auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
     TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;

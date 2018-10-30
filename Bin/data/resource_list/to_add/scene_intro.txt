@@ -1073,6 +1073,7 @@ data/scenes/intro_subtitle_triggers.scene
 data/scenes/intro_silueta_casas.scene
 data/meshes/mesh_silueta_casas.mesh
 data/textures/tx_silueta_casas_alb.dds
+data/textures/white.dds
 data/materials/mtl_silueta_casas.material
 data/scenes/intro_alminares_pantallas.scene
 data/meshes/intro_alminar_pantallas_1.mesh
@@ -1117,7 +1118,6 @@ data/textures/particles/trail_ball.dds
 data/particles/def_sm_land_flare.particles
 data/particles/def_sm_land_core.particles
 data/textures/tx_swap.dds
-data/textures/white.dds
 data/materials/mtl_weapon_disc.material
 data/particles/def_attack_trail.particles
 data/textures/particles/particle_cloud.dds
