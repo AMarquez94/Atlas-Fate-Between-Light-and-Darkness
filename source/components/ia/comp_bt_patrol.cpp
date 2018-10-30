@@ -1529,19 +1529,21 @@ bool TCompAIPatrol::isStunnedPatrolInFov(float fov, float maxChaseDistance)
     if (stunnedPatrols.size() > 0) {
         TCompTransform *mypos = get<TCompTransform>();
         TCompCollider * myCollider = get<TCompCollider>();
-        CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
-        float myY = mypos->getPosition().y;
-        for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
-            CEntity* ePatrol = stunnedPatrols[i];
-            TCompTransform* stunnedPatrol = ePatrol->get<TCompTransform>();
-            float enemyY = stunnedPatrol->getPosition().y;
-            if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(45.f))
-                && VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
-                && !isEntityHidden(stunnedPatrols[i])
-                && fabsf(myY - enemyY) <= 2 * capsuleCollider->height
-                && std::find(ignoredPatrols.begin(), ignoredPatrols.end(), stunnedPatrols[i]) == ignoredPatrols.end()) {
-                found = true;
-                lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
+        if (myCollider) {
+            CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+            float myY = mypos->getPosition().y;
+            for (int i = 0; i < stunnedPatrols.size() && !found; i++) {
+                CEntity* ePatrol = stunnedPatrols[i];
+                TCompTransform* stunnedPatrol = ePatrol->get<TCompTransform>();
+                float enemyY = stunnedPatrol->getPosition().y;
+                if (mypos->isInFov(stunnedPatrol->getPosition(), fov, deg2rad(45.f))
+                    && VEC3::Distance(mypos->getPosition(), stunnedPatrol->getPosition()) < maxChaseDistance
+                    && !isEntityHidden(stunnedPatrols[i])
+                    && fabsf(myY - enemyY) <= 2 * capsuleCollider->height
+                    && std::find(ignoredPatrols.begin(), ignoredPatrols.end(), stunnedPatrols[i]) == ignoredPatrols.end()) {
+                    found = true;
+                    lastStunnedPatrolKnownPos = stunnedPatrol->getPosition();
+                }
             }
         }
     }

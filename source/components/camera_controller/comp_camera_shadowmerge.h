@@ -9,7 +9,7 @@ class TCompCameraShadowMerge : public CCamera, public TCompBase
 private:
     CHandle     _h_target;
     std::string _target_name;
-    physx::PxQueryFilterData cameraFilter;
+    physx::PxQueryFilterData clippingFilter;
 
     float _speed;
     VEC2 _clamp_angle;

@@ -1,0 +1,103 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_monitores"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "im_monitor_pantalla_1"
+      ,
+      "transform":
+      {
+        "pos": "-11.8213 1.4322 3.61508"
+        ,
+        "rotation": "0.0 -0.328711 0.0 -0.94443"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/im_monitor_pantalla_1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitores_interior.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "im_monitor_pantalla_2"
+      ,
+      "transform":
+      {
+        "pos": "-11.8213 1.4322 3.61508"
+        ,
+        "rotation": "0.0 -0.328711 0.0 -0.94443"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/im_monitor_pantalla_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitores_interior.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "im_monitor_pantalla_3"
+      ,
+      "transform":
+      {
+        "pos": "-11.8213 1.4322 3.61508"
+        ,
+        "rotation": "0.0 -0.328711 0.0 -0.94443"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/im_monitor_pantalla_3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitores_interior.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

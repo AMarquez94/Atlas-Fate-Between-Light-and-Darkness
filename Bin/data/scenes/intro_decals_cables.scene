@@ -14,37 +14,7 @@
   {
     "entity":
     {
-      "name": "cable_suelo001"
-      ,
-      "transform":
-      {
-        "pos": "-5.56001 0.0271395 18.6754"
-        ,
-        "rotation": "0.59114 0.388013 0.388013 -0.59114"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/cable_suelo001.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cable.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "cable_suelo"
+      "name": "intro_cable_suelo"
       ,
       "transform":
       {
@@ -56,7 +26,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/cable_suelo.mesh"
+          "mesh": "data/meshes/intro_cable_suelo.mesh"
           ,
           "materials":
           [
@@ -74,16 +44,30 @@
   {
     "entity":
     {
-      "name": "mesh_cajetin_cables004"
-      ,
-      "prefab": "data/prefabs/cajetin_cables.prefab"
+      "name": "intro_cable_suelo001"
       ,
       "transform":
       {
-        "pos": "-5.71403 0.0109601 18.8376"
+        "pos": "-5.56001 0.0271395 18.6754"
         ,
-        "rotation": "0.0 0.300706 0.0 -0.953717"
+        "rotation": "0.59114 0.388013 0.388013 -0.59114"
       }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_cable_suelo001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cable.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
     }
   }
   ,
@@ -131,6 +115,22 @@
         "pos": "-11.5921 -0.0028663 32.645"
         ,
         "rotation": "0.0 0.391515 0.0 -0.920172"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables004"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.71403 0.0109601 18.8376"
+        ,
+        "rotation": "0.0 0.300706 0.0 -0.953717"
       }
     }
   }
