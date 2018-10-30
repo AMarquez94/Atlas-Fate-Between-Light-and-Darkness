@@ -110,26 +110,31 @@ bool TCompAIEnemy::isEntityInFov(const std::string& entityToChase, float fov, fl
     CEntity * me = myHandle.getOwner();
     TCompTransform *mypos = me->get<TCompTransform>();
     TCompCollider *myCollider = me->get<TCompCollider>();
-    CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
-    float myY = mypos->getPosition().y;
+    if (myCollider) {
+        CPhysicsCapsule * capsuleCollider = (CPhysicsCapsule *)myCollider->config;
+        float myY = mypos->getPosition().y;
 
-    CHandle hPlayer = EngineEntities.getPlayerHandle();
-    if (hPlayer.isValid()) {
-        CEntity *ePlayer = hPlayer;
-        TCompTransform *ppos = ePlayer->get<TCompTransform>();
-        float playerY = ppos->getPosition().y;
-        float dist = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
-        TCompTempPlayerController *pController = ePlayer->get<TCompTempPlayerController>();
+        CHandle hPlayer = EngineEntities.getPlayerHandle();
+        if (hPlayer.isValid()) {
+            CEntity *ePlayer = hPlayer;
+            TCompTransform *ppos = ePlayer->get<TCompTransform>();
+            float playerY = ppos->getPosition().y;
+            float dist = VEC3::Distance(mypos->getPosition(), ppos->getPosition());
+            TCompTempPlayerController *pController = ePlayer->get<TCompTempPlayerController>();
 
-        /* Player inside cone of vision */
-        bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(45.f))/* && fabsf(myY - playerY) <= 2 * capsuleCollider->height*/; //in fov and not too high
+            /* Player inside cone of vision */
+            bool in_fov = mypos->isInFov(ppos->getPosition(), fov, deg2rad(45.f))/* && fabsf(myY - playerY) <= 2 * capsuleCollider->height*/; //in fov and not too high
 
-        //bool in_horizontal_fov = mypos->isInHorizontalFov(ppos->getPosition(), fov);
-        //bool in_vertical_fov = mypos->isInVerticalFov(ppos->getPosition(), deg2rad(45.f));
+            //bool in_horizontal_fov = mypos->isInHorizontalFov(ppos->getPosition(), fov);
+            //bool in_vertical_fov = mypos->isInVerticalFov(ppos->getPosition(), deg2rad(45.f));
 
-        return in_fov && !pController->isInvisible && !pController->isInNoClipMode &&
-            !pController->isMerged && !pController->isDead() && !CEngine::get().getGameManager().isCinematicMode &&
-            dist <= maxChaseDistance && !isEntityHidden(hPlayer);
+            return in_fov && !pController->isInvisible && !pController->isInNoClipMode &&
+                !pController->isMerged && !pController->isDead() && !CEngine::get().getGameManager().isCinematicMode &&
+                dist <= maxChaseDistance && !isEntityHidden(hPlayer);
+        }
+        else {
+            return false;
+        }
     }
     else {
         return false;

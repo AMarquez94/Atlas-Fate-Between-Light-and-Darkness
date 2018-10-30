@@ -1,0 +1,12 @@
+{
+  "shadows": true
+  ,
+  "textures":
+  {
+    "albedo": "data/textures/carteles_missing.dds"
+    ,
+    "roughness": "data/textures/tx_parche_cemento_rgh.dds"
+    ,
+    "normal": "data/textures/null_normal.dds"
+  }
+}

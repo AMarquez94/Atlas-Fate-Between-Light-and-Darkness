@@ -148,7 +148,7 @@ float4 PS_Environment(float4 iPosition : SV_POSITION, float2 UV : TEXCOORD0) : S
 	float4 noiset = txNoiseMap2.Sample( samLinear, UV * 1.0 + 0.4 * global_world_time/10 * float2(0,1)) * 2 - 1; 
 	float4 noiset2 = txNoiseMap2.Sample( samLinear, UV * 1.0 + 0.4 * global_world_time/10 * float2(0,1)) * 2 - 1; 
 	float2 noiseF = noise0.xy * 0.35 + noise1.xy * 0.25 + noise2.xy * .125;
-	float2 final_uv = UV + (noiseF * 0.01 * noiset * 4.35 * noiset2) * player_shadowed;
+	float2 final_uv = UV + (noiseF * 0.01 * noiset * 6.35 * noiset2) * player_shadowed;
 	
 	if(s_cc == 240) return txEmissive.Sample( samClampLinear, final_uv);
 	

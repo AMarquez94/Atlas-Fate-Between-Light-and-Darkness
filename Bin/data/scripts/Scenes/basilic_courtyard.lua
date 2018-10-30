@@ -1,7 +1,8 @@
 function onSceneStart_scene_basilic_courtyard()
-	setCorridorInvisible();
+	setCorridorInvisible("");
 	toRender(toEntity(getEntityByName("BC_Screen001_Apagado")):getCompByName("render")).visible = false;
 	toRender(toEntity(getEntityByName("BC_Screen002_Apagado")):getCompByName("render")).visible = false;
+	execScriptDelayed("isInCinematicMode(false)", 0.1);
 end
 
 function onScenePartialStart_scene_basilic_courtyard()
@@ -22,7 +23,7 @@ end
 
 function onTriggerEnter_BC_trigger_closedoor_bc_player()
 	bc_bcdoor = toDoor(toEntity(getEntityByName("bc_marco_puerta001")):getCompByName("door"));
-	bc_bcdoor:setClosedScript("setCorridorInvisible()");
+	bc_bcdoor:setClosedScript("setCorridorInvisible(\"\")");
 	bc_bcdoor:close();
 	getEntityByName("BC_trigger_closedoor_bc"):destroy();
 end

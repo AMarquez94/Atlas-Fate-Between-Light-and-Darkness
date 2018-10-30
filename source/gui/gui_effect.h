@@ -11,6 +11,7 @@ namespace GUI
   public:
     void setWidget(CWidget* wdgt) { _widget = wdgt; }
     virtual void update(float delta) { (void)delta; }
+    virtual void onDeactivate() {};
 
   protected:
     CWidget * _widget = nullptr;

@@ -1,0 +1,133 @@
+[
+  {
+    "entity":
+    {
+      "name": "zone_a_decals_missing"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_missing_1"
+      ,
+      "transform":
+      {
+        "pos": "-29.6112 1.2586 -85.9807"
+        ,
+        "rotation": "-0.489873 0.509925 -0.509925 0.489874"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_cartel_missing_1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cartel_missing.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_missing_3"
+      ,
+      "transform":
+      {
+        "pos": "-29.2365 0.908361 -85.98"
+        ,
+        "rotation": "-0.488805 0.51095 -0.51095 0.488805"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_cartel_missing_3.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cartel_missing.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_missing_6"
+      ,
+      "transform":
+      {
+        "pos": "-29.6519 0.823601 -85.9847"
+        ,
+        "rotation": "0.5 -0.5 0.5 -0.5"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_cartel_missing_6.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cartel_missing.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cartel_missing_2"
+      ,
+      "transform":
+      {
+        "pos": "-29.2716 1.3801 -85.9806"
+        ,
+        "rotation": "0.507804 -0.492072 0.492072 -0.507804"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_cartel_missing_2.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cartel_missing.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

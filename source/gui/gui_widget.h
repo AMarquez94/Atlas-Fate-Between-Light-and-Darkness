@@ -39,8 +39,13 @@ namespace GUI {
                 child->onActivate();
         }
         virtual void onDeactivate() {
+            for (auto& effect : _effects) {
+                effect->onDeactivate();
+            }
+
             for (auto& child : _children)
                 child->onDeactivate();
+
         }
 
         void addEffect(CEffect* fx);

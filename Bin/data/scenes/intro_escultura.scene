@@ -14,34 +14,26 @@
   {
     "entity":
     {
-      "name": "luz_fix"
+      "name": "omni_escultura"
       ,
       "transform":
       {
-        "pos": "-3.30627 0.453614 7.73744"
+        "pos": "-3.76946 4.87097 23.8069"
         ,
-        "lookat": "-3.28124 0.0 29.2275"
+        "rotation": "0.0 0.0 0.0 -1.0"
       }
       ,
-      "light_spot":
+      "light_point":
       {
-        "type": "spotlight"
+        "type": "pointlight"
         ,
-        "proj_type": "perspective"
+        "inner_cut": 2.7224
         ,
-        "range": 21.4949
+        "outer_cut": 3.5752
         ,
-        "angle": 38.6
+        "color": "1.0 1.0 0.443137 1.0"
         ,
-        "inner_cut": 32.4
-        ,
-        "z_far": 21.4949
-        ,
-        "volume": false
-        ,
-        "color": "1.0 1.0 0.501961 1.0"
-        ,
-        "intensity": 0.01
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -58,9 +50,9 @@
       ,
       "collider":
       {
-        "shape": "convex"
+        "shape": "sphere"
         ,
-        "name": "data/colliders/luz_fix.collider"
+        "radius": 1.64
         ,
         "is_trigger": true
       }
@@ -69,6 +61,133 @@
       [
         "light"
       ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_simbolo_escultura"
+      ,
+      "transform":
+      {
+        "pos": "-3.0419 7.8522 22.7139"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_simbolo_escultura.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_escultura_soporte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_simbolo_escultura.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_littlespotlight001"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-4.3 2.9 23.65"
+        ,
+        "rotation": "0.130885 -0.868163 -0.315985 -0.359605"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_intro_base_escultura"
+      ,
+      "transform":
+      {
+        "pos": "-3.12865 1.396 21.9491"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_intro_base_escultura.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_escultura_soporte.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_base_escultura.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_atlas"
+      ,
+      "transform":
+      {
+        "pos": "-3.19414 5.32495 21.9491"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707107"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_atlas.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_escultura.material"
+          ]
+        }
+      ]
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_atlas.collider"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
     }
   }
   ,
@@ -136,109 +255,34 @@
   {
     "entity":
     {
-      "name": "mesh_atlas"
+      "name": "luz_fix"
       ,
       "transform":
       {
-        "pos": "-3.19414 5.32495 21.9491"
+        "pos": "-3.30627 0.453614 7.73744"
         ,
-        "rotation": "-0.707107 0.0 0.0 -0.707107"
+        "lookat": "-3.28124 0.0 24.5629"
       }
       ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_atlas.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_escultura.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_intro_base_escultura"
-      ,
-      "transform":
+      "light_spot":
       {
-        "pos": "-3.12865 1.396 21.9491"
+        "type": "spotlight"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_intro_base_escultura.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_escultura_soporte.material"
-          ]
-        }
-      ]
-      ,
-      "collider":
-      {
-        "shape": "mesh"
+        "proj_type": "perspective"
         ,
-        "name": "data/colliders/collider_base_escultura.collider"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_littlespotlight001"
-      ,
-      "prefab": "data/prefabs/littlespotlight.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-4.32883 2.89023 23.6887"
+        "range": 16.8316
         ,
-        "rotation": "0.130885 -0.868163 -0.315985 -0.359605"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "omni_escultura"
-      ,
-      "transform":
-      {
-        "pos": "-3.76946 4.87097 23.8069"
+        "angle": 17.2
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "light_point":
-      {
-        "type": "pointlight"
+        "inner_cut": 15.2
         ,
-        "inner_cut": 2.7224
+        "z_far": 16.8316
         ,
-        "outer_cut": 3.5752
+        "volume": false
         ,
-        "color": "1.0 1.0 0.443137 1.0"
+        "color": "1.0 1.0 0.501961 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.01
         ,
         "casts_shadows": true
         ,
@@ -255,9 +299,9 @@
       ,
       "collider":
       {
-        "shape": "sphere"
+        "shape": "convex"
         ,
-        "radius": 1.64
+        "name": "data/colliders/luz_fix.collider"
         ,
         "is_trigger": true
       }

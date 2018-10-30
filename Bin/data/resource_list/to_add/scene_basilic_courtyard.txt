@@ -619,7 +619,6 @@ data/textures/lut/lut5.dds
 data/scenes/Basilic_courtyard/_player.scene
 data/prefabs/player.prefab
 data/skeletons/player/body.mesh
-data/materials/characters/mtl_player_main_env.material
 data/materials/characters/mtl_player_main.material
 data/skeletons/player/bolsa_cinturon.mesh
 data/skeletons/player/buff_exterior.mesh
@@ -632,6 +631,7 @@ data/skeletons/player/cruzado_capsula1.mesh
 data/skeletons/player/cruzado_capsula2.mesh
 data/skeletons/player/cruzado_capsula3.mesh
 data/skeletons/player/hood.mesh
+data/materials/characters/mtl_player_main_env.material
 data/skeletons/player/tira_L.mesh
 data/skeletons/player/tira_R.mesh
 data/materials/characters/mtl_player_main_shade.material

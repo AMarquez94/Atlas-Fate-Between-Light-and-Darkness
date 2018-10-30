@@ -69,8 +69,8 @@ VS_TEXTURED_OUTPUT VS(
   //output.opacity = smoothstep( 0, TimeBlendingOut, TimeToLife );
   output.opacity = 1;
 
-	output.normal = mul(iNormal, (float3x3)fMatrix);
-	output.tangent.xyz = mul(iTangent.xyz, (float3x3)fMatrix);
+	output.normal = mul(iNormal, (float3x3)instance_world);
+	output.tangent.xyz = mul(iTangent.xyz, (float3x3)instance_world);
 	output.tangent.w = iTangent.w;
   output.uv = iTex0;
 

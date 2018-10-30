@@ -155,7 +155,7 @@ float4 PS_IVLight(
     float4 noise0 = txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.06 * global_world_time * float2(.5, 0));
 		
     float theta = dot(light_dir, -iLightDir.xyz);
-    float att_spot = clamp((theta - iLightValues.z) / 0.18, 0, 1);
+    float att_spot = clamp((theta - iLightValues.z) / 0.218, 0, 1);
     float clamp_spot = theta > iLightValues.x ? att_spot : 0.0; // spot factor 
 		
     return float4(light_color.xyz, clamp_spot * val * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
@@ -219,7 +219,7 @@ float4 PS_GBuffer_RayShafts_Spot(
 		currentPosition += step;
 	}
 	
-	return float4(light_color.xyz * total_fog, 1);
+	return 1;//float4(light_color.xyz * total_fog, 1);
 }
 
 float4 PS_GBuffer_RayShafts_Point(
@@ -290,7 +290,7 @@ float4 PS_GBuffer_Shafts(
 	float3 N = normalize(iNormal.xyz);
 	float fresnel = dot(N, -dir_to_eye);
 
-	float4 color = float4(0.8, 0.8, 0.8, 1);	
+	float4 color = self_color;	
 	color.a = txAlbedo.Sample(samLinear, iTex0).r;
 	
 	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.02 * global_world_time * float2(.5, 0)).r;
@@ -309,8 +309,8 @@ float4 PS_GBuffer_Shafts(
 	//float theta = dot(out_lightdir, -light_direction.xyz);
 	//float att_spot = clamp((theta - light_outer_cut) / (light_inner_cut - light_outer_cut), 0, 1);
 	//float clamp_spot = theta > light_angle ? 1.0 * att_spot : 0.0; // spot factor 
-	
-	color.a *= pow(abs(fresnel),4) * 0.1;
+			
+	color.a *= pow(abs(fresnel),4) * 0.1 * self_intensity;
 	return color;
 }
 

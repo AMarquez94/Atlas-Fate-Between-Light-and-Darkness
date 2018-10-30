@@ -27,7 +27,8 @@
 		},
 		"persistent_scenes": [
 			"data/scenes/Intro/_player.scene",
-			"data/scenes/_main_cameras.scene"
+			"data/scenes/_main_cameras.scene",
+			"data/scenes/corridor_particles.scene"
 		],
 		"scene_group": [
 			"data/scenes/Intro/intro_test_instancing.scene",
@@ -58,6 +59,8 @@
 			"data/scenes/intro_decals_rotura.scene",
 			"data/scenes/intro_decals_poster.scene",
 			"data/scenes/intro_escultura.scene",
+			"data/scenes/intro_decals_cables.scene",
+
 			"data/scenes/intro_casas_lp_1.scene",
 			"data/scenes/intro_casas_lp_2.scene",
 			
@@ -214,6 +217,10 @@
 			"data/scenes/zone_a_decals.scene",
 			"data/scenes/zone_a_decals_rotura.scene",
 			"data/scenes/zone_a_decals_poster.scene",
+			"data/scenes/zone_a_decals_missing.scene",
+			"data/scenes/zone_a_decals_propaganda.scene",
+			"data/scenes/zone_a_decals_cables.scene",
+			"data/scenes/zone_a_decals_cables2.scene",
 
 			"data/scenes/zone_a_escultura.scene",
 
@@ -414,6 +421,8 @@
       "data/scenes/basilic_interior_nucleo.scene",
       "data/scenes/basilic_interior_sueloyagarres.scene",
       "data/scenes/Basilic_interior/basilic_interior_particles.scene",
+			"data/scenes/Basilic_interior/basilic_interior_particles_slow.scene",
+			"data/scenes/Basilic_interior/basilic_interior_particles_fast.scene",
       "data/scenes/Basilic_interior/basilic_interior_holograms.scene",
       "data/scenes/Basilic_interior/basilic_interior_monitores.scene",
 

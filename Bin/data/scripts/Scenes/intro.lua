@@ -1,7 +1,7 @@
 function onSceneStart_scene_intro()
 	
 	show_tutorial_sm_enemy = false;
-	setCorridorInvisible();
+	setCorridorInvisible("");
 	
 	--#Debug position for start
 	--move("The Player", VEC3(-7, 0, -43), VEC3(-7, 0, -44));
@@ -9,7 +9,10 @@ function onSceneStart_scene_intro()
 	-- First Cinematic --
 	if(cinematicsEnabled and not isCheckpointSaved() and not intro_intro_cinematicExecuted) then
 		intro_intro_cinematic();
+	else
+		execScriptDelayed("isInCinematicMode(false)", 0.1);
 	end
+	
 	setAIState("Patrol_Cinematic_Inhibitor", true, "dead_cinematic");
 	getSignRendersForIntro();
 end
@@ -20,6 +23,9 @@ end
 
 function onScenePartialEnd_scene_intro()
 	i_ref_pos = getPlayerLocalCoordinatesInReferenceTo("intro_suelo001");
+	i_corridor_dust = getEntityLocalCoordinatesInReferenceTo("corridor_dust", "intro_suelo001");
+	i_corridor_fog = getEntityLocalCoordinatesInReferenceTo("corridor_fog", "intro_suelo001");
+	i_corridor_whisps = getEntityLocalCoordinatesInReferenceTo("corridor_whisps", "intro_suelo001");
 end
 
 function intro_intro_cinematic()
@@ -77,12 +83,14 @@ function transition_intro_to_coliseum(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 	makeVisibleByTag("corridor", true);
 	toDoor(toEntity(getEntityByName("intro_marco_puerta001")):getCompByName("door")):open();
-	--preloadScene("scene_coliseo");
 	
-	--execScriptDelayed("blendInCamera(\"scene_transition\", 1.0, \"cinematic\", \"\")", 2);
-	--execScriptDelayed("pausePlayerToggle()", 2);
-	--execScriptDelayed("cinematicModeToggle()", 2);
-	--execScriptDelayed("loadScene(\"scene_coliseo\")", 2);
+	h = toEntity(getEntityByName("intro_marco_puerta001"));
+	
+	t_transform = toTransform(h:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	rot = t_transform:getRotation();
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke_base.particles", pos, rot, true);
 end
 
 function disableButton(button_handle, is_enabled)

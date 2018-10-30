@@ -1,5 +1,6 @@
 function onSceneStart_scene_zone_a()
-	setCorridorInvisible()
+	setCorridorInvisible("")
+	execScriptDelayed("isInCinematicMode(false)", 0.1);
 end
 
 function onScenePartialStart_scene_zone_a()
@@ -20,12 +21,21 @@ end
 function transition_zone_a_to_coliseum(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 	makeVisibleByTag("corridor", true);
-	toDoor(toEntity(getEntityByName("zone_a_outmarco_puerta002")):getCompByName("door")):open();
+
+	h = toEntity(getEntityByName("zone_a_outmarco_puerta002"));
+	toDoor(h:getCompByName("door")):open();
+	
+	t_transform = toTransform(h:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	rot = t_transform:getRotation();
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke_base.particles", pos, rot, true);
+	
 end
 
 function enable_button_exit(button_handle)
 	execScriptDelayed("toButton(toEntity(getEntityByName(\"Button End Scene\")):getCompByName(\"button\")):setCanBePressed(true)",2.25);
-	if(cinematicsEnabled and not cinematic_tower_activatedExecuted) then
+	if(cinematicsEnabled) then
 		execScriptDelayed("cinematic_tower_activated()",0.5);
 	end
 	zone_a_door_activated = true;
@@ -48,7 +58,16 @@ end
 
 function onTriggerEnter_ZON_Trigger_Enter_ZoneA_player()
 	zonea_a_door = toDoor(toEntity(getEntityByName("zone_a_in_marco_puerta001")):getCompByName("door"));
-	zonea_a_door:setClosedScript("setCorridorInvisible()");
+	
+	h = toEntity(getEntityByName("zone_a_in_marco_puerta001"));
+	
+	t_transform = toTransform(h:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	rot = t_transform:getRotation();
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke.particles", pos, rot, true);
+	particles:launchDynamicSystemRot("data/particles/def_door_smoke_base.particles", pos, rot, true);
+	
+	zonea_a_door:setClosedScript("setCorridorInvisible(\"\")");
 	zonea_a_door:close();
 	if(cinematicsEnabled and not cinematic_enter_zone_aExecuted) then
 		cinematic_enter_zone_a();
@@ -108,7 +127,6 @@ function cinematic_tower_activated()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Exit_Door_1\", 0)", 11.75);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Exit_Door_2\", 0)", 11.75);
 	execScriptDelayed("setOutBlackScreen(0.25);",12.25);
-	cinematic_tower_activatedExecuted = true;
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.75);
 end

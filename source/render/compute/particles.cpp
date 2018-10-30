@@ -48,7 +48,7 @@ namespace GPUParticles {
         s->unit_time = 0.f;
         s->unit_time = unitRandom();
         s->pid = TSystemInstance::namount;
-        s->rtime = randomInt(5, 1500) + randomFloat(0, 1);
+        s->rtime = randomInt(5, 2500) + randomFloat(0, 1);
         s->etime = 0;
         TSystemInstance::namount++;
         //dbg("total time %f\n", s->rtime);

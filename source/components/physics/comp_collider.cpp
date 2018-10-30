@@ -22,7 +22,6 @@ TCompCollider::~TCompCollider() {
             delete config;
         }
     }
-
 }
 
 void TCompCollider::debugInMenu() {

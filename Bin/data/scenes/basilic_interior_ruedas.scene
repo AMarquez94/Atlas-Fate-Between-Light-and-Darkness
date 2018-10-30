@@ -1,49 +1,55 @@
-[
-  {
-    "entity":
-    {
-      "name": "basilic_interior_ruedas"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "rueda"
-      ,
-      "transform":
-      {
-        "pos": "-8.87873 1.70531 10.4711"
-        ,
-        "rotation": "-0.5 0.5 0.5 -0.5"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/rueda.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_adornos_nucleo.material"
-          ]
-        }
-      ],
-      "rotator_accelerator_final_scene" : true
-      ,
-      "rotator": {
-        "speed": 0.25,
-        "rotate_roll": true
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
+[{
+		"entity": {
+			"name": "basilic_interior_ruedas",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "rueda",
+			"transform": {
+				"pos": "-8.87873 1.70531 10.4711",
+				"rotation": "-0.5 0.5 0.5 -0.5"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/rueda.mesh",
+					"materials":
+					[
+						"data/materials/mtl_adornos_nucleo.material"
+					]
+				}
+			],
+			"rotator_accelerator_final_scene": true,
+			"rotator": {
+				"speed": 0.25,
+				"rotate_roll": true
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
+			"name": "particle_rueda_left",
+			"transform": {
+				"pos": "0 0 0"
+			},
+			"hierarchy": {
+				"axis": "0 1 0",
+				"pos": "0.0 3 0.0",
+				"parent": "rueda"
+			},
+			"particles": {
+				"on_start": true,
+				"cores":
+				[
+					"data/particles/def_amb_fast_smoke1.particles",
+					"data/particles/def_amb_fast_smoke2.particles"
+				]
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
 ]

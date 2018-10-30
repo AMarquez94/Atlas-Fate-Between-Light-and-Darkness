@@ -50,7 +50,7 @@ void PS_Moon(
 	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
 	
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
-	float3 dir_to_light = normalize( ( camera_pos + light_pos_global) - iWorldPos.xyz);
+	float3 dir_to_light = normalize( ( camera_pos + global_delta_position) - iWorldPos.xyz);
 	
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
@@ -83,10 +83,10 @@ void PS_Planet(
 	o_selfIllum.a = txAOcclusion.Sample(samLinear, iTex0).r;
 	
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
-	float3 dir_to_light = normalize( ( camera_pos + light_pos_global) - iWorldPos.xyz);
+	float3 dir_to_light = normalize( ( camera_pos + global_delta_position) - iWorldPos.xyz);
 	float falloff = dot(normalize(iNormal), dir_to_light);
 	o_albedo.xyz *= pow(1 - abs(falloff), 2);
-	o_selfIllum.xyz *= pow(1 - abs(falloff), 2);
+	o_selfIllum.xyz *= pow(1 - abs(falloff), 1);
 	
 	// Save roughness in the alpha coord of the N render target
 	float roughness = txRoughness.Sample(samLinear, iTex0).r;
@@ -113,13 +113,13 @@ float4 PS_Moon_Light(
 	
 	// Fresnel component
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
-	float3 dir_to_light = normalize( ( camera_pos + light_pos_global) - iWorldPos.xyz);
+	float3 dir_to_light = normalize( ( camera_pos + global_delta_position) - iWorldPos.xyz);
 	float3 N = normalize(iNormal.xyz);
 	float fresnel = dot(N, -dir_to_eye);
 	float falloff = clamp(dot(N, dir_to_light), 0, 1);
 		
 	color.a *= pow(abs(fresnel),4) * 2;
-	color.a *= falloff - ( (1- self_intensity) * falloff) + (1- self_intensity);
+	//color.a *= falloff - ( (1- self_intensity) * falloff) + (1- self_intensity);
 		
 	return color;
 }
@@ -133,10 +133,10 @@ float4 PS_Moon_Atmosphere(
 	, float3 iWorldPos : TEXCOORD2
 ) : SV_Target
 {
-	iTex0+= global_world_time * 0.005;
+	iTex0+= global_world_time * 0.0035;
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
-	float3 dir_to_light = normalize( ( camera_pos + light_pos_global) - iWorldPos.xyz);
+	float3 dir_to_light = normalize( ( camera_pos + global_delta_position) - iWorldPos.xyz);
 	float fresnel = dot(iNormal, -dir_to_eye);
-	float flow = pow(1 - abs(dir_to_light),3);
+	float flow = 1 - abs(dir_to_light);
   return txAlbedo.Sample(samLinear, iTex0) * flow * self_intensity * obj_color;
 }

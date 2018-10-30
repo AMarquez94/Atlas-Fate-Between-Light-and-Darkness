@@ -51,6 +51,8 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
     _original_euler = _current_euler;
 
     active = false;
+
+    clippingFilter.data.word0 = FilterGroup::Scenario | FilterGroup::Button;
 }
 
 void TCompCameraThirdPerson::registerMsgs()
@@ -227,7 +229,7 @@ void TCompCameraThirdPerson::update(float dt)
 float TCompCameraThirdPerson::CameraClipping(const VEC3	& origin, const VEC3 & dir)
 {
     physx::PxRaycastHit hit;
-    if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC))
+    if (EnginePhysics.Raycast(origin, dir, _clipping_offset.z, hit, physx::PxQueryFlag::eSTATIC, clippingFilter))
         return Clamp(hit.distance - 0.1f, 0.2f, _clipping_offset.z);
 
     return _clipping_offset.z;

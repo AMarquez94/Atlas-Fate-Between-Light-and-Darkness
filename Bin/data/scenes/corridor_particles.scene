@@ -1,0 +1,63 @@
+[{
+		"entity": {
+			"name": "intro_particles",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"tags": [
+				"corridor", "corridor_particles", "intro_particles"
+			]
+		}
+	}, {
+		"entity": {
+			"name": "corridor_dust",
+			"transform": {
+				"pos": "-19.754 1 -94.6",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_dust_40x40_corridor.particles"
+				]
+			},
+			"tags": [
+				"corridor", "corridor_particles"
+			]
+		}
+	}, {
+		"entity": {
+			"name": "corridor_fog",
+			"transform": {
+				"pos": "-19.754 -0.5 -94.6",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_fog_40x40_corridor.particles"
+				]
+			},
+			"tags": [
+				"corridor", "corridor_particles"
+			]
+		}
+	}, {
+		"entity": {
+			"name": "corridor_whisps",
+			"transform": {
+				"pos": "-17.754 4.875 -85.8",
+				"eulers": "0.0 180.0 0.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_whisps_corridor.particles"
+				]
+			},
+			"tags": [
+				"corridor", "corridor_particles"
+			]
+		}
+	}
+]

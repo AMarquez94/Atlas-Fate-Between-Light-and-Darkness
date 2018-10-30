@@ -36,6 +36,9 @@ private:
     void onMsgCameraSetCancelled(const TMsgSetCameraCancelled &msg);
     void onMsgScenePaused(const TMsgScenePaused &msg);
 
+    physx::PxQueryFilterData clippingFilter;
+
+
 public:
     void debugInMenu();
     void load(const json& j, TEntityParseContext& ctx);

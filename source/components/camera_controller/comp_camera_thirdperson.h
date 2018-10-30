@@ -53,6 +53,8 @@ private:
 
     float getFovUpdated(float dt);
 
+    physx::PxQueryFilterData clippingFilter;
+
 
 public:
     void debugInMenu();
