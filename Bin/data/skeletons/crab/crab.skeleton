@@ -3,8 +3,36 @@
 	"anims" : [
 		{"name": "root"},
 		{"name": "idle"},
-		{"name": "walk"},
-		{"name": "run"},
+		{
+			"name": "walk",
+			"audio_callbacks": [{
+					"time_to_call": 0.1,
+					"audio_name": "event:/Sounds/Enemies/Mimetic/MimeticWalk",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0.55,
+					"audio_name": "event:/Sounds/Enemies/Mimetic/MimeticWalk",
+					"relative_to_player": true
+				}
+			]
+		
+		
+		},
+		{
+			"name": "run",
+			"audio_callbacks": [{
+					"time_to_call": 0.05,
+					"audio_name": "event:/Sounds/Enemies/Mimetic/MimeticRun",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0.20,
+					"audio_name": "event:/Sounds/Enemies/Mimetic/MimeticRun",
+					"relative_to_player": true
+				}
+			]			
+		},
 		{"name": "death"},
 		{"name": "wakeup", 
 		"animation_completed_callback": true},

@@ -806,27 +806,29 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 
     if (distanceToPlayer <= autoChaseDistance && isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         suspectO_Meter = 1.f;
-        if (mypos->isInLeft(ppos->getPosition())) {
-            if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
-                myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+        if (!rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt)) {
+            if (mypos->isInLeft(ppos->getPosition())) {
+                if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+                    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+            }
+            else {
+                if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_RIGHT))
+                    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_RIGHT);
+            }
         }
-        else {
-            if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_RIGHT))
-                myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_RIGHT);
-        }
-        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
     }
     else if (distanceToPlayer <= maxChaseDistance && isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
-        if (mypos->isInLeft(ppos->getPosition())) {
-            if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
-                myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+        if (!rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt)) {
+            if (mypos->isInLeft(ppos->getPosition())) {
+                if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+                    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+            }
+            else {
+                if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_RIGHT))
+                    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_RIGHT);
+            }
         }
-        else {
-            if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_RIGHT))
-                myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_RIGHT);
-        }
-        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
     }
     else {
         sendSuspectingMsg(false);

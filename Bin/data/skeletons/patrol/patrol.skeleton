@@ -91,13 +91,77 @@
 		},
 		{
 			"name": "lookingfor",
-			"animation_completed_callback": true
+			"animation_completed_callback": true,
+			"audio_callbacks": [
+				{
+					"time_to_call": 0.7,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 1.2,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 2.4,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 2.8,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 3.1,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 3.63,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 4.4,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 4.73,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 5.16,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 5.75,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				}
+			]
 		},
 		{
 			"name": "repairing"
 		},
 		{
-			"name": "turn_left"
+			"name": "turn_left",
+			"audio_callbacks": [
+				{
+					"time_to_call": 0.33,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0.78,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				}
+			]
 		},
 		{
 			"name": "dead_cinematic"
@@ -144,7 +208,19 @@
 			]
 		},
 		{
-			"name": "turn_right"
+			"name": "turn_right",
+			"audio_callbacks": [
+				{
+					"time_to_call": 0.33,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				},
+				{
+					"time_to_call": 0.78,
+					"audio_name": "event:/Sounds/Enemies/Patrol/PatrolNormalStep",
+					"relative_to_player": true
+				}
+			]
 		},
 		{
 			"name": "repaired",
