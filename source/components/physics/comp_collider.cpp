@@ -116,7 +116,7 @@ void TCompCollider::createCollider()
         TCompLightPoint * point = ent->get<TCompLightPoint>();
         TCompLightSpot * spot = ent->get<TCompLightSpot>();
 
-        if (point != nullptr || spot != nullptr) {
+        if ((point != nullptr && point->interactsWithPlayer) || (spot != nullptr && spot->interactsWithPlayer)) {
 
             config->group = Light;
             shape->setFlag(physx::PxShapeFlag::eSCENE_QUERY_SHAPE, true);

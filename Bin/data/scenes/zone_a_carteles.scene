@@ -2750,22 +2750,6 @@
   {
     "entity":
     {
-      "name": "mesh_cartel_verde_042"
-      ,
-      "prefab": "data/prefabs/cartel_verde_1.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-52.6356 9.01891 -148.84"
-        ,
-        "rotation": "0.0 0.707107 0.0 -0.707107"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_cartel_verde_043"
       ,
       "prefab": "data/prefabs/cartel_verde_1.prefab"

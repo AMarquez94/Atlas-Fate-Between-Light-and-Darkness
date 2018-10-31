@@ -78,6 +78,8 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
 
     //spotcone = loadMesh("data/meshes/unit_quad_center2.mesh");
     shadows_enabled = casts_shadows;
+
+    interactsWithPlayer = j.value("interacts_with_player", true);
 }
 
 void TCompLightSpot::setColor(const VEC4 & new_color) {

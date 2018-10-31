@@ -33,6 +33,11 @@ data/textures/tx_spotlight_met.dds
 data/textures/tx_spotlight_nml.dds
 data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlight.material
+data/textures/default_texture.dds
+data/textures/null_normal.dds
+data/materials/flare.material
+data/textures/tx_spot_beam_hd.dds
+data/materials/spot.material
 data/textures/tx_decalsprops_alb.dds
 data/textures/tx_decalsprops_ao.dds
 data/textures/tx_decalsprops_emi.dds
@@ -40,6 +45,7 @@ data/textures/tx_decalsprops_met.dds
 data/textures/tx_decalsprops_nml.dds
 data/textures/tx_decalsprops_rgh.dds
 data/materials/mtl_decalsprops.material
+data/colliders/collider_mesh_spotpannel.collider
 data/colliders/bc_Spot016.collider
 data/colliders/bc_Spot024.collider
 data/colliders/bc_Spot025.collider
@@ -71,7 +77,6 @@ data/materials/volume_particles_instanced.material
 data/scenes/Basilic_courtyard/buttons.scene
 data/meshes/Buttons/Button.mesh
 data/textures/tx_cables_alb.dds
-data/textures/null_normal.dds
 data/materials/mtl_default.material
 data/scenes/Basilic_courtyard/capsules.scene
 data/scenes/Basilic_courtyard/BC_mezquita.scene
