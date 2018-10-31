@@ -15,7 +15,7 @@
 			"render":
 			[{
 					"mesh": "data/meshes/mesh_silueta_casas.mesh",
-					"self_intensity": 0.02,
+					"self_intensity": 0.025,
 					"self_color": "0.5 0.5 0.5 1",
 					"materials":
 					[
