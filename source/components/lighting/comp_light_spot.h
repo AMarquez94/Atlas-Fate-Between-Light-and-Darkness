@@ -75,5 +75,7 @@ public:
     MAT44 getWorld();
 	void setColor(const VEC4 & new_color);
 
+    bool interactsWithPlayer = true;
+
 	static void registerMsgs();
 };

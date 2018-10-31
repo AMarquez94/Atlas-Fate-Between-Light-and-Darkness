@@ -54,6 +54,8 @@ void TCompLightPoint::load(const json& j, TEntityParseContext& ctx) {
         projector = Resources.get("data/textures/default_white.dds")->as<CTexture>();
     }
 
+    interactsWithPlayer = j.value("interacts_with_player", true);
+
     isEnabled = true;
 }
 

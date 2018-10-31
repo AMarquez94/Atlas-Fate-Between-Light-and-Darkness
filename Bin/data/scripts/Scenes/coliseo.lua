@@ -20,6 +20,7 @@ end
 
 function onScenePartialStart_scene_coliseo_2()
 	onSceneStart_scene_coliseo_2();
+	gameManager:changeMainTheme();
 	movePlayerToRefPos("col_zone_a_suelo002", i_ref_pos);
 	--execScriptDelayed("toDoor(toEntity(getEntityByName(\"col_zone_a_framedoor001\")):getCompByName(\"door\")):open();", 0.5);
 end

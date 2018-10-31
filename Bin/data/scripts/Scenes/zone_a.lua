@@ -6,6 +6,7 @@ end
 function onScenePartialStart_scene_zone_a()
 	--onSceneStart_scene_zone_a();
 	movePlayerToRefPos("zone_a_in_suelo001", i_ref_pos);
+	gameManager:changeMainTheme();
 	--execScriptDelayed("toDoor(toEntity(getEntityByName(\"zone_a_in_marco_puerta001\")):getCompByName(\"door\")):open();", 0.5);
 end
 
@@ -35,7 +36,7 @@ end
 
 function enable_button_exit(button_handle)
 	execScriptDelayed("toButton(toEntity(getEntityByName(\"Button End Scene\")):getCompByName(\"button\")):setCanBePressed(true)",2.25);
-	if(cinematicsEnabled and not cinematic_tower_activatedExecuted) then
+	if(cinematicsEnabled) then
 		execScriptDelayed("cinematic_tower_activated()",0.5);
 	end
 	zone_a_door_activated = true;
@@ -127,7 +128,6 @@ function cinematic_tower_activated()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Exit_Door_1\", 0)", 11.75);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Exit_Door_2\", 0)", 11.75);
 	execScriptDelayed("setOutBlackScreen(0.25);",12.25);
-	cinematic_tower_activatedExecuted = true;
 	setCinematicPlayerState(true, "inhibitor_capsules", "");
 	execScriptDelayed("setCinematicPlayerState(false, \"\")", 12.75);
 end

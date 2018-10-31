@@ -45,6 +45,11 @@ data/textures/tx_spotlight_met.dds
 data/textures/tx_spotlight_nml.dds
 data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlight.material
+data/textures/default_texture.dds
+data/textures/null_normal.dds
+data/materials/flare.material
+data/textures/tx_spot_beam_hd.dds
+data/materials/spot.material
 data/textures/tx_decalsprops_alb.dds
 data/textures/tx_decalsprops_ao.dds
 data/textures/tx_decalsprops_emi.dds
@@ -52,10 +57,10 @@ data/textures/tx_decalsprops_met.dds
 data/textures/tx_decalsprops_nml.dds
 data/textures/tx_decalsprops_rgh.dds
 data/materials/mtl_decalsprops.material
+data/colliders/collider_mesh_spotpannel.collider
 data/scenes/Coliseo/coliseo_cables.scene
 data/meshes/COL_Circle001.mesh
 data/textures/default_emissive.dds
-data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/meshes/COL_Line001.mesh
 data/meshes/COL_Line002.mesh

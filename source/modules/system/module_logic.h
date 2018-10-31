@@ -152,6 +152,7 @@ void sendPlayerIlluminatedMsg(CHandle h, bool illuminated);
 void isInCinematicMode(bool isCinematic);
 SoundEvent preloadSoundEvent(const std::string& soundevent);
 void stopRenderingEntities();
+void changeMainTheme();
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);

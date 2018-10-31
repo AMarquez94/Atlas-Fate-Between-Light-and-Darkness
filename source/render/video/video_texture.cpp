@@ -176,14 +176,16 @@ void CVideoTexture::update(float dt) {
 
         // Rewind those that finished.
         if (hasFinished()) {
-
             resetVideo();
         }
+    }
+    if (to_be_reset) {
+        resetVideo();
     }
 }
 
 void CVideoTexture::resetVideo() {
-
+    to_be_reset = false;
     float time_to_play = chrono.elapsedAndReset();
     dbg("Video %s loops after %f secs\n", getName().c_str(), time_to_play);
 
@@ -203,4 +205,9 @@ void CVideoTexture::resetVideo() {
 void CVideoTexture::setActive(bool state) {
 
     active = state;
+}
+
+void CVideoTexture::setToBeReset(bool toBeReset)
+{
+    to_be_reset = toBeReset;
 }

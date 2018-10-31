@@ -533,12 +533,6 @@ data/meshes/cable_suelo008.mesh
 data/meshes/cable_suelo007.mesh
 data/scenes/zone_a_escultura.scene
 data/prefabs/littlespotlight.prefab
-data/meshes/mesh_littlespotlight.mesh
-data/materials/mtl_spotlight.material
-data/textures/tx_flare_alb.dds
-data/materials/flare.material
-data/textures/tx_spot_beam_hd.dds
-data/materials/spot.material
 data/meshes/zone_a_mesh_base_escultura001.mesh
 data/textures/tx_escultura_soporte_alb.dds
 data/textures/tx_escultura_soporte_ao.dds

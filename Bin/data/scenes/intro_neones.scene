@@ -164,7 +164,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "mesh_neon_azul_009",
 			"prefab": "data/prefabs/neon_azul_2.prefab",
 			"transform": {
@@ -765,7 +765,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Spot001",
 			"transform": {
 				"pos": "-11.8388 0.33317 3.85837",

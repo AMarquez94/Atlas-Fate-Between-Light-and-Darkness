@@ -92,7 +92,7 @@ void TCompSkeleton::load(const json& j, TEntityParseContext& ctx) {
     actualCycleAnimId[1] = -1;
 
     actualCycleAnimId[0] = 0;
-    model->getMixer()->blendCycle(stringAnimationIdMap[starting_anim], 1.f, 0.f);
+    model->getMixer()->blendCycle(0, 1.f, 0.f);
 
     cb_bones.BonesScale = scaleFactor;
     if (model->getSkeleton()->getCoreSkeleton()->getScale() != scaleFactor) {
