@@ -59,6 +59,9 @@
 			"name": "pruebas"
 		},
 		{
+			"name": "alert"
+		},
+		{
 			"name": "die",
 			"audio_callbacks": [{
 					"time_to_call": 0,

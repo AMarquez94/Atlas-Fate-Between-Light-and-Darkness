@@ -32,6 +32,9 @@
 			"name": "lookingfor"
 		},
 		{
+			"name": "alert"
+		},
+		{
 			"name": "repairing"
 		},
 		{
