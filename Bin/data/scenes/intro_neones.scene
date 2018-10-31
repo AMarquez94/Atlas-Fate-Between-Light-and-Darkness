@@ -164,7 +164,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "mesh_neon_azul_009",
 			"prefab": "data/prefabs/neon_azul_2.prefab",
 			"transform": {
