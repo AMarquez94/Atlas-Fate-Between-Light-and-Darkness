@@ -4,11 +4,11 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "Mimeticus",
 			"transform": {
-				"pos": "-100 1.65 -126.361",
-				"lookat": "-100 1.65 0"
+				"pos": "-51.24 1.65 -87",
+				"lookat": "-51.24 1.65 -88"
 			},
 			"prefab": "data/prefabs/mimetic.prefab",
 			"ai_mimetic": {
@@ -23,7 +23,7 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "Mimeticus 2",
 			"transform": {
 				"pos": "-106 1.65 -126.361",
@@ -42,7 +42,7 @@
 		}
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "Target Laser 1",
 			"transform": {
 				"pos": "-104 0 -125"
@@ -51,7 +51,7 @@
 
 	},
 	{
-		"xentity": {
+		"entity": {
 			"name": "Target Laser 2",
 			"transform": {
 				"pos": "-102 0 -125"
