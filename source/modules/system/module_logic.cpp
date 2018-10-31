@@ -343,6 +343,7 @@ void CModuleLogic::publishClasses() {
     m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
 	m->set("setAIState", SLB::FuncCall::create(&setAIState));
 	m->set("speedUpRuedasFinalScene", SLB::FuncCall::create(&speedUpRuedasFinalScene));
+    m->set("playWhisps", SLB::FuncCall::create(&playWhisps));
 	m->set("stopRuedasFinalScene", SLB::FuncCall::create(&stopRuedasFinalScene));
 	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
 	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
@@ -1420,12 +1421,28 @@ void speedUpRuedasFinalScene() {
     for (auto &p : out_group->handles) {
         CEntity * current = p;
         TCompParticles * part = current->get<TCompParticles>();
-        part->setSystemFading(1);
+        part->setSystemFading(7);
     }
 
     //Enabling the fast particles
     out = getEntityByName("Particles_Fast");
     out_group = out->get<TCompGroup>();
+    for (auto &p : out_group->handles) {
+        CEntity * current = p;
+        TCompParticles * part = current->get<TCompParticles>();
+        part->setSystemState(true);
+    }
+
+    out = getEntityByName("particle_rueda_left");
+    TCompParticles * rueda_particles = out->get<TCompParticles>();
+    rueda_particles->setSystemState(true);
+}
+
+void playWhisps() {
+
+    //Enabling the fast particles
+    CEntity *out = getEntityByName("Particles_Whisps");
+    TCompGroup * out_group = out->get<TCompGroup>();
     for (auto &p : out_group->handles) {
         CEntity * current = p;
         TCompParticles * part = current->get<TCompParticles>();

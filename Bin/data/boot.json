@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_basilic_interior",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -422,6 +422,7 @@
       "data/scenes/basilic_interior_nucleo.scene",
       "data/scenes/basilic_interior_sueloyagarres.scene",
       "data/scenes/Basilic_interior/basilic_interior_particles.scene",
+			"data/scenes/Basilic_interior/basilic_interior_particles_whisps.scene",
 			"data/scenes/Basilic_interior/basilic_interior_particles_slow.scene",
 			"data/scenes/Basilic_interior/basilic_interior_particles_fast.scene",
       "data/scenes/Basilic_interior/basilic_interior_holograms.scene",

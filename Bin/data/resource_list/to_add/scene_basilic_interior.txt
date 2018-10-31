@@ -52,6 +52,7 @@ data/particles/def_attack_hit_sparks_core_left.particles
 data/particles/def_attack_hit_sparks_right.particles
 data/particles/def_attack_hit_sparks_core_right.particles
 data/particles/def_sm_idle.particles
+data/textures/particles/amb_smoke.dds
 data/particles/def_sm_idle_spores.particles
 data/particles/def_sm_enemy_spiral.particles
 data/textures/particles/shadow_smoke.dds
@@ -250,6 +251,13 @@ data/textures/particles/amb_puff.dds
 data/particles/def_amb_dust_60x60_large_interior.particles
 data/textures/particles/amb_smoke2.dds
 data/particles/def_amb_fog_60x60_large.particles
+data/scenes/Basilic_interior/basilic_interior_particles_whisps.scene
+data/particles/def_amb_whisps_interior2.particles
+data/particles/def_amb_whisps_interior_core2.particles
+data/particles/def_amb_whisps_interior3.particles
+data/particles/def_amb_whisps_interior_core3.particles
+data/particles/def_amb_whisps_interior1.particles
+data/particles/def_amb_whisps_interior_core1.particles
 data/scenes/Basilic_interior/basilic_interior_particles_slow.scene
 data/particles/def_amb_smoke_white.particles
 data/particles/def_amb_smoke_interior_slow.particles
@@ -257,12 +265,6 @@ data/scenes/Basilic_interior/basilic_interior_particles_fast.scene
 data/particles/def_amb_smoke_interior_tiny.particles
 data/particles/def_amb_smoke_interior_huge.particles
 data/particles/def_amb_smoke_interior_fast.particles
-data/particles/def_amb_whisps_interior2.particles
-data/particles/def_amb_whisps_interior_core2.particles
-data/particles/def_amb_whisps_interior3.particles
-data/particles/def_amb_whisps_interior_core3.particles
-data/particles/def_amb_whisps_interior1.particles
-data/particles/def_amb_whisps_interior_core1.particles
 data/scenes/Basilic_interior/basilic_interior_holograms.scene
 data/meshes/BC_alminar_atlas_low001.mesh
 data/materials/characters/mtl_player_main_hologram_solid.material
