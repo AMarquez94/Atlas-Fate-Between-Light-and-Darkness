@@ -30,11 +30,22 @@
           [
             "data/materials/mtl_spotlight.material"
             ,
+            "data/materials/flare.material"
+            ,
+            "data/materials/spot.material"
+            ,
             "data/materials/mtl_decalsprops.material"
           ]
         }
       ]
-	  ,
+      ,
+      "collider":
+      {
+        "shape": "mesh"
+        ,
+        "name": "data/colliders/collider_mesh_spotpannel.collider"
+      }
+      ,
       "abs_aabb": true
       ,
       "local_aabb": true
