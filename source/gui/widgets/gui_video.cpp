@@ -40,4 +40,5 @@ void CUIVideo::onActivate() {
 void CUIVideo::onDeactivate() {
 
     ((CVideoTexture*)(_imageParams._texture))->setActive(false);
+    ((CVideoTexture*)(_imageParams._texture))->setToBeReset(true);
 }

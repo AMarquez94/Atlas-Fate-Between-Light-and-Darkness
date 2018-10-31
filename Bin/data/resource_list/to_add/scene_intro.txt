@@ -344,19 +344,6 @@ data/prefabs/cartel_redondo_verde.prefab
 data/meshes/mesh_cartel_redondo_verde.mesh
 data/colliders/collider_mesh_cartel_redondo_verde.collider
 data/prefabs/littlespotlight.prefab
-data/meshes/mesh_littlespotlight.mesh
-data/textures/tx_spotlight_alb.dds
-data/textures/tx_spotlight_ao.dds
-data/textures/tx_spotlight_emi.dds
-data/textures/tx_spotlight_met.dds
-data/textures/tx_spotlight_nml.dds
-data/textures/tx_spotlight_rgh.dds
-data/materials/mtl_spotlight.material
-data/textures/tx_flare_alb.dds
-data/textures/null_normal.dds
-data/materials/flare.material
-data/textures/tx_spot_beam_hd.dds
-data/materials/spot.material
 data/prefabs/neon_amarillo_3.prefab
 data/meshes/mesh_neon_amarilllo_3.mesh
 data/textures/neones_juntos_2_alb.dds
@@ -458,7 +445,6 @@ data/prefabs/neon_amarillo_1.prefab
 data/meshes/neon_cartel_amarillo_1.mesh
 data/colliders/collider_cartel_amarillo_1.collider
 data/particles/def_amb_flare_neon_yellow1.particles
-data/colliders/Spot001.collider
 data/colliders/Spot002.collider
 data/colliders/Spot003.collider
 data/colliders/Spot005.collider
@@ -486,9 +472,16 @@ data/materials/mtl_piedras_mezquita.material
 data/scenes/intro_cables.scene
 data/prefabs/baselargaelectrica.prefab
 data/meshes/mesh_baselargalectrica.mesh
+data/textures/tx_spotlight_alb.dds
+data/textures/tx_spotlight_ao.dds
+data/textures/tx_spotlight_emi.dds
+data/textures/tx_spotlight_met.dds
+data/textures/tx_spotlight_nml.dds
+data/textures/tx_spotlight_rgh.dds
 data/materials/mtl_spotlights.material
 data/meshes/mesh_intro_cable001.mesh
 data/textures/default_emissive.dds
+data/textures/null_normal.dds
 data/materials/mtl_cables.material
 data/meshes/mesh_intro_cable016.mesh
 data/meshes/mesh_intro_cable020.mesh
@@ -541,15 +534,15 @@ data/textures/barro_bottom.dds
 data/textures/tx_parche_cemento_rgh.dds
 data/materials/mtl_decal_bottom.material
 data/scenes/intro_decals_rotura.scene
-data/textures/tx_leaking_alb.dds
-data/materials/mtl_decal_leaking.material
-data/textures/parche cemento.dds
-data/materials/mtl_parche cemento.material
-data/textures/bordes_largos.dds
-data/materials/mtl_decal_rotura_larga.material
 data/textures/tx_rotura_filo_alb.dds
 data/textures/tx_rotura_filo_nml.dds
 data/materials/mtl_decal_borde_filo.material
+data/textures/parche cemento.dds
+data/materials/mtl_parche cemento.material
+data/textures/tx_leaking_alb.dds
+data/materials/mtl_decal_leaking.material
+data/textures/bordes_largos.dds
+data/materials/mtl_decal_rotura_larga.material
 data/scenes/intro_decals_poster.scene
 data/textures/cartel_sam.dds
 data/materials/mtl_cartel_sam.material
@@ -586,6 +579,10 @@ data/textures/tx_cajetin_cable_met.dds
 data/textures/tx_cajetin_cable_nml.dds
 data/textures/tx_cajetin_cable_rgh.dds
 data/materials/mtl_cajetin_cables.material
+data/scenes/intro_decals_propaganda.scene
+data/meshes/mesh_cartel_missing.mesh
+data/textures/carteles_missing.dds
+data/materials/mtl_cartel_missing.material
 data/scenes/intro_casas_lp_1.scene
 data/prefabs/casas_1_lp.prefab
 data/meshes/mesh_casas_1_lp.mesh

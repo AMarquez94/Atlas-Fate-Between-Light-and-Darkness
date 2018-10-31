@@ -24,6 +24,9 @@ void TCompVideo::onMsgVideoStatus(const TMsgVideoStatus & msg) {
     if (_video) {
         enabled = msg.status;
         _video->setActive(msg.status);
+        if (!enabled) {
+            _video->setToBeReset(true);
+        }
     }
 }
 

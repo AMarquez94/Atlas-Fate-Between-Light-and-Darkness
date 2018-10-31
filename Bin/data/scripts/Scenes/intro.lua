@@ -115,8 +115,8 @@ end
 -- # Trigger cinematic # --
 
 function onTriggerEnter_Trigger_Inhibitor_Cinematic_player()
-	setAIState("Patrol_Cinematic_Inhibitor", true, "inhibitor_cinematic");
 	if(cinematicsEnabled and not intro_inhibitor_cinematicExecuted) then
+		setAIState("Patrol_Cinematic_Inhibitor", true, "inhibitor_cinematic");
 		intro_inhibitor_cinematic();
 	end
 	temp = getEntityByName("Trigger_Inhibitor_Cinematic");

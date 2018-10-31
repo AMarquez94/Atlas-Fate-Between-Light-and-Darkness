@@ -41,5 +41,7 @@ public:
     void setIntensity(float new_int);
     float getIntensity();
 
+    bool interactsWithPlayer = true;
+
     static void registerMsgs();
 };

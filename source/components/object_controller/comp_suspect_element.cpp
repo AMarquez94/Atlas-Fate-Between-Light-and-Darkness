@@ -1,6 +1,8 @@
 #include "mcv_platform.h"
 #include "comp_suspect_element.h"
 #include "entity/entity_parser.h"
+#include "components/comp_render.h"
+
 DECL_OBJ_MANAGER("suspect_ui_element", TCompSuspectElement);
 
 void TCompSuspectElement::onEnemySuspecting(const TMsgEnemySuspecting & msg)
@@ -44,6 +46,12 @@ void TCompSuspectElement::update(float dt)
         my_pos->setYawPitchRoll(yaw + delta_yaw, pitch);
         my_pos->setPosition(p_pos->getPosition() + my_pos->getFront() * offset_dist + VEC3(0.f,0.75f,0.f));
         my_pos->setYawPitchRoll(yaw + delta_yaw + deg2rad(180.f), pitch);
+
+        TCompAIPatrol* ai_patrol = e_suspecting->get<TCompAIPatrol>();
+        if (ai_patrol) {
+            TCompRender* my_render = get<TCompRender>();
+            my_render->self_color = VEC4::Lerp(VEC4(1.f, 1.f, 0.f, 0.5f), VEC4(1.f, 0.f, 0.f, 1.f), ai_patrol->getSuspectLevel());
+        }
     }
 }
 

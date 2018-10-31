@@ -42,6 +42,8 @@
         "shadows_resolution": 512
         ,
         "shadows_fmt": "R32_TYPELESS"
+		,
+		"interacts_with_player": false
       }
       ,
       "abs_aabb": true

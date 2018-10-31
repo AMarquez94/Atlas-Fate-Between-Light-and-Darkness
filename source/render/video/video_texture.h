@@ -17,6 +17,7 @@ class CVideoTexture : public CTexture {
     bool finished = false;
     bool frame_ready = false;
     CTimer chrono;
+    bool to_be_reset = false;
 
     void close();
     bool initDecoder();
@@ -41,5 +42,6 @@ public:
 
     void resetVideo();
     void setActive(bool state);
+    void setToBeReset(bool toBeReset);
 };
 

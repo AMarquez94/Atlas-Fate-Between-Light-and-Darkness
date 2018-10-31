@@ -88,10 +88,10 @@ void TCompShadowController::onSceneCreated(const TMsgSceneCreated& msg) {
     }
 
     physx::PxFilterData pxFilterData;
-    pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::DItem | FilterGroup::Enemy | FilterGroup::MovableObject;
+    pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::DItem | FilterGroup::Enemy | FilterGroup::MovableObject | FilterGroup::Fence;
     shadowDetectionFilter.data = pxFilterData;
 
-    pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::DItem | FilterGroup::MovableObject;
+    pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::DItem | FilterGroup::MovableObject | FilterGroup::Fence;
     shadowDetectionFilterEnemy.data = pxFilterData;
 
     pxFilterData.word0 = FilterGroup::Light;
