@@ -257,7 +257,7 @@ void CDeferredRenderer::renderVolumes() {
 
     // render everything on half resolution?
     CTraceScoped gpu_scope("renderVolumes");
-    /*
+    
     auto* tech = Resources.get("pbr_rayshaft_directional.tech")->as<CRenderTechnique>();
     tech->activate();
 
@@ -274,30 +274,30 @@ void CDeferredRenderer::renderVolumes() {
             mesh->render();
         }
     });
-
+    
     // Activate tech for the light dir 
-    tech = Resources.get("pbr_rayshaft_spotlight.tech")->as<CRenderTechnique>();
+    /*auto tech = Resources.get("pbr_rayshaft_spotlight.tech")->as<CRenderTechnique>();
     tech->activate();
 
     // All light directional use the same mesh
-    mesh = Resources.get("data/meshes/UnitCone.mesh")->as<CRenderMesh>();
+    auto mesh = Resources.get("data/meshes/UnitCone.mesh")->as<CRenderMesh>();
     mesh->activate();
 
     getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
 
-        if (c->isEnabled && !c->isCulled() && c->isVolumeEnabled()) {
+        if (c->isEnabled && !c->isCulled()) {
             c->activate();
 		    setWorldTransform(c->getWorld());
             mesh->render();
         }
-    });
-    */
+    });*/
+    
     // Activate tech for the light dir 
-    auto tech = Resources.get("pbr_rayshaft_pointlight.tech")->as<CRenderTechnique>();
+    tech = Resources.get("pbr_rayshaft_pointlight.tech")->as<CRenderTechnique>();
     tech->activate();
 
     // All light directional use the same mesh
-    auto mesh = Resources.get("data/meshes/UnitSphere.mesh")->as<CRenderMesh>();
+    mesh = Resources.get("data/meshes/UnitSphere.mesh")->as<CRenderMesh>();
     mesh->activate();
 
     // Para todas las luces... pintala

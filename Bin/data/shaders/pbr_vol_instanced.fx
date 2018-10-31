@@ -161,9 +161,62 @@ float4 PS_IVLight(
     return float4(light_color.xyz, clamp_spot * val * noise0.x) * shadow_factor;// * projectColor(iWorldPos);
 }
 
+// Code repeated, refactor this in the future...
+
 #define FACTOR_TAU 0.000001f
 #define FACTOR_PHI 100000.0f
 #define PI_RCP 1.318309388618379067153776752674503f
+
+float4 PS_GBuffer_RayShafts_Directional(
+  float4 Pos       : SV_POSITION
+  , float3 iNormal : NORMAL0
+  , float4 iTangent : NORMAL1
+  , float2 iTex0 : TEXCOORD0
+  , float2 iTex1 : TEXCOORD1
+  , float3 iWorldPos : TEXCOORD2
+): SV_Target0
+{
+	float STEPS = 45;
+  float TAU = FACTOR_TAU * 2.1;
+  float PHI = FACTOR_PHI * light_intensity * 0.01;
+	
+	// Clamped world position to closest fragment
+	int3   ss_load_coords = uint3(Pos.xy, 0);
+  float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
+  float  depth = zlinear > Pos.z ? Pos.z : zlinear;
+  float3 wPos = getWorldCoords(Pos.xy, depth);
+	
+  float3 ray_vector = camera_pos - wPos;
+	float ray_length = length(ray_vector);
+	float3 ray_dir = ray_vector / ray_length;
+
+	float step_length = ray_length / STEPS;
+	float3 step = ray_dir * step_length;
+
+  float4x4 ditherPattern = {{ 0.0f, 0.5f, 0.125f, 0.625f},
+                            { 0.75f, 0.22f, 0.875f, 0.375f},
+                            { 0.1875f, 0.6875f, 0.0625f, 0.5625},
+                            { 0.9375f, 0.4375f, 0.8125f, 0.3125}};
+  float ditherValue = ditherPattern[Pos.x % 2][Pos.y % 2];
+
+	float3 currentPosition = wPos + step * ditherValue;
+	float total_fog = 0.0f;
+	float l = ray_length;
+			
+	for (int i = 0; i < STEPS; i++)
+	{
+		float shadowTerm = computeShadowFactorLight(currentPosition);
+    float d = length(currentPosition - light_pos);
+    float dRCP = rcp(d);
+    float amount = TAU*(shadowTerm*(PHI*0.25f*PI_RCP))*exp(TAU)*exp(-l*TAU)*step_length;
+
+		l-=step_length;
+    total_fog += amount;
+		currentPosition += step;
+	} 
+
+	return float4(light_color.xyz * total_fog, 1);
+}
 
 float4 PS_GBuffer_RayShafts_Spot(
   float4 Pos       : SV_POSITION
@@ -195,7 +248,7 @@ float4 PS_GBuffer_RayShafts_Spot(
                             { 0.75f, 0.22f, 0.875f, 0.375f},
                             { 0.1875f, 0.6875f, 0.0625f, 0.5625},
                             { 0.9375f, 0.4375f, 0.8125f, 0.3125}};
-  float ditherValue = ditherPattern[Pos.x % 4][Pos.y % 4];
+  float ditherValue = ditherPattern[Pos.x % 2][Pos.y % 2];
 
 	float3 currentPosition = wPos + step * ditherValue;
 	float total_fog = 0.0f;
@@ -213,7 +266,7 @@ float4 PS_GBuffer_RayShafts_Spot(
 		float theta = dot(light_dir, -light_direction.xyz);
 		float att_spot = clamp((theta - light_outer_cut) / (light_inner_cut - light_outer_cut), 0, 1);
 		float clamp_spot = theta > light_angle ? 1.0 * att_spot : 0.0; // spot factor 
-	
+
 		l-=step_length;
     total_fog += amount * clamp_spot;
 		currentPosition += step;
@@ -296,7 +349,7 @@ float4 PS_GBuffer_Shafts(
 	
 	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 + 0.02 * global_world_time * float2(.5, 0)).r;
 	color.a *= txNoiseMap.Sample(samLinear, iTex0 * 1.0 - 0.04 * global_world_time * float2(.5, 0));
-	
+
 	// Compute smooth intersections
 	int3 ss_load_coords = uint3(Pos.xy, 0);
 	float linear_depth = txGBufferLinearDepth.Load(ss_load_coords).x;
@@ -306,7 +359,7 @@ float4 PS_GBuffer_Shafts(
 	float delta_z = abs(linear_depth - fragment_depth);
 	color.a *= saturate(delta_z * camera_zfar);
 	color.a *= 1 - saturate(1/(delta_c * delta_c));
-	
+			
 	//float theta = dot(out_lightdir, -light_direction.xyz);
 	//float att_spot = clamp((theta - light_outer_cut) / (light_inner_cut - light_outer_cut), 0, 1);
 	//float clamp_spot = theta > light_angle ? 1.0 * att_spot : 0.0; // spot factor 

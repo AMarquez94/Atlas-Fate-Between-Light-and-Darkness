@@ -1,14 +1,23 @@
-[
-  {
-    "entity":
-    {
-      "name": "littlespotlight"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
+[{
+		"entity": {
+			"name": "mesh_littlespotlight",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/mesh_littlespotlight.mesh",
+					"self_intensity": 0.34,
+					"materials":
+					[
+						"data/materials/mtl_spotlight.material",
+						"data/materials/flare.material",
+						"data/materials/spot.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
 ]

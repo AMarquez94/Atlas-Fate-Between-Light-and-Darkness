@@ -957,7 +957,7 @@
 	"pbr_rayshaft_directional": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/pbr_vol_instanced.fx",
-		"ps_entry_point": "PS_GBuffer_RayShafts_Point",
+		"ps_entry_point": "PS_GBuffer_RayShafts_Directional",
 		"vertex_type": "PosClr",
 		"blend": "additive",
 		"rs_config": "cull_none",
