@@ -177,24 +177,28 @@ void CVideoTexture::update(float dt) {
         // Rewind those that finished.
         if (hasFinished()) {
 
-            float time_to_play = chrono.elapsedAndReset();
-            dbg("Video %s loops after %f secs\n", getName().c_str(), time_to_play);
-
-            close();
-
-            streaming_data.clear();
-            streaming_data = std::vector<u8>(video_data.begin(), video_data.end());
-
-            initDecoder();
-
-            // Reload
-            //CFileDataProvider dp(name.c_str());
-            //if (dp.isValid())
-            //    dp.readBytes(data.data(), data.size());
-
+            resetVideo();
         }
     }
 }
+
+void CVideoTexture::resetVideo() {
+
+    float time_to_play = chrono.elapsedAndReset();
+    dbg("Video %s loops after %f secs\n", getName().c_str(), time_to_play);
+
+    close();
+    streaming_data.clear();
+    streaming_data = std::vector<u8>(video_data.begin(), video_data.end());
+
+    initDecoder();
+
+    // Reload
+    //CFileDataProvider dp(name.c_str());
+    //if (dp.isValid())
+    //    dp.readBytes(data.data(), data.size());
+}
+
 
 void CVideoTexture::setActive(bool state) {
 

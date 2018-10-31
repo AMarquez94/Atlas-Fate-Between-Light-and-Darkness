@@ -39,6 +39,7 @@ public:
     bool isFrameReadyToUpload() const;
     bool uploadToVRAM();
 
+    void resetVideo();
     void setActive(bool state);
 };
 

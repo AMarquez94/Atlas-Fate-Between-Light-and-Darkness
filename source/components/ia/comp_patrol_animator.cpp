@@ -192,6 +192,28 @@ void TCompPatrolAnimator::initializeAnimations() {
 		false
 	);
 
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::REPAIR_PATROL ,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"repairing",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::LOOKING_FOR,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"lookingfor",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
 }
 
 void TCompPatrolAnimator::registerMsgs() {

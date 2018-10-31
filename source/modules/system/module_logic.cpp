@@ -1420,7 +1420,7 @@ void speedUpRuedasFinalScene() {
     for (auto &p : out_group->handles) {
         CEntity * current = p;
         TCompParticles * part = current->get<TCompParticles>();
-        part->setSystemState(false);
+        part->setSystemFading(1);
     }
 
     //Enabling the fast particles
