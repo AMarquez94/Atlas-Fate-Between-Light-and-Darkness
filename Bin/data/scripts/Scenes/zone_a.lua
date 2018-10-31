@@ -6,6 +6,7 @@ end
 function onScenePartialStart_scene_zone_a()
 	--onSceneStart_scene_zone_a();
 	movePlayerToRefPos("zone_a_in_suelo001", i_ref_pos);
+	gameManager:changeMainTheme();
 	--execScriptDelayed("toDoor(toEntity(getEntityByName(\"zone_a_in_marco_puerta001\")):getCompByName(\"door\")):open();", 0.5);
 end
 

@@ -49,7 +49,7 @@ public:
 
     enum PauseState { none, main, win, defeat, editor1, editor1unpaused, editor2, void_state };
 
-    enum MusicState { normal, persecution, ending_persecution, player_died, no_music, end_scene };
+    enum MusicState { normal, persecution, ending_persecution, player_died, no_music, end_scene, ending_old_ambient, starting_new_ambient };
 
     CModuleGameManager(const std::string& name) : IModule(name) {}
 
@@ -76,4 +76,5 @@ public:
     void preloadFinalSceneSoundEvent();
     void playVoice(const std::string& voice_event);
     void stopVoice();
+    void changeMainTheme();
 };

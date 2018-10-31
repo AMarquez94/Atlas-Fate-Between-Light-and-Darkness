@@ -30,7 +30,7 @@ bool CModuleGameManager::start() {
     _currentstate = PauseState::none;
     EngineRender.setDebugMode(false);
     EngineLogic.setPause(false);
-    main_theme = EngineSound.playEvent("event:/Ambiance/InGame");
+    main_theme = EngineSound.playEvent(EngineScene.getActiveScene()->name == "scene_zone_a" ? "event:/Ambiance/Zone_A_Ambiance" : "event:/Ambiance/InGame");
     //transmission = EngineSound.playEvent("event:/Ambiance/Transmission");
     //transmission.setVolume(0.f);
     _musicstate = MusicState::normal;
@@ -375,13 +375,30 @@ void CModuleGameManager::updateMusicState(float dt)
                 finalScene.setVolume(volume);
             }
             break;
-        case MusicState::no_music:
 
+        case MusicState::ending_old_ambient:
+            if (playerCont->isDead()) {
+                return changeMusicState(MusicState::player_died);
+            }
+            else {
+                main_theme_lerp += dt;
+                float volume = lerp(1.f, 0.f, main_theme_lerp);
+                if (volume <= 0.f) {
+                    main_theme.stop();
+                    main_theme = EngineSound.playEvent(EngineScene.getActiveScene()->name == "scene_zone_a" ? "event:/Ambiance/Zone_A_Ambiance" : "event:/Ambiance/InGame");
+                    main_theme.setVolume(0.f);
+                    return changeMusicState(MusicState::normal);
+                }
+                else {
+                    main_theme.setVolume(volume);
+                }
+            }
             break;
         }
 
-
-        if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() > 0 && _musicstate != MusicState::persecution) {
+        if (_musicstate == MusicState::ending_old_ambient) {
+        }
+        else if (EngineIA.patrolSB.patrolsGoingAfterPlayer.size() > 0 && _musicstate != MusicState::persecution) {
             _musicstate = MusicState::persecution;
             if (persecution_theme.isValid() && persecution_theme.isPlaying()) {
                 persecution_theme.setVolume(1.f);
@@ -655,6 +672,11 @@ void CModuleGameManager::stopVoice()
 {
     active_voice.stop();
     EngineLogic.eraseDelayedScripts("playVoice(");
+}
+
+void CModuleGameManager::changeMainTheme()
+{
+    changeMusicState(MusicState::ending_old_ambient);
 }
 
 void CModuleGameManager::resetState() {

@@ -164,6 +164,7 @@ void CModuleLogic::publishClasses() {
 		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint)
         .set("changeToEndScene", &CModuleGameManager::changeToEndScene) //TODO: Delete
         .set("preloadFinalSceneSoundEvent", &CModuleGameManager::preloadFinalSceneSoundEvent) //TODO: Delete
+        .set("changeMainTheme", &CModuleGameManager::changeMainTheme) //TODO: Delete
         ;
 
     SLB::Class< VEC3 >("VEC3", m)
@@ -407,6 +408,7 @@ void CModuleLogic::publishClasses() {
     m->set("isInCinematicMode", SLB::FuncCall::create(&isInCinematicMode));
     m->set("preloadSoundEvent", SLB::FuncCall::create(&preloadSoundEvent));
     m->set("stopRenderingEntities", SLB::FuncCall::create(&stopRenderingEntities));
+    m->set("changeMainTheme", SLB::FuncCall::create(&changeMainTheme));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -1008,6 +1010,11 @@ void stopRenderingEntities()
     TMsgSetVisible msg;
     msg.visible = false;
     EngineEntities.broadcastMsg(msg);
+}
+
+void changeMainTheme()
+{
+    CEngine::get().getGameManager().changeMainTheme();
 }
 
 
