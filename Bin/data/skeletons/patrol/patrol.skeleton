@@ -90,7 +90,8 @@
 			"name": "dead"
 		},
 		{
-			"name": "lookingfor"
+			"name": "lookingfor",
+			"animation_completed_callback": true
 		},
 		{
 			"name": "repairing"

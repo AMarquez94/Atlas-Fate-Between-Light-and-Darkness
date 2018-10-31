@@ -276,7 +276,8 @@
 				"angle" : 90
 			},
 			"emission_controller": {
-				"initial": "1.0 0.0 0.0 1.0"
+				"initial": "1.0 0.0 0.0 1.0",
+				"intensity": 1.5
 			}
 		}
 
