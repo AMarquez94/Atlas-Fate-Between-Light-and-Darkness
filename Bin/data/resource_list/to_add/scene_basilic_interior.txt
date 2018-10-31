@@ -259,7 +259,7 @@ data/particles/def_amb_whisps_interior_core3.particles
 data/particles/def_amb_whisps_interior1.particles
 data/particles/def_amb_whisps_interior_core1.particles
 data/scenes/Basilic_interior/basilic_interior_particles_slow.scene
-data/particles/def_amb_smoke_white.particles
+data/particles/def_amb_smoke_white_medium.particles
 data/particles/def_amb_smoke_interior_slow.particles
 data/scenes/Basilic_interior/basilic_interior_particles_fast.scene
 data/particles/def_amb_smoke_interior_tiny.particles
