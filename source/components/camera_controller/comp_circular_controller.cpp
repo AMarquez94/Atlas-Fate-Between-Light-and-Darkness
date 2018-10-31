@@ -90,7 +90,6 @@ void TCompCircularController::update(float dt) {
     VEC3 my_new_pos = target_pos - target_dir * t_radius;
     my_new_pos.y = my_y + curr_height;
 
-    dbg("targetdir %f %f %f total %f\n", target_dir.x, target_dir.y, target_dir.z, curr_yaw);
     assert(c_my_transform);
     c_my_transform->lookAt(my_new_pos, target_pos);
 }

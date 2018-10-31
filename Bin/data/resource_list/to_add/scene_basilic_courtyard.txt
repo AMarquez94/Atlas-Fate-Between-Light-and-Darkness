@@ -666,6 +666,7 @@ data/particles/def_attack_hit_sparks_core_left.particles
 data/particles/def_attack_hit_sparks_right.particles
 data/particles/def_attack_hit_sparks_core_right.particles
 data/particles/def_sm_idle.particles
+data/particles/def_sm_idle_spores.particles
 data/particles/def_sm_enemy_spiral.particles
 data/textures/particles/shadow_smoke.dds
 data/particles/def_sm_enemy_spiral_core.particles

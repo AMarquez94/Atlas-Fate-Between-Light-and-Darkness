@@ -1,26 +1,26 @@
 {
 	"system": {
-		"duration": 1.35,
+		"duration": 1.75,
 		"looping": true,
 		"start_delay": 0.0,
 		"start_lifetime": 2.0,
-		"start_speed": 0.0,
+		"start_speed": 0.5,
 		"start_size": "0.75 0.75 0.75",
 		"start_rotation": "0 0 0",
 		"random_rotation": 0.0,
 		"start_color": "1 1 1 1",
-		"gravity": 0,
+		"gravity": -0.05,
 		"simulation_speed": 1,
-		"max_particles": 300
+		"max_particles": 20
 	},
 	"emission": {
-		"rate_time": 25.0,
-		"rate_distance": 0.0,
+		"rate_time": 0.0,
+		"rate_distance": 1.0,
 		"variation" : 0.0,
 		"interval" : 0.5
 	},
 	"shape": {
-		"type": "box",
+		"type": "cone",
 		"size": "0.75 0.25 0.25",
 		"angle": 89.0
 		
@@ -34,11 +34,10 @@
     ],
 		"rotation" : [
 		  [0.0, "0.0 0.0 1.0"],
-      [1.0, "0.0 0.0 0.25"]
+      [1.0, "0.0 0.0 0.15"]
     ],
 		"acceleration": 1.0,
-		"wind": 0.0,
-		"inherit": false
+		"wind": 0.0
 	},
 	"noise": {
 		"texture": "data/textures/particles/fx_smoke1.dds",
@@ -53,27 +52,27 @@
 	},
 	"renderer": {
 			"mode": "billboard",
-			"texture": "data/textures/particles/fx_smoke1.dds",
-      "frame_size" : "8 4",
+			"texture": "data/textures/particles/amb_smoke.dds",
+      "frame_size" : "2 2",
       "initial_frame" : 0,
-      "num_frames" : 32,
-      "frame_speed" : 32.0
+      "num_frames" : 4,
+      "frame_speed" : 4.0
 	},
   "size" : {
-    "scale" : 1.0,
-    "scale_variation" : 0.2,
+    "scale" : 0.1,
+    "scale_variation" : 0.01,
     "sizes" : [
 		  [0.0, "0.75 0.75 0.75"],
 			[0.8, "0.75 0.75 0.75"],
-      [1.0, "0.75 0.75 0.25"]
+      [1.0, "0.45 0.45 0.45"]
     ]
   },
   "color" : {
-    "opacity" : 1.25,
+    "opacity" : 1.85,
     "colors" : [
       [0.0, "1 1 1 0"],
       [0.01, "0 0 0 0.24"],
-      [0.6, "0 0 0 0.26"],
+      [0.7, "0 0 0 0.26"],
 			[1.0, "0 0 0 0.0"]
     ] 
   }
