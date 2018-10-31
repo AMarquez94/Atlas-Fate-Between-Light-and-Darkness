@@ -10,6 +10,9 @@ class TCompCircularController : public TCompBase {
   CHandle     h_target;
   std::string target_name;
 
+  VEC3 target_pos = VEC3::Zero;
+  TCompTransform * player_trans = nullptr;
+
   // Use engine's one
   float       total_time = 0.f;
 

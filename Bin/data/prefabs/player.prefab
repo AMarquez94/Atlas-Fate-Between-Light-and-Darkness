@@ -361,7 +361,7 @@
 				"speed" : 2,
 				"oscilation_speed" : 15,
 				"vertical_speed" : -0.0005,
-				"forward": 1
+				"forward": 2
 			},
 			"particles": {
 				"on_start":false,
@@ -385,7 +385,7 @@
 				"speed" : -2,
 				"oscilation_speed" : 15,
 				"vertical_speed" : -0.0005,
-				"forward": 1
+				"forward": 2
 			},
 			"particles": {
 				"on_start":false,
