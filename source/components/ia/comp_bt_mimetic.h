@@ -144,6 +144,7 @@ public:
 
     /* ASSERTS */
     bool assertNotPlayerInFovNorNoise(float dt);
+    bool assertNotPlayerInFovForSure(float dt);
 	bool assertNotPlayerInRaycastNorNoise(float dt);
     bool assertNotPlayerInFov(float dt);
     bool assertNotPlayerInFovNorArtificialNoise(float dt);
