@@ -1,0 +1,41 @@
+[
+  {
+    "entity":
+    {
+      "name": "towerholo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_towerholo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_towerholo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_holotunel.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]
