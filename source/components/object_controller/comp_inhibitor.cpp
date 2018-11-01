@@ -37,6 +37,14 @@ void TCompInhibitor::load(const json& j, TEntityParseContext& ctx) {
     h_parent = ctx.entity_starting_the_parse;
     speed = j.value("speed", 15.0f);
     fading_speed = j.value("fade_speed", 1.5f);
+
+
+    inhibitor_sphere.radius = j.value("radius", 0.5f);
+
+    physx::PxFilterData pxFilterData;
+    pxFilterData.word0 = FilterGroup::Scenario | FilterGroup::Button;
+    PxInhibitorFilterData.data = pxFilterData;
+    PxInhibitorFilterData.flags = physx::PxQueryFlag::eSTATIC;
 }
 
 void TCompInhibitor::registerMsgs() {
@@ -57,7 +65,9 @@ void TCompInhibitor::update(float dt) {
         else if (!exploding) {
             TCompTransform* mypos = get<TCompTransform>();
             mypos->setPosition(mypos->getPosition() + mypos->getFront() * speed * dt);
-            if (VEC3::Distance(mypos->getPosition(), dest) < speed * dt) {
+            std::vector<physx::PxOverlapHit> hits;
+            bool collided = EnginePhysics.Overlap(inhibitor_sphere, mypos->getPosition(), hits, PxInhibitorFilterData);
+            if (VEC3::Distance(mypos->getPosition(), dest) < speed * dt || collided) {
                 exploding = true;
             }
         }

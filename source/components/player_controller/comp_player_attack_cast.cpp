@@ -107,13 +107,6 @@ const bool TCompPlayerAttackCast::canAttackEnemiesInRange(CHandle& closestEnemyT
                 closestEnemyToAttack = enemies[i];
             }
         }
-        else if (eTag->hasTag(getID("mimetic"))) {
-            TCompAIMimetic * cMimetic = enemy->get<TCompAIMimetic>();
-            if (mypos->isInHorizontalFov(ePos->getPosition(), attack_fov) && !cMimetic->isStunned()) {
-                canAttackNow = true;
-                closestEnemyToAttack = enemies[i];
-            }
-        }
     }
     return canAttackNow;
 }
