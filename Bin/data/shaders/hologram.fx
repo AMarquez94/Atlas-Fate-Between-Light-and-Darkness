@@ -404,17 +404,18 @@ float4 PS_TV_Final(
 	float4 color = txAlbedo.Sample(samLinear, float2(xpos, iTex0.y));
   float scanline = sin(iTex0.x*800.0 + global_world_time * self_intensity)*0.025;
 	color -= scanline;
-	
+
   // Mix in some random interference for lines
 	float shift_itex = iTex0.x * global_world_time * self_intensity;
 	float rand_interference = rand(float2(shift_itex, shift_itex));
   float3 t_color = lerp(color.xyz, float3(rand_interference, rand_interference, rand_interference), xnoise * 0.2).xyz;
-	
+	float4 emissive = txEmissive.Sample(samLinear, float2(iTex0.x, iTex0.y));
+		
   // Shift green/blue channels (using the red channel)
   t_color.x  = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).y, 0.25);
 	t_color.y = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).z, 0.25);
 	
-	return float4(t_color, 1) * obj_color * 0.6;
+	return float4(t_color, 1) * obj_color * emissive;
 	
 }
 

@@ -195,6 +195,7 @@ void execLastAtlasScreen();
 void activateCredits();
 void removeAtlasSplash();
 void removeTempCredits();
+void playWhisps();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

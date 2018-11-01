@@ -28,11 +28,11 @@ void TCompCircularController::onCreate(const TMsgEntityCreated& msg) {
 void TCompCircularController::onNewTarget(const TMsgCircularControllerTarget & msg)
 {
     h_target = msg.new_target;
-    CEntity* e_test = h_target;
-
-    curr_yaw = 0;
+    curr_yaw = getYawFromVector(player_trans->getFront());
     curr_height = 0;
     total_time = 0;
+
+    target_pos = (player_trans->getPosition() + forward * player_trans->getFront());
 }
 
 void TCompCircularController::registerMsgs() {
@@ -58,6 +58,10 @@ void TCompCircularController::load(const json& j, TEntityParseContext& ctx) {
 
     h_target = ctx.findEntityByName(target_name);
     oscilation_range = (radius.y - radius.x) * .5f;
+
+    CEntity * ent_player = h_target;
+    assert(ent_player);
+    player_trans = ent_player->get<TCompTransform>();
 }
 
 void TCompCircularController::update(float dt) {
@@ -80,10 +84,10 @@ void TCompCircularController::update(float dt) {
 
     TCompTransform *c_my_transform = get<TCompTransform>();
     float t_radius = radius.x + (oscilation_range + sin(oscilation_speed * total_time) * oscilation_range);
-
+    
     float my_y = c_my_transform->getPosition().y;
-    VEC3 target_pos = (c_target->getPosition() + forward * c_target->getFront());
-    VEC3 my_new_pos = target_pos + getVectorFromYaw(curr_yaw) * t_radius;
+    VEC3 target_dir = getVectorFromYaw(curr_yaw);
+    VEC3 my_new_pos = target_pos - target_dir * t_radius;
     my_new_pos.y = my_y + curr_height;
 
     assert(c_my_transform);

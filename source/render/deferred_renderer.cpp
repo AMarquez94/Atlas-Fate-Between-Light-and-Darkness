@@ -257,7 +257,7 @@ void CDeferredRenderer::renderVolumes() {
 
     // render everything on half resolution?
     CTraceScoped gpu_scope("renderVolumes");
-    /*
+    
     auto* tech = Resources.get("pbr_rayshaft_directional.tech")->as<CRenderTechnique>();
     tech->activate();
 
@@ -274,7 +274,7 @@ void CDeferredRenderer::renderVolumes() {
             mesh->render();
         }
     });
-
+    
     // Activate tech for the light dir 
     tech = Resources.get("pbr_rayshaft_spotlight.tech")->as<CRenderTechnique>();
     tech->activate();
@@ -285,30 +285,30 @@ void CDeferredRenderer::renderVolumes() {
 
     getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
 
-        if (c->isEnabled && !c->isCulled() && c->isVolumeEnabled()) {
+        if (c->isEnabled && !c->isCulled() && c->pro_volume) {
             c->activate();
 		    setWorldTransform(c->getWorld());
             mesh->render();
         }
     });
-    */
+    
     // Activate tech for the light dir 
-    /*auto tech = Resources.get("pbr_rayshaft_pointlight.tech")->as<CRenderTechnique>();
+    tech = Resources.get("pbr_rayshaft_pointlight.tech")->as<CRenderTechnique>();
     tech->activate();
 
     // All light directional use the same mesh
-    auto mesh = Resources.get("data/meshes/UnitSphere.mesh")->as<CRenderMesh>();
+    mesh = Resources.get("data/meshes/UnitSphere.mesh")->as<CRenderMesh>();
     mesh->activate();
 
     // Para todas las luces... pintala
     getObjectManager<TCompLightPoint>()->forEach([mesh](TCompLightPoint* c) {
 
-        if (c->isEnabled && !c->isCulled()) {
+        if (c->isEnabled && !c->isCulled() && c->volumetric) {
             c->activate();
             setWorldTransform(c->getWorld());
             mesh->render();
         }
-    });*/
+    });
 
     auto rmesh = Resources.get("data/meshes/quad_volume.instanced_mesh")->as<CRenderMesh>();
     TCompLightSpot::volume_instance = (CRenderMeshInstanced*)rmesh;
