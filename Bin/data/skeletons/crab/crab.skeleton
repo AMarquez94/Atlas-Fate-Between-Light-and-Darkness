@@ -34,14 +34,28 @@
 			]			
 		},
 		{"name": "death"},
-		{"name": "wakeup", 
-		"animation_completed_callback": true},
+		{	
+			"name": "wakeup", 
+			"animation_completed_callback": true,
+			"audio_callbacks": [{
+				"time_to_call": 0.2,
+				"audio_name": "event:/Sounds/Enemies/Mimetic/MimeticActivating",
+				"relative_to_player": true
+			}]
+		
+		},
 		{"name": "wakeup_jump", 
 		"animation_completed_callback": true},
 		{"name": "rotate"},
 		{"name": "pose_pared"},
 		{"name": "rest_jump", 
-		"animation_completed_callback": true},
+			"animation_completed_callback": true,
+			"audio_callbacks": [{
+				"time_to_call": 0.4,
+				"audio_name": "event:/Sounds/Enemies/Mimetic/MimeticDeactivating",
+				"relative_to_player": true
+			}]
+		},
 		{"name": "rest_wall", 
 		"animation_completed_callback": true}
 		

@@ -53,6 +53,7 @@ void TCompAIMimetic::postUpdate(float dt)
         }
         else {
             TCompAudio* my_audio = get<TCompAudio>();
+            alarm.stop();
             alarm = my_audio->playEvent("event:/Sounds/Enemies/Mimetic/MimeticAlarm");
         }
     }
@@ -212,8 +213,17 @@ void TCompAIMimetic::onMsgEntityCreated(const TMsgEntityCreated & msg)
 }
 
 void TCompAIMimetic::onMsgPlayerDead(const TMsgPlayerDead& msg) {
-
+    TCompEmissionController* my_emission = get<TCompEmissionController>();
+    my_emission->blend(enemyColor.colorNormal, 0.5f);
+    goingInactive = true;
+    lastPlayerKnownPos = VEC3::Zero;
     alarmEnded = false;
+    hasHeardArtificialNoise = false;
+    hasHeardNaturalNoise = false;
+    /* Cancel noise emitter */
+    TCompNoiseEmitter * noiseEmitter = get<TCompNoiseEmitter>();
+    noiseEmitter->makeNoise(-1.f, 10.f, false, false, true);
+    setCurrent(nullptr);
 }
 
 void TCompAIMimetic::onMsgMimeticStunned(const TMsgEnemyStunned & msg)
