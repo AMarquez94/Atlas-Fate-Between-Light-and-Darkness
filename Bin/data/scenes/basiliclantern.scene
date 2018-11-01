@@ -14,15 +14,15 @@
   {
     "entity":
     {
-      "name": "bc_mesh_spotpannel010"
+      "name": "bc_mesh_spotlight009"
       ,
-      "prefab": "data/prefabs/spotpannel.prefab"
+      "prefab": "data/prefabs/foco_brian.prefab"
       ,
       "transform":
       {
-        "pos": "-14.528 2.51733 -389.532"
+        "pos": "26.4894 -1.45365e-05 -332.556"
         ,
-        "rotation": "0.0 -0.21644 0.0 -0.976296"
+        "rotation": "0.0 -0.642789 0.0 -0.766043"
       }
     }
   }
@@ -30,15 +30,15 @@
   {
     "entity":
     {
-      "name": "bc_mesh_spotpannel009"
+      "name": "bc_mesh_spotlight008"
       ,
-      "prefab": "data/prefabs/spotpannel.prefab"
+      "prefab": "data/prefabs/foco_brian.prefab"
       ,
       "transform":
       {
-        "pos": "21.9399 -1.51687e-05 -347.019"
+        "pos": "18.9222 -1.45004e-05 -331.73"
         ,
-        "rotation": "0.0 -0.642788 0.0 -0.766044"
+        "rotation": "0.0 -1.75635e-06 0.0 -1.0"
       }
     }
   }
@@ -46,15 +46,15 @@
   {
     "entity":
     {
-      "name": "bc_mesh_spotpannel008"
+      "name": "bc_mesh_spotlight007"
       ,
-      "prefab": "data/prefabs/spotpannel.prefab"
+      "prefab": "data/prefabs/foco_brian.prefab"
       ,
       "transform":
       {
-        "pos": "23.1987 -1.49033e-05 -340.949"
+        "pos": "23.9713 -1.48709e-05 -340.207"
         ,
-        "rotation": "0.0 -0.737278 0.0 -0.67559"
+        "rotation": "0.0 -0.642789 0.0 -0.766043"
       }
     }
   }
@@ -62,15 +62,15 @@
   {
     "entity":
     {
-      "name": "bc_mesh_spotpannel007"
+      "name": "bc_mesh_spotlight006"
       ,
-      "prefab": "data/prefabs/spotpannel.prefab"
+      "prefab": "data/prefabs/foco_brian.prefab"
       ,
       "transform":
       {
-        "pos": "25.6854 -1.45448e-05 -332.746"
+        "pos": "22.8707 -1.51305e-05 -346.146"
         ,
-        "rotation": "0.0 -0.675591 0.0 -0.737277"
+        "rotation": "0.0 -0.819153 0.0 -0.573575"
       }
     }
   }
@@ -78,15 +78,15 @@
   {
     "entity":
     {
-      "name": "bc_mesh_spotpannel006"
+      "name": "bc_mesh_spotlight005"
       ,
-      "prefab": "data/prefabs/spotpannel.prefab"
+      "prefab": "data/prefabs/foco_brian.prefab"
       ,
       "transform":
       {
-        "pos": "18.4275 -1.45448e-05 -332.746"
+        "pos": "-17.734 -1.4665e-05 -335.495"
         ,
-        "rotation": "0.0 -0.087156 0.0 -0.996195"
+        "rotation": "0.0 0.642786 0.0 -0.766046"
       }
     }
   }
@@ -94,15 +94,15 @@
   {
     "entity":
     {
-      "name": "bc_mesh_spotpannel005"
+      "name": "bc_mesh_spotlight004"
       ,
-      "prefab": "data/prefabs/spotpannel.prefab"
+      "prefab": "data/prefabs/foco_brian.prefab"
       ,
       "transform":
       {
-        "pos": "-14.4302 -1.45448e-05 -332.746"
+        "pos": "-15.5193 -1.45606e-05 -333.107"
         ,
-        "rotation": "0.0 0.5 0.0 -0.866026"
+        "rotation": "0.0 0.342019 0.0 -0.939693"
       }
     }
   }
@@ -110,15 +110,15 @@
   {
     "entity":
     {
-      "name": "bc_mesh_spotpannel004"
+      "name": "bc_mesh_spotlight003"
       ,
-      "prefab": "data/prefabs/spotpannel.prefab"
+      "prefab": "data/prefabs/foco_brian.prefab"
       ,
       "transform":
       {
-        "pos": "-15.56 -1.47677e-05 -337.846"
+        "pos": "-19.6522 -1.6392e-05 -375.005"
         ,
-        "rotation": "0.0 0.642787 0.0 -0.766045"
+        "rotation": "0.0 0.60876 0.0 -0.793355"
       }
     }
   }
@@ -126,15 +126,15 @@
   {
     "entity":
     {
-      "name": "bc_mesh_spotpannel003"
+      "name": "bc_mesh_spotlight002"
       ,
-      "prefab": "data/prefabs/spotpannel.prefab"
+      "prefab": "data/prefabs/foco_brian.prefab"
       ,
       "transform":
       {
-        "pos": "-19.0025 -1.57386e-05 -360.056"
+        "pos": "-20.2572 -1.579e-05 -361.233"
         ,
-        "rotation": "0.0 -0.887011 0.0 0.461749"
+        "rotation": "0.0 -0.939692 0.0 0.342022"
       }
     }
   }
@@ -142,31 +142,15 @@
   {
     "entity":
     {
-      "name": "bc_mesh_spotpannel002"
+      "name": "bc_mesh_spotlight001"
       ,
-      "prefab": "data/prefabs/spotpannel.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-16.0325 -1.59143e-05 -364.077"
-        ,
-        "rotation": "0.0 0.843391 0.0 -0.5373"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "bc_mesh_spotpannel001"
-      ,
-      "prefab": "data/prefabs/spotpannel.prefab"
+      "prefab": "data/prefabs/foco_brian.prefab"
       ,
       "transform":
       {
-        "pos": "-16.6717 -1.6373e-05 -374.571"
+        "pos": "-17.2659 -1.59961e-05 -365.949"
         ,
-        "rotation": "0.0 0.642788 0.0 -0.766045"
+        "rotation": "0.0 0.707105 0.0 -0.707108"
       }
     }
   }
@@ -183,6 +167,278 @@
         "pos": "-10.1451 18.4284 -392.337"
         ,
         "rotation": "-0.707107 0.0 0.0 -0.707106"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared016"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.9127 13.7207 -330.36"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared015"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.9127 13.7207 -337.223"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared014"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.9127 13.7207 -344.106"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared013"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.9127 13.7207 -350.933"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared012"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.9127 13.7207 -357.85"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared011"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.9127 13.7207 -364.687"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared010"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.9127 13.7207 -371.541"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared009"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.9127 13.7207 -378.444"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared008"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.9127 13.7207 -385.347"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared007"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "32.1133 19.114 -333.791"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared006"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "32.1133 19.114 -354.411"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared005"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "32.1133 19.114 -368.159"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared004"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "32.1133 19.114 -388.78"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared003"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.8766 19.114 -388.78"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared002"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.8766 19.114 -368.158"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_luzpared001"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-22.8766 19.114 -340.667"
+        ,
+        "rotation": "0.0 0.0 -1.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_littlespotlight001"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.3836 2.51214 -389.63"
+        ,
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
       }
     }
   }

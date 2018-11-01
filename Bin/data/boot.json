@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_intro",
+	"default_scene": "scene_zone_a",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -356,7 +356,7 @@
 			"data/scenes/BC_neones.scene",
 			"data/scenes/BC_decals.scene",
 			"data/scenes/BC_decals_filo.scene",	
-			
+			"data/scenes/BC_decals_cable.scene",
 
 			"data/scenes/bc_pantalla_atlas.scene",
 			"data/scenes/suelo_mezquita.scene",

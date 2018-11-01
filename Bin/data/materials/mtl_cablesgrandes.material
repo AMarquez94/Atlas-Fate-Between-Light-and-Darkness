@@ -11,6 +11,8 @@
     ,
     "normal": "data/textures/tx_cablesgrandes_nml.dds"
     ,
+    "height": "data/textures/tx_cablesgrandes_hgt.dds"
+    ,
     "aocclusion": "data/textures/tx_cablesgrandes_ao.dds"
   }
 }
