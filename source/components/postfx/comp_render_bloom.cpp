@@ -51,7 +51,7 @@ void TCompRenderBloom::load(const json& j, TEntityParseContext& ctx) {
         bool is_ok = rt_highlights->createRT(rt_name, Render.width, Render.height, DXGI_FORMAT_R8G8B8A8_UNORM, DXGI_FORMAT_UNKNOWN);
         assert(is_ok);
 
-        int xres = Render.width * .25;
+        int xres = Render.width * .5;
         int yres = Render.height;
 
         // To generate unique names

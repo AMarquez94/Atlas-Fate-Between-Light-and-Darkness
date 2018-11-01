@@ -130,7 +130,6 @@ data/meshes/cable_capsula005.mesh
 data/meshes/cables.mesh
 data/scenes/basilic_interior_capsulas.scene
 data/prefabs/capsula_humano.prefab
-data/colliders/luz_pasarela001.collider
 data/meshes/mesh_capsula_humano.mesh
 data/textures/tx_capsula_humano_alb.dds
 data/textures/tx_capsula_emi.dds
@@ -143,6 +142,7 @@ data/textures/tx_capsula_humano_in_hgt.dds
 data/textures/tx_capsula_humano_in_nml.dds
 data/textures/tx_capsula_humano_in_rgh.dds
 data/materials/mtl_humano_capsula.material
+data/colliders/luz_pasarela001.collider
 data/scenes/basilic_interior_props.scene
 data/prefabs/barril.prefab
 data/meshes/mesh_barril.mesh

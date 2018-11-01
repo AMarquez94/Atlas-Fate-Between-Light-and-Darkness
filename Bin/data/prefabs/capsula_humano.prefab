@@ -68,38 +68,6 @@
 		}
 	}, {
 		"entity": {
-			"name": "luz_volume",
-			"transform": {
-				"pos": "0 1.35 -1.65",
-				"eulers": "0 0 0"
-			},
-			"light_point": {
-				"type": "pointlight",
-				"inner_cut": 2.40279,
-				"outer_cut": 2.87886,
-				"volumetric": true,
-				"volume_values": "0.4 45 1 1",
-				"color": "1.0 1.0 0.372549 1.0",
-				"intensity": 0.7,
-				"casts_shadows": true,
-				"shadows_step": 1.0,
-				"shadows_resolution": 512,
-				"shadows_fmt": "R32_TYPELESS"
-			},
-			"abs_aabb": true,
-			"local_aabb": true,
-			"collider": {
-				"shape": "convex",
-				"name": "data/colliders/luz_pasarela001.collider",
-				"is_trigger": true
-			},
-			"tags":
-			[
-				"light"
-			]
-		}
-	}, {
-		"entity": {
 			"name": "mesh_capsula_humano",
 			"transform": {
 				"pos": "0.0 1.09767 -1.72867"
@@ -117,6 +85,39 @@
 			],
 			"abs_aabb": true,
 			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "luz_volume",
+			"transform": {
+				"pos": "0 1.35 -1.65",
+				"eulers": "0 0 0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 0.3,
+				"outer_cut": 1.6,
+				"volumetric": true,
+				"volume_values": "1.1 35 1 1",
+				"color": "1.0 1.0 0.372549 1.0",
+				"intensity": 0.7,
+				"casts_shadows": false,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/luz_pasarela001.collider",
+				"is_trigger": true
+			},
+			"tags":
+			[
+				"light"
+			]
 		}
 	}
 ]
