@@ -43,7 +43,31 @@ void TCompAIMimetic::preUpdate(float dt)
 
 void TCompAIMimetic::postUpdate(float dt)
 {
-
+    if (current != nullptr && current->getName() == "chasePlayerWithNoise") {
+        if (alarm.isValid() && alarm.isPlaying()) {
+            float volume = alarm.getVolume();
+            if (volume < 1.f) {
+                volume = Clamp(volume + dt, 0.f, 1.f);
+                alarm.setVolume(volume);
+            }
+        }
+        else {
+            TCompAudio* my_audio = get<TCompAudio>();
+            alarm = my_audio->playEvent("event:/Sounds/Enemies/Mimetic/MimeticAlarm");
+        }
+    }
+    else {
+        if (alarm.isValid() && alarm.isPlaying()) {
+            float volume = alarm.getVolume();
+            if (volume > 0.f) {
+                volume = Clamp(volume - dt, 0.f, 1.f);
+                alarm.setVolume(volume);
+            }
+            else {
+                alarm.stop();
+            }
+        }
+    }
 }
 
 void TCompAIMimetic::load(const json& j, TEntityParseContext& ctx) {
@@ -286,6 +310,30 @@ void TCompAIMimetic::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) 
 		restAnimationCompleted = true;
 	}
 
+}
+
+void TCompAIMimetic::onMsgEnemyNothingHere(const TMsgEnemyNothingHere & msg)
+{
+    if (navmeshPath.size() > 0) {
+        if (VEC3::Distance(navmeshPath[navmeshPath.size() - 1], msg.position) < 3.f) {
+            if (isNodeSonOf(current, "manageChase") || isNodeSonOf(current, "manageChasePlayer")) {
+                TCompEmissionController* my_emission = get<TCompEmissionController>();
+                my_emission->blend(enemyColor.colorNormal, 0.5f);
+                goingInactive = true;
+                lastPlayerKnownPos = VEC3::Zero;
+                setCurrent(nullptr);
+            }
+            else if (isNodeSonOf(current, "manageArtificialNoise")) {
+                TCompEmissionController* my_emission = get<TCompEmissionController>();
+                my_emission->blend(enemyColor.colorNormal, 0.5f);
+                goingInactive = true;
+                noiseSource = VEC3::Zero;
+                hasHeardArtificialNoise = false;
+                hasHeardNaturalNoise = false;
+                setCurrent(nullptr);
+            }
+        }
+    }
 }
 
 

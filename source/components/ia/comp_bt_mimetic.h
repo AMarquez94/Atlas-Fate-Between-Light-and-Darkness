@@ -33,6 +33,7 @@ private:
 	bool restJumpAnimationCompleted = false;
 	bool restAnimationCompleted = false;
 
+    SoundEvent alarm;
 
     /* Timers */
     float timerWaitingInObservation = 0.f;
@@ -64,6 +65,7 @@ private:
     void onMsgNoiseListened(const TMsgNoiseMade& msg);
     void onMsgPhysxContact(const TMsgPhysxContact& msg);
 	void onMsgAnimationCompleted(const TMsgAnimationCompleted& msg);
+    void onMsgEnemyNothingHere(const TMsgEnemyNothingHere & msg);
 
     /* Aux functions */
     void setGravityToFaceWall();

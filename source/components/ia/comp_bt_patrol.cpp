@@ -594,16 +594,23 @@ BTNode::ERes TCompAIPatrol::actionEndAlert(float dt)
 
 BTNode::ERes TCompAIPatrol::actionMarkNoiseAsInactive(float dt)
 {
-    if (timerWaitingInNoise <= 1.5f) {
-        timerWaitingInNoise += dt;
-        return BTNode::ERes::STAY;
-    }
-    else {
-        timerWaitingInNoise = 0.f; 
-        hasHeardArtificialNoise = false;
-        hasHeardNaturalNoise = false;
-        return BTNode::ERes::LEAVE;
-    }
+    hasHeardArtificialNoise = false;
+    hasHeardNaturalNoise = false;
+    timerWaitingInNoise = 0.f;
+    return BTNode::ERes::LEAVE;
+
+    //if (timerWaitingInNoise <= 1.f) {
+    //    TCompPatrolAnimator* my_animator = get<TCompPatrolAnimator>();
+    //    my_animator->playAnimation(TCompPatrolAnimator::EAnimation::SUSPECTING);
+    //    timerWaitingInNoise += dt;
+    //    return BTNode::ERes::STAY;
+    //}
+    //else {
+    //    timerWaitingInNoise = 0.f; 
+    //    hasHeardArtificialNoise = false;
+    //    hasHeardNaturalNoise = false;
+    //    return BTNode::ERes::LEAVE;
+    //}
 }
 
 BTNode::ERes TCompAIPatrol::actionGenerateNavmeshNoise(float dt)
