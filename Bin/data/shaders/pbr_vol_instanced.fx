@@ -227,8 +227,8 @@ float4 PS_GBuffer_RayShafts_Spot(
   , float3 iWorldPos : TEXCOORD2
 ): SV_Target0
 {
-	float STEPS = 45;
-  float TAU = FACTOR_TAU * 3.1;
+	float STEPS = light_values.y;
+  float TAU = FACTOR_TAU * light_values.x;
   float PHI = FACTOR_PHI * light_intensity;
 	
 	// Clamped world position to closest fragment
@@ -250,7 +250,7 @@ float4 PS_GBuffer_RayShafts_Spot(
                             { 0.9375f, 0.4375f, 0.8125f, 0.3125}};
   float ditherValue = ditherPattern[Pos.x % 2][Pos.y % 2];
 
-	float3 currentPosition = wPos + step * ditherValue;
+	float3 currentPosition = wPos + step *ditherValue ;
 	float total_fog = 0.0f;
 	float l = ray_length;
 			
@@ -284,8 +284,8 @@ float4 PS_GBuffer_RayShafts_Point(
   , float3 iWorldPos : TEXCOORD2
 ): SV_Target0
 {
-	float STEPS = 40;
-  float TAU = FACTOR_TAU * 0.5;
+	float STEPS = light_values.y;
+  float TAU = FACTOR_TAU * light_values.x;
   float PHI = FACTOR_PHI * light_intensity * 0.25;
 	
 	// Clamped world position to closest fragment

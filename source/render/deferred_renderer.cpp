@@ -276,21 +276,21 @@ void CDeferredRenderer::renderVolumes() {
     });
     
     // Activate tech for the light dir 
-    /*auto tech = Resources.get("pbr_rayshaft_spotlight.tech")->as<CRenderTechnique>();
+    tech = Resources.get("pbr_rayshaft_spotlight.tech")->as<CRenderTechnique>();
     tech->activate();
 
     // All light directional use the same mesh
-    auto mesh = Resources.get("data/meshes/UnitCone.mesh")->as<CRenderMesh>();
+    mesh = Resources.get("data/meshes/UnitCone.mesh")->as<CRenderMesh>();
     mesh->activate();
 
     getObjectManager<TCompLightSpot>()->forEach([mesh](TCompLightSpot* c) {
 
-        if (c->isEnabled && !c->isCulled()) {
+        if (c->isEnabled && !c->isCulled() && c->pro_volume) {
             c->activate();
 		    setWorldTransform(c->getWorld());
             mesh->render();
         }
-    });*/
+    });
     
     // Activate tech for the light dir 
     tech = Resources.get("pbr_rayshaft_pointlight.tech")->as<CRenderTechnique>();

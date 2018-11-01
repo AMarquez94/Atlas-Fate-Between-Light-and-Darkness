@@ -18,6 +18,9 @@ void TCompLightPoint::debugInMenu() {
     ImGui::DragFloat("Inner Cut", &inner_cut, 0.01f, 0.f, 100.f);
     ImGui::DragFloat("Outer Cut", &outer_cut, 0.01f, 0.f, 100.f);
     ImGui::Checkbox("Enabled", &isEnabled);
+    ImGui::Checkbox("Pro Volume", &volumetric);
+    ImGui::DragFloat("Pro Volume Steps", &volume_values.y, 1.f, 1.f, 120.f);
+    ImGui::DragFloat("Pro Volume Scattering", &volume_values.x, 0.1f, 0.f, 100.f);
 }
 
 MAT44 TCompLightPoint::getWorld() {
@@ -152,6 +155,7 @@ void TCompLightPoint::activate() {
     cb_light.inner_atten = inner_cut / outer_cut;
     cb_light.light_view_proj_offset = MAT44::Identity;
     cb_light.light_angle = 0;
+    cb_light.light_values = volume_values;
     cb_light.updateGPU();
 }
 

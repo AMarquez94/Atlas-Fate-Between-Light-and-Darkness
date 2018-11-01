@@ -6,7 +6,8 @@ class TCompLightPoint : public TCompBase {
 
 	// Light params
 	VEC4            color = VEC4(1, 1, 1, 1);
-	
+    VEC4            volume_values = VEC4(0.5, 40, 1, 1);
+
     bool            cull_enabled = false;      // Dynamic
 
     void onCreate(const TMsgEntityCreated& msg);
