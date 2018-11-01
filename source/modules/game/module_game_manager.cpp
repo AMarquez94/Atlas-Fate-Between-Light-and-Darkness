@@ -30,7 +30,9 @@ bool CModuleGameManager::start() {
     _currentstate = PauseState::none;
     EngineRender.setDebugMode(false);
     EngineLogic.setPause(false);
-    main_theme = EngineSound.playEvent(EngineScene.getActiveScene()->name == "scene_zone_a" ? "event:/Ambiance/Zone_A_Ambiance" : "event:/Ambiance/InGame");
+    main_theme = EngineSound.playEvent(
+        EngineScene.getActiveScene()->name == "scene_zone_a" || EngineScene.getActiveScene()->name == "scene_basilic_courtyard"
+        ? "event:/Ambiance/Zone_A_Ambiance" : "event:/Ambiance/InGame");
     //transmission = EngineSound.playEvent("event:/Ambiance/Transmission");
     //transmission.setVolume(0.f);
     _musicstate = MusicState::normal;
@@ -385,8 +387,9 @@ void CModuleGameManager::updateMusicState(float dt)
                 float volume = lerp(1.f, 0.f, main_theme_lerp);
                 if (volume <= 0.f) {
                     main_theme.stop();
-                    main_theme = EngineSound.playEvent(EngineScene.getActiveScene()->name == "scene_zone_a" ? "event:/Ambiance/Zone_A_Ambiance" : "event:/Ambiance/InGame");
-                    main_theme.setVolume(0.f);
+                    main_theme = EngineSound.playEvent(
+                        EngineScene.getActiveScene()->name == "scene_zone_a" || EngineScene.getActiveScene()->name == "scene_basilic_courtyard"
+                        ? "event:/Ambiance/Zone_A_Ambiance" : "event:/Ambiance/InGame");
                     return changeMusicState(MusicState::normal);
                 }
                 else {

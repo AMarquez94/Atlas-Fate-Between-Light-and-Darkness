@@ -10,6 +10,7 @@ function onScenePartialStart_scene_basilic_courtyard()
 	movePlayerToRefPos("bc_suelo001", i_ref_pos);
 	toRender(toEntity(getEntityByName("BC_Screen001_Apagado")):getCompByName("render")).visible = false;
 	toRender(toEntity(getEntityByName("BC_Screen002_Apagado")):getCompByName("render")).visible = false;
+	gameManager:changeMainTheme();
 end
 
 function transition_basilic_courtyard_to_interior()
