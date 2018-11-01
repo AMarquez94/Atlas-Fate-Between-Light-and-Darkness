@@ -39,6 +39,7 @@ namespace GUI
 
         if (EngineInput[VK_SPACE].getsReleased() || EngineInput["btMenuConfirm"].getsReleased() || EngineInput["btMouseLClick"].getsReleased())
         {
+            EngineSound.playEvent("event:/Sounds/Menu/Select");
             _options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
             _options[_currentOption].callback();
         }
@@ -65,6 +66,7 @@ namespace GUI
             _currentOption = clamp(newOption, 0, static_cast<int>(_options.size()) - 1);
             if (_currentOption >= 0) {
                 _options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
+                EngineSound.playEvent("event:/Sounds/Menu/Hover");
             }
         }
     }

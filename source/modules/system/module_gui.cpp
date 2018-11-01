@@ -107,6 +107,7 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineLogic.execSystemScriptDelayed("execDeadButton();", 3.2f);
 		EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 6.5f);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(3, 0, false);
+        EngineSound.playEvent("event:/Sounds/Menu/Select");
 		EngineGUI.setButtonsState(false);
 	};
 
