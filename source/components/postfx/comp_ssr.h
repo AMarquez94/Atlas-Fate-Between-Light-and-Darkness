@@ -14,7 +14,7 @@ struct TCompSSR : public TCompBase {
     float                         amount = 1.f;
     const CRenderTechnique*       tech = nullptr;
     const CRenderMesh*            mesh = nullptr;
-    CRenderToTexture*             rt = nullptr;
+    static CRenderToTexture*             rt;
 
     void load(const json& j, TEntityParseContext& ctx);
     void debugInMenu();
