@@ -50,6 +50,11 @@ void TCompLightPoint::load(const json& j, TEntityParseContext& ctx) {
     outer_cut = j.value("outer_cut", outer_cut);
     volumetric = j.value("volumetric", false);
 
+    // Determine scattering values.
+    if (j.count("volume_values")) {
+        volume_values = loadVEC4(j["volume_values"]);
+    }
+
     if (j.count("projector")) {
         std::string projector_name = j.value("projector", "");
         projector = Resources.get(projector_name)->as<CTexture>();
