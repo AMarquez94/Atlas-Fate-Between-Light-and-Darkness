@@ -433,6 +433,8 @@
 			"data/scenes/Basilic_interior/basilic_interior_particles_fast.scene",
       "data/scenes/Basilic_interior/basilic_interior_holograms.scene",
 
+      "data/scenes/basilic_interior_pantallas_3.scene",
+
 			"data/scenes/basilic_interior_luces.scene",
 			"data/scenes/basilic_interior_luces_rueda.scene",
 			"data/scenes/basilic_interior_luces_nucleo.scene",
