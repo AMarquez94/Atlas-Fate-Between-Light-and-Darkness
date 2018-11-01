@@ -377,7 +377,7 @@
 			"data/scenes/bc_casas_lp.scene",
 
 			"data/scenes/Basilic_courtyard/bc_capsule_cable.scene",
-			"data/scenes/BC_Maderas_Andamios.scene",
+			"data/scenes/BC_Maderas_Andamios_2.scene",
 			"data/scenes/BC_ColliderAuxEntrances.scene",
 			"data/scenes/BC_estandarte.scene",
 			"data/scenes/BC_Terminal.scene",
@@ -432,6 +432,8 @@
 			"data/scenes/Basilic_interior/basilic_interior_particles_slow.scene",
 			"data/scenes/Basilic_interior/basilic_interior_particles_fast.scene",
       "data/scenes/Basilic_interior/basilic_interior_holograms.scene",
+
+      "data/scenes/basilic_interior_pantallas_3.scene",
 
 			"data/scenes/basilic_interior_luces.scene",
 			"data/scenes/basilic_interior_luces_rueda.scene",
