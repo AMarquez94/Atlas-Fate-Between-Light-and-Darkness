@@ -817,7 +817,7 @@
 			"audio": {}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Spot002",
 			"transform": {
 				"pos": "-5.83897 0.876932 43.2541",
@@ -851,7 +851,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Spot003",
 			"transform": {
 				"pos": "-23.2183 1.2864 29.5369",

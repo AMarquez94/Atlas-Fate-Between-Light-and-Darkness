@@ -15,7 +15,8 @@
 				"casts_shadows": false,
 				"shadows_step": 1.0,
 				"shadows_resolution": 512,
-				"shadows_fmt": "R32_TYPELESS"
+				"shadows_fmt": "R32_TYPELESS",
+                "interacts_with_player": false
 			},
 			"abs_aabb": true,
 			"local_aabb": true,
