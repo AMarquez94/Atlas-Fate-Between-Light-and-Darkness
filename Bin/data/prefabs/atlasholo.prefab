@@ -7,7 +7,10 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
-      }
+      },
+	  "tags": [
+		"corridor"
+	  ]
     }
   }
   ,
@@ -36,6 +39,10 @@
       "abs_aabb": true
       ,
       "local_aabb": true
+	  ,
+	  "tags": [
+		"corridor"
+	  ]
     }
   }
 ]
