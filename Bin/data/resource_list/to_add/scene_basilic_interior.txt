@@ -271,6 +271,11 @@ data/particles/def_amb_smoke_interior_fast.particles
 data/scenes/Basilic_interior/basilic_interior_holograms.scene
 data/meshes/BC_alminar_atlas_low001.mesh
 data/materials/characters/mtl_player_main_hologram_solid.material
+data/scenes/basilic_interior_pantallas_3.scene
+data/meshes/im_monitor_pantalla_1.mesh
+data/materials/mtl_monitores_interior.material
+data/meshes/im_monitor_pantalla_2.mesh
+data/meshes/im_monitor_pantalla_3.mesh
 data/scenes/basilic_interior_luces.scene
 data/colliders/luz_lateral.collider
 data/colliders/luz_lateral001.collider

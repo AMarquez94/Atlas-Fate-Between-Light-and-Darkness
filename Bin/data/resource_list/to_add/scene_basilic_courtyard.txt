@@ -597,15 +597,14 @@ data/prefabs/casas_4_lp.prefab
 data/meshes/mesh_casas_4_lp.mesh
 data/scenes/Basilic_courtyard/bc_capsule_cable.scene
 data/meshes/BC_Capsules_Cable.mesh
-data/scenes/BC_Maderas_Andamios.scene
-data/meshes/BC_madera_andamio.mesh
+data/scenes/BC_Maderas_Andamios_2.scene
+data/meshes/BC_madera006.mesh
 data/textures/tx_tablas_subida_alb.dds
 data/textures/tx_tablas_subida_ao.dds
 data/textures/tx_tablas_subida_met.dds
 data/textures/tx_tablas_subida_nml.dds
 data/textures/tx_tablas_subida_rgh.dds
 data/materials/mtl_texturas_subida.material
-data/colliders/collider_BC_madera_andamio.collider
 data/scenes/BC_ColliderAuxEntrances.scene
 data/scenes/BC_estandarte.scene
 data/meshes/mesh_estandarte003.mesh
