@@ -627,7 +627,10 @@ namespace Particles
 
     void CSystem::setActive(bool active)
     {
-        _particles.clear();
+        if (true) {
+            _particles.clear();
+            _deploy_time = 0;
+        }
         _enabled = active;
     }
 

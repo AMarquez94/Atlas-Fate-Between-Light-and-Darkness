@@ -9,6 +9,7 @@ class TCompCapsuleFinalEffects : public TCompBase
 	CHandle meshRenderHandle;
 	CHandle firstLight;
 	CHandle secondLight;
+    CHandle volumeLight;
 
 	bool active = false;
 	float time_passed = 0.0f;

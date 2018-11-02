@@ -19,7 +19,7 @@ void VS_GBuffer_Hologram(
 	, out float3 oWorldPos : TEXCOORD2
 )
 {
-	iPos.x += 0.5 * (step(0.5, sin(global_world_time * 2.0 + iPos.y * 1.0)) * step(0.99, sin(global_world_time *4 * 0.5)));
+	iPos.x += 0.5 * (step(0.5, sin(global_world_time * 2.0 + iPos.y * 1.0)) * step(0.99, sin(global_world_time *4 * 0.5))) * self_intensity;
 	
 	float4 world_pos = mul(iPos, obj_world);
 	oPos = mul(world_pos, camera_view_proj);
