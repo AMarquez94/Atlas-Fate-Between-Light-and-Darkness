@@ -1,0 +1,93 @@
+[
+  {
+    "entity":
+    {
+      "name": "col_intro_holograma"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_atlasbroholo"
+      ,
+      "prefab": "data/prefabs/atlasbroholo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.27062 3.27713 50.7619"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_atlasholo"
+      ,
+      "prefab": "data/prefabs/atlasholo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "3.12349 3.20137 50.7619"
+        ,
+        "rotation": "0.0 -0.422618 0.0 -0.906308"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_planesholo"
+      ,
+      "prefab": "data/prefabs/planesholo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.27062 3.18139 36.7867"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_planetholo"
+      ,
+      "prefab": "data/prefabs/planetholo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "3.1835 3.20099 36.7867"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_towerholo"
+      ,
+      "prefab": "data/prefabs/towerholo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-3.27062 3.46672 63.7619"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+    }
+  }
+]
