@@ -160,7 +160,7 @@ void CModuleCameras::blendInCamera(CHandle camera, float blendTime, EPriority pr
         return;
 
     TMixedCamera* mc = getMixedCamera(camera);
-    if (!mc)
+    if (!mc || mc->state == TMixedCamera::ST_BLENDING_OUT || mc->state == TMixedCamera::ST_CANCELLED)
     {
 
         TMsgCameraActivated msg;
