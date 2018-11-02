@@ -17,6 +17,9 @@ class TCompInhibitor : public TCompBase {
     bool fading = false;
 
     bool playerWasInhibited = false;
+
+    physx::PxSphereGeometry inhibitor_sphere;
+    physx::PxQueryFilterData PxInhibitorFilterData;
     /* TODO: bool playerWasInhibited = false;
     float explosionSpeed;
     float explosionRange;*/

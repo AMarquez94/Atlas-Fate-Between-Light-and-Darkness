@@ -70,6 +70,7 @@ private:
 	bool inhibitorAnimationCompleted = false;
 	bool attackAnimationCompleted = false;
 	bool repairedAnimationCompleted = false;
+    bool lookingForPlayerAnimationCompleted = false;
 
     //load
     void loadActions() override;
