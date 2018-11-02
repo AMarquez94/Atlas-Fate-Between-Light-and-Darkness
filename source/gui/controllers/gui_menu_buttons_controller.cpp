@@ -6,7 +6,7 @@ namespace GUI
 {
 
 	void CMenuButtonsController::start() {
-		mouse_active = false;	
+        mouse_active = false;
 		//setCurrentOption(0);
 	}
 
@@ -18,6 +18,9 @@ namespace GUI
             last_mouse_pos = mouse_pos;
             int hoveredButton = getButtonHovered(mouse_pos);
             if (hoveredButton != -1) {
+                if (hoveredButton != _currentOption) {
+                    EngineSound.playEvent("event:/Sounds/Menu/Hover");
+                }
                 setCurrentOption(hoveredButton);
             }
         }
@@ -25,11 +28,13 @@ namespace GUI
         if (EngineInput[VK_DOWN].getsPressed() || EngineInput["btDown"].getsPressed())
         {
             mouse_active = false;
+            EngineSound.playEvent("event:/Sounds/Menu/Hover");
             setCurrentOption(_currentOption + 1);
         }
         if (EngineInput[VK_UP].getsPressed() || EngineInput["btUp"].getsPressed())
         {
             mouse_active = false;
+            EngineSound.playEvent("event:/Sounds/Menu/Hover");
             setCurrentOption(_currentOption - 1);
         }
         if (EngineInput[VK_SPACE].getsPressed() || EngineInput["btMenuConfirm"].getsPressed() || EngineInput["btMouseLClick"].getsPressed())
@@ -65,9 +70,7 @@ namespace GUI
 
             _currentOption = clamp(newOption, 0, static_cast<int>(_options.size()) - 1);
             if (_currentOption >= 0) {
-                _options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);
-                EngineSound.playEvent("event:/Sounds/Menu/Hover");
-            }
+                _options[_currentOption].button->setCurrentState(CButton::EState::ST_Selected);            }
         }
     }
     int CMenuButtonsController::getButtonHovered(VEC2 mouse_pos)

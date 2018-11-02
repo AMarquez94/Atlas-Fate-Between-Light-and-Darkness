@@ -45,3 +45,20 @@ function startTransmission(time_to_end)
 	setEnemyHudState(true);
 	execScriptDelayed("setEnemyHudState(false)", time_to_end);
 end
+
+function openDoorOnEnter(name, is_big)
+	e = toEntity(getEntityByName(name));
+	toDoor(e:getCompByName("door")):open();
+	
+	t_transform = toTransform(e:getCompByName("transform"));	
+	pos = t_transform:getPosition();
+	rot = t_transform:getRotation();
+	if is_big then
+		particles:launchDynamicSystemRot("data/particles/def_gate_smoke.particles", pos, rot, true);
+		particles:launchDynamicSystemRot("data/particles/def_gate_smoke_base.particles", pos, rot, true);
+		particles:launchDynamicSystemRot("data/particles/def_gate_smoke_middle.particles", pos, rot, true);
+	else 
+		particles:launchDynamicSystemRot("data/particles/def_door_smoke.particles", pos, rot, true);
+		particles:launchDynamicSystemRot("data/particles/def_door_smoke_base.particles", pos, rot, true);
+	end
+end

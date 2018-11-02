@@ -22,7 +22,6 @@ function onScenePartialStart_scene_coliseo_2()
 	onSceneStart_scene_coliseo_2();
 	gameManager:changeMainTheme();
 	movePlayerToRefPos("col_zone_a_suelo002", i_ref_pos);
-	--execScriptDelayed("toDoor(toEntity(getEntityByName(\"col_zone_a_framedoor001\")):getCompByName(\"door\")):open();", 0.5);
 end
 
 function onScenePartialEnd_scene_coliseo()
@@ -34,12 +33,12 @@ function onScenePartialEnd_scene_coliseo_2()
 end
 
 function onTriggerEnter_COL_trigger_opendoor_intro_player()
-	execScriptDelayed("toDoor(toEntity(getEntityByName(\"col_intro_framedoor\")):getCompByName(\"door\")):open()", 0.5);
+	execScriptDelayed("openDoorOnEnter(\"col_intro_framedoor\", true)", 0.5);
 	getEntityByName("COL_trigger_opendoor_intro"):destroy();
 end
 
 function onTriggerEnter_COL_trigger_opendoor_zonea_player()
-	execScriptDelayed("toDoor(toEntity(getEntityByName(\"col_zone_a_framedoor001\")):getCompByName(\"door\")):open()", 0.5);
+	execScriptDelayed("openDoorOnEnter(\"col_zone_a_framedoor001\", true)", 0.5);
 	getEntityByName("COL_trigger_opendoor_zonea"):destroy();
 end
 

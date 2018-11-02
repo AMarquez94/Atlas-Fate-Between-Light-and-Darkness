@@ -18,7 +18,7 @@ function transition_basilic_courtyard_to_interior()
 end
 
 function onTriggerEnter_BC_trigger_opendoor_bc_player()
-	execScriptDelayed("toDoor(toEntity(getEntityByName(\"bc_marco_puerta001\")):getCompByName(\"door\")):open()", 0.5);
+	execScriptDelayed("openDoorOnEnter(\"bc_marco_puerta001\", false)", 0.5);
 	getEntityByName("BC_trigger_opendoor_bc"):destroy();
 end
 
