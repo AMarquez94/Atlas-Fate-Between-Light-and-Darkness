@@ -19,10 +19,6 @@
 					"data/particles/def_amb_flare_neon_magenta3.particles"
 				]
 			},
-			"collider": {
-				"shape": "mesh",
-				"name": "data/colliders/collider_cartel_magenta_3.collider"
-			},
 			"abs_aabb": true,
 			"local_aabb": true
 		}

@@ -144,6 +144,7 @@ bool CModuleInstancing::parseContainer(const json& j, TEntityParseContext& ctx) 
         if (p.count("scale"))
             scale = loadVEC3(p["scale"]);
 
+        scale.y = 0.05f;
         MAT44 tr = MAT44::CreateTranslation(pos);
         MAT44 sc = MAT44::CreateScale(scale);
         MAT44 rt = MAT44::CreateFromQuaternion(rot);

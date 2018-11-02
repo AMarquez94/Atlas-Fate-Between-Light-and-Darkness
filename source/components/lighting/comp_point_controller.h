@@ -39,6 +39,8 @@ class TCompPointController : public TCompBase {
     float _flicker_elapsed_time = 0.f;
     bool _flicker_status = false;
 
+    SoundEvent flicker_sound;
+
 	void onSceneCreated(const TMsgSceneCreated& msg);
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);
 

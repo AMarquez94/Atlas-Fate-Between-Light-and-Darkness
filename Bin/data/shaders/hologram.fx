@@ -19,7 +19,7 @@ void VS_GBuffer_Hologram(
 	, out float3 oWorldPos : TEXCOORD2
 )
 {
-	iPos.x += 0.5 * (step(0.5, sin(global_world_time * 2.0 + iPos.y * 1.0)) * step(0.99, sin(global_world_time *4 * 0.5)));
+	iPos.x += 0.5 * (step(0.5, sin(global_world_time * 2.0 + iPos.y * 1.0)) * step(0.99, sin(global_world_time *4 * 0.5))) * self_intensity;
 	
 	float4 world_pos = mul(iPos, obj_world);
 	oPos = mul(world_pos, camera_view_proj);
@@ -415,7 +415,7 @@ float4 PS_TV_Final(
   t_color.x  = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).y, 0.25);
 	t_color.y = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).z, 0.25);
 	
-	return float4(t_color, 1) * obj_color * emissive;
+	return float4(t_color, 1) * obj_color;
 	
 }
 

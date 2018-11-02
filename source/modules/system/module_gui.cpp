@@ -90,6 +90,7 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SUBTITLES);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION);
 		EngineLogic.execScript("restartCinematics()");
         EngineScene.changeGameState("main_menu");
     };
@@ -107,6 +108,7 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineLogic.execSystemScriptDelayed("execDeadButton();", 3.2f);
 		EngineLogic.execSystemScriptDelayed("takeOutBlackScreen();", 6.5f);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeIn(3, 0, false);
+        EngineSound.playEvent("event:/Sounds/Menu/Select");
 		EngineGUI.setButtonsState(false);
 	};
 
@@ -179,7 +181,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::SUBTITLES, "data/gui/subtitles_game.json");
 	registerWigdetStruct(EGUIWidgets::SPLASH_SCREEN, "data/gui/splash_screen.json");
 	registerWigdetStruct(EGUIWidgets::DEAD_LINE, "data/gui/dead_menu_line.json");
-	//registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_MISSION, "data/gui/pause_menu_mision.json");
+	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_MISSION, "data/gui/pause_menu_mision.json");
 	registerWigdetStruct(EGUIWidgets::INGAME_HUD_ENEMY, "data/gui/enemy_hud_game.json");
 	registerWigdetStruct(EGUIWidgets::MAIN_MENU_SCENE, "data/gui/main_menu_scene.json");
 	registerWigdetStruct(EGUIWidgets::CINEMATIC_INTRO, "data/gui/ingame_cinematic_intro.json");

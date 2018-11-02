@@ -1,0 +1,103 @@
+[
+  {
+    "entity":
+    {
+      "name": "basilic_interior_monitores_bordes"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bi_monitor003"
+      ,
+      "transform":
+      {
+        "pos": "-11.8213 1.4322 3.61508"
+        ,
+        "rotation": "0.0 -0.328711 0.0 -0.94443"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bi_monitor003.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bi_monitor002"
+      ,
+      "transform":
+      {
+        "pos": "-5.93367 1.4322 3.61508"
+        ,
+        "rotation": "0.0 -0.328711 0.0 -0.94443"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bi_monitor002.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bi_monitor1"
+      ,
+      "transform":
+      {
+        "pos": "-8.89666 1.40788 5.39339"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/bi_monitor1.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_monitorytubos.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+]

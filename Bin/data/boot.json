@@ -228,7 +228,9 @@
 			"data/scenes/zone_a_decals_cables.scene",
 			"data/scenes/zone_a_decals_cables2.scene",
 
+			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/zone_a_escultura.scene",
+			"data/scenes/ZoneA/mimetic_PRUEBAS.scene",
 
 			"data/scenes/zone_a_alminares_pantallas.scene",
 
@@ -237,7 +239,6 @@
 			"data/scenes/zone_a_casas_lp_2.scene",
 			"data/scenes/zone_a_casas_lp_3.scene",
 			"data/scenes/zone_a_neones.scene",
-			"data/scenes/ZoneA/enemy2.scene",
 			"data/scenes/zone_a_grass.scene",
 			"data/scenes/ZoneA/zonea_planets.scene",
 			"data/scenes/zone_a_mosaico.scene",
@@ -355,6 +356,7 @@
 			"data/scenes/Basilic_courtyard/BC_paredes.scene",
 			"data/scenes/BC_arcos.scene",
 			"data/scenes/BC_andamios.scene",
+			"data/scenes/BC_andamios_2.scene",
 			"data/scenes/BC_coberturas.scene",
 			"data/scenes/BC_containers.scene",
 			"data/scenes/BC_props.scene",
@@ -438,6 +440,7 @@
       "data/scenes/Basilic_interior/basilic_interior_holograms.scene",
 
       "data/scenes/basilic_interior_pantallas_3.scene",
+      "data/scenes/basilic_interior_monitores_bordes.scene",
 
 			"data/scenes/basilic_interior_luces.scene",
 			"data/scenes/basilic_interior_luces_rueda.scene",

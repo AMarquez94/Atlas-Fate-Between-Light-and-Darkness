@@ -269,9 +269,11 @@ void TCompAIPatrol::onMsgNoiseListened(const TMsgNoiseMade & msg)
     if (!isChasingPlayer && (!isManagingArtificialNoise || isWaitingInNoiseSource)) {
         if (!isEntityInFov("The Player", fov - deg2rad(1.f), autoChaseDistance - 1.f)) {
             if (msg.isArtificialNoise) {
+                timerWaitingInNoise = 0.f;
                 hasHeardArtificialNoise = true;
             }
             else if (!isManagingNaturalNoise && !msg.isArtificialNoise) {
+                timerWaitingInNoise = 0.f;
                 hasHeardNaturalNoise = true;
             }
         }
@@ -308,11 +310,14 @@ void TCompAIPatrol::onMsgAnimationCompleted(const TMsgAnimationCompleted& msg) {
     if (msg.animation_name.compare("inhibidor") == 0) {
         inhibitorAnimationCompleted = true;
     }
-    if (msg.animation_name.compare("attack") == 0) {
+    else if (msg.animation_name.compare("attack") == 0) {
         attackAnimationCompleted = true;
     }
-    if (msg.animation_name.compare("repaired") == 0) {
+    else if (msg.animation_name.compare("repaired") == 0) {
         repairedAnimationCompleted = true;
+    }
+    else if (msg.animation_name.compare("lookingfor") == 0) {
+        lookingForPlayerAnimationCompleted = true;
     }
 }
 
@@ -593,6 +598,19 @@ BTNode::ERes TCompAIPatrol::actionMarkNoiseAsInactive(float dt)
     hasHeardNaturalNoise = false;
     timerWaitingInNoise = 0.f;
     return BTNode::ERes::LEAVE;
+
+    //if (timerWaitingInNoise <= 1.f) {
+    //    TCompPatrolAnimator* my_animator = get<TCompPatrolAnimator>();
+    //    my_animator->playAnimation(TCompPatrolAnimator::EAnimation::SUSPECTING);
+    //    timerWaitingInNoise += dt;
+    //    return BTNode::ERes::STAY;
+    //}
+    //else {
+    //    timerWaitingInNoise = 0.f; 
+    //    hasHeardArtificialNoise = false;
+    //    hasHeardNaturalNoise = false;
+    //    return BTNode::ERes::LEAVE;
+    //}
 }
 
 BTNode::ERes TCompAIPatrol::actionGenerateNavmeshNoise(float dt)
@@ -680,6 +698,7 @@ BTNode::ERes TCompAIPatrol::actionWaitInNoiseSource(float dt)
 
     timerWaitingInNoise += dt;
     if (timerWaitingInNoise > 3.f) {
+        timerWaitingInNoise = 0.f;
         sendNothingHereMsg();
         return BTNode::ERes::LEAVE;
     }
@@ -743,8 +762,14 @@ BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
             myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
         }
         else {
-            if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
-                myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+            if (mypos->isInLeft(mypos->getPosition() + getWaypoint().lookAt)) {
+                if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+                    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+            }
+            else {
+                if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_RIGHT))
+                    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_RIGHT);
+            }
         }
         return BTNode::ERes::STAY;
     }
@@ -788,11 +813,29 @@ BTNode::ERes TCompAIPatrol::actionSuspect(float dt)
 
     if (distanceToPlayer <= autoChaseDistance && isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         suspectO_Meter = 1.f;
-        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
+        if (!rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt)) {
+            if (mypos->isInLeft(ppos->getPosition())) {
+                if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+                    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+            }
+            else {
+                if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_RIGHT))
+                    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_RIGHT);
+            }
+        }
     }
     else if (distanceToPlayer <= maxChaseDistance && isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         suspectO_Meter = Clamp(suspectO_Meter + dt * incrBaseSuspectO_Meter, 0.f, 1.f);							//TODO: increment more depending distance and noise
-        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
+        if (!rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt)) {
+            if (mypos->isInLeft(ppos->getPosition())) {
+                if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+                    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+            }
+            else {
+                if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_RIGHT))
+                    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_RIGHT);
+            }
+        }
     }
     else {
         sendSuspectingMsg(false);
@@ -938,8 +981,17 @@ BTNode::ERes TCompAIPatrol::actionRotateTowardsUnreachablePlayer(float dt)
     if (isEntityInFov(entityToChase, fov, maxChaseDistance)) {
         CEntity* player = EngineEntities.getPlayerHandle();
         TCompTransform* ppos = player->get<TCompTransform>();
-        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
         TCompTransform* mypos = get<TCompTransform>();
+        TCompPatrolAnimator* myAnimator = get<TCompPatrolAnimator>();
+        if (mypos->isInLeft(ppos->getPosition())) {
+            if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+                myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+        }
+        else {
+            if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_RIGHT))
+                myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_RIGHT);
+        }
+        rotateTowardsVec(ppos->getPosition(), rotationSpeed, dt);
         if (lastPlayerKnownPos != ppos->getPosition()) {
             generateNavmesh(mypos->getPosition(), ppos->getPosition());
         }
@@ -1039,9 +1091,16 @@ BTNode::ERes TCompAIPatrol::actionRotateToNoiseSource(float dt)
 
     //Animation To Change
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::WALK);
 
     TCompTransform *myPos = get<TCompTransform>();
+    if (myPos->isInLeft(noiseSource)) {
+        if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_LEFT))
+            myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_LEFT);
+    }
+    else {
+        if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::TURN_RIGHT))
+            myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::TURN_RIGHT);
+    }
     bool isInObjective = rotateTowardsVec(noiseSource, rotationSpeed, dt);
     return isInObjective ? BTNode::ERes::LEAVE : BTNode::ERes::STAY;
 }
@@ -1090,66 +1149,82 @@ BTNode::ERes TCompAIPatrol::actionGoToPlayerLastPos(float dt)
 
 BTNode::ERes TCompAIPatrol::actionLookForPlayer(float dt)
 {
-    assert(arguments.find("rotationSpeed_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
-    float rotationSpeed = deg2rad(arguments["rotationSpeed_actionLookForPlayer_lookForPlayerSeen"].getFloat());
-    assert(arguments.find("fov_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
-    float fov = deg2rad(arguments["fov_actionLookForPlayer_lookForPlayerSeen"].getFloat());
-    assert(arguments.find("maxRotationSeekingPlayer_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
-    float maxRotationSeekingPlayer = deg2rad(arguments["maxRotationSeekingPlayer_actionLookForPlayer_lookForPlayerSeen"].getFloat());
-    assert(arguments.find("maxChaseDistance_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
-    float maxChaseDistance = arguments["maxChaseDistance_actionLookForPlayer_lookForPlayerSeen"].getFloat();
-    assert(arguments.find("entityToChase_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
-    std::string entityToChase = arguments["entityToChase_actionLookForPlayer_lookForPlayerSeen"].getString();
-
-    TCompTransform *mypos = get<TCompTransform>();
-    CEntity *player = (CEntity *)EngineEntities.getPlayerHandle();
-    TCompTransform *ppos = player->get<TCompTransform>();
-    //Animation To Change
     TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
-    myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+    if (!myAnimator->isPlayingAnimation((TCompAnimator::EAnimation)TCompPatrolAnimator::EAnimation::LOOKING_FOR) && !lookingForPlayerAnimationCompleted) {
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+        myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::LOOKING_FOR);
+    }
 
-    isStunnedPatrolInFov(fov, maxChaseDistance);
-
-    if (amountRotated >= maxRotationSeekingPlayer * 3) {
-        suspectO_Meter = 0.f;
-
-        TCompEmissionController *eController = get<TCompEmissionController>();
-        eController->blend(enemyColor.colorNormal, 0.1f);
-        amountRotated = 0.f;
-        sendNothingHereMsg();
+    if (lookingForPlayerAnimationCompleted) {
+        resetAnimationCompletedBooleans();
         return BTNode::ERes::LEAVE;
     }
     else {
-
-        float y, p, r;
-        mypos->getYawPitchRoll(&y, &p, &r);
-
-        amountRotated += rotationSpeed * dt;
-
-        if (amountRotated < maxRotationSeekingPlayer) {
-            if (isLastPlayerKnownDirLeft)
-            {
-                y += rotationSpeed * dt;
-            }
-            else
-            {
-                y -= rotationSpeed * dt;
-            }
-        }
-        else {
-            if (isLastPlayerKnownDirLeft)
-            {
-                y -= rotationSpeed * dt;
-            }
-            else
-            {
-                y += rotationSpeed * dt;
-            }
-        }
-        mypos->setYawPitchRoll(y, p, r);
-
         return BTNode::ERes::STAY;
     }
+
+    return BTNode::ERes::LEAVE;
+
+    //assert(arguments.find("rotationSpeed_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
+    //float rotationSpeed = deg2rad(arguments["rotationSpeed_actionLookForPlayer_lookForPlayerSeen"].getFloat());
+    //assert(arguments.find("fov_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
+    //float fov = deg2rad(arguments["fov_actionLookForPlayer_lookForPlayerSeen"].getFloat());
+    //assert(arguments.find("maxRotationSeekingPlayer_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
+    //float maxRotationSeekingPlayer = deg2rad(arguments["maxRotationSeekingPlayer_actionLookForPlayer_lookForPlayerSeen"].getFloat());
+    //assert(arguments.find("maxChaseDistance_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
+    //float maxChaseDistance = arguments["maxChaseDistance_actionLookForPlayer_lookForPlayerSeen"].getFloat();
+    //assert(arguments.find("entityToChase_actionLookForPlayer_lookForPlayerSeen") != arguments.end());
+    //std::string entityToChase = arguments["entityToChase_actionLookForPlayer_lookForPlayerSeen"].getString();
+
+    //TCompTransform *mypos = get<TCompTransform>();
+    //CEntity *player = (CEntity *)EngineEntities.getPlayerHandle();
+    //TCompTransform *ppos = player->get<TCompTransform>();
+    ////Animation To Change
+    //TCompPatrolAnimator *myAnimator = get<TCompPatrolAnimator>();
+    //myAnimator->playAnimation(TCompPatrolAnimator::EAnimation::IDLE);
+
+    //isStunnedPatrolInFov(fov, maxChaseDistance);
+
+    //if (amountRotated >= maxRotationSeekingPlayer * 3) {
+    //    suspectO_Meter = 0.f;
+
+    //    TCompEmissionController *eController = get<TCompEmissionController>();
+    //    eController->blend(enemyColor.colorNormal, 0.1f);
+    //    amountRotated = 0.f;
+    //    sendNothingHereMsg();
+    //    return BTNode::ERes::LEAVE;
+    //}
+    //else {
+
+    //    float y, p, r;
+    //    mypos->getYawPitchRoll(&y, &p, &r);
+
+    //    amountRotated += rotationSpeed * dt;
+
+    //    if (amountRotated < maxRotationSeekingPlayer) {
+    //        if (isLastPlayerKnownDirLeft)
+    //        {
+    //            y += rotationSpeed * dt;
+    //        }
+    //        else
+    //        {
+    //            y -= rotationSpeed * dt;
+    //        }
+    //    }
+    //    else {
+    //        if (isLastPlayerKnownDirLeft)
+    //        {
+    //            y -= rotationSpeed * dt;
+    //        }
+    //        else
+    //        {
+    //            y += rotationSpeed * dt;
+    //        }
+    //    }
+    //    mypos->setYawPitchRoll(y, p, r);
+
+    //    return BTNode::ERes::STAY;
+    //}
 }
 
 BTNode::ERes TCompAIPatrol::actionGenerateNavmeshGoToPatrol(float dt)
@@ -1770,4 +1845,5 @@ void TCompAIPatrol::resetAnimationCompletedBooleans() {
     inhibitorAnimationCompleted = false;
     attackAnimationCompleted = false;
     repairedAnimationCompleted = false;
+    lookingForPlayerAnimationCompleted = false;
 }
