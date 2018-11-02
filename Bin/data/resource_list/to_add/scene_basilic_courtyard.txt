@@ -187,6 +187,7 @@ data/textures/tx_andamio_rgh.dds
 data/materials/mtl_andamio.material
 data/prefabs/andamio.prefab
 data/meshes/mesh_andamio.mesh
+data/scenes/BC_andamios_2.scene
 data/scenes/BC_coberturas.scene
 data/prefabs/piezaconcreto.prefab
 data/meshes/mesh_piezaconcreto.mesh
