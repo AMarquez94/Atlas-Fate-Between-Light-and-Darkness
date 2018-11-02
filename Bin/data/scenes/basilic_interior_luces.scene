@@ -572,7 +572,7 @@
 				"inner_cut": 16.3,
 				"z_far": 5,
 				"pro_volume": true,
-				"volume_values": "2.8 45 1 1",
+				"volume_values": "0.7 45 1 1",
 				"volume": false,
 				"color": "0.376471 0.611765 1.0 1.0",
 				"intensity": 0.4,

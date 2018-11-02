@@ -19,6 +19,7 @@
 			"render":
 			[{
 					"mesh": "data/meshes/BC_alminar_atlas_low001.mesh",
+					"obj_color": "0 0 1",
 					"materials":
 					[
 						"data/materials/characters/mtl_player_main_hologram_solid.material"
@@ -39,7 +40,7 @@
 				"outer_cut": 3.0,
 				"volumetric": true,
 				"volume_values": "2.9 30 1 1",
-				"color": "0.0 1.0 1.0 1.0",
+				"color": "0.0 0.0 1.0 1.0",
 				"intensity": 0.120,
 				"casts_shadows": true,
 				"shadows_step": 1.0,
