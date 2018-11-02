@@ -7,13 +7,10 @@
       "transform":
       {
         "pos": "0.0 0.0 0.0"
-      },
-	  "tags":
-	  [
-		"corridor"
-	  ]
+      }
     }
   }
+  ,
   ,
   {
     "entity":
@@ -71,7 +68,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -132,7 +129,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -159,7 +156,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -185,7 +182,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -212,7 +209,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -238,7 +235,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -265,7 +262,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 1.0
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -291,7 +288,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -344,7 +341,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -397,7 +394,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -450,7 +447,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -503,7 +500,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -530,7 +527,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -556,7 +553,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -583,7 +580,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -609,7 +606,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -636,7 +633,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -662,7 +659,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -689,7 +686,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -715,7 +712,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -742,7 +739,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -768,7 +765,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -795,7 +792,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -821,7 +818,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -848,7 +845,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -874,7 +871,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -901,7 +898,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -927,7 +924,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -954,7 +951,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -980,7 +977,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1007,7 +1004,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -1033,7 +1030,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1060,7 +1057,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -1086,7 +1083,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1113,7 +1110,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -1139,7 +1136,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1166,7 +1163,7 @@
         ,
         "color": "1.0 1.0 0.588235 1.0"
         ,
-        "intensity": 0.8
+        "intensity": 0.4
         ,
         "casts_shadows": true
         ,
@@ -1192,7 +1189,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1219,7 +1216,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1245,7 +1242,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1272,7 +1269,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1298,7 +1295,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1325,7 +1322,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1351,7 +1348,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1378,7 +1375,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1404,7 +1401,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1431,7 +1428,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1457,7 +1454,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1484,7 +1481,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1510,7 +1507,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1537,7 +1534,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1563,7 +1560,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1590,7 +1587,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1616,7 +1613,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1643,7 +1640,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1669,7 +1666,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1696,7 +1693,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1722,7 +1719,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1749,7 +1746,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1775,7 +1772,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1802,7 +1799,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1828,7 +1825,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1855,7 +1852,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1881,7 +1878,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1908,7 +1905,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1934,7 +1931,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -1961,7 +1958,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -1987,7 +1984,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2014,7 +2011,7 @@
         ,
         "color": "0.219608 0.447059 0.82353 1.0"
         ,
-        "intensity": 1.5
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -2040,7 +2037,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2067,7 +2064,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2093,7 +2090,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2120,7 +2117,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2146,7 +2143,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2173,7 +2170,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2199,7 +2196,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2226,7 +2223,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2252,7 +2249,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2279,7 +2276,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2305,7 +2302,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2332,7 +2329,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2358,7 +2355,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2385,7 +2382,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2411,7 +2408,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2438,7 +2435,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2464,7 +2461,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2491,7 +2488,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2517,7 +2514,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2544,7 +2541,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2570,7 +2567,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2597,7 +2594,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2623,7 +2620,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2650,7 +2647,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2676,7 +2673,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2703,7 +2700,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2729,7 +2726,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2756,7 +2753,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2782,7 +2779,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2809,7 +2806,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2835,7 +2832,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }
@@ -2862,7 +2859,7 @@
         ,
         "color": "0.992157 0.937255 0.392157 1.0"
         ,
-        "intensity": 0.5
+        "intensity": 0.3
         ,
         "casts_shadows": true
         ,
@@ -2888,7 +2885,7 @@
       ,
       "tags":
       [
-        "light", "corridor"
+        "light"
       ]
     }
   }

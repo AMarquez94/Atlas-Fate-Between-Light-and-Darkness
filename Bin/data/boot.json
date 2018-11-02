@@ -92,6 +92,7 @@
 			"data/scenes/pantalla_intro_video.scene",
 			"data/scenes/intro_planets.scene",
 			"data/scenes/intro_subtitle_triggers.scene",
+			"data/scenes/intro_corridor_holograma.scene",
 
 			"data/scenes/intro_silueta_casas.scene",
 
@@ -147,6 +148,7 @@
 			"data/scenes/Coliseo/coliseo_cinematic.scene",
 			"data/scenes/col_bc_corridor.scene",
 			"data/scenes/col_casas_lp.scene",
+			"data/scenes/col_intro_holograma.scene",
 
 			"data/scenes/col_intro_corridor_logic.scene",
 			"data/scenes/Coliseo/col_mosque.scene",
@@ -301,6 +303,7 @@
 			"data/scenes/col_bc_corridor.scene",
 			"data/scenes/col_bc_corridor_logic.scene",
 			"data/scenes/col_bc_corridor_lights.scene",
+			"data/scenes/col_bc_holograma.scene",
 
 			"data/scenes/Coliseo/col_mosque.scene",
 			"data/scenes/Coliseo/capsules.scene",
@@ -375,6 +378,7 @@
 			"data/scenes/bc_pasillo_entre.scene",
 			"data/scenes/bc_corridor_logic.scene",
 			"data/scenes/bc_corridor_lights.scene",
+			"data/scenes/BC_col_holograma.scene",
 
 			"data/scenes/bc_casas_lp.scene",
 
