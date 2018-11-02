@@ -14,97 +14,7 @@
   {
     "entity":
     {
-      "name": "mesh_cartel_missing_9"
-      ,
-      "transform":
-      {
-        "pos": "-64.9971 7.66561 -82.8084"
-        ,
-        "rotation": "0.00963753 0.00963773 0.707041 -0.707041"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_cartel_missing_9.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cartel_missing.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_cartel_missing_8"
-      ,
-      "transform":
-      {
-        "pos": "-45.5398 1.66413 -86.2273"
-        ,
-        "rotation": "0.254435 -0.286597 0.659745 -0.646423"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_cartel_missing_8.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cartel_missing.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_cartel_missing_7"
-      ,
-      "transform":
-      {
-        "pos": "-47.7372 1.71552 -74.7064"
-        ,
-        "rotation": "-0.477242 0.521766 -0.521766 0.477243"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_cartel_missing_7.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_cartel_missing.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_cartel_missing_4"
+      "name": "zone_a_mesh_cartel_propaganda"
       ,
       "transform":
       {
@@ -116,7 +26,7 @@
       "render":
       [
         {
-          "mesh": "data/meshes/mesh_cartel_missing_4.mesh"
+          "mesh": "data/meshes/zone_a_mesh_cartel_propaganda.mesh"
           ,
           "materials":
           [
