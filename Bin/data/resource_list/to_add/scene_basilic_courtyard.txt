@@ -605,6 +605,7 @@ data/textures/tx_tablas_subida_met.dds
 data/textures/tx_tablas_subida_nml.dds
 data/textures/tx_tablas_subida_rgh.dds
 data/materials/mtl_texturas_subida.material
+data/colliders/collider_BC_madera006.collider
 data/scenes/BC_ColliderAuxEntrances.scene
 data/scenes/BC_estandarte.scene
 data/meshes/mesh_estandarte003.mesh

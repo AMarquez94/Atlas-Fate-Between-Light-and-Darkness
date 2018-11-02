@@ -324,6 +324,20 @@
 			}
 		}
 	}, {
+		"xentity": {
+			"name": "Dummy012",
+			"transform": {
+				"pos": "-65.2 0.0 -122.0",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"particles": {
+				"cores":
+				[
+					"data/particles/def_amb_neon_fog_green.particles"
+				]
+			}
+		}
+	}, {
 		"entity": {
 			"name": "GPU Particles",
 			"transform": {

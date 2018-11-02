@@ -415,7 +415,7 @@ float4 PS_TV_Final(
   t_color.x  = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).y, 0.25);
 	t_color.y = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).z, 0.25);
 	
-	return float4(t_color, 1) * obj_color * emissive;
+	return float4(t_color, 1) * obj_color;
 	
 }
 

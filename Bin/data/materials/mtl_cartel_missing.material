@@ -1,5 +1,5 @@
 {
-  "technique": "pbr_opacity.tech"
+  "technique": "pbr_opacity_bias.tech"
   ,
   "shadows": true
   ,
