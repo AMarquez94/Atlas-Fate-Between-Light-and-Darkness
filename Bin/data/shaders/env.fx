@@ -133,7 +133,7 @@ float4 PS_Moon_Atmosphere(
 	, float3 iWorldPos : TEXCOORD2
 ) : SV_Target
 {
-	iTex0+= global_world_time * 0.0035;
+	iTex0+= global_world_time * 0.0022;
 	float3 dir_to_eye = normalize(camera_pos.xyz - iWorldPos.xyz);
 	float3 dir_to_light = normalize( ( camera_pos + global_delta_position) - iWorldPos.xyz);
 	float fresnel = dot(iNormal, -dir_to_eye);
