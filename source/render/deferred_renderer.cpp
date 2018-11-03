@@ -147,6 +147,7 @@ void CDeferredRenderer::renderAccLight() {
     renderPointLightsShadows();
 	renderDirectionalLights();
 	renderSkyBox();
+    CRenderManager::get().renderCategory("pbr_skyclouds");
     renderPreHDR();
     
     CRenderManager::get().renderCategory("hologram_screen");

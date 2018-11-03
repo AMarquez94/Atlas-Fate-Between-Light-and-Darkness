@@ -7,6 +7,27 @@
 		}
 	}, {
 		"entity": {
+			"name": "skyclouds",
+			"tied_hierarchy": {
+				"pos": "0 0 0",
+				"scale": "1 1 1"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/skydome.mesh",
+					"self_intensity": 1.0,
+					"materials":
+					[
+						"data/materials/mtl_vfx_clouds.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
 			"name": "luna",
 			"tied_hierarchy": {
 				"pos": "20 43 -57",

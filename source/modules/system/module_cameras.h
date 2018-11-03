@@ -60,5 +60,5 @@ private:
 	CHandle _outputCamera;
 	CHandle _currentCamera;
 
-	VEC3 resultPos;
+    VEC3 resultPos = VEC3(INFINITY, INFINITY, INFINITY);
 };

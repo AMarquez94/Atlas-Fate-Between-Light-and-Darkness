@@ -767,6 +767,9 @@ data/textures/grass_brown_nml.dds
 data/materials/mtl_grass.material
 data/materials/mtl_grass_peq.material
 data/scenes/ZoneA/zonea_planets.scene
+data/meshes/skydome.mesh
+data/textures/skyclouds.dds
+data/materials/mtl_vfx_clouds.material
 data/meshes/sphere_moon.mesh
 data/textures/tx_luna_alb.dds
 data/textures/tx_luna_ao.dds

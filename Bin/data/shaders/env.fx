@@ -140,3 +140,39 @@ float4 PS_Moon_Atmosphere(
 	float flow = 1 - abs(dir_to_light);
   return txAlbedo.Sample(samLinear, iTex0) * flow * self_intensity * obj_color;
 }
+
+// PostFX Exponential distance fog.
+float4 environment_fog(float4 iPosition, float2 iTex0, float3 in_color)
+{
+	float depth = txGBufferLinearDepth.Load(uint3(iPosition.xy, 0)).x;
+	float3 wPos = getWorldCoords(iPosition.xy, depth);
+	
+	float3 frag_dir = (wPos - camera_pos.xyz);
+	float dist = abs(length(frag_dir));
+	
+	float fog_factor = 1 - exp( (dist * -global_fog_density * 0.175)* (dist* global_fog_density * 0.175));	
+		
+	float3 color = lerp(in_color, global_fog_env_color, saturate(fog_factor) * 0.75);
+	return float4(color,1);
+}
+
+float4 PS_Clouds(
+	float4 Pos : SV_POSITION
+	, float3 iNormal : NORMAL0
+	, float4 iTangent : NORMAL1
+	, float2 iTex0 : TEXCOORD0
+	, float2 iTex1 : TEXCOORD1
+	, float3 iWorldPos : TEXCOORD2
+) : SV_Target
+{
+	iTex0.y -= global_world_time * 0.006;
+	int3 ss_load_coords = uint3(Pos.xy, 0);
+	float  zlinear = txGBufferLinearDepth.Load(ss_load_coords).x;
+	float3 wPos = getWorldCoords(Pos.xy, zlinear);
+		
+	if(zlinear < 1 && wPos.y < 80)
+		discard;
+		
+	float4 final_color = environment_fog(Pos, iTex0, txAlbedo.Sample(samLinear, iTex0));
+  return float4(final_color.xyz, 1);
+}

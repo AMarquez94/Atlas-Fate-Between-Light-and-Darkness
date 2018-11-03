@@ -5,6 +5,7 @@
 #include "components/comp_transform.h"
 #include "entity/common_msgs.h"
 #include "render/render_objects.h"
+#include "components/comp_camera.h"
 
 DECL_OBJ_MANAGER("tied_hierarchy", TCompTiedHierarchy);
 
@@ -54,16 +55,14 @@ void TCompTiedHierarchy::update(float dt) {
     TCompTransform* c_my_transform = h_my_transform;
 
     CTransform new_t;
-    CHandle ent = EngineCameras.getCurrentCamera();
+    CHandle ent = EngineCameras.getOutputCamera();
 
     if (ent.isValid()) {
-        CEntity * n_ent = ent;
-        TCompTransform * pos = n_ent->get<TCompTransform>();
-        if (pos) {
-            new_t.setPosition(orig_pos + pos->getPosition());
-            new_t.setScale(orig_scale);
-            new_t.setRotation(QUAT::CreateFromYawPitchRoll(orig_rot.x, orig_rot.y, orig_rot.z));
-            c_my_transform->set(new_t);
-        }
+        CEntity* e_ent = ent;
+        TCompCamera* ent_camera = e_ent->get<TCompCamera>();
+        new_t.setPosition(orig_pos + ent_camera->getPosition());
+        new_t.setScale(orig_scale);
+        new_t.setRotation(QUAT::CreateFromYawPitchRoll(orig_rot.x, orig_rot.y, orig_rot.z));
+        c_my_transform->set(new_t);
     }
 }

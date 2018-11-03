@@ -187,6 +187,7 @@ data/textures/tx_andamio_rgh.dds
 data/materials/mtl_andamio.material
 data/prefabs/andamio.prefab
 data/meshes/mesh_andamio.mesh
+data/scenes/BC_andamios_2.scene
 data/scenes/BC_coberturas.scene
 data/prefabs/piezaconcreto.prefab
 data/meshes/mesh_piezaconcreto.mesh
@@ -413,6 +414,9 @@ data/meshes/gpu_particles.instanced_mesh
 data/textures/star.dds
 data/materials/gpu_particles_instanced.material
 data/scenes/Basilic_courtyard/basilic_courtyard_planets.scene
+data/meshes/skydome.mesh
+data/textures/skyclouds.dds
+data/materials/mtl_vfx_clouds.material
 data/meshes/sphere_moon.mesh
 data/textures/tx_luna_alb.dds
 data/textures/tx_luna_ao.dds
@@ -581,6 +585,19 @@ data/scenes/bc_corridor_logic.scene
 data/scenes/bc_corridor_lights.scene
 data/colliders/bc_Spot003.collider
 data/colliders/bc_Spot002.collider
+data/scenes/BC_col_holograma.scene
+data/prefabs/atlasbroholo.prefab
+data/meshes/mesh_atlasbroholo.mesh
+data/textures/default_texture.dds
+data/materials/mtl_holotunel.material
+data/prefabs/atlasholo.prefab
+data/meshes/mesh_atlasholo.mesh
+data/prefabs/planesholo.prefab
+data/meshes/mesh_planesholo.mesh
+data/prefabs/planetholo.prefab
+data/meshes/mesh_planetholo.mesh
+data/prefabs/towerholo.prefab
+data/meshes/mesh_towerholo.mesh
 data/scenes/bc_casas_lp.scene
 data/prefabs/casas_1_lp.prefab
 data/meshes/mesh_casas_1_lp.mesh
