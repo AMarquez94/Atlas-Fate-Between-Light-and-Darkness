@@ -164,7 +164,7 @@
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"self_intensity": 1,
+					"self_intensity": 0.48,
 					"materials":
 					[
 						"data/materials/mtl_luna_back_atmosphere.material"

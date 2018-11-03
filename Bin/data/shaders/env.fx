@@ -180,11 +180,6 @@ float4 PS_Clouds(
 	float4 color = txAlbedo.Sample(samLinear, iTex0);
 	float4 final_color = custom_cloud_fog(Pos, iTex0, color);
 	
-  float4x4 ditherPattern = {{ 0.0f, 0.5f, 0.125f, 0.625f},
-                            { 0.75f, 0.22f, 0.875f, 0.375f},
-                            { 0.1875f, 0.6875f, 0.0625f, 0.5625},
-                            { 0.9375f, 0.4375f, 0.8125f, 0.3125}};
-  float ditherValue = ditherPattern[Pos.x % 4][Pos.y % 4];
   float4 noise0 = txNoiseMap.Sample(samLinear, iTex0);
 		
   return float4(final_color.xyz * noise0, alpha);
