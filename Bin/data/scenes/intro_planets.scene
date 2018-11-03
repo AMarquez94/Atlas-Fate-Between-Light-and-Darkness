@@ -61,7 +61,7 @@
 				"inner_cut": 20,
 				"outer_cut": 30,
 				"color": "0.94 1 0.85 1.0",
-				"intensity": 1000,
+				"intensity": 700,
 				"casts_shadows": false,
 				"shadows_step": 1.0,
 				"shadows_resolution": 512,
