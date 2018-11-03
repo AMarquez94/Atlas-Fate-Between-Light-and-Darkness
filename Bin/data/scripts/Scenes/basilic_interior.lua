@@ -45,7 +45,7 @@ function finish_job_end_cinematic_scene()
 	execScriptDelayed("activateSubtitles(31);",38);
 	execScriptDelayed("playVoice(\"bi_goodjob\");", 38);
 	execScriptDelayed("deactivateSubtitles();",45);
-	execScriptDelayed("execLastAtlasScreen()",53);
+	execScriptDelayed("execLastAtlasScreen()",53.25);
 	--execScriptDelayed("execLastAtlasScreen()",3);
 	execScriptDelayed("lightUpForFinalScene(true,3);",37);
 end
@@ -97,7 +97,7 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("pasarelaLightsFadeOut()", 44);
 	
 
-	execScriptDelayed("execLastAtlasScreen()",53);
+	execScriptDelayed("execLastAtlasScreen()",53.25);
 	execScriptDelayed("lightUpForFinalScene(false, 13.0);",22);
 	execScriptDelayed("lightDownForFinalScene(true, 0.5);",37);
 
