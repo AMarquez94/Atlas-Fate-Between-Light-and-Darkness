@@ -12,7 +12,7 @@
 				"texture" : "data/textures/gui/misiones/main.dds",
 				"subtitles_textures" : [
 					{
-						"subtitle_name" : "none",
+						"subtitle_num" : 0,
 						"texture_src" : "data/textures/gui/misiones/main.dds"
 					}
 				]
