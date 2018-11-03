@@ -13,6 +13,8 @@ struct TCompTiedHierarchy : public CTransform, public TCompBase {
     VEC3        orig_pos;
     VEC3        orig_scale = VEC3::One;
     VEC3        orig_rot = VEC3::Zero;
+    bool        do_rot = false;
+    float       orig_speed = 1.f;
 
     void onGroupCreated(const TMsgHierarchyGroupCreated& msg);
 
