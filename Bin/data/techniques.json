@@ -422,6 +422,21 @@
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
 	},
+	"pbr_skyclouds": {
+		"vs_file": "data/shaders/env.fx",
+		"ps_file": "data/shaders/env.fx",
+		"vs_entry_point": "VS",
+		"ps_entry_point": "PS_Clouds",
+		"vertex_type": "PosNUvUvT",
+		"z": "test_but_no_write",
+		"blend": "additive",
+		"rs_config": "cull_none",
+		"category": "pbr_skyclouds",
+		"textures": {
+			"environment": "data/textures/cubemaps/beach.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
 	"blur": {
 		"vs_file": "data/shaders/blur.fx",
 		"ps_file": "data/shaders/blur.fx",
