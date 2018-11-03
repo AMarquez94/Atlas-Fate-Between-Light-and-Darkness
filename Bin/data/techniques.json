@@ -429,7 +429,7 @@
 		"ps_entry_point": "PS_Clouds",
 		"vertex_type": "PosNUvUvT",
 		"z": "test_but_no_write",
-		"blend": "additive",
+		"blend": "additive_by_src_alpha",
 		"rs_config": "cull_none",
 		"category": "pbr_skyclouds",
 		"textures": {
@@ -937,6 +937,19 @@
 		"blend": "additive_by_src_alpha",
 		"textures": {
 			"noise": "data/textures/noise_cloud3.dds"
+		}
+	},
+	"pbr_hologram_sw_model_no_cull": {
+		"vs_file": "data/shaders/hologram.fx",
+		"ps_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_GBuffer_SWHologram_Model",
+		"ps_entry_point": "PS_GBuffer_SWHologram_Model",
+		"vertex_type": "PosNUvUvT",
+		"category": "hologram",
+		"rs_config": "cull_none",
+		"blend": "additive_by_src_alpha",
+		"textures": {
+			"noise": "data/textures/tx_flicker_soft.dds"
 		}
 	},
 	"pbr_hologram_sw_model": {

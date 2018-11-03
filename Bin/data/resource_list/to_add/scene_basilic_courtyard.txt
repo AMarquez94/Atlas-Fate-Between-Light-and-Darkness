@@ -414,6 +414,9 @@ data/meshes/gpu_particles.instanced_mesh
 data/textures/star.dds
 data/materials/gpu_particles_instanced.material
 data/scenes/Basilic_courtyard/basilic_courtyard_planets.scene
+data/meshes/skydome.mesh
+data/textures/skyclouds.dds
+data/materials/mtl_vfx_clouds.material
 data/meshes/sphere_moon.mesh
 data/textures/tx_luna_alb.dds
 data/textures/tx_luna_ao.dds

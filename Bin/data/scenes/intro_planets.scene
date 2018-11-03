@@ -13,7 +13,6 @@
 				"scale": "1 1 1"
 			},
 			"transform": {},
-			"rotator": { "speed": 2 },
 			"render":
 			[{
 					"mesh": "data/meshes/skydome.mesh",

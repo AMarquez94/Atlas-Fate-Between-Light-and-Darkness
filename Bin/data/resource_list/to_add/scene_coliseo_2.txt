@@ -477,6 +477,9 @@ data/meshes/COL_Capsules_Cable.mesh
 data/scenes/col_zone_a_corridor_lights.scene
 data/colliders/Spot001.collider
 data/scenes/Coliseo/coliseo_planets.scene
+data/meshes/skydome.mesh
+data/textures/skyclouds.dds
+data/materials/mtl_vfx_clouds.material
 data/meshes/sphere_moon.mesh
 data/textures/tx_luna_alb.dds
 data/textures/tx_luna_ao.dds
