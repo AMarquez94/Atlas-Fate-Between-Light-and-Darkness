@@ -1,1 +1,0 @@
-To play the game, just start "Bin\Game.exe". Resolution by default will be 1280x720 in fullscreen mode. If it goes slow, you can set your custom resolution and fullscreen/windowed mode by editing the file "config.json" located in "Bin\data\" folder. Windows 10 is required, and at least 16gb of RAM.
