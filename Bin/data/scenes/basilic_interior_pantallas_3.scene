@@ -16,6 +16,7 @@
 			[{
 					"mesh": "data/meshes/im_monitor_pantalla_1.mesh",
 					"self_intensity": 0.75,
+					"color": "0.7 0.7 0.7 1",
 					"materials":
 					[
 						"data/materials/mtl_monitores_interior.material"
@@ -36,6 +37,7 @@
 			[{
 					"mesh": "data/meshes/im_monitor_pantalla_2.mesh",
 					"self_intensity": 1.25,
+					"color": "0.37 0.37 0.37 1",
 					"materials":
 					[
 						"data/materials/mtl_monitores_interior.material"
@@ -56,6 +58,7 @@
 			[{
 					"mesh": "data/meshes/im_monitor_pantalla_3.mesh",
 					"self_intensity": 1.0,
+					"color": "0.7 0.7 0.7 1",
 					"materials":
 					[
 						"data/materials/mtl_monitores_interior.material"

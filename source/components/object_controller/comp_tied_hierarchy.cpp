@@ -13,9 +13,10 @@ void TCompTiedHierarchy::load(const json& j, TEntityParseContext& ctx) {
 
     orig_pos = loadVEC3(j["pos"]);
     if (j.count("scale"))
-    {
         orig_scale = loadVEC3(j["scale"]);
-    }
+
+    do_rot = j.value("rotate", false);
+    orig_speed = j.value("rotate_speed", 1.f);
 
     // Relative transform is loaded as any other json transform
     CTransform::load(j);
@@ -63,6 +64,9 @@ void TCompTiedHierarchy::update(float dt) {
         new_t.setPosition(orig_pos + ent_camera->getPosition());
         new_t.setScale(orig_scale);
         new_t.setRotation(QUAT::CreateFromYawPitchRoll(orig_rot.x, orig_rot.y, orig_rot.z));
+        if (do_rot)
+           orig_rot.x = orig_rot.x + (dt * orig_speed);
+
         c_my_transform->set(new_t);
     }
 }

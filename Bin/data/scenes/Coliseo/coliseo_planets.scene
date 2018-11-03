@@ -30,8 +30,8 @@
 		"entity": {
 			"name": "luna",
 			"tied_hierarchy": {
-				"pos": "17.7689 38.3776 65.0954",
-				"scale": "2 2 2"
+				"pos": "87 108 62",
+				"scale": "5 5 5"
 			},
 			"transform": {},
 			"render":
@@ -49,10 +49,31 @@
 		}
 	}, {
 		"entity": {
+			"name": "luna_light",
+			"tied_hierarchy": {
+				"pos": "70 88 44"
+			},
+			"transform": {},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 20,
+				"outer_cut": 30,
+				"color": "0.94 1 0.85 1.0",
+				"intensity": 1000,
+				"casts_shadows": false,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
 			"name": "luna_back",
 			"tied_hierarchy": {
-				"pos": "17.7689 38.3776 65.0954",
-				"scale": "2.5 2.5 2.5"
+				"pos": "87 108 62",
+				"scale": "6 6 6"
 			},
 			"transform": {},
 			"render":
@@ -73,7 +94,7 @@
 		"xentity": {
 			"name": "luna_back_atmosphere",
 			"tied_hierarchy": {
-				"pos": "17.7689 38.3776 65.0954",
+				"pos": "87 108 62",
 				"scale": "2.1 2.1 2.1"
 			},
 			"transform": {},

@@ -1,6 +1,6 @@
 [{
 		"entity": {
-			"name": "intro_planets",
+			"name": "zone_a_planets",
 			"transform": {
 				"pos": "0.0 0.0 0.0"
 			}
@@ -30,8 +30,8 @@
 		"entity": {
 			"name": "luna",
 			"tied_hierarchy": {
-				"pos": "20 43 -57",
-				"scale": "2 2 2"
+				"pos": "53 108 -132",
+				"scale": "5 5 5"
 			},
 			"transform": {},
 			"render":
@@ -49,10 +49,31 @@
 		}
 	}, {
 		"entity": {
+			"name": "luna_light",
+			"tied_hierarchy": {
+				"pos": "35 94 -109"
+			},
+			"transform": {},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 20,
+				"outer_cut": 30,
+				"color": "0.94 1 0.85 1.0",
+				"intensity": 1000,
+				"casts_shadows": false,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
 			"name": "luna_back",
 			"tied_hierarchy": {
-				"pos": "20 43 -57",
-				"scale": "2.5 2.5 2.5"
+				"pos": "53 108 -132",
+				"scale": "5.85 5.85 5.85"
 			},
 			"transform": {},
 			"render":
