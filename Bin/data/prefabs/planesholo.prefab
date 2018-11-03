@@ -34,7 +34,7 @@
 		"entity": {
 			"name": "light_towerholo",
 			"transform": {
-				"pos": "0.0 0.56 0.0"
+				"pos": "0.0 0.6 0.08"
 			},
 			"light_point": {
 				"type": "pointlight",
