@@ -33,7 +33,8 @@
 			"name": "luna",
 			"tied_hierarchy": {
 				"pos": "96 108 45",
-				"scale": "4 4 4"
+				"scale": "4 4 4",
+				"rot": "0 1 0"
 			},
 			"transform": {},
 			"render":
@@ -117,7 +118,8 @@
 			"name": "planet1",
 			"tied_hierarchy": {
 				"pos": "20 150 -150",
-				"scale": "12 12 12"
+				"scale": "12 12 12",
+				"rot": "0 1 0"
 			},
 			"transform": {},
 			"render":
@@ -180,7 +182,7 @@
 		"entity": {
 			"name": "planet2",
 			"tied_hierarchy": {
-				"pos": "48 111 -148",
+				"pos": "48 109 -148",
 				"scale": "5 5 5"
 			},
 			"transform": {},
@@ -201,7 +203,7 @@
 		"entity": {
 			"name": "planet2_back",
 			"tied_hierarchy": {
-				"pos": "48 111 -148",
+				"pos": "48 109 -148",
 				"scale": "5.5 5.5 5.5"
 			},
 			"transform": {},
@@ -223,7 +225,7 @@
 		"xentity": {
 			"name": "planet2_atmosphere",
 			"tied_hierarchy": {
-				"pos": "48 111 -148",
+				"pos": "48 109 -148",
 				"scale": "5.2 5.2 5.2"
 			},
 			"transform": {},
