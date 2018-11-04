@@ -151,7 +151,7 @@ float4 custom_cloud_fog(float4 iPosition, float2 iTex0, float3 in_color)
 	float dist = abs(length(frag_dir));
 	
 	float fog_factor = 1 - exp( (dist * -global_fog_density * 0.175)* (dist* global_fog_density * 0.175));	
-	float3 color = lerp(in_color, global_fog_env_color, saturate(fog_factor) * 0.75);
+	float3 color = lerp(in_color, global_fog_env_color, saturate(fog_factor) * 0.7);
 
 	return float4(color, 1);
 }
@@ -179,6 +179,8 @@ float4 PS_Clouds(
 	iTex0.y -= global_world_time * 0.003;
 	float4 color = txAlbedo.Sample(samLinear, iTex0);
 	float4 final_color = custom_cloud_fog(Pos, iTex0, color);
-
-  return float4(final_color.xyz, alpha);
+	
+  float4 noise0 = txNoiseMap.Sample(samLinear, iTex0);
+		
+  return float4(final_color.xyz * noise0, alpha);
 }

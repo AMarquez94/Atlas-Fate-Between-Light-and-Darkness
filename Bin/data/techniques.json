@@ -434,6 +434,7 @@
 		"category": "pbr_skyclouds",
 		"textures": {
 			"environment": "data/textures/cubemaps/beach.dds",
+			"noise": "data/textures/noise_light.dds",
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
 	},
