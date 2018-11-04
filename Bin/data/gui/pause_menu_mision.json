@@ -7,7 +7,7 @@
 			{
 				"name" : "pause_mision",
 				"type" : "subtitles",
-				"size" : "350 350",
+				"size" : "300 300",
 				"position" : "-2 35",
 				"texture" : "data/textures/gui/misiones/main.dds",
 				"subtitles_textures" : [
