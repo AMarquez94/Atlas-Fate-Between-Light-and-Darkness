@@ -1,5 +1,5 @@
 {
-	"default_scene": "scene_basilic_courtyard",
+	"default_scene": "scene_basilic_interior",
 	"scene_intro": {
 		"static_data": {
 			"initial_script": "intro",
@@ -403,10 +403,10 @@
 			"gamma": 1,
 			"tone_mapping": 0,
 			"shadow_intensity": 0.1,
-			"ground_fog_density": 3,
+			"ground_fog_density": 7,
 			"env_fog_density": 0.364,
 			"shadow_color": "0.0 0.0 0.0",
-			"ground_fog": "0.0 0.0 0.0",
+			"ground_fog": "0.003 0.003 0.003",
 			"env_fog": "0.0 0.0 0.0",
 			"delta_position": "150 170.5 175",
 			"bloom": {
