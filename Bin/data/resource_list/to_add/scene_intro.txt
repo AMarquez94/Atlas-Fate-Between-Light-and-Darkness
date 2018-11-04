@@ -460,7 +460,6 @@ data/particles/def_amb_flare_neon_yellow1.particles
 data/colliders/Spot005.collider
 data/colliders/Spot006.collider
 data/colliders/Spot008.collider
-data/colliders/Spot009.collider
 data/colliders/Spot010.collider
 data/colliders/Spot011.collider
 data/scenes/intro_mosaico.scene
