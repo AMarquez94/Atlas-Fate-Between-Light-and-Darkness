@@ -26,6 +26,9 @@ void TCompLightSpot::debugInMenu() {
     ImGui::DragFloat("Range", &range, 0.5f, 1.f, 120.f);
     ImGui::DragFloat("Shadow step", &shadows_step, 0.01f, 0.f, 10.f);
     ImGui::DragInt("Num Samples", &num_samples, 1, 0, 250);
+    ImGui::Checkbox("Pro Volume", &pro_volume);
+    ImGui::DragFloat("Pro Volume Steps", &volume_values.y, 1.f, 1.f, 120.f);
+    ImGui::DragFloat("Pro Volume Scattering", &volume_values.x, 0.1f, 0.f, 100.f);
 }
 
 
@@ -45,6 +48,7 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
     volume_intensity = j.value("volume_intensity", 1.0f);
     color = loadVEC4(j["color"]);
 
+    pro_volume = j.value("pro_volume", false);
     volume_enabled = j.value("volume", true);
     casts_shadows = j.value("shadows", true);
     num_samples = j.value("n_samples", 45);
@@ -52,6 +56,11 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
     range = j.value("range", 10.f);
     inner_cut = j.value("inner_cut", angle);
     outer_cut = j.value("outer_cut", angle);
+
+    // Determine scattering values.
+    if (j.count("volume_values")) {
+        volume_values = loadVEC4(j["volume_values"]);
+    }
 
     if (j.count("projector")) {
         std::string projector_name = j.value("projector", "");
@@ -78,6 +87,8 @@ void TCompLightSpot::load(const json& j, TEntityParseContext& ctx) {
 
     //spotcone = loadMesh("data/meshes/unit_quad_center2.mesh");
     shadows_enabled = casts_shadows;
+
+    interactsWithPlayer = j.value("interacts_with_player", true);
 }
 
 void TCompLightSpot::setColor(const VEC4 & new_color) {
@@ -239,6 +250,7 @@ void TCompLightSpot::activate() {
     cb_light.light_outer_cut = spot_angle;
     cb_light.far_atten = 0.98f;
     cb_light.inner_atten = 0.9f;
+    cb_light.light_values = volume_values;
 
     // If we have a ZTexture, it's the time to activate it
     if (shadows_rt) {

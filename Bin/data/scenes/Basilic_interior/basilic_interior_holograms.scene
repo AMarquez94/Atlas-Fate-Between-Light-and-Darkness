@@ -19,11 +19,44 @@
 			"render":
 			[{
 					"mesh": "data/meshes/BC_alminar_atlas_low001.mesh",
+					"obj_color": "0 0 1",
 					"materials":
 					[
 						"data/materials/characters/mtl_player_main_hologram_solid.material"
 					]
 				}
+			]
+		}
+	}, {
+		"entity": {
+			"name": "luz_holograma",
+			"transform": {
+				"pos": "-8.85 8.0 9.0",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 2.0,
+				"outer_cut": 3.0,
+				"volumetric": true,
+				"volume_values": "2.9 30 1 1",
+				"color": "0.0 0.0 1.0 1.0",
+				"intensity": 0.120,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 2.5,
+				"is_trigger": true
+			},
+			"tags":
+			[
+				"light"
 			]
 		}
 	}

@@ -398,22 +398,6 @@
   {
     "entity":
     {
-      "name": "mesh_boxclosed002"
-      ,
-      "prefab": "data/prefabs/boxclosed.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-36.6 -0.0115511 -93.5635"
-        ,
-        "rotation": "0.0 0.34202 0.0 -0.939693"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_boxclosed003"
       ,
       "prefab": "data/prefabs/boxclosed.prefab"
@@ -2718,38 +2702,6 @@
   {
     "entity":
     {
-      "name": "mesh_chair001"
-      ,
-      "prefab": "data/prefabs/chair.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-36.4 0.00414625 -94.7"
-        ,
-        "rotation": "0.0 0.0 2.38419e-07 -1.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_chair002"
-      ,
-      "prefab": "data/prefabs/chair.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-36.7 0.273419 -94.4297"
-        ,
-        "rotation": "0.183013 0.183013 -0.683013 -0.683013"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
       "name": "mesh_chair003"
       ,
       "prefab": "data/prefabs/chair.prefab"
@@ -3175,22 +3127,6 @@
         "pos": "-52.4348 -0.0217675 -124.266"
         ,
         "rotation": "0.0 -0.130526 0.0 -0.991445"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_pale001"
-      ,
-      "prefab": "data/prefabs/pale.prefab"
-      ,
-      "transform":
-      {
-        "pos": "-35.4518 0.996941 -93.6235"
-        ,
-        "rotation": "0.0 0.0 -0.5373 -0.843392"
       }
     }
   }

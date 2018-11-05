@@ -87,4 +87,6 @@ public:
 
     virtual const std::string getStateForCheckpoint() = 0;
     virtual void playAnimationByName(const std::string& animationName) = 0;
+
+    float getSuspectLevel() { return suspectO_Meter; };
 };

@@ -171,6 +171,17 @@ void TCompPatrolAnimator::initializeAnimations() {
 	);
 
 	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::SUSPECTING,
+		EAnimationType::CYCLIC,
+		EAnimationSize::SINGLE,
+		"alert",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
 		(TCompAnimator::EAnimation)EAnimation::SHOOT_INHIBITOR,
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
@@ -186,6 +197,28 @@ void TCompPatrolAnimator::initializeAnimations() {
 		EAnimationType::ACTION,
 		EAnimationSize::SINGLE,
 		"repaired",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::REPAIR_PATROL ,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"repairing",
+		"",
+		1.0f,
+		1.0f,
+		false
+	);
+
+	initializeAnimation(
+		(TCompAnimator::EAnimation)EAnimation::LOOKING_FOR,
+		EAnimationType::ACTION,
+		EAnimationSize::SINGLE,
+		"lookingfor",
 		"",
 		1.0f,
 		1.0f,

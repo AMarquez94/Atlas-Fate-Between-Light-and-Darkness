@@ -1,4 +1,6 @@
 {
+  "technique": "pbr_opacity_bias.tech"
+  ,
   "shadows": true
   ,
   "textures":

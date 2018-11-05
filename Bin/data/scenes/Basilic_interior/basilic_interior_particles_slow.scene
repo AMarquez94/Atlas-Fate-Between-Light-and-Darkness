@@ -16,7 +16,7 @@
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke_white.particles"
+					"data/particles/def_amb_smoke_white_medium.particles"
 				]
 			}
 		}
@@ -31,7 +31,7 @@
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_amb_smoke_white.particles"
+					"data/particles/def_amb_smoke_white_medium.particles"
 				]
 			}
 		}

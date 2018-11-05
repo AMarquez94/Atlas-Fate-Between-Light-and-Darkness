@@ -333,9 +333,10 @@
 		"entity": {
 			"name": "Player_Idle_SM",
 			"transform": "0 0 0",
-			"hierarchy": {
+			"bone_tracker": {
+				"bone": "Bip001 Spine2",
 				"parent": "The Player",
-				"pos": "0 0 0"
+				"rotation_update" : true
 			},
 			"render": {
 				"mesh": "axis.mesh"
@@ -343,7 +344,8 @@
 			"particles": {
 				"cores":
 				[
-					"data/particles/def_sm_idle.particles"
+					"data/particles/def_sm_idle.particles",
+					"data/particles/def_sm_idle_spores.particles"
 				]
 			}
 		}
@@ -360,7 +362,7 @@
 				"speed" : 2,
 				"oscilation_speed" : 15,
 				"vertical_speed" : -0.0005,
-				"forward": 1
+				"forward": 2
 			},
 			"particles": {
 				"on_start":false,
@@ -384,7 +386,7 @@
 				"speed" : -2,
 				"oscilation_speed" : 15,
 				"vertical_speed" : -0.0005,
-				"forward": 1
+				"forward": 2
 			},
 			"particles": {
 				"on_start":false,

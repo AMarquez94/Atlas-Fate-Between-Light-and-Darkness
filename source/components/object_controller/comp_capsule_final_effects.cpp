@@ -20,6 +20,7 @@ void TCompCapsuleFinalEffects::update(float dt) {
 		if (time_passed >= time_for_close_lights) {
 			firstLight.destroy();
 			secondLight.destroy();
+            volumeLight.destroy();
 			active = false;
 		}
 		time_passed += dt;
@@ -39,9 +40,11 @@ void TCompCapsuleFinalEffects::onMsgEntityCreated(const TMsgEntityCreated& msg) 
 	CEntity* meshCapsula = group->handles[2];
 	CEntity* meshLight1 = group->handles[0];
 	CEntity* meshLight2 = group->handles[1];
+    CEntity* meshVolume = group->handles[3];
 	meshRenderHandle = meshCapsula->get<TCompRender>();
 	firstLight = meshLight1->get<TCompLightPoint>();
-	secondLight = meshLight2->get<TCompLightPoint>();;
+	secondLight = meshLight2->get<TCompLightPoint>();
+    volumeLight = meshVolume->get<TCompLightPoint>();;
 }
 
 void TCompCapsuleFinalEffects::onMsgEmisiveCapsuleState(const TMsgEmisiveCapsuleState& msg) {

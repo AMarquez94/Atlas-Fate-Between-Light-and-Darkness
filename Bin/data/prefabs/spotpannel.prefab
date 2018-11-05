@@ -1,43 +1,31 @@
-[
-  {
-    "entity":
-    {
-      "name": "spotpannel"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_spotpannel"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_spotpannel.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_spotlight.material"
-            ,
-            "data/materials/mtl_decalsprops.material"
-          ]
-        }
-      ]
-	  ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
+[{
+		"entity": {
+			"name": "spotpannel",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "mesh_spotpannel",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/mesh_spotpannel.mesh",
+					"self_intensity": 0.2,
+					"materials":
+					[
+						"data/materials/mtl_spotlight.material",
+						"data/materials/flare.material",
+						"data/materials/spot.material",
+						"data/materials/mtl_decalsprops.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
 ]

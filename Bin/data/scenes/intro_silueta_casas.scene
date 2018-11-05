@@ -1,43 +1,30 @@
-[
-  {
-    "entity":
-    {
-      "name": "intro_silueta_casas"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      }
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_silueta_casas"
-      ,
-      "transform":
-      {
-        "pos": "-10.6826 7.05714 -9.28659"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_silueta_casas.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_silueta_casas.material"
-          ]
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
+[{
+		"entity": {
+			"name": "intro_silueta_casas",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	}, {
+		"entity": {
+			"name": "mesh_silueta_casas",
+			"transform": {
+				"pos": "-10.6826 11.05714 -9.28659",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/mesh_silueta_casas.mesh",
+					"self_intensity": 0.025,
+					"self_color": "0.5 0.5 0.5 1",
+					"materials":
+					[
+						"data/materials/mtl_silueta_casas.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}
 ]

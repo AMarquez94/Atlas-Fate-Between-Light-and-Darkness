@@ -71,7 +71,8 @@
 					["0.1 0.05 0.0"],
 					["0.1 0.05 0.0"]
 				]
-			}
+			},
+			"audio": {}
 		}
 	}, {
 		"entity": {
@@ -164,7 +165,7 @@
 			}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "mesh_neon_azul_009",
 			"prefab": "data/prefabs/neon_azul_2.prefab",
 			"transform": {
@@ -184,7 +185,8 @@
 					["0.1 0.05 0.0"],
 					["0.1 0.05 0.0"]
 				]
-			}
+			},
+			"audio": {}
 		}
 	}, {
 		"entity": {
@@ -225,7 +227,8 @@
 					["0.1 0.05 0.0"],
 					["0.1 0.05 0.0"]
 				]
-			}
+			},
+			"audio": {}
 		}
 	}, {
 		"entity": {
@@ -402,7 +405,8 @@
 					["0.1 0.05 0.0"],
 					["0.1 0.05 0.0"]
 				]
-			}
+			},
+			"audio": {}
 		}
 	}, {
 		"entity": {
@@ -499,7 +503,7 @@
 			"name": "mesh_neon_redondo_verde004",
 			"prefab": "data/prefabs/neon_redondo_verde.prefab",
 			"transform": {
-				"pos": "3.5529 1.75839 -27.6792",
+				"pos": "3.5529 3.2 -27.6792",
 				"rotation": "0.0 0.707107 -0.707107 0.0"
 			}
 		}
@@ -765,7 +769,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Spot001",
 			"transform": {
 				"pos": "-11.8388 0.33317 3.85837",
@@ -809,10 +813,11 @@
 			"tags":
 			[
 				"light"
-			]
+			],
+			"audio": {}
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Spot002",
 			"transform": {
 				"pos": "-5.83897 0.876932 43.2541",
@@ -846,7 +851,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Spot003",
 			"transform": {
 				"pos": "-23.2183 1.2864 29.5369",
@@ -890,7 +895,8 @@
 			"tags":
 			[
 				"light"
-			]
+			],
+			"audio": {}
 		}
 	}, {
 		"entity": {
@@ -937,7 +943,8 @@
 			"tags":
 			[
 				"light"
-			]
+			],
+			"audio": {}
 		}
 	}, {
 		"entity": {
@@ -1008,7 +1015,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Spot009",
 			"transform": {
 				"pos": "9.0173 0.33317 12.0174",

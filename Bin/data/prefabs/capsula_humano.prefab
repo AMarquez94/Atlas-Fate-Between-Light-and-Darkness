@@ -1,151 +1,123 @@
-[
-  {
-    "entity":
-    {
-      "name": "capsula_humano"
-      ,
-      "transform":
-      {
-        "pos": "0.0 0.0 0.0"
-      },
-      "capsule_final_effect" : true
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "luz_capsula_humano"
-      ,
-      "transform":
-      {
-        "pos": "-0.000452697 3.03479 2.04909"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "light_point":
-      {
-        "type": "pointlight"
-        ,
-        "inner_cut": 2.40279
-        ,
-        "outer_cut": 2.87886
-        ,
-        "color": "1.0 1.0 0.372549 1.0"
-        ,
-        "intensity": 0.05
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-        "radius": 1.53034
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "luz_capsula_humano001"
-      ,
-      "transform":
-      {
-        "pos": "-0.000452697 3.22497 -3.88156"
-        ,
-        "rotation": "0.0 0.0 0.0 -1.0"
-      }
-      ,
-      "light_point":
-      {
-        "type": "pointlight"
-        ,
-        "inner_cut": 2.40279
-        ,
-        "outer_cut": 2.87886
-        ,
-        "color": "1.0 1.0 0.372549 1.0"
-        ,
-        "intensity": 0.1
-        ,
-        "casts_shadows": true
-        ,
-        "shadows_step": 1.0
-        ,
-        "shadows_resolution": 512
-        ,
-        "shadows_fmt": "R32_TYPELESS"
-      }
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-      ,
-      "collider":
-      {
-        "shape": "sphere"
-        ,
-        "radius": 1.53034
-        ,
-        "is_trigger": true
-      }
-      ,
-      "tags":
-      [
-        "light"
-      ]
-    }
-  }
-  ,
-  {
-    "entity":
-    {
-      "name": "mesh_capsula_humano"
-      ,
-      "transform":
-      {
-        "pos": "0.0 1.09767 -1.72867"
-      }
-      ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/mesh_capsula_humano.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_capsula_humano.material"
-            ,
-            "data/materials/mtl_humano_capsula.material"
-          ],
-          "self_intensity" : 0.07
-        }
-      ]
-      ,
-      "abs_aabb": true
-      ,
-      "local_aabb": true
-    }
-  }
+[{
+		"entity": {
+			"name": "capsula_humano",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"capsule_final_effect": true
+		}
+	}, {
+		"entity": {
+			"name": "luz_capsula_humano",
+			"transform": {
+				"pos": "-0.000452697 3.03479 2.04909",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 2.40279,
+				"outer_cut": 2.87886,
+				"color": "1.0 1.0 0.372549 1.0",
+				"intensity": 0.05,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 1.53034,
+				"is_trigger": true
+			},
+			"tags":
+			[
+				"light"
+			]
+		}
+	}, {
+		"entity": {
+			"name": "luz_capsula_humano001",
+			"transform": {
+				"pos": "-0.000452697 3.22497 -3.88156",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 2.40279,
+				"outer_cut": 2.87886,
+				"color": "1.0 1.0 0.372549 1.0",
+				"intensity": 0.1,
+				"casts_shadows": true,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "sphere",
+				"radius": 1.53034,
+				"is_trigger": true
+			},
+			"tags":
+			[
+				"light"
+			]
+		}
+	}, {
+		"entity": {
+			"name": "mesh_capsula_humano",
+			"transform": {
+				"pos": "0.0 1.09767 -1.72867"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/mesh_capsula_humano.mesh",
+					"materials":
+					[
+						"data/materials/mtl_capsula_humano.material",
+						"data/materials/mtl_humano_capsula.material"
+					],
+					"self_intensity": 0.07
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	},
+	{
+		"entity": {
+			"name": "luz_volume",
+			"transform": {
+				"pos": "0 1.35 -1.65",
+				"eulers": "0 0 0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 0.3,
+				"outer_cut": 1.6,
+				"volumetric": true,
+				"volume_values": "1.1 35 1 1",
+				"color": "1.0 1.0 0.372549 1.0",
+				"intensity": 0.7,
+				"casts_shadows": false,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"collider": {
+				"shape": "convex",
+				"name": "data/colliders/luz_pasarela001.collider",
+				"is_trigger": true
+			},
+			"tags":
+			[
+				"light"
+			]
+		}
+	}
 ]

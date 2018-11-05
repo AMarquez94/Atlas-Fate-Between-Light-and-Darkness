@@ -1,0 +1,189 @@
+[
+  {
+    "entity":
+    {
+      "name": "basiliclantern"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_spotpannel010"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.528 2.51733 -389.532"
+        ,
+        "rotation": "0.0 -0.21644 0.0 -0.976296"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_spotpannel009"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "21.9399 -1.51687e-05 -347.019"
+        ,
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_spotpannel008"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "23.1987 -1.49033e-05 -340.949"
+        ,
+        "rotation": "0.0 -0.737278 0.0 -0.67559"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_spotpannel007"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "25.6854 -1.45448e-05 -332.746"
+        ,
+        "rotation": "0.0 -0.675591 0.0 -0.737277"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_spotpannel006"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "18.4275 -1.45448e-05 -332.746"
+        ,
+        "rotation": "0.0 -0.087156 0.0 -0.996195"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_spotpannel005"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.4302 -1.45448e-05 -332.746"
+        ,
+        "rotation": "0.0 0.5 0.0 -0.866026"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_spotpannel004"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.56 -1.47677e-05 -337.846"
+        ,
+        "rotation": "0.0 0.642787 0.0 -0.766045"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_spotpannel003"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.0025 -1.57386e-05 -360.056"
+        ,
+        "rotation": "0.0 -0.887011 0.0 0.461749"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_spotpannel002"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.0325 -1.59143e-05 -364.077"
+        ,
+        "rotation": "0.0 0.843391 0.0 -0.5373"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_spotpannel001"
+      ,
+      "prefab": "data/prefabs/spotpannel.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.6717 -1.6373e-05 -374.571"
+        ,
+        "rotation": "0.0 0.642788 0.0 -0.766045"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "bc_mesh_neon_redondo_azul001"
+      ,
+      "prefab": "data/prefabs/neon_redondo_azul.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-10.1451 18.4284 -392.337"
+        ,
+        "rotation": "-0.707107 0.0 0.0 -0.707106"
+      }
+    }
+  }
+]

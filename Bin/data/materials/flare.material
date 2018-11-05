@@ -1,6 +1,6 @@
 {
 	"technique": "pbr_beam_spotlight.tech",
-	"shadows": true,
+	"shadows": false,
 	"textures": {
 		"albedo": "data/textures/tx_flare_alb.dds",
 		"normal": "data/textures/null_normal.dds"

@@ -19,6 +19,7 @@
 				"proj_type": "ortographic",
 				"z_near": 0.01,
 				"z_far": 306.694,
+				"volumetric": false,
 				"ortosize": 200.0,
 				"casts_shadows": true,
 				"shadows_step": 1.5,

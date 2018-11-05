@@ -6,7 +6,7 @@ end
 function onScenePartialStart_scene_zone_a()
 	--onSceneStart_scene_zone_a();
 	movePlayerToRefPos("zone_a_in_suelo001", i_ref_pos);
-	--execScriptDelayed("toDoor(toEntity(getEntityByName(\"zone_a_in_marco_puerta001\")):getCompByName(\"door\")):open();", 0.5);
+	gameManager:changeMainTheme();
 end
 
 function onScenePartialEnd_scene_zone_a()
@@ -14,7 +14,7 @@ function onScenePartialEnd_scene_zone_a()
 end
 
 function onTriggerEnter_ZON_trigger_opendoor_zonea_player()
-	execScriptDelayed("toDoor(toEntity(getEntityByName(\"zone_a_in_marco_puerta001\")):getCompByName(\"door\")):open()", 0.5);
+	execScriptDelayed("openDoorOnEnter(\"zone_a_in_marco_puerta001\", false)", 0.5);
 	getEntityByName("ZON_trigger_opendoor_zonea"):destroy();
 end
 

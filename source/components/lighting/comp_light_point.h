@@ -6,7 +6,8 @@ class TCompLightPoint : public TCompBase {
 
 	// Light params
 	VEC4            color = VEC4(1, 1, 1, 1);
-	
+    VEC4            volume_values = VEC4(0.5, 40, 1, 1);
+
     bool            cull_enabled = false;      // Dynamic
 
     void onCreate(const TMsgEntityCreated& msg);
@@ -30,6 +31,7 @@ public:
 	void activate();
     void cullFrame();
     bool isCulled() const;
+    bool volumetric = false;
 
 	MAT44 getWorld();
     VEC4 getColor() const;
@@ -40,6 +42,8 @@ public:
 
     void setIntensity(float new_int);
     float getIntensity();
+
+    bool interactsWithPlayer = true;
 
     static void registerMsgs();
 };

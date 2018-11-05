@@ -164,6 +164,7 @@ void CModuleLogic::publishClasses() {
 		.set("resetToCheckpoint", &CModuleGameManager::resetToCheckpoint)
         .set("changeToEndScene", &CModuleGameManager::changeToEndScene) //TODO: Delete
         .set("preloadFinalSceneSoundEvent", &CModuleGameManager::preloadFinalSceneSoundEvent) //TODO: Delete
+        .set("changeMainTheme", &CModuleGameManager::changeMainTheme) //TODO: Delete
         ;
 
     SLB::Class< VEC3 >("VEC3", m)
@@ -343,6 +344,7 @@ void CModuleLogic::publishClasses() {
     m->set("setCinematicPlayerState", SLB::FuncCall::create(&setCinematicPlayerState));
 	m->set("setAIState", SLB::FuncCall::create(&setAIState));
 	m->set("speedUpRuedasFinalScene", SLB::FuncCall::create(&speedUpRuedasFinalScene));
+    m->set("playWhisps", SLB::FuncCall::create(&playWhisps));
 	m->set("stopRuedasFinalScene", SLB::FuncCall::create(&stopRuedasFinalScene));
 	m->set("lightUpForFinalScene", SLB::FuncCall::create(&lightUpForFinalScene));
 	m->set("lightDownForFinalScene", SLB::FuncCall::create(&lightDownForFinalScene));
@@ -407,6 +409,7 @@ void CModuleLogic::publishClasses() {
     m->set("isInCinematicMode", SLB::FuncCall::create(&isInCinematicMode));
     m->set("preloadSoundEvent", SLB::FuncCall::create(&preloadSoundEvent));
     m->set("stopRenderingEntities", SLB::FuncCall::create(&stopRenderingEntities));
+    m->set("changeMainTheme", SLB::FuncCall::create(&changeMainTheme));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -1010,6 +1013,11 @@ void stopRenderingEntities()
     EngineEntities.broadcastMsg(msg);
 }
 
+void changeMainTheme()
+{
+    CEngine::get().getGameManager().changeMainTheme();
+}
+
 
 SoundEvent playEvent(const std::string & name)
 {
@@ -1420,12 +1428,28 @@ void speedUpRuedasFinalScene() {
     for (auto &p : out_group->handles) {
         CEntity * current = p;
         TCompParticles * part = current->get<TCompParticles>();
-        part->setSystemState(false);
+        part->setSystemFading(7);
     }
 
     //Enabling the fast particles
     out = getEntityByName("Particles_Fast");
     out_group = out->get<TCompGroup>();
+    for (auto &p : out_group->handles) {
+        CEntity * current = p;
+        TCompParticles * part = current->get<TCompParticles>();
+        part->setSystemState(true);
+    }
+
+    out = getEntityByName("particle_rueda_left");
+    TCompParticles * rueda_particles = out->get<TCompParticles>();
+    rueda_particles->setSystemState(true);
+}
+
+void playWhisps() {
+
+    //Enabling the fast particles
+    CEntity *out = getEntityByName("Particles_Whisps");
+    TCompGroup * out_group = out->get<TCompGroup>();
     for (auto &p : out_group->handles) {
         CEntity * current = p;
         TCompParticles * part = current->get<TCompParticles>();

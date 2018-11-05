@@ -152,6 +152,7 @@ void sendPlayerIlluminatedMsg(CHandle h, bool illuminated);
 void isInCinematicMode(bool isCinematic);
 SoundEvent preloadSoundEvent(const std::string& soundevent);
 void stopRenderingEntities();
+void changeMainTheme();
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);
@@ -194,6 +195,7 @@ void execLastAtlasScreen();
 void activateCredits();
 void removeAtlasSplash();
 void removeTempCredits();
+void playWhisps();
 
 /* DEBUG - TODO: Delete */
 void sendOrderToDrone(const std::string& droneName, VEC3 position);

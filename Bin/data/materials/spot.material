@@ -1,5 +1,5 @@
 {
-"technique": "pbr_shaft_spotlight.tech",
+	"technique": "pbr_shaft_spotlight.tech",
 	"shadows": false,
 	"textures": {
 		"albedo": "data/textures/tx_spot_beam_hd.dds",

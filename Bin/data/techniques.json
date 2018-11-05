@@ -111,6 +111,16 @@
 		"category": "gbuffer_opacity",
 		"blend": "default"
 	},
+	"pbr_opacity_bias": {
+		"vs_file": "data/shaders/pbr.fx",
+		"ps_file": "data/shaders/pbr.fx",
+		"vs_entry_point": "VS_GBuffer",
+		"ps_entry_point": "PS_GBuffer_Opacity",
+		"vertex_type": "PosNUvUvT",
+		"category": "gbuffer_opacity",
+		"rs_config": "depth_bias_low",
+		"blend": "default"
+	},
 	"pbr_opacity_no_cull": {
 		"vs_file": "data/shaders/pbr.fx",
 		"ps_file": "data/shaders/pbr.fx",
@@ -409,6 +419,22 @@
 		"category": "pbr_skybox",
 		"textures": {
 			"environment": "data/textures/cubemaps/skybox.dds",
+			"irradiance": "data/textures/cubemaps/irradiance.dds"
+		}
+	},
+	"pbr_skyclouds": {
+		"vs_file": "data/shaders/env.fx",
+		"ps_file": "data/shaders/env.fx",
+		"vs_entry_point": "VS",
+		"ps_entry_point": "PS_Clouds",
+		"vertex_type": "PosNUvUvT",
+		"z": "test_but_no_write",
+		"blend": "additive_by_src_alpha",
+		"rs_config": "cull_none",
+		"category": "pbr_skyclouds",
+		"textures": {
+			"environment": "data/textures/cubemaps/beach.dds",
+			"noise": "data/textures/noise_light.dds",
 			"irradiance": "data/textures/cubemaps/irradiance.dds"
 		}
 	},
@@ -914,6 +940,19 @@
 			"noise": "data/textures/noise_cloud3.dds"
 		}
 	},
+	"pbr_hologram_sw_model_no_cull": {
+		"vs_file": "data/shaders/hologram.fx",
+		"ps_file": "data/shaders/hologram.fx",
+		"vs_entry_point": "VS_GBuffer_SWHologram_Model",
+		"ps_entry_point": "PS_GBuffer_SWHologram_Model",
+		"vertex_type": "PosNUvUvT",
+		"category": "hologram",
+		"rs_config": "cull_none",
+		"blend": "additive_by_src_alpha",
+		"textures": {
+			"noise": "data/textures/tx_flicker_soft.dds"
+		}
+	},
 	"pbr_hologram_sw_model": {
 		"vs_file": "data/shaders/hologram.fx",
 		"ps_file": "data/shaders/hologram.fx",
@@ -957,7 +996,7 @@
 	"pbr_rayshaft_directional": {
 		"vs_file": "data/shaders/screen_quad.fx",
 		"ps_file": "data/shaders/pbr_vol_instanced.fx",
-		"ps_entry_point": "PS_GBuffer_RayShafts_Point",
+		"ps_entry_point": "PS_GBuffer_RayShafts_Directional",
 		"vertex_type": "PosClr",
 		"blend": "additive",
 		"rs_config": "cull_none",

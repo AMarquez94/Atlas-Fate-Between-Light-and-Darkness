@@ -7,10 +7,31 @@
 		}
 	}, {
 		"entity": {
+			"name": "skyclouds",
+			"tied_hierarchy": {
+				"pos": "0 0 0",
+				"scale": "1 1 1"
+			},
+			"transform": {},
+			"render":
+			[{
+					"mesh": "data/meshes/skydome.mesh",
+					"self_intensity": 1.0,
+					"materials":
+					[
+						"data/materials/mtl_vfx_clouds.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
 			"name": "luna",
 			"tied_hierarchy": {
-				"pos": "17.7689 38.3776 65.0954",
-				"scale": "2 2 2"
+				"pos": "87 108 62",
+				"scale": "5 5 5"
 			},
 			"transform": {},
 			"render":
@@ -28,10 +49,31 @@
 		}
 	}, {
 		"entity": {
+			"name": "luna_light",
+			"tied_hierarchy": {
+				"pos": "70 88 44"
+			},
+			"transform": {},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 20,
+				"outer_cut": 30,
+				"color": "0.94 1 0.85 1.0",
+				"intensity": 600,
+				"casts_shadows": false,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true
+		}
+	}, {
+		"entity": {
 			"name": "luna_back",
 			"tied_hierarchy": {
-				"pos": "17.7689 38.3776 65.0954",
-				"scale": "2.5 2.5 2.5"
+				"pos": "87 108 62",
+				"scale": "6 6 6"
 			},
 			"transform": {},
 			"render":
@@ -52,7 +94,7 @@
 		"xentity": {
 			"name": "luna_back_atmosphere",
 			"tied_hierarchy": {
-				"pos": "17.7689 38.3776 65.0954",
+				"pos": "87 108 62",
 				"scale": "2.1 2.1 2.1"
 			},
 			"transform": {},
@@ -73,7 +115,8 @@
 			"name": "planet1",
 			"tied_hierarchy": {
 				"pos": "20 150 -150",
-				"scale": "12 12 12"
+				"scale": "12 12 12",
+				"rot": "0 1 0"
 			},
 			"transform": {},
 			"render":
@@ -122,7 +165,7 @@
 			"render":
 			[{
 					"mesh": "data/meshes/sphere_moon.mesh",
-					"self_intensity": 0.02,
+					"self_intensity": 0.04,
 					"materials":
 					[
 						"data/materials/mtl_luna_back_atmosphere.material"
@@ -136,7 +179,7 @@
 		"entity": {
 			"name": "planet2",
 			"tied_hierarchy": {
-				"pos": "48 111 -148",
+				"pos": "48 109 -148",
 				"scale": "5 5 5"
 			},
 			"transform": {},
@@ -157,7 +200,7 @@
 		"entity": {
 			"name": "planet2_back",
 			"tied_hierarchy": {
-				"pos": "48 111 -148",
+				"pos": "48 109 -148",
 				"scale": "5.5 5.5 5.5"
 			},
 			"transform": {},
@@ -179,7 +222,7 @@
 		"xentity": {
 			"name": "planet2_atmosphere",
 			"tied_hierarchy": {
-				"pos": "48 111 -148",
+				"pos": "48 109 -148",
 				"scale": "5.2 5.2 5.2"
 			},
 			"transform": {},

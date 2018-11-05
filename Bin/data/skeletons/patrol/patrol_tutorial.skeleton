@@ -29,6 +29,15 @@
 			"name": "inhibidor"
 		},
 		{
+			"name": "lookingfor"
+		},
+		{
+			"name": "alert"
+		},
+		{
+			"name": "repairing"
+		},
+		{
 			"name": "turn_right"
 		},
 		{

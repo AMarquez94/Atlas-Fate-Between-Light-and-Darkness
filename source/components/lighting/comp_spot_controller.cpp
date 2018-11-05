@@ -144,6 +144,10 @@ void TCompSpotController::updateFlicker(float dt)
             if (_object_render)  _object_render->self_intensity = 0;
             if (_object_particles)  _object_particles->setSystemPause(false);
             if (_mesh_render)  _mesh_render->visible = false;
+            TCompAudio* my_audio = get<TCompAudio>();
+            if (my_audio && !flicker_sound.isValid()) {
+                flicker_sound = my_audio->playEvent("event:/Sounds/Objects/Neon/NeonFlicker");
+            }
             _flicker_status = true;
         }
 

@@ -1,0 +1,59 @@
+[{
+		"entity": {
+			"name": "towerholo",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"tags": [
+				"corridor"
+			]
+		}
+	}, {
+		"entity": {
+			"name": "mesh_towerholo",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"render":
+			[{
+					"mesh": "data/meshes/mesh_towerholo.mesh",
+					"color": "0 0.6 1 1",
+					"materials":
+					[
+						"data/materials/mtl_holotunel.material"
+					]
+				}
+			],
+			"abs_aabb": true,
+			"local_aabb": true,
+			"tags": [
+				"corridor"
+			]
+		}
+	}, {
+		"entity": {
+			"name": "light_towerholo",
+			"transform": {
+				"pos": "0.0 0.26 0.0"
+			},
+			"light_point": {
+				"type": "pointlight",
+				"inner_cut": 1.0,
+				"outer_cut": 3.5,
+				"volumetric": true,
+				"volume_values": "22.6 30 1 1",
+				"color": "0 0.25 0.5 1",
+				"intensity": 0.120,
+				"casts_shadows": false,
+				"shadows_step": 1.0,
+				"shadows_resolution": 512,
+				"shadows_fmt": "R32_TYPELESS"
+			},
+			"abs_aabb": true,
+			"local_aabb": true,
+			"tags": [
+				"corridor"
+			]
+		}
+	}
+]

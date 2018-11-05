@@ -33,7 +33,7 @@
 			},
 			"color_grading": {
 				"enabled": true,
-				"amount": 0.25,
+				"amount": 0.5,
 				"lut": "data/textures/lut/lut5.dds"
 			},
 			"chromatic_aberration": {

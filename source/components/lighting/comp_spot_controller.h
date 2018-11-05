@@ -12,11 +12,11 @@ class TCompLightPoint;
 class TCompSpotController : public TCompBase {
 
     CHandle _parent;
-    TCompRender * _mesh_render;
-    TCompRender * _object_render;
-	TCompLightSpot * _spot_light;
-    TCompParticles * _object_particles;
-    TCompCollider * _object_collider;
+    TCompRender * _mesh_render = nullptr;
+    TCompRender * _object_render = nullptr;
+	TCompLightSpot * _spot_light = nullptr;
+    TCompParticles * _object_particles = nullptr;
+    TCompCollider * _object_collider = nullptr;
 
     float _emissive_intensity;
     std::string _emissive_target;
@@ -38,6 +38,8 @@ class TCompSpotController : public TCompBase {
     float _elapsed_time = 0.f;
     float _flicker_elapsed_time = 0.f;
     bool _flicker_status = false;
+
+    SoundEvent flicker_sound;
 
 	void onSceneCreated(const TMsgSceneCreated& msg);
     void onGroupCreated(const TMsgEntitiesGroupCreated& msg);

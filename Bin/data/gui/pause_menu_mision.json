@@ -7,21 +7,13 @@
 			{
 				"name" : "pause_mision",
 				"type" : "subtitles",
-				"size" : "150 100",
-				"position" : "205 50",
-				"texture" : "data/textures/gui/subtitulos/none.dds",
+				"size" : "300 300",
+				"position" : "-2 35",
+				"texture" : "data/textures/gui/misiones/main.dds",
 				"subtitles_textures" : [
 					{
-						"subtitle_name" : "none",
-						"texture_src" : "data/textures/gui/subtitulos/none.dds"
-					},
-					{
-						"subtitle_name" : "hola",
-						"texture_src" : "data/textures/gui/subtitulos/hola.dds"
-					},
-					{
-						"subtitle_name" : "adios",
-						"texture_src" : "data/textures/gui/subtitulos/adios.dds"
+						"subtitle_num" : 0,
+						"texture_src" : "data/textures/gui/misiones/main.dds"
 					}
 				]
 			}

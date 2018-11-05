@@ -18,6 +18,9 @@ void TCompLightPoint::debugInMenu() {
     ImGui::DragFloat("Inner Cut", &inner_cut, 0.01f, 0.f, 100.f);
     ImGui::DragFloat("Outer Cut", &outer_cut, 0.01f, 0.f, 100.f);
     ImGui::Checkbox("Enabled", &isEnabled);
+    ImGui::Checkbox("Pro Volume", &volumetric);
+    ImGui::DragFloat("Pro Volume Steps", &volume_values.y, 1.f, 1.f, 120.f);
+    ImGui::DragFloat("Pro Volume Scattering", &volume_values.x, 0.1f, 0.f, 100.f);
 }
 
 MAT44 TCompLightPoint::getWorld() {
@@ -45,6 +48,12 @@ void TCompLightPoint::load(const json& j, TEntityParseContext& ctx) {
     intensity = j.value("intensity", intensity);
     inner_cut = j.value("inner_cut", inner_cut) + 0.01f;
     outer_cut = j.value("outer_cut", outer_cut);
+    volumetric = j.value("volumetric", false);
+
+    // Determine scattering values.
+    if (j.count("volume_values")) {
+        volume_values = loadVEC4(j["volume_values"]);
+    }
 
     if (j.count("projector")) {
         std::string projector_name = j.value("projector", "");
@@ -53,6 +62,8 @@ void TCompLightPoint::load(const json& j, TEntityParseContext& ctx) {
     else {
         projector = Resources.get("data/textures/default_white.dds")->as<CTexture>();
     }
+
+    interactsWithPlayer = j.value("interacts_with_player", true);
 
     isEnabled = true;
 }
@@ -151,6 +162,7 @@ void TCompLightPoint::activate() {
     cb_light.inner_atten = inner_cut / outer_cut;
     cb_light.light_view_proj_offset = MAT44::Identity;
     cb_light.light_angle = 0;
+    cb_light.light_values = volume_values;
     cb_light.updateGPU();
 }
 

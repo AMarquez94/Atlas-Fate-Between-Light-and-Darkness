@@ -17,7 +17,7 @@ struct TInstanceLight {
 class TCompLightSpot : public TCompCamera {
 
 	VEC4			color = VEC4(1, 1, 1, 1);
-	
+    VEC4            volume_values = VEC4(0.1, 45, 1, 1);
     float			volume_intensity = 1.0f;
 
     //CRenderMesh * spotcone;
@@ -43,6 +43,7 @@ public:
 
     static CRenderMeshInstanced* volume_instance;
 	const CTexture* projector = nullptr;
+    bool pro_volume = false;
 
     ~TCompLightSpot();
 
@@ -74,6 +75,8 @@ public:
 
     MAT44 getWorld();
 	void setColor(const VEC4 & new_color);
+
+    bool interactsWithPlayer = true;
 
 	static void registerMsgs();
 };

@@ -19,7 +19,7 @@ void VS_GBuffer_Hologram(
 	, out float3 oWorldPos : TEXCOORD2
 )
 {
-	iPos.x += 0.5 * (step(0.5, sin(global_world_time * 2.0 + iPos.y * 1.0)) * step(0.99, sin(global_world_time *4 * 0.5)));
+	iPos.x += 0.5 * (step(0.5, sin(global_world_time * 2.0 + iPos.y * 1.0)) * step(0.99, sin(global_world_time *4 * 0.5))) * self_intensity;
 	
 	float4 world_pos = mul(iPos, obj_world);
 	oPos = mul(world_pos, camera_view_proj);
@@ -395,26 +395,26 @@ float4 PS_TV_Final(
 {
   // Noise wave, for each pixel adding a random noise on given position
   float xnoise = max(0.0, snoise(float2(global_world_time * self_intensity, iTex0.y * 0.3)) - 0.3) * (1.0 / 0.7);
-  xnoise = xnoise + (snoise(float2(global_world_time*7.0 * self_intensity, iTex0.y * 2.4)) - 0.5) * 0.15;
+  xnoise = xnoise + (snoise(float2(global_world_time*1.0 * self_intensity, iTex0.y * 2.4)) - 0.5) * 0.25;
     
-  // Noise displaces the horizontal coordinate per pixel
-  float xpos = iTex0.x - xnoise * xnoise * 0.15;
-	float ypos = iTex0.y - xnoise * xnoise * 0.15;
+  // Noise displaces the horizontal coordinate per pixels
+  float xpos = iTex0.x - xnoise * xnoise * 0.05;
+	float ypos = iTex0.y - xnoise * xnoise * 0.05;
 	
 	float4 color = txAlbedo.Sample(samLinear, float2(xpos, iTex0.y));
-  float scanline = sin(iTex0.x*800.0 + global_world_time * self_intensity)*0.025;
+  float scanline = sin(iTex0.x*500.0 + global_world_time * self_intensity)*0.005;
 	color -= scanline;
-	
+
   // Mix in some random interference for lines
 	float shift_itex = iTex0.x * global_world_time * self_intensity;
 	float rand_interference = rand(float2(shift_itex, shift_itex));
-  float3 t_color = lerp(color.xyz, float3(rand_interference, rand_interference, rand_interference), xnoise * 0.2).xyz;
-	
+  float3 t_color = lerp(color.xyz, float3(rand_interference, rand_interference, rand_interference), xnoise * 0.12).xyz;
+		
   // Shift green/blue channels (using the red channel)
-  t_color.x  = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).y, 0.25);
-	t_color.y = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).z, 0.25);
+  t_color.x  = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).y, 0.125);
+	t_color.y = lerp(t_color.x, txAlbedo.Sample(samLinear, float2(iTex0.x, ypos + xnoise * 0.015* self_intensity)).z, 0.125);
 	
-	return float4(t_color, 1) * obj_color * 0.6;
+	return float4(t_color, 1) * obj_color;
 	
 }
 

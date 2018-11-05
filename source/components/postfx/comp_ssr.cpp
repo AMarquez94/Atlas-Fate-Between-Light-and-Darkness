@@ -6,6 +6,7 @@
 
 DECL_OBJ_MANAGER("ssr", TCompSSR);
 
+CRenderToTexture* TCompSSR::rt = nullptr;
 // ---------------------
 void TCompSSR::debugInMenu() {
 

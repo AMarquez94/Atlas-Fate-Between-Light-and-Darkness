@@ -14,21 +14,19 @@
   {
     "entity":
     {
-      "name": "za_mesh_electrictower"
+      "name": "mesh_electrictower"
       ,
       "transform":
       {
-        "pos": "-106.645 0.0 -138.407"
+        "pos": "-106.6 0.0 -138.763"
         ,
-        "angle": -45
-		,
-		"axis": "0 1 0"
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
       }
       ,
       "render":
       [
         {
-          "mesh": "data/meshes/za_mesh_electrictower.mesh"
+          "mesh": "data/meshes/mesh_electrictower.mesh"
           ,
           "materials":
           [
@@ -57,37 +55,112 @@
   {
     "entity":
     {
-      "name": "za_mesh_ordenadortorre"
+      "name": "mesh_generadortorre"
+      ,
+      "prefab": "data/prefabs/generadortorre.prefab"
       ,
       "transform":
       {
-        "pos": "-106.645 1.99999 -138.407"
+        "pos": "-106.6 0.0 -138.763"
         ,
-        "rotation": "0.0 0.0 0.0 -1.0"
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
       }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_luzpared001"
       ,
-      "render":
-      [
-        {
-          "mesh": "data/meshes/za_mesh_ordenadortorre.mesh"
-          ,
-          "materials":
-          [
-            "data/materials/mtl_ordenadortorre.material"
-          ]
-        }
-      ]
+      "prefab": "data/prefabs/luzpared.prefab"
       ,
-      "collider":
+      "transform":
       {
-        "shape": "mesh"
+        "pos": "-110.235 2.02472 -138.924"
         ,
-        "name": "data/colliders/collider_ordenadortorre.collider"
+        "rotation": "0.0483778 -0.0483777 0.705446 -0.705454"
       }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_luzpared002"
       ,
-      "abs_aabb": true
+      "prefab": "data/prefabs/luzpared.prefab"
       ,
-      "local_aabb": true
+      "transform":
+      {
+        "pos": "-109.694 2.02472 -136.884"
+        ,
+        "rotation": "0.289981 -0.289981 0.644907 -0.644916"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_luzpared003"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-107.98 2.02472 -135.387"
+        ,
+        "rotation": "0.459773 -0.459773 0.537218 -0.53723"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_luzpared004"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-103.629 2.02472 -140.802"
+        ,
+        "rotation": "0.648405 -0.648405 -0.282077 0.282088"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_luzpared005"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-105.725 2.02472 -142.279"
+        ,
+        "rotation": "-0.5 0.5 0.499994 -0.500006"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_luzpared006"
+      ,
+      "prefab": "data/prefabs/luzpared.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-102.968 2.02472 -138.625"
+        ,
+        "rotation": "0.70261 -0.70261 -0.079611 0.0796219"
+      }
     }
   }
 ]

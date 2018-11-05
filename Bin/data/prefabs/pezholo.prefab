@@ -1,0 +1,48 @@
+[
+  {
+    "entity":
+    {
+      "name": "pezholo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      },
+	  "tags": [
+		"corridor"
+	  ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_pezholo"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/mesh_pezholo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_holotunel.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+	  ,
+	  "tags": [
+		"corridor"
+	  ]
+    }
+  }
+]

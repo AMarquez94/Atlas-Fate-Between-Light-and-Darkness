@@ -120,7 +120,7 @@ void TCompParticles::setSystemFading(float time) {
     for (auto p : _cores) {
         Particles::CSystem * system = Engine.get().getParticles().getSystem(p.second);
         system->fadeOut(time);
-        if (system != nullptr)
-            system->setActive(true);
+        //if (system != nullptr)
+            //system->setActive(true);
     }
 }

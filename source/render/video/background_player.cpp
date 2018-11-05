@@ -36,6 +36,11 @@ static void decodeVideoTextures() {
     }
 }
 
+void resetPlayingVideos() {
+    for (auto t : playing_video_textures)
+        t->setToBeReset(true);
+}
+
 void addVideoTextureToBackgroundPlayer(CVideoTexture* vt) {
 
     playing_video_textures.push_back(vt);

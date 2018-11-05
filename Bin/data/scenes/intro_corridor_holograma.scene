@@ -1,0 +1,111 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_corridor_holograma"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      },
+	  "tags": [
+		"corridor"
+	  ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_towerholo"
+      ,
+      "prefab": "data/prefabs/towerholo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.8903 2.59293 -79.728"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      },
+	  "tags": [
+		"corridor"
+	  ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_planetholo"
+      ,
+      "prefab": "data/prefabs/planetholo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.4362 2.323 -106.703"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+	  "tags": [
+		"corridor"
+	  ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_planesholo"
+      ,
+      "prefab": "data/prefabs/planesholo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.8903 2.31914 -106.703"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      },
+	  "tags": [
+		"corridor"
+	  ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_atlasholo"
+      ,
+      "prefab": "data/prefabs/atlasholo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.4962 2.33034 -92.728"
+        ,
+        "rotation": "0.0 -0.34202 0.0 -0.939693"
+      },
+	  "tags": [
+		"corridor"
+	  ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_atlasbroholo"
+      ,
+      "prefab": "data/prefabs/atlasbroholo.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.8903 2.39762 -92.728"
+        ,
+        "rotation": "0.0 -0.258819 0.0 -0.965926"
+      },
+	  "tags": [
+		"corridor"
+	  ]
+    }
+  }
+]

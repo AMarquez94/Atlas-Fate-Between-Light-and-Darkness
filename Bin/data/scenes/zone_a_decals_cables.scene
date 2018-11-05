@@ -167,7 +167,21 @@
         "pos": "-54.9186 10.6484 -94.9922"
         ,
         "rotation": "-0.707076 -0.0066646 -0.00665818 -0.707075"
-      }
+      },
+			"point_controller": {
+				"intensity_flow": 0.1,
+				"intensity_flow_speed": 0.1,
+				"radius_flow": 0.05,
+				"radius_flow_speed": 4,
+				"emissive_target": "mesh_cajetin_cables",
+				"light_target": "cajetin_omni",		
+				"bursts" : [
+					["2 0.1 0.0"],
+					["0.2 0.05 0.0"],
+					["0.1 0.05 0.0"],
+					["0.1 0.05 0.0"]
+				]
+			}
     }
   }
   ,

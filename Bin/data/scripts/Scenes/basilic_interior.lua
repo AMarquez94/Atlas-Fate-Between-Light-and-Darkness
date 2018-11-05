@@ -45,7 +45,7 @@ function finish_job_end_cinematic_scene()
 	execScriptDelayed("activateSubtitles(31);",38);
 	execScriptDelayed("playVoice(\"bi_goodjob\");", 38);
 	execScriptDelayed("deactivateSubtitles();",45);
-	execScriptDelayed("execLastAtlasScreen()",53);
+	execScriptDelayed("execLastAtlasScreen()",53.25);
 	--execScriptDelayed("execLastAtlasScreen()",3);
 	execScriptDelayed("lightUpForFinalScene(true,3);",37);
 end
@@ -65,7 +65,8 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_2\", 0.0)",6);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_14_Rot_1\", 0.0)",6);
 	execScriptDelayed("speedUpRuedasFinalScene()",7.5); 
-
+	execScriptDelayed("playWhisps()",10.0); 
+	
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_16_Rot_2\", 10.0, \"cinematic\", \"\")", 12);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Plane_16_Rot_1\", 0.0, \"cinematic\", \"\")", 12);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Plane_15_Rot_2\", 0.0)",12);
@@ -96,7 +97,7 @@ function shutdown_end_cinematic_scene()
 	execScriptDelayed("pasarelaLightsFadeOut()", 44);
 	
 
-	execScriptDelayed("execLastAtlasScreen()",53);
+	execScriptDelayed("execLastAtlasScreen()",53.25);
 	execScriptDelayed("lightUpForFinalScene(false, 13.0);",22);
 	execScriptDelayed("lightDownForFinalScene(true, 0.5);",37);
 
