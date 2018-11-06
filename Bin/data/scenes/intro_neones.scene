@@ -1015,7 +1015,7 @@
 			]
 		}
 	}, {
-		"entity": {
+		"xentity": {
 			"name": "Spot009",
 			"transform": {
 				"pos": "9.0173 0.33317 12.0174",

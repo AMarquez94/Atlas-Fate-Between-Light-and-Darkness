@@ -115,7 +115,8 @@
 			"name": "planet1",
 			"tied_hierarchy": {
 				"pos": "-130 150 -45",
-				"scale": "12 12 12"
+				"scale": "12 12 12",
+				"rot": "0 1 0"
 			},
 			"transform": {},
 			"render":
@@ -178,7 +179,7 @@
 		"entity": {
 			"name": "planet2",
 			"tied_hierarchy": {
-				"pos": "-123 113 -70",
+				"pos": "-123 110 -70",
 				"scale": "5 5 5"
 			},
 			"transform": {},
@@ -199,7 +200,7 @@
 		"entity": {
 			"name": "planet2_back",
 			"tied_hierarchy": {
-				"pos": "-123 113 -70",
+				"pos": "-123 110 -70",
 				"scale": "5.5 5.5 5.5"
 			},
 			"transform": {},
@@ -221,7 +222,7 @@
 		"xentity": {
 			"name": "planet2_atmosphere",
 			"tied_hierarchy": {
-				"pos": "-123 113 -70",
+				"pos": "-123 110 -70",
 				"scale": "5.2 5.2 5.2"
 			},
 			"transform": {},

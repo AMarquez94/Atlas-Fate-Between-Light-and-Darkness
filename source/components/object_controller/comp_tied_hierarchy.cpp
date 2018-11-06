@@ -15,6 +15,9 @@ void TCompTiedHierarchy::load(const json& j, TEntityParseContext& ctx) {
     if (j.count("scale"))
         orig_scale = loadVEC3(j["scale"]);
 
+    if (j.count("rot"))
+        orig_rot = loadVEC3(j["rot"]);
+
     do_rot = j.value("rotate", false);
     orig_speed = j.value("rotate_speed", 1.f);
 
