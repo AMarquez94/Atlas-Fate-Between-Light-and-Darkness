@@ -1,5 +1,5 @@
 function onSceneStart_scene_basilic_interior()
-	startCinematicMode(192.5);
+	startCinematicMode(194.5);
 	deleteAllCacheResources();
 	setOutBlackScreen(0.25);
 	gameManager:changeToEndScene();
