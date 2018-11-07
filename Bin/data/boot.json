@@ -4,7 +4,7 @@
 		"static_data": {
 			"initial_script": "intro",
 			"navmesh": "data/navmeshes/intro_navmesh.bin",
-			"exposure": 2,
+			"exposure": 2.8,
 			"ambient": 0.04,
 			"gamma": 1,
 			"tone_mapping": 0,
@@ -104,7 +104,7 @@
 	"scene_coliseo": {
 		"static_data": {
 			"initial_script": "coliseo",
-			"exposure": 2,
+			"exposure": 2.8,
 			"ambient": 0.05,
 			"gamma": 1,
 			"tone_mapping": 0,
@@ -164,7 +164,7 @@
 		"static_data": {
 			"initial_script": "zone_a",
 			"navmesh": "data/navmeshes/scene_a.bin",
-			"exposure": 1.51,
+			"exposure": 2.3,
 			"ambient": 0.05,
 			"gamma": 1,
 			"tone_mapping": 0,
@@ -259,7 +259,7 @@
 	"scene_coliseo_2": {
 		"static_data": {
 			"initial_script": "coliseo2",
-			"exposure": 2,
+			"exposure": 2.8,
 			"ambient": 0.05,
 			"gamma": 1,
 			"tone_mapping": 0,
@@ -316,7 +316,7 @@
 		"static_data": {
 			"initial_script": "basilic_courtyard",
 			"navmesh": "data/navmeshes/basilic_courtyard.bin",
-			"exposure": 1.8,
+			"exposure": 2.6,
 			"ambient": 0.05,
 			"gamma": 1,
 			"tone_mapping": 0,
