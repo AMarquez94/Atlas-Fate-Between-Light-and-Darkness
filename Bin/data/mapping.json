@@ -130,7 +130,7 @@
     "buttons":  ["pad_b"]
   },
   {
-	"name": "btConsole",
+	"name": "xbtConsole",
 	"all": false,
 	"buttons": ["oem_4"]
   },

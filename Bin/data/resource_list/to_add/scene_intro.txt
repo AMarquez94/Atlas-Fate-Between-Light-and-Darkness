@@ -35,6 +35,9 @@ data/particles/def_projectile_trail_main.particles
 data/particles/def_projectile_trail_main2.particles
 data/textures/particles/glow.dds
 data/particles/def_projectile_flare.particles
+data/prefabs/tutorial/patrol_tutorial.prefab
+data/materials/characters/mtl_player_main_hologram.material
+data/skeletons/patrol/patrol_tutorial.skeleton
 data/scenes/Intro/intro_test_instancing.scene
 unit_quad_pos_xy.mesh
 data/meshes/particles.instanced_mesh
@@ -875,7 +878,6 @@ data/colliders/collider_piezaconcreto.collider
 data/scenes/Intro/tutorial.scene
 data/prefabs/tutorial/player_tutorial.prefab
 data/skeletons/player/body.mesh
-data/materials/characters/mtl_player_main_hologram.material
 data/skeletons/player/bolsa_cinturon.mesh
 data/skeletons/player/buff_exterior.mesh
 data/skeletons/player/capsula_energia.mesh
