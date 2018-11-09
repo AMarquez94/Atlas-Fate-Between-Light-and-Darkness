@@ -1502,8 +1502,8 @@ void activateCredits() {
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::BLACK_SCREEN)->makeChildsFadeOut(0.25, 0.0, false);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS_BACKGROUND);
 	EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::CREDITS);
-	EngineLogic.execScriptDelayed("removeAtlasSplash()", 57.0f);
-	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")", 57.0f);
+	EngineLogic.execScriptDelayed("removeAtlasSplash()", 59.0f);
+	EngineLogic.execScriptDelayed("changeGamestate(\"main_menu\")", 59.0f);
 	EngineLogic.execScript("restartCinematics()");
 }
 

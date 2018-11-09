@@ -41,5 +41,14 @@
 			},
 			"prefab": "data/prefabs/inhibitor.prefab"
 		}
+	},
+	{
+		"entity": {
+			"name": "preload_patrol_tutorial",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			},
+			"prefab": "data/prefabs/tutorial/patrol_tutorial.prefab"
+		}
 	}
 ]
