@@ -182,6 +182,38 @@ void TCompAIPatrol::onMsgPatrolStunned(const TMsgEnemyStunned & msg)
     current = nullptr;
 }
 
+void TCompAIPatrol::onMsgPatrolStunnedCheckpoint(const TMsgEnemyStunnedCheckpoint & msg)
+{
+    hasBeenStunned = true;
+
+    TCompEmissionController * e_controller = get<TCompEmissionController>();
+    e_controller->blend(enemyColor.colorDead, 0.1f);
+
+    turnOffLight();
+
+    TCompGroup* cGroup = get<TCompGroup>();
+    CEntity* eCone = cGroup->getHandleByName("Cone of Vision");
+    TCompRender * coneRender = eCone->get<TCompRender>();
+    coneRender->visible = false;
+
+    lastPlayerKnownPos = VEC3::Zero;
+
+    /* Tell the other patrols I am stunned */
+    CEngine::get().getIA().patrolSB.stunnedPatrols.emplace_back(CHandle(this).getOwner());
+
+    /* Tell the other patrols I am not chasing player */
+    markPatrolAsGoingAfterPlayer(false);
+
+    TCompName* tName = get<TCompName>();
+    std::string myName = tName->getName();
+    myName.erase(remove(myName.begin(), myName.end(), ' '), myName.end());
+    std::string params = myName + "()";
+    EngineLogic.execEvent(CModuleLogic::Events::PATROL_STUNNED, params);
+
+    current = nullptr;
+}
+
+
 void TCompAIPatrol::onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged & msg)
 {
     hasBeenShadowMerged = true;
@@ -403,15 +435,15 @@ void TCompAIPatrol::onMsgPhysxContactLost(const TMsgPhysxContactLost & msg)
 const std::string TCompAIPatrol::getStateForCheckpoint()
 {
     if (current) {
-        if (current->getName().compare("stunned") == 0) {
+        if (isNodeSonOf(current, "manageStun")) {
             return "stunned";
         }
         else {
-            return "nextWpt";
+            return "";
         }
     }
     else {
-        return "nextWpt";
+        return "";
     }
 }
 
@@ -422,6 +454,7 @@ void TCompAIPatrol::registerMsgs()
     DECL_MSG(TCompAIPatrol, TMsgEntityCreated, onMsgEntityCreated);
     DECL_MSG(TCompAIPatrol, TMsgPlayerDead, onMsgPlayerDead);
     DECL_MSG(TCompAIPatrol, TMsgEnemyStunned, onMsgPatrolStunned);
+    DECL_MSG(TCompAIPatrol, TMsgEnemyStunnedCheckpoint, onMsgPatrolStunnedCheckpoint);
     DECL_MSG(TCompAIPatrol, TMsgPatrolShadowMerged, onMsgPatrolShadowMerged);
     DECL_MSG(TCompAIPatrol, TMsgPatrolFixed, onMsgPatrolFixed);
     DECL_MSG(TCompAIPatrol, TMsgNoiseMade, onMsgNoiseListened);

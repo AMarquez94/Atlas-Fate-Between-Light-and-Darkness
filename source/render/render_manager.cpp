@@ -195,7 +195,7 @@ void CRenderManager::renderCategory(const char* category_name) {
         TCompRender * c_render = it->h_render_owner;
 
         /* Test if component render is marked as visible */
-        if (!c_render->visible) {
+        if (!c_render || !c_render->visible) {
             ++it;
             continue;
         }
@@ -214,40 +214,42 @@ void CRenderManager::renderCategory(const char* category_name) {
 
         // World asociada a mi objeto
         const TCompTransform* c_transform = it->h_transform;
-        cb_object.obj_world = c_transform->asMatrix();
-        cb_object.obj_color = c_render->color;
-        cb_object.self_color = c_render->self_color;
-        cb_object.self_intensity = c_render->self_intensity;
-        cb_object.self_opacity = c_render->self_opacity;
-        cb_object.updateGPU();
+        if (c_transform) {
+            cb_object.obj_world = c_transform->asMatrix();
+            cb_object.obj_color = c_render->color;
+            cb_object.self_color = c_render->self_color;
+            cb_object.self_intensity = c_render->self_intensity;
+            cb_object.self_opacity = c_render->self_opacity;
+            cb_object.updateGPU();
 
-        // Do we have to change the material wrt the prev draw call?
-        if (prev_it->material != it->material) {
-            it->material->activate();
-            using_skin = it->material->tech->usesSkin();
-        }
-
-        //Is our material using skinning data?
-        if (using_skin) {
-            CHandle h = it->h_render_owner.getOwner();
-            if (h.isValid()) {
-                CEntity* e = h;
-                assert(e);
-                TCompSkeleton* cs = e->get<TCompSkeleton>();
-                assert(cs);
-                cs->updateCtesBones();
-                cs->cb_bones.activate();
+            // Do we have to change the material wrt the prev draw call?
+            if (prev_it->material != it->material) {
+                it->material->activate();
+                using_skin = it->material->tech->usesSkin();
             }
+
+            //Is our material using skinning data?
+            if (using_skin) {
+                CHandle h = it->h_render_owner.getOwner();
+                if (h.isValid()) {
+                    CEntity* e = h;
+                    assert(e);
+                    TCompSkeleton* cs = e->get<TCompSkeleton>();
+                    assert(cs);
+                    cs->updateCtesBones();
+                    cs->cb_bones.activate();
+                }
+            }
+
+            // Has the mesh changed?
+            if (prev_it->mesh != it->mesh)
+                it->mesh->activate();
+
+            // Do the render
+            it->mesh->renderSubMesh(it->subgroup_idx);
+
+            prev_it = it;
         }
-
-        // Has the mesh changed?
-        if (prev_it->mesh != it->mesh)
-            it->mesh->activate();
-
-        // Do the render
-        it->mesh->renderSubMesh(it->subgroup_idx);
-
-        prev_it = it;
         ++it;
     }
 

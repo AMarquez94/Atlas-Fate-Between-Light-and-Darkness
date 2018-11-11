@@ -98,7 +98,8 @@
 
       "data/scenes/intro_alminares_pantallas.scene",
 
-      "data/scenes/intro_tubo_grande.scene"
+      "data/scenes/intro_tubo_grande.scene",
+	    "data/scenes/Intro/intro_checkpoints.scene"
     ]
   },
   "scene_coliseo": {

@@ -864,7 +864,7 @@ void TCompTempPlayerController::die()
             enemy->sendMsg(newMsg);
         }
 
-        EngineGUI.clearSubtitles();
+        EngineLogic.execScript("subClear()");
     }
 }
 

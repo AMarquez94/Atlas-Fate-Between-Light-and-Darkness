@@ -182,8 +182,8 @@ bool CModuleSceneManager::loadScene(const std::string & name) {
 
 		CModuleGameManager gameManager = CEngine::get().getGameManager();
 		/* TODO: Comprobar que se sigue en la misma escena */
-		gameManager.loadCheckpoint();
         Engine.getLogic().execEvent(EngineLogic.SCENE_START, current_scene->name);
+		gameManager.loadCheckpoint();
         
         // Set the global data.
         cb_globals.global_fog_color = current_scene->ground_fog;

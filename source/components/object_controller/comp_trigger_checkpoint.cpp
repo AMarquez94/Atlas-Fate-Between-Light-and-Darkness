@@ -10,6 +10,8 @@ void TCompTriggerCheckpoint::debugInMenu() {
 }
 
 void TCompTriggerCheckpoint::load(const json& j, TEntityParseContext& ctx) {
+    player_pos = loadVEC3(j.value("player_pos", "0 0 0"));
+    player_lookat = loadVEC3(j.value("player_lookat", "0 0 0"));
 }
 
 void TCompTriggerCheckpoint::registerMsgs()
@@ -19,7 +21,7 @@ void TCompTriggerCheckpoint::registerMsgs()
 
 void TCompTriggerCheckpoint::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 {
-	if (!used) {
+	if (CHandle(this).getOwner().isValid() && !used) {
 		CHandle h_player = EngineEntities.getPlayerHandle();
 		if (h_player == msg.h_other_entity) {
 			CModuleGameManager gameManager = CEngine::get().getGameManager();
@@ -27,7 +29,10 @@ void TCompTriggerCheckpoint::onMsgTriggerEnter(const TMsgTriggerEnter & msg)
 			TCompTransform* tPlayerPos = e_player->get<TCompTransform>();
 			TCompTransform* myPos = get<TCompTransform>();
 			/* TODO: Que sea con la rotacion del player o la que especifiquemos nosotros */
-			gameManager.saveCheckpoint(VEC3(myPos->getPosition().x, tPlayerPos->getPosition().y, myPos->getPosition().z), tPlayerPos->getRotation());
+            CEntity* my_entity = CHandle(this).getOwner();
+            VEC3 checkpoint_player_pos = player_pos == VEC3::Zero ? VEC3(myPos->getPosition().x, tPlayerPos->getPosition().y, myPos->getPosition().z) : VEC3(player_pos.x, tPlayerPos->getPosition().y, player_pos.z);
+            VEC3 checkpoint_player_lookat = player_lookat == VEC3::Zero ? checkpoint_player_pos + tPlayerPos->getFront() : VEC3(player_lookat.x, checkpoint_player_pos.y, player_lookat.z);
+            gameManager.saveCheckpoint(my_entity->getName(), checkpoint_player_pos, checkpoint_player_lookat);
 			used = true;
 		}
 	}

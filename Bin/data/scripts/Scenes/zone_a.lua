@@ -35,10 +35,18 @@ end
 
 function enable_button_exit(button_handle)
 	execScriptDelayed("toButton(toEntity(getEntityByName(\"Button End Scene\")):getCompByName(\"button\")):setCanBePressed(true)",2.25);
-	if(cinematicsEnabled) then
+	
+	pos = toTransform(toEntity(getPlayerHandle()):getCompByName("transform")):getPosition();
+	h = CHandle();
+	h:fromUnsigned(button_handle);
+	lookat = toTransform(toEntity(h):getCompByName("transform")):getPosition();
+	
+	saveCheckpoint("zone_a_tower", pos ,lookat)
+	if(cinematicsEnabled and not zone_a_tower_activated) then
 		execScriptDelayed("cinematic_tower_activated()",0.5);
 	end
 	zone_a_door_activated = true;
+	zone_a_tower_activated = true;
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 end
 
@@ -141,4 +149,15 @@ end
 function destroyZoneAPreloadCol()
 	destroyPartialScene();
 	execScriptDelayed("preloadScene(\"scene_coliseo_2\")", 0.1);
+end
+
+function onCheckpointLoaded_zone_a_tower()
+	toButton(toEntity(getEntityByName("Button End Scene")):getCompByName("button")):setCanBePressed(true);
+	toButton(toEntity(getEntityByName("Button Open Exit")):getCompByName("button")):setCanBePressed(false);
+	
+	subClear();
+	execScriptDelayed("playVoice(\"zonea_tower_activated\");", 0.5);
+	execScriptDelayed("startTransmission(3.75)", 0.5);
+	execScriptDelayed("activateSubtitles(23);", 0.5);
+	execScriptDelayed("deactivateSubtitles();", 4.25);
 end

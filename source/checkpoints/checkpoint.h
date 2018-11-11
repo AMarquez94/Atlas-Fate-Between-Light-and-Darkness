@@ -13,7 +13,7 @@ struct EnemyStatus {
 
 struct PlayerStatus {
     VEC3 playerPos;
-    QUAT playerRot;
+    VEC3 playerLookAt;
     bool saved = false;
 };
 
@@ -31,7 +31,7 @@ public:
     CCheckpoint();
 
     //bool init();
-    bool saveCheckPoint(VEC3 playerPos, QUAT playerRotation);
+    bool saveCheckPoint(const std::string& name, VEC3 playerPos, VEC3 playerLookAt);
     bool loadCheckPoint();
     bool deleteCheckPoint();
     const bool isSaved() { return saved; };
@@ -39,6 +39,7 @@ public:
 
 private:
 
+    std::string checkpoint_name;
     PlayerStatus player;
     std::vector<EnemyStatus> enemies;
     std::vector<EntityStatus> entities;

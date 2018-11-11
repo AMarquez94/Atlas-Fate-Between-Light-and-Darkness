@@ -23,28 +23,31 @@
 				"is_controller": false,
 				"is_gravity": false
 			},
-			"trigger_checkpoint": {},
+			"trigger_checkpoint": {
+				"player_pos": "-7 0 -41",
+				"player_lookat": "-7 0 -42"
+			},
 			"tags": ["checkpoint"]
 		}
 	},
 	{
 		"entity": {
-			"name": "Checkpoint_start",
+			"name": "Checkpoint_fall",
 			"transform": {
-				"pos": "-3.73765 0.0 27.6506",
-				"rotation": "0.0 0.0 0.0 -1.0"
+				"pos": "-3.2 16 10"
 			},
 			"collider": {
 				"shape": "box",
-				"size": "11.1702 0.751292 4.97027",
-				"group": "All",
-				"mask": "",
+				"size": "15 2 3",
 				"is_trigger": true,
 				"is_dynamic": false,
 				"is_controller": false,
 				"is_gravity": false
 			},
-			"trigger_checkpoint": {},
+			"trigger_checkpoint": {
+				"player_pos": "1.4 16 10",
+				"player_lookat": "1.4 16 8"
+			},
 			"tags": ["checkpoint"]
 		}
 	}

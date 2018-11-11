@@ -59,6 +59,14 @@ function bc_button_shutdown_screens_pressed(button_handle)
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 	execScriptDelayed("look_closing_screen()",0.25);
 	onTriggerExit_BC_Trigger_ScreenLight_player();
+	
+	pos = toTransform(toEntity(getPlayerHandle()):getCompByName("transform")):getPosition();
+	h = CHandle();
+	h:fromUnsigned(button_handle);
+	lookat = toTransform(toEntity(h):getCompByName("transform")):getPosition();
+	
+	saveCheckpoint("basilic_courtyard_screen", pos ,lookat)
+	
 	getEntityByName("BC_Trigger_ScreenLight"):destroy();
 	
 end
@@ -97,4 +105,15 @@ function enter_basilic_cinematic()
 	--execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 	--Camera_Cinematic_Basilic_Courtyard_Enter_Rot_2
 
+end
+
+function onCheckpointLoaded_basilic_courtyard_screen()
+	toButton(toEntity(getEntityByName("BC_terminal")):getCompByName("button")):setCanBePressed(false);
+	
+	execScriptDelayed("toRender(toEntity(getEntityByName(\"BC_Screen001\")):getCompByName(\"render\")).visible = false;",0.1);
+	execScriptDelayed("toRender(toEntity(getEntityByName(\"BC_Screen002\")):getCompByName(\"render\")).visible = false;",0.1);
+	execScriptDelayed("toRender(toEntity(getEntityByName(\"BC_Screen001_Apagado\")):getCompByName(\"render\")).visible = true;",0.1);
+	execScriptDelayed("toRender(toEntity(getEntityByName(\"BC_Screen002_Apagado\")):getCompByName(\"render\")).visible = true;",0.1);
+	execScriptDelayed("getEntityByName(\"BC_Trigger_ScreenLight\"):destroy();", 0.1);
+	execScriptDelayed("onTriggerExit_BC_Trigger_ScreenLight_player();", 0.1);
 end

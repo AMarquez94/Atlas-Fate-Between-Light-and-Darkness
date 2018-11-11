@@ -143,7 +143,7 @@ void CModuleGUI::initializeWidgetStructure() {
 
 	pmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
 	pmc->registerOption("resume_game", pm_resumeGame);
-	pmc->registerOption("restart", pm_restartLevel);
+	pmc->registerOption("restart", pm_RestartFromCheckPoint);
 	pmc->registerOption("restart_checkpoint", pm_RestartFromCheckPoint);
 	pmc->registerOption("return_checkpoint", pm_ReturnMainMenu);
 	pmc->registerOption("pause_exit", pm_Exit);

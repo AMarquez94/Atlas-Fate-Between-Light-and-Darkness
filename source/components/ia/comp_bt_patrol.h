@@ -42,6 +42,7 @@ private:
     void onMsgEntityCreated(const TMsgEntityCreated& msg);
     void onMsgPlayerDead(const TMsgPlayerDead& msg);
     void onMsgPatrolStunned(const TMsgEnemyStunned& msg);
+    void onMsgPatrolStunnedCheckpoint(const TMsgEnemyStunnedCheckpoint& msg);
     void onMsgPatrolShadowMerged(const TMsgPatrolShadowMerged& msg);
     void onMsgPatrolFixed(const TMsgPatrolFixed& msg);
     void onMsgNoiseListened(const TMsgNoiseMade& msg);

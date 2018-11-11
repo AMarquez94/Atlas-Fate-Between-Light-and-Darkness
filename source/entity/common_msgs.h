@@ -64,6 +64,11 @@ struct TMsgEnemyStunned {
 	DECL_MSG_ID();
 };
 
+struct TMsgEnemyStunnedCheckpoint {
+    CHandle h_sender;
+    DECL_MSG_ID();
+};
+
 struct TMsgPlayerHit {
 	CHandle h_sender;
 	DECL_MSG_ID();

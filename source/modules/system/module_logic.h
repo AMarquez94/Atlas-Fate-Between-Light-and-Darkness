@@ -53,6 +53,7 @@ public:
         PATROL_STUNNED,
         PATROL_KILLED,
         PLAYER_ON_SHADOW_ENTER,
+        CHECKPOINT_LOADED,
         NUM_EVENTS
     };
 
@@ -135,6 +136,7 @@ void postFXToggle();
 void renderNavmeshToggle();
 void sleep(float time);
 void cinematicModeToggle();
+void saveCheckpoint(const std::string& name, VEC3 ppos, VEC3 plookat);
 bool isCheckpointSaved();
 void destroyHandle(unsigned int h);
 void destroyHandleByName(const std::string& name);
@@ -153,6 +155,7 @@ void isInCinematicMode(bool isCinematic);
 SoundEvent preloadSoundEvent(const std::string& soundevent);
 void stopRenderingEntities();
 void changeMainTheme();
+CHandle getPlayerHandle();
 
 /* Sounds */
 SoundEvent playEvent(const std::string& name);

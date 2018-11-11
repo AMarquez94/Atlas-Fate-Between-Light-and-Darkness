@@ -574,9 +574,9 @@ void CModuleGameManager::renderMain() {
     debugRender();
 }
 
-bool CModuleGameManager::saveCheckpoint(VEC3 playerPos, QUAT playerRot) {
+bool CModuleGameManager::saveCheckpoint(const std::string& checkpoint_name, VEC3 playerPos, VEC3 playerLookAt) {
 
-    return lastCheckpoint->saveCheckPoint(playerPos, playerRot);
+    return lastCheckpoint->saveCheckPoint(checkpoint_name, playerPos, playerLookAt);
 }
 
 bool CModuleGameManager::loadCheckpoint() {
