@@ -36,15 +36,17 @@
 			"transform": {
 				"pos": "0.0 0.0 0.0"
 			},
-			"render":
-			[{
-					"mesh": "data/meshes/mesh_cajetin_cables.mesh",
-					"materials":
-					[
-						"data/materials/mtl_cajetin_cables.material"
-					]
-				}
-			],
+			"render": [{
+				"mesh": "data/meshes/mesh_cajetin_cables.mesh",
+				"materials": [
+					"data/materials/mtl_cajetin_cables.material"
+				]
+			}, {
+				"mesh": "data/meshes/mesh_cajetin_cables.mesh",
+				"materials": [
+					"data/materials/mtl_cajetin_cables_post.material"
+				]
+			}],
 			"abs_aabb": true,
 			"local_aabb": true
 		}
