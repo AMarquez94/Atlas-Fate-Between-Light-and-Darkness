@@ -349,7 +349,8 @@ data/materials/mtl_decal_borde_filo.material
 data/scenes/BC_decals_cable.scene
 data/meshes/mezquita_cable_suelo.mesh
 data/textures/default_white.dds
-data/materials/mtl_cable.material
+data/materials/mtl_cable_guia.material
+data/materials/mtl_cable_guia_post.material
 data/prefabs/cajetin_cables.prefab
 data/meshes/mesh_cajetin_cables.mesh
 data/textures/tx_cajetin_cable_alb.dds
@@ -359,6 +360,7 @@ data/textures/tx_cajetin_cable_met.dds
 data/textures/tx_cajetin_cable_nml.dds
 data/textures/tx_cajetin_cable_rgh.dds
 data/materials/mtl_cajetin_cables.material
+data/materials/mtl_cajetin_cables_post.material
 data/scenes/bc_pantalla_atlas.scene
 data/meshes/bc_mesh_pantalla_atlas.mesh
 data/textures/tx_bc_pantalla_atlas_alb.dds

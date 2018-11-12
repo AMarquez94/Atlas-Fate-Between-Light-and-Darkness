@@ -516,11 +516,14 @@ data/textures/tx_cajetin_cable_met.dds
 data/textures/tx_cajetin_cable_nml.dds
 data/textures/tx_cajetin_cable_rgh.dds
 data/materials/mtl_cajetin_cables.material
+data/materials/mtl_cajetin_cables_post.material
 data/meshes/cable_suelo006.mesh
 data/textures/tx_cables_alb.dds
 data/textures/default_white.dds
 data/materials/mtl_cable.material
 data/meshes/cable_suelo005.mesh
+data/materials/mtl_cable_guia.material
+data/materials/mtl_cable_guia_post.material
 data/meshes/cable_suelo004.mesh
 data/meshes/cable_suelo003.mesh
 data/meshes/cable_suelo002.mesh
