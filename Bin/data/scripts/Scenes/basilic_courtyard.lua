@@ -76,7 +76,7 @@ function look_closing_screen()
 	setInBlackScreen(0.25);
 	execScriptDelayed("setOutBlackScreen(0.25);",0.3);
 	resetMainCameras();
-
+	activateMission(3);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Basilic_Courtyard_Rot_1\", 0.0, \"cinematic\", \"\")", 0.27);
 	execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Basilic_Courtyard_Rot_1\", 5)", 5.25);
 

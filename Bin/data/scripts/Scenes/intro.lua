@@ -151,6 +151,7 @@ function intro_inhibitor_cinematic()
 	render_inhibitor_sign.visible = false;	
 	--end
 
+	activateMission(0);
 
 	--execScriptDelayed("setCinematicPlayerState(false, \"\")", 5.75);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_2\",1.5,\"cinematic\", \"expoin\")", 0.5);	
@@ -189,7 +190,7 @@ function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0)", 5);	
 		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_4\",10.0,\"cinematic\", \"\")", 5);	
 		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_3\",0.0,\"cinematic\", \"\")", 5);	
-
+		activateMission(1);
 		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_3\",0)", 12);
 		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_4\",0)", 12);
 

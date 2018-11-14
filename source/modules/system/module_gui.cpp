@@ -34,6 +34,7 @@ void CModuleGUI::initializeWidgetStructure() {
 
 	//MAIN-MENU
 	auto mm_newGameCB = []() {
+		EngineLogic.execScript("activateMission(0);");
         EngineScene.changeGameState("map_intro");
     };
 	auto mm_credits = []() {

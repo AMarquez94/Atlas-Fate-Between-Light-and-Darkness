@@ -127,7 +127,7 @@ function cinematic_tower_activated()
 	execScriptDelayed("startTransmission(3.75)", 2.25);
 	execScriptDelayed("activateSubtitles(23);", 2.25);
 	execScriptDelayed("deactivateSubtitles();", 6);
-
+	activateMission(0);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Exit_Door_2\", 9, \"cinematic\", \"quintinout\")", 1.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Exit_Door_1\", 0.0, \"cinematic\", \"\")", 0.27);
 

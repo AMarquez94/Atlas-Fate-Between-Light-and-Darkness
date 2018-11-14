@@ -82,6 +82,7 @@ end
 
 function cinematicCorridorToZoneA()
 	startCinematicMode(18);
+	activateMission(2);
 	execScriptDelayed("playVoice(\"col_district6_1\")", 0.5);
 	execScriptDelayed("startTransmission(7.5)", 0.5);
 	execScriptDelayed("playVoice(\"col_district6_2\")", 18);
