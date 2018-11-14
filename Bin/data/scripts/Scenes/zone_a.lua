@@ -1,6 +1,7 @@
 function onSceneStart_scene_zone_a()
 	setCorridorInvisible("")
 	execScriptDelayed("isInCinematicMode(false)", 0.1);
+	getSignRendersForZoneA();
 end
 
 function onScenePartialStart_scene_zone_a()
@@ -86,6 +87,7 @@ end
 function cinematic_enter_zone_a()
 
 	startCinematicMode(10)
+	getSignRendersForZoneA();
 	execScriptDelayed("playVoice(\"zonea_intro\")", 0.27);
 	execScriptDelayed("startTransmission(8.98)", 0.27);
 	execScriptDelayed("activateSubtitles(20);", 0.27);
@@ -160,4 +162,18 @@ function onCheckpointLoaded_zone_a_tower()
 	execScriptDelayed("startTransmission(3.75)", 0.5);
 	execScriptDelayed("activateSubtitles(23);", 0.5);
 	execScriptDelayed("deactivateSubtitles();", 4.25);
+end
+
+function onTriggerEnter_SonarTutorial_player()
+	moveTutorialPlayer(VEC3(-40.5,0,-88), VEC3(-41,0,-88), true, "sonar_tutorial");
+	render_sonar_sign.visible = true;
+end
+
+function onTriggerExit_SonarTutorial_player()
+	moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
+	render_sonar_sign.visible = false;
+end
+
+function getSignRendersForZoneA()
+	render_sonar_sign = toRender(toEntity(getEntityByName("tutorial_sign_sonar")):getCompByName("render"));
 end

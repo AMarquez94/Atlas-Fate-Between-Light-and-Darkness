@@ -154,8 +154,11 @@ void TCompAIPlayer::load(const json& j, TEntityParseContext& ctx) {
     addChild("playerActivated", "sonarTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionSonarTutorial, nullptr, nullptr);
     addChild("sonarTutorial", "resetTimersSonarTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetTimersSonarTutorial, nullptr);
     addChild("sonarTutorial", "idleSonarTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationIdle, nullptr);
+    addChild("sonarTutorial", "sonarUpSonarTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSonarUp, nullptr);
+    addChild("sonarTutorial", "waitSonarTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
     addChild("sonarTutorial", "standingCrouchSonarTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationStandingCrouch, nullptr);
     addChild("sonarTutorial", "sonarSonarTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionAnimationSonar, nullptr);
+    addChild("sonarTutorial", "wait2SonarTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionWait, nullptr);
     addChild("sonarTutorial", "resetBTSonarTutorial", BTNode::EType::ACTION, nullptr, (BTAction)&TCompAIPlayer::actionResetBT, nullptr);
 
     addChild("playerActivated", "buttonTutorial", BTNode::EType::SEQUENCE, (BTCondition)&TCompAIPlayer::conditionButtonTutorial, nullptr, nullptr);
@@ -1049,22 +1052,22 @@ BTNode::ERes TCompAIPlayer::actionAnimationWalkBox(float dt)
     }
 }
 
+BTNode::ERes TCompAIPlayer::actionAnimationSonarUp(float dt)
+{
+    TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
+    my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SONDA_NORMAL);
+    _maxTimer = 1.f;
+
+    return BTNode::ERes::LEAVE;
+}
+
 BTNode::ERes TCompAIPlayer::actionAnimationSonar(float dt)
 {
     TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
-    my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CROUCH_IDLE);
-    _maxTimer = my_anim->getAnimationDuration((TCompAnimator::EAnimation)TCompPlayerAnimator::EAnimation::CROUCH_IDLE);
+    my_anim->playAnimation(TCompPlayerAnimator::EAnimation::SONDA_CROUCH);
+    _maxTimer = 1.f;
 
-    _timer += dt;
-    if (_timer > _maxTimer) {
-        _timer = 0.f;
-        return BTNode::ERes::LEAVE;
-    }
-    else {
-        TCompPlayerAnimator* my_anim = get<TCompPlayerAnimator>();
-        my_anim->playAnimation(TCompPlayerAnimator::EAnimation::CROUCH_WALK);   //TODO: Change
-        return BTNode::ERes::STAY;
-    }
+    return BTNode::ERes::LEAVE;
 }
 
 BTNode::ERes TCompAIPlayer::actionAnimationPressButton(float dt)

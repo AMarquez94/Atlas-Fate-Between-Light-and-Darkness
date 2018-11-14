@@ -254,7 +254,8 @@
       "data/scenes/zone_a_in_corridor_lights.scene",
       "data/scenes/zone_a_out_corridor.scene",
       "data/scenes/zone_a_out_corridor_lights.scene",
-      "data/scenes/zone_a_corridor_logic.scene"
+      "data/scenes/zone_a_corridor_logic.scene",
+	  "data/scenes/ZoneA/tutorial.scene"
     ]
   },
   "scene_coliseo_2": {

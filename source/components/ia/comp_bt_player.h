@@ -93,6 +93,7 @@ public:
     BTNode::ERes actionAnimationWalkWithMovement(float dt);
     BTNode::ERes actionAnimationGrabBox(float dt);
     BTNode::ERes actionAnimationWalkBox(float dt);
+    BTNode::ERes actionAnimationSonarUp(float dt);
     BTNode::ERes actionAnimationSonar(float dt);
     BTNode::ERes actionAnimationPressButton(float dt);
     BTNode::ERes actionAnimationGrabEnemy(float dt);

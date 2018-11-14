@@ -1004,7 +1004,6 @@ void sendPlayerIlluminatedMsg(CHandle h, bool illuminated) {
 
 void isInCinematicMode(bool isCinematic)
 {
-    dbg("SETEAMOS A %s\n", isCinematic ? "TRUE" : "FALSE");
     CEngine::get().getGameManager().isCinematicMode = isCinematic;
     if (isCinematic) {
         // Lock/Unlock the cursor

@@ -32,6 +32,29 @@
 	},
 	{
 		"entity": {
+			"name": "Checkpoint_PostFall",
+			"transform": {
+				"pos": "-3.91993 0.0 -5",
+				"rotation": "0.0 0.0 0.0 1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "12.7219 0.977595 2.57993",
+				"group": "All",
+				"mask": "",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			},
+			"trigger_checkpoint": {
+				"player_pos": "-4 0 -0.8",
+				"player_lookat": "-4 0 -1"
+			},
+			"tags": ["checkpoint"]
+		}
+	}, {
+		"entity": {
 			"name": "Checkpoint_fall",
 			"transform": {
 				"pos": "-3.2 16 10"

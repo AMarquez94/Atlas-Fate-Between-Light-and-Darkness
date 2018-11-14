@@ -59,6 +59,32 @@
 				]
 			},
 			{
+				"name" : "can_land_mouse",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "can_land_button",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/tx_sm_fall_mouse.dds"
+					}
+				]
+			},
+			{
+				"name" : "can_land_pad",
+				"type" : "widget",
+				"position" : "615 424",
+				"children" : [
+					{
+						"name" : "can_land_trigger",
+						"type" : "image",
+						"size" : "128 32",
+						"texture" : "data/textures/gui/tx_sm_fall_RT.dds"
+					}
+				]
+			},
+			{
 				"name" : "grab_enemy_a",
 				"type" : "widget",
 				"position" : "615 424",
