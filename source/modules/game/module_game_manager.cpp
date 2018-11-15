@@ -126,7 +126,13 @@ void CModuleGameManager::switchState(PauseState pause) {
     case PauseState::defeat: {
         mouse->setLockMouse(true);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(2,3);
-		EngineGUI.setTip(1);
+		int rand_num = rand() % 8;
+		if (rand_num > 4) {
+			EngineGUI.setTip(1);
+		}
+		else {
+			EngineGUI.setTip(rand_num);
+		}
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_TIPS)->makeChildsFadeIn(2, 7.5);
 		GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
 		if (w) {
