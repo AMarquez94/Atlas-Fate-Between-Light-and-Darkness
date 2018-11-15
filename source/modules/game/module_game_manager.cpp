@@ -97,6 +97,8 @@ void CModuleGameManager::switchState(PauseState pause) {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::TIPS_BACK);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::TIPS_BACKGROUND);
 
     }break;
     case PauseState::main: {

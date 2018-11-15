@@ -104,6 +104,25 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineLogic.execSystemScriptDelayed("backFromControls();", 0.08f);
 	};
 
+	auto pm_Tips = []() {
+
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::TIPS_BACKGROUND)->makeChildsFadeIn(0.25f, 0, true);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::TIPS_BACK)->makeChildsFadeIn(0.25f, 0, true);
+		EngineGUI.deactivateController(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+
+		/*EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeOut(0.08, 0, true);
+		EngineGUI.getWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeOut(0.08, 0, false);
+		EngineLogic.execSystemScriptDelayed("backFromControls();", 0.08f);*/
+	};
+
+	auto pm_Tips_back = []() {
+
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::TIPS_BACKGROUND);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::TIPS_BACK);
+		EngineGUI.activateController(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
+
+	};
+
 	auto pm_Dead = []() {
 		EngineGUI.clearSubtitles();
 		EngineLogic.execSystemScriptDelayed("execDeadButton();", 3.2f);
@@ -138,12 +157,19 @@ void CModuleGUI::initializeWidgetStructure() {
 	mmcbc->registerOption("controls_credits_back_mm", mm_back_creditsCB);
 	mmcbc->setCurrentOption(0);
 
+	CMenuButtonsController*	pmtb = new CMenuButtonsController();
+	registerWigdetStruct(EGUIWidgets::TIPS_BACK, "data/gui/pause_menu_tips_back.json", pmtb);
+	pmtb = (CMenuButtonsController*)getWidgetController(EGUIWidgets::TIPS_BACK);
+	pmtb->registerOption("tips_back_pm", pm_Tips_back);
+	pmtb->setCurrentOption(0);
 
+	
 	CMenuButtonsController* pmc = new CMenuButtonsController();
 	registerWigdetStruct(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS, "data/gui/pause_menu_buttons.json", pmc);
 
 	pmc = (CMenuButtonsController*)getWidgetController(EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
 	pmc->registerOption("resume_game", pm_resumeGame);
+	pmc->registerOption("tips", pm_Tips);
 	pmc->registerOption("restart", pm_RestartFromCheckPoint);
 	pmc->registerOption("restart_checkpoint", pm_RestartFromCheckPoint);
 	pmc->registerOption("return_checkpoint", pm_ReturnMainMenu);
@@ -194,7 +220,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::SPLASH_SOFTWARE, "data/gui/splash_software.json");
 	registerWigdetStruct(EGUIWidgets::SPLASH_ENGINE, "data/gui/splash_engine.json");
 	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH_SUB, "data/gui/atlas_last_splash_subtitle.json");
-	
+	registerWigdetStruct(EGUIWidgets::TIPS_BACKGROUND, "data/gui/pause_menu_tips_background.json");
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
@@ -482,6 +508,8 @@ void CModuleGUI::closePauseMenu() {
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::CONTROLS)->makeChildsFadeOut(0.08, 0, false);
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::BACK_BUTTON)->makeChildsFadeOut(0.08, 0, true);
 	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION)->makeChildsFadeOut(0.08, 0, false);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::TIPS_BACK)->makeChildsFadeOut(0.08, 0, true);
+	EngineGUI.getWidget(CModuleGUI::EGUIWidgets::TIPS_BACKGROUND)->makeChildsFadeOut(0.08, 0, true);
 	GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 	if (w) {
 		float *aux_x = &w->getChild("line_pause")->getBarParams()->_ratio;
