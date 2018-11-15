@@ -99,7 +99,7 @@ void CModuleGameManager::switchState(PauseState pause) {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::TIPS_BACK);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::TIPS_BACKGROUND);
-
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_TIPS);
     }break;
     case PauseState::main: {
         mouse->setLockMouse(false);
@@ -124,9 +124,10 @@ void CModuleGameManager::switchState(PauseState pause) {
         mouse->setLockMouse(false);
     }break;
     case PauseState::defeat: {
-        mouse->setLockMouse(false);
+        mouse->setLockMouse(true);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(2,3);
-
+		EngineGUI.setTip(1);
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_TIPS)->makeChildsFadeIn(2, 7.5);
 		GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
 		if (w) {
 			float *aux_x = &w->getChild("line_dead_left")->getBarParams()->_ratio;
@@ -139,7 +140,7 @@ void CModuleGameManager::switchState(PauseState pause) {
 
 		}
 
-		EngineLogic.execSystemScriptDelayed("unlockDeadButton();",5.0f);
+		EngineLogic.execSystemScriptDelayed("unlockDeadButton();",8.0f);
 		EngineLerp.lerpElement(&cb_player.player_health, 0, 2, 2);
     }break;
     case PauseState::editor1: {

@@ -88,6 +88,7 @@ void CModuleGUI::initializeWidgetStructure() {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BUTTONS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_TIPS);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::SUBTITLES);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_HUD_ENEMY);
@@ -221,6 +222,7 @@ void CModuleGUI::initializeWidgetStructure() {
 	registerWigdetStruct(EGUIWidgets::SPLASH_ENGINE, "data/gui/splash_engine.json");
 	registerWigdetStruct(EGUIWidgets::ATLAS_LAST_SPLASH_SUB, "data/gui/atlas_last_splash_subtitle.json");
 	registerWigdetStruct(EGUIWidgets::TIPS_BACKGROUND, "data/gui/pause_menu_tips_background.json");
+	registerWigdetStruct(EGUIWidgets::DEAD_TIPS, "data/gui/dead_menu_tip.json");
 }
 
 void CModuleGUI::registerWigdetStruct(EGUIWidgets wdgt_type, std::string wdgt_path, GUI::CController *wdgt_controller) {
@@ -559,6 +561,15 @@ void CModuleGUI::setMission(int mission_num) {
 	if (wdgt != nullptr && wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
 		CSubtitles *subt = (CSubtitles*)wdgt;
 		subt->activateSubtitles(mission_num);
+	}
+}
+
+void CModuleGUI::setTip(int tipNum) {
+
+	GUI::CWidget *wdgt = EngineGUI.getWidget(CModuleGUI::EGUIWidgets::DEAD_TIPS)->getAllChilds()[0];
+	if (wdgt != nullptr && wdgt->getType() == GUI::CWidget::EWidgetType::SUBTITLES) {
+		CSubtitles *subt = (CSubtitles*)wdgt;
+		subt->activateSubtitles(tipNum);
 	}
 }
 
