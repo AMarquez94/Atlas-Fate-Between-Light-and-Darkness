@@ -206,7 +206,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_obstacles",
 			"transform": {
-				"pos": "-10 1.6 -42.5"
+				"pos": "-5.8 1.6 -45"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",

@@ -558,7 +558,7 @@ BTNode::ERes TCompAIPlayer::actionResetTimersButtonTutorial(float dt)
 BTNode::ERes TCompAIPlayer::actionResetTimersSMFenceTutorial(float dt)
 {
     _timer = 0.f;
-    _maxTimer = 0.6f;
+    _maxTimer = 1.f;
     TCompTransform* mypos = get<TCompTransform>();
     mypos->setPosition(initial_pos);
     return BTNode::ERes::LEAVE;
