@@ -72,14 +72,6 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 
     state = (actionhandler)&TCompTempPlayerController::idleState;
 
-    auto pj_idle = loadMesh("data/meshes/pj_idle.mesh");
-    auto pj_attack = loadMesh("data/meshes/pj_attack.mesh");
-    auto pj_fall = loadMesh("data/meshes/pj_fall.mesh");
-    auto pj_walk = loadMesh("data/meshes/pj_walk.mesh");
-    auto pj_run = loadMesh("data/meshes/pj_run.mesh");
-    auto pj_crouch = loadMesh("data/meshes/pj_crouch.mesh");
-    auto pj_shadowmerge = Resources.get("axis.mesh")->as<CRenderMesh>();
-
     playerColor.colorIdle = j.count("colorIdle") ? loadVEC4(j["colorIdle"]) : VEC4(1, 1, 1, 1);
     playerColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 1);
     playerColor.colorInhib = j.count("colorInhib") ? loadVEC4(j["colorInhib"]) : VEC4(1, 0, 1, 1);
