@@ -33,7 +33,7 @@
         ,
         "color": "0.92549 1.0 0.305882 1.0"
         ,
-        "intensity": 0.4
+        "intensity": 0.5
         ,
         "casts_shadows": true
         ,
@@ -177,7 +177,7 @@
       ,
       "transform":
       {
-        "pos": "-26.3185 1.1393 -43.0902"
+        "pos": "-26.57 1.1393 -43.1477"
         ,
         "rotation": "0.0 0.0 0.0 -1.0"
       }
@@ -211,7 +211,7 @@
       {
         "shape": "sphere"
         ,
-        "radius": 2.11721
+        "radius": 2.60417
         ,
         "is_trigger": true
       }
