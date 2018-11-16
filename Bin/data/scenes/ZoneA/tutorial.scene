@@ -1,0 +1,49 @@
+[{
+		"entity": {
+			"name": "Tutorial",
+			"transform": {
+				"pos": "0.0 0.0 0.0"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/player_tutorial.prefab",
+			"transform": {
+				"pos": "-40.5 0 -88",
+				"lookat": "-41 0 -88"
+			}
+		}
+	},
+	{
+		"entity": {
+			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
+			"name": "tutorial_sign_sonar",
+			"transform": {
+				"pos": "-40.5 1.6 -88"
+			},
+			"render": [{
+				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",
+				"materials": [
+					"data/materials/mtl_tuto_sonar.material"
+				]
+			}]
+		}
+	},
+	{
+		"entity": {
+			"name": "SonarTutorial",
+			"transform": {
+				"pos": "-40.5 0 -88"
+			},
+			"collider": {
+				"shape": "box",
+				"size": "3 2 8",
+				"is_trigger": true,
+				"is_dynamic": false,
+				"is_controller": false,
+				"is_gravity": false
+			}
+		}
+	}
+]

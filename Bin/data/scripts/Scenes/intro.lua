@@ -299,15 +299,15 @@ function onTriggerExit_InhibitorTutorial_player()
 end
 
 function onTriggerEnter_SMFenceTutorial_player()
-	moveTutorialPlayer(VEC3(-10, 0, -43), VEC3(-10, 0, -44), true, "sm_fence_tutorial");
-	fence = spawn("tutorial/fence_tutorial", VEC3(-10, 0, -43.5), VEC3(-10, 0, -44.5));
+	moveTutorialPlayer(VEC3(-5.8, 0, -45.5), VEC3(-5.8, 0, -47), true, "sm_fence_tutorial");
+	--fence = spawn("tutorial/fence_tutorial", VEC3(-10, 0, -43.5), VEC3(-10, 0, -44.5));
 	render_smobstacles_sign.visible = true;
 end
 
 function onTriggerExit_SMFenceTutorial_player()
 	moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
 	render_smobstacles_sign.visible = false;
-	fence:destroy();
+	--fence:destroy();
 end
 
 function onTriggerEnter_AttackTutorial_player()
