@@ -1,359 +1,489 @@
-[{
-		"entity": {
-			"name": "intro_decals_cables",
-			"transform": {
-				"pos": "0.0 0.0 0.0"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "intro_cable_suelo",
-			"transform": {
-				"pos": "-15.8012 6.03027 36.746",
-				"rotation": "0.627211 0.326506 0.326506 -0.627211"
-			},
-			"render": [{
-				"mesh": "data/meshes/intro_cable_suelo.mesh",
-				"materials": [
-					"data/materials/mtl_cable_guia.material"
-				]
-			}, {
-				"mesh": "data/meshes/intro_cable_suelo.mesh",
-				"materials": [
-					"data/materials/mtl_cable_guia_post.material"
-				]
-			}],
-			"abs_aabb": true,
-			"local_aabb": true
-		}
-	},
-	{
-		"entity": {
-			"name": "intro_cable_suelo001",
-			"transform": {
-				"pos": "-5.56001 0.0271395 18.6754",
-				"rotation": "0.59114 0.388013 0.388013 -0.59114"
-			},
-			"render": [{
-				"mesh": "data/meshes/intro_cable_suelo001.mesh",
-				"materials": [
-					"data/materials/mtl_cable_guia.material"
-				]
-			}, {
-				"mesh": "data/meshes/intro_cable_suelo001.mesh",
-				"materials": [
-					"data/materials/mtl_cable_guia_post.material"
-				]
-			}],
-			"abs_aabb": true,
-			"local_aabb": true
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables001",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-6.22642 -0.00089364 2.33951",
-				"rotation": "0.0 -0.642788 0.0 -0.766044"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables002",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-15.713 0.00293038 -1.09481",
-				"rotation": "0.0 -0.707107 0.0 -0.707107"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables003",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-11.5921 -0.0028663 32.645",
-				"rotation": "0.0 0.391515 0.0 -0.920172"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables004",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-5.71403 0.0109601 18.8376",
-				"rotation": "0.0 0.300706 0.0 -0.953717"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables005",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-19.5433 0.00204354 -33.6314",
-				"rotation": "0.0 0.258819 0.0 -0.965926"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables006",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-8.14574 0.0023972 -42.5456",
-				"rotation": "0.0 0.382683 0.0 -0.92388"
-			},
-			"point_controller": {
-				"intensity_flow": 0.1,
-				"intensity_flow_speed": 0.1,
-				"radius_flow": 0.05,
-				"radius_flow_speed": 4,
-				"emissive_target": "mesh_cajetin_cables",
-				"light_target": "cajetin_omni",
-				"bursts": [
-					["2 0.1 0.0"],
-					["0.2 0.05 0.0"],
-					["0.1 0.05 0.0"],
-					["0.1 0.05 0.0"]
-				]
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables007",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-9.27089 -0.00477356 -47.1141",
-				"rotation": "0.0 -0.300706 0.0 -0.953717"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables008",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-14.1286 -0.00477393 -55.6476",
-				"rotation": "0.0 -0.300706 0.0 -0.953717"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables009",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-18.9613 -0.00477428 -63.4728",
-				"rotation": "0.0 -0.21644 0.0 -0.976296"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables010",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-20.5756 0.0010421 -74.8498",
-				"rotation": "0.0 -0.0684045 0.0 -0.997658"
-			},
-			"point_controller": {
-				"intensity_flow": 0.1,
-				"intensity_flow_speed": 0.1,
-				"radius_flow": 0.05,
-				"radius_flow_speed": 4,
-				"emissive_target": "mesh_cajetin_cables",
-				"light_target": "cajetin_omni",
-				"bursts": [
-					["3 0.1 0.0"],
-					["0.2 0.05 0.0"],
-					["0.1 0.05 0.0"],
-					["0.1 0.05 0.0"]
-				]
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables011",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-16.9314 6.00461 -1.67054",
-				"rotation": "0.0 -0.286821 0.0 -0.957984"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables012",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-19.6026 6.00461 -14.677",
-				"rotation": "0.0 -0.286821 0.0 -0.957984"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables013",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "0.120259 0.0109599 12.8347",
-				"rotation": "0.0 0.205065 0.0 -0.978748"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables014",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "0.076268 2.54419 12.0026",
-				"rotation": "-0.70707 0.00209744 0.00726415 -0.707104"
-			},
-			"point_controller": {
-				"intensity_flow": 0.1,
-				"intensity_flow_speed": 0.1,
-				"radius_flow": 0.05,
-				"radius_flow_speed": 4,
-				"emissive_target": "mesh_cajetin_cables",
-				"light_target": "cajetin_omni",
-				"bursts": [
-					["2.5 0.1 0.0"],
-					["0.2 0.05 0.0"],
-					["0.1 0.05 0.0"],
-					["0.1 0.05 0.0"]
-				]
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables015",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-0.147567 10.316 12.0026",
-				"rotation": "-0.707002 -0.0173377 -0.012172 -0.706894"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables016",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "0.188846 15.898 12.0635",
-				"rotation": "-0.706988 0.00777112 0.0129374 -0.707064"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables017",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "0.760077 15.898 6.94179",
-				"rotation": "0.00275146 0.707062 -0.707101 -0.00791827"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables018",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "0.823617 10.1078 6.99968",
-				"rotation": "0.0133297 -0.70706 0.706981 -0.00816331"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables019",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "0.838692 2.35556 6.99969",
-				"rotation": "0.0132944 0.706866 -0.706982 -0.01846"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables020",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "0.642802 0.0108733 6.03692",
-				"rotation": "0.000157163 -0.0708865 0.00365013 -0.997478"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables021",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-0.66243 0.0108729 -3.21682",
-				"rotation": "0.000754528 -0.23375 0.00357476 -0.97229"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables022",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-5.14307 0.0108727 -8.0271",
-				"rotation": "0.000754528 -0.23375 0.00357476 -0.97229"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables023",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-7.93869 0.0108724 -16.3654",
-				"rotation": "-5.49009e-05 -0.0128882 0.0036531 -0.99991"
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables024",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-16.2118 3.05671 -1.00872",
-				"rotation": "-0.477714 -0.477714 0.521334 -0.521334"
-			},
-			"point_controller": {
-				"intensity_flow": 0.1,
-				"intensity_flow_speed": 0.1,
-				"radius_flow": 0.05,
-				"radius_flow_speed": 4,
-				"emissive_target": "mesh_cajetin_cables",
-				"light_target": "cajetin_omni",
-				"bursts": [
-					["1.5 0.1 0.0"],
-					["0.2 0.05 0.0"],
-					["0.1 0.05 0.0"],
-					["0.1 0.05 0.0"]
-				]
-			}
-		}
-	},
-	{
-		"entity": {
-			"name": "mesh_cajetin_cables025",
-			"prefab": "data/prefabs/cajetin_cables.prefab",
-			"transform": {
-				"pos": "-6.89564 -0.00286653 27.3638",
-				"rotation": "0.0 0.364609 0.0 -0.931161"
-			}
-		}
-	}
+[
+  {
+    "entity":
+    {
+      "name": "intro_decals_cables"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_cableguia_suelo"
+      ,
+      "transform":
+      {
+        "pos": "-15.8012 6.03027 36.746"
+        ,
+        "rotation": "0.627211 0.326506 0.326506 -0.627211"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_cableguia_suelo.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cable.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_cableguia_suelo001"
+      ,
+      "transform":
+      {
+        "pos": "-5.56001 0.0271395 18.6754"
+        ,
+        "rotation": "0.59114 0.388013 0.388013 -0.59114"
+      }
+      ,
+      "render":
+      [
+        {
+          "mesh": "data/meshes/intro_cableguia_suelo001.mesh"
+          ,
+          "materials":
+          [
+            "data/materials/mtl_cable.material"
+          ]
+        }
+      ]
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables013"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.120259 0.0109599 12.8347"
+        ,
+        "rotation": "0.0 0.205065 0.0 -0.978748"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-21.3313 0.0 58.6485"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables001"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-6.22642 -0.00089364 2.33951"
+        ,
+        "rotation": "0.0 -0.642788 0.0 -0.766044"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables002"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-15.713 0.00293038 -1.09481"
+        ,
+        "rotation": "0.0 -0.707107 0.0 -0.707107"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables003"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-11.5921 -0.0028663 32.645"
+        ,
+        "rotation": "0.0 0.391515 0.0 -0.920172"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables004"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.71403 0.0109601 18.8376"
+        ,
+        "rotation": "0.0 0.300706 0.0 -0.953717"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables005"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.5433 0.00204354 -33.6314"
+        ,
+        "rotation": "0.0 0.258819 0.0 -0.965926"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables006"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-8.14574 0.0023972 -42.5456"
+        ,
+        "rotation": "0.0 0.382683 0.0 -0.92388"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables007"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.27089 -0.00477356 -47.1141"
+        ,
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables008"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-14.1286 -0.00477393 -55.6476"
+        ,
+        "rotation": "0.0 -0.300706 0.0 -0.953717"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables009"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-18.9613 -0.00477428 -63.4728"
+        ,
+        "rotation": "0.0 -0.21644 0.0 -0.976296"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables010"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-20.5756 0.0010421 -74.8498"
+        ,
+        "rotation": "0.0 -0.0684045 0.0 -0.997658"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables011"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.9314 6.00461 -1.67054"
+        ,
+        "rotation": "0.0 -0.286821 0.0 -0.957984"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables012"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.6026 6.00461 -14.677"
+        ,
+        "rotation": "0.0 -0.286821 0.0 -0.957984"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables014"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.076268 2.54419 12.0026"
+        ,
+        "rotation": "-0.70707 0.00209744 0.00726415 -0.707104"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables015"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-0.147567 10.316 12.0026"
+        ,
+        "rotation": "-0.707002 -0.0173377 -0.012172 -0.706894"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables016"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.188846 15.898 12.0635"
+        ,
+        "rotation": "-0.706988 0.00777112 0.0129374 -0.707064"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables017"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.760077 15.898 6.94179"
+        ,
+        "rotation": "0.00275146 0.707062 -0.707101 -0.00791827"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables018"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.823617 10.1078 6.99968"
+        ,
+        "rotation": "0.0133297 -0.70706 0.706981 -0.00816331"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables019"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.838692 2.35556 6.99969"
+        ,
+        "rotation": "0.0132944 0.706866 -0.706982 -0.01846"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables020"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "0.642802 0.0108733 6.03692"
+        ,
+        "rotation": "0.000157163 -0.0708865 0.00365013 -0.997478"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables021"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-0.66243 0.0108729 -3.21682"
+        ,
+        "rotation": "0.000754528 -0.23375 0.00357476 -0.97229"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables022"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-5.14307 0.0108727 -8.0271"
+        ,
+        "rotation": "0.000754528 -0.23375 0.00357476 -0.97229"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables023"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-7.93869 0.0108724 -16.3654"
+        ,
+        "rotation": "-5.49009e-05 -0.0128882 0.0036531 -0.99991"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables024"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-16.2118 3.05671 -1.00872"
+        ,
+        "rotation": "-0.477714 -0.477714 0.521334 -0.521334"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "mesh_cajetin_cables025"
+      ,
+      "prefab": "data/prefabs/cajetin_cables.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-6.89564 -0.00286653 27.3638"
+        ,
+        "rotation": "0.0 0.364609 0.0 -0.931161"
+      }
+    }
+  }
 ]
