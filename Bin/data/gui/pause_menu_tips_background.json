@@ -11,7 +11,7 @@
 						"name" : "background_tips",
 						"type" : "image",
 						"size" : "1080 640",
-						"texture" : "data/textures/gui/credits_screen.dds"
+						"texture" : "data/textures/gui/tips.dds"
 					}
 					
 				]
