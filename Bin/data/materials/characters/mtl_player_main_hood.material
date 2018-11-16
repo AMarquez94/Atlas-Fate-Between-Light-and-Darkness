@@ -6,9 +6,8 @@
 		"normal": "data/textures/player/Shade_mtl_Normal.dds",
 		"metallic": "data/textures/player/Shade_mtl_Metallic.dds",
 		"roughness": "data/textures/player/Shade_mtl_Roughness.dds",
-		"emissive": "data/textures/player/Shade_mtl_Emissive_cuerpo.dds"
+		"emissive": "data/textures/player/Shade_mtl_Emissive_capa.dds"
 	},
 	"self_color": "0.0 1.0 1.0 1.0",
-	"fixed_color": "1.0 1.0 1.0 1.0",
 	"emission" : 12
 }

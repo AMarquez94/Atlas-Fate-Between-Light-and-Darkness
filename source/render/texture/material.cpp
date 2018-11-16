@@ -117,6 +117,9 @@ bool CMaterial::create(const json& j) {
 	if (j.count("color"))
 		cb_material.color_material = loadVEC4(j["color"]);
 
+    if (j.count("fixed_color"))
+        fixed_color = loadVEC4(j["fixed_color"]);
+
 	cb_material.updateGPU();
 
 	return true;

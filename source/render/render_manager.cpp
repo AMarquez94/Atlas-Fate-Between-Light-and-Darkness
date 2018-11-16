@@ -220,6 +220,11 @@ void CRenderManager::renderCategory(const char* category_name) {
             cb_object.self_color = c_render->self_color;
             cb_object.self_intensity = c_render->self_intensity;
             cb_object.self_opacity = c_render->self_opacity;
+
+            // In case we want to fix the material color individually
+            if (it->material->fixed_color != VEC4::Zero)
+                cb_object.self_color = it->material->fixed_color;
+
             cb_object.updateGPU();
 
             // Do we have to change the material wrt the prev draw call?
