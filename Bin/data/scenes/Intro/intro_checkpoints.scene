@@ -57,15 +57,13 @@
 		"entity": {
 			"name": "Checkpoint_fall",
 			"transform": {
-				"pos": "-3.2 16 10"
+				"pos": "-1.95185 15.7571 8.69859",
+				"rotation": "0.0 0.0 0.0 -1.0"
 			},
 			"collider": {
 				"shape": "box",
-				"size": "15 2 3",
 				"is_trigger": true,
-				"is_dynamic": false,
-				"is_controller": false,
-				"is_gravity": false
+				"size": "7.0 0.867828 1.60495"
 			},
 			"trigger_checkpoint": {
 				"player_pos": "1.4 16 10",
