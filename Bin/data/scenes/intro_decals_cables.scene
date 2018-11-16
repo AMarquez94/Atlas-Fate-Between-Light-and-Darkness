@@ -19,7 +19,7 @@
 					"data/materials/mtl_cable_guia.material"
 				]
 			}, {
-				"mesh": "data/meshes/intro_cable_suelo.mesh",
+				"mesh": "data/meshes/intro_cableguia_suelo.mesh",
 				"materials": [
 					"data/materials/mtl_cable_guia_post.material"
 				]
@@ -41,7 +41,7 @@
 					"data/materials/mtl_cable_guia.material"
 				]
 			}, {
-				"mesh": "data/meshes/intro_cable_suelo001.mesh",
+				"mesh": "data/meshes/intro_cableguia_suelo001.mesh",
 				"materials": [
 					"data/materials/mtl_cable_guia_post.material"
 				]
