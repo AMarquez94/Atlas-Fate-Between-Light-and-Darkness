@@ -4,7 +4,7 @@
 		"static_data": {
 			"initial_script": "intro",
 			"navmesh": "data/navmeshes/intro_navmesh.bin",
-			"exposure": 2.8,
+			"exposure": 2,
 			"ambient": 0.04,
 			"gamma": 1,
 			"tone_mapping": 0,
@@ -62,7 +62,6 @@
 			"data/scenes/intro_escultura.scene",
 			"data/scenes/intro_decals_cables.scene",
 			"data/scenes/intro_decals_propaganda.scene",
-			"data/scenes/intro_fix_lights.scene",
 
 			"data/scenes/intro_casas_lp_1.scene",
 			"data/scenes/intro_casas_lp_2.scene",
@@ -99,13 +98,15 @@
 
 			"data/scenes/intro_alminares_pantallas.scene",
 			
-			"data/scenes/intro_tubo_grande.scene"
+			"data/scenes/intro_tubo_grande.scene",
+			"data/scenes/intro_fix_lights.scene",
+			"data/scenes/Intro/intro_checkpoints.scene"
 		]
 	},
 	"scene_coliseo": {
 		"static_data": {
 			"initial_script": "coliseo",
-			"exposure": 2.8,
+			"exposure": 2,
 			"ambient": 0.05,
 			"gamma": 1,
 			"tone_mapping": 0,
@@ -165,7 +166,7 @@
 		"static_data": {
 			"initial_script": "zone_a",
 			"navmesh": "data/navmeshes/scene_a.bin",
-			"exposure": 2.3,
+			"exposure": 1.51,
 			"ambient": 0.05,
 			"gamma": 1,
 			"tone_mapping": 0,
@@ -254,13 +255,14 @@
 			"data/scenes/zone_a_in_corridor_lights.scene",
 			"data/scenes/zone_a_out_corridor.scene",
 			"data/scenes/zone_a_out_corridor_lights.scene",
-			"data/scenes/zone_a_corridor_logic.scene"
+			"data/scenes/zone_a_corridor_logic.scene",
+			"data/scenes/ZoneA/tutorial.scene"
 		]
 	},
 	"scene_coliseo_2": {
 		"static_data": {
 			"initial_script": "coliseo2",
-			"exposure": 2.8,
+			"exposure": 2,
 			"ambient": 0.05,
 			"gamma": 1,
 			"tone_mapping": 0,
@@ -317,7 +319,7 @@
 		"static_data": {
 			"initial_script": "basilic_courtyard",
 			"navmesh": "data/navmeshes/basilic_courtyard.bin",
-			"exposure": 2.6,
+			"exposure": 1.8,
 			"ambient": 0.05,
 			"gamma": 1,
 			"tone_mapping": 0,
