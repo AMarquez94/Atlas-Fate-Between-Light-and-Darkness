@@ -307,6 +307,9 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
     EngineLogic.execScriptDelayed("playerController:resetSMFilters()", 1.f);
 
+    TCompEmissionController *e_controller = get<TCompEmissionController>();
+    e_controller->blend(playerColor.colorIdle, 0.5f);
+
     /* Initial reset messages */
     hitPoints = 0;
     stamina = 100.f;
@@ -1237,11 +1240,11 @@ void TCompTempPlayerController::updateShader(float dt) {
     else if (isInhibited) {
         e_controller->blend(playerColor.colorInhib, 0.1f);
     }*/
-    else if (shadow_oracle->is_shadow) {
+    else if (shadow_oracle->is_shadow && !isInhibited) {
         e_controller->blend(playerColor.colorMerge, 0.5f);
     }
     else {
-        e_controller->blend(playerColor.colorIdle, 0.5f);
+        e_controller->blend(playerColor.colorIdle, 0.2f);
     }
 }
 
