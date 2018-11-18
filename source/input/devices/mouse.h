@@ -8,6 +8,7 @@ namespace Input
 	{
 	public:
 		bool _lock_cursor;
+        float mouse_sensitivity = 1.f;
 
 		CMouse(const std::string& name);
 		virtual void updateMouseData(float delta, TInterface_Mouse& data) override;
@@ -29,5 +30,6 @@ namespace Input
 		VEC2 _previous_position;
 		VEC2 _position_delta;
 		float _wheel_delta;
+
 	};
 }

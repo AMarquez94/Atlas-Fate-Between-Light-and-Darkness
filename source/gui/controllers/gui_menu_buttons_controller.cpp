@@ -25,13 +25,13 @@ namespace GUI
             }
         }
 
-        if (EngineInput[VK_DOWN].getsPressed() || EngineInput["btDown"].getsPressed())
+        if (EngineInput["btDownAux"].getsPressed())
         {
             mouse_active = false;
             EngineSound.playEvent("event:/Sounds/Menu/Hover");
             setCurrentOption(_currentOption + 1);
         }
-        if (EngineInput[VK_UP].getsPressed() || EngineInput["btUp"].getsPressed())
+        if (EngineInput["btUpAux"].getsPressed())
         {
             mouse_active = false;
             EngineSound.playEvent("event:/Sounds/Menu/Hover");

@@ -18,6 +18,8 @@ private:
     VEC2 _current_euler;
     VEC3 _clipping_offset;
     float _starting_pitch;
+    float _pad_sensitivity = 1.f;
+
 
     float _blendInTime;
 

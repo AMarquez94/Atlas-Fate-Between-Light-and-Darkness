@@ -7,6 +7,7 @@
 #include "components/camera_controller/comp_camera_shadowmerge.h"
 #include "components/camera_controller/comp_camera_thirdperson.h"
 #include "components/physics/comp_collider.h"
+#include "resources/json_resource.h"
 
 DECL_OBJ_MANAGER("auxcamera_shadowmerge", TCompAuxCameraShadowMerge);
 
@@ -15,6 +16,7 @@ DECL_OBJ_MANAGER("auxcamera_shadowmerge", TCompAuxCameraShadowMerge);
 
 void TCompAuxCameraShadowMerge::debugInMenu()
 {
+    ImGui::DragFloat("Pad Sensitivity", &_pad_sensitivity, 0.05f, 0.f, 3.f);
     ImGui::DragFloat3("Offsets", &_clipping_offset.x, 0.1f, -20.f, 20.f);
     ImGui::DragFloat2("Angles", &_clamp_angle.x, 0.1f, -90.f, 90.f);
     ImGui::DragFloat("Speed", &_speed, 0.1f, 0.f, 20.f);
@@ -27,6 +29,9 @@ void TCompAuxCameraShadowMerge::load(const json& j, TEntityParseContext& ctx)
 
     _blendInTime = j.value("bendInTime", .4f);
     clippingFilter.data.word0 = FilterGroup::Scenario | FilterGroup::Button;
+
+    const json& jconfig = Resources.get("data/config.json")->as<CJsonResource>()->getJson();
+    _pad_sensitivity = jconfig.value("camera_pad_sensitivity", 1.f);
 }
 
 void TCompAuxCameraShadowMerge::registerMsgs()
@@ -176,8 +181,8 @@ void TCompAuxCameraShadowMerge::update(float dt)
         // To remove in the future.
         horizontal_delta = EngineInput.mouse()._position_delta.x;
         vertical_delta = -EngineInput.mouse()._position_delta.y;
-        if (btRHorizontal.isPressed()) horizontal_delta = btRHorizontal.value;
-        if (btRVertical.isPressed()) vertical_delta = btRVertical.value;
+        if (btRHorizontal.isPressed()) horizontal_delta = btRHorizontal.value * _pad_sensitivity;
+        if (btRVertical.isPressed()) vertical_delta = btRVertical.value * _pad_sensitivity;;
 
         // Verbose code
         _current_euler.x -= horizontal_delta * _speed * dt;
