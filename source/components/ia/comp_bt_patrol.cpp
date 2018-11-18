@@ -775,9 +775,6 @@ BTNode::ERes TCompAIPatrol::actionGoToWpt(float dt)
 
 BTNode::ERes TCompAIPatrol::actionWaitInWpt(float dt)
 {
-    if (!isCurrentDestinationReachable() && _waypoints.size() > 1)
-        return BTNode::ERes::LEAVE;
-
     assert(arguments.find("rotationSpeed_actionWaitInWpt_waitInWpt") != arguments.end());
     float rotationSpeed = deg2rad(arguments["rotationSpeed_actionWaitInWpt_waitInWpt"].getFloat());
 
