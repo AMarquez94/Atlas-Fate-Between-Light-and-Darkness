@@ -17,68 +17,55 @@ CCheckpoint::CCheckpoint() {
 //	return true;
 //}
 
-bool CCheckpoint::saveCheckPoint(VEC3 playerPos, QUAT playerRotation)
+bool CCheckpoint::saveCheckPoint(const std::string& name, VEC3 playerPos, VEC3 playerLookAt)
 {
     bool error = false;
     enemies.clear();
     entities.clear();
 
+    checkpoint_name = name;
+
     /* Player */
     player.playerPos = playerPos;
-    player.playerRot = playerRotation;
+    player.playerLookAt = playerLookAt;
     player.saved = true;
 
     /* Enemies */
-    VHandles v_enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+    VHandles v_enemies = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
     for (int i = 0; i < v_enemies.size(); i++) {
         CEntity* e_enemy = v_enemies[i];
-
-        EnemyStatus enemy;
-
-        TCompTransform* enemyTransform = e_enemy->get<TCompTransform>();
-        assert(enemyTransform);
-        enemy.enemyPosition = enemyTransform->getPosition();
-        enemy.enemyRotation = enemyTransform->getRotation();
-
-        assert(e_enemy->getName());
-        enemy.enemyName = std::string(e_enemy->getName());
-
         TCompAIPatrol * enemyPatrol = e_enemy->get<TCompAIPatrol>();
-        TCompAIMimetic * enemyMimetic = e_enemy->get<TCompAIMimetic>();
-        TCompAIDrone * enemyDrone = e_enemy->get<TCompAIDrone>();
-        assert(enemyPatrol || enemyMimetic || enemyDrone);
         if (enemyPatrol != nullptr) {
+
+            EnemyStatus enemy;
+            enemy.enemyName = std::string(e_enemy->getName());
             enemy.enemyType = TCompIAController::BTType::PATROL;
             enemy.enemyIAStateName = enemyPatrol->getStateForCheckpoint();
+            if (enemy.enemyIAStateName != "") {
+                TCompTransform* enemyTransform = e_enemy->get<TCompTransform>();
+                enemy.enemyPosition = enemyTransform->getPosition();
+                enemy.enemyRotation = enemyTransform->getRotation();
+            }
+            enemy.saved = true;
+            enemies.push_back(enemy);
         }
-        else if (enemyMimetic != nullptr) {
-            enemy.enemyType = TCompIAController::BTType::MIMETIC;
-            enemy.enemyIAStateName = enemyMimetic->getStateForCheckpoint();
-        }
-        else if (enemyDrone != nullptr) {
-            enemy.enemyType = TCompIAController::BTType::DRONE;
-            enemy.enemyIAStateName = enemyDrone->getStateForCheckpoint();
-        }
-
-        enemy.saved = true;
-        enemies.push_back(enemy);
     }
 
-    /* Entities (movable p.e) */
-    VHandles v_entities = CTagsManager::get().getAllEntitiesByTag(getID("movable"));
-    for (int i = 0; i < v_entities.size(); i++) {
-        CEntity* entity = v_entities[i];
+    ///* Entities (movable p.e) */
+    //VHandles v_entities = CTagsManager::get().getAllEntitiesByTag(getID("movable"));
+    //for (int i = 0; i < v_entities.size(); i++) {
+    //    CEntity* entity = v_entities[i];
 
-        EntityStatus entityStatus;
+    //    EntityStatus entityStatus;
 
-        TCompTransform* entityTransform = entity->get<TCompTransform>();
-        entityStatus.entityName = entity->getName();
-        entityStatus.entityPos = entityTransform->getPosition();
-        entityStatus.entityRot = entityTransform->getRotation();
-        entityStatus.saved = true;
+    //    TCompTransform* entityTransform = entity->get<TCompTransform>();
+    //    entityStatus.entityName = entity->getName();
+    //    entityStatus.entityPos = entityTransform->getPosition();
+    //    entityStatus.entityRot = entityTransform->getRotation();
+    //    entityStatus.saved = true;
 
-        entities.push_back(entityStatus);
-    }
+    //    entities.push_back(entityStatus);
+    //}
 
     saved = true;
 
@@ -94,23 +81,16 @@ bool CCheckpoint::loadCheckPoint()
         if (h_player.isValid() && player.saved) {
             CEntity * e_player = h_player;
             TCompTransform * playerTransform = e_player->get<TCompTransform>();
-            playerTransform->setPosition(player.playerPos);
-            playerTransform->setRotation(player.playerRot);
+            playerTransform->lookAt(player.playerPos, player.playerLookAt);
             TCompRigidbody * playerRigidbody = e_player->get<TCompRigidbody>();
-            playerRigidbody->setGlobalPose(player.playerPos, player.playerRot);
+            playerRigidbody->setGlobalPose(player.playerPos, playerTransform->getRotation());
 
             /* Player Cameras */
-            VHandles v_cameras = CTagsManager::get().getAllEntitiesByTag(getID("main_camera"));
-            for (int i = 0; i < v_cameras.size(); i++) {
-                CEntity* camera = v_cameras[i];
-                TMsgCameraReset msg;
-                msg.both_angles = true;
-                camera->sendMsg(msg);
-            }
+            EngineLogic.execScript("resetMainCameras()");
         }
 
-        /* Enemies loading */
-        VHandles v_enemies = CTagsManager::get().getAllEntitiesByTag(getID("enemy"));
+        /* Patrol loading */
+        VHandles v_enemies = CTagsManager::get().getAllEntitiesByTag(getID("patrol"));
         for (int i = 0; i < v_enemies.size(); i++) {
             CEntity * e_enemy = v_enemies[i];
 
@@ -128,31 +108,16 @@ bool CCheckpoint::loadCheckPoint()
 
             if (found) {
                 /* update its position and state */
-                TCompTransform * enemyTransform = e_enemy->get<TCompTransform>();
-                enemyTransform->setPosition(enemies[j].enemyPosition);
-                enemyTransform->setRotation(enemies[j].enemyRotation);
-                TCompRigidbody * enemyRigidbody = e_enemy->get<TCompRigidbody>();
-                enemyRigidbody->setGlobalPose(enemies[j].enemyPosition, enemies[j].enemyRotation);
-
-                switch (enemies[j].enemyType) {
-                case TCompAIMimetic::BTType::PATROL:
-                {
-                    TCompAIPatrol* enemyAI = e_enemy->get<TCompAIPatrol>();
-                    enemyAI->setCurrentByName(enemies[j].enemyIAStateName);
-                    break;
-                }
-                case TCompAIMimetic::BTType::MIMETIC:
-                {
-                    TCompAIMimetic* enemyAI = e_enemy->get<TCompAIMimetic>();
-                    enemyAI->setCurrentByName(enemies[j].enemyIAStateName);
-                    break;
-                }
-                case TCompAIDrone::BTType::DRONE:
-                {
-                    TCompAIDrone* enemyAI = e_enemy->get<TCompAIDrone>();
-                    enemyAI->setCurrentByName(enemies[j].enemyIAStateName);
-                    break;
-                }
+                if (enemies[j].enemyIAStateName != "") {
+                    TCompTransform * enemyTransform = e_enemy->get<TCompTransform>();
+                    enemyTransform->setPosition(enemies[j].enemyPosition);
+                    enemyTransform->setRotation(enemies[j].enemyRotation);
+                    TCompRigidbody * enemyRigidbody = e_enemy->get<TCompRigidbody>();
+                    enemyRigidbody->setGlobalPose(enemies[j].enemyPosition, enemies[j].enemyRotation);
+                    TMsgEnemyStunnedCheckpoint msg;
+                    e_enemy->sendMsg(msg);
+                    //TCompAIPatrol* enemyAI = e_enemy->get<TCompAIPatrol>();
+                    //enemyAI->setCurrentByName(enemies[j].enemyIAStateName);
                 }
             }
             else {
@@ -161,33 +126,35 @@ bool CCheckpoint::loadCheckPoint()
             }
         }
 
-        /* Entities loading */
-        VHandles v_entities = CTagsManager::get().getAllEntitiesByTag(getID("movable"));
-        for (int i = 0; i < v_entities.size(); i++) {
-            CEntity* entity = v_entities[i];
+        EngineLogic.execEvent(CModuleLogic::Events::CHECKPOINT_LOADED, checkpoint_name);
 
-            /* Iterate through all the entities in the checkpoint. */
-            bool found = false;
-            int j = 0;
-            while (j < entities.size() && !found) {
-                if (entities[j].saved && entities[j].entityName.compare(entity->getName()) == 0) {
-                    found = true;
-                }
-                else {
-                    j++;
-                }
-            }
+        ///* Entities loading */
+        //VHandles v_entities = CTagsManager::get().getAllEntitiesByTag(getID("movable"));
+        //for (int i = 0; i < v_entities.size(); i++) {
+        //    CEntity* entity = v_entities[i];
 
-            if (found) {
-                TCompTransform * entityTransform = entity->get<TCompTransform>();
-                entityTransform->setPosition(entities[j].entityPos);
-                entityTransform->setRotation(entities[j].entityRot);
-                TCompRigidbody * entityRigidbody = entity->get<TCompRigidbody>();
-                if (entityRigidbody) {
-                    entityRigidbody->setGlobalPose(entities[j].entityPos, entities[j].entityRot);
-                }
-            }
-        }
+        //    /* Iterate through all the entities in the checkpoint. */
+        //    bool found = false;
+        //    int j = 0;
+        //    while (j < entities.size() && !found) {
+        //        if (entities[j].saved && entities[j].entityName.compare(entity->getName()) == 0) {
+        //            found = true;
+        //        }
+        //        else {
+        //            j++;
+        //        }
+        //    }
+
+        //    if (found) {
+        //        TCompTransform * entityTransform = entity->get<TCompTransform>();
+        //        entityTransform->setPosition(entities[j].entityPos);
+        //        entityTransform->setRotation(entities[j].entityRot);
+        //        TCompRigidbody * entityRigidbody = entity->get<TCompRigidbody>();
+        //        if (entityRigidbody) {
+        //            entityRigidbody->setGlobalPose(entities[j].entityPos, entities[j].entityRot);
+        //        }
+        //    }
+        //}
 
         return true;
     }
@@ -214,9 +181,10 @@ void CCheckpoint::debugInMenu()
         ImGui::SameLine();
         if (saved) {
             ImGui::TextColored(ImVec4(0, 255, 0, 255), "TRUE");
+            ImGui::Text("Name: %s", checkpoint_name.c_str());
             if (ImGui::TreeNode("Player")) {
                 ImGui::Text("Position: (%f, %f, %f)", player.playerPos.x, player.playerPos.y, player.playerPos.z);
-                ImGui::Text("Rotation: (%f, %f, %f)", player.playerRot.x, player.playerRot.y, player.playerRot.z, player.playerRot.w);
+                ImGui::Text("LookAt: (%f, %f, %f)", player.playerLookAt.x, player.playerLookAt.y, player.playerLookAt.z);
                 ImGui::TreePop();
             }
 

@@ -82,11 +82,11 @@
 		"entity": {
 			"name": "InhibitorTutorial",
 			"transform": {
-				"pos": "-20 0 -38"
+				"pos": "-22 0 -38"
 			},
 			"collider": {
 				"shape": "box",
-				"size": "7 1.5 7",
+				"size": "3.5 1.5 7",
 				"is_trigger": true,
 				"is_dynamic": false,
 				"is_controller": false,
@@ -98,11 +98,11 @@
 		"entity": {
 			"name": "SMFenceTutorial",
 			"transform": {
-				"pos": "-7 0 -42"
+				"pos": "-7 0 -36"
 			},
 			"collider": {
 				"shape": "box",
-				"size": "4 1.5 4",
+				"size": "9 1.5 10",
 				"is_trigger": true,
 				"is_dynamic": false,
 				"is_controller": false,
@@ -206,7 +206,7 @@
 			"prefab": "data/prefabs/tutorial/sign_tutorial.prefab",
 			"name": "tutorial_sign_obstacles",
 			"transform": {
-				"pos": "-10 1.6 -42.5"
+				"pos": "-5.8 1.6 -45"
 			},
 			"render": [{
 				"mesh": "data/meshes/intro_mesh_tuto_sm.mesh",

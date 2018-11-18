@@ -45,7 +45,7 @@
 		"ps_entry_point": "ps_Basic",
 		"category": "gbuffer",
 		"textures": {
-			"environment": "data/textures/cubemaps/posx.dds"
+			"environment": "data/textures/cubemaps/skybox.dds"
 		}
 	},
 	"shadows": {

@@ -573,7 +573,8 @@ data/colliders/luz_fix.collider
 data/scenes/intro_decals_cables.scene
 data/meshes/intro_cable_suelo.mesh
 data/textures/tx_cables_alb.dds
-data/materials/mtl_cable.material
+data/materials/mtl_cable_guia.material
+data/materials/mtl_cable_guia_post.material
 data/meshes/intro_cable_suelo001.mesh
 data/prefabs/cajetin_cables.prefab
 data/meshes/mesh_cajetin_cables.mesh
@@ -584,6 +585,7 @@ data/textures/tx_cajetin_cable_met.dds
 data/textures/tx_cajetin_cable_nml.dds
 data/textures/tx_cajetin_cable_rgh.dds
 data/materials/mtl_cajetin_cables.material
+data/materials/mtl_cajetin_cables_post.material
 data/scenes/intro_decals_propaganda.scene
 data/meshes/mesh_cartel_missing.mesh
 data/textures/carteles_missing.dds
@@ -1115,6 +1117,7 @@ data/colliders/collider_tubogrande_curvo.collider
 data/prefabs/tubogrande_recto.prefab
 data/meshes/mesh_tubogrande_recto.mesh
 data/colliders/collider_tubogrande_recto.collider
+data/scenes/Intro/intro_checkpoints.scene
 data/scenes/Intro/_player.scene
 data/prefabs/player.prefab
 data/materials/characters/mtl_player_main.material

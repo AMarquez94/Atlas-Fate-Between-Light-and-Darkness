@@ -4,5 +4,7 @@
 	"fullscreen": true,
 	"drawfps": false,
 	"fixed_fps": 60,
-	"fixed_step": false
+	"fixed_step": false,
+	"mouse_sensitivity": 1.0,
+	"camera_pad_sensitivity": 2.1
 }

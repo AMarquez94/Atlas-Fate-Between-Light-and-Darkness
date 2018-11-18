@@ -1,0 +1,321 @@
+[
+  {
+    "entity":
+    {
+      "name": "intro_fix_lights"
+      ,
+      "transform":
+      {
+        "pos": "0.0 0.0 0.0"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_luz_fix"
+      ,
+      "transform":
+      {
+        "pos": "-19.3263 1.95159 -4.82015"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 4.32924
+        ,
+        "outer_cut": 4.76217
+        ,
+        "color": "0.92549 1.0 0.305882 1.0"
+        ,
+        "intensity": 0.5
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 3.93567
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_luz_fix001"
+      ,
+      "transform":
+      {
+        "pos": "-10.3432 1.1393 -44.5093"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.26532
+        ,
+        "outer_cut": 3.3744
+        ,
+        "color": "0.952941 1.0 0.556863 1.0"
+        ,
+        "intensity": 0.4
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.69377
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_luz_fix002"
+      ,
+      "transform":
+      {
+        "pos": "-18.4134 1.1393 -43.4755"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.26532
+        ,
+        "outer_cut": 3.3744
+        ,
+        "color": "0.952941 1.0 0.556863 1.0"
+        ,
+        "intensity": 0.4
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 1.69377
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_luz_fix003"
+      ,
+      "transform":
+      {
+        "pos": "-26.57 1.1393 -43.1477"
+        ,
+        "rotation": "0.0 0.0 0.0 -1.0"
+      }
+      ,
+      "light_point":
+      {
+        "type": "pointlight"
+        ,
+        "inner_cut": 2.67307
+        ,
+        "outer_cut": 3.3744
+        ,
+        "color": "0.952941 1.0 0.556863 1.0"
+        ,
+        "intensity": 0.4
+        ,
+        "casts_shadows": true
+        ,
+        "shadows_step": 1.0
+        ,
+        "shadows_resolution": 512
+        ,
+        "shadows_fmt": "R32_TYPELESS"
+      }
+      ,
+      "abs_aabb": true
+      ,
+      "local_aabb": true
+      ,
+      "collider":
+      {
+        "shape": "sphere"
+        ,
+        "radius": 2.60417
+        ,
+        "is_trigger": true
+      }
+      ,
+      "tags":
+      [
+        "light"
+      ]
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_mesh_littlespotlight002"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-9.48646 4.87986 -45.8019"
+        ,
+        "rotation": "-0.676669 -0.0285124 0.0209601 -0.735437"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_mesh_littlespotlight003"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-11.524 4.87986 -45.6253"
+        ,
+        "rotation": "-0.67666 -0.0299067 0.0194112 -0.735432"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_mesh_littlespotlight004"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-17.4719 4.87986 -45.1101"
+        ,
+        "rotation": "-0.676669 -0.0285124 0.0209601 -0.735437"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_mesh_littlespotlight005"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-19.4792 4.87986 -44.9367"
+        ,
+        "rotation": "-0.67666 -0.0299067 0.0194112 -0.735432"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_mesh_littlespotlight006"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-25.4334 4.87986 -44.4194"
+        ,
+        "rotation": "-0.676669 -0.0285124 0.0209601 -0.735437"
+      }
+    }
+  }
+  ,
+  {
+    "entity":
+    {
+      "name": "intro_mesh_littlespotlight007"
+      ,
+      "prefab": "data/prefabs/littlespotlight.prefab"
+      ,
+      "transform":
+      {
+        "pos": "-27.4407 4.87986 -44.2459"
+        ,
+        "rotation": "-0.67666 -0.0299067 0.0194112 -0.735432"
+      }
+    }
+  }
+]

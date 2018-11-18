@@ -1,5 +1,6 @@
 #include "mcv_platform.h"
 #include "input/devices/mouse.h"
+#include "resources/json_resource.h"
 
 namespace Input
 {
@@ -11,7 +12,9 @@ namespace Input
 		_buttons[MOUSE_RIGHT] = false;
 		_wheel_delta = 0.f;
 		_position = VEC2(0.5f, 0.5f);
-    setLockMouse(true);
+        setLockMouse(true);
+        const json& j = Resources.get("data/config.json")->as<CJsonResource>()->getJson();
+        mouse_sensitivity = j.value("mouse_sensitivity", 1.f);
 	}
 
 	void CMouse::updateMouseData(float delta, TInterface_Mouse& data)
@@ -56,7 +59,7 @@ namespace Input
 
 	void CMouse::setPositionDelta(float deltaX, float deltaY)
 	{
-		_position_delta = VEC2(deltaX, deltaY);
+		_position_delta = VEC2(deltaX, deltaY) * mouse_sensitivity;
 	}
 
 	void CMouse::setLockMouse(bool locked)

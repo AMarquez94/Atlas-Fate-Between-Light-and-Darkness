@@ -24,9 +24,22 @@
 						}
 					},
 					{
-						"name" : "restart",
+						"name" : "tips",
 						"type" : "button",
 						"position" : "0 30",
+						"size" : "340 29",
+						"texture" : "data/textures/gui/pausemenu_tips.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/pausemenu_tips_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/pausemenu_tips_pressed.dds"
+						}
+					},
+					{
+						"name" : "restart",
+						"type" : "button",
+						"position" : "0 60",
 						"size" : "340 29",
 						"texture" : "data/textures/gui/pausemenu_restart.dds", 
 						"selected" : {
@@ -39,7 +52,7 @@
 					{
 						"name" : "return_checkpoint",
 						"type" : "button",
-						"position" : "0 60",
+						"position" : "0 90",
 						"size" : "340 29",
 						"texture" : "data/textures/gui/pausemenu_return.dds",
 						"selected" : {
@@ -52,7 +65,7 @@
 					{
 						"name" : "pause_exit",
 						"type" : "button",
-						"position" : "0 90",
+						"position" : "0 120",
 						"size" : "340 29",
 						"texture" : "data/textures/gui/exit.dds",
 						"selected" : {

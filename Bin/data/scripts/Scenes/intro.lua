@@ -151,6 +151,7 @@ function intro_inhibitor_cinematic()
 	render_inhibitor_sign.visible = false;	
 	--end
 
+	activateMission(0);
 
 	--execScriptDelayed("setCinematicPlayerState(false, \"\")", 5.75);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Inhibitor_2\",1.5,\"cinematic\", \"expoin\")", 0.5);	
@@ -189,7 +190,7 @@ function onTriggerEnter_Trigger_Capsules_Cinematic_player()
 		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_1\",0.0)", 5);	
 		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_4\",10.0,\"cinematic\", \"\")", 5);	
 		execScriptDelayed("blendInCamera(\"Camera_Cinematic_Capsules_Rot_3\",0.0,\"cinematic\", \"\")", 5);	
-
+		activateMission(1);
 		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_3\",0)", 12);
 		execScriptDelayed("blendOutCamera(\"Camera_Cinematic_Capsules_Rot_4\",0)", 12);
 
@@ -298,15 +299,15 @@ function onTriggerExit_InhibitorTutorial_player()
 end
 
 function onTriggerEnter_SMFenceTutorial_player()
-	moveTutorialPlayer(VEC3(-10, 0, -43), VEC3(-10, 0, -44), true, "sm_fence_tutorial");
-	fence = spawn("tutorial/fence_tutorial", VEC3(-10, 0, -43.5), VEC3(-10, 0, -44.5));
+	moveTutorialPlayer(VEC3(-5.8, 0, -45.5), VEC3(-5.8, 0, -47), true, "sm_fence_tutorial");
+	--fence = spawn("tutorial/fence_tutorial", VEC3(-10, 0, -43.5), VEC3(-10, 0, -44.5));
 	render_smobstacles_sign.visible = true;
 end
 
 function onTriggerExit_SMFenceTutorial_player()
 	moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
 	render_smobstacles_sign.visible = false;
-	fence:destroy();
+	--fence:destroy();
 end
 
 function onTriggerEnter_AttackTutorial_player()

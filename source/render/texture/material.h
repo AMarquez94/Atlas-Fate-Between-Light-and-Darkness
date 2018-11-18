@@ -20,7 +20,7 @@ public:
 
 	const CTexture* textures[max_textures];
 	const CRenderTechnique* tech = nullptr;
-
+    VEC4                   fixed_color = VEC4::Zero;
 
 	CMaterial();
 

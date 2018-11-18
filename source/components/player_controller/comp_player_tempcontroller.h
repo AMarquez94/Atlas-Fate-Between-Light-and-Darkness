@@ -86,6 +86,7 @@ class TCompTempPlayerController : public TCompBase
     float maxFallingTime;
     float hardFallingTime;
     float fallingDistance;
+    float startFallingDistance;
     float maxFallingDistance;
     float maxAttackDistance;
     std::string auxCamera;

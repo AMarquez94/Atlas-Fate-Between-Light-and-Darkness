@@ -72,14 +72,6 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
 
     state = (actionhandler)&TCompTempPlayerController::idleState;
 
-    auto pj_idle = loadMesh("data/meshes/pj_idle.mesh");
-    auto pj_attack = loadMesh("data/meshes/pj_attack.mesh");
-    auto pj_fall = loadMesh("data/meshes/pj_fall.mesh");
-    auto pj_walk = loadMesh("data/meshes/pj_walk.mesh");
-    auto pj_run = loadMesh("data/meshes/pj_run.mesh");
-    auto pj_crouch = loadMesh("data/meshes/pj_crouch.mesh");
-    auto pj_shadowmerge = Resources.get("axis.mesh")->as<CRenderMesh>();
-
     playerColor.colorIdle = j.count("colorIdle") ? loadVEC4(j["colorIdle"]) : VEC4(1, 1, 1, 1);
     playerColor.colorDead = j.count("colorDead") ? loadVEC4(j["colorDead"]) : VEC4(0, 0, 0, 1);
     playerColor.colorInhib = j.count("colorInhib") ? loadVEC4(j["colorInhib"]) : VEC4(1, 0, 1, 1);
@@ -108,6 +100,8 @@ void TCompTempPlayerController::load(const json& j, TEntityParseContext& ctx) {
     EngineGUI.enableWidget("stamina_bar_general", false);
     EngineGUI.enableWidget("inhibited_space", false);
     EngineGUI.enableWidget("inhibited_y", false);
+    EngineGUI.enableWidget("can_land_mouse", false);
+    EngineGUI.enableWidget("can_land_pad", false);
 }
 
 /* Player controller main update */
@@ -313,6 +307,9 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
 
     EngineLogic.execScriptDelayed("playerController:resetSMFilters()", 1.f);
 
+    TCompEmissionController *e_controller = get<TCompEmissionController>();
+    e_controller->blend(playerColor.colorIdle, 0.5f);
+
     /* Initial reset messages */
     hitPoints = 0;
     stamina = 100.f;
@@ -321,6 +318,7 @@ void TCompTempPlayerController::onCreate(const TMsgEntityCreated& msg) {
     initialTimesToPressInhibitorRemoveKey = 5;
     rotationSpeed = 10.f;
     fallingDistance = 0.f;
+    startFallingDistance = 0.f;
     isInhibited = isGrounded = isMerged = false;
     infiniteStamina = false;
     paused = false;
@@ -864,17 +862,30 @@ void TCompTempPlayerController::die()
             enemy->sendMsg(newMsg);
         }
 
-        EngineGUI.clearSubtitles();
+        EngineLogic.execScript("subClear()");
     }
 }
 
 void TCompTempPlayerController::activateCanLandSM(bool activate)
 {
+
     TCompGroup* group = get<TCompGroup>();
     CEntity* e_landing = group->getHandleByName("Player_landing");
     if (e_landing) {
         TCompLanding* c_landing = e_landing->get<TCompLanding>();
         if (c_landing->isActive() != activate) {
+            if (activate && startFallingDistance > 3.f) {
+                if (!EngineInput.pad().connected) {
+                    EngineGUI.enableWidget("can_land_mouse", true);
+                }
+                else {
+                    EngineGUI.enableWidget("can_land_pad", true);
+                }
+            }
+            else {
+                EngineGUI.enableWidget("can_land_mouse", false);
+                EngineGUI.enableWidget("can_land_pad", false);
+            }
             TMsgEntityCanLandSM msg;
             msg.canSM = canMergeFall;
             e_landing->sendMsg(msg);
@@ -1113,6 +1124,8 @@ const bool TCompTempPlayerController::groundTest(float dt) {
         canMergeFall = false;
         activateCanLandSM(false);
         fallingTime = 0.f;
+        fallingDistance = 0.f;
+        startFallingDistance = 0.f;
     }
 
     // Get distance to ground
@@ -1124,6 +1137,9 @@ const bool TCompTempPlayerController::groundTest(float dt) {
         physx::PxRaycastHit hit;
         TCompTransform *c_my_transform = get<TCompTransform>();
         if (EnginePhysics.Raycast(c_my_transform->getPosition(), -c_my_transform->getUp(), 1000, hit, physx::PxQueryFlag::eSTATIC, PxPlayerDiscardQuery)) {
+            if (fallingDistance == 0.f) {
+                startFallingDistance = hit.distance;
+            }
             fallingDistance = hit.distance;
         }
 
@@ -1224,11 +1240,11 @@ void TCompTempPlayerController::updateShader(float dt) {
     else if (isInhibited) {
         e_controller->blend(playerColor.colorInhib, 0.1f);
     }*/
-    else if (shadow_oracle->is_shadow) {
+    else if (shadow_oracle->is_shadow && !isInhibited) {
         e_controller->blend(playerColor.colorMerge, 0.5f);
     }
     else {
-        e_controller->blend(playerColor.colorIdle, 0.5f);
+        e_controller->blend(playerColor.colorIdle, 0.2f);
     }
 }
 

@@ -1,0 +1,39 @@
+[
+	{
+		"name" : "dead_menu_tip",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "dead_tip",
+				"type" : "subtitles",
+				"size" : "720 213",
+				"position" : "180 420",
+				"texture" : "data/textures/gui/tips/1.dds",
+				"subtitles_textures" : [
+					{
+						"subtitle_num" : 0,
+						"texture_src" : "data/textures/gui/tips/1.dds"
+					},
+					{
+						"subtitle_num" : 1,
+						"texture_src" : "data/textures/gui/tips/2.dds"
+					},
+					{
+						"subtitle_num" : 2,
+						"texture_src" : "data/textures/gui/tips/3.dds"
+					},
+					{
+						"subtitle_num" : 3,
+						"texture_src" : "data/textures/gui/tips/4.dds"
+					},
+					{
+						"subtitle_num" : 4,
+						"texture_src" : "data/textures/gui/tips/5.dds"
+					}
+					
+				]
+			}
+		]
+	}
+]

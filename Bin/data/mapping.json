@@ -112,12 +112,12 @@
   {
     "name": "btUpAux",
     "all": false,
-    "buttons":  ["pad_up", "up"]
+    "buttons":  ["w", "pad_up", "up"]
   },
   {
     "name": "btDownAux",
     "all": false,
-    "buttons":  ["pad_down", "down"]
+    "buttons":  ["s", "pad_down", "down"]
   },
   {
     "name": "btMenuConfirm",

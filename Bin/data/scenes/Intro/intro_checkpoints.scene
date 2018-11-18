@@ -23,20 +23,23 @@
 				"is_controller": false,
 				"is_gravity": false
 			},
-			"trigger_checkpoint": {},
+			"trigger_checkpoint": {
+				"player_pos": "-7 0 -41",
+				"player_lookat": "-7 0 -42"
+			},
 			"tags": ["checkpoint"]
 		}
 	},
 	{
 		"entity": {
-			"name": "Checkpoint_start",
+			"name": "Checkpoint_PostFall",
 			"transform": {
-				"pos": "-3.73765 0.0 27.6506",
-				"rotation": "0.0 0.0 0.0 -1.0"
+				"pos": "-3.91993 0.0 -5",
+				"rotation": "0.0 0.0 0.0 1.0"
 			},
 			"collider": {
 				"shape": "box",
-				"size": "11.1702 0.751292 4.97027",
+				"size": "12.7219 0.977595 2.57993",
 				"group": "All",
 				"mask": "",
 				"is_trigger": true,
@@ -44,7 +47,28 @@
 				"is_controller": false,
 				"is_gravity": false
 			},
-			"trigger_checkpoint": {},
+			"trigger_checkpoint": {
+				"player_pos": "-4 0 -0.8",
+				"player_lookat": "-4 0 -1"
+			},
+			"tags": ["checkpoint"]
+		}
+	}, {
+		"entity": {
+			"name": "Checkpoint_fall",
+			"transform": {
+				"pos": "-1.95185 15.7571 8.69859",
+				"rotation": "0.0 0.0 0.0 -1.0"
+			},
+			"collider": {
+				"shape": "box",
+				"is_trigger": true,
+				"size": "7.0 0.867828 1.60495"
+			},
+			"trigger_checkpoint": {
+				"player_pos": "1.4 16 10",
+				"player_lookat": "1.4 16 8"
+			},
 			"tags": ["checkpoint"]
 		}
 	}

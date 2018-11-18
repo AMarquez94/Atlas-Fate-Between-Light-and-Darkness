@@ -41,7 +41,7 @@ void TCompEmissionController::update(float dt) {
 
         TCompRender * self_render = get<TCompRender>();
         if (self_render) {
-          self_render->self_color = _current_color;
+            self_render->self_color = _current_color;
         }
 
         // Deprecated method, update this if color per mesh is needed.

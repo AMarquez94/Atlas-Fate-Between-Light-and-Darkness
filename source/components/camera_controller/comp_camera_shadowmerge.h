@@ -18,6 +18,8 @@ private:
     VEC3 _clipping_offset;
     float _starting_pitch;
 
+    float _pad_sensitivity = 1.f;
+
     const Input::TButton& btHorizontal = EngineInput["Horizontal"];
     const Input::TButton& btVertical = EngineInput["Vertical"];
     const Input::TButton& btRHorizontal = EngineInput["MouseX"];

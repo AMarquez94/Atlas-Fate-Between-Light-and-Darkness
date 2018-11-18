@@ -1,4 +1,5 @@
 {
+	"technique": "pbr_outline.tech",
   "shadows": true
   ,
   "textures":

@@ -97,7 +97,9 @@ void CModuleGameManager::switchState(PauseState pause) {
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_LINE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
 		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::INGAME_MENU_PAUSE_MISSION);
-
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::TIPS_BACK);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::TIPS_BACKGROUND);
+		EngineGUI.deactivateWidget(CModuleGUI::EGUIWidgets::DEAD_TIPS);
     }break;
     case PauseState::main: {
         mouse->setLockMouse(false);
@@ -122,9 +124,16 @@ void CModuleGameManager::switchState(PauseState pause) {
         mouse->setLockMouse(false);
     }break;
     case PauseState::defeat: {
-        mouse->setLockMouse(false);
+        mouse->setLockMouse(true);
 		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_MENU_BACKGROUND)->makeChildsFadeIn(2,3);
-
+		int rand_num = rand() % 8;
+		if (rand_num > 4) {
+			EngineGUI.setTip(1);
+		}
+		else {
+			EngineGUI.setTip(rand_num);
+		}
+		EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_TIPS)->makeChildsFadeIn(2, 7.5);
 		GUI::CWidget *w = EngineGUI.activateWidget(CModuleGUI::EGUIWidgets::DEAD_LINE);
 		if (w) {
 			float *aux_x = &w->getChild("line_dead_left")->getBarParams()->_ratio;
@@ -137,7 +146,7 @@ void CModuleGameManager::switchState(PauseState pause) {
 
 		}
 
-		EngineLogic.execSystemScriptDelayed("unlockDeadButton();",5.0f);
+		EngineLogic.execSystemScriptDelayed("unlockDeadButton();",8.0f);
 		EngineLerp.lerpElement(&cb_player.player_health, 0, 2, 2);
     }break;
     case PauseState::editor1: {
@@ -574,9 +583,9 @@ void CModuleGameManager::renderMain() {
     debugRender();
 }
 
-bool CModuleGameManager::saveCheckpoint(VEC3 playerPos, QUAT playerRot) {
+bool CModuleGameManager::saveCheckpoint(const std::string& checkpoint_name, VEC3 playerPos, VEC3 playerLookAt) {
 
-    return lastCheckpoint->saveCheckPoint(playerPos, playerRot);
+    return lastCheckpoint->saveCheckPoint(checkpoint_name, playerPos, playerLookAt);
 }
 
 bool CModuleGameManager::loadCheckpoint() {

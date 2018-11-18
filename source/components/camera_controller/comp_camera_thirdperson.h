@@ -31,6 +31,8 @@ private:
 	float _time_shaking = 0.0f;
 	float _original_y_offset = 0.0f;
 
+    float _pad_sensitivity = 1.f;
+
     bool active;
 
     const Input::TButton& btHorizontal = EngineInput["MouseX"];

@@ -5,12 +5,14 @@
 #include "components/comp_tags.h"
 #include "components/ia/comp_bt_player.h"
 #include "components/comp_camera.h"
+#include "resources/json_resource.h"
 
 DECL_OBJ_MANAGER("camera_thirdperson", TCompCameraThirdPerson);
 const Input::TInterface_Mouse& mouse = EngineInput.mouse();
 
 void TCompCameraThirdPerson::debugInMenu()
 {
+    ImGui::DragFloat("Pad Sensitivity", &_pad_sensitivity, 0.05f, 0.f, 3.f);
     ImGui::DragFloat3("Offsets", &_clipping_offset.x, 0.1f, -20.f, 20.f);
     ImGui::DragFloat2("Angles", &_clamp_angle.x, 0.1f, -90.f, 90.f);
     ImGui::DragFloat("Speed", &_speed, 0.1f, 0.f, 20.f);
@@ -53,6 +55,9 @@ void TCompCameraThirdPerson::load(const json& j, TEntityParseContext& ctx)
     active = false;
 
     clippingFilter.data.word0 = FilterGroup::Scenario | FilterGroup::Button;
+
+    const json& jconfig = Resources.get("data/config.json")->as<CJsonResource>()->getJson();
+    _pad_sensitivity = jconfig.value("camera_pad_sensitivity", 1.f);
 }
 
 void TCompCameraThirdPerson::registerMsgs()
@@ -177,8 +182,8 @@ void TCompCameraThirdPerson::update(float dt)
         // To remove in the future.
         float horizontal_delta = mouse._position_delta.x;
         float vertical_delta = -mouse._position_delta.y;
-        if (EngineInput["MouseX"].isPressed()) horizontal_delta = EngineInput["MouseX"].value;
-        if (EngineInput["MouseY"].isPressed()) vertical_delta = EngineInput["MouseY"].value;
+        if (EngineInput["MouseX"].isPressed()) horizontal_delta = EngineInput["MouseX"].value * _pad_sensitivity;
+        if (EngineInput["MouseY"].isPressed()) vertical_delta = EngineInput["MouseY"].value * _pad_sensitivity;
 
         // Verbose code
         CEntity* e_target = _h_target;

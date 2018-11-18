@@ -1,6 +1,7 @@
 function onSceneStart_scene_zone_a()
 	setCorridorInvisible("")
 	execScriptDelayed("isInCinematicMode(false)", 0.1);
+	getSignRendersForZoneA();
 end
 
 function onScenePartialStart_scene_zone_a()
@@ -35,10 +36,18 @@ end
 
 function enable_button_exit(button_handle)
 	execScriptDelayed("toButton(toEntity(getEntityByName(\"Button End Scene\")):getCompByName(\"button\")):setCanBePressed(true)",2.25);
-	if(cinematicsEnabled) then
+	
+	pos = toTransform(toEntity(getPlayerHandle()):getCompByName("transform")):getPosition();
+	h = CHandle();
+	h:fromUnsigned(button_handle);
+	lookat = toTransform(toEntity(h):getCompByName("transform")):getPosition();
+	
+	saveCheckpoint("zone_a_tower", pos ,lookat)
+	if(cinematicsEnabled and not zone_a_tower_activated) then
 		execScriptDelayed("cinematic_tower_activated()",0.5);
 	end
 	zone_a_door_activated = true;
+	zone_a_tower_activated = true;
 	execScriptDelayed("disableButton(" .. button_handle .. ", false)", 1);
 end
 
@@ -78,6 +87,7 @@ end
 function cinematic_enter_zone_a()
 
 	startCinematicMode(10)
+	getSignRendersForZoneA();
 	execScriptDelayed("playVoice(\"zonea_intro\")", 0.27);
 	execScriptDelayed("startTransmission(8.98)", 0.27);
 	execScriptDelayed("activateSubtitles(20);", 0.27);
@@ -119,7 +129,7 @@ function cinematic_tower_activated()
 	execScriptDelayed("startTransmission(3.75)", 2.25);
 	execScriptDelayed("activateSubtitles(23);", 2.25);
 	execScriptDelayed("deactivateSubtitles();", 6);
-
+	activateMission(0);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Exit_Door_2\", 9, \"cinematic\", \"quintinout\")", 1.5);
 	execScriptDelayed("blendInCamera(\"Camera_Cinematic_Exit_Door_1\", 0.0, \"cinematic\", \"\")", 0.27);
 
@@ -141,4 +151,29 @@ end
 function destroyZoneAPreloadCol()
 	destroyPartialScene();
 	execScriptDelayed("preloadScene(\"scene_coliseo_2\")", 0.1);
+end
+
+function onCheckpointLoaded_zone_a_tower()
+	toButton(toEntity(getEntityByName("Button End Scene")):getCompByName("button")):setCanBePressed(true);
+	toButton(toEntity(getEntityByName("Button Open Exit")):getCompByName("button")):setCanBePressed(false);
+	
+	subClear();
+	execScriptDelayed("playVoice(\"zonea_tower_activated\");", 0.5);
+	execScriptDelayed("startTransmission(3.75)", 0.5);
+	execScriptDelayed("activateSubtitles(23);", 0.5);
+	execScriptDelayed("deactivateSubtitles();", 4.25);
+end
+
+function onTriggerEnter_SonarTutorial_player()
+	moveTutorialPlayer(VEC3(-40.5,0,-88), VEC3(-41,0,-88), true, "sonar_tutorial");
+	render_sonar_sign.visible = true;
+end
+
+function onTriggerExit_SonarTutorial_player()
+	moveTutorialPlayer(VEC3(0,-30,0), VEC3(0,0,25), false, "");
+	render_sonar_sign.visible = false;
+end
+
+function getSignRendersForZoneA()
+	render_sonar_sign = toRender(toEntity(getEntityByName("tutorial_sign_sonar")):getCompByName("render"));
 end

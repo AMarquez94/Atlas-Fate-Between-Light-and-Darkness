@@ -1,0 +1,30 @@
+[
+	{
+		"name" : "pause_menu_tips_buttons",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "buttons_back_tips_pm",
+				"type" : "widget",
+				"position" : "1500 580",
+				"children" : [
+					{
+						"name" : "tips_back_pm",
+						"type" : "button",
+						"position" : "0 0",
+						"size" : "340 29",
+						"texture" : "data/textures/gui/back_button.dds",
+						"selected" : {
+							"texture" : "data/textures/gui/back_button_selected.dds"
+						},
+						"pressed" : {
+							"texture" : "data/textures/gui/back_button_pressed.dds"
+						}
+					}
+					
+				]
+			}
+		]
+	}
+]

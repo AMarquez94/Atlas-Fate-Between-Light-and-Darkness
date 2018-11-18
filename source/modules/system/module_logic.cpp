@@ -392,6 +392,7 @@ void CModuleLogic::publishClasses() {
     m->set("renderNavmeshToggle", SLB::FuncCall::create(&renderNavmeshToggle));
     m->set("sleep", SLB::FuncCall::create(&sleep));
     m->set("cinematicModeToggle", SLB::FuncCall::create(&cinematicModeToggle));
+    m->set("saveCheckpoint", SLB::FuncCall::create(&saveCheckpoint));
     m->set("isCheckpointSaved", SLB::FuncCall::create(&isCheckpointSaved));
     m->set("destroyHandle", SLB::FuncCall::create(&destroyHandle));
     m->set("destroyHandleByName", SLB::FuncCall::create(&destroyHandleByName));
@@ -410,6 +411,7 @@ void CModuleLogic::publishClasses() {
     m->set("preloadSoundEvent", SLB::FuncCall::create(&preloadSoundEvent));
     m->set("stopRenderingEntities", SLB::FuncCall::create(&stopRenderingEntities));
     m->set("changeMainTheme", SLB::FuncCall::create(&changeMainTheme));
+    m->set("getPlayerHandle", SLB::FuncCall::create(&getPlayerHandle));
 
     /* Only for debug */
     m->set("sendOrderToDrone", SLB::FuncCall::create(&sendOrderToDrone));
@@ -571,6 +573,15 @@ bool CModuleLogic::execEvent(Events event, const std::string & params, float del
         }
         else {
             return execScript("onPatrolKilled_" + params).success;
+        }
+        break;
+
+    case Events::CHECKPOINT_LOADED:
+        if (delay > 0) {
+            return execScriptDelayed("onCheckpointLoaded_" + params + "()", delay);
+        }
+        else {
+            return execScript("onCheckpointLoaded_" + params + "()").success;
         }
         break;
     default:
@@ -834,6 +845,12 @@ void cinematicModeToggle() {
     h.sendMsg(msg);
 }
 
+void saveCheckpoint(const std::string & name, VEC3 ppos, VEC3 plookat)
+{
+    CModuleGameManager gameManager = CEngine::get().getGameManager();
+    gameManager.saveCheckpoint(name, ppos, plookat);
+}
+
 bool isCheckpointSaved()
 {
     CModuleGameManager gameManager = CEngine::get().getGameManager();
@@ -987,7 +1004,6 @@ void sendPlayerIlluminatedMsg(CHandle h, bool illuminated) {
 
 void isInCinematicMode(bool isCinematic)
 {
-    dbg("SETEAMOS A %s\n", isCinematic ? "TRUE" : "FALSE");
     CEngine::get().getGameManager().isCinematicMode = isCinematic;
     if (isCinematic) {
         // Lock/Unlock the cursor
@@ -1016,6 +1032,11 @@ void stopRenderingEntities()
 void changeMainTheme()
 {
     CEngine::get().getGameManager().changeMainTheme();
+}
+
+CHandle getPlayerHandle()
+{
+    return EngineEntities.getPlayerHandle();
 }
 
 

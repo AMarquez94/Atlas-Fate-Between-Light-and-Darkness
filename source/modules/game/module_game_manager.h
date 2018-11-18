@@ -61,7 +61,7 @@ public:
     void renderMain();
 
 	void setPauseState(PauseState pause);
-    bool saveCheckpoint(VEC3 playerPos, QUAT playerRot);
+    bool saveCheckpoint(const std::string& checkpoint_name, VEC3 playerPos, VEC3 playerLookAt);
     bool loadCheckpoint();
     bool deleteCheckpoint();
     bool isCheckpointSaved() { return lastCheckpoint != nullptr && lastCheckpoint->isSaved(); };

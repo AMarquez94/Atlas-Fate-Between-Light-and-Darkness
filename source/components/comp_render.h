@@ -22,6 +22,7 @@ public:
     float              self_opacity = 0.f;
     float              self_intensity = 1.f;
     VEC4               self_color = VEC4(1, 1, 1, 1);
+    const CMaterial*   target_material = nullptr;
 
     // This represents a single object mesh with several materials. Not multiples meshes
     struct CMeshWithMaterials {

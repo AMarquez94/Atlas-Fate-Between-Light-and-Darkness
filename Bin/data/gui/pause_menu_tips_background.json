@@ -1,0 +1,21 @@
+[
+	{
+		"name" : "pause_menu_background_tips",
+		"type" : "widget",
+		"size" : "1080 640",
+		"children" : [
+			{
+				"name" : "background_tips_pm",
+				"children" : [
+					{
+						"name" : "background_tips",
+						"type" : "image",
+						"size" : "1080 640",
+						"texture" : "data/textures/gui/tips.dds"
+					}
+					
+				]
+			}
+		]
+	}
+]

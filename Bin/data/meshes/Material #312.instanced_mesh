@@ -1,7 +1,0 @@
-{
-  "instanced_mesh": "data/meshes/UnitBox.mesh"
-  ,
-  "instances_type": "Instance"
-  ,
-  "num_instances_reserved": 8
-}
