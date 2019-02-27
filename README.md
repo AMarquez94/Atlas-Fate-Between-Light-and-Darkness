@@ -12,13 +12,13 @@ But Atlas has lost control over the security system one of their power plants, l
 
 This game has been developed in 2017 for the Video Game Creation Master of Pompeu Fabra University and has been made using a custom engine programmed from scratch.
 
-**Watch alpha trailer [here](https://youtu.be/Z2QK1mOMtCs).**
+**Watch launch trailer [here](https://youtu.be/WUfpafyzgJI).**
 
 ## Social networks
 
 * Website:   [www.atlasfate.com](http://www.atlasfate.com)
 * Twitter:   [@BabyRobotGames](https://twitter.com/BabyRobotGames)
-* Instagram: [baby_robot_games](https://www.instagram.com/baby_robot_games/)
+* Instagram: [baby_robot_games](https://www.instagram.com/babyrobotgames/)
 * YouTube:   [click here](https://www.youtube.com/channel/UC-5GQw6IHbPGSfQtHPDlOkw)
 * Discord:   [click here](https://discord.gg/YBdheMg)
 
