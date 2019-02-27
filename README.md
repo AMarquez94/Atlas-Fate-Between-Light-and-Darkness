@@ -18,7 +18,7 @@ This game has been developed in 2017 for the Video Game Creation Master of Pompe
 
 * Website:   [www.atlasfate.com](http://www.atlasfate.com)
 * Twitter:   [@BabyRobotGames](https://twitter.com/BabyRobotGames)
-* Instagram: [baby_robot_games](https://www.instagram.com/babyrobotgames/)
+* Instagram: [babyrobotgames](https://www.instagram.com/babyrobotgames/)
 * YouTube:   [click here](https://www.youtube.com/channel/UC-5GQw6IHbPGSfQtHPDlOkw)
 * Discord:   [click here](https://discord.gg/YBdheMg)
 
